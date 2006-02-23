@@ -20,9 +20,9 @@ OUTPUT_DIR       := $(ROOT_DIR)/samples/lib
 include         $(ROOT_DIR)/build/makedefs.txt
 
 # files
-SRC		:=  src/$(COLLADA_DOM_VERSION)/intGeometry.cpp \
-		intRegisterElements.cpp
-
+SRC				:=  src/$(COLLADA_DOM_VERSION)/intGeometry.cpp \
+					intRegisterElements.cpp
+					
 INCLUDE_DIR	+= $(ROOT_DIR)/include \
 		   $(ROOT_DIR)/include/$(COLLADA_DOM_VERSION) 
 

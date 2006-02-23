@@ -13,7 +13,7 @@
 	</asset>
 	<library_images>
 		<image id="file1-image" name="file1">
-			<init_from>file://C|/DailyTests/Feb9Tests/Source/mushroom.tga</init_from>
+			<init_from>../images/mushroom140_Textures/mushroom.tga</init_from>
 		</image>
 	</library_images>
 	<library_geometries>

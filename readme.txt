@@ -33,7 +33,7 @@ root:
      header files.
 
    /1.3:
-   	/dom:
+   /dom:
      	  contains all of the generated COLLADA C++ dom object header files for v1.3
 
    /1.4:
@@ -81,9 +81,9 @@ root:
      	  COLLADA v1.3 XML Schema.
 
    /1.4:
-	/dom:
-     	  contains all of the *generated* C++ source code for the COLLADA C++
-     	  object definitions.  This code is directly generated from the 
+   /dom:
+     contains all of the *generated* C++ source code for the COLLADA C++
+     object definitions.  This code is directly generated from the 
      	  COLLADA v1.4 XML Schema.
 
    /modules:
@@ -98,7 +98,7 @@ root:
 
       /XMLPlugin:
         example of an XML DB backend, using a stand-alone XML parser
-   
+
 
 *********************
 Notes:
