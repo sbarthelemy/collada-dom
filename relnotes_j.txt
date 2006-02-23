@@ -1,0 +1,161 @@
+ Copyright 2006 Sony Computer Entertainment Inc.
+
+ Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this 
+ file except in compliance with the License. You may obtain a copy of the License at:
+ http://research.scea.com/scea_shared_source_license.html
+
+ Unless required by applicable law or agreed to in writing, software distributed under the License 
+ is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or 
+ implied. See the License for the specific language governing permissions and limitations under the 
+ License.
+
+======================================================================
+======================================================================
+
+このディレクトリには、CELL SDK 0.4.0用のCOLLADA API v1.0.0リリースが
+収録されています。
+
+COLLADA APIには、COLLADA v1.3.0のドキュメントを処理するツールとの
+インポート／エクスポートを行う機能が備わっています。また、v1.2の
+ドキュメントもインポートすることができます。
+
+======================================================================
+既知のバグ
+======================================================================
+・［バグ］
+
+  Mantis Open Issues（重要、およびそれ以上）
+
+  0000211  API - Imp  major  インポートオブジェクトがデストラクトされない
+  0000238  API - DOM  major  COLLADAファイルを書き出した際のサブ要素の順番が間違っている
+  0000257  API - DOM  major  save()からdomTriangles::p_arrayが完全にクリアされていないと報告される
+  0000281  API - DOM  major  コピー演算子やディープ・コピー/クローン関数が用意されていない
+  0000283  API - DOM  block  ソース中のarray要素の配列
+  0000297  API - DOM  major  相対ファイル名が指定された場合にgetURIが間違ったURIを返す
+
+
+======================================================================
+制限事項
+======================================================================
+・ガイドライン
+　問題点のレポートは、https://collada.org/mantisでホスティングされている
+　Mantisバグデータベースを利用しています。Mantisを利用するには、登録する
+　必要があります。登録するには、連絡先情報を明記してmailto:collada@collada.orgに
+　電子メールをお送りください。
+
+・ガイドライン
+　リリースが更新された場合には、https://collada.org/phpBB2/viewforum.php?f=29
+　にあるCOLLADAパートナのフォーラムからダウンロードすることができます。
+　βテスタとして登録されている方には、新しいリリースがダウンロードできるように
+　なると、電子メールで通知が届きます。
+
+・制限
+　本リリースの情報についてはreadme.txtファイルを参照
+
+・制限
+　詳しい情報についてはCOLLADA_API_Guide.docユーザドキュメントを参照
+　オンラインヘルプについてはCOLLADA_API.chmリファレンスドキュメントを参照
+
+
+======================================================================
+変更点（開発者向け）
+======================================================================
+
+・β07リリースでの修正点
+
+  Mantis Resolved Issues  
+
+- 0000118: [API - DOM] fromCOLLADA()呼び出し
+- 0000185: [API - DOM] 穴の付いたポリゴン
+- 0000222: [API - Integration] daeIntegrationObject::getElement()とdaeIntegrationObject::setElement()が同一
+- 0000225: [API - DOM] daeElement::createElement()が壊れたオブジェクトを返す
+- 0000285: [API - Documentation] リリースノートのバージョン番号が正しくない（β06）
+- 0000302: [API - Integration] 変換の順番の依存関係
+- 0000303: [API - DOM] daeAtomicType.cppでshort型のscanf/printf系文字列が間違っている
+- 0000309: [API - DOM] daeIDRefResolver::~daeIDRefResolver()はvirtualでなければならない
+
+
+・β06リリースでの修正点
+
+  Mantis Resolved Issues
+
+- 0000079: [API - DOM] sscanfの安全性
+- 0000107: [API - DOM] float配列として定義されたトークン配列のリスト
+- 0000142: [API - Importer] シーンルートの検出
+- 0000164: [API - DOM] デスクチェック：NULLポインタへの無防備なアクセス
+- 0000166: [API - DOM] デスクチェック：負の値をmemsetに渡してしまう可能性
+- 0000182: [API - General] DAEオブジェクトが正しく削除されない
+- 0000187: [API - DOM] XML String型がXMLの規則に正しく準拠していない
+- 0000253: [API - General] いくつかのdaeクラスは仮想関数を持つが、非仮想デストラクタがない
+
+
+・β05リリースでの修正点
+
+  Mantis Resolved Issues  
+
+- 0000120: [API - Documentation] daeTrackedElementの型チェック
+- 0000121: [API - DOM] 同じ名前を持つ要素のdaeElement::getDomType()
+- 0000122: [API - DOM] クロスファイルのリンク
+- 0000124: [API - Importer] 存在しないファイルへのリンク
+- 0000137: [API - DOM] 親要素のアクセス
+- 0000138: [API - Importer] 属性名に続いて"="がなかった場合にxmlがおかしくなる
+- 0000139: [API - Importer] 属性値の引用符がなかった場合にxmlがおかしくなる
+- 0000141: [API - DOM] daeChunkBuffer::initializeのアサート
+- 0000143: [API - Documentation] queryAssetコードの例
+- 0000162: [API - DOM] デスクチェック：新しいベクトル<cmdLineData>の不適切な割り当て解除とスカラー削除
+- 0000167: [API - DOM]  何もファイルをロードしていない場合にqueryAssetCountを呼び出すとクラッシュする
+- 0000168: [API - General] DAE_?の中のCOL_の名称を変更
+- 0000186: [API - DOM] コードジェネレータでシングルトン型定数の型が間違っている
+
+
+・β04リリースでの修正点
+
+  Mantis Resolved Issues  
+
+- 何も問題点が報告されなかった
+
+
+・β03リリースでの修正点
+
+  Mantis Resolved Issues  
+
+β02で足りなかったファイルを追加した再リリース
+
+- 0000105: [API - DOM] "floatArray"にバインドされたfloat型配列
+- 0000116: [API - DOM] ノード変換の順番
+- 0000119: [API - Documentation] Mantisデータベースのリンクが不適切
+
+
+・β02リリースでの修正点
+
+  Mantis Resolved Issues  
+
+注意：このパッケージにはファイルが足りなかったために回収した。
+
+- 0000101: [API - Integration] intGeometry::fromCOLLADA()で1つ以上の<polygon>要素の変換に失敗する
+- 0000103: [API - Importer] 不明な要素がパーサをクラッシュする
+- 0000102: [API - Importer] 標準のXMLコメントがパーサをクラッシュする
+- 0000104: [API - Importer] 属性が空だとパーサがハングアップする
+  
+
+・β01リリースでの修正点
+
+  Mantis Resolved Issues  
+  
+- 0000106: [API - Importer] パラメータのデフォルト値が無視される
+- 0000117: [API - Importer] xs:anyURIのハンドリング
+
+・α02リリースでの修正点
+
+  Mantis Resolved Issues
+
+- 0000055: [API - DOM] ビューワでクラッシュが発生
+
+・α01リリースでの修正点
+
+- 何も問題点が報告されなかった
+
+
+======================================================================
+[ Notes about this document go here ]
+

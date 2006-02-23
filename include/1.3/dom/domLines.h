@@ -1,0 +1,257 @@
+/*
+ * Copyright 2006 Sony Computer Entertainment Inc.
+ *
+ * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this 
+ * file except in compliance with the License. You may obtain a copy of the License at:
+ * http://research.scea.com/scea_shared_source_license.html
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under the License 
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or 
+ * implied. See the License for the specific language governing permissions and limitations under the 
+ * License. 
+ */
+#ifndef __domLines_h__
+#define __domLines_h__
+
+#include <dom/domTypes.h>
+#include <dom/domElements.h>
+
+#include <dom/domParam.h>
+#include <dom/domInput.h>
+
+/**
+ * The lines element declares the binding of geometric primitives and vertex
+ * attributes for a  mesh element. The lines element provides the information
+ * needed to bind vertex attributes  together and then organize those vertices
+ * into individual lines. The vertex array  information is supplied in distinct
+ * attribute arrays of the mesh element that are then indexed by the lines
+ * element. Each line described by the mesh has two vertices. The first  line
+ * is formed from first and second vertices. The second line is formed from
+ * the third and  fourth vertices and so on. A lines element contains a sequence
+ * of p elements, where 'p' stands for primitive. Each p  element describes
+ * the vertex attributes for an arbitrary number of individual lines.
+ */
+class domLines : public daeElement
+{
+public:
+	class domP;
+
+	typedef daeSmartRef<domP> domPRef;
+	typedef daeTArray<domPRef> domP_Array;
+
+/**
+ * Primitive element. @breif Every two indices form a line. Each p element
+ * contains indices that reference into the source elements. These  indices
+ * are position dependent and reference the contents of the source elements
+ * according to the order of the input elements. Here is an example of this:
+ * The  first index references the first unique input element; the second
+ * index references  the second unique input element, and so on. This is a
+ * simple form of compression  that reduces the number of indices required
+ * in each p element. The input elements  are uniquely identified by their
+ * idx attribute values. A complete sampling of a  single vertex is completed
+ * by gathering one value from each input using the  associated index in the
+ * p element.
+ */
+	class domP : public daeElement
+	{
+
+	protected:  // Value
+		/**
+		 * The domListOfInts value of the text data of this element. 
+		 */
+		domListOfInts _value;
+
+	public:	//Accessors and Mutators
+		/**
+		 * Gets the _value array.
+		 * @return Returns a domListOfInts reference of the _value array.
+		 */
+		domListOfInts &getValue() { return _value; }
+		/**
+		 * Gets the _value array.
+		 * @return Returns a constant domListOfInts reference of the _value array.
+		 */
+		const domListOfInts &getValue() const { return _value; }
+		/**
+		 * Sets the _value array.
+		 * @param at The new value for the _value array.
+		 */
+		void setValue( const domListOfInts &val ) { _value = val; }
+
+	protected:
+		/**
+		 * Constructor
+		 */
+		domP() : _value() {}
+		/**
+		 * Destructor
+		 */
+		virtual ~domP() {}
+		/**
+		 * Copy Constructor
+		 */
+		domP( const domP &cpy ) : daeElement() { (void)cpy; }
+		/**
+		 * Overloaded assignment operator
+		 */
+		virtual domP &operator=( const domP &cpy ) { (void)cpy; return *this; }
+
+	public: // STATIC METHODS
+		/**
+		 * Creates an instance of this class and returns a daeElementRef referencing it.
+		 * @param bytes The size allocated for this instance.
+		 * @return a daeElementRef referencing an instance of this object.
+		 */
+		static daeElementRef create(daeInt bytes);
+		/**
+		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
+		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
+		 * @return A daeMetaElement describing this COLLADA element.
+		 */
+		static daeMetaElement* registerElement();
+
+	public: // STATIC MEMBERS
+		/**
+		 * The daeMetaElement that describes this element in the meta object reflection framework.
+		 */
+		static daeMetaElement* _Meta;
+	};
+
+
+protected:  // Attributes
+/**
+ *  The count attribute indicates the number of line primitives.  Required
+ * attribute. 
+ */
+	xsNonNegativeInteger attrCount;
+/**
+ *  The material attribute refers to the name of a material element, using
+ * a URL  expression, bound to the lines. If the material attribute is not
+ * specified  then the lighting and shading results are application defined.
+ * Optional attribute. 
+ */
+	xsAnyURI attrMaterial;
+
+protected:  // Elements
+/**
+ *  The param element may occur zero or more times.  @see domParam
+ */
+	domParam_Array elemParam_array;
+/**
+ *  The input element may occur zero or more times.  @see domInput
+ */
+	domInput_Array elemInput_array;
+/**
+ * Primitive element. @breif Every two indices form a line. Each p element
+ * contains indices that reference into the source elements. These  indices
+ * are position dependent and reference the contents of the source elements
+ * according to the order of the input elements. Here is an example of this:
+ * The  first index references the first unique input element; the second
+ * index references  the second unique input element, and so on. This is a
+ * simple form of compression  that reduces the number of indices required
+ * in each p element. The input elements  are uniquely identified by their
+ * idx attribute values. A complete sampling of a  single vertex is completed
+ * by gathering one value from each input using the  associated index in the
+ * p element. @see domP
+ */
+	domP_Array elemP_array;
+
+public:	//Accessors and Mutators
+	/**
+	 * Gets the count attribute.
+	 * @return Returns a xsNonNegativeInteger of the count attribute.
+	 */
+	xsNonNegativeInteger getCount() const { return attrCount; }
+	/**
+	 * Sets the count attribute.
+	 * @param atCount The new value for the count attribute.
+	 */
+	void setCount( xsNonNegativeInteger atCount ) { attrCount = atCount; }
+
+	/**
+	 * Gets the material attribute.
+	 * @return Returns a xsAnyURI reference of the material attribute.
+	 */
+	xsAnyURI &getMaterial() { return attrMaterial; }
+	/**
+	 * Gets the material attribute.
+	 * @return Returns a constant xsAnyURI reference of the material attribute.
+	 */
+	const xsAnyURI &getMaterial() const { return attrMaterial; }
+	/**
+	 * Sets the material attribute.
+	 * @param atMaterial The new value for the material attribute.
+	 */
+	void setMaterial( const xsAnyURI &atMaterial ) { attrMaterial.setURI( atMaterial.getURI() ); }
+
+	/**
+	 * Gets the param element array.
+	 * @return Returns a reference to the array of param elements.
+	 */
+	domParam_Array &getParam_array() { return elemParam_array; }
+	/**
+	 * Gets the param element array.
+	 * @return Returns a constant reference to the array of param elements.
+	 */
+	const domParam_Array &getParam_array() const { return elemParam_array; }
+	/**
+	 * Gets the input element array.
+	 * @return Returns a reference to the array of input elements.
+	 */
+	domInput_Array &getInput_array() { return elemInput_array; }
+	/**
+	 * Gets the input element array.
+	 * @return Returns a constant reference to the array of input elements.
+	 */
+	const domInput_Array &getInput_array() const { return elemInput_array; }
+	/**
+	 * Gets the p element array.
+	 * @return Returns a reference to the array of p elements.
+	 */
+	domP_Array &getP_array() { return elemP_array; }
+	/**
+	 * Gets the p element array.
+	 * @return Returns a constant reference to the array of p elements.
+	 */
+	const domP_Array &getP_array() const { return elemP_array; }
+protected:
+	/**
+	 * Constructor
+	 */
+	domLines() : attrCount(), attrMaterial(), elemParam_array(), elemInput_array(), elemP_array() {}
+	/**
+	 * Destructor
+	 */
+	virtual ~domLines() {}
+	/**
+	 * Copy Constructor
+	 */
+	domLines( const domLines &cpy ) : daeElement() { (void)cpy; }
+	/**
+	 * Overloaded assignment operator
+	 */
+	virtual domLines &operator=( const domLines &cpy ) { (void)cpy; return *this; }
+
+public: // STATIC METHODS
+	/**
+	 * Creates an instance of this class and returns a daeElementRef referencing it.
+	 * @param bytes The size allocated for this instance.
+	 * @return a daeElementRef referencing an instance of this object.
+	 */
+	static daeElementRef create(daeInt bytes);
+	/**
+	 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
+	 * If a daeMetaElement already exists it will return that instead of creating a new one. 
+	 * @return A daeMetaElement describing this COLLADA element.
+	 */
+	static daeMetaElement* registerElement();
+
+public: // STATIC MEMBERS
+	/**
+	 * The daeMetaElement that describes this element in the meta object reflection framework.
+	 */
+	static daeMetaElement* _Meta;
+};
+
+
+#endif

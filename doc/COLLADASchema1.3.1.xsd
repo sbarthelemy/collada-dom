@@ -1,0 +1,3539 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema targetNamespace="http://www.collada.org/2005/COLLADASchema" elementFormDefault="qualified"
+	xmlns="http://www.collada.org/2005/COLLADASchema" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	version="1.3.1">
+	<!-- BEGIN COLLADA Format Schema -->
+	<xs:annotation>
+		<xs:documentation>
+			COLLADA Format Schema
+			Version 1.3.1 (August 19th, 2005)
+			Copyright 2005 Sony Computer Entertainment Inc.
+			All Rights Reserved
+		</xs:documentation>
+	</xs:annotation>
+	<!-- Root Element -->
+	<xs:element name="COLLADA">
+		<xs:annotation>
+			<xs:documentation>
+			The COLLADA element declares the root of the document that comprises some of the content in 
+			the COLLADA schema.
+			The COLLADA schema is XML based; therefore, it must have a 'document root element' or 
+			document entity to be a well-formed XML document.
+			</xs:documentation>
+			<xs:appinfo>enable-xmlns</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="asset" minOccurs="1" maxOccurs="1" />
+				<xs:element ref="library" minOccurs="0" maxOccurs="unbounded" />
+				<xs:element ref="scene" minOccurs="0" maxOccurs="1" />
+			</xs:sequence>
+			<xs:attribute name="version" type="xs:string" use="required" >
+				<xs:annotation>
+					<xs:documentation>
+					The version attribute is the COLLADA schema revision with which the instance 
+					document conforms. 
+					Required attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<!-- Simple Types -->
+	<!-- Primitive Types -->
+	<xs:simpleType name="bool">
+		<xs:restriction base="xs:boolean" />
+	</xs:simpleType>
+	<xs:simpleType name="dateTime">
+		<xs:restriction base="xs:dateTime" />
+	</xs:simpleType>
+	<xs:simpleType name="float">
+		<xs:restriction base="xs:double" />
+	</xs:simpleType>
+	<xs:simpleType name="int">
+		<xs:restriction base="xs:long" />
+	</xs:simpleType>
+	<xs:simpleType name="Name">
+		<xs:restriction base="xs:Name" />
+	</xs:simpleType>
+	<xs:simpleType name="string">
+		<xs:restriction base="xs:string" />
+	</xs:simpleType>
+	<xs:simpleType name="token">
+		<xs:restriction base="xs:token" />
+	</xs:simpleType>
+	<!-- Container Types -->
+	<xs:simpleType name="ListOfBools">
+		<!-- MCB: MS XML Designer dataview doesn't support list or union derived simpleType -->
+		<xs:list itemType="xs:boolean" />
+	</xs:simpleType>
+	<xs:simpleType name="ListOfFloats">
+		<!-- MCB: MS XML Designer dataview doesn't support list or union derived simpleType -->
+		<xs:list itemType="xs:double" />
+	</xs:simpleType>
+	<xs:simpleType name="ListOfHexBinary">
+		<!-- MCB: MS XML Designer dataview doesn't support list or union derived simpleType -->
+		<xs:list itemType="xs:hexBinary" />
+	</xs:simpleType>
+	<xs:simpleType name="ListOfInts">
+		<!-- MCB: MS XML Designer dataview doesn't support list or union derived simpleType -->
+		<xs:list itemType="xs:long" />
+	</xs:simpleType>
+	<xs:simpleType name="ListOfNames">
+		<!-- MCB: MS XML Designer dataview doesn't support list or union derived simpleType -->
+		<xs:list itemType="xs:Name" />
+	</xs:simpleType>
+	<xs:simpleType name="ListOfTokens">
+		<!-- MCB: MS XML Designer dataview doesn't support list or union derived simpleType -->
+		<xs:list itemType="xs:token" />
+	</xs:simpleType>
+	<!-- Aggregate Types -->
+	<xs:simpleType name="bool2">
+		<xs:restriction base="ListOfBools">
+			<xs:minLength value="2" />
+			<xs:maxLength value="2" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="bool3">
+		<xs:restriction base="ListOfBools">
+			<xs:minLength value="3" />
+			<xs:maxLength value="3" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="bool4">
+		<xs:restriction base="ListOfBools">
+			<xs:minLength value="4" />
+			<xs:maxLength value="4" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="float2">
+		<xs:restriction base="ListOfFloats">
+			<xs:minLength value="2" />
+			<xs:maxLength value="2" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="float3">
+		<xs:restriction base="ListOfFloats">
+			<xs:minLength value="3" />
+			<xs:maxLength value="3" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="float4">
+		<xs:restriction base="ListOfFloats">
+			<xs:minLength value="4" />
+			<xs:maxLength value="4" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="float7">
+		<xs:restriction base="ListOfFloats">
+			<xs:minLength value="7" />
+			<xs:maxLength value="7" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="float2x2">
+		<xs:restriction base="ListOfFloats">
+			<xs:minLength value="4" />
+			<xs:maxLength value="4" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="float3x3">
+		<xs:restriction base="ListOfFloats">
+			<xs:minLength value="9" />
+			<xs:maxLength value="9" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="float4x4">
+		<xs:restriction base="ListOfFloats">
+			<xs:minLength value="16" />
+			<xs:maxLength value="16" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="int2">
+		<xs:restriction base="ListOfInts">
+			<xs:minLength value="2" />
+			<xs:maxLength value="2" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="int3">
+		<xs:restriction base="ListOfInts">
+			<xs:minLength value="3" />
+			<xs:maxLength value="3" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="int4">
+		<xs:restriction base="ListOfInts">
+			<xs:minLength value="4" />
+			<xs:maxLength value="4" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="int2x2">
+		<xs:restriction base="ListOfInts">
+			<xs:minLength value="4" />
+			<xs:maxLength value="4" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="int3x3">
+		<xs:restriction base="ListOfInts">
+			<xs:minLength value="9" />
+			<xs:maxLength value="9" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="int4x4">
+		<xs:restriction base="ListOfInts">
+			<xs:minLength value="16" />
+			<xs:maxLength value="16" />
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- Basic Enumerations -->
+	<xs:simpleType name="ArrayTypes">
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="float" />
+			<xs:enumeration value="int" />
+			<xs:enumeration value="Name" />
+			<xs:enumeration value="token" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FlowType">
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="IN" />
+			<xs:enumeration value="OUT" />
+			<xs:enumeration value="INOUT" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LibraryType">
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="ANIMATION" />
+			<xs:enumeration value="CAMERA" />
+			<xs:enumeration value="CODE" />
+			<xs:enumeration value="CONTROLLER" />
+			<xs:enumeration value="GEOMETRY" />
+			<xs:enumeration value="IMAGE" />
+			<xs:enumeration value="LIGHT" />
+			<xs:enumeration value="MATERIAL" />
+			<xs:enumeration value="PROGRAM" />
+			<xs:enumeration value="TEXTURE" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LightType">
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="AMBIENT" />
+			<xs:enumeration value="DIRECTIONAL" />
+			<xs:enumeration value="POINT" />
+			<xs:enumeration value="SPOT" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="NodeType">
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="JOINT" />
+			<xs:enumeration value="NODE" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="UpAxisType">
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="X_UP" />
+			<xs:enumeration value="Y_UP" />
+			<xs:enumeration value="Z_UP" />
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- Complex Types -->
+	<!--   none yet -->
+	<!-- Dataflow Elements -->
+	<xs:element name="accessor">
+		<xs:annotation>
+			<xs:documentation>
+			The accessor element declares an access pattern to one of the array elements: float_array,
+			int_array, Name_array, bool_array, and the generic array element.
+			The accessor element describes access to arrays that are organized in either an interleaved 
+			or noninterleaved manner according to the permutations of the offset and stride attributes.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="param" minOccurs="0" maxOccurs="unbounded" >
+					<xs:annotation>
+						<xs:documentation>
+						The param element describes the output of the accessor element sufficiently to 
+						bind that output to consumers of the data stream.
+						The param element may occur zero or more times.
+						The number and order of param elements define the output of the accessor 
+						element. Parameters are bound to values in the order they are specified. 
+						Parameter ordering is irrelevant to the array data source of the accessor 
+						element. This means that no swizzling of the data occurs.
+						The type attribute of the param element, when it is a child of the accessor 
+						element, is restricted to the set of array types: int, float, Name, bool, and 
+						token. A param element without a name attribute is unbound. This is an 
+						indication that the value is not passed to the consumer.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="id" type="xs:ID" >
+				<xs:annotation>
+					<xs:documentation>
+					The id attribute is a text string containing the unique identifier of the accessor 
+					element. This value must be unique within the instance document. 
+					Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="count" type="xs:nonNegativeInteger" use="required" >
+				<xs:annotation>
+					<xs:documentation>
+					The count attribute indicates the number of times the array is accessed. 
+					Required attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="offset" type="xs:nonNegativeInteger" default="0" >
+				<xs:annotation>
+					<xs:documentation>
+					The offset attribute indicates the index of the first value in the array that is accessed. 
+					The default value is 0. 
+					Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="source" type="xs:anyURI" use="required" >
+				<xs:annotation>
+					<xs:documentation>
+					The source attribute indicates the location of the array to access using a URL 
+					expression. 
+					Required attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="stride" type="xs:nonNegativeInteger" default="1" >
+				<xs:annotation>
+					<xs:documentation>
+					The stride attribute indicates the number of values to access per count iteration 
+					according to the type of data in the source array. 
+					The default value is 1, indicating that a single value is accessed. 
+					Optional attribute.
+					The stride attribute must have a value equal to or greater then the number of param 
+					elements. If there are fewer param elements then indicated by the stride value, the 
+					unbound array data source values are skipped.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="array">
+		<xs:annotation>
+			<xs:documentation>
+			The array element declares the storage for a homogenous array of generic data values.
+			The array element is deprecated in this version of COLLADA and may be removed in the future.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="ListOfTokens">
+					<xs:attribute name="id" type="xs:ID" >
+						<xs:annotation>
+							<xs:documentation>
+							The id attribute is a text string containing the unique identifier of the 
+							array element. This value must be unique within the instance document. 
+							Optional attribute.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="name" type="xs:NCName" >
+						<xs:annotation>
+							<xs:documentation>
+							The name attribute is the text string name of this element. 
+							Optional attribute.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="count" type="xs:nonNegativeInteger" use="required" >
+						<xs:annotation>
+							<xs:documentation>
+							The count attribute indicates the number of values in the array. 
+							Required attribute.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="type" type="ArrayTypes" use="required" >
+						<xs:annotation>
+							<xs:documentation>
+							The type attribute indicates the data type, such as floating-point or 
+							integer numbers of the values contained in the array. The array may also 
+							contain a list of names or tokens conforming to the XML Schema Language 
+							derived types xs:Name and xs:token, respectively. 
+							Required attribute.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="minInclusive" type="xs:integer" default="-2147483648" >
+						<xs:annotation>
+							<xs:documentation>
+							The minInclusive attribute indicates the smallest integer value that can be 
+							contained in the array. 
+							The default value is -2147483648. 
+							Optional attribute.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="maxInclusive" type="xs:integer" default="2147483647" >
+						<xs:annotation>
+							<xs:documentation>
+							The maxInclusive attribute indicates the largest integer value that can be 
+							contained in the array. 
+							The default value is 2147483647. 
+							Optional attribute.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="digits" type="xs:short" default="6" >
+						<xs:annotation>
+							<xs:documentation>
+							The digits attribute indicates the number of significant decimal digits of 
+							the float values that can be contained in the array. 
+							The default value is 6. 
+							Optional attribute.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="magnitude" type="xs:short" default="38" >
+						<xs:annotation>
+							<xs:documentation>
+							The magnitude attribute indicates the largest exponent of the float values 
+							that can be contained in the array. 
+							The default value is 38. 
+							Optional attribute.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<!-- ARRAYS: typed arrays (Name, float, int, bool) -->
+	<xs:element name="float_array">
+		<xs:annotation>
+			<xs:documentation>
+			The float_array element declares the storage for a homogenous array of floating point values.
+			The float_array element stores the data values for generic use within the COLLADA schema. 
+			The arrays themselves are strongly typed but without semantics. They simply describe a 
+			sequence of floating point values.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="ListOfFloats">
+					<xs:attribute name="id" type="xs:ID" >
+						<xs:annotation>
+							<xs:documentation>
+							The id attribute is a text string containing the unique identifier of this 
+							element. This value must be unique within the instance document. 
+							Optional attribute.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="name" type="xs:NCName" >
+						<xs:annotation>
+							<xs:documentation>
+							The name attribute is the text string name of this element. 
+							Optional attribute.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="count" type="xs:nonNegativeInteger" use="required" >
+						<xs:annotation>
+							<xs:documentation>
+							The count attribute indicates the number of values in the array. 
+							Required attribute.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="digits" type="xs:short" default="6" >
+						<xs:annotation>
+							<xs:documentation>
+							The digits attribute indicates the number of significant decimal digits of the 
+							float values that can be contained in the array. 
+							The default value is 6. 
+							Optional attribute.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="magnitude" type="xs:short" default="38" >
+						<xs:annotation>
+							<xs:documentation>
+							The magnitude attribute indicates the largest exponent of the float values that 
+							can be contained in the array. 
+							The default value is 38. 
+							Optional attribute.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="int_array">
+		<xs:annotation>
+			<xs:documentation>
+			The int_array element declares the storage for a homogenous array of integer values.
+			The int_array element stores the data values for generic use within the COLLADA schema. The
+			arrays themselves are strongly typed but without semantics. They simply describe a sequence 
+			of integer values.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="ListOfInts">
+					<xs:attribute name="id" type="xs:ID" >
+						<xs:annotation>
+							<xs:documentation>
+							The id attribute is a text string containing the unique identifier of this 
+							element. This value must be unique within the instance document. 
+							Optional attribute.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="name" type="xs:NCName" >
+						<xs:annotation>
+							<xs:documentation>
+							The name attribute is the text string name of this element. 
+							Optional attribute.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="count" type="xs:nonNegativeInteger" use="required" >
+						<xs:annotation>
+							<xs:documentation>
+							The count attribute indicates the number of values in the array. 
+							Required attribute.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="minInclusive" type="xs:integer" default="-2147483648" >
+						<xs:annotation>
+							<xs:documentation>
+							The minInclusive attribute indicates the smallest integer value that can be 
+							contained in the array. 
+							The default value is -2147483648. 
+							Optional attribute.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="maxInclusive" type="xs:integer" default="2147483647" >
+						<xs:annotation>
+							<xs:documentation>
+							The maxInclusive attribute indicates the largest integer value that can be 
+							contained in the array. 
+							The default value is 2147483647. 
+							Optional attribute.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Name_array">
+		<xs:annotation>
+			<xs:documentation>
+			The Name_array element declares the storage for a homogenous array of symbolic name values.
+			The Name_array element stores the data values for generic use within the COLLADA schema. The
+			arrays themselves are strongly typed but without semantics. They simply describe a sequence 
+			of XML name values.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="ListOfNames">
+					<xs:attribute name="id" type="xs:ID" >
+						<xs:annotation>
+							<xs:documentation>
+							The id attribute is a text string containing the unique identifier of this 
+							element. This value must be unique within the instance document. 
+							Optional attribute.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="name" type="xs:NCName" >
+						<xs:annotation>
+							<xs:documentation>
+							The name attribute is the text string name of this element. 
+							Optional attribute.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="count" type="xs:nonNegativeInteger" use="required" >
+						<xs:annotation>
+							<xs:documentation>
+							The count attribute indicates the number of values in the array. 
+							Required attribute.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="bool_array">
+		<xs:annotation>
+			<xs:documentation>
+			The bool_array element declares the storage for a homogenous array of Boolean values.
+			The bool_array element stores the data values for generic use within the COLLADA schema. The
+			arrays themselves are strongly typed but without semantics. They simply describe a sequence 
+			of XML Boolean values.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="ListOfBools">
+					<xs:attribute name="id" type="xs:ID" >
+						<xs:annotation>
+							<xs:documentation>
+							The id attribute is a text string containing the unique identifier of this 
+							element. This value must be unique within the instance document. 
+							Optional attribute.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="name" type="xs:NCName" >
+						<xs:annotation>
+							<xs:documentation>
+							The name attribute is the text string name of this element. 
+							Optional attribute.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="count" type="xs:nonNegativeInteger" use="required" >
+						<xs:annotation>
+							<xs:documentation>
+							The count attribute indicates the number of values in the array. 
+							Required attribute.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="input">
+		<xs:annotation>
+			<xs:documentation>
+			The input element declares the input semantics of a data source.
+			The input element declares the input connections that a consumer requires.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="idx" type="xs:nonNegativeInteger" use="required" >
+				<xs:annotation>
+					<xs:documentation>
+					The idx attribute uniquely identifies the input among the set of input elements in 
+					scope. 
+					Required attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="semantic" type="xs:NMTOKEN" use="required" >
+				<xs:annotation>
+					<xs:documentation>
+					The semantic attribute is the user-defined meaning of the input connection. 
+					Required attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="source" type="xs:anyURI" use="required" >
+				<xs:annotation>
+					<xs:documentation>
+					The source attribute indicates the location of the data source. 
+					Required attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="param">
+		<!-- Finding flow attribute unneccesary in practice. A unnamed parameter is unbound/skipped. -->
+		<xs:annotation>
+			<xs:documentation>
+			The param element declares parametric information regarding its parent element.
+			The param element describes parameters for generic data flow, program data, and entry points.
+			A functional or programmatical format requires a means for users to specify parametric 
+			information. This information represents function parameter (argument) data. The basic 
+			declaration of a parameter describes the name, data type, and value data of the parameter. 
+			That parameter name identifies it to the function or program. The parameter type indicates 
+			the encoding of its value. The parameter value is the actual data.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="id" type="xs:ID" >
+						<xs:annotation>
+							<xs:documentation>
+							The id attribute is a text string containing the unique identifier of the 
+							param element. This value must be unique within the instance document. 
+							Optional attribute.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="name" type="xs:NCName" >
+						<xs:annotation>
+							<xs:documentation>
+							The name attribute is the text string name of this element. 
+							Optional attribute.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="sid" type="xs:NCName" >
+						<xs:annotation>
+							<xs:documentation>
+							The sid attribute is a text string value containing the sub-identifier of 
+							this element. This value must be unique within the scope of the parent element. 
+							Optional attribute.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="flow" type="FlowType" >
+						<xs:annotation>
+							<xs:documentation>
+							The flow attribute indicates the direction of data flow. 
+							Optional attribute.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="semantic" type="xs:token" >
+						<xs:annotation>
+							<xs:documentation>
+							The semantic attribute is the user-defined meaning of the parameter. 
+							Optional attribute.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="type" type="xs:NMTOKEN" use="required" >
+						<xs:annotation>
+							<xs:documentation>
+							The type attribute indicates the type of the value data. This text string must 
+							be understood by the application. 
+							Required attribute.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<!-- ARRAYS: insert a choice group with all array types in place of the old array element ref -->
+	<!-- This allows for multiple arrays per source -->
+	<xs:element name="source">
+		<xs:annotation>
+			<xs:documentation>
+			The source element declares a data repository that provides values according to the 
+			semantics of an input element that refers to it.
+			A data source is a well-known source of information that can be accessed through an 
+			established communication channel. The data source provides access methods to the information. 
+			These access methods implement various techniques according to the representation of the 
+			information. The information may be stored locally as an array of data or a program that 
+			generates the data.
+			One of the array elements (array, bool_array, float_array, int_array, or Name_array) may 
+			occur zero or more times.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<!-- Change maxOccurs to 1 to allow only one array per source. -->
+				<xs:choice minOccurs="0" maxOccurs="unbounded">
+					<xs:element ref="array" />
+					<xs:element ref="bool_array" />
+					<xs:element ref="float_array" />
+					<xs:element ref="int_array" />
+					<xs:element ref="Name_array" />
+				</xs:choice>
+				<xs:element name="technique" minOccurs="1" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>
+						The technique element must occur one or more times. Within the technique element, 
+						the common profile's accessor elements describe the output of the source element. 
+						The output is assembled from the accessor elements in the order they are specified.
+						</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="asset" minOccurs="0" maxOccurs="1" >
+								<xs:annotation>
+									<xs:documentation>
+									The asset element may occur zero or one time.
+									</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element ref="param" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>
+									The param element may occur zero or more times.
+									</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element ref="accessor" minOccurs="0" maxOccurs="unbounded" >
+								<xs:annotation>
+									<xs:documentation>
+									The accessor element may occur zero or more times.
+									</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element ref="combiner" minOccurs="0" maxOccurs="1" >
+								<xs:annotation>
+									<xs:documentation>
+									The combiner element may occur zero or one time.
+									</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element ref="joints" minOccurs="0" maxOccurs="1" >
+								<xs:annotation>
+									<xs:documentation>
+									The joints element may occur zero or one time.
+									</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element ref="program" minOccurs="0" maxOccurs="1" >
+								<xs:annotation>
+									<xs:documentation>
+									The program element may occur zero or one time.
+									</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="profile" type="xs:string" use="required" >
+							<xs:annotation>
+								<xs:documentation>
+								The profile attribute indicates the type of profile. This is a vendor 
+								defined character string that indicates the platform or capability target 
+								for the technique. 
+								Required attribute.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="id" type="xs:ID" >
+				<xs:annotation>
+					<xs:documentation>
+					The id attribute is a text string containing the unique identifier of the source 
+					element. This value must be unique within the instance document. 
+					Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="name" type="xs:NCName" >
+				<xs:annotation>
+					<xs:documentation>
+					The name attribute is the text string name of this element. 
+					Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<!-- Geometry Container Elements -->
+	<xs:element name="mesh">
+		<xs:annotation>
+			<xs:documentation>
+			The mesh element contains vertex and primitive information sufficient to describe basic 
+			geometric meshes. Meshes embody a general form of geometric description that primarily 
+			includes vertex and primitive information. Vertex information is the set of attributes 
+			associated with a point on the surface of the mesh. Each vertex includes data for attributes
+			such as:
+			* Vertex position
+			* Vertex color
+			* Vertex normal
+			* Vertex texture coordinate
+			The mesh also includes a description of how the vertices are organized to form the geometric 
+			shape of the mesh. The mesh vertices are collated into geometric primitives such as polygons, 
+			triangles, or lines.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="source" minOccurs="1" maxOccurs="unbounded" >
+					<xs:annotation>
+						<xs:documentation>
+						The source element must occur one or more times as the first elements of mesh. 
+						The source element may also occur 0 or more times after the vertices element but
+						before the primitive elements. The source elements provide the bulk of the 
+						mesh's vertex data.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="vertices" minOccurs="1" maxOccurs="1" >
+					<xs:annotation>
+						<xs:documentation>
+						The vertices element must occur exactly one time. The vertices element describes
+						the meshvertex attributes and establishes their topological identity.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="source" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:choice minOccurs="0" maxOccurs="unbounded">
+					<xs:element ref="lines" >
+						<xs:annotation>
+							<xs:documentation>
+							The lines element contains line primitives.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="linestrips" >
+						<xs:annotation>
+							<xs:documentation>
+							The linestrips element contains line-strip primitives.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="polygons" >
+						<xs:annotation>
+							<xs:documentation>
+							The polygons element contains polygon primitives.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="triangles" >
+						<xs:annotation>
+							<xs:documentation>
+							The triangles element contains triangle primitives.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="trifans" >
+						<xs:annotation>
+							<xs:documentation>
+							The trifans element contains triangle-fan primitives.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="tristrips" >
+						<xs:annotation>
+							<xs:documentation>
+							The tristrips element contains triangle-strip primitives.
+							</xs:documentation>
+						</xs:annotation>
+						</xs:element>
+				</xs:choice>
+			</xs:sequence>
+			<xs:attribute name="id" type="xs:ID" >
+				<xs:annotation>
+					<xs:documentation>
+					The id attribute is a text string containing the unique identifier of the mesh 
+					element. This value must be unique within the instance document. 
+					Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="name" type="xs:NCName" >
+				<xs:annotation>
+					<xs:documentation>
+					The name attribute is a text string containing the name of the mesh element. 
+					Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<!-- Collation Elements -->
+	<xs:element name="combiner">
+		<xs:annotation>
+			<xs:documentation>
+			The combiner element declares the aggregation of input streams. The combiner element 
+			aggregates input data streams into arrays of data structures. The resulting data structures 
+			provide a logical organization of the input streams for higher-level elements.
+			A combiner element contains a sequence of v elements, where 'v' stands for value. Each v 
+			element describes the values for an arbitrary number of data structures. Each v element 
+			contains indices that reference into the input elements. These indices are position dependent 
+			and reference the accessor elements according to the order of the input elements. Here is an 
+			example of this: The first index references the first unique input element; the second index
+			references the second unique input element, and so on. This is a simple form of compression 
+			that reduces the number of indices required in each v element. The input elements are 
+			uniquely identified by their idx attribute values. A complete sampling of an aggregate value 
+			is completed by gathering one value from each input using the associated index in the v element.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="input" minOccurs="2" maxOccurs="unbounded" >
+				<xs:annotation>
+					<xs:documentation>
+					The input element must occur two or more times. There must be at least two things 
+					to combine.
+					</xs:documentation>
+				</xs:annotation>
+				</xs:element>
+				<xs:element name="v" type="ListOfInts" minOccurs="1" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>
+						Variable length value element. The indices form the source's output aggregated 
+						by the number of inputs.
+						The v element must occur one or more times.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="count" type="xs:nonNegativeInteger" use="required" >
+				<xs:annotation>
+					<xs:documentation>
+					The count attribute indicates the number of value elements. 
+					Required attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="joints">
+		<xs:annotation>
+			<xs:documentation>
+			The joints element declares the association between joint nodes and attribute data.
+			The joints element associates joint nodes in the scene hierarchy with bind-position matrices 
+			in a skin controller. The joint nodes represent the joints of a character skeleton. The 
+			skeleton can be resused by different skin controllers. Information particular to a specific 
+			skin controller is stored with the skin including the position of the joints at the time the 
+			skin was bound them.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="input" minOccurs="2" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>
+						The input element must occur two or more times because there must be at least 
+						two things associated with each other. The input element must not have the idx 
+						attribute when it is the child of a joints element.
+						</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="semantic" type="xs:NMTOKEN" use="required" >
+							<xs:annotation>
+								<xs:documentation>
+								The semantic attribute is the user-defined meaning of the input connection. 
+								Required attribute.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="source" type="xs:anyURI" use="required" >
+							<xs:annotation>
+								<xs:documentation>
+								The source attribute indicates the location of the data source. 
+								Required attribute.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="id" type="xs:ID" >
+				<xs:annotation>
+					<xs:documentation>
+					The id attribute is a text string containing the unique identifier of the joints 
+					element. This value must be unique within the instance document. 
+					Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="name" type="xs:NCName" >
+				<xs:annotation>
+					<xs:documentation>
+					The name attribute is the text string name of this element. 
+					Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="count" type="xs:nonNegativeInteger" >
+				<xs:annotation>
+					<xs:documentation>
+					The count attribute indicates the number of value elements. 
+					Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="lines">
+		<xs:annotation>
+			<xs:documentation>
+			The lines element declares the binding of geometric primitives and vertex attributes for a 
+			mesh element. The lines element provides the information needed to bind vertex attributes 
+			together and then organize those vertices into individual lines. The vertex array 
+			information is supplied in distinct attribute arrays of the mesh element that are then
+			indexed by the lines element. Each line described by the mesh has two vertices. The first 
+			line is formed from first and second vertices. The second line is formed from the third and 
+			fourth vertices and so on.
+			A lines element contains a sequence of p elements, where 'p' stands for primitive. Each p 
+			element describes the vertex attributes for an arbitrary number of individual lines.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="param" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>
+						The param element may occur zero or more times.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="input" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>
+						The input element may occur zero or more times.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="p" type="ListOfInts" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>
+						Primitive element. @breif Every two indices form a line.
+						Each p element contains indices that reference into the source elements. These 
+						indices are position dependent and reference the contents of the source elements
+						according to the order of the input elements. Here is an example of this: The 
+						first index references the first unique input element; the second index references 
+						the second unique input element, and so on. This is a simple form of compression 
+						that reduces the number of indices required in each p element. The input elements 
+						are uniquely identified by their idx attribute values. A complete sampling of a 
+						single vertex is completed by gathering one value from each input using the 
+						associated index in the p element.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="count" type="xs:nonNegativeInteger" use="required" >
+				<xs:annotation>
+					<xs:documentation>
+					The count attribute indicates the number of line primitives. 
+					Required attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="material" type="xs:anyURI" >
+				<xs:annotation>
+					<xs:documentation>
+					The material attribute refers to the name of a material element, using a URL 
+					expression, bound to the lines. If the material attribute is not specified 
+					then the lighting and shading results are application defined.
+					Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="linestrips">
+	<xs:annotation>
+			<xs:documentation>
+			The linestrips element declares a binding of geometric primitives and vertex attributes for 
+			a mesh element. The linestrips element provides the information needed to bind vertex 
+			attributes together and then organize those vertices into connected line-strips. The vertex 
+			information is supplied in distinct attribute arrays of the mesh element that are then 
+			indexed by the linestrips element. Each line-strip described by the mesh has an arbitrary 
+			number of vertices. Each line segment within the line-strip is formed from the current 
+			vertex and the preceding vertex. A linestrips element contains a sequence of p elements, 
+			where 'p' stands for primitive. Each p element describes the vertex attributes for an 
+			arbitrary number of connected line segments.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="param" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>
+						The param element may occur zero or more times.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="input" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>
+						The input element may occur zero or more times.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="p" type="ListOfInts" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>
+						Primitive element. @brief The first two indices form a line. 
+						@brief Each subsequent index extends the line from the previous index.
+						Each p element contains indices that reference into the source elements. These 
+						indices are position dependent and reference the contents of the source elements
+						according to the order of the input elements. Here is an example of this: The 
+						first index references the first unique input element; the second index references 
+						the second unique input element, and so on. This is a simple form of compression 
+						that reduces the number of indices required in each p element. The input elements 
+						are uniquely identified by their idx attribute values. A complete sampling of a 
+						single vertex is completed by gathering one value from each input using the 
+						associated index in the p element.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="count" type="xs:nonNegativeInteger" use="required" >
+				<xs:annotation>
+					<xs:documentation>
+					The count attribute indicates the number of linestip primitives. 
+					Required attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="material" type="xs:anyURI" >
+				<xs:annotation>
+					<xs:documentation>
+					The material attribute refers to the name of a material element, using a URL 
+					expression, bound to the linestrip. If the material attribute is not specified 
+					then the lighting and shading results are application defined.
+					Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="polygons">
+	<xs:annotation>
+			<xs:documentation>
+			The polygons element declares the binding of geometric primitives and vertex attributes for 
+			a mesh element. The polygons element provides the information needed to bind vertex 
+			attributes together and then organize those vertices into individual polygons. (A polygon 
+			is a closed plane figure bounded by straight lines or a closed figure on a sphere bounded 
+			by arcs of great circles per Merriam-Webster's 10th edition Dictionary). The vertex array 
+			information is supplied in distinct attribute arrays of the mesh element that are then
+			indexed by the polygons element. The polygons described can contain arbitrary numbers of 
+			vertices. Ideally, they would describe convex shapes, but they may be concave as well. The 
+			polygons may also contain holes. The winding order of vertices produced is counter-clockwise
+			and describe the front side of each polygon. If the primitives are assembled without vertex 
+			normals then the application may generate per-primitive normals to enable lighting. A 
+			polygons element contains a sequence of p elements, where 'p' stands for primitive. Each p
+			element describes the vertex attributes for an individual polygon.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="param" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>
+						The param element may occur zero or more times.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="input" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>
+						The input element may occur zero or more times.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="p" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>
+						Primitive element. @brief All the indices form a polygon.
+						Each p element contains indices that reference into the source elements. These 
+						indices are position dependent and reference the contents of the source elements
+						according to the order of the input elements. Here is an example of this: The 
+						first index references the first unique input element; the second index references 
+						the second unique input element, and so on. This is a simple form of compression 
+						that reduces the number of indices required in each p element. The input elements 
+						are uniquely identified by their idx attribute values. A complete sampling of a 
+						single vertex is completed by gathering one value from each input using the 
+						associated index in the p element.
+						</xs:documentation>
+					</xs:annotation>
+					<xs:complexType mixed="true">
+						<xs:sequence>
+							<xs:element name="h" type="ListOfInts" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>
+									Contour Separator. Primitives after this each describe a hole.
+									A hole in the polygon is indicated by an h element that acts as a 
+									contour separator. Any indices following the h element describe the 
+									hole, up to the next h element, or the close of the p element. 
+									Consequently, h elements are the last data inside a p element.
+									</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="count" type="xs:nonNegativeInteger" use="required" >
+				<xs:annotation>
+					<xs:documentation>
+					The count attribute indicates the number of polygon primitives. 
+					Required attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="material" type="xs:anyURI" >
+				<xs:annotation>
+					<xs:documentation>
+					The material attribute refers to the name of a material element, using a URL 
+					expression, bound to the polygons. If the material attribute is not specified 
+					then the lighting and shading results are application defined.
+					Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="triangles">
+	<xs:annotation>
+			<xs:documentation>
+			The triangles element declares the binding of geometric primitives and vertex attributes 
+			for a mesh element. The triangles element provides the information needed to bind vertex 
+			attributes together and then organize those vertices into individual triangles. The vertex 
+			array information is supplied in distinct attribute arrays that are then indexed by the 
+			triangles element. Each triangle described by the mesh has three vertices. The first triangle 
+			is formed from the first, second, and third vertices. The second triangle is formed from the 
+			fourth, fifth, and sixth vertices, and so on. A triangles element contains a sequence of p 
+			elements, where 'p' stands for primitive. Each p element describes the vertex attributes for 
+			an individual triangle.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="param" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>
+						The param element may occur zero or more times.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="input" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>
+						The input element may occur zero or more times.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="p" type="ListOfInts" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>
+						Primitive element. @brief Every three indices form a triangle.
+						Each p element contains indices that reference into the source elements. These 
+						indices are position dependent and reference the contents of the source elements
+						according to the order of the input elements. Here is an example of this: The 
+						first index references the first unique input element; the second index references 
+						the second unique input element, and so on. This is a simple form of compression 
+						that reduces the number of indices required in each p element. The input elements 
+						are uniquely identified by their idx attribute values. A complete sampling of a 
+						single vertex is completed by gathering one value from each input using the 
+						associated index in the p element.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="count" type="xs:nonNegativeInteger" use="required" >
+				<xs:annotation>
+					<xs:documentation>
+					The count attribute indicates the number of triangle primitives. 
+					Required attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="material" type="xs:anyURI" >
+				<xs:annotation>
+					<xs:documentation>
+					The material attribute refers to the name of a material element, using a URL 
+					expression, bound to the triangles. If the material attribute is not specified 
+					then the lighting and shading results are application defined.
+					Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="trifans">
+	<xs:annotation>
+			<xs:documentation>
+			The trifans element declares the binding of geometric primitives and vertex attributes for a 
+			mesh element. The trifans element provides the information needed to bind vertex attributes 
+			together and then organize those vertices into connected triangles. The vertex array 
+			information is supplied in distinct attribute arrays of the mesh element that are then 
+			indexed by the trifans element. Each triangle described by the mesh has three vertices. The 
+			first triangle is formed from first, second, and third vertices. Each subsequent triangle is 
+			formed from the current vertex, reusing the first and previous vertices. A trifans element 
+			contains a sequence of p elements, where 'p' stands for primitive. Each p element describes 
+			the vertex attributes for an arbitrary number of connected triangles.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="param" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>
+						The param element may occur zero or more times.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="input" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>
+						The input element may occur zero or more times.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="p" type="ListOfInts" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>
+						Primitive element. @brief The 1st three indices form a triangle. 
+						@brief Each subsequent index forms an additional triangle reusing the first and previous indices.
+						Each p element contains indices that reference into the source elements. These 
+						indices are position dependent and reference the contents of the source elements
+						according to the order of the input elements. Here is an example of this: The 
+						first index references the first unique input element; the second index references 
+						the second unique input element, and so on. This is a simple form of compression 
+						that reduces the number of indices required in each p element. The input elements 
+						are uniquely identified by their idx attribute values. A complete sampling of a 
+						single vertex is completed by gathering one value from each input using the 
+						associated index in the p element.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="count" type="xs:nonNegativeInteger" use="required" >
+				<xs:annotation>
+					<xs:documentation>
+					The count attribute indicates the number of trifan primitives. 
+					Required attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="material" type="xs:anyURI" >
+				<xs:annotation>
+					<xs:documentation>
+					The material attribute refers to the name of a material element, using a URL 
+					expression, bound to the trifans. If the material attribute is not specified 
+					then the lighting and shading results are application defined.
+					Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="tristrips">
+	<xs:annotation>
+			<xs:documentation>
+			The tristrips element declares the binding of geometric primitives and vertex attributes for
+			a mesh element. The tristrips element provides the information needed to bind vertex 
+			attributes together and then organize those vertices into connected triangles. The vertex 
+			array information is supplied in distinct attribute arrays of the mesh element that are then 
+			indexed by the tristrips element. Each triangle described by the mesh has three vertices. The 
+			first triangle is formed from first, second, and third vertices. Each subsequent triangle is 
+			formed from the current vertex, reusing the previous two vertices. A tristrips element 
+			contains a sequence of p elements, where 'p' stands for primitive. Each p element describes 
+			the vertex attributes for an arbitrary number of connected triangles.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="param" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>
+						The param element may occur zero or more times.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="input" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>
+						The input element may occur zero or more times.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="p" type="ListOfInts" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>
+						Primitive element. @brief The 1st three indices form a triangle. 
+						@brief Each subsequent index forms an additional triangle reusing the previous two indices.
+						Each p element contains indices that reference into the source elements. These 
+						indices are position dependent and reference the contents of the source elements
+						according to the order of the input elements. Here is an example of this: The 
+						first index references the first unique input element; the second index references 
+						the second unique input element, and so on. This is a simple form of compression 
+						that reduces the number of indices required in each p element. The input elements 
+						are uniquely identified by their idx attribute values. A complete sampling of a 
+						single vertex is completed by gathering one value from each input using the 
+						associated index in the p element.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="count" type="xs:nonNegativeInteger" use="required" >
+				<xs:annotation>
+					<xs:documentation>
+					The count attribute indicates the number of tristrip primitives. 
+					Required attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="material" type="xs:anyURI" >
+				<xs:annotation>
+					<xs:documentation>
+					The material attribute refers to the name of a material element, using a URL 
+					expression, bound to the tristrips. If the material attribute is not specified 
+					then the lighting and shading results are application defined.
+					Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="vertices">
+		<xs:annotation>
+			<xs:documentation>
+			The vertices element declares the attributes and identity of mesh-vertices.
+			The vertices element describes mesh-vertices in a mesh geometry or skin controller. The 
+			mesh vertices represent the position (identity) of the vertices comprising the mesh and 
+			other vertex attributes that are invariant to tessellation.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="input" minOccurs="1" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>
+						The input element must occur one or more times. One input must have the semantic 
+						attribute value of 'POSITION' to establish the topological identity of each 
+						vertex in the mesh. An input element may have a semantic attribute whose value 
+						is COLOR. These color inputs are RGB vectors (float3). The input element must 
+						not have the idx attribute when it is the child of a vertices element.
+						</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="semantic" type="xs:NMTOKEN" use="required" >
+							<xs:annotation>
+								<xs:documentation>
+								The semantic attribute is the user-defined meaning of the input connection. 
+								Required attribute.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="source" type="xs:anyURI" use="required" >
+							<xs:annotation>
+								<xs:documentation>
+								The source attribute indicates the location of the data source. 
+								Required attribute.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="id" type="xs:ID" >
+				<xs:annotation>
+					<xs:documentation>
+					The id attribute is a text string containing the unique identifier of the vertices 
+					element. This value must be unique within the instance document. 
+					Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="name" type="xs:NCName" >
+				<xs:annotation>
+					<xs:documentation>
+					The name attribute is the text string name of this element. 
+					Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="count" type="xs:nonNegativeInteger" >
+				<xs:annotation>
+					<xs:documentation>
+					The count attribute indicates the number of value elements. 
+					Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<!-- Transformational Elements -->
+	<xs:element name="lookat">
+		<xs:annotation>
+			<xs:documentation>
+			The lookat element contains a position and orientation transformation suitable for aiming a 
+			camera. Positioning and orienting a camera or object in the scene is often complicated when 
+			using a matrix. A lookat transform is an intuitive way to specify an eye position, interest 
+			point, and orientation. The lookat element contains a list of 9 floating-point values. As 
+			in the OpenGL® Utilities (GLU) implementation, these values are organized into three vectors 
+			as follows:
+			* Eye position is given as Px, Py, Pz.
+			* Interest point is given as Ix, Iy, Iz.
+			* Up-axis direction is given as UPx, UPy, UPz.
+			When computing the equivalent (viewing) matrix the interest point is mapped to the negative 
+			Z-axis and the eye position to the origin. The up-axis is mapped to the positive Y-axis of 
+			the viewing plane. The values are specified in local, object coordinates.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="float3x3">
+					<xs:attribute name="sid" type="xs:NCName" >
+						<xs:annotation>
+							<xs:documentation>
+							The sid attribute is a text string value containing the sub-identifier of 
+							this element. This value must be unique within the scope of the parent 
+							element. 
+							Optional attribute.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="matrix">
+		<xs:annotation>
+			<xs:documentation>
+			Matrix transformations embody mathematical changes to points within a coordinate systems or 
+			the coordinate system itself. The matrix element contains a 4-by-4 matrix of floating-point 
+			values. Matrices in COLLADA are column matrices in the mathematical sense. These matrices 
+			are written in rowmajor order to aid the human reader.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="float4x4">
+					<xs:attribute name="sid" type="xs:NCName" >
+						<xs:annotation>
+							<xs:documentation>
+							The sid attribute is a text string value containing the sub-identifier of 
+							this element. This value must be unique within the scope of the parent 
+							element. 
+							Optional attribute.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="perspective">
+		<xs:annotation>
+			<xs:documentation>
+			The perspective element contains the horizontal field of view of the viewer or 'camera'.
+			Perspective embodies the appearance of objects relative to each other as determined by their
+			distance from a viewer. Computer graphics techniques apply a perspective projection in order
+			to render 3-D objects onto 2-D surfaces to create properly proportioned images on display
+			monitors. As in the RenderMan® specification, the focal point of the operation is at the 
+			local origin and the direction is along the z-axis. The focal length of the implied 'camera' 
+			is 1.0.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="float">
+					<xs:attribute name="sid" type="xs:NCName" >
+						<xs:annotation>
+							<xs:documentation>
+							The sid attribute is a text string value containing the sub-identifier of 
+							this element. This value must be unique within the scope of the parent 
+							element. 
+							Optional attribute.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="rotate">
+		<xs:annotation>
+			<xs:documentation>
+			The rotate element contains an angle and a mathematical vector that represents the axis of 
+			rotation. Rotations change the orientation of objects in a coordinated system without any 
+			translation. Computer graphics techniques apply a rotational transformation in order to 
+			orient or otherwise move values with respect to a coordinated system. Conversely, rotation 
+			can mean the translation of the coordinated axes about the local origin. The rotate element
+			contains a list of four floating-point values, similar to rotations in the OpenGL® and 
+			RenderMan® specification. These values are organized into a column vector [ X, Y, Z ] 
+			specifying the axis of rotation and an angle in degrees.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="float4">
+					<xs:attribute name="sid" type="xs:NCName" >
+						<xs:annotation>
+							<xs:documentation>
+							The sid attribute is a text string value containing the sub-identifier of 
+							this element. This value must be unique within the scope of the parent 
+							element. 
+							Optional attribute.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="scale">
+		<xs:annotation>
+			<xs:documentation>
+			The scale element contains a mathematical vector that represents the relative proportions of 
+			the X, Y and Z axes of a coordinated system. Scaling changes the size of objects in a 
+			coordinated system without any rotation or translation. Computer graphics techniques apply a 
+			scale transformation in order to change the size or proportions of values with respect to a 
+			coordinate system axis. The scale element contains a list of three floating-point values. 
+			These values are organized into a column vector suitable for matrix composition.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="float3">
+					<xs:attribute name="sid" type="xs:NCName" >
+						<xs:annotation>
+							<xs:documentation>
+							The sid attribute is a text string value containing the sub-identifier of 
+							this element. This value must be unique within the scope of the parent 
+							element. 
+							Optional attribute.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="skew">
+		<xs:annotation>
+			<xs:documentation>
+			The skew element contains an angle and two mathematical vectors that represent the axis of 
+			rotation and the axis of translation. Skew (shear) deforms an object along one axis of a 
+			coordinated system. It translates values along the affected axis in a direction that is 
+			parallel to that axis. Computer graphics techniques apply a skew or shear transformation in 
+			order to deform objects or to correct distortion in images. As in the RenderMan® 
+			specification, the skew element contains a list of seven floating-point values. These values 
+			are organized into an angle in degrees with two column vectors specifying the axes of 
+			rotation and translation.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="float7">
+					<xs:attribute name="sid" type="xs:NCName" >
+						<xs:annotation>
+							<xs:documentation>
+							The sid attribute is a text string value containing the sub-identifier of 
+							this element. This value must be unique within the scope of the parent 
+							element. 
+							Optional attribute.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="translate">
+		<xs:annotation>
+			<xs:documentation>
+			The translate element contains a mathematical vector that represents the distance along the 
+			X, Y and Z-axes. Translations change the position of objects in a coordinate system without 
+			any rotation. Computer graphics techniques apply a translation transformation in order to 
+			position or, move values with respect to a coordinate system. Conversely, translation means 
+			to move the origin of the local coordinate system. The translate element contains a list of 
+			three floating-point values. These values are organized into a column vector suitable for a 
+			matrix composition.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="float3">
+					<xs:attribute name="sid" type="xs:NCName" >
+						<xs:annotation>
+							<xs:documentation>
+							The sid attribute is a text string value containing the sub-identifier of 
+							this element. This value must be unique within the scope of the parent 
+							element. 
+							Optional attribute.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<!-- Material and Shading Elements -->
+	<xs:element name="image">
+		<xs:annotation>
+			<xs:documentation>
+			Images embody the graphical representation of a scene or object. The image element declares 
+			the storage for the graphical representation of an object. The image element best describes 
+			raster image data, but can conceivably handle other forms of imagery. The image element may 
+			contain a sequence of hexadecimal, binary octets representing the embedded image data. These 
+			values are interpreted at pixel values according to the format attribute.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="ListOfHexBinary">
+					<xs:attribute name="id" type="xs:ID" >
+						<xs:annotation>
+							<xs:documentation>
+							The id attribute is a text string containing the unique identifier of the 
+							image element. This value must be unique within the instance document. 
+							Optional attribute.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="name" type="xs:NCName" >
+						<xs:annotation>
+							<xs:documentation>
+							The name attribute is the text string name of this element. 
+							Optional attribute.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="source" type="xs:anyURI" >
+						<xs:annotation>
+							<xs:documentation>
+							The source attribute is a valid URL of the image source data. If this 
+							attribute is present, then it refers to an image asset that may contain 
+							information about the dimensions and format of the image. 
+							Optional attribute.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="format" type="xs:string" >
+						<xs:annotation>
+							<xs:documentation>
+							The format attribute is a text string value that indicates the image format. 
+							Optional attribute.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="height" type="xs:nonNegativeInteger" >
+						<xs:annotation>
+							<xs:documentation>
+							The height attribute is an integer value that indicates the height of the 
+							image in pixel units. 
+							Optional attribute.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="width" type="xs:nonNegativeInteger" >
+						<xs:annotation>
+							<xs:documentation>
+							The width attribute is an integer value that indicates the width of the 
+							image in pixel units. 
+							Optional attribute.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="depth" type="xs:nonNegativeInteger" default="1" >
+						<xs:annotation>
+							<xs:documentation>
+							The depth attribute is an integer value that indicates the depth of the 
+							image in pixel units. A 2-D image has a depth of 1, which is also the 
+							default value. 
+							Optional attribute.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="light">
+		<xs:annotation>
+			<xs:documentation>
+			The light element declares a light source that illuminates the scene.
+			The light element may be referenced by an instance element to position and orient the light
+			in the scene. A light that is not instantiated in the scene is not active. If the type 
+			attribute value is 'DIRECTIONAL' or 'SPOT' then the light's default direction vector in 
+			local coordinates is [0,0,-1], pointing down the -Z axis. If the type attribute value is 
+			'POINT' or 'SPOT' then two additional param elements are required: one named 'ATTENUATION', 
+			and one named 'ATTENUATION_SCALE', as defined in the COMMON Profile. If the type attribute 
+			value is 'SPOT' then all the param elements required by 'POINT' are required. In addition 
+			three more param elements are required: one named 'ANGLE' for the cone shape, one named 
+			'FALLOFF', and one named 'FALLOFF_SCALE', as defined in the COMMON Profile.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="asset" minOccurs="0" maxOccurs="1" >
+					<xs:annotation>
+						<xs:documentation>
+							The asset element may occur zero or one time.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="param" minOccurs="1" maxOccurs="unbounded" >
+					<xs:annotation>
+						<xs:documentation>
+						The child param elements describe the values that the light contributes to a 
+						material's computation. The name attribute of one of the param elements must 
+						have the value 'COLOR' as it is defined in the COMMON Profile for all light 
+						types. The 'COLOR' value of the light element modulates the COMMON Profile 
+						parameters named 'AMBIENT', 'DIFFUSE', and 'SPECULAR' of a material element, 
+						according to the type attribute value of the light element. If the type 
+						attribute value is 'AMBIENT' then the material's 'AMBIENT' parameter is 
+						modulated. If the type attribute value is 'DIRECTIONAL', 'POINT', or 'SPOT' 
+						then the material's 'DIFFUSE' and 'SPECULAR' parmeters are modulated.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="id" type="xs:ID" >
+				<xs:annotation>
+					<xs:documentation>
+					The id attribute is a text string containing the unique identifier of the light 
+					element. This value must be unique within the instance document. 
+					Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="name" type="xs:NCName" >
+				<xs:annotation>
+					<xs:documentation>
+					The name attribute is the text string name of this element. 
+					Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="type" type="LightType" default="POINT" >
+				<xs:annotation>
+					<xs:documentation>
+					The type attribute indicates the basic type of light source. 
+					The default value is 'POINT'. Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="material">
+		<xs:annotation>
+			<xs:documentation>
+			Materials describe the visual appearance of a geometric object. The material element 
+			categorizes the declaration of rendering appearance information. The material element 
+			contains declarations of shaders, parameters, techniques, and vertex and pixel programs.
+			A material element is the base container for all rendering and shading information. The 
+			visual appearance of a geometric object is described by its material properties.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="asset" minOccurs="0" maxOccurs="1" >
+					<xs:annotation>
+						<xs:documentation>
+						The material element may contain zero or one asset elements.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="param" minOccurs="0" maxOccurs="unbounded" >
+					<xs:annotation>
+						<xs:documentation>
+						The material element may contain zero or more param elements.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="shader" maxOccurs="unbounded" >
+					<xs:annotation>
+						<xs:documentation>
+						The material element must contain one or more shader elements.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="id" type="xs:ID" >
+				<xs:annotation>
+					<xs:documentation>
+					The id attribute is a text string containing the unique identifier of the material 
+					element. This value must be unique within the instance document. 
+					Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="name" type="xs:NCName" >
+				<xs:annotation>
+					<xs:documentation>
+					The name attribute is the text string name of this element. 
+					Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="pass">
+		<xs:annotation>
+			<xs:documentation>
+			A pass describes an algorithm that is executed during a single iteration of the rendering 
+			engine. The pass element declares the information required to execute a rendering pass.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>		
+			<xs:sequence>
+				<xs:element ref="param" minOccurs="0" maxOccurs="unbounded" >
+					<xs:annotation>
+						<xs:documentation>
+						The param element may occur zero or more times. A param element specified as a 
+						child of the pass element is in the scope of only that pass.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="input" minOccurs="0" maxOccurs="unbounded" >
+					<xs:annotation>
+						<xs:documentation>
+						The input element may occur zero or more times. The input element must not have 
+						the idx attribute when it is the child of a pass element.
+						</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="semantic" type="xs:NMTOKEN" use="required" >
+							<xs:annotation>
+								<xs:documentation>
+								The semantic attribute is the user-defined meaning of the input connection. 
+								Required attribute.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="source" type="xs:anyURI" use="required" >
+							<xs:annotation>
+								<xs:documentation>
+								The source attribute indicates the location of the data source. 
+								Required attribute.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="program" minOccurs="0" >
+					<xs:annotation>
+						<xs:documentation>
+						The program element may occur zero or one time.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="shader">
+		<xs:annotation>
+			<xs:documentation>
+			Shaders describe the process of rendering the appearance of a geometric object. The shader
+			element declares the rendering techniques used to produce the appearance of a material. The 
+			shader element contains declarations of parameters and techniques.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="param" minOccurs="0" maxOccurs="unbounded" >
+					<xs:annotation>
+						<xs:documentation>
+						The param element may occur zero or more times. A param element specified as a 
+						child of the shader element is in the scope of all the shader's techniques. This 
+						implies that the parameter is invariant across all the techniques as well.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="technique" minOccurs="1" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>
+						Each technique element specified corresponds to a (platform) profile. This 
+						implies that the set of techniques are mutually exclusive. However, an 
+						application may choose to apply information from multiple techniques. The 
+						technique element must occur one or more times.
+						</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="asset" minOccurs="0" maxOccurs="1" >
+								<xs:annotation>
+									<xs:documentation>
+									The asset element may occur zero or one time.
+									</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element ref="param" minOccurs="0" maxOccurs="unbounded" >
+								<xs:annotation>
+									<xs:documentation>
+										The param element may occur zero or more times.
+									</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element ref="pass" minOccurs="0" maxOccurs="unbounded" >
+								<xs:annotation>
+									<xs:documentation>
+									The pass element may occur zero or more times.
+									</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element ref="program" minOccurs="0" maxOccurs="1" >
+								<xs:annotation>
+									<xs:documentation>
+									The program element may occur zero or one time.
+									</xs:documentation>
+								</xs:annotation>	
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="profile" type="xs:string" use="required" >
+							<xs:annotation>
+								<xs:documentation>
+								The profile attribute indicates the type of profile. This is a vendor 
+								defined character string that indicates the platform or capability 
+								target for the technique. 
+								Required attribute.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="id" type="xs:ID" >
+				<xs:annotation>
+					<xs:documentation>
+					The id attribute is a text string containing the unique identifier of the shader 
+					element. This value must be unique within the instance document. 
+					Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="name" type="xs:NCName" >
+				<xs:annotation>
+					<xs:documentation>
+					The name attribute is the text string name of this element. 
+					Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="texture">
+		<xs:annotation>
+			<xs:documentation>
+			Textures embody the visual detail of the surface of a geometric object. The texture element 
+			embodies the sampling aspects of texturing.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="asset" minOccurs="0" maxOccurs="1" >
+					<xs:annotation>
+						<xs:documentation>
+						The asset element may occur zero or one time.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="param" minOccurs="0" maxOccurs="unbounded" >
+					<xs:annotation>
+						<xs:documentation>
+						The param element may occur zero or more times. The param elements describe the 
+						texture's dataflow with the associated material.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="technique" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>
+						The texture element may contain zero or more technique elements. The technique
+						elements embody its functionality such as image lookup or procedural generation.
+						</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="asset" minOccurs="0" maxOccurs="1" >
+								<xs:annotation>
+									<xs:documentation>
+									The asset element may occur zero or one time.
+									</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element ref="param" minOccurs="0" maxOccurs="unbounded" >
+								<xs:annotation>
+									<xs:documentation>
+										The param element may occur zero or more times.
+									</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="input" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>
+									The input element may occur zero or more times.
+									</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="semantic" type="xs:NMTOKEN" use="required" >
+										<xs:annotation>
+											<xs:documentation>
+											The semantic attribute is the user-defined meaning of the input connection. 
+											Required attribute.
+											</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+									<xs:attribute name="source" type="xs:anyURI" use="required" >
+										<xs:annotation>
+											<xs:documentation>
+											The source attribute indicates the location of the data source. 
+											Required attribute.
+											</xs:documentation>
+										</xs:annotation>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+							<xs:element ref="program" minOccurs="0" maxOccurs="1" >
+								<xs:annotation>
+									<xs:documentation>
+									The program element may occur zero or one time.
+									</xs:documentation>
+								</xs:annotation>	
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="profile" type="xs:string" use="required" >
+							<xs:annotation>
+								<xs:documentation>
+								The profile attribute indicates the type of profile. This is a vendor 
+								defined character string that indicates the platform or capability 
+								target for the technique. 
+								Required attribute.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="id" type="xs:ID" >
+				<xs:annotation>
+					<xs:documentation>
+					The id attribute is a text string containing the unique identifier of the texture 
+					element. This value must be unique within the instance document. 
+					Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="name" type="xs:NCName" >
+				<xs:annotation>
+					<xs:documentation>
+					The name attribute is the text string name of this element. 
+					Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- Procedural Elements -->
+	<xs:element name="code">
+		<xs:annotation>
+			<xs:documentation>
+			The code element declares the executable code for a program element. The code element may 
+			contain a text string value. This string value is interpreted as source code.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="id" type="xs:ID" >
+						<xs:annotation>
+							<xs:documentation>
+							The id attribute is a text string containing the unique identifier of the 
+							code element. This value must be unique within the instance document. 
+							Optional attribute.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="lang" type="xs:NMTOKEN" use="required" >
+						<xs:annotation>
+							<xs:documentation>
+							The lang attribute indicates the programming language that the code is 
+							stored in. 
+							Required attribute.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="profile" type="xs:string" >
+						<xs:annotation>
+							<xs:documentation>
+							The profile attribute indicates the type of profile. This is a vendor 
+							defined character string that indicates the platform or capability target 
+							for the code. 
+							Optional attribute.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="semantic" type="xs:NMTOKEN" >
+						<xs:annotation>
+							<xs:documentation>
+							The semantic attribute is the user-defined meaning of the code. 
+							Optional attribute.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="url" type="xs:anyURI" >
+						<xs:annotation>
+							<xs:documentation>
+							The url attribute is a valid URL to the location of the code resource. 
+							Optional attribute.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="entry">
+		<xs:annotation>
+			<xs:documentation>
+			The entry element declares an entry point into the executable code for a program element.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="param" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>
+						The entry element may contain zero or more param elements. In the scope of the 
+						entry element, the param element must have the qualifier attribute. The value of
+						the qualifier attribute depends on the technique profile in scope.  Also the 
+						param element may not have the flow attribute.
+						</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:simpleContent>
+							<xs:extension base="xs:string">
+								<xs:attribute name="id" type="xs:ID" >
+									<xs:annotation>
+										<xs:documentation>
+										The id attribute is a text string containing the unique 
+										identifier of the param element. This value must be unique 
+										within the instance document. 
+										Optional attribute.
+										</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+								<xs:attribute name="name" type="xs:NCName" use="required" >
+									<xs:annotation>
+										<xs:documentation>
+										The name attribute is the text string name of this element. 
+										Optional attribute.
+										</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+								<xs:attribute name="qualifier" type="xs:NMTOKEN" use="required" >
+									<xs:annotation>
+										<xs:documentation>
+										</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+								<xs:attribute name="semantic" type="xs:token" use="required" >
+									<xs:annotation>
+										<xs:documentation>
+										The semantic attribute is the user-defined meaning of the 
+										parameter. Optional attribute.
+										</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+								<xs:attribute name="type" type="xs:NMTOKEN" use="required" >
+									<xs:annotation>
+										<xs:documentation>
+										The type attribute indicates the type of the value data. This 
+										text string must be understood by the application. 
+										Required attribute.
+										</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+							</xs:extension>
+						</xs:simpleContent>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="function" type="xs:NMTOKEN" use="required" >
+				<xs:annotation>
+					<xs:documentation>
+					The function attribute indicates the name of the entry point. 
+					Required attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="semantic" type="xs:NMTOKEN" >
+				<xs:annotation>
+					<xs:documentation>
+					The semantic attribute is the user-defined meaning of the code. 
+					Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="program">
+		<xs:annotation>
+			<xs:documentation>
+			The program element declares parameters and program code that executes within the 
+			application runtime environment or the graphics pipeline. Programs use the same id/url 
+			linking (define/reference) facility as other elements. To define a program, specify an id 
+			attribute value. To refer to a program (i.e. a "function call"), reference that id value in 
+			a url attribute. Another way to refer to a program is by using a name as the URL value such 
+			as: &lt;program url="PHONG"&gt; In this case, the name refers to a well-known or built-in program.
+			It's not a URI fragment (#PHONG) because it's not in the same instance document. It's 
+			implicitly defined in the COMMON profile.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="asset" minOccurs="0" maxOccurs="1" >
+					<xs:annotation>
+						<xs:documentation>
+						This element may contain an asset element.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="param" minOccurs="0" maxOccurs="unbounded" >
+					<xs:annotation>
+						<xs:documentation>
+						The param element may occur zero or more times. A param element, specified as a 
+						child of the program element, indicates the interface to the program. The value 
+						of such a parameter may vary each time the program executes.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="entry" minOccurs="0" maxOccurs="unbounded" >
+					<xs:annotation>
+						<xs:documentation>
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="code" minOccurs="0" maxOccurs="unbounded" >
+					<xs:annotation>
+						<xs:documentation>
+						The code element may occur zero or one time.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="id" type="xs:ID" >
+				<xs:annotation>
+					<xs:documentation>
+					The id attribute is a text string containing the unique identifier of the program 
+					element. This value must be unique within the instance document. 
+					Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="name" type="xs:NCName" >
+				<xs:annotation>
+					<xs:documentation>
+					The name attribute is the text string name of this element. 
+					Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="url" type="xs:anyURI" >
+				<xs:annotation>
+					<xs:documentation>
+					The url attribute is a valid URL to the location of the program resource. This 
+					resource contains information understood by the application run-time according to 
+					the technique profile in scope. 
+					Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<!-- Object Elements -->
+	<xs:element name="camera">
+		<xs:complexType>
+			<xs:annotation>
+				<xs:documentation>
+				Cameras embody the eye point of the viewer looking into the scene. The camera element 
+				declares a view into the scene hierarchy or scene graph. The camera contains elements 
+				that describe the camera's optics and imager.
+				</xs:documentation>
+			</xs:annotation>
+			<xs:sequence>
+				<xs:element name="technique" minOccurs="1" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>
+						The camera element contains one or more technique elements that describe its 
+						operating parameters for optics and imaging. The camera technique element must 
+						contain an optics element and zero or more imager elements. The optics and 
+						imager elements each contain a program element. For simple cameras, a generic 
+						technique need only contain an optics element that describes the field of view 
+						and viewing frustum using canonical parameters.
+						</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="asset" minOccurs="0" maxOccurs="1" >
+								<xs:annotation>
+									<xs:documentation>
+									The asset element may occur zero or one time.
+									</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="optics">
+								<xs:annotation>
+									<xs:documentation>
+									</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element ref="program" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="imager" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>
+									</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element ref="program" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="profile" type="xs:string" use="required" >
+							<xs:annotation>
+								<xs:documentation>
+								The profile attribute indicates the type of profile. This is a vendor 
+								defined character string that indicates the platform or capability 
+								target for the technique. 
+								Required attribute.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="id" type="xs:ID" >
+				<xs:annotation>
+					<xs:documentation>
+					The id attribute is a text string containing the unique identifier of the camera 
+					element. This value must be unique within the instance document. 
+					Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="name" type="xs:NCName" >
+				<xs:annotation>
+					<xs:documentation>
+					The name attribute is the text string name of this element. 
+					Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="instance">
+		<xs:annotation>
+			<xs:documentation>
+			The instance element declares the instantiation of a node, an object or the contents of 
+			another COLLADA resource.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="url" type="xs:anyURI" use="required" >
+				<xs:annotation>
+					<xs:documentation>
+					The url attribute indicates the URL of the location of the object to instance. 
+					When the url attribute indicates a geometry element then the instantiation does not 
+					resolve any controller elements that may target the geometry element. When the url 
+					attribute indicates a controller element then the instantiation resolves the 
+					controller element and its target, such as a geometry element. 
+					Required attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<!-- Animation Elements -->
+	<xs:element name="channel">
+		<xs:annotation>
+			<xs:documentation>
+			The channel element declares an output channel of an animation. As an animation transforms 
+			value over time, those values are directed out to channels. The animation channels describe 
+			where to store the transformed values from the animation engine. The channels target the 
+			data structures that receive the animated values.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="id" type="xs:ID" >
+				<xs:annotation>
+					<xs:documentation>
+					The id attribute is a text string containing the unique identifier of the channel 
+					element. This value must be unique within the instance document. 
+					Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="name" type="xs:NCName" >
+				<xs:annotation>
+					<xs:documentation>
+					The name attribute is the text string name of this element. 
+					Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="source" type="xs:anyURI" use="required" >
+				<xs:annotation>
+					<xs:documentation>
+					The source attribute indicates the location of the sampler using a URL expression. 
+					Required attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="target" type="xs:token" use="required" >
+				<xs:annotation>
+					<xs:documentation>
+					The target attribute indicates the location of the element bound to the output of 
+					the sampler. This text string is a path-name following a simple syntax described 
+					in Address Syntax section of the COLLADA specification. 
+					Required attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="sampler">
+		<xs:annotation>
+			<xs:documentation>
+			The sampler element declares an N-dimensional function. Animation function curves are 
+			represented by 1-D sampler elements in COLLADA. The sampler defines sampling points and how 
+			to interpolate between them. When used to compute values for an animation channel, the 
+			sampling points are the animation key-frames. Sampling points (key-frames) are input data 
+			sources to the sampler. Animation channels direct the output data values of the sampler to 
+			their targets. COLLADA recognizes the following interpolation types: LINEAR, BEZIER, 
+			CARDINAL, HERMITE, BSPLINE.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="input" minOccurs="1" maxOccurs="unbounded" >
+					<xs:annotation>
+						<xs:documentation>
+						The input element must appear one or more times. Sampling points are described 
+						by the input elements that refer to source elements. The semantic attribute of 
+						the input element can be one of: INPUT, INTERPOLATION, IN_TANGENT, OUT_TANGENT, 
+						and OUTPUT.
+						</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="semantic" type="xs:NMTOKEN" use="required" >
+							<xs:annotation>
+								<xs:documentation>
+								The semantic attribute is the user-defined meaning of the input connection. 
+								Required attribute.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="source" type="xs:anyURI" use="required" >
+							<xs:annotation>
+								<xs:documentation>
+								The source attribute indicates the location of the data source. 
+								Required attribute.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="id" type="xs:ID" >
+				<xs:annotation>
+					<xs:documentation>
+					The id attribute is a text string containing the unique identifier of the sampler 
+					element. This value must be unique within the instance document. 
+					Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="name" type="xs:NCName" >
+				<xs:annotation>
+					<xs:documentation>
+					The name attribute is the text string name of this element. 
+					Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<!-- Controller Elements -->
+	<xs:element name="skin">
+		<xs:annotation>
+			<xs:documentation>
+			The skin element contains vertex and primitive information sufficient to describe 
+			blend-weight skinning. The skinning information is stored outside of the affected geometry, 
+			under the skin element. This decoupling allows skeletons to 'skin' multiple geometries and 
+			different instances of a geometry element to be modified by different skeletons. 
+			* Bind-shape: represented with a source, the same way as mesh vertex positions. 
+			* Influences / joints: a combiner represents the variable-length influence lists for each 
+			vertex. 
+			* Bind-pose: to avoid inverting matrices on import, COLLADA stores the inverse of the 
+			bind-matrices. The matrices are per-node (they are the same for each vertex that is 
+			influenced by a certain node). This is represented by two matching arrays (one for the 
+			nodes and one for the matrices) and combined by the joints element. Note that any node can 
+			be an influence, not only joints. The name of the joints element was chosen for familiarity 
+			reasons. There must be a one-to-one correspondence between the vertices in skin and the mesh 
+			vertices. Naturally, if a mesh is exported in its bind-shape (the skeleton was not moved 
+			after binding), the bindshape positions in the skin will be the same as the vertex positions 
+			under the targeted mesh. Also, the skeleton's transforms will result in matrices that, after 
+			inverting, will match the inverse-bind matrices in the skin.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="source" minOccurs="1" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>
+						The source element must occur one or more times. The source elements provide 
+						the bulk of the skin's vertex data.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="vertices" minOccurs="1" maxOccurs="1" >
+					<xs:annotation>
+						<xs:documentation>
+						The vertices element must occur exactly one time. The vertices element describes
+						the skin vertices that are formed from the vertex data.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="id" type="xs:ID" >
+				<xs:annotation>
+					<xs:documentation>
+					The id attribute is a text string containing the unique identifier of the skin 
+					element. This value must be unique within the instance document. 
+					Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="name" type="xs:NCName" >
+				<xs:annotation>
+					<xs:documentation>
+					The name attribute is the text string name of this element. 
+					Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<!-- Meta Elements -->
+	<xs:element name="asset">
+		<xs:annotation>
+			<xs:documentation>
+				The asset element defines asset management information regarding its parent element.
+				Computers store vast amounts of information. An asset is a set of information that is 
+				organized into a distinct collection and managed as a unit. A wide range of attributes 
+				describes assets so that the information can be maintained and understood by software 
+				tools and humans.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element name="author" type="xs:string" >
+					<xs:annotation>
+						<xs:documentation>
+						The author element contains the name of an author of the parent element. The 
+						author element may appear zero or more times.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="authoring_tool" type="xs:string" maxOccurs="1" >
+					<xs:annotation>
+						<xs:documentation>
+						The authoring_tool element contains the name of an application or tools used to 
+						create the parent element. The authoring_tool element may appear zero or one time.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="created" type="xs:dateTime" maxOccurs="1" >
+					<xs:annotation>
+						<xs:documentation>
+						The created element contains the date and time that the parent element was 
+						created and represented in an ISO 8601 format. The created element may appear 
+						zero or one time.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="modified" type="xs:dateTime" minOccurs="1" maxOccurs="1" >
+					<xs:annotation>
+						<xs:documentation>
+						The modified element contains the date and time that the parent element was last
+						modified and represented in an ISO 8601 format. The modified element may appear 
+						zero or one time.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="revision" type="xs:string" maxOccurs="1" >
+					<xs:annotation>
+						<xs:documentation>
+						The revision element contains the revision information for the parent element. 
+						The revision element may appear zero or one time.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="source_data" type="xs:anyURI" maxOccurs="1" >
+					<xs:annotation>
+						<xs:documentation>
+						The source_data element contains the URI to the source data from which the 
+						parent element was created. The source_data element may appear zero or one time.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="copyright" type="xs:string" >
+					<xs:annotation>
+						<xs:documentation>
+						The copyright element contains the author's copyright information applicable to 
+						the parent element. The copyright element may appear zero or more times.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="title" type="xs:string" maxOccurs="1" >
+					<xs:annotation>
+						<xs:documentation>
+						The title element contains the title information for the parent element. The 
+						title element may appear zero or one time.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="subject" type="xs:string" maxOccurs="1" >
+					<xs:annotation>
+						<xs:documentation>
+						The subject element contains a description of the topical subject of the parent 
+						element. The subject element may appear zero or one time.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="keywords" type="xs:string" >
+					<xs:annotation>
+						<xs:documentation>
+						The keywords element contains a list of words used as search criteria for the 
+						parent element. The keywords element may appear zero or more times.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="comments" type="xs:string" >
+					<xs:annotation>
+						<xs:documentation>
+						The comments element contains descriptive information about the parent element. 
+						The comments element may appear zero or more times.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="up_axis" type="UpAxisType" maxOccurs="1" default="Y_UP" >
+					<xs:annotation>
+						<xs:documentation>
+						The up_axis element contains descriptive information about coordinate system of 
+						the geometric data. All coordinates are right-handed by definition. This element 
+						specifies which axis is considered up. The up_axis element contains one of: X_UP, 
+						Y_UP, or Z_UP. The default is the Y-axis. The up_axis element may appear zero or 
+						one time.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="unit" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation>
+						The unit element contains descriptive information about unit of measure. It has 
+						attributes for the name of the unit and the measurement with respect to the 
+						meter. The unit element may appear zero or one time. The default value for the 
+						name attribute is 'meter'. The default value for the meter attribute is '1.0'.
+						</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="meter" type="xs:double" default="1.000" >
+							<xs:annotation>
+								<xs:documentation>
+								The measurement with respect to the meter.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="name" type="xs:NMTOKEN" default="meter" >
+							<xs:annotation>
+								<xs:documentation>
+								The name of the unit.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="extra">
+		<xs:annotation>
+			<xs:documentation>
+			The extra element declares additional information regarding its parent element. An 
+			extensible schema requires a means for users to specify arbitrary information. This extra 
+			information can represent additional real data or semantic (meta) data to the application. 
+			COLLADA represents extra information as techniques containing an arbitrary number of param 
+			elements.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType >
+			<xs:sequence>
+				<xs:element name="technique" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>
+						The technique element may occur zero or more times. The extra element restricts
+						the permissible child elements of the technique element to the asset and param 
+						elements.
+						</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="asset" minOccurs="0" maxOccurs="1" >
+								<xs:annotation>
+									<xs:documentation>
+									This element may contain an asset element.
+									</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element ref="param" minOccurs="0" maxOccurs="unbounded" >
+								<xs:annotation>
+									<xs:documentation>
+									The param element may occur zero or more times.
+									</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="profile" type="xs:string" use="required" >
+							<xs:annotation>
+								<xs:documentation>
+								The profile attribute indicates the type of profile. This is a vendor 
+								defined character string that indicates the platform or capability 
+								target for the technique. 
+								Required attribute.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="id" type="xs:ID" >
+				<xs:annotation>
+					<xs:documentation>
+					The id attribute is a text string containing the unique identifier of the extra 
+					element. This value must be unique within the instance document. 
+					Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="name" type="xs:NCName" >
+				<xs:annotation>
+					<xs:documentation>
+					The name attribute is the text string name of this element. 
+					Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="type" type="xs:NMTOKEN" >
+				<xs:annotation>
+					<xs:documentation>
+					The type attribute indicates the type of the value data. This text string must be 
+					understood by the application. Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<!-- Hierarchical Elements -->
+	<xs:element name="boundingbox">
+		<xs:annotation>
+			<xs:documentation>
+			-DEPRECATED- The boundingbox element declares an axially aligned bounding box that 
+			encompasses the geometric extent of a node in the scene graph. If the boundingbox is 
+			transformed by rotate elements then the resulting bounding box is an axial aligned box that 
+			encompasses the original bounding box.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="min" >
+					<xs:annotation>
+						<xs:documentation>
+						The min element contains three floating-point values for the minimum corner of 
+						the box.
+						</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:simpleContent>
+							<xs:extension base="float3">
+								<xs:attribute name="sid" type="xs:NCName" >
+									<xs:annotation>
+										<xs:documentation>
+										The sid attribute is a text string containing the sub-identifier 
+										of the min element. This value must be unique within the scope 
+										of the parent element. 
+										Optional attribute.
+										</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+							</xs:extension>
+						</xs:simpleContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="max" >
+					<xs:annotation>
+						<xs:documentation>
+						The max element contains three floating-point values for the maximum corner of 
+						the box.
+						</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:simpleContent>
+							<xs:extension base="float3">
+								<xs:attribute name="sid" type="xs:NCName" >
+									<xs:annotation>
+										<xs:documentation>
+										The sid attribute is a text string containing the sub-identifier 
+										of the max element. This value must be unique within the scope 
+										of the parent element. 
+										Optional attribute.
+										</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+							</xs:extension>
+						</xs:simpleContent>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="sid" type="xs:NCName" >
+				<xs:annotation>
+					<xs:documentation>
+					The sid attribute is a text string containing the sub-identifier of the boundingbox 
+					element. This value must be unique within the scope of the parent element. 
+					Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="node">
+		<xs:annotation>
+			<xs:documentation>
+			Nodes embody the hierarchical relationship of elements in the scene. The node element 
+			declares a point of interest in the scene. A node denotes one point on a branch of the scene
+			graph. The node element is essentially the root of a sub graph of the entire scene graph.
+			The node element represents a context in which the child transform elements are composed in 
+			the order that they occur. All the other child elements are affected equally by the 
+			accumulated transform in the scope of the node element. The transform elements transform the 
+			coordinate system of the node element. Mathematically, this means that the transform elements 
+			are converted to matrices and post-multiplied in the order they are specified to compose the 
+			coordinate system.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="lookat" >
+					<xs:annotation>
+						<xs:documentation>
+						Allows the node to express a lookat transform
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="matrix" >
+					<xs:annotation>
+						<xs:documentation>
+						Allows the node to express a matrix transform
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="perspective" >
+					<xs:annotation>
+						<xs:documentation>
+						Allows the node to express a perspective transform
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="rotate" >
+					<xs:annotation>
+						<xs:documentation>
+						Allows the node to express a rotational transform
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="scale" >
+					<xs:annotation>
+						<xs:documentation>
+						Allows the node to express a scale transform
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="skew" >
+					<xs:annotation>
+						<xs:documentation>
+						Allows the node to express a skew transform
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="translate" >
+					<xs:annotation>
+						<xs:documentation>
+						Allows the node to express a translational transform
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="boundingbox" maxOccurs="1" >
+					<xs:annotation>
+						<xs:documentation>
+						Allows the node to express a bounding box
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="instance" >
+					<xs:annotation>
+						<xs:documentation>
+						Allows the node to instantiate another copy of an object
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="node" >
+					<xs:annotation>
+						<xs:documentation>
+						Allows the node to recursively define hierarchy
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="extra" >
+					<xs:annotation>
+						<xs:documentation>
+						Allows the node to define extra information
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+			<xs:attribute name="id" type="xs:ID" >
+				<xs:annotation>
+					<xs:documentation>
+					The id attribute is a text string containing the unique identifier of the node 
+					element. This value must be unique within the instance document. 
+					Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="name" type="xs:NCName" >
+				<xs:annotation>
+					<xs:documentation>
+					The name attribute is a text string containing the name of the node element. 
+					Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="type" type="NodeType" default="NODE" >
+				<xs:annotation>
+					<xs:documentation>
+					The type attribute indicates the type of the node element. The default value is 
+					'NODE'. Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="scene">
+		<xs:annotation>
+			<xs:documentation>
+			The scene embodies the entire set of information that can be visualized from the contents of 
+			a COLLADA resource. The scene element declares the base of the scene hierarchy or scene graph. 
+			The scene contains elements that comprise much of the visual and transformational information 
+			content as created by the authoring tools. The hierarchical structure of the scene is 
+			organized into a scene graph. A scene graph is a directed acyclic graph (DAG) or tree data 
+			structure that contains nodes of visual information and related data. The structure of the 
+			scene graph contributes to optimal processing and rendering of the data and is therefore widely
+			used in the computer graphics domain.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="lookat" >
+					<xs:annotation>
+						<xs:documentation>
+						Allows the scene to express a lookat transform
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="matrix" >
+					<xs:annotation>
+						<xs:documentation>
+						Allows the scene to express a matrix transform
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="perspective" >
+					<xs:annotation>
+						<xs:documentation>
+						Allows the scene to express a perspective transform
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="rotate" >
+					<xs:annotation>
+						<xs:documentation>
+						Allows the scene to express a rotational transform
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="scale" >
+					<xs:annotation>
+						<xs:documentation>
+						Allows the scene to express a scale transform
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="skew" >
+					<xs:annotation>
+						<xs:documentation>
+						Allows the scene to express a skew transform
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="translate" >
+					<xs:annotation>
+						<xs:documentation>
+						Allows the scene to express a translational transform
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="boundingbox" maxOccurs="1" >
+					<xs:annotation>
+						<xs:documentation>
+						Allows the scene to express a bounding box
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="node" >
+					<xs:annotation>
+						<xs:documentation>
+						Allows the scene to recursively define hierarchy
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="extra" >
+					<xs:annotation>
+						<xs:documentation>
+						Allows the scene to define extra information
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+			<xs:attribute name="id" type="xs:ID" >
+				<xs:annotation>
+					<xs:documentation>
+					The id attribute is a text string containing the unique identifier of the scene 
+					element. This value must be unique within the instance document. 
+					Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="name" type="xs:NCName" >
+				<xs:annotation>
+					<xs:documentation>
+					The name attribute is a text string containing the name of the scene element. 
+					Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<!-- Categorical Elements -->
+	<xs:element name="animation">
+		<xs:annotation>
+			<xs:documentation>
+			The animation element categorizes the declaration of animation information. The animation 
+			contains elements that describe the animation's key-frame data and sampler functions.
+			Animation describes the transformation of an object or value over time. A common use of 
+			animation is to give the illusion of motion. A common animation technique is called 
+			key-frame animation. A key-frame is a sampling of data at a known point in time. Using a 
+			set of key-frames and an interpolation algorithm, intermediate values are computed for 
+			times in between the key-frames, producing a smooth set of output values over the interval 
+			between the key-frames. A key-frame animation engine performs these computations on the 
+			key-frame data. An animation element contains the elements that describe animation data. The
+			actual type and complexity of the data is left to the child elements to represent in detail.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence maxOccurs="unbounded">
+				<xs:element ref="source" maxOccurs="unbounded" >
+					<xs:annotation>
+						<xs:documentation>
+						The animation element must contain one or more source elements.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="sampler" maxOccurs="unbounded" >
+					<xs:annotation>
+						<xs:documentation>
+						The animation element must contain one or more sampler elements.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="channel" maxOccurs="unbounded" >
+					<xs:annotation>
+						<xs:documentation>
+						The animation element must contain one or more channel elements.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="id" type="xs:ID" >
+				<xs:annotation>
+					<xs:documentation>
+					The id attribute is a text string containing the unique identifier of the animation
+					element. This value must be unique within the instance document. 
+					Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="name" type="xs:NCName" >
+				<xs:annotation>
+					<xs:documentation>
+					The name attribute is the text string name of this element. 
+					Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="controller">
+		<xs:annotation>
+			<xs:documentation>
+			The controller element categorizes the declaration of generic control information. A 
+			controller is a device or mechanism that manages and directs the operations of another 
+			object. A controller element contains the elements that describe control data. The actual
+			type and complexity of the data is left to the child elements to represent in detail.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="skin" minOccurs="1" maxOccurs="1" >
+					<xs:annotation>
+						<xs:documentation>
+						The skin element must occur exactly one time.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="id" type="xs:ID" >
+				<xs:annotation>
+					<xs:documentation>
+					The id attribute is a text string containing the unique identifier of the controller
+					element. This value must be unique within the instance document. 
+					Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="name" type="xs:NCName" >
+				<xs:annotation>
+					<xs:documentation>
+					The name attribute is the text string name of this element. 
+					Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="target" type="xs:IDREF" use="required" >
+				<xs:annotation>
+					<xs:documentation>
+					The target attribute indicates the ID of the geometry element bound to the controller.
+					Required attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="geometry">
+		<xs:annotation>
+			<xs:documentation>
+			Geometry describes the visual shape and appearance of an object in the scene. The geometry
+			element categorizes the declaration of geometric information. Geometry is a branch of 
+			mathematics that deals with the measurement, properties, and relationships of points, lines,
+			angles, surfaces, and solids. The geometry element contains a declaration of a mesh. A 
+			geometry element contains the elements that describe geometric data. The actual type and 
+			complexity of the data is left to the child elements to represent in detail.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="mesh" minOccurs="1" maxOccurs="1" >
+					<xs:annotation>
+						<xs:documentation>
+						The mesh element must occur exactly one time.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="extra" minOccurs="0" maxOccurs="unbounded" >
+					<xs:annotation>
+						<xs:documentation>
+						The geometry element can contain zero or more extra elements.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="id" type="xs:ID" >
+				<xs:annotation>
+					<xs:documentation>
+					The id attribute is a text string containing the unique identifier of the geometry
+					element. This value must be unique within the instance document. 
+					Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="name" type="xs:NCName" >
+				<xs:annotation>
+					<xs:documentation>
+					The name attribute is a text string containing the name of the geometry element. 
+					Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="library">
+		<xs:annotation>
+			<xs:documentation>
+			The library element declares a module of elements of a single category. As data sets become
+			larger and more complex they become harder to manipulate within a single container. One 
+			approach to manage this complexity is to divide the data into smaller pieces organized by 
+			some criteria. These modular pieces can then be stored in separate resources as libraries.
+			The library element can have zero or more child elements that conform to the category of 
+			its type attribute. A library whose type attribute is 'MATERIAL' must contain only material
+			elements, for example.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice>
+				<xs:element ref="animation" minOccurs="0" maxOccurs="unbounded" />
+				<xs:element ref="camera" minOccurs="0" maxOccurs="unbounded" />
+				<xs:element ref="code" minOccurs="0" maxOccurs="unbounded" />
+				<xs:element ref="controller" minOccurs="0" maxOccurs="unbounded" />
+				<xs:element ref="geometry" minOccurs="0" maxOccurs="unbounded" />
+				<xs:element ref="image" minOccurs="0" maxOccurs="unbounded" />
+				<xs:element ref="light" minOccurs="0" maxOccurs="unbounded" />
+				<xs:element ref="material" minOccurs="0" maxOccurs="unbounded" />
+				<xs:element ref="program" minOccurs="0" maxOccurs="unbounded" />
+				<xs:element ref="texture" minOccurs="0" maxOccurs="unbounded" />
+			</xs:choice>
+			<xs:attribute name="id" type="xs:ID" >
+				<xs:annotation>
+					<xs:documentation>
+					The id attribute is a text string containing the unique identifier of the library
+					element. This value must be unique within the instance document. 
+					Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="name" type="xs:NCName" >
+				<xs:annotation>
+					<xs:documentation>
+					The name attribute is the text string name of the element. 
+					Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="type" type="LibraryType" use="required" >
+				<xs:annotation>
+					<xs:documentation>
+					The type attribute indicates the category of child elements contained. 
+					Required attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<!-- END Format Schema -->
+		<!-- COMMON Profile Types -->
+	<xs:simpleType name="Common_profile_programs">
+		<xs:annotation>
+			<xs:appinfo>constant-strings</xs:appinfo>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="ANGLE_MAP" />
+			<xs:enumeration value="BEZIER" />
+			<xs:enumeration value="BSPLINE" />
+			<xs:enumeration value="CARDINAL" />
+			<xs:enumeration value="CONSTANT" />
+			<xs:enumeration value="CUBE_MAP" />
+			<xs:enumeration value="FISH_EYE" />
+			<xs:enumeration value="HERMITE" />
+			<xs:enumeration value="LAMBERT" />
+			<xs:enumeration value="LINEAR" />
+			<xs:enumeration value="ORTHOGRAPHIC" />
+			<xs:enumeration value="PANORAMA" />
+			<xs:enumeration value="PERSPECTIVE" />
+			<xs:enumeration value="PHONG" />
+			<xs:enumeration value="REAR_FISH_EYE" />
+			<xs:enumeration value="SPHERICAL" />
+			<xs:enumeration value="STEP" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Common_profile_input">
+		<xs:annotation>
+			<xs:appinfo>constant-strings</xs:appinfo>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="BIND_SHAPE_NORMAL" />
+			<xs:enumeration value="BIND_SHAPE_POSITION" />
+			<xs:enumeration value="BINORMAL" />
+			<xs:enumeration value="COLOR" />
+			<xs:enumeration value="IMAGE" />
+			<xs:enumeration value="IN_TANGENT" />
+			<xs:enumeration value="INPUT" />
+			<xs:enumeration value="INTERPOLATION" />
+			<xs:enumeration value="INV_BIND_MATRIX" />
+			<xs:enumeration value="JOINT" />
+			<xs:enumeration value="JOINTS_AND_WEIGHTS" />
+			<xs:enumeration value="NORMAL" />
+			<xs:enumeration value="OUTPUT" />
+			<xs:enumeration value="OUT_TANGENT" />
+			<xs:enumeration value="POSITION" />
+			<xs:enumeration value="TANGENT" />
+			<xs:enumeration value="TEXCOORD" />
+			<xs:enumeration value="TEXTURE" />
+			<xs:enumeration value="UV" />
+			<xs:enumeration value="VERTEX" />
+			<xs:enumeration value="WEIGHT" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Common_profile_code">
+		<xs:annotation>
+			<xs:appinfo>constant-strings</xs:appinfo>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="FRAGMENT_PROGRAM" />
+			<xs:enumeration value="VERTEX_PROGRAM" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Common_profile_param">
+		<xs:annotation>
+			<xs:appinfo>constant-strings</xs:appinfo>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="A" />
+			<xs:enumeration value="AMBIENT" />
+			<xs:enumeration value="ANGLE" />
+			<xs:enumeration value="ATTENUATION" />
+			<xs:enumeration value="ATTENUATION_SCALE" />
+			<xs:enumeration value="B" />
+			<xs:enumeration value="BOTTOM" />
+			<xs:enumeration value="COLLOR" />
+			<xs:enumeration value="DIFFUSE" />
+			<xs:enumeration value="EMMISION" />
+			<xs:enumeration value="FALLOFF" />
+			<xs:enumeration value="FALLOFF_SCALE" />
+			<xs:enumeration value="G" />
+			<xs:enumeration value="LEFT" />
+			<xs:enumeration value="P" />
+			<xs:enumeration value="Q" />
+			<xs:enumeration value="R" />
+			<xs:enumeration value="REFLECTIVE" />
+			<xs:enumeration value="REFLECTIVITY" />
+			<xs:enumeration value="RIGHT" />
+			<xs:enumeration value="S" />
+			<xs:enumeration value="SHININESS" />
+			<xs:enumeration value="SPECULAR" />
+			<xs:enumeration value="T" />
+			<xs:enumeration value="TIME" />
+			<xs:enumeration value="TOP" />
+			<xs:enumeration value="TRANSPARENCY" />
+			<xs:enumeration value="TRANSPARENT" />
+			<xs:enumeration value="U" />
+			<xs:enumeration value="V" />
+			<xs:enumeration value="W" />
+			<xs:enumeration value="X" />
+			<xs:enumeration value="XFOV" />
+			<xs:enumeration value="Y" />
+			<xs:enumeration value="YFOV" />
+			<xs:enumeration value="Z" />
+			<xs:enumeration value="ZFAR" />
+			<xs:enumeration value="ZNEAR" />
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

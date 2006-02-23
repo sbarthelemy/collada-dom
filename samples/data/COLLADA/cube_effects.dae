@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2006 Sony Computer Entertainment Inc.
+ 
+  Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this 
+  file except in compliance with the License. You may obtain a copy of the License at:
+  http://research.scea.com/scea_shared_source_license.html
+ 
+  Unless required by applicable law or agreed to in writing, software distributed under the License 
+  is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or 
+  implied. See the License for the specific language governing permissions and limitations under the 
+  License. 
+-->
+<COLLADA version="1.4.0" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+	<asset>
+		<contributor>
+			<authoring_tool>EQUINOX-3D  Collada exporter v0.9.2</authoring_tool>
+		</contributor>
+		<created>2005-11-15T02:16:38Z</created>
+		<modified>2005-11-15T02:16:38Z</modified>
+		<revision>1.1</revision>
+	</asset>
+	<library_lights>
+		<light id="light" name="light">
+			<technique_common>
+				<point>
+					<color> 1  1  1</color>
+				</point>
+			</technique_common>
+		</light>
+	</library_lights>
+	<library_cameras>
+		<camera id="cl_unnamed-1">
+			<optics>
+				<technique_common>
+					<perspective>
+						<yfov> 36</yfov>
+						<znear> 0.1</znear>
+						<zfar> 32767</zfar>
+					</perspective>
+				</technique_common>
+			</optics>
+		</camera>
+	</library_cameras>
+	<library_effects>
+		<effect id="diffuse_single_point_light">
+			<newparam sid="color">
+				<float3> 0.5 0.5 0.5 </float3>
+			</newparam>
+			<newparam sid="lightpos">
+				<semantic>LIGHTPOS0</semantic>
+				<float3> 0.0 10.0 0.0 </float3>
+			</newparam>
+			<newparam sid="effectWorldViewProjXf">
+				<semantic>WorldViewProjection</semantic>
+				<float4x4>1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 </float4x4>
+			</newparam>
+			<profile_CG>
+				<technique id="default" sid="default">
+					<code>
+	  void passthroughVS (in varying float4 position,
+	       in uniform float3 light_pos,
+	       in uniform float4x4 modelViewProj : MODELVIEWPROJ,
+	       out varying float4 oPosition : POSITION,
+	       out varying float3 oToLight : TEXCOORD0,
+	       out varying float3 oNormal : TEXCOORD1 )
+	  {  oPosition = mul(modelViewProj, position);
+	     oToLight = light_pos - position.xyz;
+	     oNormal = position.xyz;
+	     return;
+	  }
+
+	  float3 diffuseFS (in uniform float3 flat_color,
+	         in varying float3 to_light : TEXCOORD0,
+	         in varying float3 normal : TEXCOORD1 ) : COLOR
+          {  
+          return flat_color * clamp(dot(normalize(normal), normalize(to_light)),0.0, 1.0);
+          }
+          </code>
+					<pass sid="single_pass">
+						<shader stage="VERTEX">
+							<name>passthroughVS</name>
+							<bind symbol="light_pos">
+								<param ref="lightpos"/>
+							</bind>
+							<bind symbol="modelViewProj">
+								<param ref="effectWorldViewProjXf"/>
+							</bind>
+						</shader>
+						<shader stage="FRAGMENT">
+							<name>diffuseFS</name>
+							<bind symbol="flat_color">
+								<param ref="color"/>
+							</bind>
+						</shader>
+					</pass>
+				</technique>
+			</profile_CG>
+			<profile_COMMON>
+				<technique sid="default">
+					<lambert>
+						<ambient>
+							<color> 0.2 0.2 0.2 1.0</color>
+						</ambient>
+						<diffuse>
+							<param ref="color"/>
+						</diffuse>
+					</lambert>
+				</technique>
+			</profile_COMMON>
+		</effect>
+	</library_effects>
+	<library_materials>
+		<material name="InstanceCgBlue" id="CgBlue">
+			<instance_effect url="#diffuse_single_point_light">
+				<technique_hint platform="PS3"  ref="default"/>
+				<setparam ref="color">
+					<float3>0.2 0.3 0.85</float3>
+				</setparam>
+			</instance_effect>
+		</material>
+	</library_materials>
+	<library_geometries>
+		<geometry id="box" name="box">
+			<mesh>
+				<source id="box-Pos">
+					<float_array id="box-Pos-array" count="24">
+-0.5  0.5  0.5
+ 0.5  0.5  0.5
+-0.5 -0.5  0.5
+ 0.5 -0.5  0.5
+-0.5  0.5 -0.5
+ 0.5  0.5 -0.5
+-0.5 -0.5 -0.5
+ 0.5 -0.5 -0.5</float_array>
+					<technique_common>
+						<accessor source="#box-Pos-array" count="8" stride="3">
+							<param name="X" type="float"/>
+							<param name="Y" type="float"/>
+							<param name="Z" type="float"/>
+						</accessor>
+					</technique_common>
+				</source>
+				<vertices id="box-Vtx">
+					<input semantic="POSITION" source="#box-Pos"/>
+				</vertices>
+				<polygons count="6" material="CgBlue">
+					<input semantic="VERTEX" source="#box-Vtx" offset="0"/>
+					<p>0 2 3 1</p>
+					<p>0 1 5 4</p>
+					<p>6 7 3 2</p>
+					<p>0 4 6 2</p>
+					<p>3 7 5 1</p>
+					<p>5 7 6 4</p>
+				</polygons>
+			</mesh>
+		</geometry>
+	</library_geometries>
+	<library_visual_scenes>
+		<visual_scene id="DefaultScene">
+			<node name="Camera" id="Camera">
+				<lookat>
+-1.612985 1.458403 3.344063
+0.000000 0.000000 0.000000
+0.158839 0.930766 -0.329308
+</lookat>
+				<instance_camera url="#cl_unnamed-1"/>
+			</node>
+			<node name="Light" id="Light">
+				<translate>-5  10  4</translate>
+				<rotate> 0  0  1  0</rotate>
+				<rotate> 0  1  0  0</rotate>
+				<rotate> 1  0  0  0</rotate>
+				<scale> 1  1  1</scale>
+				<instance_light url="#light"/>
+			</node>
+			<node name="Box" id="Box">
+				<translate> 0  0  0</translate>
+				<rotate> 0  0  1  0</rotate>
+				<rotate> 0  1  0  0</rotate>
+				<rotate> 1  0  0  0</rotate>
+				<scale> 1  1  1</scale>
+				<instance_geometry url="#box">
+					<bind_material>
+						<technique_common>
+							<instance_material symbol="CgBlue" target="#CgBlue">
+								<bind semantic="LIGHTPOS0" target="Light/light.pos"/>
+							</instance_material>
+						</technique_common>
+						<technique profile="OTHER">
+							<instance_material symbol="CgBlue" target="#CgBlue"/>
+						</technique>
+					</bind_material>
+				</instance_geometry>
+			</node>
+		</visual_scene>
+	</library_visual_scenes>
+	<scene>
+		<instance_visual_scene url="#DefaultScene"/>
+	</scene>
+</COLLADA>

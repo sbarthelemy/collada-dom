@@ -1,0 +1,226 @@
+/*********************************************************************NVMH3****
+Path:  NVSDK\Common\media\cgfx1.4
+File:  plastic.cgfx
+
+Copyright NVIDIA Corporation 2002
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THIS SOFTWARE IS PROVIDED
+*AS IS* AND NVIDIA AND ITS SUPPLIERS DISCLAIM ALL WARRANTIES, EITHER EXPRESS
+OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS FOR A PARTICULAR PURPOSE.  IN NO EVENT SHALL NVIDIA OR ITS SUPPLIERS
+BE LIABLE FOR ANY SPECIAL, INCIDENTAL, INDIRECT, OR CONSEQUENTIAL DAMAGES
+WHATSOEVER (INCLUDING, WITHOUT LIMITATION, DAMAGES FOR LOSS OF BUSINESS PROFITS,
+BUSINESS INTERRUPTION, LOSS OF BUSINESS INFORMATION, OR ANY OTHER PECUNIARY LOSS)
+ARISING OUT OF THE USE OF OR INABILITY TO USE THIS SOFTWARE, EVEN IF NVIDIA HAS
+BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+
+
+Comments:
+	Simple Point-lit Plastic
+	$Id: //sw/devrel/SDK/MEDIA/CgFX1.4/plasticP.cgfx#1 $
+
+******************************************************************************/
+
+// UNTweakables /////////////////////
+
+float4x4 WorldITXf : WorldInverseTranspose;
+float4x4 WVPXf : WorldViewProjection;
+float4x4 WorldXf : World;
+float4x4 ViewIXf : ViewInverse;
+
+///////////////////
+// These values are globals, but lets pass them as formal paramters to
+//		the shader programs -- this makes it easy to add additional lights
+//		to the effect
+///////////////////
+
+float4 LightPos : Position 
+<
+	string UIName =  "Lamp Position";
+	string Object = "PointLight";
+	string Space = "World";
+> = {-54.0f, 50.0f, 100.0f, 1.0f};
+
+float3 LightColor : Diffuse
+<
+	string UIName =  "Lamp";
+	string UIWidget = "Color";
+	string Object = "PointLight";
+> = {1.0f, 1.0f, 1.0f};
+
+/////////////////
+
+float3 AmbiColor : Ambient 
+<
+	string UIName =  "Ambient Light";
+	string UIWidget = "Color";
+> = {0.93f, 1.00f, 0.01f};
+
+float3 SurfColor : Diffuse 
+<
+	string UIName =  "Surface";
+	string UIWidget = "Color";
+> = {0.602f, 0.756f, 0.0f};
+
+float SpecExpon : SpecularPower
+<
+	string UIName =  "specular power";
+	string UIWidget = "Slider";
+	float UIMin = 1.0;
+	float UIMax = 128.0;
+	float UIStep = 1.0;
+> = 25.0;
+
+float Kd 
+<
+	string UIName =  "Diffuse";
+	string UIWidget = "Slider";
+	float UIMin = 0.0;
+	float UIMax = 1.0;
+	float UIStep = 0.05;
+> = 0.7;
+
+float Ks 
+<
+	string UIName =  "Specular";
+	string UIWidget = "Slider";
+	float UIMin = 0.0;
+	float UIMax = 1.0;
+	float UIStep = 0.05;
+> = 0.4;
+
+//////////////////////////
+
+texture ColorTexture : Diffuse
+<
+	string ResourceName = "default_color.dds";
+	string ResourceType = "2D";
+	string UIName =  "Surface Texture (if used)";
+>;
+
+sampler2D ColorSampler = sampler_state 
+{
+	Texture = <ColorTexture>;
+	MinFilter = LinearMipMapLinear;
+	MagFilter = Linear;
+};
+
+////////////////////
+
+struct appdata 
+{
+	float3 Position	: POSITION;
+	float4 UV				: TEXCOORD0;
+	float4 Normal		: NORMAL;
+};
+
+struct vertexOutput 
+{
+	float4 HPosition		: POSITION;
+	float4 TexCoord			: TEXCOORD0;
+	float3 LightVec			: TEXCOORD1;
+	float3 WorldNormal	: TEXCOORD2;
+	float3 WorldView		: TEXCOORD5;
+};
+
+struct vertexOutputPS1 
+{
+	float4 HPosition	: POSITION;
+	float4 TexCoord0	: TEXCOORD0;
+	float4 diffCol		: COLOR0;
+	float4 specCol		: COLOR1;
+};
+
+////////////////////////////////////
+////////////////////////////////////
+////////////////////////////////////
+
+vertexOutput mainVS(appdata IN) 
+{
+    vertexOutput OUT;
+    float4 normal = normalize(IN.Normal);
+    OUT.WorldNormal = mul(WorldITXf, normal).xyz;
+    float4 Po = float4(IN.Position.xyz,1);
+    float3 Pw = mul(WorldXf, Po).xyz;
+    OUT.LightVec = normalize(LightPos.xyz - Pw);
+    OUT.TexCoord = IN.UV;
+    OUT.WorldView = normalize(float3(ViewIXf[0].w, ViewIXf[1].w, ViewIXf[2].w) - Pw);
+    OUT.HPosition = mul(WVPXf, Po);
+    return OUT;
+}
+
+vertexOutputPS1 plasticPVS(appdata IN,uniform float4 LampPosition,uniform float3 LampColor)
+{
+    vertexOutputPS1 OUT;
+    float3 Nn = normalize(mul(WorldITXf, IN.Normal).xyz);
+    float4 Po = float4(IN.Position.xyz,1);
+    float3 Pw = mul(WorldXf, Po).xyz;
+    float3 Ln = normalize(LampPosition.xyz - Pw);
+    float ldn = dot(Ln,Nn);
+    float diffComp = max(0,ldn) * Kd;
+    OUT.diffCol = float4((SurfColor*(diffComp*LampColor+AmbiColor)),1);
+    OUT.TexCoord0 = IN.UV;
+    float3 Vn = normalize(float3(ViewIXf[0].w, ViewIXf[1].w, ViewIXf[2].w) - Pw);
+    float3 Hn = normalize(Vn + Ln);
+    float hdn = Ks * pow(max(0,dot(Hn,Nn)),SpecExpon);
+    OUT.specCol = float4((hdn * LampColor * SurfColor),1);
+    OUT.HPosition = mul(WVPXf, Po);
+    return OUT;
+}
+
+float4 plasticPPS(vertexOutputPS1 IN) : COLOR
+{
+	return (IN.diffCol * tex2D(ColorSampler,IN.TexCoord0.xy) + IN.specCol);
+}
+
+void plastic_shared(vertexOutput IN,
+			uniform float3 LampColor,
+			out float3 DiffuseContrib,
+			out float3 SpecularContrib)
+{
+    float3 Ln = normalize(IN.LightVec);
+    float3 Nn = normalize(IN.WorldNormal);
+    float3 Vn = normalize(IN.WorldView);
+    float3 Hn = normalize(Vn + Ln);
+    float4 litV = lit(dot(Ln,Nn),dot(Hn,Nn),SpecExpon);
+    DiffuseContrib = litV.y * Kd * LampColor + AmbiColor;
+    SpecularContrib = Ks * litV.z * LampColor;
+}
+
+float4 plasticPS(vertexOutput IN,uniform float3 LampColor) : COLOR 
+{
+	float3 diffContrib;
+	float3 specContrib;
+	plastic_shared(IN,LampColor,diffContrib,specContrib);
+	float3 result = (diffContrib * SurfColor) + specContrib;
+	return float4(result,1);
+}
+
+float4 plasticPS_t(vertexOutput IN,uniform float3 LampColor) : COLOR 
+{
+	float3 diffContrib;
+	float3 specContrib;
+	plastic_shared(IN,LampColor,diffContrib,specContrib);
+	float3 map = tex2D(ColorSampler,IN.TexCoord.xy).xyz;
+	float3 result = (diffContrib * SurfColor * map) + specContrib;
+	return float4(result,1);
+}
+
+/*************/
+  
+
+technique TexturedPS < string Script = "Pass=p0;"; > 
+{
+	pass p0 < string Script = "Draw=geometry;"; > 
+	{
+		VertexProgram = compile arbvp1 mainVS();
+		DepthTestEnable = true;
+		DepthMask = true;
+		CullFaceEnable = false;
+		DepthFunc = LEqual;
+		FragmentProgram = compile arbfp1 plasticPS_t(LightColor);
+	}
+}
+
+////////////////////////////////////
+//////////////////////////// eof ///
+////////////////////////////////////

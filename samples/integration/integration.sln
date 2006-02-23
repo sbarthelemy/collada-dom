@@ -1,0 +1,35 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "integration1.3", "integration1.3.1.vcproj", "{9C185203-4779-46D6-943D-47FE00F4EB5E}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "integration1.4", "integration1.4.vcproj", "{329077C2-3E32-41AE-87E6-16526512C1FB}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug1.3.1 = Debug1.3.1
+		Debug1.4 = Debug1.4
+		Release1.3.1 = Release1.3.1
+		Release1.4 = Release1.4
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{9C185203-4779-46D6-943D-47FE00F4EB5E}.Debug1.3.1.ActiveCfg = Debug|Win32
+		{9C185203-4779-46D6-943D-47FE00F4EB5E}.Debug1.3.1.Build.0 = Debug|Win32
+		{9C185203-4779-46D6-943D-47FE00F4EB5E}.Debug1.4.ActiveCfg = Debug|Win32
+		{9C185203-4779-46D6-943D-47FE00F4EB5E}.Release1.3.1.ActiveCfg = Release|Win32
+		{9C185203-4779-46D6-943D-47FE00F4EB5E}.Release1.3.1.Build.0 = Release|Win32
+		{9C185203-4779-46D6-943D-47FE00F4EB5E}.Release1.4.ActiveCfg = Release|Win32
+		{329077C2-3E32-41AE-87E6-16526512C1FB}.Debug1.3.1.ActiveCfg = Debug|Win32
+		{329077C2-3E32-41AE-87E6-16526512C1FB}.Debug1.4.ActiveCfg = Debug|Win32
+		{329077C2-3E32-41AE-87E6-16526512C1FB}.Debug1.4.Build.0 = Debug|Win32
+		{329077C2-3E32-41AE-87E6-16526512C1FB}.Release1.3.1.ActiveCfg = Release|Win32
+		{329077C2-3E32-41AE-87E6-16526512C1FB}.Release1.4.ActiveCfg = Release|Win32
+		{329077C2-3E32-41AE-87E6-16526512C1FB}.Release1.4.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

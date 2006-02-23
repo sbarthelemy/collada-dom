@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2006 Sony Computer Entertainment Inc.
+ 
+  Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this 
+  file except in compliance with the License. You may obtain a copy of the License at:
+  http://research.scea.com/scea_shared_source_license.html
+ 
+  Unless required by applicable law or agreed to in writing, software distributed under the License 
+  is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or 
+  implied. See the License for the specific language governing permissions and limitations under the 
+  License. 
+-->
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0">
+	<asset>
+		<created>2005-11-14T02:16:38Z</created>
+		<modified>2005-11-15T11:36:38Z</modified>
+		<revision>1.0</revision>
+	</asset>
+	<library_lights>
+		<light id="light" name="light">
+			<technique_common>
+				<point>
+					<color> 1  1  1</color>
+				</point>
+			</technique_common>
+		</light>
+	</library_lights>
+	<library_cameras>
+		<camera id="cl_unnamed-1">
+			<optics>
+				<technique_common>
+					<perspective>
+						<yfov> 36</yfov>
+						<znear> 0.1</znear>
+						<zfar> 32767</zfar>
+					</perspective>
+				</technique_common>
+			</optics>
+		</camera>
+	</library_cameras>
+	<library_effects>
+		<effect id="redPhong">
+			<profile_COMMON>
+				<technique sid="phong1">
+					<phong>
+						<emission>
+							<color>1.0 0.0 0.0 1.0</color>
+						</emission>
+						<ambient>
+							<color>1.0 0.0 0.0 1.0</color>
+						</ambient>
+						<diffuse>
+							<color>1.0 0.0 0.0 1.0</color>
+						</diffuse>
+						<specular>
+							<color>1.0 0.0 0.0 1.0</color>
+						</specular>
+						<shininess>
+							<float>20.0</float>
+						</shininess>
+						<reflective>
+							<color>1.0 0.0 0.0 1.0</color>
+						</reflective>
+						<reflectivity>
+							<float>0.5</float>
+						</reflectivity>
+						<transparent>
+							<color>1.0 0.0 0.0 1.0</color>
+						</transparent>
+						<transparency>
+							<float>1.0</float>
+						</transparency>
+					</phong>
+				</technique>
+			</profile_COMMON>
+		</effect>
+		<effect id="bluePhong">
+			<profile_COMMON>
+				<technique sid="phong1">
+					<phong>
+						<emission>
+							<color>0.0 0.0 1.0 1.0</color>
+						</emission>
+						<ambient>
+							<color>0.0 0.0 1.0 1.0</color>
+						</ambient>
+						<diffuse>
+							<color>0.0 0.0 1.0 1.0</color>
+						</diffuse>
+						<specular>
+							<color>0.0 0.0 1.0 1.0</color>
+						</specular>
+						<shininess>
+							<float>20.0</float>
+						</shininess>
+						<reflective>
+							<color>0.0 0.0 1.0 1.0</color>
+						</reflective>
+						<reflectivity>
+							<float>0.5</float>
+						</reflectivity>
+						<transparent>
+							<color>0.0 0.0 1.0 1.0</color>
+						</transparent>
+						<transparency>
+							<float>1.0</float>
+						</transparency>
+					</phong>
+				</technique>
+			</profile_COMMON>
+		</effect>
+	</library_effects>
+	<library_materials>
+		<material id="redMaterial">
+			<instance_effect url="#redPhong"/>
+		</material>
+		<material id="blueMaterial">
+			<instance_effect url="#bluePhong"/>
+		</material>
+	</library_materials>
+	<library_geometries>
+		<geometry id="box" name="box">
+			<mesh>
+				<source id="box-Pos">
+					<float_array id="box-Pos-array" count="24">
+          -0.5  0.5  0.5
+           0.5  0.5  0.5
+          -0.5 -0.5  0.5
+           0.5 -0.5  0.5
+          -0.5  0.5 -0.5
+           0.5  0.5 -0.5
+          -0.5 -0.5 -0.5
+           0.5 -0.5 -0.5
+           </float_array>
+					<technique_common>
+						<accessor source="#box-Pos-array" count="8" stride="3">
+							<param name="X" type="float"/>
+							<param name="Y" type="float"/>
+							<param name="Z" type="float"/>
+						</accessor>
+					</technique_common>
+				</source>
+				<source id="box-0-Normal">
+					<float_array id="box-0-Normal-array" count="18">
+           1.0  0.0  0.0
+          -1.0  0.0  0.0
+           0.0  1.0  0.0
+           0.0 -1.0  0.0
+           0.0  0.0  1.0
+           0.0  0.0 -1.0
+           </float_array>
+					<technique_common>
+						<accessor source="#box-0-Normal-array" count="6" stride="3">
+							<param name="X" type="float"/>
+							<param name="Y" type="float"/>
+							<param name="Z" type="float"/>
+						</accessor>
+					</technique_common>
+				</source>
+				<vertices id="box-Vtx">
+					<input semantic="POSITION" source="#box-Pos"/>
+				</vertices>
+				<polygons count="3" material="RED">
+					<input semantic="VERTEX" source="#box-Vtx" offset="0"/>
+					<input semantic="NORMAL" source="#box-0-Normal" offset="1"/>
+					<p>0 4  2 4  3 4  1 4</p>
+					<p>0 2  1 2  5 2  4 2</p>
+					<p>6 3  7 3  3 3  2 3</p>
+				</polygons>
+				<polygons count="3" material="BLUE">
+					<input semantic="VERTEX" source="#box-Vtx" offset="0"/>
+					<input semantic="NORMAL" source="#box-0-Normal" offset="1"/>
+					<p>0 1  4 1  6 1  2 1</p>
+					<p>3 0  7 0  5 0  1 0</p>
+					<p>5 5  7 5  6 5  4 5</p>
+				</polygons>
+			</mesh>
+		</geometry>
+	</library_geometries>
+	<library_visual_scenes>
+		<visual_scene id="DefaultScene">
+			<node name="Camera" id="Camera">
+				<lookat>
+        -1.612985 1.458403 3.344063
+        0.000000 0.000000 0.000000
+        0.158839 0.930766 -0.329308
+        </lookat>
+				<instance_camera url="#cl_unnamed-1"/>
+			</node>
+			<node name="Light" id="Light">
+				<translate>-5  10  4</translate>
+				<rotate> 0  0  1  0</rotate>
+				<rotate> 0  1  0  0</rotate>
+				<rotate> 1  0  0  0</rotate>
+				<scale> 1  1  1</scale>
+				<instance_light url="#light"/>
+			</node>
+			<node name="Box" id="Box">
+				<translate> 0  0  0</translate>
+				<rotate> 0  0  1  0</rotate>
+				<rotate> 0  1  0  0</rotate>
+				<rotate> 1  0  0  0</rotate>
+				<scale> 1  1  1</scale>
+				<instance_geometry url="#box">
+					<bind_material>
+						<technique_common>
+							<instance_material symbol="RED" target="#redMaterial"/>
+							<instance_material symbol="BLUE" target="#blueMaterial"/>
+						</technique_common>
+					</bind_material>
+				</instance_geometry>
+			</node>
+		</visual_scene>
+	</library_visual_scenes>
+	<scene>
+		<instance_visual_scene url="#DefaultScene"/>
+	</scene>
+</COLLADA>

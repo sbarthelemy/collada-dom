@@ -1,0 +1,35 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "filename_conditioner1.3.1", "filename_conditioner1.3.1.vcproj", "{6881BC0E-2F92-4726-815D-74363EC67EE2}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "filename_conditioner1.4", "filename_conditioner1.4.vcproj", "{3224FB85-0107-404D-A89F-3C08861440B7}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug 1.3 = Debug 1.3
+		Debug 1.4 = Debug 1.4
+		Release 1.3 = Release 1.3
+		Release 1.4 = Release 1.4
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{6881BC0E-2F92-4726-815D-74363EC67EE2}.Debug 1.3.ActiveCfg = Debug 1.3|Win32
+		{6881BC0E-2F92-4726-815D-74363EC67EE2}.Debug 1.3.Build.0 = Debug 1.3|Win32
+		{6881BC0E-2F92-4726-815D-74363EC67EE2}.Debug 1.4.ActiveCfg = Debug 1.3|Win32
+		{6881BC0E-2F92-4726-815D-74363EC67EE2}.Release 1.3.ActiveCfg = Release 1.3|Win32
+		{6881BC0E-2F92-4726-815D-74363EC67EE2}.Release 1.3.Build.0 = Release 1.3|Win32
+		{6881BC0E-2F92-4726-815D-74363EC67EE2}.Release 1.4.ActiveCfg = Release 1.3|Win32
+		{3224FB85-0107-404D-A89F-3C08861440B7}.Debug 1.3.ActiveCfg = Debug 1.4|Win32
+		{3224FB85-0107-404D-A89F-3C08861440B7}.Debug 1.4.ActiveCfg = Debug 1.4|Win32
+		{3224FB85-0107-404D-A89F-3C08861440B7}.Debug 1.4.Build.0 = Debug 1.4|Win32
+		{3224FB85-0107-404D-A89F-3C08861440B7}.Release 1.3.ActiveCfg = Release 1.4|Win32
+		{3224FB85-0107-404D-A89F-3C08861440B7}.Release 1.4.ActiveCfg = Release 1.4|Win32
+		{3224FB85-0107-404D-A89F-3C08861440B7}.Release 1.4.Build.0 = Release 1.4|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
