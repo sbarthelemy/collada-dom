@@ -10,10 +10,6 @@
  * implied. See the License for the specific language governing permissions and limitations under the 
  * License. 
  */
-/*
-* $Id: daeSTLDatabase.cpp,v 1.5 2005/08/19 19:03:32 alorino Exp $
-*
-*/
 
 #include <modules/daeSTLDatabase.h>
 #include <dae/daeMetaElement.h>
@@ -333,37 +329,43 @@ daeUInt daeSTLDatabase::getElementCount(daeString name,daeString type,daeString 
 			daeURI tempURI(file,true);
 			daeString collectionURI = tempURI.getURI();
 			// a collection was specified
-			for ( int i = 0; i < sz; i++ ) 
+			//for ( int i = 0; i < sz; i++ ) 
+			std::vector< DAE_STL_DATABASE_CELL >::iterator i = range.first;
+			while ( i != range.second )
 			{
-				DAE_STL_DATABASE_CELL e = *(range.first+i);
-				bool eqid = false;
+				DAE_STL_DATABASE_CELL e = *(i);
+				/*bool eqid = false;
 				if ( e.element->getID() ) 
 				{ 
 					//if the element has an id attribute
 					eqid = !strcmp(name, e.element->getID() );
-				}
-				if ( eqid || (!strcmp(name, e.name) ) && !strcmp( collectionURI, e.collection->getDocumentURI()->getURI()) ) 
+				}*/
+				if ( /*eqid ||*/ (!strcmp(name, e.name) ) && !strcmp( collectionURI, e.collection->getDocumentURI()->getURI()) ) 
 				{
 					count++;
 				}
+				i++;
 			}
 			return count;
 		}
 		else 
 		{ 
 			//no file specified
-			for ( int i = 0; i < sz; i++ ) 
+			//for ( int i = 0; i < sz; i++ ) 
+			std::vector< DAE_STL_DATABASE_CELL >::iterator i = range.first;
+			while ( i != range.second )
 			{
-				DAE_STL_DATABASE_CELL e = *(range.first+i);
-				bool eqid = false;
+				DAE_STL_DATABASE_CELL e = *(i);
+				/*bool eqid = false;
 				if ( e.element->getID() ) 
 				{ 
 					//if the element has an id attribute
 					eqid = !strcmp(name, e.element->getID() );
-				}
-				if ( eqid || !strcmp( name, e.name ) ) {
+				}*/
+				if ( /*eqid ||*/ !strcmp( name, e.name ) ) {
 					count++;
 				}
+				i++;
 			}
 			return count;
 		}
@@ -378,13 +380,16 @@ daeUInt daeSTLDatabase::getElementCount(daeString name,daeString type,daeString 
 			daeString collectionURI = tempURI.getURI();
 			//a collection was specified
 			int count = 0;
-			for( int i = 0; i < sz; i++ ) 
+			//for( int i = 0; i < sz; i++ ) 
+			std::vector< DAE_STL_DATABASE_CELL >::iterator i = range.first;
+			while ( i != range.second )
 			{
-				DAE_STL_DATABASE_CELL e = *(range.first+i);
+				DAE_STL_DATABASE_CELL e = *(i);
 				if( !strcmp( collectionURI, e.collection->getDocumentURI()->getURI() ) ) 
 				{
 					count++;
 				}
+				i++;
 			}
 			return count;
 		}
@@ -445,15 +450,17 @@ daeInt daeSTLDatabase::getElement(daeElement** pElement,daeInt index,daeString n
 			daeURI tempURI(file,true);
 			daeString collectionURI = tempURI.getURI();
 			//a collection was specified
-			for ( int i = 0; i < sz; i++ ) 
+			//for ( int i = 0; i < sz; i++ ) 
+			std::vector< DAE_STL_DATABASE_CELL >::iterator i = range.first;
+			while ( i != range.second )
 			{
-				DAE_STL_DATABASE_CELL e = *(range.first+i);
-				bool eqid = false;
+				DAE_STL_DATABASE_CELL e = *i;
+				/*bool eqid = false;
 				if ( e.element->getID() ) 
 				{ //if the element has an id attribute
 					eqid = !strcmp(name, e.element->getID() );
-				}
-				if (( eqid || !strcmp(name, e.name) ) && !strcmp( collectionURI, e.collection->getDocumentURI()->getURI() ) ) 
+				}*/
+				if (( /*eqid ||*/ !strcmp(name, e.name) ) && !strcmp( collectionURI, e.collection->getDocumentURI()->getURI() ) ) 
 				{
 					if ( count == index )
 					{
@@ -462,22 +469,25 @@ daeInt daeSTLDatabase::getElement(daeElement** pElement,daeInt index,daeString n
 					}
 					count++;
 				}
+				i++;
 			}
 			return DAE_ERR_QUERY_NO_MATCH;
 		}
 		else 
 		{ 
 			//no collection specified
-			for ( int i = 0; i < sz; i++ ) 
+			std::vector< DAE_STL_DATABASE_CELL >::iterator i = range.first;
+			while ( i != range.second )
+			//for ( int i = 0; i < sz; i++ ) 
 			{
-				DAE_STL_DATABASE_CELL e = *(range.first+i);
-				bool eqid = false;
+				DAE_STL_DATABASE_CELL e = *(i);
+				/*bool eqid = false;
 				if ( e.element->getID() ) 
 				{ 
 					//if the element has an id attribute
 					eqid = !strcmp(name, e.element->getID() );
-				}
-				if ( eqid || !strcmp( name, e.name ) ) 
+				}*/
+				if ( /*eqid ||*/ !strcmp( name, e.name ) ) 
 				{
 					if ( count == index ) 
 					{
@@ -486,6 +496,7 @@ daeInt daeSTLDatabase::getElement(daeElement** pElement,daeInt index,daeString n
 					}
 					count++;
 				}
+				i++;
 			}
 			return DAE_ERR_QUERY_NO_MATCH;
 		}
@@ -500,9 +511,11 @@ daeInt daeSTLDatabase::getElement(daeElement** pElement,daeInt index,daeString n
 			daeString collectionURI = tempURI.getURI();
 			//a collection was specified
 			int count = 0;
-			for( int i = 0; i < sz; i++ ) 
+			//for( int i = 0; i < sz; i++ ) 
+			std::vector< DAE_STL_DATABASE_CELL >::iterator i = range.first;
+			while ( i != range.second )
 			{
-				DAE_STL_DATABASE_CELL e = *(range.first+i);
+				DAE_STL_DATABASE_CELL e = *(i);
 				if( !strcmp( collectionURI, e.collection->getDocumentURI()->getURI() ) ) 
 				{
 					if( count == index ) 
@@ -512,6 +525,7 @@ daeInt daeSTLDatabase::getElement(daeElement** pElement,daeInt index,daeString n
 					}
 					count++;
 				}
+				i++;
 			}
 			return DAE_ERR_QUERY_NO_MATCH;
 		}

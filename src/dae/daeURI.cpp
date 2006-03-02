@@ -999,8 +999,8 @@ void daeURI::normalizeURIPath(char *path)
     // we don't need to keep two pointers into the string: we only need a
     // "current position" pointer.
     //
-
-    while (1) 
+	bool trew = true;
+    while (trew) 
 	{
         char *segp, *tmp;
 

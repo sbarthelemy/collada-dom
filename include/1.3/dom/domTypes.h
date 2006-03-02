@@ -16,6 +16,9 @@
 
 #include <dae/daeDomTypes.h>
 
+// Register all types
+extern void registerDomTypes();
+
 typedef xsBoolean		domBool;
 typedef xsDateTime		domDateTime;
 typedef xsDouble		domFloat;
@@ -47,22 +50,22 @@ typedef domListOfInts		domInt3x3;
 typedef domListOfInts		domInt4x4;
 
 enum domArrayTypes {
-	ARRAYTYPES_float = 1,
+	ARRAYTYPES_float,
 	ARRAYTYPES_int,
 	ARRAYTYPES_Name,
 	ARRAYTYPES_token,
-	ARRAYTYPES_COUNT
+	ARRAYTYPES_COUNT = 4
 };
 
 enum domFlowType {
-	FLOWTYPE_IN = 1,
+	FLOWTYPE_IN,
 	FLOWTYPE_OUT,
 	FLOWTYPE_INOUT,
-	FLOWTYPE_COUNT
+	FLOWTYPE_COUNT = 3
 };
 
 enum domLibraryType {
-	LIBRARYTYPE_ANIMATION = 1,
+	LIBRARYTYPE_ANIMATION,
 	LIBRARYTYPE_CAMERA,
 	LIBRARYTYPE_CODE,
 	LIBRARYTYPE_CONTROLLER,
@@ -72,28 +75,28 @@ enum domLibraryType {
 	LIBRARYTYPE_MATERIAL,
 	LIBRARYTYPE_PROGRAM,
 	LIBRARYTYPE_TEXTURE,
-	LIBRARYTYPE_COUNT
+	LIBRARYTYPE_COUNT = 10
 };
 
 enum domLightType {
-	LIGHTTYPE_AMBIENT = 1,
+	LIGHTTYPE_AMBIENT,
 	LIGHTTYPE_DIRECTIONAL,
 	LIGHTTYPE_POINT,
 	LIGHTTYPE_SPOT,
-	LIGHTTYPE_COUNT
+	LIGHTTYPE_COUNT = 4
 };
 
 enum domNodeType {
-	NODETYPE_JOINT = 1,
+	NODETYPE_JOINT,
 	NODETYPE_NODE,
-	NODETYPE_COUNT
+	NODETYPE_COUNT = 2
 };
 
 enum domUpAxisType {
-	UPAXISTYPE_X_UP = 1,
+	UPAXISTYPE_X_UP,
 	UPAXISTYPE_Y_UP,
 	UPAXISTYPE_Z_UP,
-	UPAXISTYPE_COUNT
+	UPAXISTYPE_COUNT = 3
 };
 
 

@@ -230,7 +230,8 @@ daeLIBXMLPlugin::startParse(daeMetaElement* thisMetaElement, xmlTextReaderPtr re
 		return(element);
 
 	// Read all the tags that are part of this tag
-	while(true)
+	bool trew = true;
+	while(trew)
 	{
 		int thisType = xmlTextReaderNodeType(reader);
 		if(thisType == XML_READER_TYPE_ELEMENT)
@@ -440,7 +441,8 @@ daeLIBXMLPlugin::nextElement(daeMetaElement* thisMetaElement, xmlTextReaderPtr r
 		return(element);
 
 	// Read all the tags that are part of this tag
-	while(true)
+	bool trew = true;
+	while(trew)
 	{
 		int thisType = xmlTextReaderNodeType(reader);
 		if(thisType == XML_READER_TYPE_ELEMENT)
@@ -486,6 +488,8 @@ daeLIBXMLPlugin::nextElement(daeMetaElement* thisMetaElement, xmlTextReaderPtr r
 				return(element);
 		}
 	}
+	//program will never get here but this line is needed to supress a warning
+	return NULL;
 }
 // postProcessDom traverses all elements below the passed in one and creates a list of all the integration objects.
 // this should probably NOT be done in the IO plugin.
