@@ -375,12 +375,16 @@ daeElement::appendResolveElement(daeElement* elem)
 void
 daeElement::resolveAll()
 {
-	int cnt;
+	/*int cnt;
 	while(resolveArray.getCount()) {
 		cnt = (int)resolveArray.getCount();
 		daeElementRef elem = resolveArray[cnt-1];
 		resolveArray.removeIndex(cnt-1);
 		elem->resolve();
+	}*/
+	size_t cnt = resolveArray.getCount();
+	for ( size_t i =0; i < cnt; i++ ) {
+		resolveArray[i]->resolve();
 	}
 	resolveArray.clear();
 }
