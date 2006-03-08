@@ -431,6 +431,13 @@ public:
 	 */
 	daeMetaElement* getChildMetaElement(daeString s);
 
+	/**
+	 * Gets the meta information for a given subelement
+	 * @param s Name of the child element type to look up.
+	 * @return Returns the meta information for a given subelement.
+	 */
+	daeMetaElementAttribute* getChildMetaElementAttribute(daeString s);
+
 public:
 	/**
 	 * Unused

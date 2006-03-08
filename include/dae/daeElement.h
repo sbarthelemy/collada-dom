@@ -125,7 +125,6 @@ public:
 	 */
 	daeBool placeElement(daeElement* element);
 	
-	//!!!!!! ACL 
 	/**
 	 * This function searches through the list of potential child elements
 	 * (fields) checking for a matching element type where this element can be added.
@@ -140,6 +139,34 @@ public:
 	 * @return return whether or not the element was successfully placed.
 	 */
 	daeBool placeElementAt(daeInt index, daeElement* element);
+
+	/**
+	 * Places an element as a child of @c this element. 
+	 * This function inserts the new element before the element specified as marker.
+	 * This automatically adds the new element to the <tt><i> _contents </i></tt> of its parent, if the parent has one.  
+	 * @param marker The daeElement used to determine where the new child will be placed.
+	 * @param element Element to be placed in the @c this container.
+	 * @return Returns true if the element was successfully placed, false otherwise.
+	 */
+	daeBool placeElementBefore( daeElement* marker, daeElement *element );
+
+	/**
+	 * Places an element as a child of @c this element. 
+	 * This function inserts the new element After the element specified as marker.
+	 * This automatically adds the new element to the <tt><i> _contents </i></tt> of its parent, if the parent has one.  
+	 * @param marker The daeElement used to determine where the new child will be placed.
+	 * @param element Element to be placed in the @c this container.
+	 * @return Returns true if the element was successfully placed, false otherwise.
+	 */
+	daeBool placeElementAfter( daeElement* marker, daeElement *element );
+
+	/**
+	 * Finds the last index into the array of children of the type specified.
+	 * @param elementName The name to look for.
+	 * @return Returns the index into the children array of the last element of type typeName. -1 if
+	 *         there are no children of type typeName.
+	 */
+	daeInt findLastIndexOf( daeString elementName );
 
 	/**
 	 * Removes the specified element from it parent, the @c this element.

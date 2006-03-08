@@ -189,7 +189,6 @@ daeElement::placeElement(daeElement* e)
 	return false;
 }
 
-//!!!! ACL
 daeBool daeElement::placeElementAt(daeInt index, daeElement* e) {
 	if (e == NULL || e == this)
 		return false;
@@ -246,7 +245,6 @@ daeBool daeElement::placeElementAt(daeInt index, daeElement* e) {
 			return true;
 		}
 	}
-	//!!!ACL added for Testing groups solution
 	for ( unsigned int c = 0; c < _meta->getPossibleChildrenCount(); c++ ) {
 		if (strcmp(_meta->getPossibleChildName(c), e->_meta->getName()) == 0 ||
 			strcmp(_meta->getPossibleChildType(c), e->_meta->getName()) == 0 ) {
@@ -277,7 +275,85 @@ daeBool daeElement::placeElementAt(daeInt index, daeElement* e) {
 	return false;
 }
 
-//!!!GAC added for testing 7/8/05
+daeBool daeElement::placeElementBefore( daeElement *marker, daeElement *element ) {
+	if (marker == NULL || element == NULL || marker->getXMLParentElement() != this ) {
+		return false;
+	}
+	if ( _meta->getContents() != NULL ) {
+		size_t idx;
+		daeElementRefArray* contents =
+						(daeElementRefArray*)_meta->getContents()->getWritableMemory(this);
+		if ( contents->find( marker, idx ) != DAE_OK ) {
+			return false;
+		}
+		return placeElementAt( idx, element );
+	}
+	if ( strcmp( marker->getTypeName(), element->getTypeName() ) == 0 ) {
+		//same type
+		daeMetaElementAttribute *mea = _meta->getChildMetaElementAttribute( element->getTypeName() );
+		daeElementRefArray* era = (daeElementRefArray*)mea->getWritableMemory(this);
+		size_t idx;
+		if ( era->find( marker, idx ) != DAE_OK ) {
+			return false;
+		}
+		era->insertAt( idx, element );
+		return true;
+	}
+	return placeElement( element );
+}
+
+daeBool daeElement::placeElementAfter( daeElement *marker, daeElement *element ) {
+	if (marker == NULL || element == NULL || marker->getXMLParentElement() != this ) {
+		return false;
+	}
+	if ( _meta->getContents() != NULL ) {
+		size_t idx;
+		daeElementRefArray* contents =
+						(daeElementRefArray*)_meta->getContents()->getWritableMemory(this);
+		if ( contents->find( marker, idx ) != DAE_OK ) {
+			return false;
+		}
+		return placeElementAt( idx+1, element );
+	}
+	if ( strcmp( marker->getTypeName(), element->getTypeName() ) == 0 ) {
+		daeMetaElementAttribute *mea = _meta->getChildMetaElementAttribute( element->getTypeName() );
+		daeElementRefArray* era = (daeElementRefArray*)mea->getWritableMemory(this);
+		size_t idx;
+		if ( era->find( marker, idx ) != DAE_OK ) {
+			return false;
+		}
+		era->insertAt( idx+1, element );
+		return true;
+	}
+	return placeElement( element );
+}
+
+daeInt daeElement::findLastIndexOf( daeString elementName ) {
+	if ( _meta->getContents() != NULL ) {
+		daeElementRefArray* contents =
+						(daeElementRefArray*)_meta->getContents()->getWritableMemory(this);
+		for ( unsigned int i = contents->getCount()-1; i >= 0; --i ) {
+			daeString nm = contents->get(i)->getElementName();
+			if ( nm == NULL ) {
+				nm = contents->get(i)->getTypeName();
+			}
+			if ( strcmp( nm, elementName ) == 0 ) {
+				return i;
+			}
+		}
+		return -1;
+	}
+	daeInt idx = 0;
+	unsigned int cnt = _meta->getMetaElements().getCount();
+	for ( unsigned int i = 0; i < cnt; ++i ) {
+		idx += ((daeElementRefArray*)(_meta->getMetaElements().get(i)->getWritableMemory(this)))->getCount();
+		if ( strcmp( _meta->getMetaElements().get(i)->getName(), elementName ) == 0 ) {
+			return idx;
+		}
+	}
+	return -1;
+}
+
 daeBool 
 daeElement::removeChildElement(daeElement* element)
 {

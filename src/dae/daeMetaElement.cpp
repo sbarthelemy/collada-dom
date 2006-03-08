@@ -94,6 +94,18 @@ daeMetaElement::getChildMetaElement(daeString s)
 	return NULL;
 }
 
+daeMetaElementAttribute *
+daeMetaElement::getChildMetaElementAttribute(daeString s)
+{
+	int n = (int)_metaElements.getCount();
+	int i;
+	for(i=0;i<n;i++) {
+		if (strcmp(_metaElements[i]->_elementType->_name,s)==0)
+			return _metaElements[i];
+	}
+	return NULL;
+}
+
 #define defMAEA(class,maename) \
 { \
 defMetaAttributeElement* maea = new daeMetaAttributeArrayElement; \
