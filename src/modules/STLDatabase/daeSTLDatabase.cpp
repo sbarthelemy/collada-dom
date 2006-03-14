@@ -327,20 +327,17 @@ daeUInt daeSTLDatabase::getElementCount(daeString name,daeString type,daeString 
 		{ 
 			// If a collection URI was a search key (in file) resolve it to a text URI with no fragment
 			daeURI tempURI(file,true);
-			daeString collectionURI = tempURI.getURI();
+			daeCollection *col = getCollection( tempURI.getURI() );
+			if ( col == NULL ) {
+				return DAE_ERR_QUERY_NO_MATCH;
+			}
 			// a collection was specified
 			//for ( int i = 0; i < sz; i++ ) 
 			std::vector< DAE_STL_DATABASE_CELL >::iterator i = range.first;
 			while ( i != range.second )
 			{
 				DAE_STL_DATABASE_CELL e = *(i);
-				/*bool eqid = false;
-				if ( e.element->getID() ) 
-				{ 
-					//if the element has an id attribute
-					eqid = !strcmp(name, e.element->getID() );
-				}*/
-				if ( /*eqid ||*/ (!strcmp(name, e.name) ) && !strcmp( collectionURI, e.collection->getDocumentURI()->getURI()) ) 
+				if ( col == e.collection && !strcmp(name, e.name) )
 				{
 					count++;
 				}
@@ -351,18 +348,11 @@ daeUInt daeSTLDatabase::getElementCount(daeString name,daeString type,daeString 
 		else 
 		{ 
 			//no file specified
-			//for ( int i = 0; i < sz; i++ ) 
 			std::vector< DAE_STL_DATABASE_CELL >::iterator i = range.first;
 			while ( i != range.second )
 			{
 				DAE_STL_DATABASE_CELL e = *(i);
-				/*bool eqid = false;
-				if ( e.element->getID() ) 
-				{ 
-					//if the element has an id attribute
-					eqid = !strcmp(name, e.element->getID() );
-				}*/
-				if ( /*eqid ||*/ !strcmp( name, e.name ) ) {
+				if ( !strcmp( name, e.name ) ) {
 					count++;
 				}
 				i++;
@@ -377,15 +367,17 @@ daeUInt daeSTLDatabase::getElementCount(daeString name,daeString type,daeString 
 		{ 
 			// If a collection URI was a search key (in file) resolve it to a text URI with no fragment
 			daeURI tempURI(file,true);
-			daeString collectionURI = tempURI.getURI();
+			daeCollection *col = getCollection( tempURI.getURI() );
+			if ( col == NULL ) {
+				return DAE_ERR_QUERY_NO_MATCH;
+			}
 			//a collection was specified
 			int count = 0;
-			//for( int i = 0; i < sz; i++ ) 
 			std::vector< DAE_STL_DATABASE_CELL >::iterator i = range.first;
 			while ( i != range.second )
 			{
 				DAE_STL_DATABASE_CELL e = *(i);
-				if( !strcmp( collectionURI, e.collection->getDocumentURI()->getURI() ) ) 
+				if( col == e.collection )
 				{
 					count++;
 				}
@@ -448,19 +440,17 @@ daeInt daeSTLDatabase::getElement(daeElement** pElement,daeInt index,daeString n
 		{ 
 			// If a collection URI was a search key (in file) resolve it to a text URI with no fragment
 			daeURI tempURI(file,true);
-			daeString collectionURI = tempURI.getURI();
+			daeCollection *col = getCollection( tempURI.getURI() );
+			if ( col == NULL ) {
+				return DAE_ERR_QUERY_NO_MATCH;
+			}
 			//a collection was specified
 			//for ( int i = 0; i < sz; i++ ) 
 			std::vector< DAE_STL_DATABASE_CELL >::iterator i = range.first;
 			while ( i != range.second )
 			{
 				DAE_STL_DATABASE_CELL e = *i;
-				/*bool eqid = false;
-				if ( e.element->getID() ) 
-				{ //if the element has an id attribute
-					eqid = !strcmp(name, e.element->getID() );
-				}*/
-				if (( /*eqid ||*/ !strcmp(name, e.name) ) && !strcmp( collectionURI, e.collection->getDocumentURI()->getURI() ) ) 
+				if ( col == e.collection && !strcmp(name, e.name) )  
 				{
 					if ( count == index )
 					{
@@ -478,16 +468,9 @@ daeInt daeSTLDatabase::getElement(daeElement** pElement,daeInt index,daeString n
 			//no collection specified
 			std::vector< DAE_STL_DATABASE_CELL >::iterator i = range.first;
 			while ( i != range.second )
-			//for ( int i = 0; i < sz; i++ ) 
 			{
 				DAE_STL_DATABASE_CELL e = *(i);
-				/*bool eqid = false;
-				if ( e.element->getID() ) 
-				{ 
-					//if the element has an id attribute
-					eqid = !strcmp(name, e.element->getID() );
-				}*/
-				if ( /*eqid ||*/ !strcmp( name, e.name ) ) 
+				if ( !strcmp( name, e.name ) ) 
 				{
 					if ( count == index ) 
 					{
@@ -508,15 +491,17 @@ daeInt daeSTLDatabase::getElement(daeElement** pElement,daeInt index,daeString n
 		{ 
 			// If a collection URI was a search key (in file) resolve it to a text URI with no fragment
 			daeURI tempURI(file,true);
-			daeString collectionURI = tempURI.getURI();
+			daeCollection *col = getCollection( tempURI.getURI() );
+			if ( col == NULL ) {
+				return DAE_ERR_QUERY_NO_MATCH;
+			}
 			//a collection was specified
 			int count = 0;
-			//for( int i = 0; i < sz; i++ ) 
 			std::vector< DAE_STL_DATABASE_CELL >::iterator i = range.first;
 			while ( i != range.second )
 			{
 				DAE_STL_DATABASE_CELL e = *(i);
-				if( !strcmp( collectionURI, e.collection->getDocumentURI()->getURI() ) ) 
+				if( col == e.collection ) 
 				{
 					if( count == index ) 
 					{
