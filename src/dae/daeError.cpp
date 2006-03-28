@@ -28,8 +28,8 @@ static DAEERROR errorsArray[] =
 	{ DAE_ERR_BACKEND_VALIDATION, "Backend validation" },
 	{ DAE_ERR_QUERY_SYNTAX, "Query syntax" },
 	{ DAE_ERR_QUERY_NO_MATCH, "Query no match" },
-	{ DAE_ERR_COLLECTION_ALREADY_EXISTS, "A collection with the same name exists already" },
-	{ DAE_ERR_COLLECTION_DOES_NOT_EXIST, "No collection is loaded with that name or index" }, 
+	{ DAE_ERR_COLLECTION_ALREADY_EXISTS, "A document with the same name exists already" },
+	{ DAE_ERR_COLLECTION_DOES_NOT_EXIST, "No document is loaded with that name or index" }, 
 	{ DAE_ERR_NOT_IMPLEMENTED, "This function is not implemented in this reference implementation" },
 };
 

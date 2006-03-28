@@ -123,10 +123,10 @@ daeElement::placeElement(daeElement* e)
 				(daeElementRefArray*)_meta->getContents()->getWritableMemory(this);
 			contents->append(e);
 		}	
-		//update collection pointer
-		e->setCollection( _collection );
-		if ( _collection ) {
-			_collection->setModified(true);
+		//update document pointer
+		e->setDocument( _document );
+		if ( _document ) {
+			_document->setModified(true);
 		}
 		return true;	
 	}
@@ -151,10 +151,10 @@ daeElement::placeElement(daeElement* e)
 					(daeElementRefArray*)_meta->getContents()->getWritableMemory(this);
 				contents->append(e);
 			}	
-			//update collection pointer
-			e->setCollection( _collection );
-			if ( _collection ) {
-				_collection->setModified(true);
+			//update document pointer
+			e->setDocument( _document );
+			if ( _document ) {
+				_document->setModified(true);
 			}
 			return true;
 		}
@@ -209,10 +209,10 @@ daeBool daeElement::placeElementAt(daeInt index, daeElement* e) {
 				(daeElementRefArray*)_meta->getContents()->getWritableMemory(this);
 			contents->insertAt(index, e);
 		}	
-		//update collection pointer
-		e->setCollection( _collection );
-		if ( _collection ) {
-			_collection->setModified(true);
+		//update document pointer
+		e->setDocument( _document );
+		if ( _document ) {
+			_document->setModified(true);
 		}
 		return true;	
 	}
@@ -237,10 +237,10 @@ daeBool daeElement::placeElementAt(daeInt index, daeElement* e) {
 					(daeElementRefArray*)_meta->getContents()->getWritableMemory(this);
 				contents->insertAt( index, e );
 			}	
-			//update collection pointer
-			e->setCollection( _collection );
-			if ( _collection ) {
-				_collection->setModified(true);
+			//update document pointer
+			e->setDocument( _document );
+			if ( _document ) {
+				_document->setModified(true);
 			}
 			return true;
 		}
@@ -389,8 +389,8 @@ daeElement::removeChildElement(daeElement* element)
 			// Remove it, if the element's ref count goes to zero it might be destructed,
 			// so don't touch "element" again after this point.
 			meas[i]->removeElement(this,element);
-			if ( _collection ) {
-				_collection->setModified(true);
+			if ( _document ) {
+				_document->setModified(true);
 			}
 			return true;
 		}
@@ -399,16 +399,16 @@ daeElement::removeChildElement(daeElement* element)
 }
 
 // !!!ACL Added to fix mantis issue 0000416
-void daeElement::setCollection( daeCollection *c ) {
-	if( _collection == c ) {
+void daeElement::setDocument( daeDocument *c ) {
+	if( _document == c ) {
 		return;
 	}
-	_collection = c;
+	_document = c;
 
 	daeMetaElementAttributeArray &meas = _meta->getMetaElements();
 	int cnt = (int)meas.getCount();
 	for( int i = 0; i < cnt; i++) {
-		meas[i]->setCollection( this, c );
+		meas[i]->setDocument( this, c );
 	}
 
 }
@@ -515,7 +515,7 @@ daeElement::daeElement():
 		_refCount(0),
 		_intObject(0),
 		_parent(NULL),
-		_collection(NULL),
+		_document(NULL),
 		_meta(NULL),
 		_elementName(NULL)
 {}
@@ -632,8 +632,8 @@ daeSmartRef<daeElement> daeElement::clone(daeString idSuffix, daeString nameSuff
 }
 
 daeURI *daeElement::getDocumentURI() {
-	if ( _collection == NULL ) {
+	if ( _document == NULL ) {
 		return NULL;
 	}
-	return _collection->getDocumentURI();
+	return _document->getDocumentURI();
 }

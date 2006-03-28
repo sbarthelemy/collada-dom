@@ -25,10 +25,13 @@
 #include <dae/daeErrorHandler.h>
 
 daeLIBXMLPlugin::daeLIBXMLPlugin():topMeta(NULL),database(NULL)
-{}
+{
+	 xmlInitParser();
+}
 
 daeLIBXMLPlugin::~daeLIBXMLPlugin()
 {
+	 xmlCleanupParser();
 }
 
 daeInt daeLIBXMLPlugin::setMeta(daeMetaElement *_topMeta)
@@ -104,6 +107,7 @@ daeInt daeLIBXMLPlugin::read(daeURI& uri, daeString docBuffer)
 
 	if(!reader)
 	{
+		printf( "no libxml2 reader\n");
 		return DAE_ERR_BACKEND_IO;
 	}
 
@@ -122,15 +126,16 @@ daeInt daeLIBXMLPlugin::read(daeURI& uri, daeString docBuffer)
 				fileURI.getFile());
 		fflush(stdout);
 #endif		
+		printf("not able to load\n");
 		return DAE_ERR_BACKEND_IO;
 	}
 
-	// Insert the collection into the database, the Database will keep a ref on the main dom, so it won't gets deleted
+	// Insert the document into the database, the Database will keep a ref on the main dom, so it won't gets deleted
 	// until we clear the database
 
-	daeCollection *collection = NULL;
+	daeDocument *document = NULL;
 
-	int res = database->insertCollection(fileURI.getURI(),domObject,&collection);
+	int res = database->insertDocument(fileURI.getURI(),domObject,&document);
 	if (res!= DAE_OK)
 		return res;
 
@@ -142,7 +147,7 @@ daeInt daeLIBXMLPlugin::read(daeURI& uri, daeString docBuffer)
 	//insert the elements into the database, for this DB the elements are the Collada object which have
 	//an ID. 
 	//this function will fill the _integrationItems array as well
-	postProcessDom(collection, domObject, intItems);
+	postProcessDom(document, domObject, intItems);
 	database->validate();
 	daeElement::resolveAll();
 
@@ -493,14 +498,14 @@ daeLIBXMLPlugin::nextElement(daeMetaElement* thisMetaElement, xmlTextReaderPtr r
 }
 // postProcessDom traverses all elements below the passed in one and creates a list of all the integration objects.
 // this should probably NOT be done in the IO plugin.
-void daeLIBXMLPlugin::postProcessDom(daeCollection *collection, daeElement* element, std::vector<INTEGRATION_ITEM> &intItems)
+void daeLIBXMLPlugin::postProcessDom(daeDocument *document, daeElement* element, std::vector<INTEGRATION_ITEM> &intItems)
 {
 	// Null element?  Return
 
 	if (!element)
 		return;
 
-	element->setCollection(collection);
+	element->setDocument(document);
 	// If this element has an integration object, add it to a list so we can process them all in a bunch later
 
 	if (element->getIntObject(daeElement::int_uninitialized))
@@ -518,7 +523,7 @@ void daeLIBXMLPlugin::postProcessDom(daeCollection *collection, daeElement* elem
 		for ( int i = 0; i < contents->getCount( element ); i++ ) {
 			//array.append( *(daeElementRef*)contents->get( this, i ) );
 			daeElementRef elem = *(daeElementRef*)contents->get(element,i);
-			postProcessDom(collection,elem, intItems);
+			postProcessDom(document,elem, intItems);
 		}
 	}
 	else
@@ -533,23 +538,26 @@ void daeLIBXMLPlugin::postProcessDom(daeCollection *collection, daeElement* elem
 			for(j=0;j<elemCnt;j++)
 			{
 				daeElementRef elem = *(daeElementRef*)mea->get(element,j);
-				postProcessDom(collection,elem, intItems);
+				postProcessDom(document,elem, intItems);
 			}
 		}
 	}
 }
-daeInt daeLIBXMLPlugin::write(daeURI *name, daeCollection *collection, daeBool replace)
+daeInt daeLIBXMLPlugin::write(daeURI *name, daeDocument *document, daeBool replace)
 {
-	// Make sure database and collection are both set
+	// Make sure database and document are both set
 	if (!database)
 		return DAE_ERR_INVALID_CALL;
-	if(!collection)
+	if(!document)
 		return DAE_ERR_COLLECTION_DOES_NOT_EXIST;
 
 	// Extract just the file path from the URI
 	daeFixedName finalname;
 	if (!name->getPath(finalname,sizeof(finalname)))
+	{
+		printf( "can't get path in write\n" );
 		return DAE_ERR_BACKEND_IO;
+	}
 
 	// If replace=false, don't replace existing files
 	if(!replace)
@@ -567,6 +575,7 @@ daeInt daeLIBXMLPlugin::write(daeURI *name, daeCollection *collection, daeBool r
 	// Open the file we will write to
 	writer = xmlNewTextWriterFilename(name->getURI(), 0);
 	if ( !writer ) {
+		printf( "no libxml2 writer\n" );
 		return DAE_ERR_BACKEND_IO;
 	}
 	xmlChar indentString[10] = "    ";
@@ -574,7 +583,7 @@ daeInt daeLIBXMLPlugin::write(daeURI *name, daeCollection *collection, daeBool r
 	xmlTextWriterSetIndent( writer, 1 );
 	xmlTextWriterStartDocument( writer, NULL, NULL, NULL );
 	
-	writeElement( collection->getDomRoot() );
+	writeElement( document->getDomRoot() );
 	
 	xmlTextWriterEndDocument( writer );
 	xmlTextWriterFlush( writer );

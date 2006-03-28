@@ -322,11 +322,14 @@ public:
 	 */
 	virtual void removeElement(daeElement* parent, daeElement* child);
 	/**
-	 * Sets the database collection associated with this element.
-	 * @param parent The daeElement to set the collection.
-	 * @param c The @c daeCollection to associate with this element.
+	 * Sets the database document associated with this element.
+	 * @param parent The daeElement to set the document.
+	 * @param c The @c daeDocument to associate with this element.
 	 */
-	virtual void setCollection(daeElement *parent, daeCollection* c );
+	virtual void setDocument(daeElement *parent, daeDocument* c );
+	inline void setCollection(daeElement *parent, daeDocument* c ) {
+		setDocument( parent, c );
+	}
 
 	/**
 	 * Gets the number of elements associated with this attribute in instance <tt><i>e.</i></tt> 
@@ -391,10 +394,13 @@ public:
 	 */
 	virtual void removeElement(daeElement* parent, daeElement* child);
 	/**
-	 * Sets the database collection associated with this element.
-	 * @param c The @c daeCollection to associate with this element.
+	 * Sets the database document associated with this element.
+	 * @param c The @c daeDocument to associate with this element.
 	 */
-	virtual void setCollection(daeElement *parent, daeCollection* c );
+	virtual void setDocument(daeElement *parent, daeDocument* c );
+	inline void setCollection(daeElement *parent, daeDocument* c ) {
+		setDocument( parent, c );
+	}
 
 	/**
 	 * Defines the override version of this method from @c daeMetaElement.

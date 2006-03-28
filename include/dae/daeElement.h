@@ -24,7 +24,7 @@
 
 class daeMetaElement;
 class daeIntegrationObject;
-class daeCollection;
+class daeDocument;
 class daeURI;
 
 template <typename T> class daeSmartRef;
@@ -49,7 +49,7 @@ private:
 	mutable daeInt			_refCount;
 	daeIntegrationObject*	_intObject;
 	daeElement*				_parent;
-	daeCollection*			_collection;
+	daeDocument*			_document;
 	
 protected:
 	daeMetaElement*			_meta;
@@ -211,17 +211,25 @@ public:
 	virtual daeBool setAttribute(daeString attrName, daeString attrValue);
 
 	/**
-	 * Finds the database collection associated with @c this element.
-	 * @return Returns the @c daeCollection representing the containing file or database
+	 * Finds the database document associated with @c this element.
+	 * @return Returns the @c daeDocument representing the containing file or database
 	 * group.
 	 */
-	daeCollection*	getCollection() { return _collection; }
+	daeDocument*	getDocument() { return _document; }
+	/**
+	 * Deprecated.
+	 */
+	daeDocument*	getCollection() { return _document; }
 	
 	/**
-	 * Sets the database collection associated with this element.
-	 * @param c The daeCollection to associate with this element.
+	 * Sets the database document associated with this element.
+	 * @param c The daeDocument to associate with this element.
 	 */
-	void setCollection(daeCollection* c );
+	void setDocument(daeDocument* c );
+	/**
+	 * Deprecated.
+	 */
+	void setCollection(daeDocument* c );
 
 	/**
 	 * Gets the URI of the document containing this element, note that this is NOT the URI of the element.
@@ -338,7 +346,7 @@ public:
 	 * Resolves all @c daeURIs yet to be resolved in all @c daeElements that have been
 	 * created.
 	 * This is used as part of post-parsing process of a COLLADA instance document, 
-	 * which results in a new collection in the database.
+	 * which results in a new document in the database.
 	 */
 	static void resolveAll();
 public:

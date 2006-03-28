@@ -116,60 +116,60 @@ public:
 	*/
 	virtual daeInt load(daeString name, daeString docBuffer = NULL) = 0;
 	/**
-	* Saves a single collection/document back to the location it was loaded from.
-	* @param collectionName the name of the loaded collection to be saved, in most cases this will be an rfc 2396 compliant
+	* Saves a single document/document back to the location it was loaded from.
+	* @param documentName the name of the loaded document to be saved, in most cases this will be an rfc 2396 compliant
 	* URI but some IO plugins may work differently.  Please check the class documentation for the IO plugin you are using for specific restrictions.
 	* @param replace If set to false, save won't save over top of an existing document and will return a DAE_ERR_BACKEND_FILE_EXISTS
 	* error.  
 	* @return Returns DAE_OK if success, a negative value defined in daeError.h otherwise.
 	*/
-	virtual daeInt save(daeString collectionName, daeBool replace=true) = 0;
+	virtual daeInt save(daeString documentName, daeBool replace=true) = 0;
 	/**
-	* Saves a single collection/document back to the location it was loaded from.
-	* @param collectionIndex the index of a loaded collection to be saved.
+	* Saves a single document/document back to the location it was loaded from.
+	* @param documentIndex the index of a loaded document to be saved.
 	* @param replace If set to false, save won't save over top of an existing document and will return a DAE_ERR_BACKEND_FILE_EXISTS
 	* error.  
 	* @return Returns DAE_OK if success, a negative value defined in daeError.h otherwise.
 	*/
-	virtual daeInt save(daeUInt collectionIndex=0, daeBool replace=true) = 0;
+	virtual daeInt save(daeUInt documentIndex=0, daeBool replace=true) = 0;
 	/**
-	* Saves a single collection/document from the runtime database by name.
+	* Saves a single document/document from the runtime database by name.
 	* @param name the name to save the document to.  The format for this is defined by the IO plugin
 	* being used, in most cases this will be an rfc 2396 compliant relative or absolute URI.  Please check
 	* the class documentation for the IO plugin you are using for specific restrictions.  Not all IO plugins
 	* support all types of URIs.
-	* @param collectionName the name of the collection/document to save.  This is also defined by the IO plugin, in
+	* @param documentName the name of the document/document to save.  This is also defined by the IO plugin, in
 	* most cases this will be the URI of where the document was loaded from.
 	* @param replace If set to false, saveAs won't save over top of an existing document and will return a DAE_ERR_BACKEND_FILE_EXISTS
 	* error.  
 	* @return Returns DAE_OK if success, a negative value defined in daeError.h otherwise.
     */
-	virtual daeInt saveAs(daeString name, daeString collectionName, daeBool replace=true) = 0;
+	virtual daeInt saveAs(daeString name, daeString documentName, daeBool replace=true) = 0;
 	/**
-	* Saves a single collection/document from the runtime database by index.
+	* Saves a single document/document from the runtime database by index.
 	* @param name the name to save the document to.  The format for this is defined by the IO plugin
 	* being used, in most cases this will be an rfc 2396 compliant relative or absolute URI.  Please check
 	* the class documentation for the IO plugin you are using for specific restrictions.  Not all IO plugins
 	* support all types of URIs.
-	* @param collectionIndex the index of the collection/document to save, 0 is the first document loaded...etc.
+	* @param documentIndex the index of the document/document to save, 0 is the first document loaded...etc.
 	* Defaults to saving the first document loaded
 	* @param replace If set to false, saveAs won't save over top of an existing document and will return a DAE_ERR_BACKEND_FILE_EXISTS
 	* error.  
 	* @return Returns DAE_OK if success, a negative value defined in daeError.h otherwise.
     */
-	virtual daeInt saveAs(daeString name, daeUInt collectionIndex=0, daeBool replace=true) = 0;
+	virtual daeInt saveAs(daeString name, daeUInt documentIndex=0, daeBool replace=true) = 0;
 	/**
-	* Unloads a specific collection from the runtime database.
-	* @param name Name of the collection to remove.
+	* Unloads a specific document from the runtime database.
+	* @param name Name of the document to remove.
 	* @return Returns DAE_OK if unloaded successfully, otherwise returns a negative value as defined in daeError.h.
 	* @note This function is not currently implemented.
 	*/
 	virtual daeInt unload(daeString name) = 0;
 	/**
-	* Unloads all the collections of the runtime database.
+	* Unloads all the documents of the runtime database.
 	* This function frees all the @c dom* objects and integration objects created so far,
 	* except the object on which the user still has a smart pointer reference.
-	* @return Returns DAE_OK if all collections unloaded successfully, otherwise returns a negative value as defined in daeError.h.
+	* @return Returns DAE_OK if all documents unloaded successfully, otherwise returns a negative value as defined in daeError.h.
 	*/
 	virtual daeInt clear() = 0;
 	//@}
@@ -203,9 +203,9 @@ public:
 	*/
 	//@{
 	/**
-	* Gets the COLLADA tree root of a given collection.
-	* @param name Collection name, for the file @c daeIOPlugin, this will be the filename for a file.
-	* @return Returns the @c domCOLLADA root object of the collection, or NULL if the collection is not found.
+	* Gets the COLLADA tree root of a given document.
+	* @param name Document name, for the file @c daeIOPlugin, this will be the filename for a file.
+	* @return Returns the @c domCOLLADA root object of the document, or NULL if the document is not found.
 	*/
 	virtual domCOLLADA* getDom(daeString name) = 0;
 	/**
@@ -215,11 +215,11 @@ public:
 	virtual daeString getDomVersion() = 0;
 	/**
 	* Sets or inserts a COLLADA tree into the database.
-	* The system creates a default database if none is set and then creates a collection
-	* if the collection doesn't already exist. The collection keeps a reference on the 
+	* The system creates a default database if none is set and then creates a document
+	* if the document doesn't already exist. The document keeps a reference on the 
 	* @c daeElement, so you can then delete your own reference to the object safely.
-	* @param name the collection name, may be an absolute or relative URI.  The URI will be resolved to an absolute version
-	* and then compared with the absolute version of the collection's URI.  If the URI contains a fragment, it is stripped out.
+	* @param name the document name, may be an absolute or relative URI.  The URI will be resolved to an absolute version
+	* and then compared with the absolute version of the document's URI.  If the URI contains a fragment, it is stripped out.
 	* @param dom Root tree.
 	* @return Returns DAE_OK if success, otherwise returns a negative value as defined in daeError.h.
 	*/

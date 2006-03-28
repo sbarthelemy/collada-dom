@@ -170,6 +170,7 @@ daeInt DAE::load(daeString name, daeString docBuffer)
 		registerFunc();
 
 	if ( !plugin || !database ) {
+		printf( "no plugin or database\n" );
 		return DAE_ERR_BACKEND_IO;
 	}
 
@@ -182,7 +183,7 @@ daeInt DAE::load(daeString name, daeString docBuffer)
 	
 	return plugin->read(tempURI, docBuffer);
 }
-daeInt DAE::save(daeString collectionName, daeBool replace)
+daeInt DAE::save(daeString documentName, daeBool replace)
 {
 	if (!database)
 		setDatabase(NULL);
@@ -199,16 +200,16 @@ daeInt DAE::save(daeString collectionName, daeBool replace)
 
 	plugin->setDatabase(database);
 	
-	// Find the collection we want by name
-	daeCollection* collection = database->getCollection(collectionName);
-	if(collection == NULL)
+	// Find the document we want by name
+	daeDocument* document = database->getDocument(documentName);
+	if(document == NULL)
 		return DAE_ERR_COLLECTION_DOES_NOT_EXIST;
 
 	// Save it out to the URI it was loaded from
-	return plugin->write(collection->getDocumentURI(), collection, replace);
+	return plugin->write(document->getDocumentURI(), document, replace);
 
 }
-daeInt DAE::save(daeUInt collectionIndex, daeBool replace)
+daeInt DAE::save(daeUInt documentIndex, daeBool replace)
 {
 	if (!database)
 		setDatabase(NULL);
@@ -225,15 +226,15 @@ daeInt DAE::save(daeUInt collectionIndex, daeBool replace)
 
 	plugin->setDatabase(database);
 	
-	if(collectionIndex >= database->getCollectionCount())
+	if(documentIndex >= database->getDocumentCount())
 		return DAE_ERR_COLLECTION_DOES_NOT_EXIST;
 
-	daeCollection *collection = database->getCollection(collectionIndex);
+	daeDocument *document = database->getDocument(documentIndex);
 	
 	// Save it out to the URI it was loaded from
-	return plugin->write(collection->getDocumentURI(), collection, replace);
+	return plugin->write(document->getDocumentURI(), document, replace);
 }
-daeInt DAE::saveAs(daeString name, daeString collectionName, daeBool replace)
+daeInt DAE::saveAs(daeString name, daeString documentName, daeBool replace)
 {
 	if (!database)
 		setDatabase(NULL);
@@ -250,18 +251,18 @@ daeInt DAE::saveAs(daeString name, daeString collectionName, daeBool replace)
 
 	plugin->setDatabase(database);
 	
-	// Find the collection we want by name
-	daeCollection* collection = database->getCollection(collectionName);
-	if(collection == NULL)
+	// Find the document we want by name
+	daeDocument* document = database->getDocument(documentName);
+	if(document == NULL)
 		return DAE_ERR_COLLECTION_DOES_NOT_EXIST;
 
 	// Make a URI from "name" and save to that
 
 	daeURI tempURI(name);
-	return plugin->write(&tempURI, collection, replace);
+	return plugin->write(&tempURI, document, replace);
 	
 }
-daeInt DAE::saveAs(daeString name, daeUInt collectionIndex, daeBool replace)
+daeInt DAE::saveAs(daeString name, daeUInt documentIndex, daeBool replace)
 {
 	if (!database)
 		setDatabase(NULL);
@@ -278,19 +279,19 @@ daeInt DAE::saveAs(daeString name, daeUInt collectionIndex, daeBool replace)
 
 	plugin->setDatabase(database);
 	
-	if(collectionIndex >= database->getCollectionCount())
+	if(documentIndex >= database->getDocumentCount())
 		return DAE_ERR_COLLECTION_DOES_NOT_EXIST;
 
-	daeCollection *collection = database->getCollection(collectionIndex);
+	daeDocument *document = database->getDocument(documentIndex);
 	
 	daeURI tempURI(name);
-	return plugin->write(&tempURI, collection, replace);
+	return plugin->write(&tempURI, document, replace);
 }
 daeInt DAE::unload(daeString name)
 {
-	daeCollection *col = database->getCollection( name );
+	daeDocument *col = database->getDocument( name );
 	if ( col == NULL ) return DAE_ERR_COLLECTION_DOES_NOT_EXIST;
-	return database->removeCollection( col );
+	return database->removeDocument( col );
 }
 
 daeInt DAE::clear()
@@ -322,12 +323,12 @@ domCOLLADA* DAE::getDom(daeString name)
 	if (!database)
 		return NULL;
 
-	// Find the collection by name
-	daeCollection *collection = database->getCollection(name);
-	if(collection)
+	// Find the document by name
+	daeDocument *document = database->getDocument(name);
+	if(document)
 	{
 		// Return the root domCOLLADA element
-		return (domCOLLADA*)(daeElement*)collection->getDomRoot();
+		return (domCOLLADA*)(daeElement*)document->getDomRoot();
 	}
 	else
 	{
@@ -340,21 +341,21 @@ daeInt DAE::setDom(daeString name, domCOLLADA* dom)
 	if (!database)
 		setDatabase(NULL);
 	
-	// Find the collection by name
+	// Find the document by name
 	
-	daeCollection *collection = database->getCollection(name);
+	daeDocument *document = database->getDocument(name);
 
-	if(collection)
+	if(document)
 	{
-		//replace a DOM on an existing collection by the one provided.
+		//replace a DOM on an existing document by the one provided.
 		// Note that the casts are needed because we don't want to include the full definition of domCOLLADA
-		collection->setDomRoot((daeElement*)dom);
+		document->setDomRoot((daeElement*)dom);
 		return DAE_OK;
 	}
 	else
 	{
-		// Collection doesn't exist, make a new one
-		return database->insertCollection(name,(daeElement*)dom);
+		// Document doesn't exist, make a new one
+		return database->insertDocument(name,(daeElement*)dom);
 	}
 }
 daeString DAE::getDomVersion()

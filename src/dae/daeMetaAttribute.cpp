@@ -150,20 +150,20 @@ daeMetaElementArrayAttribute::removeElement(daeElement* parent,
 }
 
 void
-daeMetaElementAttribute::setCollection( daeElement * parent, daeCollection* c )
+daeMetaElementAttribute::setDocument( daeElement * parent, daeDocument* c )
 {
 	daeElementRef* er = (daeElementRef*)getWritableMemory( parent );
 	if ( ((daeElement*)(*er)) != NULL ) {
-		(*er)->setCollection( c );
+		(*er)->setDocument( c );
 	}
 }
 
 void
-daeMetaElementArrayAttribute::setCollection( daeElement * parent, daeCollection* c )
+daeMetaElementArrayAttribute::setDocument( daeElement * parent, daeDocument* c )
 {
 	daeElementRefArray* era = (daeElementRefArray*)getWritableMemory( parent );
 	for ( unsigned int i = 0; i < era->getCount(); i++ ) {
-		era->get(i)->setCollection( c );
+		era->get(i)->setDocument( c );
 	}
 }
 

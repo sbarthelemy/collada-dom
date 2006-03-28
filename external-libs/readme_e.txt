@@ -9,11 +9,11 @@
  implied. See the License for the specific language governing permissions and limitations under the 
  License.
 
-The external-libs directory tree holds library files that one or more of the build targets
+The external-libs directory tree is here to hold library files that one or more of the build targets
 for the COLLADA_DOM depend on.
 
-Right now this contains a win32 version of the libxml2 and zlib libraries for use with projects
-that use the COLLADA DOM.  All the existing win32 projects expect to find libxml2 and zlib here.  If
-you want to link with a different version you will need to change the projects.
+Right now this contains an empty directory structure for the win32 version of the libxml2, zlib, and iconvlibraries needed for use with projects that use the COLLADA DOM. These libraries must be downloaded and installed yourself since they are not distributed with the COLLADA DOM. Please refer to the release notes for more information.
+
+All the existing win32 projects expect to find libxml2, zlib, and iconv here.  If you want to link with a different version you will need to change the project settings.
 
 Additional libraries for other build targets may be added in the future.

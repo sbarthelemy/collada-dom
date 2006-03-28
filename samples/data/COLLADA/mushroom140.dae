@@ -13,8 +13,8 @@ exportTexTangents=0;exportConstraints=1;exportPhysics=1;exportXRefs=0;
 dereferenceXRefs=1;cameraXFov=0;cameraYFov=1</comments>
             <source_data>file://C|/Work/GDC%2006/Bugs/MoreShaderTests/Feb10Tests/COLLADA/Copy%20(2)%20of%20mushroom_plain.dae</source_data>
         </contributor>
-        <created>2006-03-13T23:56:01Z</created>
-        <modified>2006-03-13T23:56:01Z</modified>
+        <created>2006-03-14T02:33:04Z</created>
+        <modified>2006-03-14T02:33:04Z</modified>
         <unit meter="0.01" name="centimeter"/>
         <up_axis>Y_UP</up_axis>
     </asset>
@@ -6724,6 +6724,40 @@ dereferenceXRefs=1;cameraXFov=0;cameraYFov=1</comments>
             </mesh>
         </geometry>
     </library_geometries>
+    <library_lights>
+        <light id="pointLightShape1-lib" name="pointLightShape1">
+            <technique_common>
+                <point>
+                    <color sid="color">1 1 1 </color>
+                    <constant_attenuation>1</constant_attenuation>
+                    <linear_attenuation>0</linear_attenuation>
+                    <quadratic_attenuation>0</quadratic_attenuation>
+                </point>
+            </technique_common>
+            <technique profile="MAYA">
+                <intensity sid="intensity">1.000000</intensity>
+            </technique>
+        </light>
+    </library_lights>
+    <library_cameras>
+        <camera id="cameraShape1-lib" name="cameraShape1">
+            <optics>
+                <technique_common>
+                    <perspective>
+                        <yfov sid="yfov">37.8493</yfov>
+                        <aspect_ratio>1.5</aspect_ratio>
+                        <znear sid="znear">0.01</znear>
+                        <zfar sid="zfar">1000</zfar>
+                    </perspective>
+                </technique_common>
+                <technique profile="MAYA">
+                    <vertical_aperture>2.399995</vertical_aperture>
+                    <horizontal_aperture sid="haperture">3.599993</horizontal_aperture>
+                    <lens_squeeze sid="lenssqueeze">1.000000</lens_squeeze>
+                </technique>
+            </optics>
+        </camera>
+    </library_cameras>
     <library_visual_scenes>
         <visual_scene id="DefaultScene" name="mushroom_plain">
             <node id="Mushroom_resting2" name="Mushroom_resting2" sid="Mushroom_resting2">
@@ -6740,6 +6774,20 @@ dereferenceXRefs=1;cameraXFov=0;cameraYFov=1</comments>
                     </bind_material>
                 </instance_geometry>
             </node>
+            <node id="camera1" name="camera1" sid="camera1">
+                <translate sid="translate">0 0 3.238 </translate>
+                <rotate sid="rotateZ">0 0 1 0 </rotate>
+                <rotate sid="rotateY">0 1 0 0 </rotate>
+                <rotate sid="rotateX">1 0 0 0 </rotate>
+                <instance_camera url="#cameraShape1-lib"/>
+            </node>
+            <node id="pointLight1" name="pointLight1" sid="pointLight1">
+                <translate sid="translate">0.868923 1.43921 0.464736 </translate>
+                <rotate sid="rotateZ">0 0 1 0 </rotate>
+                <rotate sid="rotateY">0 1 0 0 </rotate>
+                <rotate sid="rotateX">1 0 0 0 </rotate>
+                <instance_light url="#pointLightShape1-lib"/>
+            </node>
             <extra>
                 <technique profile="MAYA">
                     <start_time>0.041667</start_time>
@@ -6752,13 +6800,13 @@ dereferenceXRefs=1;cameraXFov=0;cameraYFov=1</comments>
         <instance_visual_scene url="#DefaultScene"/>
     </scene>
     <library_materials>
-        <material id="New_Material" name="default_Material">
+        <material id="New_Material" name="phong1">
             <instance_effect url="#wigglatexadescent">
                 <setparam ref="WorldITXf">
                     <float4x4>1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 </float4x4>
                 </setparam>
                 <setparam ref="WorldViewProjXf">
-                    <float4x4>2.46398 0 0 0 0 2.74748 0 0 0 0 -1.00012 -1 -0.0155268 -0.188243 1.69914 1.69922 </float4x4>
+                    <float4x4>2.31921 0 0 0 -4.21583e-016 2.74748 1.45441e-015 1.45423e-015 0 0 -1.00012 -1 -1.68311 -3.35608 5.90882 5.90903 </float4x4>
                 </setparam>
                 <setparam ref="WorldXf">
                     <float4x4>1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 </float4x4>
@@ -6785,7 +6833,7 @@ dereferenceXRefs=1;cameraXFov=0;cameraYFov=1</comments>
                     </surface>
                 </setparam>
                 <setparam ref="Timer">
-                    <float>368.366</float>
+                    <float>253.096</float>
                 </setparam>
                 <setparam ref="Amplitude">
                     <float>0.0358</float>

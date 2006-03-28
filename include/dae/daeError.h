@@ -30,9 +30,9 @@
 #define DAE_ERR_QUERY_SYNTAX -200
 /** No match to the search criteria. */
 #define DAE_ERR_QUERY_NO_MATCH -201
-/** A collection with that name already exists. */
+/** A document with that name already exists. */
 #define DAE_ERR_COLLECTION_ALREADY_EXISTS -202
-/** A collection with that name does not exist. */
+/** A document with that name does not exist. */
 #define DAE_ERR_COLLECTION_DOES_NOT_EXIST -203
 /** Function is not implemented. */
 #define DAE_ERR_NOT_IMPLEMENTED -1000

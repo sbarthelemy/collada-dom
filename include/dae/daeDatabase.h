@@ -19,29 +19,29 @@
 #include <dae/daeURI.h>
 
 /**
- * The @c daeCollection class implements a COLLADA runtime database entry.
+ * The @c daeDocument class implements a COLLADA runtime database entry.
  */
-class daeCollection
+class daeDocument
 {
 public:
 	/**
-	* Accessor to get the @c domCollada associated with this collection.
+	* Accessor to get the @c domCollada associated with this document.
 	* @return A @c daeElementRef for the @c domCollada that is the root of this document.
 	* @note This function should really return a domColladaRef,
 	* but we're trying to avoid having @c dae classes depend on generated dom classes.
 	*/
 	daeElement* getDomRoot() const {return(dom);}
 	/**
-	* Accessor to set the domCollada associated with this collection
+	* Accessor to set the domCollada associated with this document
 	* @param domRoot the domCollada that is the root of this document
 	* @remarks Should really require a domColladaRef but we're trying to avoid having dae classes depend on generated dom classes.
 	*/
 	void setDomRoot(daeElement* domRoot) {dom = domRoot;}
 	/**
-	* Accessor to get the URI associated with the document in this collection; 
-	* this is currently set to the URI from which the collection was loaded, but
-	* is blank if the collection was created with @c insertCollection().
-	* @return Returns a pointer to the URI for this collection.
+	* Accessor to get the URI associated with the document in this document; 
+	* this is currently set to the URI from which the document was loaded, but
+	* is blank if the document was created with @c insertDocument().
+	* @return Returns a pointer to the URI for this document.
 	* @note This is the full URI of the document and not the document base URI.
 	*/
 	daeURI* getDocumentURI() {return (&uri);}
@@ -57,22 +57,24 @@ public:
 	void setModified( daeBool mod ) {modified = mod;}
 private:
 	/**
-	* Top Level element for of the collection, always a domCollada
+	* Top Level element for of the document, always a domCollada
 	* @remarks This member will eventually be taken private, use getDomRoot() to access it.
 	*/
 	daeElementRef dom;
 	
 	/** 
-	* The URI of the document in this collection, may be blank if the collection wasn't loaded from a URI
+	* The URI of the document in this document, may be blank if the document wasn't loaded from a URI
 	* @remarks This member will eventually be taken private, use getDocumentURI() to access it.
 	*/
 	daeURI uri;
 
 	/**
-	 * A flag that indicates if this collection has been modified.
+	 * A flag that indicates if this document has been modified.
 	 */
 	daeBool modified;
 };
+
+typedef daeDocument daeCollection;
 
 /**
  * The @c daeDatabase class implements the COLLADA runtime database interface.
@@ -85,87 +87,87 @@ public:
 	 */
 	virtual ~daeDatabase() {}
 	
-	/** @name Collections */
+	/** @name Documents */
 	//@{
 	/**
-	* Creates a new collection, defining its root as the <tt><i>dom</i></tt> object; returns an error if the collection name already exists.
-	* @param name Name of the new collection, must be a valid URI.
-	* @param dom Existing @c domCOLLADA root element of the collection
-	* @param collection Pointer to a @c daeCollection pointer that receives the collection created 
-	* @return Returns @c DAE_OK if the collection was created successfully, otherwise returns a negative value as defined in daeError.h.
+	* Creates a new document, defining its root as the <tt><i>dom</i></tt> object; returns an error if the document name already exists.
+	* @param name Name of the new document, must be a valid URI.
+	* @param dom Existing @c domCOLLADA root element of the document
+	* @param document Pointer to a @c daeDocument pointer that receives the document created 
+	* @return Returns @c DAE_OK if the document was created successfully, otherwise returns a negative value as defined in daeError.h.
 	* @note The @c daeElement passed in as <tt><i>dom</i></tt> should always be a @c domCOLLADA object, the API may enforce this in the future.
-	* @deprecated This function will be removed in future versions. Please use createCollection.
+	* @deprecated This function will be removed in future versions. Please use createDocument.
 	*/
-	virtual daeInt insertCollection(daeString name, daeElement* dom, daeCollection** collection = NULL) = 0;
+	virtual daeInt insertDocument(daeString name, daeElement* dom, daeDocument** document = NULL) = 0;
 	/**
-	* Creates a new @c domCOLLADA root element and a new collection; returns an error if the collection name already exists.
-	* @param name Name of the new collection, must be a valid URI.
-	* @param collection Pointer to a @c daeCollection pointer that receives the collection created 
-	* @return Returns DAE_OK if the collection was created successfully, otherwise returns a negative value as defined in daeError.h.
-	* @deprecated This function will be removed in future versions. Please use createCollection.
+	* Creates a new @c domCOLLADA root element and a new document; returns an error if the document name already exists.
+	* @param name Name of the new document, must be a valid URI.
+	* @param document Pointer to a @c daeDocument pointer that receives the document created 
+	* @return Returns DAE_OK if the document was created successfully, otherwise returns a negative value as defined in daeError.h.
+	* @deprecated This function will be removed in future versions. Please use createDocument.
 	*/
-	virtual daeInt insertCollection(daeString name, daeCollection** collection = NULL) = 0;
+	virtual daeInt insertDocument(daeString name, daeDocument** document = NULL) = 0;
 	/**
-	* Creates a new collection, defining its root as the <tt><i>dom</i></tt> object; returns an error if the collection name already exists.
-	* @param name Name of the new collection, must be a valid URI.
-	* @param dom Existing @c domCOLLADA root element of the collection
-	* @param collection Pointer to a @c daeCollection pointer that receives the collection created 
-	* @return Returns @c DAE_OK if the collection was created successfully, otherwise returns a negative value as defined in daeError.h.
+	* Creates a new document, defining its root as the <tt><i>dom</i></tt> object; returns an error if the document name already exists.
+	* @param name Name of the new document, must be a valid URI.
+	* @param dom Existing @c domCOLLADA root element of the document
+	* @param document Pointer to a @c daeDocument pointer that receives the document created 
+	* @return Returns @c DAE_OK if the document was created successfully, otherwise returns a negative value as defined in daeError.h.
 	* @note The @c daeElement passed in as <tt><i>dom</i></tt> should always be a @c domCOLLADA object, the API may enforce this in the future.
 	*/
-	virtual daeInt createCollection(daeString name, daeElement* dom, daeCollection** collection = NULL) = 0;
+	virtual daeInt createDocument(daeString name, daeElement* dom, daeDocument** document = NULL) = 0;
 	/**
-	* Creates a new @c domCOLLADA root element and a new collection; returns an error if the collection name already exists.
-	* @param name Name of the new collection, must be a valid URI.
-	* @param collection Pointer to a @c daeCollection pointer that receives the collection created 
-	* @return Returns DAE_OK if the collection was created successfully, otherwise returns a negative value as defined in daeError.h.
+	* Creates a new @c domCOLLADA root element and a new document; returns an error if the document name already exists.
+	* @param name Name of the new document, must be a valid URI.
+	* @param document Pointer to a @c daeDocument pointer that receives the document created 
+	* @return Returns DAE_OK if the document was created successfully, otherwise returns a negative value as defined in daeError.h.
 	*/
-	virtual daeInt createCollection(daeString name, daeCollection** collection = NULL) = 0;
+	virtual daeInt createDocument(daeString name, daeDocument** document = NULL) = 0;
 
 	/**
-	 * Inserts an already existing collection into the database.
-	 * @param c The collection to insert.
-	 * @return Returns DAE_OK if the collection was inserted successfully, otherwise returns a negative value as defined in daeError.h.
+	 * Inserts an already existing document into the database.
+	 * @param c The document to insert.
+	 * @return Returns DAE_OK if the document was inserted successfully, otherwise returns a negative value as defined in daeError.h.
 	 */
-	virtual daeInt insertCollection( daeCollection *c ) = 0;
+	virtual daeInt insertDocument( daeDocument *c ) = 0;
 
 	/**
-	* Removes a collection from the database.
-	* @param collection Collection to remove from the database
-	* @return Returns DAE_OK if the collection was successfully removed, otherwise returns a negative value as defined in daeError.h. 
+	* Removes a document from the database.
+	* @param document Document to remove from the database
+	* @return Returns DAE_OK if the document was successfully removed, otherwise returns a negative value as defined in daeError.h. 
 	*/
-	virtual daeInt removeCollection(daeCollection* collection) = 0;
+	virtual daeInt removeDocument(daeDocument* document) = 0;
 	/**
-	* Gets the number of collections.
-	* @return Returns the number of collections.
+	* Gets the number of documents.
+	* @return Returns the number of documents.
 	*/
-	virtual daeUInt getCollectionCount() = 0;
+	virtual daeUInt getDocumentCount() = 0;
 	/**
-	* Gets a collection based on the collection index.
-	* @param index Index of the collection to get.
-	* @return Returns a pointer on the collection, or NULL if not found. 
+	* Gets a document based on the document index.
+	* @param index Index of the document to get.
+	* @return Returns a pointer on the document, or NULL if not found. 
 	*/
-	virtual daeCollection* getCollection(daeUInt index) = 0;
+	virtual daeDocument* getDocument(daeUInt index) = 0;
 	/**
-	* Gets a collection based on the collection name.
-	* @param name The name of the collection as a URI.
-	* @return Returns a pointer to the collection, or NULL if not found. 
+	* Gets a document based on the document name.
+	* @param name The name of the document as a URI.
+	* @return Returns a pointer to the document, or NULL if not found. 
 	* @note If the URI contains a fragment, the fragment is stripped off.
 	*/
-	virtual daeCollection* getCollection(daeString name) = 0;
+	virtual daeDocument* getDocument(daeString name) = 0;
 	/**
-	* Gets a collection name.
-	* @param index Index of the collection to get.
-	* @return Returns the name of the collection at the given index. 
+	* Gets a document name.
+	* @param index Index of the document to get.
+	* @return Returns the name of the document at the given index. 
 	*/
-	virtual daeString getCollectionName(daeUInt index) = 0;
+	virtual daeString getDocumentName(daeUInt index) = 0;
 	/**
-	* Indicates if a collection is loaded or not.
-	* @param name Name of the collection  as a URI.
-	* @return Returns true if the collection is loaded, false otherwise.
+	* Indicates if a document is loaded or not.
+	* @param name Name of the document  as a URI.
+	* @return Returns true if the document is loaded, false otherwise.
 	* @note If the URI contains a fragment, the fragment is stripped off.
 	*/
-	virtual daeBool isCollectionLoaded(daeString name) = 0;
+	virtual daeBool isDocumentLoaded(daeString name) = 0;
 	//@}
 	
 	/** @name Elements */ 
@@ -183,26 +185,26 @@ public:
 	virtual daeString getTypeName(daeUInt index) = 0;
 	/**
 	* Inserts a @c daeElement into the runtime database.
-	* @param collection Collection in which the @c daeElement lives.
+	* @param document Document in which the @c daeElement lives.
 	* @param element @c daeElement to insert in the database
 	* @return Returns @c DAE_OK if element successfully inserted, otherwise returns a negative value as defined in daeError.h.
 	*/
-	virtual daeInt insertElement(daeCollection* collection,
+	virtual daeInt insertElement(daeDocument* document,
 	                             daeElement* element) = 0;
 	/**
 	* Removes a @c daeElement from the runtime database; not implemented in the reference STL implementation.
-	* @param collection Collection in which the @c daeElement lives.
+	* @param document Document in which the @c daeElement lives.
 	* @param element Element to remove.
 	* @return Returns @c DAE_OK if element successfully removed, otherwise returns a negative value as defined in daeError.h.
 	* @note This function is not implemented in the reference STL implementation.
 	*/
-	virtual daeInt removeElement(daeCollection* collection,
+	virtual daeInt removeElement(daeDocument* document,
 	                           daeElement* element) = 0;
 	/**
-	* Unloads all of the collections of the runtime database.
+	* Unloads all of the documents of the runtime database.
 	* This function frees all the @c dom* objects and integration objects created so far,
 	* except any objects on which you still have a smart pointer reference (@c daeSmartRef).
-	* @return Returns @c DAE_OK if all collections successfully unloaded, otherwise returns a negative value as defined in daeError.h.
+	* @return Returns @c DAE_OK if all documents successfully unloaded, otherwise returns a negative value as defined in daeError.h.
 	*/
 	virtual daeInt clear() = 0;
 	/**
@@ -226,7 +228,7 @@ public:
 	* to match, or it is not set and all @c daeElements match for this criterion.
 	* @param name Name or id of the @c daeElement, for example, "mycube1", can be NULL
 	* @param type Type of @c daeElement to find, this can be any COLLADA tag such as <geometry> or <library>, can be NULL
-	* @param file Name of the collection or file, for example, "myCollection.xml", can be NULL
+	* @param file Name of the document or file, for example, "myDocument.xml", can be NULL
 	* @return Returns the number of elements matching this query.
 	*/
 	virtual daeUInt getElementCount(daeString name = NULL,
@@ -239,7 +241,7 @@ public:
 	* The function operates on the set of assets that match the <tt><i>name, type</i></tt> and <tt><i>file</i></tt> search criteria, 
 	* with the <tt><i>index</i></tt> parameter indicating which asset within the set is returned.
 	* Calling @c daeElement(&pElement,index) without search criteria returns the @c daeElement number <tt><i>index</i></tt> in the database without
-	* any consideration of name, type or collection.
+	* any consideration of name, type or document.
 	* Criteria can not be specified with wildcards, either a criterion is set and it will have
 	* to match, or it is not set and all @c daeElements match for this criterion.
 	* The default database search is roughly in log2(n). Maximum performance is obtained when querying 
@@ -249,7 +251,7 @@ public:
 	* @param index Index within the set of @c daeElements that match the search criteria
 	* @param name Name or id of the @c daeElement, for example "mycube1", can be NULL
 	* @param type Type of the @c daeElement to get, this can be any COLLADA tag such as <geometry> or <library>, can be NULL
-	* @param file Name of the collection or file, for example, "myCollection.xml", can be NULL
+	* @param file Name of the document or file, for example, "myDocument.xml", can be NULL
 	* @return Returns DAE_OK upon success, returns DAE_ERR_QUERY_NO_MATCH if there is no match, otherwise, returns a negative value as defined in daeError.h.
 	*/
 	virtual daeInt getElement(daeElement** pElement,
@@ -277,6 +279,42 @@ public:
 	* @return Returns DAE_OK if successful, otherwise returns a negative value defined in daeError.h.
 	*/
 	virtual daeInt setMeta(daeMetaElement *_topMeta) = 0;
+
+public: //Depricated methods
+	inline daeInt insertCollection(daeString name, daeElement* dom, daeDocument** document = NULL) {
+		return insertDocument( name, dom, document );
+	}
+	inline daeInt insertCollection(daeString name, daeDocument** document = NULL) {
+		return insertDocument( name, document );
+	}
+	inline daeInt createCollection(daeString name, daeElement* dom, daeDocument** document = NULL) {
+		return createDocument( name, dom, document );
+	}
+	inline daeInt createCollection(daeString name, daeDocument** document = NULL) {
+		return createDocument( name, document );
+	}
+	inline daeInt insertCollection( daeDocument *c ) {
+		return insertDocument( c );
+	}
+	inline daeInt removeCollection(daeDocument* document) {
+		return removeDocument( document );
+	}
+	inline daeUInt getCollectionCount() {
+		return getDocumentCount();
+	}
+	inline daeDocument* getCollection(daeUInt index) {
+		return getDocument( index );
+	}
+	inline daeDocument* getCollection(daeString name) {
+		return getDocument( name );
+	}
+	inline daeString getCollectionName(daeUInt index) {
+		return getDocumentName( index );
+	}
+	inline daeBool isCollectionLoaded(daeString name) {
+		return isDocumentLoaded( name );
+	}
+
 };
 
 #endif //__DAE_DATABASE__

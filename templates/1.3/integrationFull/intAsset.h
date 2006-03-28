@@ -19,7 +19,7 @@
 
 /** The asset element defines asset management information regarding its parent element.
 				Computers store vast amounts of information. An asset is a set of information that is 
-				organized into a distinct collection and managed as a unit. A wide range of attributes 
+				organized into a distinct document and managed as a unit. A wide range of attributes 
 				describes assets so that the information can be maintained and understood by software 
 				tools and humans.
 */class intAsset;

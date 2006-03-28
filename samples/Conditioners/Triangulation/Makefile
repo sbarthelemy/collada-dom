@@ -23,7 +23,7 @@ SUBDIRS		+= $(ROOT_DIR)/src/$(COLLADA_DOM_VERSION)/dom \
                    $(ROOT_DIR)/src/dae \
                    $(ROOT_DIR)/src/modules/STLDatabase \
                    $(ROOT_DIR)/src/modules/LIBXMLPlugin \
-                   $(ROOT_DIR)/src/modules/StdErrPlugin
+                   $(ROOT_DIR)/src/modules/stdErrPlugin
 
 COMMON_DIR	= ../Common
 

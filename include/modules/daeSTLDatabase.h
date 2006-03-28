@@ -45,23 +45,23 @@ public:
 	virtual daeString		getTypeName(daeUInt index);
 	virtual daeInt			setMeta(daeMetaElement *_topMeta);
 
-	// Collections
-	virtual daeInt			insertCollection(const char *name, daeElement* dom, daeCollection** collection = NULL);
-	virtual daeInt			insertCollection(daeString name, daeCollection** collection = NULL);
-	virtual daeInt			createCollection(daeString name, daeElement* dom, daeCollection** collection = NULL);
-	virtual daeInt			createCollection(daeString name, daeCollection** collection = NULL);
-	virtual daeInt			insertCollection( daeCollection *c );
+	// Documents
+	virtual daeInt			insertDocument(const char *name, daeElement* dom, daeDocument** document = NULL);
+	virtual daeInt			insertDocument(daeString name, daeDocument** document = NULL);
+	virtual daeInt			createDocument(daeString name, daeElement* dom, daeDocument** document = NULL);
+	virtual daeInt			createDocument(daeString name, daeDocument** document = NULL);
+	virtual daeInt			insertDocument( daeDocument *c );
 
-	virtual daeInt			removeCollection(daeCollection* collection);
-	virtual daeUInt			getCollectionCount();
-	virtual daeCollection*	getCollection(daeUInt index);
-	virtual daeCollection*	getCollection(daeString name);
-	virtual daeString		getCollectionName(daeUInt index);
-	virtual daeBool			isCollectionLoaded(daeString name);
+	virtual daeInt			removeDocument(daeDocument* document);
+	virtual daeUInt			getDocumentCount();
+	virtual daeDocument*	getDocument(daeUInt index);
+	virtual daeDocument*	getDocument(daeString name);
+	virtual daeString		getDocumentName(daeUInt index);
+	virtual daeBool			isDocumentLoaded(daeString name);
 
 	// Elements 
-	virtual daeInt			insertElement(daeCollection* collection, daeElement* element);  
-	virtual daeInt			removeElement(daeCollection* collection, daeElement* element); 
+	virtual daeInt			insertElement(daeDocument* document, daeElement* element);  
+	virtual daeInt			removeElement(daeDocument* document, daeElement* element); 
 	virtual daeInt			clear();
 	virtual void			validate();
 	virtual daeUInt getElementCount(daeString name = NULL,
@@ -86,7 +86,7 @@ private:
 		daeElement* element;
 		daeString name;
 		daeString type;
-		daeCollection *collection;
+		daeDocument *document;
 	} DAE_STL_DATABASE_CELL;
 	
 	/**
@@ -117,7 +117,7 @@ private:
 	};
 
 	std::vector<DAE_STL_DATABASE_CELL> elements;
-	std::vector<daeCollection*> collections;
+	std::vector<daeDocument*> documents;
 	bool validated;
 	daeMetaElement* topMeta;
 
@@ -129,8 +129,8 @@ private:
 									 daeString type = NULL,
 									 daeString file = NULL);*/
 
-	daeInt insertChildren( daeCollection *c, daeElement *element );
-	daeInt removeChildren( daeCollection *c, daeElement *element );
+	daeInt insertChildren( daeDocument *c, daeElement *element );
+	daeInt removeChildren( daeDocument *c, daeElement *element );
 
 };
 

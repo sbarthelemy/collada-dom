@@ -75,10 +75,10 @@ public:
 
 	// batch file operations
 	virtual daeInt load(daeString name, daeString docBuffer = NULL);
-	virtual daeInt save(daeString collectionName, daeBool replace=true);
-	virtual daeInt save(daeUInt collectionIndex, daeBool replace=true);
-	virtual daeInt saveAs(daeString name, daeString collectionName, daeBool replace=true);
-	virtual daeInt saveAs(daeString name, daeUInt collectionIndex=0, daeBool replace=true);
+	virtual daeInt save(daeString documentName, daeBool replace=true);
+	virtual daeInt save(daeUInt documentIndex, daeBool replace=true);
+	virtual daeInt saveAs(daeString name, daeString documentName, daeBool replace=true);
+	virtual daeInt saveAs(daeString name, daeUInt documentIndex=0, daeBool replace=true);
 
 	virtual daeInt unload(daeString name);
 	virtual daeInt clear();

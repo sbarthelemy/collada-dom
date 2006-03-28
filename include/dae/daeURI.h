@@ -35,7 +35,7 @@
  *
  * URIs are resolved hierarchically, where each URI is resolved based on
  * the following criteria via itself and its element's base URI, which represents the
- * URI of the collection that contains the element, retrieved by 
+ * URI of the document that contains the element, retrieved by 
  * <tt>daeElement::getBaseURI().</tt>
  * If no base URI is provided, then the application URI
  * is used as a base.
@@ -260,7 +260,7 @@ public:
 	 * Gets the original URI String as originally set, not flattened against the base URI.
 	 * @return Returns the original URI String as originally set, not flattened against the base URI.
 	 */
-	daeString getOriginalURI();
+	daeString getOriginalURI() const;
 	 
 	/**
 	 * Uses the @c daeURIResolver static API to try to resolve this URI

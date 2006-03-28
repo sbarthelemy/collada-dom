@@ -29,10 +29,10 @@ daeInt daeSTLDatabase::setMeta(daeMetaElement *_topMeta)
 }
 
 daeBool
-daeSTLDatabase::isCollectionLoaded(daeString name)
+daeSTLDatabase::isDocumentLoaded(daeString name)
 {
-	daeCollection* collection = getCollection(name);
-	if(collection)
+	daeDocument* document = getDocument(name);
+	if(document)
 		return(true);
 	else
 		return(false);
@@ -73,99 +73,99 @@ daeString daeSTLDatabase::getTypeName(daeUInt index)
 		return NULL;
 }
 
-// Collections
-daeInt daeSTLDatabase::insertCollection(const char *name, daeElement* dom, daeCollection** collection)
+// Documents
+daeInt daeSTLDatabase::insertDocument(const char *name, daeElement* dom, daeDocument** document)
 {
-	return createCollection( name, dom, collection );
+	return createDocument( name, dom, document );
 }
-daeInt daeSTLDatabase::createCollection(const char *name, daeElement* dom, daeCollection** collection)
+daeInt daeSTLDatabase::createDocument(const char *name, daeElement* dom, daeDocument** document)
 {
-	// If a collection already exists with the same name, error
-	if(isCollectionLoaded(name))
+	// If a document already exists with the same name, error
+	if(isDocumentLoaded(name))
 	{
-		if (collection)
-			*collection = NULL;
+		if (document)
+			*document = NULL;
 		return DAE_ERR_COLLECTION_ALREADY_EXISTS;
 	}
 	
-	// Make a new collection
-	daeCollection *newCollection = new daeCollection;
+	// Make a new document
+	daeDocument *newDocument = new daeDocument;
 	// Create a Reference on the domCOLLADA passed into us
-	newCollection->setDomRoot(dom);
-	// Set the domCollada's collection to this one
-	dom->setCollection(newCollection);
+	newDocument->setDomRoot(dom);
+	// Set the domCollada's document to this one
+	dom->setDocument(newDocument);
 	// Set and resolve the document URI
-	newCollection->getDocumentURI()->setURI(name);
-	newCollection->getDocumentURI()->validate();
+	newDocument->getDocumentURI()->setURI(name);
+	newDocument->getDocumentURI()->validate();
 	
-	newCollection->setModified(true);
+	newDocument->setModified(true);
 	// Push the connection into the database
-	collections.push_back(newCollection);
+	documents.push_back(newDocument);
 	
-	if (collection)
-		*collection = newCollection;
+	if (document)
+		*document = newDocument;
 	
 	return DAE_OK;
 }
-// !!!GAC revised version of insertCollection, creates a domCollada and fills it in for you.
-daeInt daeSTLDatabase::insertCollection(const char *name, daeCollection** collection)
+// !!!GAC revised version of insertDocument, creates a domCollada and fills it in for you.
+daeInt daeSTLDatabase::insertDocument(const char *name, daeDocument** document)
 {
-	return createCollection( name, collection );
+	return createDocument( name, document );
 }
-daeInt daeSTLDatabase::createCollection(const char *name, daeCollection** collection)
+daeInt daeSTLDatabase::createDocument(const char *name, daeDocument** document)
 {
 
-	// If a collection already exists with the same name, error
-	if(isCollectionLoaded(name))
+	// If a document already exists with the same name, error
+	if(isDocumentLoaded(name))
 	{
-		if (collection)
-			*collection = NULL;
+		if (document)
+			*document = NULL;
 		return DAE_ERR_COLLECTION_ALREADY_EXISTS;
 	}
-	// Make the new collection
-	daeCollection *newCollection = new daeCollection;
-	// Make a domCOLLADA to be the root of this new collection (this makes a reference so the domCOLLADA won't delete itself
+	// Make the new document
+	daeDocument *newDocument = new daeDocument;
+	// Make a domCOLLADA to be the root of this new document (this makes a reference so the domCOLLADA won't delete itself
 	daeElementRef myCOLLADA = topMeta->create();
-	// Set the domCollada's collection to this one
-	myCOLLADA->setCollection(newCollection);
-	newCollection->setDomRoot(myCOLLADA);
+	// Set the domCollada's document to this one
+	myCOLLADA->setDocument(newDocument);
+	newDocument->setDomRoot(myCOLLADA);
 	// Set and resolve the document URI
-	newCollection->getDocumentURI()->setURI(name);
-	newCollection->getDocumentURI()->validate();
+	newDocument->getDocumentURI()->setURI(name);
+	newDocument->getDocumentURI()->validate();
 
-	newCollection->setModified(true);
-	// Add this collection to the list.
-	collections.push_back(newCollection);
-	// If the user gave us a place to put the collection, send it back to them.
-	if (collection)
-		*collection = newCollection;
+	newDocument->setModified(true);
+	// Add this document to the list.
+	documents.push_back(newDocument);
+	// If the user gave us a place to put the document, send it back to them.
+	if (document)
+		*document = newDocument;
 	
 	return DAE_OK;
 }
 
-daeInt daeSTLDatabase::insertCollection( daeCollection *c ) {
-	collections.push_back(c);
+daeInt daeSTLDatabase::insertDocument( daeDocument *c ) {
+	documents.push_back(c);
 	insertElement( c, c->getDomRoot() );
 	return DAE_OK;
 }
 
-daeInt daeSTLDatabase::removeCollection(daeCollection *collection)
+daeInt daeSTLDatabase::removeDocument(daeDocument *document)
 {
-	//remove all elements that are in this collection
+	//remove all elements that are in this document
 	std::vector<DAE_STL_DATABASE_CELL>::iterator iter = elements.begin();
 	while ( iter != elements.end() ) {
-		if ( (*iter).collection == collection ) {
+		if ( (*iter).document == document ) {
 			iter = elements.erase(iter);
 		}
 		else {
 			iter++;
 		}
 	}
-	//remove the collection from its vector
-	std::vector<daeCollection*>::iterator iter2 = collections.begin();
-	while ( iter2 != collections.end() ) {
-		if ( (*iter2) == collection ) {
-			iter2 = collections.erase(iter2);
+	//remove the document from its vector
+	std::vector<daeDocument*>::iterator iter2 = documents.begin();
+	while ( iter2 != documents.end() ) {
+		if ( (*iter2) == document ) {
+			iter2 = documents.erase(iter2);
 		}
 		else {
             iter2++;
@@ -174,51 +174,51 @@ daeInt daeSTLDatabase::removeCollection(daeCollection *collection)
 	return DAE_OK;
 }
 
-daeUInt daeSTLDatabase::getCollectionCount()
+daeUInt daeSTLDatabase::getDocumentCount()
 {
-	return (daeUInt)collections.size();
+	return (daeUInt)documents.size();
 }
 
-daeCollection* daeSTLDatabase::getCollection(daeUInt index)
+daeDocument* daeSTLDatabase::getDocument(daeUInt index)
 {
-	if (index<collections.size())
-		return (collections[index]);
+	if (index<documents.size())
+		return (documents[index]);
 	else
 		return NULL;
 }
 
-daeCollection* daeSTLDatabase::getCollection(daeString name)
+daeDocument* daeSTLDatabase::getDocument(daeString name)
 {
 	// Normalize the input string to an absolute URI with no fragment
 
 	daeURI tempURI(name, true);
 	daeString targetURI = tempURI.getURI();
 
-	// Try to find a collection that matches
+	// Try to find a document that matches
 
-	daeCollection *collection;
-	int collectionCount	= getCollectionCount();
-	for (int i=0;i<collectionCount;i++)
+	daeDocument *document;
+	int documentCount	= getDocumentCount();
+	for (int i=0;i<documentCount;i++)
 	{
-		collection = getCollection(i);
-		if(strcmp(collection->getDocumentURI()->getURI(), targetURI)==0)
-			return(collection);
+		document = getDocument(i);
+		if(strcmp(document->getDocumentURI()->getURI(), targetURI)==0)
+			return(document);
 	}
 	return(NULL);
 }
 
-daeString daeSTLDatabase::getCollectionName(daeUInt index)
+daeString daeSTLDatabase::getDocumentName(daeUInt index)
 {
-	if (index<collections.size())
-		return getCollection(index)->getDocumentURI()->getURI();
+	if (index<documents.size())
+		return getDocument(index)->getDocumentURI()->getURI();
 	else
 		return NULL;
 }
 
 // Elements
-daeInt daeSTLDatabase::insertElement(daeCollection* collection,daeElement* element)
+daeInt daeSTLDatabase::insertElement(daeDocument* document,daeElement* element)
 {
-	insertChildren( collection, element );
+	insertChildren( document, element );
 
 	if ((element->getMeta() != NULL) &&
 		(!element->getMeta()->getIsTrackableForQueries()))
@@ -226,7 +226,7 @@ daeInt daeSTLDatabase::insertElement(daeCollection* collection,daeElement* eleme
 	
 	DAE_STL_DATABASE_CELL tmp;
 	validated = false;
-	tmp.collection = collection;
+	tmp.document = document;
 	tmp.name = element->getID();
 	if (tmp.name == NULL)
 		tmp.name = ""; //static string in the executable
@@ -236,7 +236,7 @@ daeInt daeSTLDatabase::insertElement(daeCollection* collection,daeElement* eleme
 	return DAE_OK;
 }
 
-daeInt daeSTLDatabase::insertChildren( daeCollection *c, daeElement *element )
+daeInt daeSTLDatabase::insertChildren( daeDocument *c, daeElement *element )
 {
 	daeElementRefArray era;
 	element->getChildren( era );
@@ -246,12 +246,12 @@ daeInt daeSTLDatabase::insertChildren( daeCollection *c, daeElement *element )
 	return DAE_OK;
 }
 
-daeInt daeSTLDatabase::removeElement(daeCollection* collection,daeElement* element)
+daeInt daeSTLDatabase::removeElement(daeDocument* document,daeElement* element)
 {
 	if ( !element ) {
 		return DAE_ERR_INVALID_CALL;
 	}
-	removeChildren( collection, element );
+	removeChildren( document, element );
 	std::vector<DAE_STL_DATABASE_CELL>::iterator iter = elements.begin();
 	while ( iter != elements.end() ) {
 		if ( (*iter).element == element ) {
@@ -265,7 +265,7 @@ daeInt daeSTLDatabase::removeElement(daeCollection* collection,daeElement* eleme
 	return DAE_OK;
 }
 
-daeInt daeSTLDatabase::removeChildren( daeCollection *c, daeElement *element )
+daeInt daeSTLDatabase::removeChildren( daeDocument *c, daeElement *element )
 {
 	daeElementRefArray era;
 	element->getChildren( era );
@@ -280,9 +280,9 @@ daeInt daeSTLDatabase::clear()
 {
 	elements.clear();
 	int i;
-	for (i=0;i<(int)collections.size();i++)
-		delete collections[i];
-	collections.clear(); //this will free the daeElement
+	for (i=0;i<(int)documents.size();i++)
+		delete documents[i];
+	documents.clear(); //this will free the daeElement
 	return DAE_OK;
 }
 
@@ -307,7 +307,7 @@ daeUInt daeSTLDatabase::getElementCount(daeString name,daeString type,daeString 
 		DAE_STL_DATABASE_CELL a;
 		a.type = type;
 		a.name = NULL;
-		a.collection = NULL;
+		a.document = NULL;
 		range = std::equal_range(elements.begin(),elements.end(),a,daeSTLDatabaseTypeLess());
 		sz = (int)(range.second - range.first);
 	}
@@ -325,19 +325,19 @@ daeUInt daeSTLDatabase::getElementCount(daeString name,daeString type,daeString 
 		int count = 0;
 		if ( file ) 
 		{ 
-			// If a collection URI was a search key (in file) resolve it to a text URI with no fragment
+			// If a document URI was a search key (in file) resolve it to a text URI with no fragment
 			daeURI tempURI(file,true);
-			daeCollection *col = getCollection( tempURI.getURI() );
+			daeDocument *col = getDocument( tempURI.getURI() );
 			if ( col == NULL ) {
-				return DAE_ERR_QUERY_NO_MATCH;
+				return 0;
 			}
-			// a collection was specified
+			// a document was specified
 			//for ( int i = 0; i < sz; i++ ) 
 			std::vector< DAE_STL_DATABASE_CELL >::iterator i = range.first;
 			while ( i != range.second )
 			{
 				DAE_STL_DATABASE_CELL e = *(i);
-				if ( col == e.collection && !strcmp(name, e.name) )
+				if ( col == e.document && !strcmp(name, e.name) )
 				{
 					count++;
 				}
@@ -365,19 +365,19 @@ daeUInt daeSTLDatabase::getElementCount(daeString name,daeString type,daeString 
 		//no name specified
 		if ( file ) 
 		{ 
-			// If a collection URI was a search key (in file) resolve it to a text URI with no fragment
+			// If a document URI was a search key (in file) resolve it to a text URI with no fragment
 			daeURI tempURI(file,true);
-			daeCollection *col = getCollection( tempURI.getURI() );
+			daeDocument *col = getDocument( tempURI.getURI() );
 			if ( col == NULL ) {
-				return DAE_ERR_QUERY_NO_MATCH;
+				return 0;
 			}
-			//a collection was specified
+			//a document was specified
 			int count = 0;
 			std::vector< DAE_STL_DATABASE_CELL >::iterator i = range.first;
 			while ( i != range.second )
 			{
 				DAE_STL_DATABASE_CELL e = *(i);
-				if( col == e.collection )
+				if( col == e.document )
 				{
 					count++;
 				}
@@ -416,7 +416,7 @@ daeInt daeSTLDatabase::getElement(daeElement** pElement,daeInt index,daeString n
 		DAE_STL_DATABASE_CELL a;
 		a.type = type;
 		a.name = NULL;
-		a.collection = NULL;
+		a.document = NULL;
 		range = std::equal_range(elements.begin(),elements.end(),a,daeSTLDatabaseTypeLess());
 		sz = (int)(range.second - range.first);
 		if ( index >= sz ) 
@@ -438,19 +438,19 @@ daeInt daeSTLDatabase::getElement(daeElement** pElement,daeInt index,daeString n
 		int count = 0;
 		if ( file ) 
 		{ 
-			// If a collection URI was a search key (in file) resolve it to a text URI with no fragment
+			// If a document URI was a search key (in file) resolve it to a text URI with no fragment
 			daeURI tempURI(file,true);
-			daeCollection *col = getCollection( tempURI.getURI() );
+			daeDocument *col = getDocument( tempURI.getURI() );
 			if ( col == NULL ) {
 				return DAE_ERR_QUERY_NO_MATCH;
 			}
-			//a collection was specified
+			//a document was specified
 			//for ( int i = 0; i < sz; i++ ) 
 			std::vector< DAE_STL_DATABASE_CELL >::iterator i = range.first;
 			while ( i != range.second )
 			{
 				DAE_STL_DATABASE_CELL e = *i;
-				if ( col == e.collection && !strcmp(name, e.name) )  
+				if ( col == e.document && !strcmp(name, e.name) )  
 				{
 					if ( count == index )
 					{
@@ -465,7 +465,7 @@ daeInt daeSTLDatabase::getElement(daeElement** pElement,daeInt index,daeString n
 		}
 		else 
 		{ 
-			//no collection specified
+			//no document specified
 			std::vector< DAE_STL_DATABASE_CELL >::iterator i = range.first;
 			while ( i != range.second )
 			{
@@ -489,19 +489,19 @@ daeInt daeSTLDatabase::getElement(daeElement** pElement,daeInt index,daeString n
 		//no name specified
 		if ( file ) 
 		{ 
-			// If a collection URI was a search key (in file) resolve it to a text URI with no fragment
+			// If a document URI was a search key (in file) resolve it to a text URI with no fragment
 			daeURI tempURI(file,true);
-			daeCollection *col = getCollection( tempURI.getURI() );
+			daeDocument *col = getDocument( tempURI.getURI() );
 			if ( col == NULL ) {
 				return DAE_ERR_QUERY_NO_MATCH;
 			}
-			//a collection was specified
+			//a document was specified
 			int count = 0;
 			std::vector< DAE_STL_DATABASE_CELL >::iterator i = range.first;
 			while ( i != range.second )
 			{
 				DAE_STL_DATABASE_CELL e = *(i);
-				if( col == e.collection ) 
+				if( col == e.document ) 
 				{
 					if( count == index ) 
 					{
@@ -530,11 +530,11 @@ daeInt daeSTLDatabase::queryElement(daeElement** pElement, daeString genericQuer
 
 void daeSTLDatabase::validate()
 {
-	for( unsigned int i = 0; i < collections.size(); i++ ) {
-		if (collections[i]->getModified() ) {
-			daeCollection *tmp = collections[i];
-			removeCollection( tmp );
-			insertCollection( tmp );
+	for( unsigned int i = 0; i < documents.size(); i++ ) {
+		if (documents[i]->getModified() ) {
+			daeDocument *tmp = documents[i];
+			removeDocument( tmp );
+			insertDocument( tmp );
 			tmp->setModified(false);
 			validated = false;
 		}

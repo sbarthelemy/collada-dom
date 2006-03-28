@@ -79,7 +79,7 @@ daeLIBXMLResolver::resolveElement(daeURI& uri)
 	if ( (uri.getFile() != NULL) &&	(strlen(uri.getFile())>0)) 
 	{
 		// The URI contains a document reference, see if it is loaded and try to load it if it's not
-		if (!_database->isCollectionLoaded(uri.getURI()))
+		if (!_database->isDocumentLoaded(uri.getURI()))
 			_plugin->read(uri,NULL);
 		// Try to find the id by searching this document only
 		status = _database->getElement(&resolved,0,uri.getID(),NULL,uri.getURI());
@@ -90,8 +90,8 @@ daeLIBXMLResolver::resolveElement(daeURI& uri)
 		// !!!GAC not sure if all these pointers will be set when we get here, so assert if any of them aren't
 		daeElement *tempElement = uri.getContainer();
 		//assert(tempElement);
-		daeCollection *tempCollection;
-		if ( tempElement == NULL || (tempCollection = tempElement->getCollection()) == NULL ) {
+		daeDocument *tempDocument;
+		if ( tempElement == NULL || (tempDocument = tempElement->getDocument()) == NULL ) {
 			uri.setState(daeURI::uri_failed_missing_container);
 			fprintf(stderr,
 					"daeLIBXMLResolver::resolveElement() - failed to resolve %s\n",
@@ -99,8 +99,8 @@ daeLIBXMLResolver::resolveElement(daeURI& uri)
 			fflush(stderr);
 			return false;
 		}
-		//assert(tempCollection);
-		daeURI *tempURI = tempCollection->getDocumentURI();
+		//assert(tempDocument);
+		daeURI *tempURI = tempDocument->getDocumentURI();
 		//assert(tempURI);
 		status = _database->getElement(&resolved,0,uri.getID(),NULL,tempURI->getURI());
 	}

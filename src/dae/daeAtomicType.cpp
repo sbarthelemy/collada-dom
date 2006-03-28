@@ -465,9 +465,9 @@ daeResolverType::memoryToString(daeChar* src, daeChar* dst, daeInt dstSize)
 	{
 		// This URI was successfully resolved, we need to determine if it is referencing this document (the one being written)
 		// or some other document so we know what URI to write out.
-		// !!!GAC this approach should be safe, if the collection pointer of our container matches the collection pointer 
+		// !!!GAC this approach should be safe, if the collection pointer of our document matches the collection pointer 
 		// !!!GAC of the element our URI is pointing at, we are pointing at our own doc.
-		if(thisURI->getElement()->getCollection() == thisURI->getContainer()->getCollection())
+		if(thisURI->getElement()->getCollection() == thisURI->getContainer()->getDocument())
 		{
 			// we will send back the original URI if we're pointing at ourselves
 			s = thisURI->getOriginalURI();
@@ -480,7 +480,7 @@ daeResolverType::memoryToString(daeChar* src, daeChar* dst, daeInt dstSize)
 			s = thisURI->getURI();
 #else
 			// Makes the URI relative to the document being written, EXPERIMENTAL, not fully tested!!!
-			thisURI->makeRelativeTo(thisURI->getContainer()->getCollection()->getDocumentURI());
+			thisURI->makeRelativeTo(thisURI->getDocument()->getCollection()->getDocumentURI());
 			s = thisURI->getOriginalURI();
 #endif
 		}

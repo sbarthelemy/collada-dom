@@ -83,6 +83,8 @@ int main(int argc, char* argv[])
 	element,		// The element to modify
 	prefix;			// The directory prefix to put in front of image file names ie: "textures/"
 
+	bool renameCgfx = false;
+
     // Initialize the command line options processor
     // Help text is automatically generated
 
@@ -97,6 +99,7 @@ int main(int argc, char* argv[])
     clo->AddSetting("p", "prefix", "Directory prefix to add to file names");
     clo->AddOption("v", "Verbose output");
     clo->AddOption("V", "Print version");
+	clo->AddOption("cg", "Rename .cgfx to .cg");
 
     // Parse the command line options
 
@@ -160,6 +163,12 @@ int main(int argc, char* argv[])
 	    verbose = true;
 	}
 
+	// Should we change .cgfx file extensions
+    if(clo->CheckForOption("cg"))
+	{
+		renameCgfx = true;
+	}
+
     // Instantiate the DAE object for the input file
 	
     DAE *input = new DAE;
@@ -211,9 +220,15 @@ int main(int argc, char* argv[])
 			    cerr<<"protocol for include element "<<i<<" is "<<thisInclude->getUrl().getProtocol()<<" no changes made \n";
 			    continue;
 			}
+			char *_URIfile = (char *)thisInclude->getUrl().getFile();
+			if ( renameCgfx && !strcmp( thisInclude->getUrl().getExtension(), "cgfx" ) )
+			{
+				_URIfile[ strlen( _URIfile ) -2 ] = '\0';
+			}
+
 		    // Build the new relative file name and write it back into the DOM
 		    // This uses the filename in domInclude.source as parsed by the API
-		    string finalname = prefix + thisInclude->getUrl().getFile();
+		    string finalname = prefix + _URIfile;
 		    //cerr << "protocol "<<thisInclude->source.protocol<<"\n";
 		    //cerr << "filename "<<thisInclude->source.file<<"\n";
 		    if(finalname.length() != 0)

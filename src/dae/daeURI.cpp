@@ -474,7 +474,7 @@ daeURI::getURI() const
 }
 
 daeString
-daeURI::getOriginalURI()
+daeURI::getOriginalURI() const
 {
 	return originalURIString;
 }

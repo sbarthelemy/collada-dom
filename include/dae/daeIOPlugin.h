@@ -18,7 +18,7 @@
 class daeDatabase;
 class daeMetaElement;
 class daeURI;
-class daeCollection;
+class daeDocument;
 
 /**
 * The @c daeIOPlugin class provides the input/output plugin interface, which is
@@ -73,15 +73,15 @@ public:
 	/** @name Operations	 */
 	//@{
 	/**
-	* Writes a specific collection to an output.
-	* @param name URI to write the collection to, not all IO plugins support all types of URIs
+	* Writes a specific document to an output.
+	* @param name URI to write the document to, not all IO plugins support all types of URIs
 	* check the documentation for the IO plugin you are using.
-	* @param collection Pointer to the collection that we're going to write out.
+	* @param document Pointer to the document that we're going to write out.
 	* @param replace True if write should overwrite an existing file. False otherwise.
 	* @return Returns DAE_OK if success, a negative value defined in daeError.h otherwise.
 	* @see @c daeInterface::saveAS()
 	*/
-	virtual daeInt write(daeURI *name, daeCollection *collection, daeBool replace) = 0;
+	virtual daeInt write(daeURI *name, daeDocument *document, daeBool replace) = 0;
 	//@}
 	
 	/** @name Load/Save Progress */

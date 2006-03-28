@@ -33,6 +33,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="libcollada_dae.lib libcollada_dom.lib libcollada_STLDatabase.lib libcollada_LIBXMLPlugin.lib libcollada_stdErrPlugin.lib libxml2_a.lib zlib.lib iconv_a.lib wsock32.lib"
+				OutputFile="../bin-dbg/Filename.exe"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="&quot;../../../external-libs/libxml2/win32/lib&quot;;&quot;../../../lib-dbg/1.4&quot;"
 				IgnoreAllDefaultLibraries="FALSE"
@@ -82,7 +83,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="libcollada_dae.lib libcollada_dom.lib libcollada_STLDatabase.lib libcollada_LIBXMLPlugin.lib libcollada_stdErrPlugin.lib libxml2_a.lib zlib.lib iconv_a.lib wsock32.lib"
-				OutputFile="$(OutDir)/$(ProjectName).exe"
+				OutputFile="../bin/Filename.exe"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="&quot;../../../external-libs/libxml2/win32/lib&quot;;../../../lib/1.4"
 				GenerateDebugInformation="FALSE"

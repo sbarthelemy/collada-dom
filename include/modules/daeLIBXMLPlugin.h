@@ -24,7 +24,7 @@
 class daeElement;
 class daeIntegrationObject;
 class daeMetaElement;
-class daeCollection;
+class daeDocument;
 
 /**
  * The @c daeLIBXMLPlugin class derives from @c daeIOPlugin and implements an XML
@@ -53,7 +53,7 @@ public:
 
 	// Operations
 	virtual daeInt read(daeURI& uri, daeString docBuffer);
-	virtual daeInt write(daeURI *name, daeCollection *collection, daeBool replace);
+	virtual daeInt write(daeURI *name, daeDocument *document, daeBool replace);
 
 	// Parsing support
 
@@ -80,7 +80,7 @@ private:
 //	std::vector<INTEGRATION_ITEM> intItems;
 	daeDatabase* database;
 	
-	void postProcessDom(daeCollection *collection, daeElement* element, std::vector<INTEGRATION_ITEM> &intItems);
+	void postProcessDom(daeDocument *document, daeElement* element, std::vector<INTEGRATION_ITEM> &intItems);
 
 	void writeElement( daeElement* element ); 
 	void writeAttribute( daeMetaAttribute* attr, daeElement* element );
