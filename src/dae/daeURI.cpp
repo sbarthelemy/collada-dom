@@ -784,7 +784,7 @@ daeURI::validate(daeURI* baseURI)
 }
 
 void
-daeURI::resolveElement()
+daeURI::resolveElement(daeString typeNameHint)
 {
 	if (state == uri_empty)
 		return;
@@ -854,7 +854,7 @@ daeBool daeURI::getPath(daeChar *dest, daeInt size)
 }
 
 void
-daeURIResolver::attemptResolveElement(daeURI& uri)
+daeURIResolver::attemptResolveElement(daeURI& uri, daeString typeNameHint)
 {
 	int i;
 	int cnt =(int) _KnownResolvers.getCount();
@@ -864,7 +864,7 @@ daeURIResolver::attemptResolveElement(daeURI& uri)
 			((uri.getFile() == NULL) || 
 			 (uri.getFile()[0] == '\0') || 
 			 (_KnownResolvers[i]->isExtensionSupported(uri.getExtension()))) &&
-			(_KnownResolvers[i]->resolveElement(uri)))
+			(_KnownResolvers[i]->resolveElement(uri, typeNameHint)))
 			return;
 }
 

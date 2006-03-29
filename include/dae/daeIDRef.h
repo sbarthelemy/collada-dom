@@ -75,6 +75,12 @@ public:
 	inline daeElementRef getElement(){return(element);};
 	
 	/** 
+	 * Gets the element that this URI resolves to in memory.
+	 * @return Returns a ref to the element.
+	 */
+	inline daeElementConstRef getElement() const {return(element);};
+
+	/** 
 	 * Sets the element that this URI resolves to in memory.
 	 * @param newref A ref to the element.
 	 */
@@ -85,7 +91,7 @@ public:
 	 * @return Returns the current state.
 	 * @note This will be removed when daeURI starts managing its state internally.
 	 */
-	inline ResolveState getState(){return(state);};
+	inline ResolveState getState() const {return(state);};
 
 	/** 
 	 * Sets the resolve state of the URI.
@@ -99,7 +105,7 @@ public:
 	 * @return Returns the pointer to the containing daeElmement.
 	 */
 
-	inline daeElement* getContainer(){return(container);};
+	inline daeElement* getContainer() const {return(container);};
 	/**
 	 * Sets the pointer to the @c daeElement that contains this URI.
 	 * @param element Pointer to the containing @c daeElmement.

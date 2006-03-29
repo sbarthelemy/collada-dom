@@ -215,11 +215,12 @@ public:
 	 * @return Returns the @c daeDocument representing the containing file or database
 	 * group.
 	 */
-	daeDocument*	getDocument() { return _document; }
+	daeDocument*	getDocument() const { return _document; }
+
 	/**
 	 * Deprecated.
 	 */
-	daeDocument*	getCollection() { return _document; }
+	daeDocument*	getCollection() const { return _document; }
 	
 	/**
 	 * Sets the database document associated with this element.
@@ -235,7 +236,7 @@ public:
 	 * Gets the URI of the document containing this element, note that this is NOT the URI of the element.
 	 * @return Returns a pointer to the daeURI of the document containing this element.
 	 */
-	daeURI*	getDocumentURI();
+	daeURI*	getDocumentURI() const;
 
 	/**
 	 * Creates an element via the element factory system.  This creation
@@ -377,6 +378,7 @@ public:
 };
 #include <dae/daeSmartRef.h>
 typedef daeSmartRef<daeElement> daeElementRef;
+typedef daeSmartRef<const daeElement> daeElementConstRef;
 //#include <dae/daeArray.h>
 typedef daeTArray<daeElementRef> daeElementRefArray;
 

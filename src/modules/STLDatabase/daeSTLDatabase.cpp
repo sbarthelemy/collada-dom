@@ -97,7 +97,7 @@ daeInt daeSTLDatabase::createDocument(const char *name, daeElement* dom, daeDocu
 	// Set and resolve the document URI
 	newDocument->getDocumentURI()->setURI(name);
 	newDocument->getDocumentURI()->validate();
-	
+	insertElement( newDocument, dom );
 	newDocument->setModified(true);
 	// Push the connection into the database
 	documents.push_back(newDocument);
@@ -232,7 +232,11 @@ daeInt daeSTLDatabase::insertElement(daeDocument* document,daeElement* element)
 		tmp.name = ""; //static string in the executable
 	tmp.type = element->getTypeName();
 	tmp.element = element;
-	elements.push_back(tmp);
+
+	std::vector<DAE_STL_DATABASE_CELL>::iterator it = std::upper_bound(elements.begin(), elements.end(), tmp, daeSTLDatabaseLess());
+	elements.insert(it, tmp);
+	//elements.push_back(tmp);
+
 	return DAE_OK;
 }
 
@@ -533,17 +537,25 @@ void daeSTLDatabase::validate()
 	for( unsigned int i = 0; i < documents.size(); i++ ) {
 		if (documents[i]->getModified() ) {
 			daeDocument *tmp = documents[i];
-			removeDocument( tmp );
-			insertDocument( tmp );
+			//removeDocument( tmp );
+			//insertDocument( tmp );
+			const daeElementRefArray &iea = tmp->getInsertedArray();
+			for ( unsigned int x = 0; x < iea.getCount(); x++ ) {
+				insertElement( tmp, iea[x] );
+			}
+			const daeElementRefArray &rea = tmp->getRemovedArray();
+			for ( unsigned int x = 0; x < rea.getCount(); x++ ) {
+				removeElement( tmp, rea[x] );
+			}
 			tmp->setModified(false);
 			validated = false;
 		}
 	}
-	if (!validated)
-	{
-		//sort the array by type then by name
-		std::sort(elements.begin(),elements.end(),daeSTLDatabaseLess());
-		validated = true;
-	}
+	//if (!validated)
+	//{
+	//	//sort the array by type then by name
+	//	std::sort(elements.begin(),elements.end(),daeSTLDatabaseLess());
+	//	validated = true;
+	//}
 }
 

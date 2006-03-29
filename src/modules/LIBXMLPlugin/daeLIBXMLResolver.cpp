@@ -64,7 +64,7 @@ daeLIBXMLResolver::isProtocolSupported(daeString protocol)
 }
 
 daeBool
-daeLIBXMLResolver::resolveElement(daeURI& uri)
+daeLIBXMLResolver::resolveElement(daeURI& uri, daeString typeNameHint)
 {
 	// Make sure the URI is validated
 	if (uri.getState() == daeURI::uri_loaded)
@@ -82,7 +82,7 @@ daeLIBXMLResolver::resolveElement(daeURI& uri)
 		if (!_database->isDocumentLoaded(uri.getURI()))
 			_plugin->read(uri,NULL);
 		// Try to find the id by searching this document only
-		status = _database->getElement(&resolved,0,uri.getID(),NULL,uri.getURI());
+		status = _database->getElement(&resolved,0,uri.getID(),typeNameHint,uri.getURI());
 	}
 	else
 	{
@@ -102,7 +102,7 @@ daeLIBXMLResolver::resolveElement(daeURI& uri)
 		//assert(tempDocument);
 		daeURI *tempURI = tempDocument->getDocumentURI();
 		//assert(tempURI);
-		status = _database->getElement(&resolved,0,uri.getID(),NULL,tempURI->getURI());
+		status = _database->getElement(&resolved,0,uri.getID(),typeNameHint,tempURI->getURI());
 	}
 
 	uri.setElement(resolved);

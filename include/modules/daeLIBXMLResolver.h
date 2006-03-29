@@ -41,7 +41,7 @@ protected:
 	daeIOPlugin* _plugin;
 public:
 public: // Abstract Interface
-	virtual daeBool resolveElement(daeURI& uri);
+	virtual daeBool resolveElement(daeURI& uri, daeString typeNameHint = NULL);
 	virtual daeBool resolveURI(daeURI& uri);
 	virtual daeString getName();
 	virtual daeBool isProtocolSupported(daeString protocol);

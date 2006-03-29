@@ -126,6 +126,7 @@ daeElement::placeElement(daeElement* e)
 		//update document pointer
 		e->setDocument( _document );
 		if ( _document ) {
+			_document->insertElement( e );
 			_document->setModified(true);
 		}
 		return true;	
@@ -212,6 +213,7 @@ daeBool daeElement::placeElementAt(daeInt index, daeElement* e) {
 		//update document pointer
 		e->setDocument( _document );
 		if ( _document ) {
+			_document->insertElement( e );
 			_document->setModified(true);
 		}
 		return true;	
@@ -386,12 +388,13 @@ daeElement::removeChildElement(daeElement* element)
 	{
 		if (strcmp(meas[i]->getName(), element->_meta->getName()) == 0) 
 		{
+			if ( _document ) {
+				_document->removeElement( element );
+				_document->setModified(true);
+			}
 			// Remove it, if the element's ref count goes to zero it might be destructed,
 			// so don't touch "element" again after this point.
 			meas[i]->removeElement(this,element);
-			if ( _document ) {
-				_document->setModified(true);
-			}
 			return true;
 		}
 	}
@@ -631,7 +634,7 @@ daeSmartRef<daeElement> daeElement::clone(daeString idSuffix, daeString nameSuff
 	return ret;
 }
 
-daeURI *daeElement::getDocumentURI() {
+daeURI *daeElement::getDocumentURI() const {
 	if ( _document == NULL ) {
 		return NULL;
 	}

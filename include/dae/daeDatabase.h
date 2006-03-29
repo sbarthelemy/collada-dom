@@ -45,6 +45,16 @@ public:
 	* @note This is the full URI of the document and not the document base URI.
 	*/
 	daeURI* getDocumentURI() {return (&uri);}
+
+	/**
+	* Const accessor to get the URI associated with the document in this collection; 
+	* this is currently set to the URI from which the collection was loaded, but
+	* is blank if the collection was created with @c insertCollection().
+	* @return Returns a pointer to the URI for this collection.
+	* @note This is the full URI of the document and not the document base URI.
+	*/
+	const daeURI* getDocumentURI() const {return (&uri);}
+
 	/**
 	 * Accessor to get if this document has been modified since the last time the database was validated.
 	 * @return Returns true if the document was modified, false otherwise.
@@ -54,7 +64,14 @@ public:
 	 * Sets if this document has been modified since the last time the database was validated.
 	 * @param A boolean value specifying if the document was modified.
 	 */
-	void setModified( daeBool mod ) {modified = mod;}
+	void setModified( daeBool mod ) { if (!mod) { insertedElements.clear(); removedElements.clear(); } modified = mod;}
+
+	void insertElement( daeElementRef element ) { insertedElements.append( element ); }
+	void removeElement( daeElementRef element ) { removedElements.append( element ); }
+
+	const daeElementRefArray &getInsertedArray() const { return insertedElements; }
+	const daeElementRefArray &getRemovedArray() const { return removedElements; }
+
 private:
 	/**
 	* Top Level element for of the document, always a domCollada
@@ -72,6 +89,9 @@ private:
 	 * A flag that indicates if this document has been modified.
 	 */
 	daeBool modified;
+
+	daeElementRefArray insertedElements;
+	daeElementRefArray removedElements;
 };
 
 typedef daeDocument daeCollection;
