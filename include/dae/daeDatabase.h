@@ -17,87 +17,11 @@
 #include <dae/daeTypes.h>
 #include <dae/daeElement.h>
 #include <dae/daeURI.h>
+#include <dae/daeDocument.h>
+
 
 /**
- * The @c daeDocument class implements a COLLADA runtime database entry.
- */
-class daeDocument
-{
-public:
-	/**
-	* Accessor to get the @c domCollada associated with this document.
-	* @return A @c daeElementRef for the @c domCollada that is the root of this document.
-	* @note This function should really return a domColladaRef,
-	* but we're trying to avoid having @c dae classes depend on generated dom classes.
-	*/
-	daeElement* getDomRoot() const {return(dom);}
-	/**
-	* Accessor to set the domCollada associated with this document
-	* @param domRoot the domCollada that is the root of this document
-	* @remarks Should really require a domColladaRef but we're trying to avoid having dae classes depend on generated dom classes.
-	*/
-	void setDomRoot(daeElement* domRoot) {dom = domRoot;}
-	/**
-	* Accessor to get the URI associated with the document in this document; 
-	* this is currently set to the URI from which the document was loaded, but
-	* is blank if the document was created with @c insertDocument().
-	* @return Returns a pointer to the URI for this document.
-	* @note This is the full URI of the document and not the document base URI.
-	*/
-	daeURI* getDocumentURI() {return (&uri);}
-
-	/**
-	* Const accessor to get the URI associated with the document in this collection; 
-	* this is currently set to the URI from which the collection was loaded, but
-	* is blank if the collection was created with @c insertCollection().
-	* @return Returns a pointer to the URI for this collection.
-	* @note This is the full URI of the document and not the document base URI.
-	*/
-	const daeURI* getDocumentURI() const {return (&uri);}
-
-	/**
-	 * Accessor to get if this document has been modified since the last time the database was validated.
-	 * @return Returns true if the document was modified, false otherwise.
-	 */
-	daeBool getModified() const {return modified;}
-	/**
-	 * Sets if this document has been modified since the last time the database was validated.
-	 * @param A boolean value specifying if the document was modified.
-	 */
-	void setModified( daeBool mod ) { if (!mod) { insertedElements.clear(); removedElements.clear(); } modified = mod;}
-
-	void insertElement( daeElementRef element ) { insertedElements.append( element ); }
-	void removeElement( daeElementRef element ) { removedElements.append( element ); }
-
-	const daeElementRefArray &getInsertedArray() const { return insertedElements; }
-	const daeElementRefArray &getRemovedArray() const { return removedElements; }
-
-private:
-	/**
-	* Top Level element for of the document, always a domCollada
-	* @remarks This member will eventually be taken private, use getDomRoot() to access it.
-	*/
-	daeElementRef dom;
-	
-	/** 
-	* The URI of the document in this document, may be blank if the document wasn't loaded from a URI
-	* @remarks This member will eventually be taken private, use getDocumentURI() to access it.
-	*/
-	daeURI uri;
-
-	/**
-	 * A flag that indicates if this document has been modified.
-	 */
-	daeBool modified;
-
-	daeElementRefArray insertedElements;
-	daeElementRefArray removedElements;
-};
-
-typedef daeDocument daeCollection;
-
-/**
- * The @c daeDatabase class implements the COLLADA runtime database interface.
+ * The @c daeDatabase class defines the COLLADA runtime database interface.
  */
 class daeDatabase
 {

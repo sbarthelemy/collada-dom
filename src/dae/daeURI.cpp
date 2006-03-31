@@ -13,6 +13,7 @@
 
 #include <dae/daeURI.h>
 #include <ctype.h>
+#include <dae/daeDocument.h>
 
 #ifdef _WIN32
 #include <direct.h>  // for getcwd (windows)
@@ -50,7 +51,7 @@ daeURI::initialize()
 	uriString			= empty;
 	originalURIString	= empty;
 	protocol			= empty;
-	authority				= empty;
+	authority			= empty;
 	filepath			= empty;
 	file				= empty;
 	id					= empty;
@@ -58,6 +59,7 @@ daeURI::initialize()
 	state				= uri_empty;
 	element				= NULL;
 	container			= NULL;
+	external			= false;
 }
 
 daeURI::~daeURI()
@@ -615,6 +617,7 @@ daeURI::validate(daeURI* baseURI)
 		strcat(newURI, filepath);
 	if(file != NULL)
 		strcat(newURI, file);
+
 	if(id != NULL && *id != 0)
 	{
 		strcat(newURI,"#");
@@ -624,6 +627,22 @@ daeURI::validate(daeURI* baseURI)
 	safeDelete(uriString);
 	uriString = newURI;
 	state = uri_pending;
+
+	if ( container != NULL ) {
+	    daeString fp = container->getDocumentURI()->getFilepath();
+	    daeString f = container->getDocumentURI()->getFile();
+		if ( strcmp( fp, filepath ) != 0 || strcmp( f, file ) != 0 ) {
+			//external reference
+			container->getDocument()->addExternalReference( *this );
+			external = true;
+		}
+		else if ( external ) {
+			//was external but now isn't
+			container->getDocument()->removeExternalReference( *this );
+			external = false;
+		}
+	}
+
 #else
 	// RFC 2396 part 5.2 step 3, if the scheme (protocol here) is defined we are done, otherwise inherit the base URI's protocol
 	if ((protocol == NULL)||(strlen(protocol)==0)) 
@@ -795,7 +814,7 @@ daeURI::resolveElement(daeString typeNameHint)
 		else
 			validate();
 	}
-	daeURIResolver::attemptResolveElement(*((daeURI*)this));
+	daeURIResolver::attemptResolveElement(*((daeURI*)this), typeNameHint );
 }
 
 void
@@ -902,6 +921,8 @@ daeURIResolver::attemptResolveURI(daeURI& uri)
 	}
 			
 }
+
+daeBool daeURIResolver::_loadExternalDocuments = true;
 
 daeURIResolver::daeURIResolver()
 {

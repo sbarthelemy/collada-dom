@@ -130,9 +130,6 @@
 		<effect id="wigglatexadescent" name="wigglatexadescent">
 			<profile_CG platform="PC-OGL">
 				<include sid="default" url="wigglatexadescent.cgfx"/>
-				<image id="ColorTexImage">
-					<init_from>default_color.dds</init_from>
-				</image>
 				<newparam sid="WorldITXf">
 					<semantic>WORLDINVERSETRANSPOSE</semantic>
 					<float4x4>0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 </float4x4>
@@ -200,14 +197,14 @@
 				</newparam>
 				<newparam sid="ColorTex">
 					<annotate name="ResourceName">
-						<string>default_color.dds</string>
+						<string>mushroom.tga</string>
 					</annotate>
 					<annotate name="ResourceType">
 						<string>2D</string>
 					</annotate>
 					<semantic>DIFFUSE</semantic>
 					<surface type="UNTYPED">
-						<init_from>ColorTexImage</init_from>
+						<init_from>file1-image</init_from>
 						<format>default</format>
 					</surface>
 				</newparam>

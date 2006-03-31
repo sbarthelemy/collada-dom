@@ -154,7 +154,7 @@ public:
 	 * a database query, et cetera based on the @c daeIDRefResolver plugins
 	 * implemented.
 	 */
-	void resolveElement();
+	void resolveElement( daeString typeNameHint = NULL );
 
 	/**
 	 * Configures the <tt><i>id</i></tt> string of this @c daeIDRef based on the element set its <tt><i>element</i></tt> data member.
@@ -227,7 +227,7 @@ public:
 	 * calling @c resolveElement().
 	 * @param id @c daeIDRef to resolve.
 	 */
-	static void attemptResolveElement(daeIDRef &id);
+	static void attemptResolveElement(daeIDRef &id, daeString typeNameHint = NULL );
 
 	/**
 	 * attemptResolveID iterates through known resolvers
@@ -243,7 +243,7 @@ public: // Abstract Interface
 	 * @return Returns true if the @c daeIDRefResolver successfully resolved the IDRef,
 	 * returns false otherwise.
 	 */
-	virtual daeBool resolveElement(daeIDRef& IDRef) = 0;
+	virtual daeBool resolveElement(daeIDRef& IDRef, daeString typeNameHint = NULL ) = 0;
 	/**
 	 * Provides an abstract interface to convert a @c daeElement into a @c daeIDRef.
 	 * @param IDRef @c daeIDRef to resolve.
@@ -287,7 +287,7 @@ public: // Abstract Interface
 	/*
 	 * Implements base class abstract routine from @c daeIDRefResolver.
 	 */
-	virtual daeBool resolveElement(daeIDRef& id);
+	virtual daeBool resolveElement(daeIDRef& id, daeString typeNameHint = NULL );
 	
 	/*
 	 * Implements base class abstract routine from @c daeIDRefResolver.

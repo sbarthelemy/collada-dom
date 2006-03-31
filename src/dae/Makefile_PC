@@ -20,9 +20,10 @@ include          $(ROOT_DIR)/build/makedefs.txt
 
 # files
 SRC				 := dae.cpp \
-					daeDom.cpp \
 					daeArray.cpp \
 					daeAtomicType.cpp \
+					daeDocument.cpp \
+					daeDom.cpp \
 					daeElement.cpp \
 					daeError.cpp \
 					daeErrorHandler.cpp \

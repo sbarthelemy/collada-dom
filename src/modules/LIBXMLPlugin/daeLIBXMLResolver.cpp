@@ -79,8 +79,15 @@ daeLIBXMLResolver::resolveElement(daeURI& uri, daeString typeNameHint)
 	if ( (uri.getFile() != NULL) &&	(strlen(uri.getFile())>0)) 
 	{
 		// The URI contains a document reference, see if it is loaded and try to load it if it's not
-		if (!_database->isDocumentLoaded(uri.getURI()))
-			_plugin->read(uri,NULL);
+		if (!_database->isDocumentLoaded(uri.getURI())) {
+			if ( _loadExternalDocuments ) {
+				_plugin->read(uri,NULL);
+			}
+			else {
+				uri.setState( daeURI::uri_failed_external_document );
+				return false;
+			}
+		}
 		// Try to find the id by searching this document only
 		status = _database->getElement(&resolved,0,uri.getID(),typeNameHint,uri.getURI());
 	}

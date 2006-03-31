@@ -97,7 +97,9 @@ public:
 		/** Failure due to an external error */
 		uri_failed_externalization,
 		/** Failure due to missing document */
-		uri_failed_missing_container
+		uri_failed_missing_container,
+		/** Failure because autmoatic loading of a document is turned off */
+		uri_failed_external_document
 	};
 	
 private:	
@@ -126,6 +128,8 @@ private:
 	daeElement* container;
 	/** Current resolver state of the URI */
 	ResolveState state;
+	/** Flag for if this URI references an external element. */
+	daeBool external;
 	
 public:
 	/**
@@ -267,6 +271,12 @@ public:
 	 * @return Returns the original URI String as originally set, not flattened against the base URI.
 	 */
 	daeString getOriginalURI() const;
+
+	/**
+	 * Gets if this URI resolves to an element that is not contained in the same document as the URI.
+	 * @return Returns true if the URI references an external element. False otherwise.
+	 */
+	daeBool isExternalReference() const { return external; }
 	 
 	/**
 	 * Uses the @c daeURIResolver static API to try to resolve this URI
@@ -312,6 +322,13 @@ public:
 	 * @note this is experimental and not fully tested, please don't use in critical code yet.
 	 */
 	int daeURI::makeRelativeTo(daeURI* uri);
+
+	/**
+	 * Comparison operator.
+	 * @return Returns true if URI's are equal.
+	 */
+	inline bool operator==(const daeURI& other) const{
+		return (!strcmp(other.getURI(), getURI())); }
 
 private:
 	/**
@@ -385,6 +402,8 @@ public:
 	
 protected:
 	static daeURIResolverPtrArray _KnownResolvers;
+
+	static daeBool _loadExternalDocuments;
 	
 public:
 	/**
@@ -402,6 +421,22 @@ public:
 	 * @param uri @c daeURI to resolve.
 	 */
 	static void	attemptResolveURI(daeURI &uri);
+
+	/**
+	 * Sets a flag that tells the URI resolver whether or not to load a separate document if a URI
+	 * being resolved points to one.
+	 * @param load Set to true if you want the URI Resolver to automatically load other documents to
+	 * resolve URIs.
+	 */
+	static void setAutoLoadExternalDocuments( daeBool load ) { _loadExternalDocuments = load; }
+
+	/**
+	 * Gets a flag that tells if the URI resolver is set to load an external document if a URI
+	 * being resolved points to one.
+	 * @return Returns true if the resolver will automatically load documents to resolve a URI. 
+	 * False otherwise.
+	 */
+	static daeBool getAutoLoadExternalDocuments() { return _loadExternalDocuments; }
 
 public: // Abstract Interface
 	/**

@@ -190,6 +190,9 @@
 				RelativePath=".\daeAtomicType.cpp">
 			</File>
 			<File
+				RelativePath=".\daeDocument.cpp">
+			</File>
+			<File
 				RelativePath=".\daeDom.cpp">
 			</File>
 			<File
@@ -244,6 +247,9 @@
 			</File>
 			<File
 				RelativePath="..\..\include\dae\daeDatabase.h">
+			</File>
+			<File
+				RelativePath="..\..\include\dae\daeDocument.h">
 			</File>
 			<File
 				RelativePath="..\..\include\dae\daeDom.h">

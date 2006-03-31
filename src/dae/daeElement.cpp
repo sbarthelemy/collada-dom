@@ -288,7 +288,7 @@ daeBool daeElement::placeElementBefore( daeElement *marker, daeElement *element 
 		if ( contents->find( marker, idx ) != DAE_OK ) {
 			return false;
 		}
-		return placeElementAt( idx, element );
+		return placeElementAt( (daeInt)idx, element );
 	}
 	if ( strcmp( marker->getTypeName(), element->getTypeName() ) == 0 ) {
 		//same type
@@ -315,7 +315,7 @@ daeBool daeElement::placeElementAfter( daeElement *marker, daeElement *element )
 		if ( contents->find( marker, idx ) != DAE_OK ) {
 			return false;
 		}
-		return placeElementAt( idx+1, element );
+		return placeElementAt( (daeInt)idx+1, element );
 	}
 	if ( strcmp( marker->getTypeName(), element->getTypeName() ) == 0 ) {
 		daeMetaElementAttribute *mea = _meta->getChildMetaElementAttribute( element->getTypeName() );
@@ -334,7 +334,7 @@ daeInt daeElement::findLastIndexOf( daeString elementName ) {
 	if ( _meta->getContents() != NULL ) {
 		daeElementRefArray* contents =
 						(daeElementRefArray*)_meta->getContents()->getWritableMemory(this);
-		for ( unsigned int i = contents->getCount()-1; i >= 0; --i ) {
+		for ( unsigned int i = (unsigned int)contents->getCount()-1; i >= 0; --i ) {
 			daeString nm = contents->get(i)->getElementName();
 			if ( nm == NULL ) {
 				nm = contents->get(i)->getTypeName();
@@ -346,9 +346,9 @@ daeInt daeElement::findLastIndexOf( daeString elementName ) {
 		return -1;
 	}
 	daeInt idx = 0;
-	unsigned int cnt = _meta->getMetaElements().getCount();
+	size_t cnt = _meta->getMetaElements().getCount();
 	for ( unsigned int i = 0; i < cnt; ++i ) {
-		idx += ((daeElementRefArray*)(_meta->getMetaElements().get(i)->getWritableMemory(this)))->getCount();
+		idx += (daeInt)((daeElementRefArray*)(_meta->getMetaElements().get(i)->getWritableMemory(this)))->getCount();
 		if ( strcmp( _meta->getMetaElements().get(i)->getName(), elementName ) == 0 ) {
 			return idx;
 		}
@@ -454,18 +454,18 @@ daeElement::appendResolveElement(daeElement* elem)
 void
 daeElement::resolveAll()
 {
-	/*int cnt;
+	int cnt;
 	while(resolveArray.getCount()) {
 		cnt = (int)resolveArray.getCount();
 		daeElementRef elem = resolveArray[cnt-1];
 		resolveArray.removeIndex(cnt-1);
 		elem->resolve();
-	}*/
-	size_t cnt = resolveArray.getCount();
+	}
+	/*size_t cnt = resolveArray.getCount();
 	for ( size_t i =0; i < cnt; i++ ) {
 		resolveArray[i]->resolve();
 	}
-	resolveArray.clear();
+	resolveArray.clear();*/
 }
 
 void

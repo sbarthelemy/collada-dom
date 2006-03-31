@@ -130,9 +130,6 @@
 		<effect id="plasticP" name="plasticP">
 			<profile_CG platform="PC-OGL">
 				<include sid="default" url="plasticP.cgfx"/>
-				<image id="ColorTextureImage">
-					<init_from>default_color.dds</init_from>
-				</image>
 				<newparam sid="WorldITXf">
 					<semantic>WORLDINVERSETRANSPOSE</semantic>
 					<float4x4>0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 </float4x4>
@@ -262,7 +259,7 @@
 					</annotate>
 					<semantic>DIFFUSE</semantic>
 					<surface type="UNTYPED">
-						<init_from>ColorTextureImage</init_from>
+						<init_from>file1-image</init_from>
 						<format>default</format>
 					</surface>
 				</newparam>

@@ -110,7 +110,7 @@ daeIDRef::validate()
 }
 
 void
-daeIDRef::resolveElement()
+daeIDRef::resolveElement( daeString typeNameHint )
 {
 	if (state == id_empty)
 		return;
@@ -118,7 +118,7 @@ daeIDRef::resolveElement()
 	if (state == id_loaded)
 		validate();
 	
-	daeIDRefResolver::attemptResolveElement(*((daeIDRef*)this));
+	daeIDRefResolver::attemptResolveElement(*((daeIDRef*)this), typeNameHint );
 }
 
 void
@@ -133,13 +133,13 @@ daeIDRef::resolveID()
 }
 
 void
-daeIDRefResolver::attemptResolveElement(daeIDRef& id)
+daeIDRefResolver::attemptResolveElement(daeIDRef& id, daeString typeNameHint)
 {
 	int i;
 	int cnt = (int)_KnownResolvers.getCount();
 
 	for(i=0;i<cnt;i++)
-		if (_KnownResolvers[i]->resolveElement(id))
+		if (_KnownResolvers[i]->resolveElement(id, typeNameHint))
 			return;
 }
 
@@ -196,7 +196,7 @@ daeDefaultIDRefResolver::getName()
 }
 
 daeBool
-daeDefaultIDRefResolver::resolveElement(daeIDRef& idref)
+daeDefaultIDRefResolver::resolveElement(daeIDRef& idref, daeString typeNameHint)
 {
 	if (idref.getState() == daeIDRef::id_loaded)
 		idref.validate();
@@ -206,7 +206,7 @@ daeDefaultIDRefResolver::resolveElement(daeIDRef& idref)
 
 	daeString id = idref.getID();
 
-	status = _database->getElement(&resolved,0,id,NULL,NULL);
+	status = _database->getElement(&resolved,0,id,typeNameHint,NULL);
 
 	idref.setElement( resolved );
 
