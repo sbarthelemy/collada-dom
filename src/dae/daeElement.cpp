@@ -155,6 +155,7 @@ daeElement::placeElement(daeElement* e)
 			//update document pointer
 			e->setDocument( _document );
 			if ( _document ) {
+				_document->insertElement( e );
 				_document->setModified(true);
 			}
 			return true;
@@ -242,6 +243,7 @@ daeBool daeElement::placeElementAt(daeInt index, daeElement* e) {
 			//update document pointer
 			e->setDocument( _document );
 			if ( _document ) {
+				_document->insertElement( e );
 				_document->setModified(true);
 			}
 			return true;
@@ -334,7 +336,7 @@ daeInt daeElement::findLastIndexOf( daeString elementName ) {
 	if ( _meta->getContents() != NULL ) {
 		daeElementRefArray* contents =
 						(daeElementRefArray*)_meta->getContents()->getWritableMemory(this);
-		for ( unsigned int i = (unsigned int)contents->getCount()-1; i >= 0; --i ) {
+		for ( int i = (int)contents->getCount()-1; i >= 0; --i ) {
 			daeString nm = contents->get(i)->getElementName();
 			if ( nm == NULL ) {
 				nm = contents->get(i)->getTypeName();

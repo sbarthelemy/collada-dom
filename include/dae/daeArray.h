@@ -120,7 +120,7 @@ public:
 	/**
 	 * Copy Constructor
 	 */
-	daeTArray( const daeTArray<T> &cpy ) {
+	daeTArray( const daeTArray<T> &cpy ) : daeArray() {
 		_count = cpy._count;
 		_capacity = cpy._capacity;
 		_data = NULL;

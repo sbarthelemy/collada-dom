@@ -20,5 +20,6 @@ Then you need to modify ( and rename ) the main header integrationFull.h or inte
 to match the list of class you have implemented in your integration library.
 same for the makefile / and or Visual Studio project.
 
-SEE the sample "integrationViewer". It is a very simple integration library which only implements
-the intGeometry object. It allows the sample "colladaViewer" to draw the geometry. 
+SEE the sample "integration". It is a very simple integration library which only implements
+the intGeometry object. 
+

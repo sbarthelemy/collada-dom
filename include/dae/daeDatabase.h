@@ -262,3 +262,4 @@ public: //Depricated methods
 };
 
 #endif //__DAE_DATABASE__
+

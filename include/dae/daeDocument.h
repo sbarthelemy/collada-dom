@@ -146,3 +146,4 @@ private:
 typedef daeDocument daeCollection;
 
 #endif
+

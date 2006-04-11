@@ -15,10 +15,6 @@
 This tool builds and runs on either Windows or Linux and uses the COLLADA API
 to read in a COLLADA file and convert any <polygons> into <triangles>.
 
-The output <triangles> will be in the same order as the input.  Each primitive
-will contain only one triangle.  This will probably cause the output file to
-be slightly larger.
-
 This conditioner will build and run ok with either the 1.3 or 1.4 schema.
 
 Limitations

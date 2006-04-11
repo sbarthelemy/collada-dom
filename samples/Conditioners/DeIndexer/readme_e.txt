@@ -49,8 +49,7 @@ ratified.
 Limitations
 
 This is only a sample, to avoid it becoming too complicated it has a number of 
-limitations on the input format of the COLLADA data.  As this tool is intended
-to be used with TinyColla which has most of the same limitations.
+limitations on the input format of the COLLADA data.
 
 Only COMMON profile is supported, after deindexing other profiles may fail to work.
 Only <triangles> primitives are supported (preprocess with the triangulation tool)

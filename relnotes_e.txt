@@ -106,9 +106,28 @@ Restriction
   name now use URIs.  Remember to change backslashes to forward slashes and place
   file:/// or / in front of absolute URIs.
 
+* [guideline]
+  You can now toggle automatic loading of external documents by calling 
+  daeURIResolver::setAutoLoadExternalReferences(). 
+  You can now get a list of external references contained within a document by calling 
+  document->getReferencedDocuments(). With automatic loading turned off and the list of 
+  external documents you reference, the client program has a lot more control over what 
+  gets loaded and when.
+
 ======================================================================
 Changes (for developer)
 ======================================================================
+
+* Fixed in COLLADA 1.4 DOM Patch 3
+- 1456261  	Build problems on Linux
+- 1449295 	external-libs misleading readme_e.txt
+- 1444752 	daeURI::getOriginalURI() not const correct
+- 1444137 	stdErrPlugin builds as single-threaded
+- 1440690 	The DOM is too slow
+- 1431586 	Incorrect file paths
+
+* Fixed in COLLADA 1.4 DOM Patch 2
+- none
 
 * Fixed in COLLADA 1.4 DOM Patch 1
 

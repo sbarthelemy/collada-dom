@@ -261,6 +261,10 @@ daeLIBXMLPlugin::startParse(daeMetaElement* thisMetaElement, xmlTextReaderPtr re
 				sprintf(err,"placeElement failed\n");
 #endif
 				daeErrorHandler::get()->handleWarning(err);
+				ret = xmlTextReaderRead(reader);
+				if ( ret != 1 ) {
+					return element;
+				}
 				}
 			}
 		}
@@ -318,6 +322,19 @@ void daeLIBXMLPlugin::readAttributes( daeElement *element, xmlTextReaderPtr read
 				// String needs to be broken up into whitespace seperated items.  The "set" methods for numbers are smart enough to
 				// grab just the first number in a string, but the ones for string lists require a null terminator between each
 				// string.  If this could be fixed we could avoid a copy and memory allocation by using xmlTextReaderConstValue(reader)
+				if ( ma == NULL ) {
+					const xmlChar * attName	 = xmlTextReaderConstName(reader);
+					const xmlChar * attValue = xmlTextReaderConstValue(reader);
+					char err[256];
+					memset( err, 0, 256 );
+#if LIBXML_VERSION >= 20620
+					sprintf(err,"The DOM was unable to create an attribute %s = %s at line %d\nProbably a schema violation.\n", attName, attValue ,xmlTextReaderGetParserLineNumber(reader));
+#else				
+					sprintf(err,"The DOM was unable to create an attribute %s = %s \nProbably a schema violation.\n", attName, attValue);
+#endif
+					daeErrorHandler::get()->handleWarning( err );
+					continue;
+				}
 				xmlChar* value = xmlTextReaderValue(reader);
 				daeChar* current = (daeChar *)value;
 				while(*current != 0)
@@ -432,7 +449,9 @@ daeLIBXMLPlugin::nextElement(daeMetaElement* thisMetaElement, xmlTextReaderPtr r
 		sprintf(err,"The DOM was unable to create an element type %s\nProbably a schema violation.\n", mine);
 #endif
 		daeErrorHandler::get()->handleWarning( err );
-		xmlTextReaderNext(reader);
+		if ( xmlTextReaderNext(reader) == -1 ) {
+			int x = 12312412;
+		}
 		return NULL;
 	}
 	int currentDepth = xmlTextReaderDepth(reader);
@@ -472,6 +491,10 @@ daeLIBXMLPlugin::nextElement(daeMetaElement* thisMetaElement, xmlTextReaderPtr r
 				sprintf(err,"placeElement failed\n");
 #endif
 				daeErrorHandler::get()->handleWarning( err );
+				ret = xmlTextReaderRead(reader);
+				if ( ret != 1 ) {
+					return element;
+				}
 				}
 			}
 		}

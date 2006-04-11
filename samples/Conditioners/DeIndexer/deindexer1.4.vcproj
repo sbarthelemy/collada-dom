@@ -12,8 +12,8 @@
 	<Configurations>
 		<Configuration
 			Name="Debug 1.4|Win32"
-			OutputDirectory="$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			OutputDirectory="..\..\..\tmp\$(ProjectName)\$(ConfigurationName)"
+			IntermediateDirectory="..\..\..\tmp\$(ProjectName)\$(ConfigurationName)"
 			ConfigurationType="1"
 			CharacterSet="2">
 			<Tool
@@ -33,7 +33,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="libcollada_dae.lib libcollada_dom.lib libcollada_STLDatabase.lib libcollada_LIBXMLPlugin.lib libcollada_stdErrPlugin.lib libxml2_a.lib iconv_a.lib zlib.lib wsock32.lib"
-				OutputFile="$(OutDir)/deindexer.exe"
+				OutputFile="../bin-dbg/deindexer.exe"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="../../../external-libs/libxml2/win32/lib;../../../lib-dbg/1.4"
 				IgnoreAllDefaultLibraries="FALSE"
@@ -65,8 +65,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release 1.4|Win32"
-			OutputDirectory="$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			OutputDirectory="..\..\..\tmp\$(ProjectName)\$(ConfigurationName)"
+			IntermediateDirectory="..\..\..\tmp\$(ProjectName)\$(ConfigurationName)"
 			ConfigurationType="1"
 			CharacterSet="2">
 			<Tool
@@ -83,7 +83,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="libcollada_dae.lib libcollada_dom.lib libcollada_STLDatabase.lib libcollada_LIBXMLPlugin.lib libcollada_stdErrPlugin.lib libxml2_a.lib zlib.lib wsock32.lib"
-				OutputFile="$(OutDir)/deindexer.exe"
+				OutputFile="../bin/deindexer.exe"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="../../../external-libs/libxml2/win32/lib;../../../lib/1.4"
 				GenerateDebugInformation="TRUE"
