@@ -28,7 +28,7 @@ XMLƒ^ƒO’†‚Ì–¼‘O‚ÆID‚Í•ÏX‚³‚ê‚Ü‚¹‚ñBo—Íƒtƒ@ƒCƒ‹‚ÍA“ü—Í‚Æ“¯‚¶”‚Ìƒ\[ƒX‚ÆƒvƒŠƒ
 
 E§ŒÀŽ–€
 
-‚±‚ê‚Í’P‚È‚éƒTƒ“ƒvƒ‹‚Å‚·B•¡ŽG‚É‚È‚è‚·‚¬‚é‚Ì‚ð”ð‚¯‚é‚½‚ß‚ÉACOLLADAƒf[ƒ^‚Ì“ü—ÍƒtƒH[ƒ}ƒbƒg‚É‚Í‚½‚­‚³‚ñ‚Ì‚É§ŒÀ‚ª‰Á‚¦‚ç‚ê‚Ä‚¢‚Ü‚·B‚±‚Ìƒc[ƒ‹‚Í‚Ù‚Ú“¯‚¶§ŒÀŽ–€‚ðŽ‚Á‚½TinyColla‚Æ‚Æ‚à‚É—˜—p‚·‚é‚±‚Æ‚ðˆÓ}‚³‚ê‚Ä‚¢‚Ü‚·B
+‚±‚ê‚Í’P‚È‚éƒTƒ“ƒvƒ‹‚Å‚·B•¡ŽG‚É‚È‚è‚·‚¬‚é‚Ì‚ð”ð‚¯‚é‚½‚ß‚ÉACOLLADAƒf[ƒ^‚Ì“ü—ÍƒtƒH[ƒ}ƒbƒg‚É‚Í‚½‚­‚³‚ñ‚Ì‚É§ŒÀ‚ª‰Á‚¦‚ç‚ê‚Ä‚¢‚Ü‚·B
 
 ‘¼‚Ìƒvƒƒtƒ@ƒCƒ‹‚Ì”ñƒCƒ“ƒfƒbƒNƒX‰»‚ªŽ¸”s‚µ‚½ê‡ACOMMONƒvƒƒtƒ@ƒCƒ‹‚¾‚¯‚ªƒTƒ|[ƒg‚³‚ê‚Ü‚·B
 <triangles>ƒvƒŠƒ~ƒeƒBƒu‚¾‚¯‚ªƒTƒ|[ƒg‚³‚ê‚Ä‚¢‚Ü‚·iŽOŠp‘ª—Êƒc[ƒ‹‚Å‚ÌƒvƒŠƒvƒƒZƒXjB“Á’è‚Ì<mesh>‚Ì’†‚ÉA‚·‚×‚Ä‚Ì<triangles>‚ª“¯ˆê‚Ì“ü—Í‚ðŽ‚Â‚±‚Æ‚ª•K—v‚Å‚·B<source>‚ÍA‚P‚Â‚Ì<accessor>‚µ‚©‚ðŽ‚Ä‚Ü‚¹‚ñBiƒpƒbƒN‰»‚³‚ê‚½”z—ñ‚¾‚¯‚ÅAƒXƒgƒŠƒbƒv‰»‚³‚ê‚½”z—ñ‚Å‚Í‚È‚¢jB

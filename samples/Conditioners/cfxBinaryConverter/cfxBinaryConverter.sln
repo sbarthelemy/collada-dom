@@ -1,0 +1,30 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cfxBinaryConverter", "cfxBinaryConverter.vcproj", "{3224FB85-0107-404D-A89F-3C08861440B7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0D83F5B4-F5F3-45FF-AB3A-4B8A8DF975A7} = {0D83F5B4-F5F3-45FF-AB3A-4B8A8DF975A7}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "COLLADA_FX_LIB", "COLLADA_FX_LIB.vcproj", "{0D83F5B4-F5F3-45FF-AB3A-4B8A8DF975A7}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{3224FB85-0107-404D-A89F-3C08861440B7}.Debug.ActiveCfg = Debug 1.4|Win32
+		{3224FB85-0107-404D-A89F-3C08861440B7}.Debug.Build.0 = Debug 1.4|Win32
+		{3224FB85-0107-404D-A89F-3C08861440B7}.Release.ActiveCfg = Release 1.4|Win32
+		{3224FB85-0107-404D-A89F-3C08861440B7}.Release.Build.0 = Release 1.4|Win32
+		{0D83F5B4-F5F3-45FF-AB3A-4B8A8DF975A7}.Debug.ActiveCfg = Debug-Win32|Win32
+		{0D83F5B4-F5F3-45FF-AB3A-4B8A8DF975A7}.Debug.Build.0 = Debug-Win32|Win32
+		{0D83F5B4-F5F3-45FF-AB3A-4B8A8DF975A7}.Release.ActiveCfg = Release-Win32|Win32
+		{0D83F5B4-F5F3-45FF-AB3A-4B8A8DF975A7}.Release.Build.0 = Release-Win32|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

@@ -33,7 +33,7 @@ float4x4 ViewIXf : ViewInverse;
 //		to the effect
 ///////////////////
 
-float4 LightPos : Position 
+float4 LightPos : LightPosition 
 <
 	string UIName =  "Lamp Position";
 	string Object = "PointLight";
@@ -151,7 +151,7 @@ vertexOutput mainVS(appdata IN)
 vertexOutputPS1 plasticPVS(appdata IN,uniform float4 LampPosition,uniform float3 LampColor)
 {
     vertexOutputPS1 OUT;
-    float3 Nn = normalize(mul(WorldITXf, IN.Normal).xyz);
+    float3 Nn = normalize(mul((float3x3)WorldITXf, IN.Normal.xyz).xyz);
     float4 Po = float4(IN.Position.xyz,1);
     float3 Pw = mul(WorldXf, Po).xyz;
     float3 Ln = normalize(LampPosition.xyz - Pw);
@@ -215,7 +215,8 @@ technique TexturedPS < string Script = "Pass=p0;"; >
 		VertexProgram = compile arbvp1 mainVS();
 		DepthTestEnable = true;
 		DepthMask = true;
-		CullFaceEnable = false;
+		CullFaceEnable = true;
+		CullFace = back;
 		DepthFunc = LEqual;
 		FragmentProgram = compile arbfp1 plasticPS_t(LightColor);
 	}

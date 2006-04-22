@@ -32,7 +32,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../../lib-dbg/1.3/libcollada_STLDatabase.lib"/>
+				OutputFile="../../../lib-dbg/1.3/libcollada_STLDatabase_d.lib"/>
 			<Tool
 				Name="VCMIDLTool"/>
 			<Tool
@@ -74,7 +74,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../../lib-dbg/1.4/libcollada_STLDatabase.lib"/>
+				OutputFile="../../../lib-dbg/1.4/libcollada_STLDatabase_d.lib"/>
 			<Tool
 				Name="VCMIDLTool"/>
 			<Tool

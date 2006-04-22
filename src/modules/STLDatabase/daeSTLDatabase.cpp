@@ -158,16 +158,22 @@ daeInt daeSTLDatabase::insertDocument( daeDocument *c ) {
 
 daeInt daeSTLDatabase::removeDocument(daeDocument *document)
 {
-	//remove all elements that are in this document
-	std::vector<DAE_STL_DATABASE_CELL>::iterator iter = elements.begin();
+	// Copy the elements that are not in this collection into 
+	// a new list.
+	std::vector<DAE_STL_DATABASE_CELL> newElements;
+	newElements.reserve(elements.size());
+
+	std::vector<DAE_STL_DATABASE_CELL>::iterator iter =	elements.begin();
 	while ( iter != elements.end() ) {
-		if ( (*iter).document == document ) {
-			iter = elements.erase(iter);
+		if ( (*iter).document != document ) {
+			newElements.push_back(*iter);
 		}
-		else {
-			iter++;
-		}
+		iter++;
 	}
+	// Replace our existing element list with the new one (that is missing 
+	// the elements from this collection).
+	elements = newElements;
+
 	//remove the document from its vector
 	std::vector<daeDocument*>::iterator iter2 = documents.begin();
 	while ( iter2 != documents.end() ) {

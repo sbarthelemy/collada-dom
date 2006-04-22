@@ -32,7 +32,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libcollada_dae.lib libcollada_dom.lib libcollada_STLDatabase.lib libcollada_LIBXMLPlugin.lib libcollada_stdErrPlugin.lib libxml2_a.lib zlib.lib iconv_a.lib wsock32.lib"
+				AdditionalDependencies="libcollada_dae_d.lib libcollada_dom_d.lib libcollada_STLDatabase_d.lib libcollada_LIBXMLPlugin_d.lib libcollada_stdErrPlugin_d.lib libxml2_a.lib zlib.lib iconv_a.lib wsock32.lib"
 				OutputFile="../bin-dbg/1.3/optimizer.exe"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="../../../external-libs/libxml2/win32/lib;../../../lib-dbg/1.3"

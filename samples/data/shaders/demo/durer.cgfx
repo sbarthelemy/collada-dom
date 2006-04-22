@@ -33,7 +33,7 @@ float4x4 ViewIXf : ViewInverse;
 
 /** tweakables **********************************************/
 
-float4 lightPos : Position
+float4 lightPos : LightPosition
 <
     string Object = "PointLight";
     string Space = "World";
@@ -116,6 +116,20 @@ float SAng
     string UIName = "Stroke Angle";
 > = 0.0;
 
+texture ColorTexture : Diffuse
+<
+	string ResourceName = "default_color.dds";
+	string ResourceType = "2D";
+	string UIName =  "Surface Texture (if used)";
+>;
+
+sampler2D ColorSampler = sampler_state 
+{
+	Texture = <ColorTexture>;
+	MinFilter = LinearMipMapLinear;
+	MagFilter = Linear;
+};
+
 static float Rotate = (SAng*3.141592/180.0);
 
 /************* DATA STRUCTS **************/
@@ -146,15 +160,16 @@ struct vertexOutput {
 
 vertexOutput mainVS(appdata IN,uniform float3 Lw) {
     vertexOutput OUT;
-    OUT.WorldNormal  = mul(WorldITXf, IN.Normal).xyz;
-    OUT.WorldTangent = mul(WorldITXf, IN.Tangent).xyz;
-    OUT.WorldBinorm  = mul(WorldITXf, IN.Binormal).xyz;
+    OUT.WorldNormal  = mul((float3x3)WorldXf, IN.Normal.xyz).xyz;
+    OUT.WorldTangent = mul((float3x3)WorldXf, IN.Tangent.xyz).xyz;
+    OUT.WorldBinorm  = mul((float3x3)WorldXf, IN.Binormal.xyz).xyz;
     float4 Po = float4(IN.Position.xyz,1.0f);
     float3 Pw = mul(WorldXf, Po).xyz;
     OUT.WorldPos = Pw;
     OUT.LightVec = Lw - Pw;
     OUT.UV = IN.UV;
-    OUT.WorldEyeVec = float3(ViewIXf[0].w,ViewIXf[1].w,ViewIXf[2].w) - Pw;
+    OUT.WorldEyeVec = Lw - Pw;
+		//float3(ViewIXf[0].w,ViewIXf[1].w,ViewIXf[2].w) - Pw;
     float4 hpos = mul(WorldViewProjXf, Po);
     OUT.HPosition = hpos;
 	float cr = cos(Rotate);
@@ -214,8 +229,10 @@ float4 durerM1PS(vertexOutput IN) : COLOR {
     return durer_core(IN,float2((IN.HPos2.x/IN.HPos2.z),IN.UV.y));
 }
 
-float4 durerM2PS(vertexOutput IN) : COLOR {
-    return durer_core(IN,float2(IN.UV.x,(IN.HPos2.x/IN.HPos2.z)));
+float4 durerM2PS(vertexOutput IN) : COLOR 
+{
+	float4 tex = tex2D(ColorSampler,IN.UV.xy);
+    return tex * durer_core(IN,float2(IN.UV.x,(IN.HPos2.x/IN.HPos2.z)));
 }
 
 /*************/
@@ -225,7 +242,9 @@ technique mix2 {
 		VertexProgram = compile vp30 mainVS(lightPos);
 		DepthTestEnable = true;
 		DepthMask = true;
-		CullFaceEnable = false;
+		CullFaceEnable = true;
+		CullFace = back;
+		DepthFunc = LEqual;
 		FragmentProgram = compile fp30 durerM2PS();
 	}
 }

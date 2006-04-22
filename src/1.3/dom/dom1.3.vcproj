@@ -33,7 +33,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../../lib-dbg/1.3/libcollada_dom.lib"/>
+				OutputFile="../../../lib-dbg/1.3/libcollada_dom_d.lib"/>
 			<Tool
 				Name="VCMIDLTool"/>
 			<Tool

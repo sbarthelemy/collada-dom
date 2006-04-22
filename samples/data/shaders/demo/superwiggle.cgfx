@@ -1,0 +1,242 @@
+
+string description = "Super Wiggle";
+
+
+float g_blobscale
+<
+    string UIName = "Blob Scale";
+    string UIWidget = "Slider";
+    float UIMin = 0.0;
+    float UIMax = 1.0;
+    float UIStep = .05;
+> = { 0.05f };
+
+float g_blobfreq
+<
+    string UIName = "Blob Freq";
+    string UIWidget = "Slider";
+    float UIMin = 0.0;
+    float UIMax = 20.0;
+    float UIStep = .5;
+> = { 4.0f };
+
+float g_wavefreq
+<
+    string UIName = "Wave Freq";
+    string UIWidget = "Slider";
+    float UIMin = 0.0;
+    float UIMax = 10.0;
+    float UIStep = 0.2;
+> = { 2.0f };
+
+float g_twistscale
+<
+    string UIName = "Twist Scale";
+    string UIWidget = "Slider";
+    float UIMin = 0.0;
+    float UIMax = 2.0;
+    float UIStep = .1;
+> = { 0.2f };
+
+float g_twistfreq
+<
+    string UIName = "Twist Freq";
+    string UIWidget = "Slider";
+    float UIMin = 0.0;
+    float UIMax = 20.0;
+    float UIStep = .5;
+> = { 2.0f };
+
+float3 g_blobdir
+<
+	string UIName = "Blob Direction";
+> = { 0, 1, 0 };
+
+
+float3 g_twistdir
+<
+	string UIName = "Twist Direction";
+> = { 1, 0, 0 };
+
+
+float g_ks
+<
+    string UIName = "Specular Scale";
+    string UIWidget = "Slider";
+    float UIMin = 0.0;
+    float UIMax = 20.0;
+    float UIStep = 0.01;
+> = 1.5;
+
+float g_specpower
+<
+    string UIName = "Specular Power";
+    string UIWidget = "Slider";
+    float UIMin = 0.0;
+    float UIMax = 400.0;
+    float UIStep = 20.0;
+> = 300.0f;
+
+float3 g_lightpos : LightPosition
+<
+    string Object = "PointLight";
+    string Space = "World";
+> = {100.0f, 100.0f, -100.0f };
+
+float4 g_speccolor : SPECULAR
+<
+	string UIName = "Specular Color";
+    string UIWidget = "Color";
+> = { 1, 1, 1, 1 };
+
+texture ColorTexture : Diffuse
+<
+	string ResourceName = "default_color.dds";
+	string ResourceType = "2D";
+	string UIName =  "Surface Texture (if used)";
+>;
+
+sampler2D g_colorsampler = sampler_state 
+{
+	Texture = <ColorTexture>;
+	MinFilter = LinearMipMapLinear;
+	MagFilter = Linear;
+};
+
+
+float g_time : TIME;
+float4x4 g_WorldIT : WorldInverseTranspose;
+float4x4 g_WorldViewProj : WorldViewProjection;
+float4x4 g_World : World;
+float4x4 g_ViewInv : ViewInverse;
+
+struct outVertexData {
+    varying float4 HPosition	: POSITION;
+    varying float2 UV			: TEXCOORD0;
+	varying float3 lightvec		: TEXCOORD1;
+	varying float3 worldeyevec	: TEXCOORD2;
+	varying float3 worldnormal  : TEXCOORD3;
+};
+
+
+float3x3 rot(float3 axis, float angle)
+{
+	float s,c;
+	sincos(angle, s, c);
+	float mc	= (1.0f) - c;
+	float axx 	= axis.x*axis.x;
+	float ayy 	= axis.y*axis.y;
+	float azz 	= axis.z*axis.z;
+	float axs	= axis.x*s;
+	float ays	= axis.y*s;		
+	float azs	= axis.z*s;
+	float axymc = (axis.x*axis.y)*mc;
+	float ayzmc = (axis.y*axis.x)*mc;
+	float azxmc = (axis.z*axis.z)*mc;
+	float c_1maxx = c*((1.0f)-axx);
+	float c_1mayy = c*((1.0f)-ayy);
+	float c_1mazz = c*((1.0f)-azz);
+	return float3x3 (
+		axx+c_1maxx, axymc-azs, azxmc+ays,
+		axymc+azs, ayy+c_1mayy, ayzmc-axs,
+		azxmc-ays, ayzmc+axs, azz+c_1mazz
+	);
+}
+
+
+outVertexData superwiggle_VS (
+	varying in float3 Position	: POSITION,
+	varying in float3 Normal	: NORMAL0,
+    varying in float2 UV		: TEXCOORD0,
+	uniform in float blobscale,
+	uniform in float blobfreq,
+	uniform in float wavefreq,
+	uniform in float twistscale,
+	uniform in float twistfreq,
+	uniform in float3 blobdir,
+	uniform in float3 twistdir,
+	uniform in float time,
+	uniform in float3 lightpos,
+	uniform in float4x4 world,
+	uniform in float4x4 viewinv,
+	uniform in float4x4 worldviewproj
+	)
+{
+	outVertexData OUT;
+
+	float3 Nw = float3(mul((float3x3)world, Normal.xyz));
+    //float4 Nw = mul(world, float4(Normal, 1.0f));
+	
+	// twist around arbitrary direction
+	float twist = dot(Position, twistdir);
+	float theta = twistscale * sin(twist + time * twistfreq);
+	float3x3 m = rot(twistdir, theta);
+	
+	// blob in object space
+	float anim = sin(blobfreq * time);
+	float waved = dot(Position, blobdir);
+	float wave = cos(wavefreq * waved + time);
+	float blobfactor = blobscale * pow( wave * anim + 1.0, 2.4);
+	float3 Po = Position + Normal * blobfactor;
+	Po = mul(m,Po);
+	float3 Pw = mul(world, float4(Po, 1.0f)).xyz;
+	float3 Iw  = float3(viewinv[0].w, viewinv[1].w, viewinv[2].w);
+
+	OUT.HPosition = mul(worldviewproj, float4(Po, 1.0f));
+	OUT.UV.xy = UV.xy;
+    OUT.lightvec = lightpos - Pw;
+    OUT.worldeyevec = (Iw - Pw);
+    OUT.worldnormal = Nw.xyz;
+
+	return OUT;
+}
+
+float4 superwiggle_PS(outVertexData IN,
+	uniform in sampler2D diffcolor,
+	uniform in float4 speccolor,
+	uniform in float specpower,
+	uniform in float ks
+) : COLOR
+{
+	const float4 ambient = { 0.1f, 0.1f, 0.1f, 0.0f };
+    float3 L = normalize(IN.lightvec);
+    float3 V = normalize(IN.worldeyevec);
+    float3 N = normalize(IN.worldnormal);
+    float3 H = normalize(L + V);
+    float4 light = lit( dot(L,N), dot(H,N), specpower);
+    float4 spec = light.zzzz;
+    float4 diff = light.yyyy;
+	float4 tex = tex2D(diffcolor,IN.UV);
+    return  ( tex * diff ) + ambient + speccolor * (spec * ks);
+}
+
+technique blobby {
+	pass pass_0 {
+		DepthTestEnable = true;
+		DepthMask = true;
+		CullFaceEnable = false;
+		CullFace = back;
+		DepthFunc = LEqual;
+		VertexProgram = compile arbvp1 superwiggle_VS(
+			g_blobscale,
+			g_blobfreq,
+			g_wavefreq,
+			g_twistscale,
+			g_twistfreq,
+			g_blobdir,
+			g_twistdir,
+			g_time,
+			g_lightpos,
+			g_World,
+			g_ViewInv,
+			g_WorldViewProj
+		);
+		FragmentProgram = compile arbfp1 superwiggle_PS(
+			g_colorsampler,
+			g_speccolor,
+			g_specpower,
+			g_ks
+		);
+	}
+}
+

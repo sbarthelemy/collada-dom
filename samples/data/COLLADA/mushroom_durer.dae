@@ -141,7 +141,7 @@
 	<library_effects>
 		<effect id="durer" name="durer">
 			<profile_CG platform="PC-OGL">
-				<include sid="default" url="durer.cgfx"/>
+				<include sid="default" url="../shaders/demo/durer.cgfx"/>
 				<newparam sid="Category">
 					<string/>
 				</newparam>

@@ -129,7 +129,7 @@
 	<library_effects>
 		<effect id="plasticP" name="plasticP">
 			<profile_CG platform="PC-OGL">
-				<include sid="default" url="plasticP.cgfx"/>
+				<include sid="default" url="../shaders/demo/plasticP.cgfx"/>
 				<newparam sid="WorldITXf">
 					<semantic>WORLDINVERSETRANSPOSE</semantic>
 					<float4x4>0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 </float4x4>
