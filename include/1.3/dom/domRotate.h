@@ -55,7 +55,8 @@ public:	//Accessors and Mutators
 	 * Sets the sid attribute.
 	 * @param atSid The new value for the sid attribute.
 	 */
-	void setSid( xsNCName atSid ) { attrSid = atSid; }
+	void setSid( xsNCName atSid ) { attrSid = atSid;
+	 _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the _value array.
@@ -69,7 +70,7 @@ public:	//Accessors and Mutators
 	const domFloat4 &getValue() const { return _value; }
 	/**
 	 * Sets the _value array.
-	 * @param atSid The new value for the _value array.
+	 * @param val The new value for the _value array.
 	 */
 	void setValue( const domFloat4 &val ) { _value = val; }
 

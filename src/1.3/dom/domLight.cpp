@@ -13,6 +13,12 @@
 
 #include <dae/daeDom.h>
 #include <dom/domLight.h>
+#include <dae/daeMetaCMPolicy.h>
+#include <dae/daeMetaSequence.h>
+#include <dae/daeMetaChoice.h>
+#include <dae/daeMetaGroup.h>
+#include <dae/daeMetaAny.h>
+#include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
 domLight::create(daeInt bytes)
@@ -29,16 +35,30 @@ domLight::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "light" );
-	_Meta->setStaticPointerAddress(&domLight::_Meta);
 	_Meta->registerConstructor(domLight::create);
 
-	// Add elements: asset, param
-    _Meta->appendElement(domAsset::registerElement(),daeOffsetOf(domLight,elemAsset));
-    _Meta->appendArrayElement(domParam::registerElement(),daeOffsetOf(domLight,elemParam_array));
+	daeMetaCMPolicy *cm = NULL;
+	daeMetaElementAttribute *mea = NULL;
+	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+
+	mea = new daeMetaElementAttribute( _Meta, cm, 0, 0, 1 );
+	mea->setName( "asset" );
+	mea->setOffset( daeOffsetOf(domLight,elemAsset) );
+	mea->setElementType( domAsset::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 1, 1, -1 );
+	mea->setName( "param" );
+	mea->setOffset( daeOffsetOf(domLight,elemParam_array) );
+	mea->setElementType( domParam::registerElement() );
+	cm->appendChild( mea );
+	
+	cm->setMaxOrdinal( 1 );
+	_Meta->setCMRoot( cm );	
 
 	//	Add attribute: id
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
 		ma->setType( daeAtomicType::get("xsID"));
 		ma->setOffset( daeOffsetOf( domLight , attrId ));
@@ -49,7 +69,7 @@ domLight::registerElement()
 
 	//	Add attribute: name
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
 		ma->setType( daeAtomicType::get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domLight , attrName ));
@@ -60,7 +80,7 @@ domLight::registerElement()
 
 	//	Add attribute: type
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "type" );
 		ma->setType( daeAtomicType::get("LightType"));
 		ma->setOffset( daeOffsetOf( domLight , attrType ));

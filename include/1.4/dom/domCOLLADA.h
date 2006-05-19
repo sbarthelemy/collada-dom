@@ -248,6 +248,10 @@ protected:  // Elements
 	 * Used to preserve order in elements that do not specify strict sequencing of sub-elements.
 	 */
 	daeElementRefArray _contents;
+	/**
+	 * Used to preserve order in elements that have a complex content model.
+	 */
+	daeUIntArray       _contentsOrder;
 
 
 public:	//Accessors and Mutators
@@ -265,7 +269,8 @@ public:	//Accessors and Mutators
 	 * Sets the xmlns attribute.
 	 * @param xmlns The new value for the xmlns attribute.
 	 */
-	void setXmlns( const xsAnyURI &xmlns ) { attrXmlns.setURI( xmlns.getURI() ); }
+	void setXmlns( const xsAnyURI &xmlns ) { attrXmlns.setURI( xmlns.getURI() );
+	 _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the version attribute.
@@ -276,7 +281,8 @@ public:	//Accessors and Mutators
 	 * Sets the version attribute.
 	 * @param atVersion The new value for the version attribute.
 	 */
-	void setVersion( domVersionType atVersion ) { attrVersion = atVersion; }
+	void setVersion( domVersionType atVersion ) { attrVersion = atVersion;
+	 _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the asset element.

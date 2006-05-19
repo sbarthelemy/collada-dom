@@ -1,4 +1,16 @@
 <?xml version="1.0"?>
+<!--
+  Copyright 2006 Sony Computer Entertainment Inc.
+ 
+  Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this 
+  file except in compliance with the License. You may obtain a copy of the License at:
+  http://research.scea.com/scea_shared_source_license.html
+ 
+  Unless required by applicable law or agreed to in writing, software distributed under the License 
+  is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or 
+  implied. See the License for the specific language governing permissions and limitations under the 
+  License. 
+-->
 <COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0">
     <asset>
         <contributor>
@@ -6846,19 +6858,19 @@ dereferenceXRefs=1;cameraXFov=0;cameraYFov=1</comments>
     </library_materials>
     <library_images>
         <image id="Image0">
-            <init_from>../images/mushroom140_Textures/mushroom.tga</init_from>
+            <init_from>../images/Shared/mushroom.tga</init_from>
         </image>
         <image id="Image1">
-            <init_from>default_color.dds</init_from>
+            <init_from>../images/Shared/Default.tga</init_from>
         </image>
         <image id="Image2">
-            <init_from>default_color.dds</init_from>
+            <init_from>../images/Shared/Default.tga</init_from>
         </image>
     </library_images>
     <library_effects>
         <effect id="wigglatexadescent" name="wigglatexadescent">
             <profile_CG platform="PC-OGL">
-                <include sid="default" url="../shaders/advanced/wigglatexadescent.cg"/>
+                <include sid="default" url="../shaders/wigglatexadescent.cgfx"/>
                 <newparam sid="WorldITXf">
                     <semantic>WORLDINVERSETRANSPOSE</semantic>
                     <float4x4>0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 </float4x4>
@@ -7032,7 +7044,7 @@ dereferenceXRefs=1;cameraXFov=0;cameraYFov=1</comments>
                 </technique>
             </profile_CG>
             <profile_CG platform="PS3">
-                <include sid="default" url="../shaders/advanced/wigglatexadescent.cg"/>
+                <include sid="default" url="../shaders/wigglatexadescent.cgfx"/>
                 <newparam sid="WorldITXf">
                     <semantic>WORLDINVERSETRANSPOSE</semantic>
                     <float4x4>0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 </float4x4>
@@ -7156,8 +7168,8 @@ dereferenceXRefs=1;cameraXFov=0;cameraYFov=1</comments>
                     <float>0.0906</float>
                 </newparam>
                 <technique sid="PixelShaderVersion">
-                    <include sid="wigglatexadescent_PixelShaderVersion_1_wtdVS_compiled" url="../shaders/advanced/wigglatexadescent_PixelShaderVersion_1.vpo"/>
-                    <include sid="wigglatexadescent_PixelShaderVersion_1_wtdFS_compiled" url="../shaders/advanced/wigglatexadescent_PixelShaderVersion_1.fpo"/>
+                    <include sid="wigglatexadescent_PixelShaderVersion_1_wtdVS_compiled" url="../shaders/wigglatexadescent_PixelShaderVersion_1.vpo"/>
+                    <include sid="wigglatexadescent_PixelShaderVersion_1_wtdFS_compiled" url="../shaders/wigglatexadescent_PixelShaderVersion_1.fpo"/>
                     <pass sid="1">
                         <depth_test_enable value="true"/>
                         <shader stage="VERTEX">

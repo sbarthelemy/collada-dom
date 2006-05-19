@@ -930,7 +930,8 @@ public:
 		 * Sets the meter attribute.
 		 * @param atMeter The new value for the meter attribute.
 		 */
-		void setMeter( domFloat atMeter ) { attrMeter = atMeter; }
+		void setMeter( domFloat atMeter ) { attrMeter = atMeter;	
+	 _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the name attribute.
@@ -941,7 +942,8 @@ public:
 		 * Sets the name attribute.
 		 * @param atName The new value for the name attribute.
 		 */
-		void setName( xsNMTOKEN atName ) { attrName = atName; }
+		void setName( xsNMTOKEN atName ) { attrName = atName;	
+	 _validAttributeArray[1] = true; }
 
 	protected:
 		/**

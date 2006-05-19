@@ -13,6 +13,12 @@
 
 #include <dae/daeDom.h>
 #include <dom/domExtra.h>
+#include <dae/daeMetaCMPolicy.h>
+#include <dae/daeMetaSequence.h>
+#include <dae/daeMetaChoice.h>
+#include <dae/daeMetaGroup.h>
+#include <dae/daeMetaAny.h>
+#include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
 domExtra::create(daeInt bytes)
@@ -29,15 +35,24 @@ domExtra::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "extra" );
-	_Meta->setStaticPointerAddress(&domExtra::_Meta);
 	_Meta->registerConstructor(domExtra::create);
 
-	// Add elements: technique
-    _Meta->appendArrayElement(domExtra::domTechnique::registerElement(),daeOffsetOf(domExtra,elemTechnique_array));
+	daeMetaCMPolicy *cm = NULL;
+	daeMetaElementAttribute *mea = NULL;
+	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 0, -1 );
+	mea->setName( "technique" );
+	mea->setOffset( daeOffsetOf(domExtra,elemTechnique_array) );
+	mea->setElementType( domExtra::domTechnique::registerElement() );
+	cm->appendChild( mea );
+	
+	cm->setMaxOrdinal( 0 );
+	_Meta->setCMRoot( cm );	
 
 	//	Add attribute: id
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
 		ma->setType( daeAtomicType::get("xsID"));
 		ma->setOffset( daeOffsetOf( domExtra , attrId ));
@@ -48,7 +63,7 @@ domExtra::registerElement()
 
 	//	Add attribute: name
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
 		ma->setType( daeAtomicType::get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domExtra , attrName ));
@@ -59,7 +74,7 @@ domExtra::registerElement()
 
 	//	Add attribute: type
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "type" );
 		ma->setType( daeAtomicType::get("xsNMTOKEN"));
 		ma->setOffset( daeOffsetOf( domExtra , attrType ));
@@ -90,16 +105,31 @@ domExtra::domTechnique::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "technique" );
-	_Meta->setStaticPointerAddress(&domExtra::domTechnique::_Meta);
 	_Meta->registerConstructor(domExtra::domTechnique::create);
 
-	// Add elements: asset, param
-    _Meta->appendElement(domAsset::registerElement(),daeOffsetOf(domExtra::domTechnique,elemAsset));
-    _Meta->appendArrayElement(domParam::registerElement(),daeOffsetOf(domExtra::domTechnique,elemParam_array));
+	_Meta->setIsInnerClass( true );
+	daeMetaCMPolicy *cm = NULL;
+	daeMetaElementAttribute *mea = NULL;
+	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+
+	mea = new daeMetaElementAttribute( _Meta, cm, 0, 0, 1 );
+	mea->setName( "asset" );
+	mea->setOffset( daeOffsetOf(domExtra::domTechnique,elemAsset) );
+	mea->setElementType( domAsset::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 1, 0, -1 );
+	mea->setName( "param" );
+	mea->setOffset( daeOffsetOf(domExtra::domTechnique,elemParam_array) );
+	mea->setElementType( domParam::registerElement() );
+	cm->appendChild( mea );
+	
+	cm->setMaxOrdinal( 1 );
+	_Meta->setCMRoot( cm );	
 
 	//	Add attribute: profile
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "profile" );
 		ma->setType( daeAtomicType::get("xsString"));
 		ma->setOffset( daeOffsetOf( domExtra::domTechnique , attrProfile ));

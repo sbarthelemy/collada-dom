@@ -88,7 +88,8 @@ public:
 			 * Sets the sid attribute.
 			 * @param atSid The new value for the sid attribute.
 			 */
-			void setSid( xsNCName atSid ) { attrSid = atSid; }
+			void setSid( xsNCName atSid ) { attrSid = atSid;		
+	 _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the value of this element.
@@ -161,6 +162,10 @@ public:
 			 * Used to preserve order in elements that do not specify strict sequencing of sub-elements.
 			 */
 			daeElementRefArray _contents;
+			/**
+			 * Used to preserve order in elements that have a complex content model.
+			 */
+			daeUIntArray       _contentsOrder;
 
 
 		public:	//Accessors and Mutators
@@ -279,7 +284,8 @@ public:
 				 * Sets the sid attribute.
 				 * @param atSid The new value for the sid attribute.
 				 */
-				void setSid( xsNCName atSid ) { attrSid = atSid; }
+				void setSid( xsNCName atSid ) { attrSid = atSid;			
+	 _validAttributeArray[0] = true; }
 
 				/**
 				 * Gets the value of this element.
@@ -402,6 +408,10 @@ public:
 			 * Used to preserve order in elements that do not specify strict sequencing of sub-elements.
 			 */
 			daeElementRefArray _contents;
+			/**
+			 * Used to preserve order in elements that have a complex content model.
+			 */
+			daeUIntArray       _contentsOrder;
 
 
 		public:	//Accessors and Mutators
@@ -590,6 +600,10 @@ public:
 		 * Used to preserve order in elements that do not specify strict sequencing of sub-elements.
 		 */
 		daeElementRefArray _contents;
+		/**
+		 * Used to preserve order in elements that have a complex content model.
+		 */
+		daeUIntArray       _contentsOrder;
 
 
 	public:	//Accessors and Mutators
@@ -723,7 +737,8 @@ public:	//Accessors and Mutators
 	 * Sets the sid attribute.
 	 * @param atSid The new value for the sid attribute.
 	 */
-	void setSid( xsNCName atSid ) { attrSid = atSid; }
+	void setSid( xsNCName atSid ) { attrSid = atSid;
+	 _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the name attribute.
@@ -734,7 +749,8 @@ public:	//Accessors and Mutators
 	 * Sets the name attribute.
 	 * @param atName The new value for the name attribute.
 	 */
-	void setName( xsNCName atName ) { attrName = atName; }
+	void setName( xsNCName atName ) { attrName = atName;
+	 _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the technique_common element.

@@ -13,6 +13,12 @@
 
 #include <dae/daeDom.h>
 #include <dom/domVertices.h>
+#include <dae/daeMetaCMPolicy.h>
+#include <dae/daeMetaSequence.h>
+#include <dae/daeMetaChoice.h>
+#include <dae/daeMetaGroup.h>
+#include <dae/daeMetaAny.h>
+#include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
 domVertices::create(daeInt bytes)
@@ -29,15 +35,24 @@ domVertices::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "vertices" );
-	_Meta->setStaticPointerAddress(&domVertices::_Meta);
 	_Meta->registerConstructor(domVertices::create);
 
-	// Add elements: input
-    _Meta->appendArrayElement(domVertices::domInput::registerElement(),daeOffsetOf(domVertices,elemInput_array));
+	daeMetaCMPolicy *cm = NULL;
+	daeMetaElementAttribute *mea = NULL;
+	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, -1 );
+	mea->setName( "input" );
+	mea->setOffset( daeOffsetOf(domVertices,elemInput_array) );
+	mea->setElementType( domVertices::domInput::registerElement() );
+	cm->appendChild( mea );
+	
+	cm->setMaxOrdinal( 0 );
+	_Meta->setCMRoot( cm );	
 
 	//	Add attribute: id
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
 		ma->setType( daeAtomicType::get("xsID"));
 		ma->setOffset( daeOffsetOf( domVertices , attrId ));
@@ -48,7 +63,7 @@ domVertices::registerElement()
 
 	//	Add attribute: name
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
 		ma->setType( daeAtomicType::get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domVertices , attrName ));
@@ -59,7 +74,7 @@ domVertices::registerElement()
 
 	//	Add attribute: count
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "count" );
 		ma->setType( daeAtomicType::get("xsNonNegativeInteger"));
 		ma->setOffset( daeOffsetOf( domVertices , attrCount ));
@@ -91,13 +106,13 @@ domVertices::domInput::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "input" );
-	_Meta->setStaticPointerAddress(&domVertices::domInput::_Meta);
 	_Meta->registerConstructor(domVertices::domInput::create);
 
+	_Meta->setIsInnerClass( true );
 
 	//	Add attribute: semantic
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "semantic" );
 		ma->setType( daeAtomicType::get("xsNMTOKEN"));
 		ma->setOffset( daeOffsetOf( domVertices::domInput , attrSemantic ));
@@ -109,7 +124,7 @@ domVertices::domInput::registerElement()
 
 	//	Add attribute: source
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "source" );
 		ma->setType( daeAtomicType::get("xsAnyURI"));
 		ma->setOffset( daeOffsetOf( domVertices::domInput , attrSource ));

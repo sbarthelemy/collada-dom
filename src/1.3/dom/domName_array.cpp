@@ -13,6 +13,12 @@
 
 #include <dae/daeDom.h>
 #include <dom/domName_array.h>
+#include <dae/daeMetaCMPolicy.h>
+#include <dae/daeMetaSequence.h>
+#include <dae/daeMetaChoice.h>
+#include <dae/daeMetaGroup.h>
+#include <dae/daeMetaAny.h>
+#include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
 domName_array::create(daeInt bytes)
@@ -29,7 +35,6 @@ domName_array::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "Name_array" );
-	_Meta->setStaticPointerAddress(&domName_array::_Meta);
 	_Meta->registerConstructor(domName_array::create);
 
 	//	Add attribute: _value
@@ -44,7 +49,7 @@ domName_array::registerElement()
 
 	//	Add attribute: id
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
 		ma->setType( daeAtomicType::get("xsID"));
 		ma->setOffset( daeOffsetOf( domName_array , attrId ));
@@ -55,7 +60,7 @@ domName_array::registerElement()
 
 	//	Add attribute: name
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
 		ma->setType( daeAtomicType::get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domName_array , attrName ));
@@ -66,7 +71,7 @@ domName_array::registerElement()
 
 	//	Add attribute: count
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "count" );
 		ma->setType( daeAtomicType::get("xsNonNegativeInteger"));
 		ma->setOffset( daeOffsetOf( domName_array , attrCount ));

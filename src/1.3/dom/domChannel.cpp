@@ -13,6 +13,12 @@
 
 #include <dae/daeDom.h>
 #include <dom/domChannel.h>
+#include <dae/daeMetaCMPolicy.h>
+#include <dae/daeMetaSequence.h>
+#include <dae/daeMetaChoice.h>
+#include <dae/daeMetaGroup.h>
+#include <dae/daeMetaAny.h>
+#include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
 domChannel::create(daeInt bytes)
@@ -30,13 +36,12 @@ domChannel::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "channel" );
-	_Meta->setStaticPointerAddress(&domChannel::_Meta);
 	_Meta->registerConstructor(domChannel::create);
 
 
 	//	Add attribute: id
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
 		ma->setType( daeAtomicType::get("xsID"));
 		ma->setOffset( daeOffsetOf( domChannel , attrId ));
@@ -47,7 +52,7 @@ domChannel::registerElement()
 
 	//	Add attribute: name
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
 		ma->setType( daeAtomicType::get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domChannel , attrName ));
@@ -58,7 +63,7 @@ domChannel::registerElement()
 
 	//	Add attribute: source
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "source" );
 		ma->setType( daeAtomicType::get("xsAnyURI"));
 		ma->setOffset( daeOffsetOf( domChannel , attrSource ));
@@ -70,7 +75,7 @@ domChannel::registerElement()
 
 	//	Add attribute: target
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "target" );
 		ma->setType( daeAtomicType::get("xsToken"));
 		ma->setOffset( daeOffsetOf( domChannel , attrTarget ));

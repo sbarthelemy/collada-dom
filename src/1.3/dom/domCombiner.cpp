@@ -13,6 +13,12 @@
 
 #include <dae/daeDom.h>
 #include <dom/domCombiner.h>
+#include <dae/daeMetaCMPolicy.h>
+#include <dae/daeMetaSequence.h>
+#include <dae/daeMetaChoice.h>
+#include <dae/daeMetaGroup.h>
+#include <dae/daeMetaAny.h>
+#include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
 domCombiner::create(daeInt bytes)
@@ -29,16 +35,30 @@ domCombiner::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "combiner" );
-	_Meta->setStaticPointerAddress(&domCombiner::_Meta);
 	_Meta->registerConstructor(domCombiner::create);
 
-	// Add elements: input, v
-    _Meta->appendArrayElement(domInput::registerElement(),daeOffsetOf(domCombiner,elemInput_array));
-    _Meta->appendArrayElement(domCombiner::domV::registerElement(),daeOffsetOf(domCombiner,elemV_array));
+	daeMetaCMPolicy *cm = NULL;
+	daeMetaElementAttribute *mea = NULL;
+	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 2, -1 );
+	mea->setName( "input" );
+	mea->setOffset( daeOffsetOf(domCombiner,elemInput_array) );
+	mea->setElementType( domInput::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 1, 1, -1 );
+	mea->setName( "v" );
+	mea->setOffset( daeOffsetOf(domCombiner,elemV_array) );
+	mea->setElementType( domCombiner::domV::registerElement() );
+	cm->appendChild( mea );
+	
+	cm->setMaxOrdinal( 1 );
+	_Meta->setCMRoot( cm );	
 
 	//	Add attribute: count
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "count" );
 		ma->setType( daeAtomicType::get("xsNonNegativeInteger"));
 		ma->setOffset( daeOffsetOf( domCombiner , attrCount ));
@@ -70,9 +90,9 @@ domCombiner::domV::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "v" );
-	_Meta->setStaticPointerAddress(&domCombiner::domV::_Meta);
 	_Meta->registerConstructor(domCombiner::domV::create);
 
+	_Meta->setIsInnerClass( true );
 	//	Add attribute: _value
  	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;

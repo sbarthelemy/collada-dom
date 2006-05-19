@@ -13,12 +13,23 @@
 
 #include <dae/daeDom.h>
 #include <dom/domCOLLADA.h>
+#include <dae/daeMetaCMPolicy.h>
+#include <dae/daeMetaSequence.h>
+#include <dae/daeMetaChoice.h>
+#include <dae/daeMetaGroup.h>
+#include <dae/daeMetaAny.h>
+#include <dae/daeMetaElementAttribute.h>
+
+extern daeString COLLADA_VERSION;
+extern daeString COLLADA_NAMESPACE;
 
 daeElementRef
 domCOLLADA::create(daeInt bytes)
 {
 	domCOLLADARef ref = new(bytes) domCOLLADA;
 	ref->attrXmlns.setContainer( (domCOLLADA*)ref );
+	ref->setAttribute("version", COLLADA_VERSION );
+	ref->setAttribute("xmlns", COLLADA_NAMESPACE );
 	return ref;
 }
 
@@ -30,13 +41,32 @@ domCOLLADA::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "COLLADA" );
-	_Meta->setStaticPointerAddress(&domCOLLADA::_Meta);
 	_Meta->registerConstructor(domCOLLADA::create);
 
-	// Add elements: asset, library, scene
-    _Meta->appendElement(domAsset::registerElement(),daeOffsetOf(domCOLLADA,elemAsset));
-    _Meta->appendArrayElement(domLibrary::registerElement(),daeOffsetOf(domCOLLADA,elemLibrary_array));
-    _Meta->appendElement(domScene::registerElement(),daeOffsetOf(domCOLLADA,elemScene));
+	daeMetaCMPolicy *cm = NULL;
+	daeMetaElementAttribute *mea = NULL;
+	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+
+	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
+	mea->setName( "asset" );
+	mea->setOffset( daeOffsetOf(domCOLLADA,elemAsset) );
+	mea->setElementType( domAsset::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 1, 0, -1 );
+	mea->setName( "library" );
+	mea->setOffset( daeOffsetOf(domCOLLADA,elemLibrary_array) );
+	mea->setElementType( domLibrary::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementAttribute( _Meta, cm, 2, 0, 1 );
+	mea->setName( "scene" );
+	mea->setOffset( daeOffsetOf(domCOLLADA,elemScene) );
+	mea->setElementType( domScene::registerElement() );
+	cm->appendChild( mea );
+	
+	cm->setMaxOrdinal( 2 );
+	_Meta->setCMRoot( cm );	
     //	Add attribute: xmlns
     {
 		daeMetaAttribute* ma = new daeMetaAttribute;
@@ -50,7 +80,7 @@ domCOLLADA::registerElement()
     
 	//	Add attribute: version
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "version" );
 		ma->setType( daeAtomicType::get("xsString"));
 		ma->setOffset( daeOffsetOf( domCOLLADA , attrVersion ));

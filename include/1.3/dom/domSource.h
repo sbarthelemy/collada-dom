@@ -99,7 +99,8 @@ public:
 		 * Sets the profile attribute.
 		 * @param atProfile The new value for the profile attribute.
 		 */
-		void setProfile( xsString atProfile ) { attrProfile = atProfile; }
+		void setProfile( xsString atProfile ) { attrProfile = atProfile;	
+	 _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the asset element.
@@ -207,11 +208,14 @@ protected:  // Elements
  * in the order they are specified. @see domTechnique
  */
 	domTechnique_Array elemTechnique_array;
-protected:
 	/**
 	 * Used to preserve order in elements that do not specify strict sequencing of sub-elements.
 	 */
 	daeElementRefArray _contents;
+	/**
+	 * Used to preserve order in elements that have a complex content model.
+	 */
+	daeUIntArray       _contentsOrder;
 
 
 public:	//Accessors and Mutators
@@ -224,7 +228,8 @@ public:	//Accessors and Mutators
 	 * Sets the id attribute.
 	 * @param atId The new value for the id attribute.
 	 */
-	void setId( xsID atId ) { attrId = atId; }
+	void setId( xsID atId ) { attrId = atId;
+	 _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the name attribute.
@@ -235,7 +240,8 @@ public:	//Accessors and Mutators
 	 * Sets the name attribute.
 	 * @param atName The new value for the name attribute.
 	 */
-	void setName( xsNCName atName ) { attrName = atName; }
+	void setName( xsNCName atName ) { attrName = atName;
+	 _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the array element array.
@@ -298,12 +304,12 @@ public:	//Accessors and Mutators
 	 */
 	const domTechnique_Array &getTechnique_array() const { return elemTechnique_array; }
 	/**
- *	 Gets the _contents array.
+	 * Gets the _contents array.
 	 * @return Returns a reference to the _contents element array.
 	 */
 	daeElementRefArray &getContents() { return _contents; }
 	/**
- *	 Gets the _contents array.
+	 * Gets the _contents array.
 	 * @return Returns a constant reference to the _contents element array.
 	 */
 	const daeElementRefArray &getContents() const { return _contents; }

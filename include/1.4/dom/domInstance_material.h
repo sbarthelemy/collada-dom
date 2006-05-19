@@ -58,7 +58,8 @@ public:
 		 * Sets the semantic attribute.
 		 * @param atSemantic The new value for the semantic attribute.
 		 */
-		void setSemantic( xsNCName atSemantic ) { attrSemantic = atSemantic; }
+		void setSemantic( xsNCName atSemantic ) { attrSemantic = atSemantic;	
+	 _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the target attribute.
@@ -69,7 +70,8 @@ public:
 		 * Sets the target attribute.
 		 * @param atTarget The new value for the target attribute.
 		 */
-		void setTarget( xsToken atTarget ) { attrTarget = atTarget; }
+		void setTarget( xsToken atTarget ) { attrTarget = atTarget;	
+	 _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -144,7 +146,8 @@ public:	//Accessors and Mutators
 	 * Sets the symbol attribute.
 	 * @param atSymbol The new value for the symbol attribute.
 	 */
-	void setSymbol( xsNCName atSymbol ) { attrSymbol = atSymbol; }
+	void setSymbol( xsNCName atSymbol ) { attrSymbol = atSymbol;
+	 _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the target attribute.
@@ -160,7 +163,8 @@ public:	//Accessors and Mutators
 	 * Sets the target attribute.
 	 * @param atTarget The new value for the target attribute.
 	 */
-	void setTarget( const xsAnyURI &atTarget ) { attrTarget.setURI( atTarget.getURI() ); }
+	void setTarget( const xsAnyURI &atTarget ) { attrTarget.setURI( atTarget.getURI() );
+	 _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the bind element array.

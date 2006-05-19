@@ -13,6 +13,12 @@
 
 #include <dae/daeDom.h>
 #include <dom/domInstance_material.h>
+#include <dae/daeMetaCMPolicy.h>
+#include <dae/daeMetaSequence.h>
+#include <dae/daeMetaChoice.h>
+#include <dae/daeMetaGroup.h>
+#include <dae/daeMetaAny.h>
+#include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
 domInstance_material::create(daeInt bytes)
@@ -30,12 +36,26 @@ domInstance_material::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "instance_material" );
-	_Meta->setStaticPointerAddress(&domInstance_material::_Meta);
 	_Meta->registerConstructor(domInstance_material::create);
 
-	// Add elements: bind, extra
-    _Meta->appendArrayElement(domInstance_material::domBind::registerElement(),daeOffsetOf(domInstance_material,elemBind_array));
-    _Meta->appendArrayElement(domExtra::registerElement(),daeOffsetOf(domInstance_material,elemExtra_array));
+	daeMetaCMPolicy *cm = NULL;
+	daeMetaElementAttribute *mea = NULL;
+	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 0, -1 );
+	mea->setName( "bind" );
+	mea->setOffset( daeOffsetOf(domInstance_material,elemBind_array) );
+	mea->setElementType( domInstance_material::domBind::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 1, 0, -1 );
+	mea->setName( "extra" );
+	mea->setOffset( daeOffsetOf(domInstance_material,elemExtra_array) );
+	mea->setElementType( domExtra::registerElement() );
+	cm->appendChild( mea );
+	
+	cm->setMaxOrdinal( 1 );
+	_Meta->setCMRoot( cm );	
 
 	//	Add attribute: symbol
  	{
@@ -83,9 +103,9 @@ domInstance_material::domBind::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "bind" );
-	_Meta->setStaticPointerAddress(&domInstance_material::domBind::_Meta);
 	_Meta->registerConstructor(domInstance_material::domBind::create);
 
+	_Meta->setIsInnerClass( true );
 
 	//	Add attribute: semantic
  	{

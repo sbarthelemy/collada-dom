@@ -58,7 +58,8 @@ public:
 		 * Sets the platform attribute.
 		 * @param atPlatform The new value for the platform attribute.
 		 */
-		void setPlatform( xsNCName atPlatform ) { attrPlatform = atPlatform; }
+		void setPlatform( xsNCName atPlatform ) { attrPlatform = atPlatform;	
+	 _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the ref attribute.
@@ -69,7 +70,8 @@ public:
 		 * Sets the ref attribute.
 		 * @param atRef The new value for the ref attribute.
 		 */
-		void setRef( xsNCName atRef ) { attrRef = atRef; }
+		void setRef( xsNCName atRef ) { attrRef = atRef;	
+	 _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -136,7 +138,8 @@ public:
 		 * Sets the ref attribute.
 		 * @param atRef The new value for the ref attribute.
 		 */
-		void setRef( xsNCName atRef ) { attrRef = atRef; }
+		void setRef( xsNCName atRef ) { attrRef = atRef;	
+	 _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the fx_basic_type_common element.
@@ -222,7 +225,8 @@ public:	//Accessors and Mutators
 	 * Sets the url attribute.
 	 * @param atUrl The new value for the url attribute.
 	 */
-	void setUrl( const xsAnyURI &atUrl ) { attrUrl.setURI( atUrl.getURI() ); }
+	void setUrl( const xsAnyURI &atUrl ) { attrUrl.setURI( atUrl.getURI() );
+	 _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the technique_hint element array.

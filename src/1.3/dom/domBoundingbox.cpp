@@ -13,6 +13,12 @@
 
 #include <dae/daeDom.h>
 #include <dom/domBoundingbox.h>
+#include <dae/daeMetaCMPolicy.h>
+#include <dae/daeMetaSequence.h>
+#include <dae/daeMetaChoice.h>
+#include <dae/daeMetaGroup.h>
+#include <dae/daeMetaAny.h>
+#include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
 domBoundingbox::create(daeInt bytes)
@@ -29,16 +35,30 @@ domBoundingbox::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "boundingbox" );
-	_Meta->setStaticPointerAddress(&domBoundingbox::_Meta);
 	_Meta->registerConstructor(domBoundingbox::create);
 
-	// Add elements: min, max
-    _Meta->appendElement(domBoundingbox::domMin::registerElement(),daeOffsetOf(domBoundingbox,elemMin));
-    _Meta->appendElement(domBoundingbox::domMax::registerElement(),daeOffsetOf(domBoundingbox,elemMax));
+	daeMetaCMPolicy *cm = NULL;
+	daeMetaElementAttribute *mea = NULL;
+	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+
+	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
+	mea->setName( "min" );
+	mea->setOffset( daeOffsetOf(domBoundingbox,elemMin) );
+	mea->setElementType( domBoundingbox::domMin::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementAttribute( _Meta, cm, 1, 1, 1 );
+	mea->setName( "max" );
+	mea->setOffset( daeOffsetOf(domBoundingbox,elemMax) );
+	mea->setElementType( domBoundingbox::domMax::registerElement() );
+	cm->appendChild( mea );
+	
+	cm->setMaxOrdinal( 1 );
+	_Meta->setCMRoot( cm );	
 
 	//	Add attribute: sid
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
 		ma->setType( daeAtomicType::get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domBoundingbox , attrSid ));
@@ -69,9 +89,9 @@ domBoundingbox::domMin::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "min" );
-	_Meta->setStaticPointerAddress(&domBoundingbox::domMin::_Meta);
 	_Meta->registerConstructor(domBoundingbox::domMin::create);
 
+	_Meta->setIsInnerClass( true );
 	//	Add attribute: _value
  	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
@@ -84,7 +104,7 @@ domBoundingbox::domMin::registerElement()
 
 	//	Add attribute: sid
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
 		ma->setType( daeAtomicType::get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domBoundingbox::domMin , attrSid ));
@@ -115,9 +135,9 @@ domBoundingbox::domMax::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "max" );
-	_Meta->setStaticPointerAddress(&domBoundingbox::domMax::_Meta);
 	_Meta->registerConstructor(domBoundingbox::domMax::create);
 
+	_Meta->setIsInnerClass( true );
 	//	Add attribute: _value
  	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
@@ -130,7 +150,7 @@ domBoundingbox::domMax::registerElement()
 
 	//	Add attribute: sid
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
 		ma->setType( daeAtomicType::get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domBoundingbox::domMax , attrSid ));

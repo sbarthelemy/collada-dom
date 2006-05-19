@@ -13,6 +13,12 @@
 
 #include <dae/daeDom.h>
 #include <dom/domAsset.h>
+#include <dae/daeMetaCMPolicy.h>
+#include <dae/daeMetaSequence.h>
+#include <dae/daeMetaChoice.h>
+#include <dae/daeMetaGroup.h>
+#include <dae/daeMetaAny.h>
+#include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
 domAsset::create(daeInt bytes)
@@ -29,25 +35,95 @@ domAsset::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "asset" );
-	_Meta->setStaticPointerAddress(&domAsset::_Meta);
 	_Meta->registerConstructor(domAsset::create);
 
-	// Add elements: author, authoring_tool, created, modified, revision, source_data, copyright, title, subject, keywords, comments, up_axis, unit
-    _Meta->appendArrayElement(domAsset::domAuthor::registerElement(),daeOffsetOf(domAsset,elemAuthor_array));
-    _Meta->appendArrayElement(domAsset::domAuthoring_tool::registerElement(),daeOffsetOf(domAsset,elemAuthoring_tool_array));
-    _Meta->appendArrayElement(domAsset::domCreated::registerElement(),daeOffsetOf(domAsset,elemCreated_array));
-    _Meta->appendArrayElement(domAsset::domModified::registerElement(),daeOffsetOf(domAsset,elemModified_array));
-    _Meta->appendArrayElement(domAsset::domRevision::registerElement(),daeOffsetOf(domAsset,elemRevision_array));
-    _Meta->appendArrayElement(domAsset::domSource_data::registerElement(),daeOffsetOf(domAsset,elemSource_data_array));
-    _Meta->appendArrayElement(domAsset::domCopyright::registerElement(),daeOffsetOf(domAsset,elemCopyright_array));
-    _Meta->appendArrayElement(domAsset::domTitle::registerElement(),daeOffsetOf(domAsset,elemTitle_array));
-    _Meta->appendArrayElement(domAsset::domSubject::registerElement(),daeOffsetOf(domAsset,elemSubject_array));
-    _Meta->appendArrayElement(domAsset::domKeywords::registerElement(),daeOffsetOf(domAsset,elemKeywords_array));
-    _Meta->appendArrayElement(domAsset::domComments::registerElement(),daeOffsetOf(domAsset,elemComments_array));
-    _Meta->appendArrayElement(domAsset::domUp_axis::registerElement(),daeOffsetOf(domAsset,elemUp_axis_array));
-    _Meta->appendArrayElement(domAsset::domUnit::registerElement(),daeOffsetOf(domAsset,elemUnit_array));
+	daeMetaCMPolicy *cm = NULL;
+	daeMetaElementAttribute *mea = NULL;
+	cm = new daeMetaChoice( _Meta, cm, 0, 0, -1 );
+
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
+	mea->setName( "author" );
+	mea->setOffset( daeOffsetOf(domAsset,elemAuthor_array) );
+	mea->setElementType( domAsset::domAuthor::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
+	mea->setName( "authoring_tool" );
+	mea->setOffset( daeOffsetOf(domAsset,elemAuthoring_tool_array) );
+	mea->setElementType( domAsset::domAuthoring_tool::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
+	mea->setName( "created" );
+	mea->setOffset( daeOffsetOf(domAsset,elemCreated_array) );
+	mea->setElementType( domAsset::domCreated::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
+	mea->setName( "modified" );
+	mea->setOffset( daeOffsetOf(domAsset,elemModified_array) );
+	mea->setElementType( domAsset::domModified::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
+	mea->setName( "revision" );
+	mea->setOffset( daeOffsetOf(domAsset,elemRevision_array) );
+	mea->setElementType( domAsset::domRevision::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
+	mea->setName( "source_data" );
+	mea->setOffset( daeOffsetOf(domAsset,elemSource_data_array) );
+	mea->setElementType( domAsset::domSource_data::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
+	mea->setName( "copyright" );
+	mea->setOffset( daeOffsetOf(domAsset,elemCopyright_array) );
+	mea->setElementType( domAsset::domCopyright::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
+	mea->setName( "title" );
+	mea->setOffset( daeOffsetOf(domAsset,elemTitle_array) );
+	mea->setElementType( domAsset::domTitle::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
+	mea->setName( "subject" );
+	mea->setOffset( daeOffsetOf(domAsset,elemSubject_array) );
+	mea->setElementType( domAsset::domSubject::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
+	mea->setName( "keywords" );
+	mea->setOffset( daeOffsetOf(domAsset,elemKeywords_array) );
+	mea->setElementType( domAsset::domKeywords::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
+	mea->setName( "comments" );
+	mea->setOffset( daeOffsetOf(domAsset,elemComments_array) );
+	mea->setElementType( domAsset::domComments::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
+	mea->setName( "up_axis" );
+	mea->setOffset( daeOffsetOf(domAsset,elemUp_axis_array) );
+	mea->setElementType( domAsset::domUp_axis::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
+	mea->setName( "unit" );
+	mea->setOffset( daeOffsetOf(domAsset,elemUnit_array) );
+	mea->setElementType( domAsset::domUnit::registerElement() );
+	cm->appendChild( mea );
+	
+	cm->setMaxOrdinal( 0 );
+	_Meta->setCMRoot( cm );	
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domAsset,_contents));
+    _Meta->addContentsOrder(daeOffsetOf(domAsset,_contentsOrder));
 
 	
 	
@@ -72,9 +148,9 @@ domAsset::domAuthor::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "author" );
-	_Meta->setStaticPointerAddress(&domAsset::domAuthor::_Meta);
 	_Meta->registerConstructor(domAsset::domAuthor::create);
 
+	_Meta->setIsInnerClass( true );
 	//	Add attribute: _value
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
@@ -107,9 +183,9 @@ domAsset::domAuthoring_tool::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "authoring_tool" );
-	_Meta->setStaticPointerAddress(&domAsset::domAuthoring_tool::_Meta);
 	_Meta->registerConstructor(domAsset::domAuthoring_tool::create);
 
+	_Meta->setIsInnerClass( true );
 	//	Add attribute: _value
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
@@ -142,9 +218,9 @@ domAsset::domCreated::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "created" );
-	_Meta->setStaticPointerAddress(&domAsset::domCreated::_Meta);
 	_Meta->registerConstructor(domAsset::domCreated::create);
 
+	_Meta->setIsInnerClass( true );
 	//	Add attribute: _value
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
@@ -177,9 +253,9 @@ domAsset::domModified::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "modified" );
-	_Meta->setStaticPointerAddress(&domAsset::domModified::_Meta);
 	_Meta->registerConstructor(domAsset::domModified::create);
 
+	_Meta->setIsInnerClass( true );
 	//	Add attribute: _value
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
@@ -212,9 +288,9 @@ domAsset::domRevision::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "revision" );
-	_Meta->setStaticPointerAddress(&domAsset::domRevision::_Meta);
 	_Meta->registerConstructor(domAsset::domRevision::create);
 
+	_Meta->setIsInnerClass( true );
 	//	Add attribute: _value
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
@@ -248,9 +324,9 @@ domAsset::domSource_data::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "source_data" );
-	_Meta->setStaticPointerAddress(&domAsset::domSource_data::_Meta);
 	_Meta->registerConstructor(domAsset::domSource_data::create);
 
+	_Meta->setIsInnerClass( true );
 	//	Add attribute: _value
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
@@ -283,9 +359,9 @@ domAsset::domCopyright::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "copyright" );
-	_Meta->setStaticPointerAddress(&domAsset::domCopyright::_Meta);
 	_Meta->registerConstructor(domAsset::domCopyright::create);
 
+	_Meta->setIsInnerClass( true );
 	//	Add attribute: _value
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
@@ -318,9 +394,9 @@ domAsset::domTitle::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "title" );
-	_Meta->setStaticPointerAddress(&domAsset::domTitle::_Meta);
 	_Meta->registerConstructor(domAsset::domTitle::create);
 
+	_Meta->setIsInnerClass( true );
 	//	Add attribute: _value
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
@@ -353,9 +429,9 @@ domAsset::domSubject::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "subject" );
-	_Meta->setStaticPointerAddress(&domAsset::domSubject::_Meta);
 	_Meta->registerConstructor(domAsset::domSubject::create);
 
+	_Meta->setIsInnerClass( true );
 	//	Add attribute: _value
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
@@ -388,9 +464,9 @@ domAsset::domKeywords::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "keywords" );
-	_Meta->setStaticPointerAddress(&domAsset::domKeywords::_Meta);
 	_Meta->registerConstructor(domAsset::domKeywords::create);
 
+	_Meta->setIsInnerClass( true );
 	//	Add attribute: _value
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
@@ -423,9 +499,9 @@ domAsset::domComments::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "comments" );
-	_Meta->setStaticPointerAddress(&domAsset::domComments::_Meta);
 	_Meta->registerConstructor(domAsset::domComments::create);
 
+	_Meta->setIsInnerClass( true );
 	//	Add attribute: _value
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
@@ -458,9 +534,9 @@ domAsset::domUp_axis::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "up_axis" );
-	_Meta->setStaticPointerAddress(&domAsset::domUp_axis::_Meta);
 	_Meta->registerConstructor(domAsset::domUp_axis::create);
 
+	_Meta->setIsInnerClass( true );
 	//	Add attribute: _value
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
@@ -493,13 +569,13 @@ domAsset::domUnit::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "unit" );
-	_Meta->setStaticPointerAddress(&domAsset::domUnit::_Meta);
 	_Meta->registerConstructor(domAsset::domUnit::create);
 
+	_Meta->setIsInnerClass( true );
 
 	//	Add attribute: meter
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "meter" );
 		ma->setType( daeAtomicType::get("xsDouble"));
 		ma->setOffset( daeOffsetOf( domAsset::domUnit , attrMeter ));
@@ -511,7 +587,7 @@ domAsset::domUnit::registerElement()
 
 	//	Add attribute: name
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
 		ma->setType( daeAtomicType::get("xsNMTOKEN"));
 		ma->setOffset( daeOffsetOf( domAsset::domUnit , attrName ));

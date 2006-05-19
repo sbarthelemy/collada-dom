@@ -160,9 +160,9 @@ struct vertexOutput {
 
 vertexOutput mainVS(appdata IN,uniform float3 Lw) {
     vertexOutput OUT;
-    OUT.WorldNormal  = mul((float3x3)WorldXf, IN.Normal.xyz).xyz;
-    OUT.WorldTangent = mul((float3x3)WorldXf, IN.Tangent.xyz).xyz;
-    OUT.WorldBinorm  = mul((float3x3)WorldXf, IN.Binormal.xyz).xyz;
+    OUT.WorldNormal  = -mul((float3x3)WorldXf, IN.Normal.xyz).xyz;
+    OUT.WorldTangent = -mul((float3x3)WorldXf, IN.Tangent.xyz).xyz;
+    OUT.WorldBinorm  = -mul((float3x3)WorldXf, IN.Binormal.xyz).xyz;
     float4 Po = float4(IN.Position.xyz,1.0f);
     float3 Pw = mul(WorldXf, Po).xyz;
     OUT.WorldPos = Pw;

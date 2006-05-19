@@ -18,7 +18,6 @@
 
 #include <dom/domAsset.h>
 #include <dom/domProgram.h>
-#include <dom/domProgram.h>
 
 class domCamera : public daeElement
 {
@@ -38,7 +37,7 @@ public:
  */
 	class domTechnique : public daeElement
 	{
-public:
+	public:
 		class domOptics;
 
 		typedef daeSmartRef<domOptics> domOpticsRef;
@@ -188,7 +187,8 @@ public:
 		 * Sets the profile attribute.
 		 * @param atProfile The new value for the profile attribute.
 		 */
-		void setProfile( xsString atProfile ) { attrProfile = atProfile; }
+		void setProfile( xsString atProfile ) { attrProfile = atProfile;	
+	 _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the asset element.
@@ -280,7 +280,8 @@ public:	//Accessors and Mutators
 	 * Sets the id attribute.
 	 * @param atId The new value for the id attribute.
 	 */
-	void setId( xsID atId ) { attrId = atId; }
+	void setId( xsID atId ) { attrId = atId;
+	 _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the name attribute.
@@ -291,7 +292,8 @@ public:	//Accessors and Mutators
 	 * Sets the name attribute.
 	 * @param atName The new value for the name attribute.
 	 */
-	void setName( xsNCName atName ) { attrName = atName; }
+	void setName( xsNCName atName ) { attrName = atName;
+	 _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the technique element array.

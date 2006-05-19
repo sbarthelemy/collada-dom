@@ -13,6 +13,12 @@
 
 #include <dae/daeDom.h>
 #include <dom/domGeometry.h>
+#include <dae/daeMetaCMPolicy.h>
+#include <dae/daeMetaSequence.h>
+#include <dae/daeMetaChoice.h>
+#include <dae/daeMetaGroup.h>
+#include <dae/daeMetaAny.h>
+#include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
 domGeometry::create(daeInt bytes)
@@ -29,16 +35,30 @@ domGeometry::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "geometry" );
-	_Meta->setStaticPointerAddress(&domGeometry::_Meta);
 	_Meta->registerConstructor(domGeometry::create);
 
-	// Add elements: mesh, extra
-    _Meta->appendElement(domMesh::registerElement(),daeOffsetOf(domGeometry,elemMesh));
-    _Meta->appendArrayElement(domExtra::registerElement(),daeOffsetOf(domGeometry,elemExtra_array));
+	daeMetaCMPolicy *cm = NULL;
+	daeMetaElementAttribute *mea = NULL;
+	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+
+	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
+	mea->setName( "mesh" );
+	mea->setOffset( daeOffsetOf(domGeometry,elemMesh) );
+	mea->setElementType( domMesh::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 1, 0, -1 );
+	mea->setName( "extra" );
+	mea->setOffset( daeOffsetOf(domGeometry,elemExtra_array) );
+	mea->setElementType( domExtra::registerElement() );
+	cm->appendChild( mea );
+	
+	cm->setMaxOrdinal( 1 );
+	_Meta->setCMRoot( cm );	
 
 	//	Add attribute: id
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
 		ma->setType( daeAtomicType::get("xsID"));
 		ma->setOffset( daeOffsetOf( domGeometry , attrId ));
@@ -49,7 +69,7 @@ domGeometry::registerElement()
 
 	//	Add attribute: name
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
 		ma->setType( daeAtomicType::get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domGeometry , attrName ));

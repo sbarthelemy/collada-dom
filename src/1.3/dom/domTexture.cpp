@@ -13,6 +13,12 @@
 
 #include <dae/daeDom.h>
 #include <dom/domTexture.h>
+#include <dae/daeMetaCMPolicy.h>
+#include <dae/daeMetaSequence.h>
+#include <dae/daeMetaChoice.h>
+#include <dae/daeMetaGroup.h>
+#include <dae/daeMetaAny.h>
+#include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
 domTexture::create(daeInt bytes)
@@ -29,17 +35,36 @@ domTexture::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "texture" );
-	_Meta->setStaticPointerAddress(&domTexture::_Meta);
 	_Meta->registerConstructor(domTexture::create);
 
-	// Add elements: asset, param, technique
-    _Meta->appendElement(domAsset::registerElement(),daeOffsetOf(domTexture,elemAsset));
-    _Meta->appendArrayElement(domParam::registerElement(),daeOffsetOf(domTexture,elemParam_array));
-    _Meta->appendArrayElement(domTexture::domTechnique::registerElement(),daeOffsetOf(domTexture,elemTechnique_array));
+	daeMetaCMPolicy *cm = NULL;
+	daeMetaElementAttribute *mea = NULL;
+	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+
+	mea = new daeMetaElementAttribute( _Meta, cm, 0, 0, 1 );
+	mea->setName( "asset" );
+	mea->setOffset( daeOffsetOf(domTexture,elemAsset) );
+	mea->setElementType( domAsset::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 1, 0, -1 );
+	mea->setName( "param" );
+	mea->setOffset( daeOffsetOf(domTexture,elemParam_array) );
+	mea->setElementType( domParam::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 2, 0, -1 );
+	mea->setName( "technique" );
+	mea->setOffset( daeOffsetOf(domTexture,elemTechnique_array) );
+	mea->setElementType( domTexture::domTechnique::registerElement() );
+	cm->appendChild( mea );
+	
+	cm->setMaxOrdinal( 2 );
+	_Meta->setCMRoot( cm );	
 
 	//	Add attribute: id
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
 		ma->setType( daeAtomicType::get("xsID"));
 		ma->setOffset( daeOffsetOf( domTexture , attrId ));
@@ -50,7 +75,7 @@ domTexture::registerElement()
 
 	//	Add attribute: name
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
 		ma->setType( daeAtomicType::get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domTexture , attrName ));
@@ -81,18 +106,43 @@ domTexture::domTechnique::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "technique" );
-	_Meta->setStaticPointerAddress(&domTexture::domTechnique::_Meta);
 	_Meta->registerConstructor(domTexture::domTechnique::create);
 
-	// Add elements: asset, param, input, program
-    _Meta->appendElement(domAsset::registerElement(),daeOffsetOf(domTexture::domTechnique,elemAsset));
-    _Meta->appendArrayElement(domParam::registerElement(),daeOffsetOf(domTexture::domTechnique,elemParam_array));
-    _Meta->appendArrayElement(domTexture::domTechnique::domInput::registerElement(),daeOffsetOf(domTexture::domTechnique,elemInput_array));
-    _Meta->appendElement(domProgram::registerElement(),daeOffsetOf(domTexture::domTechnique,elemProgram));
+	_Meta->setIsInnerClass( true );
+	daeMetaCMPolicy *cm = NULL;
+	daeMetaElementAttribute *mea = NULL;
+	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+
+	mea = new daeMetaElementAttribute( _Meta, cm, 0, 0, 1 );
+	mea->setName( "asset" );
+	mea->setOffset( daeOffsetOf(domTexture::domTechnique,elemAsset) );
+	mea->setElementType( domAsset::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 1, 0, -1 );
+	mea->setName( "param" );
+	mea->setOffset( daeOffsetOf(domTexture::domTechnique,elemParam_array) );
+	mea->setElementType( domParam::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 2, 0, -1 );
+	mea->setName( "input" );
+	mea->setOffset( daeOffsetOf(domTexture::domTechnique,elemInput_array) );
+	mea->setElementType( domTexture::domTechnique::domInput::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementAttribute( _Meta, cm, 3, 0, 1 );
+	mea->setName( "program" );
+	mea->setOffset( daeOffsetOf(domTexture::domTechnique,elemProgram) );
+	mea->setElementType( domProgram::registerElement() );
+	cm->appendChild( mea );
+	
+	cm->setMaxOrdinal( 3 );
+	_Meta->setCMRoot( cm );	
 
 	//	Add attribute: profile
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "profile" );
 		ma->setType( daeAtomicType::get("xsString"));
 		ma->setOffset( daeOffsetOf( domTexture::domTechnique , attrProfile ));
@@ -125,13 +175,13 @@ domTexture::domTechnique::domInput::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "input" );
-	_Meta->setStaticPointerAddress(&domTexture::domTechnique::domInput::_Meta);
 	_Meta->registerConstructor(domTexture::domTechnique::domInput::create);
 
+	_Meta->setIsInnerClass( true );
 
 	//	Add attribute: semantic
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "semantic" );
 		ma->setType( daeAtomicType::get("xsNMTOKEN"));
 		ma->setOffset( daeOffsetOf( domTexture::domTechnique::domInput , attrSemantic ));
@@ -143,7 +193,7 @@ domTexture::domTechnique::domInput::registerElement()
 
 	//	Add attribute: source
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "source" );
 		ma->setType( daeAtomicType::get("xsAnyURI"));
 		ma->setOffset( daeOffsetOf( domTexture::domTechnique::domInput , attrSource ));

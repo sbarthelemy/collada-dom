@@ -23,6 +23,7 @@
 #include <libxml/xmlreader.h>
 #include <libxml/xmlmemory.h>
 #include <dae/daeErrorHandler.h>
+#include <dae/daeMetaElementAttribute.h>
 
 daeLIBXMLPlugin::daeLIBXMLPlugin():topMeta(NULL),database(NULL)
 {
@@ -215,6 +216,7 @@ daeLIBXMLPlugin::startParse(daeMetaElement* thisMetaElement, xmlTextReaderPtr re
 	//try and read attributes
 	readAttributes( element, reader );
 
+#if 0
 	//Check COLLADA Version
 	if ( strcmp( element->getTypeName(), "COLLADA" ) != 0 ) {
 		//invalid root
@@ -227,6 +229,7 @@ daeLIBXMLPlugin::startParse(daeMetaElement* thisMetaElement, xmlTextReaderPtr re
 		daeErrorHandler::get()->handleError("Trying to load an invalid COLLADA version for this DOM build!");
 		return NULL;
 	}
+#endif
 
 	
 	ret = xmlTextReaderRead(reader);
@@ -449,9 +452,7 @@ daeLIBXMLPlugin::nextElement(daeMetaElement* thisMetaElement, xmlTextReaderPtr r
 		sprintf(err,"The DOM was unable to create an element type %s\nProbably a schema violation.\n", mine);
 #endif
 		daeErrorHandler::get()->handleWarning( err );
-		if ( xmlTextReaderNext(reader) == -1 ) {
-			int x = 12312412;
-		}
+		xmlTextReaderNext(reader);
 		return NULL;
 	}
 	int currentDepth = xmlTextReaderDepth(reader);
@@ -481,20 +482,17 @@ daeLIBXMLPlugin::nextElement(daeMetaElement* thisMetaElement, xmlTextReaderPtr r
 			else
 			{
 				// The element is a child of this one, so we recurse
-				if(!element->placeElement(nextElement(element->getMeta(), reader)))
+				daeElementRef newEl = nextElement(element->getMeta(), reader);
+				if( newEl != NULL && !element->placeElement(newEl) )
 				{
 					char err[256];
 					memset( err, 0, 256 );
-#if LIBXML_VERSION >= 20620
-				sprintf(err,"placeElement failed at line %d\n", xmlTextReaderGetParserLineNumber(reader));
-#else
-				sprintf(err,"placeElement failed\n");
-#endif
-				daeErrorHandler::get()->handleWarning( err );
-				ret = xmlTextReaderRead(reader);
-				if ( ret != 1 ) {
-					return element;
-				}
+					sprintf(err,"placeElement failed placing element %s in element %s\n", newEl->getTypeName(), element->getTypeName() );
+					daeErrorHandler::get()->handleWarning( err );
+					ret = xmlTextReaderRead(reader);
+					if ( ret != 1 ) {
+						return element;
+					}
 				}
 			}
 		}
@@ -528,7 +526,7 @@ void daeLIBXMLPlugin::postProcessDom(daeDocument *document, daeElement* element,
 	if (!element)
 		return;
 
-	element->setDocument(document);
+	//element->setDocument(document);
 	// If this element has an integration object, add it to a list so we can process them all in a bunch later
 
 	if (element->getIntObject(daeElement::int_uninitialized))
@@ -540,8 +538,13 @@ void daeLIBXMLPlugin::postProcessDom(daeDocument *document, daeElement* element,
 	}
 
 	// Recursively call postProcessDom on all of this element's children
-
-	if (element->getMeta()->getContents() != NULL) {
+	daeElementRefArray children;
+	element->getChildren( children );
+	for ( size_t x = 0; x < children.getCount(); x++ ) {
+		postProcessDom(document, children.get(x), intItems);
+	}
+	
+	/*if (element->getMeta()->getContents() != NULL) {
 		daeMetaElementArrayAttribute *contents = element->getMeta()->getContents();
 		for ( int i = 0; i < contents->getCount( element ); i++ ) {
 			//array.append( *(daeElementRef*)contents->get( this, i ) );
@@ -564,8 +567,9 @@ void daeLIBXMLPlugin::postProcessDom(daeDocument *document, daeElement* element,
 				postProcessDom(document,elem, intItems);
 			}
 		}
-	}
+	}*/
 }
+
 daeInt daeLIBXMLPlugin::write(daeURI *name, daeDocument *document, daeBool replace)
 {
 	// Make sure database and document are both set
@@ -643,7 +647,13 @@ void daeLIBXMLPlugin::writeElement( daeElement* element )
 	if (valueAttr!=NULL)
 		writeAttribute(valueAttr, element);
 	
-	if (_meta->getContents() != NULL) {
+	daeElementRefArray children;
+	element->getChildren( children );
+	for ( size_t x = 0; x < children.getCount(); x++ ) {
+		writeElement( children.get(x) );
+	}
+
+	/*if (_meta->getContents() != NULL) {
 		daeElementRefArray* era = (daeElementRefArray*)_meta->getContents()->getWritableMemory(element);
 		int elemCnt = (int)era->getCount();
 		for(int i = 0; i < elemCnt; i++) {
@@ -665,7 +675,7 @@ void daeLIBXMLPlugin::writeElement( daeElement* element )
 				}
 			}
 		}
-	}
+	}*/
 	if (!_meta->getIsTransparent() ) {
 		xmlTextWriterEndElement(writer);
 	}

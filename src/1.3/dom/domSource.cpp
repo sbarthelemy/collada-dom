@@ -13,6 +13,12 @@
 
 #include <dae/daeDom.h>
 #include <dom/domSource.h>
+#include <dae/daeMetaCMPolicy.h>
+#include <dae/daeMetaSequence.h>
+#include <dae/daeMetaChoice.h>
+#include <dae/daeMetaGroup.h>
+#include <dae/daeMetaAny.h>
+#include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
 domSource::create(daeInt bytes)
@@ -29,23 +35,64 @@ domSource::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "source" );
-	_Meta->setStaticPointerAddress(&domSource::_Meta);
 	_Meta->registerConstructor(domSource::create);
 
-	// Add elements: array, bool_array, float_array, int_array, Name_array, technique
-    _Meta->appendArrayElement(domArray::registerElement(),daeOffsetOf(domSource,elemArray_array));
-    _Meta->appendArrayElement(domBool_array::registerElement(),daeOffsetOf(domSource,elemBool_array_array));
-    _Meta->appendArrayElement(domFloat_array::registerElement(),daeOffsetOf(domSource,elemFloat_array_array));
-    _Meta->appendArrayElement(domInt_array::registerElement(),daeOffsetOf(domSource,elemInt_array_array));
-    _Meta->appendArrayElement(domName_array::registerElement(),daeOffsetOf(domSource,elemName_array_array));
-    _Meta->appendArrayElement(domSource::domTechnique::registerElement(),daeOffsetOf(domSource,elemTechnique_array));
+	daeMetaCMPolicy *cm = NULL;
+	daeMetaElementAttribute *mea = NULL;
+	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+
+	cm = new daeMetaChoice( _Meta, cm, 0, 0, -1 );
+
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
+	mea->setName( "array" );
+	mea->setOffset( daeOffsetOf(domSource,elemArray_array) );
+	mea->setElementType( domArray::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
+	mea->setName( "bool_array" );
+	mea->setOffset( daeOffsetOf(domSource,elemBool_array_array) );
+	mea->setElementType( domBool_array::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
+	mea->setName( "float_array" );
+	mea->setOffset( daeOffsetOf(domSource,elemFloat_array_array) );
+	mea->setElementType( domFloat_array::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
+	mea->setName( "int_array" );
+	mea->setOffset( daeOffsetOf(domSource,elemInt_array_array) );
+	mea->setElementType( domInt_array::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
+	mea->setName( "Name_array" );
+	mea->setOffset( daeOffsetOf(domSource,elemName_array_array) );
+	mea->setElementType( domName_array::registerElement() );
+	cm->appendChild( mea );
+	
+	cm->setMaxOrdinal( 0 );
+	cm->getParent()->appendChild( cm );
+	cm = cm->getParent();
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 3001, 1, -1 );
+	mea->setName( "technique" );
+	mea->setOffset( daeOffsetOf(domSource,elemTechnique_array) );
+	mea->setElementType( domSource::domTechnique::registerElement() );
+	cm->appendChild( mea );
+	
+	cm->setMaxOrdinal( 3001 );
+	_Meta->setCMRoot( cm );	
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domSource,_contents));
+    _Meta->addContentsOrder(daeOffsetOf(domSource,_contentsOrder));
 
 
 	//	Add attribute: id
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
 		ma->setType( daeAtomicType::get("xsID"));
 		ma->setOffset( daeOffsetOf( domSource , attrId ));
@@ -56,7 +103,7 @@ domSource::registerElement()
 
 	//	Add attribute: name
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
 		ma->setType( daeAtomicType::get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domSource , attrName ));
@@ -87,20 +134,55 @@ domSource::domTechnique::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "technique" );
-	_Meta->setStaticPointerAddress(&domSource::domTechnique::_Meta);
 	_Meta->registerConstructor(domSource::domTechnique::create);
 
-	// Add elements: asset, param, accessor, combiner, joints, program
-    _Meta->appendElement(domAsset::registerElement(),daeOffsetOf(domSource::domTechnique,elemAsset));
-    _Meta->appendArrayElement(domParam::registerElement(),daeOffsetOf(domSource::domTechnique,elemParam_array));
-    _Meta->appendArrayElement(domAccessor::registerElement(),daeOffsetOf(domSource::domTechnique,elemAccessor_array));
-    _Meta->appendElement(domCombiner::registerElement(),daeOffsetOf(domSource::domTechnique,elemCombiner));
-    _Meta->appendElement(domJoints::registerElement(),daeOffsetOf(domSource::domTechnique,elemJoints));
-    _Meta->appendElement(domProgram::registerElement(),daeOffsetOf(domSource::domTechnique,elemProgram));
+	_Meta->setIsInnerClass( true );
+	daeMetaCMPolicy *cm = NULL;
+	daeMetaElementAttribute *mea = NULL;
+	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+
+	mea = new daeMetaElementAttribute( _Meta, cm, 0, 0, 1 );
+	mea->setName( "asset" );
+	mea->setOffset( daeOffsetOf(domSource::domTechnique,elemAsset) );
+	mea->setElementType( domAsset::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 1, 0, -1 );
+	mea->setName( "param" );
+	mea->setOffset( daeOffsetOf(domSource::domTechnique,elemParam_array) );
+	mea->setElementType( domParam::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 2, 0, -1 );
+	mea->setName( "accessor" );
+	mea->setOffset( daeOffsetOf(domSource::domTechnique,elemAccessor_array) );
+	mea->setElementType( domAccessor::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementAttribute( _Meta, cm, 3, 0, 1 );
+	mea->setName( "combiner" );
+	mea->setOffset( daeOffsetOf(domSource::domTechnique,elemCombiner) );
+	mea->setElementType( domCombiner::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementAttribute( _Meta, cm, 4, 0, 1 );
+	mea->setName( "joints" );
+	mea->setOffset( daeOffsetOf(domSource::domTechnique,elemJoints) );
+	mea->setElementType( domJoints::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementAttribute( _Meta, cm, 5, 0, 1 );
+	mea->setName( "program" );
+	mea->setOffset( daeOffsetOf(domSource::domTechnique,elemProgram) );
+	mea->setElementType( domProgram::registerElement() );
+	cm->appendChild( mea );
+	
+	cm->setMaxOrdinal( 5 );
+	_Meta->setCMRoot( cm );	
 
 	//	Add attribute: profile
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "profile" );
 		ma->setType( daeAtomicType::get("xsString"));
 		ma->setOffset( daeOffsetOf( domSource::domTechnique , attrProfile ));

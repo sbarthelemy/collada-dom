@@ -171,7 +171,8 @@ public:
 		 * Sets the semantic attribute.
 		 * @param atSemantic The new value for the semantic attribute.
 		 */
-		void setSemantic( xsNCName atSemantic ) { attrSemantic = atSemantic; }
+		void setSemantic( xsNCName atSemantic ) { attrSemantic = atSemantic;	
+	 _validAttributeArray[0] = true; }
 
 	protected:
 		/**

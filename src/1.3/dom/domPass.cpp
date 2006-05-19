@@ -13,6 +13,12 @@
 
 #include <dae/daeDom.h>
 #include <dom/domPass.h>
+#include <dae/daeMetaCMPolicy.h>
+#include <dae/daeMetaSequence.h>
+#include <dae/daeMetaChoice.h>
+#include <dae/daeMetaGroup.h>
+#include <dae/daeMetaAny.h>
+#include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
 domPass::create(daeInt bytes)
@@ -29,13 +35,32 @@ domPass::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "pass" );
-	_Meta->setStaticPointerAddress(&domPass::_Meta);
 	_Meta->registerConstructor(domPass::create);
 
-	// Add elements: param, input, program
-    _Meta->appendArrayElement(domParam::registerElement(),daeOffsetOf(domPass,elemParam_array));
-    _Meta->appendArrayElement(domPass::domInput::registerElement(),daeOffsetOf(domPass,elemInput_array));
-    _Meta->appendElement(domProgram::registerElement(),daeOffsetOf(domPass,elemProgram));
+	daeMetaCMPolicy *cm = NULL;
+	daeMetaElementAttribute *mea = NULL;
+	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 0, -1 );
+	mea->setName( "param" );
+	mea->setOffset( daeOffsetOf(domPass,elemParam_array) );
+	mea->setElementType( domParam::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 1, 0, -1 );
+	mea->setName( "input" );
+	mea->setOffset( daeOffsetOf(domPass,elemInput_array) );
+	mea->setElementType( domPass::domInput::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementAttribute( _Meta, cm, 2, 0, 1 );
+	mea->setName( "program" );
+	mea->setOffset( daeOffsetOf(domPass,elemProgram) );
+	mea->setElementType( domProgram::registerElement() );
+	cm->appendChild( mea );
+	
+	cm->setMaxOrdinal( 2 );
+	_Meta->setCMRoot( cm );	
 	
 	
 	_Meta->setElementSize(sizeof(domPass));
@@ -60,13 +85,13 @@ domPass::domInput::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "input" );
-	_Meta->setStaticPointerAddress(&domPass::domInput::_Meta);
 	_Meta->registerConstructor(domPass::domInput::create);
 
+	_Meta->setIsInnerClass( true );
 
 	//	Add attribute: semantic
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "semantic" );
 		ma->setType( daeAtomicType::get("xsNMTOKEN"));
 		ma->setOffset( daeOffsetOf( domPass::domInput , attrSemantic ));
@@ -78,7 +103,7 @@ domPass::domInput::registerElement()
 
 	//	Add attribute: source
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "source" );
 		ma->setType( daeAtomicType::get("xsAnyURI"));
 		ma->setOffset( daeOffsetOf( domPass::domInput , attrSource ));

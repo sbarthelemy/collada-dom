@@ -229,7 +229,8 @@ public:
 			 * Sets the sid attribute.
 			 * @param atSid The new value for the sid attribute.
 			 */
-			void setSid( xsNCName atSid ) { attrSid = atSid; }
+			void setSid( xsNCName atSid ) { attrSid = atSid;		
+	 _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the value of this element.
@@ -296,6 +297,10 @@ public:
 			 * Used to preserve order in elements that do not specify strict sequencing of sub-elements.
 			 */
 			daeElementRefArray _contents;
+			/**
+			 * Used to preserve order in elements that have a complex content model.
+			 */
+			daeUIntArray       _contentsOrder;
 
 
 		public:	//Accessors and Mutators
@@ -408,7 +413,8 @@ public:
 				 * Sets the sid attribute.
 				 * @param atSid The new value for the sid attribute.
 				 */
-				void setSid( xsNCName atSid ) { attrSid = atSid; }
+				void setSid( xsNCName atSid ) { attrSid = atSid;			
+	 _validAttributeArray[0] = true; }
 
 				/**
 				 * Gets the value of this element.
@@ -486,6 +492,10 @@ public:
 			 * Used to preserve order in elements that do not specify strict sequencing of sub-elements.
 			 */
 			daeElementRefArray _contents;
+			/**
+			 * Used to preserve order in elements that have a complex content model.
+			 */
+			daeUIntArray       _contentsOrder;
 
 
 		public:	//Accessors and Mutators
@@ -659,6 +669,10 @@ public:
 		 * Used to preserve order in elements that do not specify strict sequencing of sub-elements.
 		 */
 		daeElementRefArray _contents;
+		/**
+		 * Used to preserve order in elements that have a complex content model.
+		 */
+		daeUIntArray       _contentsOrder;
 
 
 	public:	//Accessors and Mutators
@@ -808,7 +822,8 @@ public:	//Accessors and Mutators
 	 * Sets the body attribute.
 	 * @param atBody The new value for the body attribute.
 	 */
-	void setBody( xsNCName atBody ) { attrBody = atBody; }
+	void setBody( xsNCName atBody ) { attrBody = atBody;
+	 _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the sid attribute.
@@ -819,7 +834,8 @@ public:	//Accessors and Mutators
 	 * Sets the sid attribute.
 	 * @param atSid The new value for the sid attribute.
 	 */
-	void setSid( xsNCName atSid ) { attrSid = atSid; }
+	void setSid( xsNCName atSid ) { attrSid = atSid;
+	 _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the target attribute.
@@ -835,7 +851,8 @@ public:	//Accessors and Mutators
 	 * Sets the target attribute.
 	 * @param atTarget The new value for the target attribute.
 	 */
-	void setTarget( const xsAnyURI &atTarget ) { attrTarget.setURI( atTarget.getURI() ); }
+	void setTarget( const xsAnyURI &atTarget ) { attrTarget.setURI( atTarget.getURI() );
+	 _validAttributeArray[2] = true; }
 
 	/**
 	 * Gets the technique_common element.

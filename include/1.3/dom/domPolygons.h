@@ -60,7 +60,7 @@ public:
  */
 	class domP : public daeElement
 	{
-public:
+	public:
 		class domH;
 
 		typedef daeSmartRef<domH> domHRef;
@@ -95,7 +95,7 @@ public:
 			const domListOfInts &getValue() const { return _value; }
 			/**
 			 * Sets the _value array.
-			 * @param at The new value for the _value array.
+			 * @param val The new value for the _value array.
 			 */
 			void setValue( const domListOfInts &val ) { _value = val; }
 
@@ -178,7 +178,7 @@ public:
 		const domListOfInts &getValue() const { return _value; }
 		/**
 		 * Sets the _value array.
-		 * @param at The new value for the _value array.
+		 * @param val The new value for the _value array.
 		 */
 		void setValue( const domListOfInts &val ) { _value = val; }
 
@@ -270,7 +270,8 @@ public:	//Accessors and Mutators
 	 * Sets the count attribute.
 	 * @param atCount The new value for the count attribute.
 	 */
-	void setCount( xsNonNegativeInteger atCount ) { attrCount = atCount; }
+	void setCount( xsNonNegativeInteger atCount ) { attrCount = atCount;
+	 _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the material attribute.
@@ -286,7 +287,8 @@ public:	//Accessors and Mutators
 	 * Sets the material attribute.
 	 * @param atMaterial The new value for the material attribute.
 	 */
-	void setMaterial( const xsAnyURI &atMaterial ) { attrMaterial.setURI( atMaterial.getURI() ); }
+	void setMaterial( const xsAnyURI &atMaterial ) { attrMaterial.setURI( atMaterial.getURI() );
+	 _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the param element array.

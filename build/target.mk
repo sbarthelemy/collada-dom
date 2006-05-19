@@ -32,7 +32,6 @@ CPU_INCDIRS +=	-I$(PWD)/../COLLADA_FX/include
 # To use the right dom version
 #
 CPU_INCDIRS +=	-I$(COLLADA_DOM_DIR)/include/$(COLLADA_DOM_VERSION)
-CPU_LIB_TARGET = ../../lib/$(COLLADA_DOM_VERSION)/libCrt.a
 
 
 

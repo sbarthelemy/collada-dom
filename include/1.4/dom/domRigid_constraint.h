@@ -64,6 +64,10 @@ public:
 		 * Used to preserve order in elements that do not specify strict sequencing of sub-elements.
 		 */
 		daeElementRefArray _contents;
+		/**
+		 * Used to preserve order in elements that have a complex content model.
+		 */
+		daeUIntArray       _contentsOrder;
 
 
 	public:	//Accessors and Mutators
@@ -81,7 +85,8 @@ public:
 		 * Sets the rigid_body attribute.
 		 * @param atRigid_body The new value for the rigid_body attribute.
 		 */
-		void setRigid_body( const xsAnyURI &atRigid_body ) { attrRigid_body.setURI( atRigid_body.getURI() ); }
+		void setRigid_body( const xsAnyURI &atRigid_body ) { attrRigid_body.setURI( atRigid_body.getURI() );	
+	 _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the translate element array.
@@ -197,6 +202,10 @@ public:
 		 * Used to preserve order in elements that do not specify strict sequencing of sub-elements.
 		 */
 		daeElementRefArray _contents;
+		/**
+		 * Used to preserve order in elements that have a complex content model.
+		 */
+		daeUIntArray       _contentsOrder;
 
 
 	public:	//Accessors and Mutators
@@ -214,7 +223,8 @@ public:
 		 * Sets the rigid_body attribute.
 		 * @param atRigid_body The new value for the rigid_body attribute.
 		 */
-		void setRigid_body( const xsAnyURI &atRigid_body ) { attrRigid_body.setURI( atRigid_body.getURI() ); }
+		void setRigid_body( const xsAnyURI &atRigid_body ) { attrRigid_body.setURI( atRigid_body.getURI() );	
+	 _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the translate element array.
@@ -343,7 +353,8 @@ public:
 			 * Sets the sid attribute.
 			 * @param atSid The new value for the sid attribute.
 			 */
-			void setSid( xsNCName atSid ) { attrSid = atSid; }
+			void setSid( xsNCName atSid ) { attrSid = atSid;		
+	 _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the value of this element.
@@ -429,7 +440,8 @@ public:
 			 * Sets the sid attribute.
 			 * @param atSid The new value for the sid attribute.
 			 */
-			void setSid( xsNCName atSid ) { attrSid = atSid; }
+			void setSid( xsNCName atSid ) { attrSid = atSid;		
+	 _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the value of this element.
@@ -1069,7 +1081,8 @@ public:	//Accessors and Mutators
 	 * Sets the sid attribute.
 	 * @param atSid The new value for the sid attribute.
 	 */
-	void setSid( xsNCName atSid ) { attrSid = atSid; }
+	void setSid( xsNCName atSid ) { attrSid = atSid;
+	 _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the name attribute.
@@ -1080,7 +1093,8 @@ public:	//Accessors and Mutators
 	 * Sets the name attribute.
 	 * @param atName The new value for the name attribute.
 	 */
-	void setName( xsNCName atName ) { attrName = atName; }
+	void setName( xsNCName atName ) { attrName = atName;
+	 _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the ref_attachment element.

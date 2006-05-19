@@ -16,7 +16,8 @@
 
 #include <dae/daeDomTypes.h>
 
-//extern daeString COLLADA_VERSION;
+extern daeString COLLADA_VERSION;
+extern daeString COLLADA_NAMESPACE;
 extern daeString COMMON_PROFILE_PROGRAMS_ANGLE_MAP;
 extern daeString COMMON_PROFILE_PROGRAMS_BEZIER;
 extern daeString COMMON_PROFILE_PROGRAMS_BSPLINE;

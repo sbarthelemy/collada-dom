@@ -16,9 +16,8 @@
 
 #include <dae/daeDomTypes.h>
 
-//extern daeString COLLADA_VERSION;
-//extern daeString COLLADA_NAMESPACE;
-
+extern daeString COLLADA_VERSION;
+extern daeString COLLADA_NAMESPACE;
 extern daeString COMMON_PROFILE_INPUT_BINORMAL;
 extern daeString COMMON_PROFILE_INPUT_COLOR;
 extern daeString COMMON_PROFILE_INPUT_IMAGE;

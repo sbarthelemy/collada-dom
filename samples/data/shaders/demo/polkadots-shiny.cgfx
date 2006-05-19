@@ -1,3 +1,6 @@
+/* --- DO NOT REMOVE THIS LINE --- SNIP_SDK_COPYRIGHT_C_BEGIN */
+
+/* --- DO NOT REMOVE THIS LINE --- SNIP_SDK_COPYRIGHT_C_END */
 
 string description = "Hypnotic Polka Dots";
 
@@ -136,8 +139,8 @@ float4 polkadotPS(outVertexData IN,
 	const float4 ambient = { 0.1f, 0.1f, 0.1f, 0.0f };
 	float4 map = tex2D(colorsampler,IN.UV);
     float3 L = normalize(IN.lightvec);
-    float3 V = normalize(IN.worldeyevec);
-    float3 N = normalize(IN.worldnormal);
+    float3 V = -normalize(IN.worldeyevec);
+    float3 N = -normalize(IN.worldnormal);
     float3 H = normalize(L + V);
     float4 light = lit( dot(L,N), dot(H,N), specpower);
     float4 spec = light.zzzz;

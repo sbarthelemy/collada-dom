@@ -13,6 +13,12 @@
 
 #include <dae/daeDom.h>
 #include <dom/domCamera.h>
+#include <dae/daeMetaCMPolicy.h>
+#include <dae/daeMetaSequence.h>
+#include <dae/daeMetaChoice.h>
+#include <dae/daeMetaGroup.h>
+#include <dae/daeMetaAny.h>
+#include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
 domCamera::create(daeInt bytes)
@@ -29,15 +35,24 @@ domCamera::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "camera" );
-	_Meta->setStaticPointerAddress(&domCamera::_Meta);
 	_Meta->registerConstructor(domCamera::create);
 
-	// Add elements: technique
-    _Meta->appendArrayElement(domCamera::domTechnique::registerElement(),daeOffsetOf(domCamera,elemTechnique_array));
+	daeMetaCMPolicy *cm = NULL;
+	daeMetaElementAttribute *mea = NULL;
+	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, -1 );
+	mea->setName( "technique" );
+	mea->setOffset( daeOffsetOf(domCamera,elemTechnique_array) );
+	mea->setElementType( domCamera::domTechnique::registerElement() );
+	cm->appendChild( mea );
+	
+	cm->setMaxOrdinal( 0 );
+	_Meta->setCMRoot( cm );	
 
 	//	Add attribute: id
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
 		ma->setType( daeAtomicType::get("xsID"));
 		ma->setOffset( daeOffsetOf( domCamera , attrId ));
@@ -48,7 +63,7 @@ domCamera::registerElement()
 
 	//	Add attribute: name
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
 		ma->setType( daeAtomicType::get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domCamera , attrName ));
@@ -79,17 +94,37 @@ domCamera::domTechnique::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "technique" );
-	_Meta->setStaticPointerAddress(&domCamera::domTechnique::_Meta);
 	_Meta->registerConstructor(domCamera::domTechnique::create);
 
-	// Add elements: asset, optics, imager
-    _Meta->appendElement(domAsset::registerElement(),daeOffsetOf(domCamera::domTechnique,elemAsset));
-    _Meta->appendElement(domCamera::domTechnique::domOptics::registerElement(),daeOffsetOf(domCamera::domTechnique,elemOptics));
-    _Meta->appendElement(domCamera::domTechnique::domImager::registerElement(),daeOffsetOf(domCamera::domTechnique,elemImager));
+	_Meta->setIsInnerClass( true );
+	daeMetaCMPolicy *cm = NULL;
+	daeMetaElementAttribute *mea = NULL;
+	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+
+	mea = new daeMetaElementAttribute( _Meta, cm, 0, 0, 1 );
+	mea->setName( "asset" );
+	mea->setOffset( daeOffsetOf(domCamera::domTechnique,elemAsset) );
+	mea->setElementType( domAsset::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementAttribute( _Meta, cm, 1, 1, 1 );
+	mea->setName( "optics" );
+	mea->setOffset( daeOffsetOf(domCamera::domTechnique,elemOptics) );
+	mea->setElementType( domCamera::domTechnique::domOptics::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementAttribute( _Meta, cm, 2, 0, 1 );
+	mea->setName( "imager" );
+	mea->setOffset( daeOffsetOf(domCamera::domTechnique,elemImager) );
+	mea->setElementType( domCamera::domTechnique::domImager::registerElement() );
+	cm->appendChild( mea );
+	
+	cm->setMaxOrdinal( 2 );
+	_Meta->setCMRoot( cm );	
 
 	//	Add attribute: profile
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "profile" );
 		ma->setType( daeAtomicType::get("xsString"));
 		ma->setOffset( daeOffsetOf( domCamera::domTechnique , attrProfile ));
@@ -121,11 +156,21 @@ domCamera::domTechnique::domOptics::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "optics" );
-	_Meta->setStaticPointerAddress(&domCamera::domTechnique::domOptics::_Meta);
 	_Meta->registerConstructor(domCamera::domTechnique::domOptics::create);
 
-	// Add elements: program
-    _Meta->appendElement(domProgram::registerElement(),daeOffsetOf(domCamera::domTechnique::domOptics,elemProgram));
+	_Meta->setIsInnerClass( true );
+	daeMetaCMPolicy *cm = NULL;
+	daeMetaElementAttribute *mea = NULL;
+	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+
+	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
+	mea->setName( "program" );
+	mea->setOffset( daeOffsetOf(domCamera::domTechnique::domOptics,elemProgram) );
+	mea->setElementType( domProgram::registerElement() );
+	cm->appendChild( mea );
+	
+	cm->setMaxOrdinal( 0 );
+	_Meta->setCMRoot( cm );	
 	
 	
 	_Meta->setElementSize(sizeof(domCamera::domTechnique::domOptics));
@@ -149,11 +194,21 @@ domCamera::domTechnique::domImager::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "imager" );
-	_Meta->setStaticPointerAddress(&domCamera::domTechnique::domImager::_Meta);
 	_Meta->registerConstructor(domCamera::domTechnique::domImager::create);
 
-	// Add elements: program
-    _Meta->appendElement(domProgram::registerElement(),daeOffsetOf(domCamera::domTechnique::domImager,elemProgram));
+	_Meta->setIsInnerClass( true );
+	daeMetaCMPolicy *cm = NULL;
+	daeMetaElementAttribute *mea = NULL;
+	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+
+	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
+	mea->setName( "program" );
+	mea->setOffset( daeOffsetOf(domCamera::domTechnique::domImager,elemProgram) );
+	mea->setElementType( domProgram::registerElement() );
+	cm->appendChild( mea );
+	
+	cm->setMaxOrdinal( 0 );
+	_Meta->setCMRoot( cm );	
 	
 	
 	_Meta->setElementSize(sizeof(domCamera::domTechnique::domImager));

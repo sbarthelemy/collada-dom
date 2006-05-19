@@ -80,7 +80,8 @@ public:
 		 * Sets the id attribute.
 		 * @param atId The new value for the id attribute.
 		 */
-		void setId( xsID atId ) { attrId = atId; }
+		void setId( xsID atId ) { attrId = atId;	
+	 _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the name attribute.
@@ -91,7 +92,8 @@ public:
 		 * Sets the name attribute.
 		 * @param atName The new value for the name attribute.
 		 */
-		void setName( xsNCName atName ) { attrName = atName; }
+		void setName( xsNCName atName ) { attrName = atName;	
+	 _validAttributeArray[1] = true; }
 
 		/**
 		 * Gets the qualifier attribute.
@@ -102,7 +104,8 @@ public:
 		 * Sets the qualifier attribute.
 		 * @param atQualifier The new value for the qualifier attribute.
 		 */
-		void setQualifier( xsNMTOKEN atQualifier ) { attrQualifier = atQualifier; }
+		void setQualifier( xsNMTOKEN atQualifier ) { attrQualifier = atQualifier;	
+	 _validAttributeArray[2] = true; }
 
 		/**
 		 * Gets the semantic attribute.
@@ -113,7 +116,8 @@ public:
 		 * Sets the semantic attribute.
 		 * @param atSemantic The new value for the semantic attribute.
 		 */
-		void setSemantic( xsToken atSemantic ) { attrSemantic = atSemantic; }
+		void setSemantic( xsToken atSemantic ) { attrSemantic = atSemantic;	
+	 _validAttributeArray[3] = true; }
 
 		/**
 		 * Gets the type attribute.
@@ -124,7 +128,8 @@ public:
 		 * Sets the type attribute.
 		 * @param atType The new value for the type attribute.
 		 */
-		void setType( xsNMTOKEN atType ) { attrType = atType; }
+		void setType( xsNMTOKEN atType ) { attrType = atType;	
+	 _validAttributeArray[4] = true; }
 
 		/**
 		 * Gets the value of this element.
@@ -208,7 +213,8 @@ public:	//Accessors and Mutators
 	 * Sets the function attribute.
 	 * @param atFunction The new value for the function attribute.
 	 */
-	void setFunction( xsNMTOKEN atFunction ) { attrFunction = atFunction; }
+	void setFunction( xsNMTOKEN atFunction ) { attrFunction = atFunction;
+	 _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the semantic attribute.
@@ -219,7 +225,8 @@ public:	//Accessors and Mutators
 	 * Sets the semantic attribute.
 	 * @param atSemantic The new value for the semantic attribute.
 	 */
-	void setSemantic( xsNMTOKEN atSemantic ) { attrSemantic = atSemantic; }
+	void setSemantic( xsNMTOKEN atSemantic ) { attrSemantic = atSemantic;
+	 _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the param element array.

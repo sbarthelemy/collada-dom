@@ -13,6 +13,12 @@
 
 #include <dae/daeDom.h>
 #include <dom/domController.h>
+#include <dae/daeMetaCMPolicy.h>
+#include <dae/daeMetaSequence.h>
+#include <dae/daeMetaChoice.h>
+#include <dae/daeMetaGroup.h>
+#include <dae/daeMetaAny.h>
+#include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
 domController::create(daeInt bytes)
@@ -29,15 +35,24 @@ domController::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "controller" );
-	_Meta->setStaticPointerAddress(&domController::_Meta);
 	_Meta->registerConstructor(domController::create);
 
-	// Add elements: skin
-    _Meta->appendElement(domSkin::registerElement(),daeOffsetOf(domController,elemSkin));
+	daeMetaCMPolicy *cm = NULL;
+	daeMetaElementAttribute *mea = NULL;
+	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+
+	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
+	mea->setName( "skin" );
+	mea->setOffset( daeOffsetOf(domController,elemSkin) );
+	mea->setElementType( domSkin::registerElement() );
+	cm->appendChild( mea );
+	
+	cm->setMaxOrdinal( 0 );
+	_Meta->setCMRoot( cm );	
 
 	//	Add attribute: id
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
 		ma->setType( daeAtomicType::get("xsID"));
 		ma->setOffset( daeOffsetOf( domController , attrId ));
@@ -48,7 +63,7 @@ domController::registerElement()
 
 	//	Add attribute: name
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
 		ma->setType( daeAtomicType::get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domController , attrName ));
@@ -59,7 +74,7 @@ domController::registerElement()
 
 	//	Add attribute: target
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "target" );
 		ma->setType( daeAtomicType::get("xsIDREF"));
 		ma->setOffset( daeOffsetOf( domController , attrTarget ));

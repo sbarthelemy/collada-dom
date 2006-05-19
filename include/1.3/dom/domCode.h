@@ -69,7 +69,8 @@ public:	//Accessors and Mutators
 	 * Sets the id attribute.
 	 * @param atId The new value for the id attribute.
 	 */
-	void setId( xsID atId ) { attrId = atId; }
+	void setId( xsID atId ) { attrId = atId;
+	 _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the lang attribute.
@@ -80,7 +81,8 @@ public:	//Accessors and Mutators
 	 * Sets the lang attribute.
 	 * @param atLang The new value for the lang attribute.
 	 */
-	void setLang( xsNMTOKEN atLang ) { attrLang = atLang; }
+	void setLang( xsNMTOKEN atLang ) { attrLang = atLang;
+	 _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the profile attribute.
@@ -91,7 +93,8 @@ public:	//Accessors and Mutators
 	 * Sets the profile attribute.
 	 * @param atProfile The new value for the profile attribute.
 	 */
-	void setProfile( xsString atProfile ) { attrProfile = atProfile; }
+	void setProfile( xsString atProfile ) { attrProfile = atProfile;
+	 _validAttributeArray[2] = true; }
 
 	/**
 	 * Gets the semantic attribute.
@@ -102,7 +105,8 @@ public:	//Accessors and Mutators
 	 * Sets the semantic attribute.
 	 * @param atSemantic The new value for the semantic attribute.
 	 */
-	void setSemantic( xsNMTOKEN atSemantic ) { attrSemantic = atSemantic; }
+	void setSemantic( xsNMTOKEN atSemantic ) { attrSemantic = atSemantic;
+	 _validAttributeArray[3] = true; }
 
 	/**
 	 * Gets the url attribute.
@@ -118,7 +122,8 @@ public:	//Accessors and Mutators
 	 * Sets the url attribute.
 	 * @param atUrl The new value for the url attribute.
 	 */
-	void setUrl( const xsAnyURI &atUrl ) { attrUrl.setURI( atUrl.getURI() ); }
+	void setUrl( const xsAnyURI &atUrl ) { attrUrl.setURI( atUrl.getURI() );
+	 _validAttributeArray[4] = true; }
 
 	/**
 	 * Gets the value of this element.

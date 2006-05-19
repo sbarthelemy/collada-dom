@@ -480,6 +480,10 @@ public:
 		 * Used to preserve order in elements that do not specify strict sequencing of sub-elements.
 		 */
 		daeElementRefArray _contents;
+		/**
+		 * Used to preserve order in elements that have a complex content model.
+		 */
+		daeUIntArray       _contentsOrder;
 
 
 	public:	//Accessors and Mutators
@@ -492,7 +496,8 @@ public:
 		 * Sets the id attribute.
 		 * @param atId The new value for the id attribute.
 		 */
-		void setId( xsID atId ) { attrId = atId; }
+		void setId( xsID atId ) { attrId = atId;	
+	 _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the sid attribute.
@@ -503,7 +508,8 @@ public:
 		 * Sets the sid attribute.
 		 * @param atSid The new value for the sid attribute.
 		 */
-		void setSid( xsNCName atSid ) { attrSid = atSid; }
+		void setSid( xsNCName atSid ) { attrSid = atSid;	
+	 _validAttributeArray[1] = true; }
 
 		/**
 		 * Gets the asset element.
@@ -628,6 +634,10 @@ protected:  // Elements
 	 * Used to preserve order in elements that do not specify strict sequencing of sub-elements.
 	 */
 	daeElementRefArray _contents;
+	/**
+	 * Used to preserve order in elements that have a complex content model.
+	 */
+	daeUIntArray       _contentsOrder;
 
 
 public:	//Accessors and Mutators

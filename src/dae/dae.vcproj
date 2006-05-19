@@ -211,10 +211,31 @@
 				RelativePath=".\daeMemorySystem.cpp">
 			</File>
 			<File
+				RelativePath=".\daeMetaAny.cpp">
+			</File>
+			<File
 				RelativePath=".\daeMetaAttribute.cpp">
 			</File>
 			<File
+				RelativePath=".\daeMetaChoice.cpp">
+			</File>
+			<File
+				RelativePath=".\daeMetaCMPolicy.cpp">
+			</File>
+			<File
 				RelativePath=".\daeMetaElement.cpp">
+			</File>
+			<File
+				RelativePath=".\daeMetaElementAttribute.cpp">
+			</File>
+			<File
+				RelativePath=".\daeMetaGroup.cpp">
+			</File>
+			<File
+				RelativePath=".\daeMetaSequence.cpp">
+			</File>
+			<File
+				RelativePath=".\daeSIDResolver.cpp">
 			</File>
 			<File
 				RelativePath=".\daeStringRef.cpp">
@@ -285,10 +306,31 @@
 				RelativePath="..\..\include\dae\daeMemorySystem.h">
 			</File>
 			<File
+				RelativePath="..\..\include\dae\daeMetaAny.h">
+			</File>
+			<File
 				RelativePath="..\..\include\dae\daeMetaAttribute.h">
 			</File>
 			<File
+				RelativePath="..\..\include\dae\daeMetaChoice.h">
+			</File>
+			<File
+				RelativePath="..\..\include\dae\daeMetaCMPolicy.h">
+			</File>
+			<File
 				RelativePath="..\..\include\dae\daeMetaElement.h">
+			</File>
+			<File
+				RelativePath="..\..\include\dae\daeMetaElementAttribute.h">
+			</File>
+			<File
+				RelativePath="..\..\include\dae\daeMetaGroup.h">
+			</File>
+			<File
+				RelativePath="..\..\include\dae\daeMetaSequence.h">
+			</File>
+			<File
+				RelativePath="..\..\include\dae\daeSIDResolver.h">
 			</File>
 			<File
 				RelativePath="..\..\include\dae\daeSmartRef.h">

@@ -85,7 +85,8 @@ public:	//Accessors and Mutators
 	 * Sets the url attribute.
 	 * @param atUrl The new value for the url attribute.
 	 */
-	void setUrl( const xsAnyURI &atUrl ) { attrUrl.setURI( atUrl.getURI() ); }
+	void setUrl( const xsAnyURI &atUrl ) { attrUrl.setURI( atUrl.getURI() );
+	 _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the sid attribute.
@@ -96,7 +97,8 @@ public:	//Accessors and Mutators
 	 * Sets the sid attribute.
 	 * @param atSid The new value for the sid attribute.
 	 */
-	void setSid( xsNCName atSid ) { attrSid = atSid; }
+	void setSid( xsNCName atSid ) { attrSid = atSid;
+	 _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the parent attribute.
@@ -112,7 +114,8 @@ public:	//Accessors and Mutators
 	 * Sets the parent attribute.
 	 * @param atParent The new value for the parent attribute.
 	 */
-	void setParent( const xsAnyURI &atParent ) { attrParent.setURI( atParent.getURI() ); }
+	void setParent( const xsAnyURI &atParent ) { attrParent.setURI( atParent.getURI() );
+	 _validAttributeArray[2] = true; }
 
 	/**
 	 * Gets the instance_force_field element array.

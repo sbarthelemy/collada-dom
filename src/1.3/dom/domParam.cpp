@@ -13,6 +13,12 @@
 
 #include <dae/daeDom.h>
 #include <dom/domParam.h>
+#include <dae/daeMetaCMPolicy.h>
+#include <dae/daeMetaSequence.h>
+#include <dae/daeMetaChoice.h>
+#include <dae/daeMetaGroup.h>
+#include <dae/daeMetaAny.h>
+#include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
 domParam::create(daeInt bytes)
@@ -29,7 +35,6 @@ domParam::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "param" );
-	_Meta->setStaticPointerAddress(&domParam::_Meta);
 	_Meta->registerConstructor(domParam::create);
 
 	//	Add attribute: _value
@@ -44,7 +49,7 @@ domParam::registerElement()
 
 	//	Add attribute: id
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
 		ma->setType( daeAtomicType::get("xsID"));
 		ma->setOffset( daeOffsetOf( domParam , attrId ));
@@ -55,7 +60,7 @@ domParam::registerElement()
 
 	//	Add attribute: name
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
 		ma->setType( daeAtomicType::get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domParam , attrName ));
@@ -66,7 +71,7 @@ domParam::registerElement()
 
 	//	Add attribute: sid
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
 		ma->setType( daeAtomicType::get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domParam , attrSid ));
@@ -77,7 +82,7 @@ domParam::registerElement()
 
 	//	Add attribute: flow
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "flow" );
 		ma->setType( daeAtomicType::get("FlowType"));
 		ma->setOffset( daeOffsetOf( domParam , attrFlow ));
@@ -88,7 +93,7 @@ domParam::registerElement()
 
 	//	Add attribute: semantic
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "semantic" );
 		ma->setType( daeAtomicType::get("xsToken"));
 		ma->setOffset( daeOffsetOf( domParam , attrSemantic ));
@@ -99,7 +104,7 @@ domParam::registerElement()
 
 	//	Add attribute: type
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "type" );
 		ma->setType( daeAtomicType::get("xsNMTOKEN"));
 		ma->setOffset( daeOffsetOf( domParam , attrType ));

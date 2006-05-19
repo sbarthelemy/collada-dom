@@ -66,7 +66,8 @@ public:
 		 * Sets the semantic attribute.
 		 * @param atSemantic The new value for the semantic attribute.
 		 */
-		void setSemantic( xsNMTOKEN atSemantic ) { attrSemantic = atSemantic; }
+		void setSemantic( xsNMTOKEN atSemantic ) { attrSemantic = atSemantic;	
+	 _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the source attribute.
@@ -82,7 +83,8 @@ public:
 		 * Sets the source attribute.
 		 * @param atSource The new value for the source attribute.
 		 */
-		void setSource( const xsAnyURI &atSource ) { attrSource.setURI( atSource.getURI() ); }
+		void setSource( const xsAnyURI &atSource ) { attrSource.setURI( atSource.getURI() );	
+	 _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -156,7 +158,8 @@ public:	//Accessors and Mutators
 	 * Sets the id attribute.
 	 * @param atId The new value for the id attribute.
 	 */
-	void setId( xsID atId ) { attrId = atId; }
+	void setId( xsID atId ) { attrId = atId;
+	 _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the name attribute.
@@ -167,7 +170,8 @@ public:	//Accessors and Mutators
 	 * Sets the name attribute.
 	 * @param atName The new value for the name attribute.
 	 */
-	void setName( xsNCName atName ) { attrName = atName; }
+	void setName( xsNCName atName ) { attrName = atName;
+	 _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the input element array.

@@ -13,6 +13,12 @@
 
 #include <dae/daeDom.h>
 #include <dom/domInstance_force_field.h>
+#include <dae/daeMetaCMPolicy.h>
+#include <dae/daeMetaSequence.h>
+#include <dae/daeMetaChoice.h>
+#include <dae/daeMetaGroup.h>
+#include <dae/daeMetaAny.h>
+#include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
 domInstance_force_field::create(daeInt bytes)
@@ -29,11 +35,18 @@ domInstance_force_field::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "instance_force_field" );
-	_Meta->setStaticPointerAddress(&domInstance_force_field::_Meta);
 	_Meta->registerConstructor(domInstance_force_field::create);
 
-	// Add elements: extra
-    _Meta->appendArrayElement(domExtra::registerElement(),daeOffsetOf(domInstance_force_field,elemExtra_array));
+	daeMetaCMPolicy *cm = NULL;
+	daeMetaElementAttribute *mea = NULL;
+	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 0, -1 );
+	mea->setName( "extra" );
+	mea->setOffset( daeOffsetOf(domInstance_force_field,elemExtra_array) );
+	mea->setElementType( domExtra::registerElement() );
+	cm->appendChild( mea );
+	
 
 	//	Add attribute: url
  	{

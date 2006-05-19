@@ -13,6 +13,12 @@
 
 #include <dae/daeDom.h>
 #include <dom/domBool_array.h>
+#include <dae/daeMetaCMPolicy.h>
+#include <dae/daeMetaSequence.h>
+#include <dae/daeMetaChoice.h>
+#include <dae/daeMetaGroup.h>
+#include <dae/daeMetaAny.h>
+#include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
 domBool_array::create(daeInt bytes)
@@ -29,7 +35,6 @@ domBool_array::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "bool_array" );
-	_Meta->setStaticPointerAddress(&domBool_array::_Meta);
 	_Meta->registerConstructor(domBool_array::create);
 
 	//	Add attribute: _value
@@ -44,7 +49,7 @@ domBool_array::registerElement()
 
 	//	Add attribute: id
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
 		ma->setType( daeAtomicType::get("xsID"));
 		ma->setOffset( daeOffsetOf( domBool_array , attrId ));
@@ -55,7 +60,7 @@ domBool_array::registerElement()
 
 	//	Add attribute: name
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
 		ma->setType( daeAtomicType::get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domBool_array , attrName ));
@@ -66,7 +71,7 @@ domBool_array::registerElement()
 
 	//	Add attribute: count
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "count" );
 		ma->setType( daeAtomicType::get("xsNonNegativeInteger"));
 		ma->setOffset( daeOffsetOf( domBool_array , attrCount ));

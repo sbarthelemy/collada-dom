@@ -67,11 +67,14 @@ protected:  // Elements
 	domMaterial_Array elemMaterial_array;
 	domProgram_Array elemProgram_array;
 	domTexture_Array elemTexture_array;
-protected:
 	/**
 	 * Used to preserve order in elements that do not specify strict sequencing of sub-elements.
 	 */
 	daeElementRefArray _contents;
+	/**
+	 * Used to preserve order in elements that have a complex content model.
+	 */
+	daeUIntArray       _contentsOrder;
 
 
 public:	//Accessors and Mutators
@@ -84,7 +87,8 @@ public:	//Accessors and Mutators
 	 * Sets the id attribute.
 	 * @param atId The new value for the id attribute.
 	 */
-	void setId( xsID atId ) { attrId = atId; }
+	void setId( xsID atId ) { attrId = atId;
+	 _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the name attribute.
@@ -95,7 +99,8 @@ public:	//Accessors and Mutators
 	 * Sets the name attribute.
 	 * @param atName The new value for the name attribute.
 	 */
-	void setName( xsNCName atName ) { attrName = atName; }
+	void setName( xsNCName atName ) { attrName = atName;
+	 _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the type attribute.
@@ -106,7 +111,8 @@ public:	//Accessors and Mutators
 	 * Sets the type attribute.
 	 * @param atType The new value for the type attribute.
 	 */
-	void setType( domLibraryType atType ) { attrType = atType; }
+	void setType( domLibraryType atType ) { attrType = atType;
+	 _validAttributeArray[2] = true; }
 
 	/**
 	 * Gets the animation element array.
@@ -209,12 +215,12 @@ public:	//Accessors and Mutators
 	 */
 	const domTexture_Array &getTexture_array() const { return elemTexture_array; }
 	/**
- *	 Gets the _contents array.
+	 * Gets the _contents array.
 	 * @return Returns a reference to the _contents element array.
 	 */
 	daeElementRefArray &getContents() { return _contents; }
 	/**
- *	 Gets the _contents array.
+	 * Gets the _contents array.
 	 * @return Returns a constant reference to the _contents element array.
 	 */
 	const daeElementRefArray &getContents() const { return _contents; }

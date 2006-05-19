@@ -13,6 +13,12 @@
 
 #include <dae/daeDom.h>
 #include <dom/domInstance.h>
+#include <dae/daeMetaCMPolicy.h>
+#include <dae/daeMetaSequence.h>
+#include <dae/daeMetaChoice.h>
+#include <dae/daeMetaGroup.h>
+#include <dae/daeMetaAny.h>
+#include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
 domInstance::create(daeInt bytes)
@@ -30,13 +36,12 @@ domInstance::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "instance" );
-	_Meta->setStaticPointerAddress(&domInstance::_Meta);
 	_Meta->registerConstructor(domInstance::create);
 
 
 	//	Add attribute: url
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "url" );
 		ma->setType( daeAtomicType::get("xsAnyURI"));
 		ma->setOffset( daeOffsetOf( domInstance , attrUrl ));

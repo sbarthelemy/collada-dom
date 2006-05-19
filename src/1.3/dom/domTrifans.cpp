@@ -13,6 +13,12 @@
 
 #include <dae/daeDom.h>
 #include <dom/domTrifans.h>
+#include <dae/daeMetaCMPolicy.h>
+#include <dae/daeMetaSequence.h>
+#include <dae/daeMetaChoice.h>
+#include <dae/daeMetaGroup.h>
+#include <dae/daeMetaAny.h>
+#include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
 domTrifans::create(daeInt bytes)
@@ -30,17 +36,36 @@ domTrifans::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "trifans" );
-	_Meta->setStaticPointerAddress(&domTrifans::_Meta);
 	_Meta->registerConstructor(domTrifans::create);
 
-	// Add elements: param, input, p
-    _Meta->appendArrayElement(domParam::registerElement(),daeOffsetOf(domTrifans,elemParam_array));
-    _Meta->appendArrayElement(domInput::registerElement(),daeOffsetOf(domTrifans,elemInput_array));
-    _Meta->appendArrayElement(domTrifans::domP::registerElement(),daeOffsetOf(domTrifans,elemP_array));
+	daeMetaCMPolicy *cm = NULL;
+	daeMetaElementAttribute *mea = NULL;
+	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 0, -1 );
+	mea->setName( "param" );
+	mea->setOffset( daeOffsetOf(domTrifans,elemParam_array) );
+	mea->setElementType( domParam::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 1, 0, -1 );
+	mea->setName( "input" );
+	mea->setOffset( daeOffsetOf(domTrifans,elemInput_array) );
+	mea->setElementType( domInput::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 2, 0, -1 );
+	mea->setName( "p" );
+	mea->setOffset( daeOffsetOf(domTrifans,elemP_array) );
+	mea->setElementType( domTrifans::domP::registerElement() );
+	cm->appendChild( mea );
+	
+	cm->setMaxOrdinal( 2 );
+	_Meta->setCMRoot( cm );	
 
 	//	Add attribute: count
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "count" );
 		ma->setType( daeAtomicType::get("xsNonNegativeInteger"));
 		ma->setOffset( daeOffsetOf( domTrifans , attrCount ));
@@ -52,7 +77,7 @@ domTrifans::registerElement()
 
 	//	Add attribute: material
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "material" );
 		ma->setType( daeAtomicType::get("xsAnyURI"));
 		ma->setOffset( daeOffsetOf( domTrifans , attrMaterial ));
@@ -83,9 +108,9 @@ domTrifans::domP::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "p" );
-	_Meta->setStaticPointerAddress(&domTrifans::domP::_Meta);
 	_Meta->registerConstructor(domTrifans::domP::create);
 
+	_Meta->setIsInnerClass( true );
 	//	Add attribute: _value
  	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;

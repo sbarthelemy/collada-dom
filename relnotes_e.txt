@@ -9,9 +9,9 @@
  implied. See the License for the specific language governing permissions and limitations under the 
  License.
 ======================================================================
-COLLADA 1.4 DOM Patch3
+COLLADA 1.4 DOM Patch1
 
-Date: April 21, 2006
+Date: February 10, 2006
 Author: Mark C. Barnes, Andrew C. Lorino
 ======================================================================
 ======================================================================
@@ -28,15 +28,7 @@ Known bugs
 * [Bug]
 
   SourceForge Open Issues
-
-  1472586  	daeURI Copy Constructor
-  1467892 	Visual Studio PDB file names are all the same
-  1466019 	Memory Leak issue
-  1449595 	Permanent memory leaks
-  1444313 	Bad handling of "#" URIs
-  1442300 	placeElement should insert items in correct order
-  1437830 	syntax error in sample DOM code in programming guide
-  1431586 	Incorrect file paths
+  -None
 
   Mantis Open Issues (major and above)
 
@@ -127,9 +119,7 @@ Changes (for developer)
 ======================================================================
 
 * Fixed in COLLADA 1.4 DOM Patch 3
-- 1467896  	DAE::saveAs() crashes
 - 1456261  	Build problems on Linux
-- 1455327  	Debug and release libraries with the same name
 - 1449295 	external-libs misleading readme_e.txt
 - 1444752 	daeURI::getOriginalURI() not const correct
 - 1444137 	stdErrPlugin builds as single-threaded

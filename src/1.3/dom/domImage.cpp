@@ -13,6 +13,12 @@
 
 #include <dae/daeDom.h>
 #include <dom/domImage.h>
+#include <dae/daeMetaCMPolicy.h>
+#include <dae/daeMetaSequence.h>
+#include <dae/daeMetaChoice.h>
+#include <dae/daeMetaGroup.h>
+#include <dae/daeMetaAny.h>
+#include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
 domImage::create(daeInt bytes)
@@ -30,7 +36,6 @@ domImage::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "image" );
-	_Meta->setStaticPointerAddress(&domImage::_Meta);
 	_Meta->registerConstructor(domImage::create);
 
 	//	Add attribute: _value
@@ -45,7 +50,7 @@ domImage::registerElement()
 
 	//	Add attribute: id
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
 		ma->setType( daeAtomicType::get("xsID"));
 		ma->setOffset( daeOffsetOf( domImage , attrId ));
@@ -56,7 +61,7 @@ domImage::registerElement()
 
 	//	Add attribute: name
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
 		ma->setType( daeAtomicType::get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domImage , attrName ));
@@ -67,7 +72,7 @@ domImage::registerElement()
 
 	//	Add attribute: source
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "source" );
 		ma->setType( daeAtomicType::get("xsAnyURI"));
 		ma->setOffset( daeOffsetOf( domImage , attrSource ));
@@ -78,7 +83,7 @@ domImage::registerElement()
 
 	//	Add attribute: format
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "format" );
 		ma->setType( daeAtomicType::get("xsString"));
 		ma->setOffset( daeOffsetOf( domImage , attrFormat ));
@@ -89,7 +94,7 @@ domImage::registerElement()
 
 	//	Add attribute: height
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "height" );
 		ma->setType( daeAtomicType::get("xsNonNegativeInteger"));
 		ma->setOffset( daeOffsetOf( domImage , attrHeight ));
@@ -100,7 +105,7 @@ domImage::registerElement()
 
 	//	Add attribute: width
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "width" );
 		ma->setType( daeAtomicType::get("xsNonNegativeInteger"));
 		ma->setOffset( daeOffsetOf( domImage , attrWidth ));
@@ -111,7 +116,7 @@ domImage::registerElement()
 
 	//	Add attribute: depth
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "depth" );
 		ma->setType( daeAtomicType::get("xsNonNegativeInteger"));
 		ma->setOffset( daeOffsetOf( domImage , attrDepth ));

@@ -20,7 +20,7 @@
 /**
  * The asset element defines asset management information regarding its parent
  * element. Computers store vast amounts of information. An asset is a set
- * of information that is  organized into a distinct document and managed
+ * of information that is  organized into a distinct collection and managed
  * as a unit. A wide range of attributes  describes assets so that the information
  * can be maintained and understood by software  tools and humans.
  */
@@ -902,7 +902,8 @@ public:
 		 * Sets the meter attribute.
 		 * @param atMeter The new value for the meter attribute.
 		 */
-		void setMeter( xsDouble atMeter ) { attrMeter = atMeter; }
+		void setMeter( xsDouble atMeter ) { attrMeter = atMeter;	
+	 _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the name attribute.
@@ -913,7 +914,8 @@ public:
 		 * Sets the name attribute.
 		 * @param atName The new value for the name attribute.
 		 */
-		void setName( xsNMTOKEN atName ) { attrName = atName; }
+		void setName( xsNMTOKEN atName ) { attrName = atName;	
+	 _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -1035,11 +1037,14 @@ protected:  // Elements
  * attribute is '1.0'. @see domUnit
  */
 	domUnit_Array elemUnit_array;
-protected:
 	/**
 	 * Used to preserve order in elements that do not specify strict sequencing of sub-elements.
 	 */
 	daeElementRefArray _contents;
+	/**
+	 * Used to preserve order in elements that have a complex content model.
+	 */
+	daeUIntArray       _contentsOrder;
 
 
 public:	//Accessors and Mutators
@@ -1174,12 +1179,12 @@ public:	//Accessors and Mutators
 	 */
 	const domUnit_Array &getUnit_array() const { return elemUnit_array; }
 	/**
- *	 Gets the _contents array.
+	 * Gets the _contents array.
 	 * @return Returns a reference to the _contents element array.
 	 */
 	daeElementRefArray &getContents() { return _contents; }
 	/**
- *	 Gets the _contents array.
+	 * Gets the _contents array.
 	 * @return Returns a constant reference to the _contents element array.
 	 */
 	const daeElementRefArray &getContents() const { return _contents; }

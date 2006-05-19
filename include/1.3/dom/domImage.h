@@ -83,7 +83,8 @@ public:	//Accessors and Mutators
 	 * Sets the id attribute.
 	 * @param atId The new value for the id attribute.
 	 */
-	void setId( xsID atId ) { attrId = atId; }
+	void setId( xsID atId ) { attrId = atId;
+	 _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the name attribute.
@@ -94,7 +95,8 @@ public:	//Accessors and Mutators
 	 * Sets the name attribute.
 	 * @param atName The new value for the name attribute.
 	 */
-	void setName( xsNCName atName ) { attrName = atName; }
+	void setName( xsNCName atName ) { attrName = atName;
+	 _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the source attribute.
@@ -110,7 +112,8 @@ public:	//Accessors and Mutators
 	 * Sets the source attribute.
 	 * @param atSource The new value for the source attribute.
 	 */
-	void setSource( const xsAnyURI &atSource ) { attrSource.setURI( atSource.getURI() ); }
+	void setSource( const xsAnyURI &atSource ) { attrSource.setURI( atSource.getURI() );
+	 _validAttributeArray[2] = true; }
 
 	/**
 	 * Gets the format attribute.
@@ -121,7 +124,8 @@ public:	//Accessors and Mutators
 	 * Sets the format attribute.
 	 * @param atFormat The new value for the format attribute.
 	 */
-	void setFormat( xsString atFormat ) { attrFormat = atFormat; }
+	void setFormat( xsString atFormat ) { attrFormat = atFormat;
+	 _validAttributeArray[3] = true; }
 
 	/**
 	 * Gets the height attribute.
@@ -132,7 +136,8 @@ public:	//Accessors and Mutators
 	 * Sets the height attribute.
 	 * @param atHeight The new value for the height attribute.
 	 */
-	void setHeight( xsNonNegativeInteger atHeight ) { attrHeight = atHeight; }
+	void setHeight( xsNonNegativeInteger atHeight ) { attrHeight = atHeight;
+	 _validAttributeArray[4] = true; }
 
 	/**
 	 * Gets the width attribute.
@@ -143,7 +148,8 @@ public:	//Accessors and Mutators
 	 * Sets the width attribute.
 	 * @param atWidth The new value for the width attribute.
 	 */
-	void setWidth( xsNonNegativeInteger atWidth ) { attrWidth = atWidth; }
+	void setWidth( xsNonNegativeInteger atWidth ) { attrWidth = atWidth;
+	 _validAttributeArray[5] = true; }
 
 	/**
 	 * Gets the depth attribute.
@@ -154,7 +160,8 @@ public:	//Accessors and Mutators
 	 * Sets the depth attribute.
 	 * @param atDepth The new value for the depth attribute.
 	 */
-	void setDepth( xsNonNegativeInteger atDepth ) { attrDepth = atDepth; }
+	void setDepth( xsNonNegativeInteger atDepth ) { attrDepth = atDepth;
+	 _validAttributeArray[6] = true; }
 
 	/**
 	 * Gets the _value array.
@@ -168,7 +175,7 @@ public:	//Accessors and Mutators
 	const domListOfHexBinary &getValue() const { return _value; }
 	/**
 	 * Sets the _value array.
-	 * @param atDepth The new value for the _value array.
+	 * @param val The new value for the _value array.
 	 */
 	void setValue( const domListOfHexBinary &val ) { _value = val; }
 

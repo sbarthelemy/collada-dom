@@ -57,7 +57,8 @@ public:
 		 * Sets the mip attribute.
 		 * @param atMip The new value for the mip attribute.
 		 */
-		void setMip( xsUnsignedInt atMip ) { attrMip = atMip; }
+		void setMip( xsUnsignedInt atMip ) { attrMip = atMip;	
+	 _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the slice attribute.
@@ -68,7 +69,8 @@ public:
 		 * Sets the slice attribute.
 		 * @param atSlice The new value for the slice attribute.
 		 */
-		void setSlice( xsUnsignedInt atSlice ) { attrSlice = atSlice; }
+		void setSlice( xsUnsignedInt atSlice ) { attrSlice = atSlice;	
+	 _validAttributeArray[1] = true; }
 
 		/**
 		 * Gets the face attribute.
@@ -79,7 +81,8 @@ public:
 		 * Sets the face attribute.
 		 * @param atFace The new value for the face attribute.
 		 */
-		void setFace( domFx_surface_face_enum atFace ) { attrFace = atFace; }
+		void setFace( domFx_surface_face_enum atFace ) { attrFace = atFace;	
+	 _validAttributeArray[2] = true; }
 
 		/**
 		 * Gets the _value array.
@@ -490,6 +493,10 @@ protected:  // Elements
 	 * Used to preserve order in elements that do not specify strict sequencing of sub-elements.
 	 */
 	daeElementRefArray _contents;
+	/**
+	 * Used to preserve order in elements that have a complex content model.
+	 */
+	daeUIntArray       _contentsOrder;
 
 
 public:	//Accessors and Mutators

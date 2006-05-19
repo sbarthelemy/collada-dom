@@ -13,6 +13,12 @@
 
 #include <dae/daeDom.h>
 #include <dom/domInstanceWithExtra.h>
+#include <dae/daeMetaCMPolicy.h>
+#include <dae/daeMetaSequence.h>
+#include <dae/daeMetaChoice.h>
+#include <dae/daeMetaGroup.h>
+#include <dae/daeMetaAny.h>
+#include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
 domInstanceWithExtra::create(daeInt bytes)
@@ -30,11 +36,20 @@ domInstanceWithExtra::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "InstanceWithExtra" );
-	_Meta->setStaticPointerAddress(&domInstanceWithExtra::_Meta);
 	_Meta->registerConstructor(domInstanceWithExtra::create);
 
-	// Add elements: extra
-    _Meta->appendArrayElement(domExtra::registerElement(),daeOffsetOf(domInstanceWithExtra,elemExtra_array));
+	daeMetaCMPolicy *cm = NULL;
+	daeMetaElementAttribute *mea = NULL;
+	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 0, -1 );
+	mea->setName( "extra" );
+	mea->setOffset( daeOffsetOf(domInstanceWithExtra,elemExtra_array) );
+	mea->setElementType( domExtra::registerElement() );
+	cm->appendChild( mea );
+	
+	cm->setMaxOrdinal( 0 );
+	_Meta->setCMRoot( cm );	
 
 	//	Add attribute: url
  	{

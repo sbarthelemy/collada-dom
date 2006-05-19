@@ -57,7 +57,7 @@ endif
 
 #########################################################
 # common settings
-QUIET           := @
+#QUIET           := @
 
 ifeq ($(RELEASE),1)
 CCOPT			+= $(RELEASE_CCOPT)

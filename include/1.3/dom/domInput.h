@@ -51,7 +51,8 @@ public:	//Accessors and Mutators
 	 * Sets the idx attribute.
 	 * @param atIdx The new value for the idx attribute.
 	 */
-	void setIdx( xsNonNegativeInteger atIdx ) { attrIdx = atIdx; }
+	void setIdx( xsNonNegativeInteger atIdx ) { attrIdx = atIdx;
+	 _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the semantic attribute.
@@ -62,7 +63,8 @@ public:	//Accessors and Mutators
 	 * Sets the semantic attribute.
 	 * @param atSemantic The new value for the semantic attribute.
 	 */
-	void setSemantic( xsNMTOKEN atSemantic ) { attrSemantic = atSemantic; }
+	void setSemantic( xsNMTOKEN atSemantic ) { attrSemantic = atSemantic;
+	 _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the source attribute.
@@ -78,7 +80,8 @@ public:	//Accessors and Mutators
 	 * Sets the source attribute.
 	 * @param atSource The new value for the source attribute.
 	 */
-	void setSource( const xsAnyURI &atSource ) { attrSource.setURI( atSource.getURI() ); }
+	void setSource( const xsAnyURI &atSource ) { attrSource.setURI( atSource.getURI() );
+	 _validAttributeArray[2] = true; }
 
 protected:
 	/**

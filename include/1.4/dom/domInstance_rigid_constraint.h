@@ -46,7 +46,8 @@ public:	//Accessors and Mutators
 	 * Sets the constraint attribute.
 	 * @param atConstraint The new value for the constraint attribute.
 	 */
-	void setConstraint( xsNCName atConstraint ) { attrConstraint = atConstraint; }
+	void setConstraint( xsNCName atConstraint ) { attrConstraint = atConstraint;
+	 _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the extra element array.

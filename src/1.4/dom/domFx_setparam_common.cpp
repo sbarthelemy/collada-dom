@@ -13,6 +13,12 @@
 
 #include <dae/daeDom.h>
 #include <dom/domFx_setparam_common.h>
+#include <dae/daeMetaCMPolicy.h>
+#include <dae/daeMetaSequence.h>
+#include <dae/daeMetaChoice.h>
+#include <dae/daeMetaGroup.h>
+#include <dae/daeMetaAny.h>
+#include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
 domFx_setparam_common::create(daeInt bytes)
@@ -29,48 +35,26 @@ domFx_setparam_common::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fx_setparam_common" );
-	_Meta->setStaticPointerAddress(&domFx_setparam_common::_Meta);
 	_Meta->registerConstructor(domFx_setparam_common::create);
 
-	// Add elements: annotate, fx_basic_type_common
-    _Meta->appendArrayElement(domFx_annotate_common::registerElement(),daeOffsetOf(domFx_setparam_common,elemAnnotate_array),"annotate"); 
-    _Meta->appendElement(domFx_basic_type_common::registerElement(),daeOffsetOf(domFx_setparam_common,elemFx_basic_type_common));
-	_Meta->appendPossibleChild( "bool", _Meta->getMetaElements()[1]);
-	_Meta->appendPossibleChild( "bool2", _Meta->getMetaElements()[1]);
-	_Meta->appendPossibleChild( "bool3", _Meta->getMetaElements()[1]);
-	_Meta->appendPossibleChild( "bool4", _Meta->getMetaElements()[1]);
-	_Meta->appendPossibleChild( "int", _Meta->getMetaElements()[1]);
-	_Meta->appendPossibleChild( "int2", _Meta->getMetaElements()[1]);
-	_Meta->appendPossibleChild( "int3", _Meta->getMetaElements()[1]);
-	_Meta->appendPossibleChild( "int4", _Meta->getMetaElements()[1]);
-	_Meta->appendPossibleChild( "float", _Meta->getMetaElements()[1]);
-	_Meta->appendPossibleChild( "float2", _Meta->getMetaElements()[1]);
-	_Meta->appendPossibleChild( "float3", _Meta->getMetaElements()[1]);
-	_Meta->appendPossibleChild( "float4", _Meta->getMetaElements()[1]);
-	_Meta->appendPossibleChild( "float1x1", _Meta->getMetaElements()[1]);
-	_Meta->appendPossibleChild( "float1x2", _Meta->getMetaElements()[1]);
-	_Meta->appendPossibleChild( "float1x3", _Meta->getMetaElements()[1]);
-	_Meta->appendPossibleChild( "float1x4", _Meta->getMetaElements()[1]);
-	_Meta->appendPossibleChild( "float2x1", _Meta->getMetaElements()[1]);
-	_Meta->appendPossibleChild( "float2x2", _Meta->getMetaElements()[1]);
-	_Meta->appendPossibleChild( "float2x3", _Meta->getMetaElements()[1]);
-	_Meta->appendPossibleChild( "float2x4", _Meta->getMetaElements()[1]);
-	_Meta->appendPossibleChild( "float3x1", _Meta->getMetaElements()[1]);
-	_Meta->appendPossibleChild( "float3x2", _Meta->getMetaElements()[1]);
-	_Meta->appendPossibleChild( "float3x3", _Meta->getMetaElements()[1]);
-	_Meta->appendPossibleChild( "float3x4", _Meta->getMetaElements()[1]);
-	_Meta->appendPossibleChild( "float4x1", _Meta->getMetaElements()[1]);
-	_Meta->appendPossibleChild( "float4x2", _Meta->getMetaElements()[1]);
-	_Meta->appendPossibleChild( "float4x3", _Meta->getMetaElements()[1]);
-	_Meta->appendPossibleChild( "float4x4", _Meta->getMetaElements()[1]);
-	_Meta->appendPossibleChild( "surface", _Meta->getMetaElements()[1], "fx_surface_common");
-	_Meta->appendPossibleChild( "sampler1D", _Meta->getMetaElements()[1], "fx_sampler1D_common");
-	_Meta->appendPossibleChild( "sampler2D", _Meta->getMetaElements()[1], "fx_sampler2D_common");
-	_Meta->appendPossibleChild( "sampler3D", _Meta->getMetaElements()[1], "fx_sampler3D_common");
-	_Meta->appendPossibleChild( "samplerCUBE", _Meta->getMetaElements()[1], "fx_samplerCUBE_common");
-	_Meta->appendPossibleChild( "samplerRECT", _Meta->getMetaElements()[1], "fx_samplerRECT_common");
-	_Meta->appendPossibleChild( "samplerDEPTH", _Meta->getMetaElements()[1], "fx_samplerDEPTH_common");
-	_Meta->appendPossibleChild( "enum", _Meta->getMetaElements()[1]);
+	daeMetaCMPolicy *cm = NULL;
+	daeMetaElementAttribute *mea = NULL;
+	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 0, -1 );
+	mea->setName( "annotate" );
+	mea->setOffset( daeOffsetOf(domFx_setparam_common,elemAnnotate_array) );
+	mea->setElementType( domFx_annotate_common::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementAttribute( _Meta, cm, 1, 1, 1 );
+	mea->setName( "fx_basic_type_common" );
+	mea->setOffset( daeOffsetOf(domFx_setparam_common,elemFx_basic_type_common) );
+	mea->setElementType( domFx_basic_type_common::registerElement() );
+	cm->appendChild( new daeMetaGroup( mea, _Meta, cm, 1, 1, 1 ) );
+	
+	cm->setMaxOrdinal( 1 );
+	_Meta->setCMRoot( cm );	
 
 	//	Add attribute: ref
  	{

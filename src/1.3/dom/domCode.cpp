@@ -13,6 +13,12 @@
 
 #include <dae/daeDom.h>
 #include <dom/domCode.h>
+#include <dae/daeMetaCMPolicy.h>
+#include <dae/daeMetaSequence.h>
+#include <dae/daeMetaChoice.h>
+#include <dae/daeMetaGroup.h>
+#include <dae/daeMetaAny.h>
+#include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
 domCode::create(daeInt bytes)
@@ -30,7 +36,6 @@ domCode::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "code" );
-	_Meta->setStaticPointerAddress(&domCode::_Meta);
 	_Meta->registerConstructor(domCode::create);
 
 	//	Add attribute: _value
@@ -45,7 +50,7 @@ domCode::registerElement()
 
 	//	Add attribute: id
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
 		ma->setType( daeAtomicType::get("xsID"));
 		ma->setOffset( daeOffsetOf( domCode , attrId ));
@@ -56,7 +61,7 @@ domCode::registerElement()
 
 	//	Add attribute: lang
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "lang" );
 		ma->setType( daeAtomicType::get("xsNMTOKEN"));
 		ma->setOffset( daeOffsetOf( domCode , attrLang ));
@@ -68,7 +73,7 @@ domCode::registerElement()
 
 	//	Add attribute: profile
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "profile" );
 		ma->setType( daeAtomicType::get("xsString"));
 		ma->setOffset( daeOffsetOf( domCode , attrProfile ));
@@ -79,7 +84,7 @@ domCode::registerElement()
 
 	//	Add attribute: semantic
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "semantic" );
 		ma->setType( daeAtomicType::get("xsNMTOKEN"));
 		ma->setOffset( daeOffsetOf( domCode , attrSemantic ));
@@ -90,7 +95,7 @@ domCode::registerElement()
 
 	//	Add attribute: url
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "url" );
 		ma->setType( daeAtomicType::get("xsAnyURI"));
 		ma->setOffset( daeOffsetOf( domCode , attrUrl ));

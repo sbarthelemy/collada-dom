@@ -13,6 +13,12 @@
 
 #include <dae/daeDom.h>
 #include <dom/domArray.h>
+#include <dae/daeMetaCMPolicy.h>
+#include <dae/daeMetaSequence.h>
+#include <dae/daeMetaChoice.h>
+#include <dae/daeMetaGroup.h>
+#include <dae/daeMetaAny.h>
+#include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
 domArray::create(daeInt bytes)
@@ -29,7 +35,6 @@ domArray::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "array" );
-	_Meta->setStaticPointerAddress(&domArray::_Meta);
 	_Meta->registerConstructor(domArray::create);
 
 	//	Add attribute: _value
@@ -44,7 +49,7 @@ domArray::registerElement()
 
 	//	Add attribute: id
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
 		ma->setType( daeAtomicType::get("xsID"));
 		ma->setOffset( daeOffsetOf( domArray , attrId ));
@@ -55,7 +60,7 @@ domArray::registerElement()
 
 	//	Add attribute: name
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
 		ma->setType( daeAtomicType::get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domArray , attrName ));
@@ -66,7 +71,7 @@ domArray::registerElement()
 
 	//	Add attribute: count
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "count" );
 		ma->setType( daeAtomicType::get("xsNonNegativeInteger"));
 		ma->setOffset( daeOffsetOf( domArray , attrCount ));
@@ -78,7 +83,7 @@ domArray::registerElement()
 
 	//	Add attribute: type
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "type" );
 		ma->setType( daeAtomicType::get("ArrayTypes"));
 		ma->setOffset( daeOffsetOf( domArray , attrType ));
@@ -90,7 +95,7 @@ domArray::registerElement()
 
 	//	Add attribute: minInclusive
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "minInclusive" );
 		ma->setType( daeAtomicType::get("xsInteger"));
 		ma->setOffset( daeOffsetOf( domArray , attrMinInclusive ));
@@ -102,7 +107,7 @@ domArray::registerElement()
 
 	//	Add attribute: maxInclusive
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "maxInclusive" );
 		ma->setType( daeAtomicType::get("xsInteger"));
 		ma->setOffset( daeOffsetOf( domArray , attrMaxInclusive ));
@@ -114,7 +119,7 @@ domArray::registerElement()
 
 	//	Add attribute: digits
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "digits" );
 		ma->setType( daeAtomicType::get("xsShort"));
 		ma->setOffset( daeOffsetOf( domArray , attrDigits ));
@@ -126,7 +131,7 @@ domArray::registerElement()
 
 	//	Add attribute: magnitude
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "magnitude" );
 		ma->setType( daeAtomicType::get("xsShort"));
 		ma->setOffset( daeOffsetOf( domArray , attrMagnitude ));

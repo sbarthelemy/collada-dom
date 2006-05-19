@@ -13,6 +13,12 @@
 
 #include <dae/daeDom.h>
 #include <dom/domSkin.h>
+#include <dae/daeMetaCMPolicy.h>
+#include <dae/daeMetaSequence.h>
+#include <dae/daeMetaChoice.h>
+#include <dae/daeMetaGroup.h>
+#include <dae/daeMetaAny.h>
+#include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
 domSkin::create(daeInt bytes)
@@ -29,16 +35,30 @@ domSkin::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "skin" );
-	_Meta->setStaticPointerAddress(&domSkin::_Meta);
 	_Meta->registerConstructor(domSkin::create);
 
-	// Add elements: source, vertices
-    _Meta->appendArrayElement(domSource::registerElement(),daeOffsetOf(domSkin,elemSource_array));
-    _Meta->appendElement(domVertices::registerElement(),daeOffsetOf(domSkin,elemVertices));
+	daeMetaCMPolicy *cm = NULL;
+	daeMetaElementAttribute *mea = NULL;
+	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, -1 );
+	mea->setName( "source" );
+	mea->setOffset( daeOffsetOf(domSkin,elemSource_array) );
+	mea->setElementType( domSource::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementAttribute( _Meta, cm, 1, 1, 1 );
+	mea->setName( "vertices" );
+	mea->setOffset( daeOffsetOf(domSkin,elemVertices) );
+	mea->setElementType( domVertices::registerElement() );
+	cm->appendChild( mea );
+	
+	cm->setMaxOrdinal( 1 );
+	_Meta->setCMRoot( cm );	
 
 	//	Add attribute: id
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
 		ma->setType( daeAtomicType::get("xsID"));
 		ma->setOffset( daeOffsetOf( domSkin , attrId ));
@@ -49,7 +69,7 @@ domSkin::registerElement()
 
 	//	Add attribute: name
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
 		ma->setType( daeAtomicType::get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domSkin , attrName ));

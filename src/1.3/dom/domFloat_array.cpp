@@ -13,6 +13,12 @@
 
 #include <dae/daeDom.h>
 #include <dom/domFloat_array.h>
+#include <dae/daeMetaCMPolicy.h>
+#include <dae/daeMetaSequence.h>
+#include <dae/daeMetaChoice.h>
+#include <dae/daeMetaGroup.h>
+#include <dae/daeMetaAny.h>
+#include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
 domFloat_array::create(daeInt bytes)
@@ -29,7 +35,6 @@ domFloat_array::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float_array" );
-	_Meta->setStaticPointerAddress(&domFloat_array::_Meta);
 	_Meta->registerConstructor(domFloat_array::create);
 
 	//	Add attribute: _value
@@ -44,7 +49,7 @@ domFloat_array::registerElement()
 
 	//	Add attribute: id
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
 		ma->setType( daeAtomicType::get("xsID"));
 		ma->setOffset( daeOffsetOf( domFloat_array , attrId ));
@@ -55,7 +60,7 @@ domFloat_array::registerElement()
 
 	//	Add attribute: name
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
 		ma->setType( daeAtomicType::get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domFloat_array , attrName ));
@@ -66,7 +71,7 @@ domFloat_array::registerElement()
 
 	//	Add attribute: count
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "count" );
 		ma->setType( daeAtomicType::get("xsNonNegativeInteger"));
 		ma->setOffset( daeOffsetOf( domFloat_array , attrCount ));
@@ -78,7 +83,7 @@ domFloat_array::registerElement()
 
 	//	Add attribute: digits
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "digits" );
 		ma->setType( daeAtomicType::get("xsShort"));
 		ma->setOffset( daeOffsetOf( domFloat_array , attrDigits ));
@@ -90,7 +95,7 @@ domFloat_array::registerElement()
 
 	//	Add attribute: magnitude
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "magnitude" );
 		ma->setType( daeAtomicType::get("xsShort"));
 		ma->setOffset( daeOffsetOf( domFloat_array , attrMagnitude ));

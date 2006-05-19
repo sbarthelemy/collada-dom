@@ -13,6 +13,12 @@
 
 #include <dae/daeDom.h>
 #include <dom/domNode.h>
+#include <dae/daeMetaCMPolicy.h>
+#include <dae/daeMetaSequence.h>
+#include <dae/daeMetaChoice.h>
+#include <dae/daeMetaGroup.h>
+#include <dae/daeMetaAny.h>
+#include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
 domNode::create(daeInt bytes)
@@ -29,28 +35,88 @@ domNode::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "node" );
-	_Meta->setStaticPointerAddress(&domNode::_Meta);
 	_Meta->registerConstructor(domNode::create);
 
-	// Add elements: lookat, matrix, perspective, rotate, scale, skew, translate, boundingbox, instance, node, extra
-    _Meta->appendArrayElement(domLookat::registerElement(),daeOffsetOf(domNode,elemLookat_array));
-    _Meta->appendArrayElement(domMatrix::registerElement(),daeOffsetOf(domNode,elemMatrix_array));
-    _Meta->appendArrayElement(domPerspective::registerElement(),daeOffsetOf(domNode,elemPerspective_array));
-    _Meta->appendArrayElement(domRotate::registerElement(),daeOffsetOf(domNode,elemRotate_array));
-    _Meta->appendArrayElement(domScale::registerElement(),daeOffsetOf(domNode,elemScale_array));
-    _Meta->appendArrayElement(domSkew::registerElement(),daeOffsetOf(domNode,elemSkew_array));
-    _Meta->appendArrayElement(domTranslate::registerElement(),daeOffsetOf(domNode,elemTranslate_array));
-    _Meta->appendArrayElement(domBoundingbox::registerElement(),daeOffsetOf(domNode,elemBoundingbox_array));
-    _Meta->appendArrayElement(domInstance::registerElement(),daeOffsetOf(domNode,elemInstance_array));
-    _Meta->appendArrayElement(domNode::registerElement(),daeOffsetOf(domNode,elemNode_array));
-    _Meta->appendArrayElement(domExtra::registerElement(),daeOffsetOf(domNode,elemExtra_array));
+	daeMetaCMPolicy *cm = NULL;
+	daeMetaElementAttribute *mea = NULL;
+	cm = new daeMetaChoice( _Meta, cm, 0, 0, -1 );
+
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
+	mea->setName( "lookat" );
+	mea->setOffset( daeOffsetOf(domNode,elemLookat_array) );
+	mea->setElementType( domLookat::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
+	mea->setName( "matrix" );
+	mea->setOffset( daeOffsetOf(domNode,elemMatrix_array) );
+	mea->setElementType( domMatrix::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
+	mea->setName( "perspective" );
+	mea->setOffset( daeOffsetOf(domNode,elemPerspective_array) );
+	mea->setElementType( domPerspective::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
+	mea->setName( "rotate" );
+	mea->setOffset( daeOffsetOf(domNode,elemRotate_array) );
+	mea->setElementType( domRotate::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
+	mea->setName( "scale" );
+	mea->setOffset( daeOffsetOf(domNode,elemScale_array) );
+	mea->setElementType( domScale::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
+	mea->setName( "skew" );
+	mea->setOffset( daeOffsetOf(domNode,elemSkew_array) );
+	mea->setElementType( domSkew::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
+	mea->setName( "translate" );
+	mea->setOffset( daeOffsetOf(domNode,elemTranslate_array) );
+	mea->setElementType( domTranslate::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
+	mea->setName( "boundingbox" );
+	mea->setOffset( daeOffsetOf(domNode,elemBoundingbox_array) );
+	mea->setElementType( domBoundingbox::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
+	mea->setName( "instance" );
+	mea->setOffset( daeOffsetOf(domNode,elemInstance_array) );
+	mea->setElementType( domInstance::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
+	mea->setName( "node" );
+	mea->setOffset( daeOffsetOf(domNode,elemNode_array) );
+	mea->setElementType( domNode::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
+	mea->setName( "extra" );
+	mea->setOffset( daeOffsetOf(domNode,elemExtra_array) );
+	mea->setElementType( domExtra::registerElement() );
+	cm->appendChild( mea );
+	
+	cm->setMaxOrdinal( 0 );
+	_Meta->setCMRoot( cm );	
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domNode,_contents));
+    _Meta->addContentsOrder(daeOffsetOf(domNode,_contentsOrder));
 
 
 	//	Add attribute: id
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
 		ma->setType( daeAtomicType::get("xsID"));
 		ma->setOffset( daeOffsetOf( domNode , attrId ));
@@ -61,7 +127,7 @@ domNode::registerElement()
 
 	//	Add attribute: name
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
 		ma->setType( daeAtomicType::get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domNode , attrName ));
@@ -72,7 +138,7 @@ domNode::registerElement()
 
 	//	Add attribute: type
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "type" );
 		ma->setType( daeAtomicType::get("NodeType"));
 		ma->setOffset( daeOffsetOf( domNode , attrType ));

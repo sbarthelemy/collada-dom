@@ -13,6 +13,12 @@
 
 #include <dae/daeDom.h>
 #include <dom/domPolygons.h>
+#include <dae/daeMetaCMPolicy.h>
+#include <dae/daeMetaSequence.h>
+#include <dae/daeMetaChoice.h>
+#include <dae/daeMetaGroup.h>
+#include <dae/daeMetaAny.h>
+#include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
 domPolygons::create(daeInt bytes)
@@ -30,17 +36,36 @@ domPolygons::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "polygons" );
-	_Meta->setStaticPointerAddress(&domPolygons::_Meta);
 	_Meta->registerConstructor(domPolygons::create);
 
-	// Add elements: param, input, p
-    _Meta->appendArrayElement(domParam::registerElement(),daeOffsetOf(domPolygons,elemParam_array));
-    _Meta->appendArrayElement(domInput::registerElement(),daeOffsetOf(domPolygons,elemInput_array));
-    _Meta->appendArrayElement(domPolygons::domP::registerElement(),daeOffsetOf(domPolygons,elemP_array));
+	daeMetaCMPolicy *cm = NULL;
+	daeMetaElementAttribute *mea = NULL;
+	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 0, -1 );
+	mea->setName( "param" );
+	mea->setOffset( daeOffsetOf(domPolygons,elemParam_array) );
+	mea->setElementType( domParam::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 1, 0, -1 );
+	mea->setName( "input" );
+	mea->setOffset( daeOffsetOf(domPolygons,elemInput_array) );
+	mea->setElementType( domInput::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 2, 0, -1 );
+	mea->setName( "p" );
+	mea->setOffset( daeOffsetOf(domPolygons,elemP_array) );
+	mea->setElementType( domPolygons::domP::registerElement() );
+	cm->appendChild( mea );
+	
+	cm->setMaxOrdinal( 2 );
+	_Meta->setCMRoot( cm );	
 
 	//	Add attribute: count
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "count" );
 		ma->setType( daeAtomicType::get("xsNonNegativeInteger"));
 		ma->setOffset( daeOffsetOf( domPolygons , attrCount ));
@@ -52,7 +77,7 @@ domPolygons::registerElement()
 
 	//	Add attribute: material
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "material" );
 		ma->setType( daeAtomicType::get("xsAnyURI"));
 		ma->setOffset( daeOffsetOf( domPolygons , attrMaterial ));
@@ -83,11 +108,21 @@ domPolygons::domP::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "p" );
-	_Meta->setStaticPointerAddress(&domPolygons::domP::_Meta);
 	_Meta->registerConstructor(domPolygons::domP::create);
 
-	// Add elements: h
-    _Meta->appendArrayElement(domPolygons::domP::domH::registerElement(),daeOffsetOf(domPolygons::domP,elemH_array));
+	_Meta->setIsInnerClass( true );
+	daeMetaCMPolicy *cm = NULL;
+	daeMetaElementAttribute *mea = NULL;
+	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 0, -1 );
+	mea->setName( "h" );
+	mea->setOffset( daeOffsetOf(domPolygons::domP,elemH_array) );
+	mea->setElementType( domPolygons::domP::domH::registerElement() );
+	cm->appendChild( mea );
+	
+	cm->setMaxOrdinal( 0 );
+	_Meta->setCMRoot( cm );	
 	//	Add attribute: _value
  	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;
@@ -120,9 +155,9 @@ domPolygons::domP::domH::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "h" );
-	_Meta->setStaticPointerAddress(&domPolygons::domP::domH::_Meta);
 	_Meta->registerConstructor(domPolygons::domP::domH::create);
 
+	_Meta->setIsInnerClass( true );
 	//	Add attribute: _value
  	{
 		daeMetaAttribute *ma = new daeMetaArrayAttribute;

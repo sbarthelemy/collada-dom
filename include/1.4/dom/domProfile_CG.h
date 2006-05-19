@@ -302,7 +302,8 @@ public:
 					 * Sets the source attribute.
 					 * @param atSource The new value for the source attribute.
 					 */
-					void setSource( xsNCName atSource ) { attrSource = atSource; }
+					void setSource( xsNCName atSource ) { attrSource = atSource;				
+	 _validAttributeArray[0] = true; }
 
 					/**
 					 * Gets the value of this element.
@@ -389,7 +390,8 @@ public:
 						 * Sets the ref attribute.
 						 * @param atRef The new value for the ref attribute.
 						 */
-						void setRef( xsNCName atRef ) { attrRef = atRef; }
+						void setRef( xsNCName atRef ) { attrRef = atRef;					
+	 _validAttributeArray[0] = true; }
 
 					protected:
 						/**
@@ -449,6 +451,10 @@ public:
 					 * Used to preserve order in elements that do not specify strict sequencing of sub-elements.
 					 */
 					daeElementRefArray _contents;
+					/**
+					 * Used to preserve order in elements that have a complex content model.
+					 */
+					daeUIntArray       _contentsOrder;
 
 
 				public:	//Accessors and Mutators
@@ -461,7 +467,8 @@ public:
 					 * Sets the symbol attribute.
 					 * @param atSymbol The new value for the symbol attribute.
 					 */
-					void setSymbol( xsNCName atSymbol ) { attrSymbol = atSymbol; }
+					void setSymbol( xsNCName atSymbol ) { attrSymbol = atSymbol;				
+	 _validAttributeArray[0] = true; }
 
 					/**
 					 * Gets the cg_param_type element.
@@ -558,7 +565,8 @@ public:
 				 * Sets the stage attribute.
 				 * @param atStage The new value for the stage attribute.
 				 */
-				void setStage( domCg_pipeline_stage atStage ) { attrStage = atStage; }
+				void setStage( domCg_pipeline_stage atStage ) { attrStage = atStage;			
+	 _validAttributeArray[0] = true; }
 
 				/**
 				 * Gets the annotate element array.
@@ -662,6 +670,10 @@ public:
 			 * Used to preserve order in elements that do not specify strict sequencing of sub-elements.
 			 */
 			daeElementRefArray _contents;
+			/**
+			 * Used to preserve order in elements that have a complex content model.
+			 */
+			daeUIntArray       _contentsOrder;
 
 
 		public:	//Accessors and Mutators
@@ -674,7 +686,8 @@ public:
 			 * Sets the sid attribute.
 			 * @param atSid The new value for the sid attribute.
 			 */
-			void setSid( xsNCName atSid ) { attrSid = atSid; }
+			void setSid( xsNCName atSid ) { attrSid = atSid;		
+	 _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the annotate element array.
@@ -856,6 +869,10 @@ public:
 		 * Used to preserve order in elements that do not specify strict sequencing of sub-elements.
 		 */
 		daeElementRefArray _contents;
+		/**
+		 * Used to preserve order in elements that have a complex content model.
+		 */
+		daeUIntArray       _contentsOrder;
 
 
 	public:	//Accessors and Mutators
@@ -868,7 +885,8 @@ public:
 		 * Sets the id attribute.
 		 * @param atId The new value for the id attribute.
 		 */
-		void setId( xsID atId ) { attrId = atId; }
+		void setId( xsID atId ) { attrId = atId;	
+	 _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the sid attribute.
@@ -879,7 +897,8 @@ public:
 		 * Sets the sid attribute.
 		 * @param atSid The new value for the sid attribute.
 		 */
-		void setSid( xsNCName atSid ) { attrSid = atSid; }
+		void setSid( xsNCName atSid ) { attrSid = atSid;	
+	 _validAttributeArray[1] = true; }
 
 		/**
 		 * Gets the asset element.
@@ -1028,6 +1047,10 @@ protected:  // Elements
 	 * Used to preserve order in elements that do not specify strict sequencing of sub-elements.
 	 */
 	daeElementRefArray _contents;
+	/**
+	 * Used to preserve order in elements that have a complex content model.
+	 */
+	daeUIntArray       _contentsOrder;
 
 
 public:	//Accessors and Mutators
@@ -1040,7 +1063,8 @@ public:	//Accessors and Mutators
 	 * Sets the platform attribute.
 	 * @param atPlatform The new value for the platform attribute.
 	 */
-	void setPlatform( xsNCName atPlatform ) { attrPlatform = atPlatform; }
+	void setPlatform( xsNCName atPlatform ) { attrPlatform = atPlatform;
+	 _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the code element array.

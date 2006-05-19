@@ -11,16 +11,18 @@
  * License. 
  */
 
+ 
 #include <dom/domTypes.h>
-#include <dom.h>
+#include <dae/daeDom.h>
 #include <dom/domCOLLADA.h>
+
 
 void registerDomTypes()
 {
 
 	daeAtomicType* type = NULL;
 	// TYPEDEF: Bool	//check if this type has an existing base
-	type = daeAtomicType::get( "xsBoolean");
+	type = daeAtomicType::get("xsBoolean");
 	if ( type == NULL ) { //register as a raw type
 		type = new daeRawRefType;
 		type->_nameBindings.append("Bool");
@@ -31,7 +33,7 @@ void registerDomTypes()
 	}
 	
 	// TYPEDEF: DateTime	//check if this type has an existing base
-	type = daeAtomicType::get( "xsDateTime");
+	type = daeAtomicType::get("xsDateTime");
 	if ( type == NULL ) { //register as a raw type
 		type = new daeRawRefType;
 		type->_nameBindings.append("DateTime");
@@ -42,7 +44,7 @@ void registerDomTypes()
 	}
 	
 	// TYPEDEF: Float	//check if this type has an existing base
-	type = daeAtomicType::get( "xsDouble");
+	type = daeAtomicType::get("xsDouble");
 	if ( type == NULL ) { //register as a raw type
 		type = new daeRawRefType;
 		type->_nameBindings.append("Float");
@@ -53,7 +55,7 @@ void registerDomTypes()
 	}
 	
 	// TYPEDEF: Int	//check if this type has an existing base
-	type = daeAtomicType::get( "xsLong");
+	type = daeAtomicType::get("xsLong");
 	if ( type == NULL ) { //register as a raw type
 		type = new daeRawRefType;
 		type->_nameBindings.append("Int");
@@ -64,7 +66,7 @@ void registerDomTypes()
 	}
 	
 	// TYPEDEF: Name	//check if this type has an existing base
-	type = daeAtomicType::get( "xsName");
+	type = daeAtomicType::get("xsName");
 	if ( type == NULL ) { //register as a raw type
 		type = new daeRawRefType;
 		type->_nameBindings.append("Name");
@@ -75,7 +77,7 @@ void registerDomTypes()
 	}
 	
 	// TYPEDEF: String	//check if this type has an existing base
-	type = daeAtomicType::get( "xsString");
+	type = daeAtomicType::get("xsString");
 	if ( type == NULL ) { //register as a raw type
 		type = new daeRawRefType;
 		type->_nameBindings.append("String");
@@ -86,7 +88,7 @@ void registerDomTypes()
 	}
 	
 	// TYPEDEF: Token	//check if this type has an existing base
-	type = daeAtomicType::get( "xsToken");
+	type = daeAtomicType::get("xsToken");
 	if ( type == NULL ) { //register as a raw type
 		type = new daeRawRefType;
 		type->_nameBindings.append("Token");
@@ -97,7 +99,7 @@ void registerDomTypes()
 	}
 	
 	// TYPEDEF: ListOfBools	//check if this type has an existing base
-	type = daeAtomicType::get( "xsBoolean");
+	type = daeAtomicType::get("xsBoolean");
 	if ( type == NULL ) { //register as a raw type
 		type = new daeRawRefType;
 		type->_nameBindings.append("ListOfBools");
@@ -108,7 +110,7 @@ void registerDomTypes()
 	}
 	
 	// TYPEDEF: ListOfFloats	//check if this type has an existing base
-	type = daeAtomicType::get( "xsDouble");
+	type = daeAtomicType::get("xsDouble");
 	if ( type == NULL ) { //register as a raw type
 		type = new daeRawRefType;
 		type->_nameBindings.append("ListOfFloats");
@@ -119,7 +121,7 @@ void registerDomTypes()
 	}
 	
 	// TYPEDEF: ListOfHexBinary	//check if this type has an existing base
-	type = daeAtomicType::get( "xsHexBinary");
+	type = daeAtomicType::get("xsHexBinary");
 	if ( type == NULL ) { //register as a raw type
 		type = new daeRawRefType;
 		type->_nameBindings.append("ListOfHexBinary");
@@ -130,7 +132,7 @@ void registerDomTypes()
 	}
 	
 	// TYPEDEF: ListOfInts	//check if this type has an existing base
-	type = daeAtomicType::get( "xsLong");
+	type = daeAtomicType::get("xsLong");
 	if ( type == NULL ) { //register as a raw type
 		type = new daeRawRefType;
 		type->_nameBindings.append("ListOfInts");
@@ -141,7 +143,7 @@ void registerDomTypes()
 	}
 	
 	// TYPEDEF: ListOfNames	//check if this type has an existing base
-	type = daeAtomicType::get( "xsName");
+	type = daeAtomicType::get("xsName");
 	if ( type == NULL ) { //register as a raw type
 		type = new daeRawRefType;
 		type->_nameBindings.append("ListOfNames");
@@ -152,7 +154,7 @@ void registerDomTypes()
 	}
 	
 	// TYPEDEF: ListOfTokens	//check if this type has an existing base
-	type = daeAtomicType::get( "xsToken");
+	type = daeAtomicType::get("xsToken");
 	if ( type == NULL ) { //register as a raw type
 		type = new daeRawRefType;
 		type->_nameBindings.append("ListOfTokens");
@@ -163,7 +165,7 @@ void registerDomTypes()
 	}
 	
 	// TYPEDEF: Bool2	//check if this type has an existing base
-	type = daeAtomicType::get( "ListOfBools");
+	type = daeAtomicType::get("ListOfBools");
 	if ( type == NULL ) { //register as a raw type
 		type = new daeRawRefType;
 		type->_nameBindings.append("Bool2");
@@ -174,7 +176,7 @@ void registerDomTypes()
 	}
 	
 	// TYPEDEF: Bool3	//check if this type has an existing base
-	type = daeAtomicType::get( "ListOfBools");
+	type = daeAtomicType::get("ListOfBools");
 	if ( type == NULL ) { //register as a raw type
 		type = new daeRawRefType;
 		type->_nameBindings.append("Bool3");
@@ -185,7 +187,7 @@ void registerDomTypes()
 	}
 	
 	// TYPEDEF: Bool4	//check if this type has an existing base
-	type = daeAtomicType::get( "ListOfBools");
+	type = daeAtomicType::get("ListOfBools");
 	if ( type == NULL ) { //register as a raw type
 		type = new daeRawRefType;
 		type->_nameBindings.append("Bool4");
@@ -196,7 +198,7 @@ void registerDomTypes()
 	}
 	
 	// TYPEDEF: Float2	//check if this type has an existing base
-	type = daeAtomicType::get( "ListOfFloats");
+	type = daeAtomicType::get("ListOfFloats");
 	if ( type == NULL ) { //register as a raw type
 		type = new daeRawRefType;
 		type->_nameBindings.append("Float2");
@@ -207,7 +209,7 @@ void registerDomTypes()
 	}
 	
 	// TYPEDEF: Float3	//check if this type has an existing base
-	type = daeAtomicType::get( "ListOfFloats");
+	type = daeAtomicType::get("ListOfFloats");
 	if ( type == NULL ) { //register as a raw type
 		type = new daeRawRefType;
 		type->_nameBindings.append("Float3");
@@ -218,7 +220,7 @@ void registerDomTypes()
 	}
 	
 	// TYPEDEF: Float4	//check if this type has an existing base
-	type = daeAtomicType::get( "ListOfFloats");
+	type = daeAtomicType::get("ListOfFloats");
 	if ( type == NULL ) { //register as a raw type
 		type = new daeRawRefType;
 		type->_nameBindings.append("Float4");
@@ -229,7 +231,7 @@ void registerDomTypes()
 	}
 	
 	// TYPEDEF: Float7	//check if this type has an existing base
-	type = daeAtomicType::get( "ListOfFloats");
+	type = daeAtomicType::get("ListOfFloats");
 	if ( type == NULL ) { //register as a raw type
 		type = new daeRawRefType;
 		type->_nameBindings.append("Float7");
@@ -240,7 +242,7 @@ void registerDomTypes()
 	}
 	
 	// TYPEDEF: Float2x2	//check if this type has an existing base
-	type = daeAtomicType::get( "ListOfFloats");
+	type = daeAtomicType::get("ListOfFloats");
 	if ( type == NULL ) { //register as a raw type
 		type = new daeRawRefType;
 		type->_nameBindings.append("Float2x2");
@@ -251,7 +253,7 @@ void registerDomTypes()
 	}
 	
 	// TYPEDEF: Float3x3	//check if this type has an existing base
-	type = daeAtomicType::get( "ListOfFloats");
+	type = daeAtomicType::get("ListOfFloats");
 	if ( type == NULL ) { //register as a raw type
 		type = new daeRawRefType;
 		type->_nameBindings.append("Float3x3");
@@ -262,7 +264,7 @@ void registerDomTypes()
 	}
 	
 	// TYPEDEF: Float4x4	//check if this type has an existing base
-	type = daeAtomicType::get( "ListOfFloats");
+	type = daeAtomicType::get("ListOfFloats");
 	if ( type == NULL ) { //register as a raw type
 		type = new daeRawRefType;
 		type->_nameBindings.append("Float4x4");
@@ -273,7 +275,7 @@ void registerDomTypes()
 	}
 	
 	// TYPEDEF: Int2	//check if this type has an existing base
-	type = daeAtomicType::get( "ListOfInts");
+	type = daeAtomicType::get("ListOfInts");
 	if ( type == NULL ) { //register as a raw type
 		type = new daeRawRefType;
 		type->_nameBindings.append("Int2");
@@ -284,7 +286,7 @@ void registerDomTypes()
 	}
 	
 	// TYPEDEF: Int3	//check if this type has an existing base
-	type = daeAtomicType::get( "ListOfInts");
+	type = daeAtomicType::get("ListOfInts");
 	if ( type == NULL ) { //register as a raw type
 		type = new daeRawRefType;
 		type->_nameBindings.append("Int3");
@@ -295,7 +297,7 @@ void registerDomTypes()
 	}
 	
 	// TYPEDEF: Int4	//check if this type has an existing base
-	type = daeAtomicType::get( "ListOfInts");
+	type = daeAtomicType::get("ListOfInts");
 	if ( type == NULL ) { //register as a raw type
 		type = new daeRawRefType;
 		type->_nameBindings.append("Int4");
@@ -306,7 +308,7 @@ void registerDomTypes()
 	}
 	
 	// TYPEDEF: Int2x2	//check if this type has an existing base
-	type = daeAtomicType::get( "ListOfInts");
+	type = daeAtomicType::get("ListOfInts");
 	if ( type == NULL ) { //register as a raw type
 		type = new daeRawRefType;
 		type->_nameBindings.append("Int2x2");
@@ -317,7 +319,7 @@ void registerDomTypes()
 	}
 	
 	// TYPEDEF: Int3x3	//check if this type has an existing base
-	type = daeAtomicType::get( "ListOfInts");
+	type = daeAtomicType::get("ListOfInts");
 	if ( type == NULL ) { //register as a raw type
 		type = new daeRawRefType;
 		type->_nameBindings.append("Int3x3");
@@ -328,7 +330,7 @@ void registerDomTypes()
 	}
 	
 	// TYPEDEF: Int4x4	//check if this type has an existing base
-	type = daeAtomicType::get( "ListOfInts");
+	type = daeAtomicType::get("ListOfInts");
 	if ( type == NULL ) { //register as a raw type
 		type = new daeRawRefType;
 		type->_nameBindings.append("Int4x4");
@@ -434,11 +436,6 @@ void registerDomTypes()
 
 }
 
-void bindDomTypes() {
-
-
-	
-}
 daeMetaElement* registerDomElements()
 {
 	daeMetaElement* meta = domCOLLADA::registerElement();

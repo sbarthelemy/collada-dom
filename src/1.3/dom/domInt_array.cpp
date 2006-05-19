@@ -13,6 +13,12 @@
 
 #include <dae/daeDom.h>
 #include <dom/domInt_array.h>
+#include <dae/daeMetaCMPolicy.h>
+#include <dae/daeMetaSequence.h>
+#include <dae/daeMetaChoice.h>
+#include <dae/daeMetaGroup.h>
+#include <dae/daeMetaAny.h>
+#include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
 domInt_array::create(daeInt bytes)
@@ -29,7 +35,6 @@ domInt_array::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "int_array" );
-	_Meta->setStaticPointerAddress(&domInt_array::_Meta);
 	_Meta->registerConstructor(domInt_array::create);
 
 	//	Add attribute: _value
@@ -44,7 +49,7 @@ domInt_array::registerElement()
 
 	//	Add attribute: id
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
 		ma->setType( daeAtomicType::get("xsID"));
 		ma->setOffset( daeOffsetOf( domInt_array , attrId ));
@@ -55,7 +60,7 @@ domInt_array::registerElement()
 
 	//	Add attribute: name
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
 		ma->setType( daeAtomicType::get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domInt_array , attrName ));
@@ -66,7 +71,7 @@ domInt_array::registerElement()
 
 	//	Add attribute: count
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "count" );
 		ma->setType( daeAtomicType::get("xsNonNegativeInteger"));
 		ma->setOffset( daeOffsetOf( domInt_array , attrCount ));
@@ -78,7 +83,7 @@ domInt_array::registerElement()
 
 	//	Add attribute: minInclusive
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "minInclusive" );
 		ma->setType( daeAtomicType::get("xsInteger"));
 		ma->setOffset( daeOffsetOf( domInt_array , attrMinInclusive ));
@@ -90,7 +95,7 @@ domInt_array::registerElement()
 
 	//	Add attribute: maxInclusive
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "maxInclusive" );
 		ma->setType( daeAtomicType::get("xsInteger"));
 		ma->setOffset( daeOffsetOf( domInt_array , attrMaxInclusive ));

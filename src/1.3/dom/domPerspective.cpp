@@ -13,6 +13,12 @@
 
 #include <dae/daeDom.h>
 #include <dom/domPerspective.h>
+#include <dae/daeMetaCMPolicy.h>
+#include <dae/daeMetaSequence.h>
+#include <dae/daeMetaChoice.h>
+#include <dae/daeMetaGroup.h>
+#include <dae/daeMetaAny.h>
+#include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
 domPerspective::create(daeInt bytes)
@@ -29,7 +35,6 @@ domPerspective::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "perspective" );
-	_Meta->setStaticPointerAddress(&domPerspective::_Meta);
 	_Meta->registerConstructor(domPerspective::create);
 
 	//	Add attribute: _value
@@ -44,7 +49,7 @@ domPerspective::registerElement()
 
 	//	Add attribute: sid
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
 		ma->setType( daeAtomicType::get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domPerspective , attrSid ));

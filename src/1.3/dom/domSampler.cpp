@@ -13,6 +13,12 @@
 
 #include <dae/daeDom.h>
 #include <dom/domSampler.h>
+#include <dae/daeMetaCMPolicy.h>
+#include <dae/daeMetaSequence.h>
+#include <dae/daeMetaChoice.h>
+#include <dae/daeMetaGroup.h>
+#include <dae/daeMetaAny.h>
+#include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
 domSampler::create(daeInt bytes)
@@ -29,15 +35,24 @@ domSampler::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "sampler" );
-	_Meta->setStaticPointerAddress(&domSampler::_Meta);
 	_Meta->registerConstructor(domSampler::create);
 
-	// Add elements: input
-    _Meta->appendArrayElement(domSampler::domInput::registerElement(),daeOffsetOf(domSampler,elemInput_array));
+	daeMetaCMPolicy *cm = NULL;
+	daeMetaElementAttribute *mea = NULL;
+	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, -1 );
+	mea->setName( "input" );
+	mea->setOffset( daeOffsetOf(domSampler,elemInput_array) );
+	mea->setElementType( domSampler::domInput::registerElement() );
+	cm->appendChild( mea );
+	
+	cm->setMaxOrdinal( 0 );
+	_Meta->setCMRoot( cm );	
 
 	//	Add attribute: id
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
 		ma->setType( daeAtomicType::get("xsID"));
 		ma->setOffset( daeOffsetOf( domSampler , attrId ));
@@ -48,7 +63,7 @@ domSampler::registerElement()
 
 	//	Add attribute: name
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
 		ma->setType( daeAtomicType::get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domSampler , attrName ));
@@ -80,13 +95,13 @@ domSampler::domInput::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "input" );
-	_Meta->setStaticPointerAddress(&domSampler::domInput::_Meta);
 	_Meta->registerConstructor(domSampler::domInput::create);
 
+	_Meta->setIsInnerClass( true );
 
 	//	Add attribute: semantic
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "semantic" );
 		ma->setType( daeAtomicType::get("xsNMTOKEN"));
 		ma->setOffset( daeOffsetOf( domSampler::domInput , attrSemantic ));
@@ -98,7 +113,7 @@ domSampler::domInput::registerElement()
 
 	//	Add attribute: source
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "source" );
 		ma->setType( daeAtomicType::get("xsAnyURI"));
 		ma->setOffset( daeOffsetOf( domSampler::domInput , attrSource ));

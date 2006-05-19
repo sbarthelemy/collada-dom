@@ -29,8 +29,14 @@ SRC				 := dae.cpp \
 					daeErrorHandler.cpp \
 					daeIDRef.cpp \
 					daeMemorySystem.cpp \
+					daeMetaAny.cpp \
 					daeMetaAttribute.cpp \
+					daeMetaChoice.cpp \
 					daeMetaElement.cpp \
+					daeMetaElementAttribute.cpp \
+					daeMetaGroup.cpp \
+					daeMetaSequence.cpp \
+					daeSIDResolver.cpp \
 					daeStringRef.cpp \
 					daeStringTable.cpp \
 					daeURI.cpp \

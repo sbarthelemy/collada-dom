@@ -13,6 +13,12 @@
 
 #include <dae/daeDom.h>
 #include <dom/domMaterial.h>
+#include <dae/daeMetaCMPolicy.h>
+#include <dae/daeMetaSequence.h>
+#include <dae/daeMetaChoice.h>
+#include <dae/daeMetaGroup.h>
+#include <dae/daeMetaAny.h>
+#include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
 domMaterial::create(daeInt bytes)
@@ -29,17 +35,36 @@ domMaterial::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "material" );
-	_Meta->setStaticPointerAddress(&domMaterial::_Meta);
 	_Meta->registerConstructor(domMaterial::create);
 
-	// Add elements: asset, param, shader
-    _Meta->appendElement(domAsset::registerElement(),daeOffsetOf(domMaterial,elemAsset));
-    _Meta->appendArrayElement(domParam::registerElement(),daeOffsetOf(domMaterial,elemParam_array));
-    _Meta->appendArrayElement(domShader::registerElement(),daeOffsetOf(domMaterial,elemShader_array));
+	daeMetaCMPolicy *cm = NULL;
+	daeMetaElementAttribute *mea = NULL;
+	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+
+	mea = new daeMetaElementAttribute( _Meta, cm, 0, 0, 1 );
+	mea->setName( "asset" );
+	mea->setOffset( daeOffsetOf(domMaterial,elemAsset) );
+	mea->setElementType( domAsset::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 1, 0, -1 );
+	mea->setName( "param" );
+	mea->setOffset( daeOffsetOf(domMaterial,elemParam_array) );
+	mea->setElementType( domParam::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 2, 1, -1 );
+	mea->setName( "shader" );
+	mea->setOffset( daeOffsetOf(domMaterial,elemShader_array) );
+	mea->setElementType( domShader::registerElement() );
+	cm->appendChild( mea );
+	
+	cm->setMaxOrdinal( 2 );
+	_Meta->setCMRoot( cm );	
 
 	//	Add attribute: id
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
 		ma->setType( daeAtomicType::get("xsID"));
 		ma->setOffset( daeOffsetOf( domMaterial , attrId ));
@@ -50,7 +75,7 @@ domMaterial::registerElement()
 
 	//	Add attribute: name
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
 		ma->setType( daeAtomicType::get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domMaterial , attrName ));

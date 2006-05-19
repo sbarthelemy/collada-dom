@@ -13,6 +13,12 @@
 
 #include <dae/daeDom.h>
 #include <dom/domAnimation.h>
+#include <dae/daeMetaCMPolicy.h>
+#include <dae/daeMetaSequence.h>
+#include <dae/daeMetaChoice.h>
+#include <dae/daeMetaGroup.h>
+#include <dae/daeMetaAny.h>
+#include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
 domAnimation::create(daeInt bytes)
@@ -29,17 +35,36 @@ domAnimation::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "animation" );
-	_Meta->setStaticPointerAddress(&domAnimation::_Meta);
 	_Meta->registerConstructor(domAnimation::create);
 
-	// Add elements: source, sampler, channel
-    _Meta->appendArrayElement(domSource::registerElement(),daeOffsetOf(domAnimation,elemSource_array));
-    _Meta->appendArrayElement(domSampler::registerElement(),daeOffsetOf(domAnimation,elemSampler_array));
-    _Meta->appendArrayElement(domChannel::registerElement(),daeOffsetOf(domAnimation,elemChannel_array));
+	daeMetaCMPolicy *cm = NULL;
+	daeMetaElementAttribute *mea = NULL;
+	cm = new daeMetaSequence( _Meta, cm, 0, 1, -1 );
+
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, -1 );
+	mea->setName( "source" );
+	mea->setOffset( daeOffsetOf(domAnimation,elemSource_array) );
+	mea->setElementType( domSource::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 1, 1, -1 );
+	mea->setName( "sampler" );
+	mea->setOffset( daeOffsetOf(domAnimation,elemSampler_array) );
+	mea->setElementType( domSampler::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 2, 1, -1 );
+	mea->setName( "channel" );
+	mea->setOffset( daeOffsetOf(domAnimation,elemChannel_array) );
+	mea->setElementType( domChannel::registerElement() );
+	cm->appendChild( mea );
+	
+	cm->setMaxOrdinal( 2 );
+	_Meta->setCMRoot( cm );	
 
 	//	Add attribute: id
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "id" );
 		ma->setType( daeAtomicType::get("xsID"));
 		ma->setOffset( daeOffsetOf( domAnimation , attrId ));
@@ -50,7 +75,7 @@ domAnimation::registerElement()
 
 	//	Add attribute: name
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "name" );
 		ma->setType( daeAtomicType::get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domAnimation , attrName ));

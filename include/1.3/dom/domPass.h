@@ -61,7 +61,8 @@ public:
 		 * Sets the semantic attribute.
 		 * @param atSemantic The new value for the semantic attribute.
 		 */
-		void setSemantic( xsNMTOKEN atSemantic ) { attrSemantic = atSemantic; }
+		void setSemantic( xsNMTOKEN atSemantic ) { attrSemantic = atSemantic;	
+	 _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the source attribute.
@@ -77,7 +78,8 @@ public:
 		 * Sets the source attribute.
 		 * @param atSource The new value for the source attribute.
 		 */
-		void setSource( const xsAnyURI &atSource ) { attrSource.setURI( atSource.getURI() ); }
+		void setSource( const xsAnyURI &atSource ) { attrSource.setURI( atSource.getURI() );	
+	 _validAttributeArray[1] = true; }
 
 	protected:
 		/**

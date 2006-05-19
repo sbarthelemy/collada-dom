@@ -13,6 +13,12 @@
 
 #include <dae/daeDom.h>
 #include <dom/domScale.h>
+#include <dae/daeMetaCMPolicy.h>
+#include <dae/daeMetaSequence.h>
+#include <dae/daeMetaChoice.h>
+#include <dae/daeMetaGroup.h>
+#include <dae/daeMetaAny.h>
+#include <dae/daeMetaElementAttribute.h>
 
 daeElementRef
 domScale::create(daeInt bytes)
@@ -29,7 +35,6 @@ domScale::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "scale" );
-	_Meta->setStaticPointerAddress(&domScale::_Meta);
 	_Meta->registerConstructor(domScale::create);
 
 	//	Add attribute: _value
@@ -44,7 +49,7 @@ domScale::registerElement()
 
 	//	Add attribute: sid
  	{
-		daeMetaAttribute* ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "sid" );
 		ma->setType( daeAtomicType::get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domScale , attrSid ));

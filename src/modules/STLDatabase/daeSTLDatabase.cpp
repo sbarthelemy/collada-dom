@@ -476,7 +476,7 @@ daeInt daeSTLDatabase::getElement(daeElement** pElement,daeInt index,daeString n
 					}
 					count++;
 				}
-				i++;
+				++i;
 			}
 			return DAE_ERR_QUERY_NO_MATCH;
 		}
@@ -496,7 +496,7 @@ daeInt daeSTLDatabase::getElement(daeElement** pElement,daeInt index,daeString n
 					}
 					count++;
 				}
-				i++;
+				++i;
 			}
 			return DAE_ERR_QUERY_NO_MATCH;
 		}
@@ -527,7 +527,7 @@ daeInt daeSTLDatabase::getElement(daeElement** pElement,daeInt index,daeString n
 					}
 					count++;
 				}
-				i++;
+				++i;
 			}
 			return DAE_ERR_QUERY_NO_MATCH;
 		}
