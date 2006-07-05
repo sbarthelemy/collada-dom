@@ -38,10 +38,15 @@ public:
 	{
 	protected:  // Attributes
 /**
- *  “platform” defines a string that specifies which platform this is
- * hint is aimed for. 
+ *  A platform defines a string that specifies which platform this is hint
+ * is aimed for. 
  */
 		xsNCName attrPlatform;
+/**
+ *  A profile defines a string that specifies which API profile this is hint
+ * is aimed for. 
+ */
+		xsNCName attrProfile;
 /**
  *  A reference to the technique to use for the specified platform. 
  */
@@ -58,8 +63,20 @@ public:
 		 * Sets the platform attribute.
 		 * @param atPlatform The new value for the platform attribute.
 		 */
-		void setPlatform( xsNCName atPlatform ) { attrPlatform = atPlatform;	
+		void setPlatform( xsNCName atPlatform ) { *(daeStringRef*)&attrPlatform = atPlatform;	
 	 _validAttributeArray[0] = true; }
+
+		/**
+		 * Gets the profile attribute.
+		 * @return Returns a xsNCName of the profile attribute.
+		 */
+		xsNCName getProfile() const { return attrProfile; }
+		/**
+		 * Sets the profile attribute.
+		 * @param atProfile The new value for the profile attribute.
+		 */
+		void setProfile( xsNCName atProfile ) { *(daeStringRef*)&attrProfile = atProfile;	
+	 _validAttributeArray[1] = true; }
 
 		/**
 		 * Gets the ref attribute.
@@ -70,14 +87,14 @@ public:
 		 * Sets the ref attribute.
 		 * @param atRef The new value for the ref attribute.
 		 */
-		void setRef( xsNCName atRef ) { attrRef = atRef;	
-	 _validAttributeArray[1] = true; }
+		void setRef( xsNCName atRef ) { *(daeStringRef*)&attrRef = atRef;	
+	 _validAttributeArray[2] = true; }
 
 	protected:
 		/**
 		 * Constructor
 		 */
-		domTechnique_hint() : attrPlatform(), attrRef() {}
+		domTechnique_hint() : attrPlatform(), attrProfile(), attrRef() {}
 		/**
 		 * Destructor
 		 */
@@ -123,7 +140,7 @@ public:
 	class domSetparam : public daeElement
 	{
 	protected:  // Attribute
-		xsNCName attrRef;
+		xsToken attrRef;
 
 	protected:  // Element
 		domFx_basic_type_commonRef elemFx_basic_type_common;
@@ -131,14 +148,14 @@ public:
 	public:	//Accessors and Mutators
 		/**
 		 * Gets the ref attribute.
-		 * @return Returns a xsNCName of the ref attribute.
+		 * @return Returns a xsToken of the ref attribute.
 		 */
-		xsNCName getRef() const { return attrRef; }
+		xsToken getRef() const { return attrRef; }
 		/**
 		 * Sets the ref attribute.
 		 * @param atRef The new value for the ref attribute.
 		 */
-		void setRef( xsNCName atRef ) { attrRef = atRef;	
+		void setRef( xsToken atRef ) { *(daeStringRef*)&attrRef = atRef;	
 	 _validAttributeArray[0] = true; }
 
 		/**
@@ -186,7 +203,7 @@ public:
 	};
 
 
-protected:  // Attribute
+protected:  // Attributes
 /**
  *  The url attribute refers to resource.  This may refer to a local resource
  * using a relative URL  fragment identifier that begins with the “#”
@@ -194,6 +211,16 @@ protected:  // Attribute
  * absolute or relative URL. 
  */
 	xsAnyURI attrUrl;
+/**
+ *  The sid attribute is a text string value containing the sub-identifier
+ * of this element. This  value must be unique within the scope of the parent
+ * element. Optional attribute. 
+ */
+	xsNCName attrSid;
+/**
+ *  The name attribute is the text string name of this element. Optional attribute.
+ */
+	xsNCName attrName;
 
 protected:  // Elements
 /**
@@ -229,6 +256,30 @@ public:	//Accessors and Mutators
 	 _validAttributeArray[0] = true; }
 
 	/**
+	 * Gets the sid attribute.
+	 * @return Returns a xsNCName of the sid attribute.
+	 */
+	xsNCName getSid() const { return attrSid; }
+	/**
+	 * Sets the sid attribute.
+	 * @param atSid The new value for the sid attribute.
+	 */
+	void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid;
+	 _validAttributeArray[1] = true; }
+
+	/**
+	 * Gets the name attribute.
+	 * @return Returns a xsNCName of the name attribute.
+	 */
+	xsNCName getName() const { return attrName; }
+	/**
+	 * Sets the name attribute.
+	 * @param atName The new value for the name attribute.
+	 */
+	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName;
+	 _validAttributeArray[2] = true; }
+
+	/**
 	 * Gets the technique_hint element array.
 	 * @return Returns a reference to the array of technique_hint elements.
 	 */
@@ -262,7 +313,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domInstance_effect() : attrUrl(), elemTechnique_hint_array(), elemSetparam_array(), elemExtra_array() {}
+	domInstance_effect() : attrUrl(), attrSid(), attrName(), elemTechnique_hint_array(), elemSetparam_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

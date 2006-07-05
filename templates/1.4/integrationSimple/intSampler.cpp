@@ -35,7 +35,6 @@ intSampler::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "sampler" );
-	_Meta->setStaticPointerAddress(&intSampler::_Meta);
 	_Meta->registerConstructor(intSampler::create);
 
 	domSampler::_Meta->setMetaIntegration(_Meta);

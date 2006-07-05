@@ -23,7 +23,7 @@ class daeElement;
 class daeDocument;
 
 /**
-* The @c daeMetaElementAttribute class represents a single attribute whose value is an element.
+* The @c daeMetaElementAttribute class represents a content model object that is an element.
 */
 class daeMetaElementAttribute : public daeMetaAttribute, public daeMetaCMPolicy
 {
@@ -33,7 +33,13 @@ public:
 
 public:
 	/**
-	 * Constructor
+	 * Constructor.
+	 * @param container The daeMetaElement that this policy object belongs to.
+	 * @param parent The daeMetaCMPolicy parent of this policy object.
+	 * @param odinal The ordinal value offset of this specific policy object. Used for maintaining the 
+	 * correct order of child elements.
+	 * @param minO The minimum number of times this CMPolicy object must appear. This value comes from the COLLADA schema.
+	 * @param maxO The maximum number of times this CMPolicy object may appear. This value comes from the COLLADA schema.
 	 */
 	daeMetaElementAttribute( daeMetaElement *container, daeMetaCMPolicy *parent = NULL, daeUInt ordinal = 0, daeInt minO = 1, daeInt maxO = 1);
 	/**
@@ -42,17 +48,8 @@ public:
 	virtual ~daeMetaElementAttribute();
 
 public:
-	/**
-	 * Places element <tt><i>child</i></tt> in element <tt><i>parent</i></tt> using @c this element attribute.
-	 * @param parent The Element in which to place child.
-	 * @param child The Element to place in parent.
-	 */
-	virtual daeBool placeElement(daeElement* parent, daeElement* child, daeUInt &ordinal, daeInt offset = 0, daeElement* before = NULL, daeElement *after = NULL);
-	/**
-	 * Removes element <tt><i>child</i></tt> from element <tt><i>parent</i></tt> using @c this element attribute.
-	 * @param parent The Element in which to remove child.
-	 * @param child The Element to remove from parent.
-	 */
+
+	virtual daeElement *placeElement(daeElement* parent, daeElement* child, daeUInt &ordinal, daeInt offset = 0, daeElement* before = NULL, daeElement *after = NULL);
 	virtual daeBool removeElement(daeElement* parent, daeElement* child);
 
 	daeMetaElement *findChild( daeString elementName );
@@ -126,25 +123,24 @@ typedef daeTArray<daeMetaElementAttributeRef> daeMetaElementAttributeArray;
 
 /**
  * The @c daeMetaElementArrayAttribute class is similar to daeMetaElementAttribute 
- * except that this meta attribute
- * describes an array of elements rather than a singleton.
+ * except that this meta attribute describes an array of elements rather than a singleton.
  */
 class daeMetaElementArrayAttribute : public daeMetaElementAttribute
 {
 public:
 	/**
-	 * Constructor
+	 * Constructor.
+	 * @param container The daeMetaElement that this policy object belongs to.
+	 * @param parent The daeMetaCMPolicy parent of this policy object.
+	 * @param odinal The ordinal value offset of this specific policy object. Used for maintaining the 
+	 * correct order of child elements.
+	 * @param minO The minimum number of times this CMPolicy object must appear. This value comes from the COLLADA schema.
+	 * @param maxO The maximum number of times this CMPolicy object may appear. This value comes from the COLLADA schema.
 	 */
 	daeMetaElementArrayAttribute(daeMetaElement *container, daeMetaCMPolicy *parent = NULL, daeUInt ordinal = 0, daeInt minO = 1, daeInt maxO = 1);
 	~daeMetaElementArrayAttribute();
 public:
-	/**
-	 * Defines the override version of this method from @c daeMetaElement.
-	 */
-	virtual daeBool placeElement(daeElement* parent, daeElement* child, daeUInt &ordinal, daeInt offset = 0, daeElement* before = NULL, daeElement *after = NULL);
-    /**
-	 * Defines the override version of this method from @c daeMetaElement.
-	 */
+	virtual daeElement *placeElement(daeElement* parent, daeElement* child, daeUInt &ordinal, daeInt offset = 0, daeElement* before = NULL, daeElement *after = NULL);
 	virtual daeBool removeElement(daeElement* parent, daeElement* child);
 
 	void getChildren( daeElement* parent, daeElementRefArray &array );

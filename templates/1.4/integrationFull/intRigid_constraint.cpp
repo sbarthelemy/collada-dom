@@ -46,7 +46,6 @@ intRigid_constraint::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "rigid_constraint" );
-	_Meta->setStaticPointerAddress(&intRigid_constraint::_Meta);
 	_Meta->registerConstructor(intRigid_constraint::create);
 
 	domRigid_constraint::_Meta->setMetaIntegration(_Meta);
@@ -71,7 +70,6 @@ intRigid_constraint::intRef_attachment::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "ref_attachment" );
-	_Meta->setStaticPointerAddress(&intRigid_constraint::intRef_attachment::_Meta);
 	_Meta->registerConstructor(intRigid_constraint::intRef_attachment::create);
 
 	domRigid_constraint::domRef_attachment::_Meta->setMetaIntegration(_Meta);
@@ -96,7 +94,6 @@ intRigid_constraint::intAttachment::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "attachment" );
-	_Meta->setStaticPointerAddress(&intRigid_constraint::intAttachment::_Meta);
 	_Meta->registerConstructor(intRigid_constraint::intAttachment::create);
 
 	domRigid_constraint::domAttachment::_Meta->setMetaIntegration(_Meta);
@@ -121,7 +118,6 @@ intRigid_constraint::intTechnique_common::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "technique_common" );
-	_Meta->setStaticPointerAddress(&intRigid_constraint::intTechnique_common::_Meta);
 	_Meta->registerConstructor(intRigid_constraint::intTechnique_common::create);
 
 	domRigid_constraint::domTechnique_common::_Meta->setMetaIntegration(_Meta);
@@ -146,7 +142,6 @@ intRigid_constraint::intTechnique_common::intEnabled::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "enabled" );
-	_Meta->setStaticPointerAddress(&intRigid_constraint::intTechnique_common::intEnabled::_Meta);
 	_Meta->registerConstructor(intRigid_constraint::intTechnique_common::intEnabled::create);
 
 	domRigid_constraint::domTechnique_common::domEnabled::_Meta->setMetaIntegration(_Meta);
@@ -171,7 +166,6 @@ intRigid_constraint::intTechnique_common::intInterpenetrate::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "interpenetrate" );
-	_Meta->setStaticPointerAddress(&intRigid_constraint::intTechnique_common::intInterpenetrate::_Meta);
 	_Meta->registerConstructor(intRigid_constraint::intTechnique_common::intInterpenetrate::create);
 
 	domRigid_constraint::domTechnique_common::domInterpenetrate::_Meta->setMetaIntegration(_Meta);
@@ -196,7 +190,6 @@ intRigid_constraint::intTechnique_common::intLimits::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "limits" );
-	_Meta->setStaticPointerAddress(&intRigid_constraint::intTechnique_common::intLimits::_Meta);
 	_Meta->registerConstructor(intRigid_constraint::intTechnique_common::intLimits::create);
 
 	domRigid_constraint::domTechnique_common::domLimits::_Meta->setMetaIntegration(_Meta);
@@ -221,7 +214,6 @@ intRigid_constraint::intTechnique_common::intLimits::intSwing_cone_and_twist::re
     
     _Meta = new daeMetaElement;
     _Meta->setName( "swing_cone_and_twist" );
-	_Meta->setStaticPointerAddress(&intRigid_constraint::intTechnique_common::intLimits::intSwing_cone_and_twist::_Meta);
 	_Meta->registerConstructor(intRigid_constraint::intTechnique_common::intLimits::intSwing_cone_and_twist::create);
 
 	domRigid_constraint::domTechnique_common::domLimits::domSwing_cone_and_twist::_Meta->setMetaIntegration(_Meta);
@@ -246,7 +238,6 @@ intRigid_constraint::intTechnique_common::intLimits::intLinear::registerElement(
     
     _Meta = new daeMetaElement;
     _Meta->setName( "linear" );
-	_Meta->setStaticPointerAddress(&intRigid_constraint::intTechnique_common::intLimits::intLinear::_Meta);
 	_Meta->registerConstructor(intRigid_constraint::intTechnique_common::intLimits::intLinear::create);
 
 	domRigid_constraint::domTechnique_common::domLimits::domLinear::_Meta->setMetaIntegration(_Meta);
@@ -271,7 +262,6 @@ intRigid_constraint::intTechnique_common::intSpring::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "spring" );
-	_Meta->setStaticPointerAddress(&intRigid_constraint::intTechnique_common::intSpring::_Meta);
 	_Meta->registerConstructor(intRigid_constraint::intTechnique_common::intSpring::create);
 
 	domRigid_constraint::domTechnique_common::domSpring::_Meta->setMetaIntegration(_Meta);
@@ -296,7 +286,6 @@ intRigid_constraint::intTechnique_common::intSpring::intAngular::registerElement
     
     _Meta = new daeMetaElement;
     _Meta->setName( "angular" );
-	_Meta->setStaticPointerAddress(&intRigid_constraint::intTechnique_common::intSpring::intAngular::_Meta);
 	_Meta->registerConstructor(intRigid_constraint::intTechnique_common::intSpring::intAngular::create);
 
 	domRigid_constraint::domTechnique_common::domSpring::domAngular::_Meta->setMetaIntegration(_Meta);
@@ -321,7 +310,6 @@ intRigid_constraint::intTechnique_common::intSpring::intLinear::registerElement(
     
     _Meta = new daeMetaElement;
     _Meta->setName( "linear" );
-	_Meta->setStaticPointerAddress(&intRigid_constraint::intTechnique_common::intSpring::intLinear::_Meta);
 	_Meta->registerConstructor(intRigid_constraint::intTechnique_common::intSpring::intLinear::create);
 
 	domRigid_constraint::domTechnique_common::domSpring::domLinear::_Meta->setMetaIntegration(_Meta);

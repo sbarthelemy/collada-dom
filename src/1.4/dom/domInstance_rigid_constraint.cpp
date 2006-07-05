@@ -61,6 +61,28 @@ domInstance_rigid_constraint::registerElement()
 	
 		_Meta->appendAttribute(ma);
 	}
+
+	//	Add attribute: sid
+ 	{
+		daeMetaAttribute *ma = new daeMetaAttribute;
+		ma->setName( "sid" );
+		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setOffset( daeOffsetOf( domInstance_rigid_constraint , attrSid ));
+		ma->setContainer( _Meta );
+	
+		_Meta->appendAttribute(ma);
+	}
+
+	//	Add attribute: name
+ 	{
+		daeMetaAttribute *ma = new daeMetaAttribute;
+		ma->setName( "name" );
+		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setOffset( daeOffsetOf( domInstance_rigid_constraint , attrName ));
+		ma->setContainer( _Meta );
+	
+		_Meta->appendAttribute(ma);
+	}
 	
 	
 	_Meta->setElementSize(sizeof(domInstance_rigid_constraint));

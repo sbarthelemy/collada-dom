@@ -89,7 +89,13 @@ domFx_sampler1D_common::registerElement()
 	mea->setElementType( domFx_sampler1D_common::domMipmap_bias::registerElement() );
 	cm->appendChild( mea );
 	
-	cm->setMaxOrdinal( 7 );
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 8, 0, -1 );
+	mea->setName( "extra" );
+	mea->setOffset( daeOffsetOf(domFx_sampler1D_common,elemExtra_array) );
+	mea->setElementType( domExtra::registerElement() );
+	cm->appendChild( mea );
+	
+	cm->setMaxOrdinal( 8 );
 	_Meta->setCMRoot( cm );	
 	
 	

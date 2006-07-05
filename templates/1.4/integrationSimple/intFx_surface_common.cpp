@@ -35,7 +35,6 @@ intFx_surface_common::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fx_surface_common" );
-	_Meta->setStaticPointerAddress(&intFx_surface_common::_Meta);
 	_Meta->registerConstructor(intFx_surface_common::create);
 
 	domFx_surface_common::_Meta->setMetaIntegration(_Meta);

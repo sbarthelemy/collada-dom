@@ -17,13 +17,15 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeMetaElement.h>
 
-/** The input element declares the input semantics of a data source.
-			The input element declares the input connections that a consumer requires.
-*/class intInput;
+class intInput;
 
 typedef daeSmartRef<intInput> intInputRef;
 typedef daeTArray<intInputRef> intInputArray;
 
+/**
+ * The input element declares the input semantics of a data source. The input
+ * element declares the input connections that a consumer requires.
+ */
 class intInput : public daeIntegrationObject
 {
 public: // Constuctor and Destructor

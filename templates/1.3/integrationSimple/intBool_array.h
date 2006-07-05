@@ -17,15 +17,17 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeMetaElement.h>
 
-/** The bool_array element declares the storage for a homogenous array of Boolean values.
-			The bool_array element stores the data values for generic use within the COLLADA schema. The
-			arrays themselves are strongly typed but without semantics. They simply describe a sequence 
-			of XML Boolean values.
-*/class intBool_array;
+class intBool_array;
 
 typedef daeSmartRef<intBool_array> intBool_arrayRef;
 typedef daeTArray<intBool_arrayRef> intBool_arrayArray;
 
+/**
+ * The bool_array element declares the storage for a homogenous array of Boolean
+ * values. The bool_array element stores the data values for generic use within
+ * the COLLADA schema. The arrays themselves are strongly typed but without
+ * semantics. They simply describe a sequence  of XML Boolean values.
+ */
 class intBool_array : public daeIntegrationObject
 {
 public: // Constuctor and Destructor

@@ -35,7 +35,6 @@ intSphere::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "sphere" );
-	_Meta->setStaticPointerAddress(&intSphere::_Meta);
 	_Meta->registerConstructor(intSphere::create);
 
 	domSphere::_Meta->setMetaIntegration(_Meta);

@@ -37,7 +37,6 @@ intGlsl_newparam::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "glsl_newparam" );
-	_Meta->setStaticPointerAddress(&intGlsl_newparam::_Meta);
 	_Meta->registerConstructor(intGlsl_newparam::create);
 
 	domGlsl_newparam::_Meta->setMetaIntegration(_Meta);
@@ -62,7 +61,6 @@ intGlsl_newparam::intSemantic::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "semantic" );
-	_Meta->setStaticPointerAddress(&intGlsl_newparam::intSemantic::_Meta);
 	_Meta->registerConstructor(intGlsl_newparam::intSemantic::create);
 
 	domGlsl_newparam::domSemantic::_Meta->setMetaIntegration(_Meta);
@@ -87,7 +85,6 @@ intGlsl_newparam::intModifier::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "modifier" );
-	_Meta->setStaticPointerAddress(&intGlsl_newparam::intModifier::_Meta);
 	_Meta->registerConstructor(intGlsl_newparam::intModifier::create);
 
 	domGlsl_newparam::domModifier::_Meta->setMetaIntegration(_Meta);

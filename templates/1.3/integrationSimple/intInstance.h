@@ -17,13 +17,15 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeMetaElement.h>
 
-/** The instance element declares the instantiation of a node, an object or the contents of 
-			another COLLADA resource.
-*/class intInstance;
+class intInstance;
 
 typedef daeSmartRef<intInstance> intInstanceRef;
 typedef daeTArray<intInstanceRef> intInstanceArray;
 
+/**
+ * The instance element declares the instantiation of a node, an object or
+ * the contents of  another COLLADA resource.
+ */
 class intInstance : public daeIntegrationObject
 {
 public: // Constuctor and Destructor

@@ -40,7 +40,6 @@ intLight::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "light" );
-	_Meta->setStaticPointerAddress(&intLight::_Meta);
 	_Meta->registerConstructor(intLight::create);
 
 	domLight::_Meta->setMetaIntegration(_Meta);
@@ -65,7 +64,6 @@ intLight::intTechnique_common::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "technique_common" );
-	_Meta->setStaticPointerAddress(&intLight::intTechnique_common::_Meta);
 	_Meta->registerConstructor(intLight::intTechnique_common::create);
 
 	domLight::domTechnique_common::_Meta->setMetaIntegration(_Meta);
@@ -90,7 +88,6 @@ intLight::intTechnique_common::intAmbient::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "ambient" );
-	_Meta->setStaticPointerAddress(&intLight::intTechnique_common::intAmbient::_Meta);
 	_Meta->registerConstructor(intLight::intTechnique_common::intAmbient::create);
 
 	domLight::domTechnique_common::domAmbient::_Meta->setMetaIntegration(_Meta);
@@ -115,7 +112,6 @@ intLight::intTechnique_common::intDirectional::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "directional" );
-	_Meta->setStaticPointerAddress(&intLight::intTechnique_common::intDirectional::_Meta);
 	_Meta->registerConstructor(intLight::intTechnique_common::intDirectional::create);
 
 	domLight::domTechnique_common::domDirectional::_Meta->setMetaIntegration(_Meta);
@@ -140,7 +136,6 @@ intLight::intTechnique_common::intPoint::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "point" );
-	_Meta->setStaticPointerAddress(&intLight::intTechnique_common::intPoint::_Meta);
 	_Meta->registerConstructor(intLight::intTechnique_common::intPoint::create);
 
 	domLight::domTechnique_common::domPoint::_Meta->setMetaIntegration(_Meta);
@@ -165,7 +160,6 @@ intLight::intTechnique_common::intSpot::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "spot" );
-	_Meta->setStaticPointerAddress(&intLight::intTechnique_common::intSpot::_Meta);
 	_Meta->registerConstructor(intLight::intTechnique_common::intSpot::create);
 
 	domLight::domTechnique_common::domSpot::_Meta->setMetaIntegration(_Meta);

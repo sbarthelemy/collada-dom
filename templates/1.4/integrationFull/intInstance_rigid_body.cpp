@@ -42,7 +42,6 @@ intInstance_rigid_body::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "instance_rigid_body" );
-	_Meta->setStaticPointerAddress(&intInstance_rigid_body::_Meta);
 	_Meta->registerConstructor(intInstance_rigid_body::create);
 
 	domInstance_rigid_body::_Meta->setMetaIntegration(_Meta);
@@ -67,7 +66,6 @@ intInstance_rigid_body::intTechnique_common::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "technique_common" );
-	_Meta->setStaticPointerAddress(&intInstance_rigid_body::intTechnique_common::_Meta);
 	_Meta->registerConstructor(intInstance_rigid_body::intTechnique_common::create);
 
 	domInstance_rigid_body::domTechnique_common::_Meta->setMetaIntegration(_Meta);
@@ -92,7 +90,6 @@ intInstance_rigid_body::intTechnique_common::intAngular_velocity::registerElemen
     
     _Meta = new daeMetaElement;
     _Meta->setName( "angular_velocity" );
-	_Meta->setStaticPointerAddress(&intInstance_rigid_body::intTechnique_common::intAngular_velocity::_Meta);
 	_Meta->registerConstructor(intInstance_rigid_body::intTechnique_common::intAngular_velocity::create);
 
 	domInstance_rigid_body::domTechnique_common::domAngular_velocity::_Meta->setMetaIntegration(_Meta);
@@ -117,7 +114,6 @@ intInstance_rigid_body::intTechnique_common::intVelocity::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "velocity" );
-	_Meta->setStaticPointerAddress(&intInstance_rigid_body::intTechnique_common::intVelocity::_Meta);
 	_Meta->registerConstructor(intInstance_rigid_body::intTechnique_common::intVelocity::create);
 
 	domInstance_rigid_body::domTechnique_common::domVelocity::_Meta->setMetaIntegration(_Meta);
@@ -142,7 +138,6 @@ intInstance_rigid_body::intTechnique_common::intDynamic::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "dynamic" );
-	_Meta->setStaticPointerAddress(&intInstance_rigid_body::intTechnique_common::intDynamic::_Meta);
 	_Meta->registerConstructor(intInstance_rigid_body::intTechnique_common::intDynamic::create);
 
 	domInstance_rigid_body::domTechnique_common::domDynamic::_Meta->setMetaIntegration(_Meta);
@@ -167,7 +162,6 @@ intInstance_rigid_body::intTechnique_common::intMass_frame::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "mass_frame" );
-	_Meta->setStaticPointerAddress(&intInstance_rigid_body::intTechnique_common::intMass_frame::_Meta);
 	_Meta->registerConstructor(intInstance_rigid_body::intTechnique_common::intMass_frame::create);
 
 	domInstance_rigid_body::domTechnique_common::domMass_frame::_Meta->setMetaIntegration(_Meta);
@@ -192,7 +186,6 @@ intInstance_rigid_body::intTechnique_common::intShape::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "shape" );
-	_Meta->setStaticPointerAddress(&intInstance_rigid_body::intTechnique_common::intShape::_Meta);
 	_Meta->registerConstructor(intInstance_rigid_body::intTechnique_common::intShape::create);
 
 	domInstance_rigid_body::domTechnique_common::domShape::_Meta->setMetaIntegration(_Meta);
@@ -217,7 +210,6 @@ intInstance_rigid_body::intTechnique_common::intShape::intHollow::registerElemen
     
     _Meta = new daeMetaElement;
     _Meta->setName( "hollow" );
-	_Meta->setStaticPointerAddress(&intInstance_rigid_body::intTechnique_common::intShape::intHollow::_Meta);
 	_Meta->registerConstructor(intInstance_rigid_body::intTechnique_common::intShape::intHollow::create);
 
 	domInstance_rigid_body::domTechnique_common::domShape::domHollow::_Meta->setMetaIntegration(_Meta);

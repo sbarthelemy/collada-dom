@@ -17,20 +17,24 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeMetaElement.h>
 
-/** The tristrips element declares the binding of geometric primitives and vertex attributes for
-			a mesh element. The tristrips element provides the information needed to bind vertex 
-			attributes together and then organize those vertices into connected triangles. The vertex 
-			array information is supplied in distinct attribute arrays of the mesh element that are then 
-			indexed by the tristrips element. Each triangle described by the mesh has three vertices. The 
-			first triangle is formed from first, second, and third vertices. Each subsequent triangle is 
-			formed from the current vertex, reusing the previous two vertices. A tristrips element 
-			contains a sequence of p elements, where 'p' stands for primitive. Each p element describes 
-			the vertex attributes for an arbitrary number of connected triangles.
-*/class intTristrips;
+class intTristrips;
 
 typedef daeSmartRef<intTristrips> intTristripsRef;
 typedef daeTArray<intTristripsRef> intTristripsArray;
 
+/**
+ * The tristrips element declares the binding of geometric primitives and
+ * vertex attributes for a mesh element. The tristrips element provides the
+ * information needed to bind vertex  attributes together and then organize
+ * those vertices into connected triangles. The vertex  array information
+ * is supplied in distinct attribute arrays of the mesh element that are then
+ * indexed by the tristrips element. Each triangle described by the mesh has
+ * three vertices. The  first triangle is formed from first, second, and third
+ * vertices. Each subsequent triangle is  formed from the current vertex,
+ * reusing the previous two vertices. A tristrips element  contains a sequence
+ * of p elements, where 'p' stands for primitive. Each p element describes
+ * the vertex attributes for an arbitrary number of connected triangles.
+ */
 class intTristrips : public daeIntegrationObject
 {
 public: // Constuctor and Destructor

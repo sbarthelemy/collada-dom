@@ -17,6 +17,18 @@
 #include <dae/daeTypes.h>
 #include <dae/daeElement.h>
 
+/**
+ * The daeSIDResolver class is designed to resolve sid references within a COLLADA document.
+ * The rules for sid resolution are set forth by the Addressing Syntax section in Chapter 3 of the
+ * COLLADA specification which can be found at https://www.khronos.org/collada .
+ * This resolver always attempts to resolve to the daeElement which is referenced. If the element contains 
+ * a daeDoubleArray (domFloatArray) value, the resolver will set the pointer to that array. The
+ * resolver will also do this if the sid target points to a <source> element which has a <float_array> as
+ * a child. If the sid target specifies a value, i.e. blah.X or blah(6), the resolver will attempt to
+ * get a pointer to that specific value. The resolver only attempts to resolve to that level for values which
+ * are defined in the COMMON profile glossary of the COLLADA specification, or values reference with the (#)
+ * syntax. You can check the return value from getState() to see which level of resolution is possible.
+ */
 class daeSIDResolver
 {
 public:
@@ -115,6 +127,9 @@ public:
 private:
 	
 	void resolve();
+	/**
+	 * Recursive function which will find an element with specified sid in the subtree of el.
+	 */
 	daeElement *findSID( daeElement *el, daeString sid );
 
 private:	

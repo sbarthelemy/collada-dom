@@ -17,15 +17,17 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeMetaElement.h>
 
-/** The Name_array element declares the storage for a homogenous array of symbolic name values.
-			The Name_array element stores the data values for generic use within the COLLADA schema. The
-			arrays themselves are strongly typed but without semantics. They simply describe a sequence 
-			of XML name values.
-*/class intName_array;
+class intName_array;
 
 typedef daeSmartRef<intName_array> intName_arrayRef;
 typedef daeTArray<intName_arrayRef> intName_arrayArray;
 
+/**
+ * The Name_array element declares the storage for a homogenous array of symbolic
+ * name values. The Name_array element stores the data values for generic
+ * use within the COLLADA schema. The arrays themselves are strongly typed
+ * but without semantics. They simply describe a sequence  of XML name values.
+ */
 class intName_array : public daeIntegrationObject
 {
 public: // Constuctor and Destructor

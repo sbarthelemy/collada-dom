@@ -22,7 +22,7 @@ daeMetaAny::daeMetaAny( daeMetaElement *container, daeMetaCMPolicy *parent, daeU
 daeMetaAny::~daeMetaAny()
 {}
 
-daeBool daeMetaAny::placeElement( daeElement *parent, daeElement *child, daeUInt &ordinal, daeInt offset, daeElement* before, daeElement *after ) {
+daeElement *daeMetaAny::placeElement( daeElement *parent, daeElement *child, daeUInt &ordinal, daeInt offset, daeElement* before, daeElement *after ) {
 	//remove element from praent
 	(void)offset;
 	(void)before;
@@ -31,7 +31,7 @@ daeBool daeMetaAny::placeElement( daeElement *parent, daeElement *child, daeUInt
 	child->setParentElement( parent );
 	//*************************************************************************
 	ordinal = 0;
-	return true;
+	return child;
 }
 
 daeBool daeMetaAny::removeElement( daeElement *parent, daeElement *child ) {

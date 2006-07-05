@@ -44,7 +44,6 @@ intFx_sampler2D_common::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fx_sampler2D_common" );
-	_Meta->setStaticPointerAddress(&intFx_sampler2D_common::_Meta);
 	_Meta->registerConstructor(intFx_sampler2D_common::create);
 
 	domFx_sampler2D_common::_Meta->setMetaIntegration(_Meta);
@@ -69,7 +68,6 @@ intFx_sampler2D_common::intSource::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "source" );
-	_Meta->setStaticPointerAddress(&intFx_sampler2D_common::intSource::_Meta);
 	_Meta->registerConstructor(intFx_sampler2D_common::intSource::create);
 
 	domFx_sampler2D_common::domSource::_Meta->setMetaIntegration(_Meta);
@@ -94,7 +92,6 @@ intFx_sampler2D_common::intWrap_s::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "wrap_s" );
-	_Meta->setStaticPointerAddress(&intFx_sampler2D_common::intWrap_s::_Meta);
 	_Meta->registerConstructor(intFx_sampler2D_common::intWrap_s::create);
 
 	domFx_sampler2D_common::domWrap_s::_Meta->setMetaIntegration(_Meta);
@@ -119,7 +116,6 @@ intFx_sampler2D_common::intWrap_t::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "wrap_t" );
-	_Meta->setStaticPointerAddress(&intFx_sampler2D_common::intWrap_t::_Meta);
 	_Meta->registerConstructor(intFx_sampler2D_common::intWrap_t::create);
 
 	domFx_sampler2D_common::domWrap_t::_Meta->setMetaIntegration(_Meta);
@@ -144,7 +140,6 @@ intFx_sampler2D_common::intMinfilter::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "minfilter" );
-	_Meta->setStaticPointerAddress(&intFx_sampler2D_common::intMinfilter::_Meta);
 	_Meta->registerConstructor(intFx_sampler2D_common::intMinfilter::create);
 
 	domFx_sampler2D_common::domMinfilter::_Meta->setMetaIntegration(_Meta);
@@ -169,7 +164,6 @@ intFx_sampler2D_common::intMagfilter::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "magfilter" );
-	_Meta->setStaticPointerAddress(&intFx_sampler2D_common::intMagfilter::_Meta);
 	_Meta->registerConstructor(intFx_sampler2D_common::intMagfilter::create);
 
 	domFx_sampler2D_common::domMagfilter::_Meta->setMetaIntegration(_Meta);
@@ -194,7 +188,6 @@ intFx_sampler2D_common::intMipfilter::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "mipfilter" );
-	_Meta->setStaticPointerAddress(&intFx_sampler2D_common::intMipfilter::_Meta);
 	_Meta->registerConstructor(intFx_sampler2D_common::intMipfilter::create);
 
 	domFx_sampler2D_common::domMipfilter::_Meta->setMetaIntegration(_Meta);
@@ -219,7 +212,6 @@ intFx_sampler2D_common::intBorder_color::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "border_color" );
-	_Meta->setStaticPointerAddress(&intFx_sampler2D_common::intBorder_color::_Meta);
 	_Meta->registerConstructor(intFx_sampler2D_common::intBorder_color::create);
 
 	domFx_sampler2D_common::domBorder_color::_Meta->setMetaIntegration(_Meta);
@@ -244,7 +236,6 @@ intFx_sampler2D_common::intMipmap_maxlevel::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "mipmap_maxlevel" );
-	_Meta->setStaticPointerAddress(&intFx_sampler2D_common::intMipmap_maxlevel::_Meta);
 	_Meta->registerConstructor(intFx_sampler2D_common::intMipmap_maxlevel::create);
 
 	domFx_sampler2D_common::domMipmap_maxlevel::_Meta->setMetaIntegration(_Meta);
@@ -269,7 +260,6 @@ intFx_sampler2D_common::intMipmap_bias::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "mipmap_bias" );
-	_Meta->setStaticPointerAddress(&intFx_sampler2D_common::intMipmap_bias::_Meta);
 	_Meta->registerConstructor(intFx_sampler2D_common::intMipmap_bias::create);
 
 	domFx_sampler2D_common::domMipmap_bias::_Meta->setMetaIntegration(_Meta);

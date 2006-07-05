@@ -35,7 +35,6 @@ intImage::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "image" );
-	_Meta->setStaticPointerAddress(&intImage::_Meta);
 	_Meta->registerConstructor(intImage::create);
 
 	domImage::_Meta->setMetaIntegration(_Meta);

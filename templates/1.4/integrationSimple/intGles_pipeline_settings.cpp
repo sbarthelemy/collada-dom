@@ -35,7 +35,6 @@ intGles_pipeline_settings::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "gles_pipeline_settings" );
-	_Meta->setStaticPointerAddress(&intGles_pipeline_settings::_Meta);
 	_Meta->registerConstructor(intGles_pipeline_settings::create);
 
 	domGles_pipeline_settings::_Meta->setMetaIntegration(_Meta);

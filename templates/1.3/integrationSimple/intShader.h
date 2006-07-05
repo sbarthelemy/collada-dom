@@ -17,14 +17,17 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeMetaElement.h>
 
-/** Shaders describe the process of rendering the appearance of a geometric object. The shader
-			element declares the rendering techniques used to produce the appearance of a material. The 
-			shader element contains declarations of parameters and techniques.
-*/class intShader;
+class intShader;
 
 typedef daeSmartRef<intShader> intShaderRef;
 typedef daeTArray<intShaderRef> intShaderArray;
 
+/**
+ * Shaders describe the process of rendering the appearance of a geometric
+ * object. The shader element declares the rendering techniques used to produce
+ * the appearance of a material. The  shader element contains declarations
+ * of parameters and techniques.
+ */
 class intShader : public daeIntegrationObject
 {
 public: // Constuctor and Destructor

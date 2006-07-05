@@ -35,7 +35,6 @@ intPolylist::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "polylist" );
-	_Meta->setStaticPointerAddress(&intPolylist::_Meta);
 	_Meta->registerConstructor(intPolylist::create);
 
 	domPolylist::_Meta->setMetaIntegration(_Meta);

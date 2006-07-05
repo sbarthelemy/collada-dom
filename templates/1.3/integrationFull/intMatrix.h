@@ -17,15 +17,18 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeMetaElement.h>
 
-/** Matrix transformations embody mathematical changes to points within a coordinate systems or 
-			the coordinate system itself. The matrix element contains a 4-by-4 matrix of floating-point 
-			values. Matrices in COLLADA are column matrices in the mathematical sense. These matrices 
-			are written in rowmajor order to aid the human reader.
-*/class intMatrix;
+class intMatrix;
 
 typedef daeSmartRef<intMatrix> intMatrixRef;
 typedef daeTArray<intMatrixRef> intMatrixArray;
 
+/**
+ * Matrix transformations embody mathematical changes to points within a coordinate
+ * systems or  the coordinate system itself. The matrix element contains a
+ * 4-by-4 matrix of floating-point  values. Matrices in COLLADA are column
+ * matrices in the mathematical sense. These matrices  are written in rowmajor
+ * order to aid the human reader.
+ */
 class intMatrix : public daeIntegrationObject
 {
 public: // Constuctor and Destructor

@@ -17,18 +17,21 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeMetaElement.h>
 
-/** The translate element contains a mathematical vector that represents the distance along the 
-			X, Y and Z-axes. Translations change the position of objects in a coordinate system without 
-			any rotation. Computer graphics techniques apply a translation transformation in order to 
-			position or, move values with respect to a coordinate system. Conversely, translation means 
-			to move the origin of the local coordinate system. The translate element contains a list of 
-			three floating-point values. These values are organized into a column vector suitable for a 
-			matrix composition.
-*/class intTranslate;
+class intTranslate;
 
 typedef daeSmartRef<intTranslate> intTranslateRef;
 typedef daeTArray<intTranslateRef> intTranslateArray;
 
+/**
+ * The translate element contains a mathematical vector that represents the
+ * distance along the  X, Y and Z-axes. Translations change the position of
+ * objects in a coordinate system without  any rotation. Computer graphics
+ * techniques apply a translation transformation in order to  position or,
+ * move values with respect to a coordinate system. Conversely, translation
+ * means  to move the origin of the local coordinate system. The translate
+ * element contains a list of  three floating-point values. These values are
+ * organized into a column vector suitable for a  matrix composition.
+ */
 class intTranslate : public daeIntegrationObject
 {
 public: // Constuctor and Destructor

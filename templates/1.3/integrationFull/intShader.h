@@ -17,14 +17,17 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeMetaElement.h>
 
-/** Shaders describe the process of rendering the appearance of a geometric object. The shader
-			element declares the rendering techniques used to produce the appearance of a material. The 
-			shader element contains declarations of parameters and techniques.
-*/class intShader;
+class intShader;
 
 typedef daeSmartRef<intShader> intShaderRef;
 typedef daeTArray<intShaderRef> intShaderArray;
 
+/**
+ * Shaders describe the process of rendering the appearance of a geometric
+ * object. The shader element declares the rendering techniques used to produce
+ * the appearance of a material. The  shader element contains declarations
+ * of parameters and techniques.
+ */
 class intShader : public daeIntegrationObject
 {
 public: // Constuctor and Destructor
@@ -68,15 +71,17 @@ public: // STATIC MEMBERS
 	static daeMetaElement* _Meta;
 
 public:
-/** Each technique element specified corresponds to a (platform) profile. This 
-						implies that the set of techniques are mutually exclusive. However, an 
-						application may choose to apply information from multiple techniques. The 
-						technique element must occur one or more times.
-*/class intTechnique;
+class intTechnique;
 
 typedef daeSmartRef<intTechnique> intTechniqueRef;
 typedef daeTArray<intTechniqueRef> intTechniqueArray;
 
+/**
+ * Each technique element specified corresponds to a (platform) profile. This
+ * implies that the set of techniques are mutually exclusive. However, an
+ * application may choose to apply information from multiple techniques. The
+ * technique element must occur one or more times.
+ */
 class intTechnique : public daeIntegrationObject
 {
 public: // Constuctor and Destructor

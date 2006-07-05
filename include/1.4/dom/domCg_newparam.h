@@ -279,6 +279,20 @@ protected:
  */
 class domCg_newparam : public daeElement, public domCg_newparam_complexType
 {
+
+public:	//Accessors and Mutators
+	/**
+	 * Gets the sid attribute.
+	 * @return Returns a domCg_identifier of the sid attribute.
+	 */
+	domCg_identifier getSid() const { return attrSid; }
+	/**
+	 * Sets the sid attribute.
+	 * @param atSid The new value for the sid attribute.
+	 */
+	void setSid( domCg_identifier atSid ) { attrSid = atSid;
+	 _validAttributeArray[0] = true; }
+
 protected:
 	/**
 	 * Constructor

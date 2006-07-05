@@ -35,7 +35,6 @@ intCg_sampler2D::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "cg_sampler2D" );
-	_Meta->setStaticPointerAddress(&intCg_sampler2D::_Meta);
 	_Meta->registerConstructor(intCg_sampler2D::create);
 
 	domCg_sampler2D::_Meta->setMetaIntegration(_Meta);

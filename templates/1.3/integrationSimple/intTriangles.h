@@ -17,20 +17,24 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeMetaElement.h>
 
-/** The triangles element declares the binding of geometric primitives and vertex attributes 
-			for a mesh element. The triangles element provides the information needed to bind vertex 
-			attributes together and then organize those vertices into individual triangles. The vertex 
-			array information is supplied in distinct attribute arrays that are then indexed by the 
-			triangles element. Each triangle described by the mesh has three vertices. The first triangle 
-			is formed from the first, second, and third vertices. The second triangle is formed from the 
-			fourth, fifth, and sixth vertices, and so on. A triangles element contains a sequence of p 
-			elements, where 'p' stands for primitive. Each p element describes the vertex attributes for 
-			an individual triangle.
-*/class intTriangles;
+class intTriangles;
 
 typedef daeSmartRef<intTriangles> intTrianglesRef;
 typedef daeTArray<intTrianglesRef> intTrianglesArray;
 
+/**
+ * The triangles element declares the binding of geometric primitives and
+ * vertex attributes  for a mesh element. The triangles element provides the
+ * information needed to bind vertex  attributes together and then organize
+ * those vertices into individual triangles. The vertex  array information
+ * is supplied in distinct attribute arrays that are then indexed by the 
+ * triangles element. Each triangle described by the mesh has three vertices.
+ * The first triangle  is formed from the first, second, and third vertices.
+ * The second triangle is formed from the  fourth, fifth, and sixth vertices,
+ * and so on. A triangles element contains a sequence of p  elements, where
+ * 'p' stands for primitive. Each p element describes the vertex attributes
+ * for  an individual triangle.
+ */
 class intTriangles : public daeIntegrationObject
 {
 public: // Constuctor and Destructor

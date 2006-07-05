@@ -17,20 +17,23 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeMetaElement.h>
 
-/** The lines element declares the binding of geometric primitives and vertex attributes for a 
-			mesh element. The lines element provides the information needed to bind vertex attributes 
-			together and then organize those vertices into individual lines. The vertex array 
-			information is supplied in distinct attribute arrays of the mesh element that are then
-			indexed by the lines element. Each line described by the mesh has two vertices. The first 
-			line is formed from first and second vertices. The second line is formed from the third and 
-			fourth vertices and so on.
-			A lines element contains a sequence of p elements, where 'p' stands for primitive. Each p 
-			element describes the vertex attributes for an arbitrary number of individual lines.
-*/class intLines;
+class intLines;
 
 typedef daeSmartRef<intLines> intLinesRef;
 typedef daeTArray<intLinesRef> intLinesArray;
 
+/**
+ * The lines element declares the binding of geometric primitives and vertex
+ * attributes for a  mesh element. The lines element provides the information
+ * needed to bind vertex attributes  together and then organize those vertices
+ * into individual lines. The vertex array  information is supplied in distinct
+ * attribute arrays of the mesh element that are then indexed by the lines
+ * element. Each line described by the mesh has two vertices. The first  line
+ * is formed from first and second vertices. The second line is formed from
+ * the third and  fourth vertices and so on. A lines element contains a sequence
+ * of p elements, where 'p' stands for primitive. Each p  element describes
+ * the vertex attributes for an arbitrary number of individual lines.
+ */
 class intLines : public daeIntegrationObject
 {
 public: // Constuctor and Destructor

@@ -36,7 +36,6 @@ intSource::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "source" );
-	_Meta->setStaticPointerAddress(&intSource::_Meta);
 	_Meta->registerConstructor(intSource::create);
 
 	domSource::_Meta->setMetaIntegration(_Meta);
@@ -61,7 +60,6 @@ intSource::intTechnique_common::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "technique_common" );
-	_Meta->setStaticPointerAddress(&intSource::intTechnique_common::_Meta);
 	_Meta->registerConstructor(intSource::intTechnique_common::create);
 
 	domSource::domTechnique_common::_Meta->setMetaIntegration(_Meta);

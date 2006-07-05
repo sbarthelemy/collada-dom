@@ -35,7 +35,6 @@ intVertices::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "vertices" );
-	_Meta->setStaticPointerAddress(&intVertices::_Meta);
 	_Meta->registerConstructor(intVertices::create);
 
 	domVertices::_Meta->setMetaIntegration(_Meta);

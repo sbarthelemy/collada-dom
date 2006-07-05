@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns="http://www.collada.org/2005/11/COLLADASchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" targetNamespace="http://www.collada.org/2005/11/COLLADASchema" elementFormDefault="qualified" version="1.4.0" xml:lang="EN" xsi:schemaLocation="http://www.w3.org/2001/XMLSchema http://www.w3.org/2001/XMLSchema.xsd">
+<xs:schema xmlns="http://www.collada.org/2005/11/COLLADASchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" targetNamespace="http://www.collada.org/2005/11/COLLADASchema" elementFormDefault="qualified" version="1.4.1" xml:lang="EN" xsi:schemaLocation="http://www.w3.org/2001/XMLSchema http://www.w3.org/2001/XMLSchema.xsd">
 	<!-- BEGIN COLLADA Format Schema -->
 	<xs:annotation>
 		<xs:documentation>
 	 		 COLLADA Schema
-	 		 Version 1.4.0 (January 18, 2006)
+	 		 Version 1.4.1 (June 23, 2006)
 
 	 		 Copyright (C) 2005, 2006 The Khronos Group Inc., Sony Computer Entertainment Inc.
 			 All Rights Reserved.
@@ -18,6 +18,8 @@
 			 PURPOSE, AND NON-INFRINGEMENT.
 		</xs:documentation>
 	</xs:annotation>
+	<!-- import needed for xml:base attribute-->
+	<xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2001/03/xml.xsd"/>
 	<!-- Root Element -->
 	<xs:element name="COLLADA">
 		<xs:annotation>
@@ -158,7 +160,7 @@
 								<xs:annotation>
 									<xs:documentation>
 									The instance_physics_scene element declares the instantiation of a COLLADA physics_scene resource.
-									The instance_physics_scene element may only appear once.
+									The instance_physics_scene element may appear any number of times.
 									</xs:documentation>
 								</xs:annotation>
 							</xs:element>
@@ -193,6 +195,14 @@
 					<xs:documentation>
 						The version attribute is the COLLADA schema revision with which the instance document 
 						conforms. Required Attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute ref="xml:base">
+				<xs:annotation>
+					<xs:documentation>
+					The xml:base attribute allows you to define the base URI for this COLLADA document. See
+					http://www.w3.org/TR/xmlbase/ for more information.
 					</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
@@ -432,6 +442,7 @@
 		</xs:annotation>
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="1.4.0"/>
+			<xs:enumeration value="1.4.1"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<!-- Complex Types -->
@@ -537,6 +548,21 @@
 				The url attribute refers to resource to instantiate. This may refer to a local resource using a 
 				relative URL fragment identifier that begins with the “#” character. The url attribute may refer 
 				to an external resource using an absolute or relative URL.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="sid" type="xs:NCName">
+			<xs:annotation>
+				<xs:documentation>
+				The sid attribute is a text string value containing the sub-identifier of this element. This 
+				value must be unique within the scope of the parent element. Optional attribute.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="name" type="xs:NCName">
+			<xs:annotation>
+				<xs:documentation>
+				The name attribute is the text string name of this element. Optional attribute.
 				</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
@@ -967,7 +993,7 @@
 				<xs:annotation>
 					<xs:documentation>
 					The id attribute is a text string containing the unique identifier of this element. 
-					This value must be unique within the instance document. Optional attribute.
+					This value must be unique within the instance document. Required attribute.
 					</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
@@ -1659,7 +1685,7 @@
 				<xs:annotation>
 					<xs:documentation>
 					The id attribute is a text string containing the unique identifier of this element. This 
-					value must be unique within the instance document. Optional attribute.
+					value must be unique within the instance document. Required attribute.
 					</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
@@ -2249,7 +2275,7 @@
 																<xs:element name="yfov" type="TargetableFloat">
 																	<xs:annotation>
 																		<xs:documentation>
-																		The yfov element contains a floating point number describing the horizontal field of view in degrees.
+																		The yfov element contains a floating point number describing the verticle field of view in degrees.
 																		</xs:documentation>
 																	</xs:annotation>
 																</xs:element>
@@ -3306,7 +3332,7 @@
 				<xs:element name="technique_common">
 					<xs:annotation>
 						<xs:documentation>
-						The technique_common element specifies the instance_rigid_body information for the common 
+						The technique_common element specifies the bind_material information for the common 
 						profile which all COLLADA implementations need to support.
 						</xs:documentation>
 					</xs:annotation>
@@ -3327,6 +3353,13 @@
 					<xs:annotation>
 						<xs:documentation>
 						This element may contain any number of non-common profile techniques.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="extra" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>
+						The extra element may appear any number of times.
 						</xs:documentation>
 					</xs:annotation>
 				</xs:element>
@@ -3381,6 +3414,21 @@
 					</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
+			<xs:attribute name="sid" type="xs:NCName">
+				<xs:annotation>
+					<xs:documentation>
+					The sid attribute is a text string value containing the sub-identifier of this element. This 
+					value must be unique within the scope of the parent element. Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="name" type="xs:NCName">
+				<xs:annotation>
+					<xs:documentation>
+					The name attribute is the text string name of this element. Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="instance_effect">
@@ -3398,10 +3446,17 @@
 						</xs:documentation>
 					</xs:annotation>
 					<xs:complexType>
-						<xs:attribute name="platform" type="xs:NCName" use="required">
+						<xs:attribute name="platform" type="xs:NCName" use="optional">
 							<xs:annotation>
 								<xs:documentation>
-								“platform” defines a string that specifies which platform this is hint is aimed for.
+								A platform defines a string that specifies which platform this is hint is aimed for.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="profile" type="xs:NCName" use="optional">
+							<xs:annotation>
+								<xs:documentation>
+								A profile defines a string that specifies which API profile this is hint is aimed for.
 								</xs:documentation>
 							</xs:annotation>
 						</xs:attribute>
@@ -3424,7 +3479,7 @@
 						<xs:sequence>
 							<xs:group ref="fx_basic_type_common"/>
 						</xs:sequence>
-						<xs:attribute name="ref" type="xs:NCName" use="required"/>
+						<xs:attribute name="ref" type="xs:token" use="required"/>
 					</xs:complexType>
 				</xs:element>
 				<xs:element ref="extra" minOccurs="0" maxOccurs="unbounded">
@@ -3441,6 +3496,21 @@
 					The url attribute refers to resource.  This may refer to a local resource using a relative URL 
 					fragment identifier that begins with the “#” character. The url attribute may refer to an external 
 					resource using an absolute or relative URL.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="sid" type="xs:NCName">
+				<xs:annotation>
+					<xs:documentation>
+					The sid attribute is a text string value containing the sub-identifier of this element. This 
+					value must be unique within the scope of the parent element. Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="name" type="xs:NCName">
+				<xs:annotation>
+					<xs:documentation>
+					The name attribute is the text string name of this element. Optional attribute.
 					</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
@@ -3486,6 +3556,21 @@
 					</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
+			<xs:attribute name="sid" type="xs:NCName">
+				<xs:annotation>
+					<xs:documentation>
+					The sid attribute is a text string value containing the sub-identifier of this element. This 
+					value must be unique within the scope of the parent element. Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="name" type="xs:NCName">
+				<xs:annotation>
+					<xs:documentation>
+					The name attribute is the text string name of this element. Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="instance_light" type="InstanceWithExtra">
@@ -3528,6 +3613,36 @@
 						</xs:attribute>
 					</xs:complexType>
 				</xs:element>
+				<xs:element name="bind_vertex_input" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>
+						The bind_vertex_input element binds vertex inputs to effect parameters upon instantiation.
+						</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="semantic" type="xs:NCName" use="required">
+							<xs:annotation>
+								<xs:documentation>
+								The semantic attribute specifies which effect parameter to bind.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="input_semantic" type="xs:NCName" use="required">
+							<xs:annotation>
+								<xs:documentation>
+								The input_semantic attribute specifies which input semantic to bind.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="input_set" type="uint">
+							<xs:annotation>
+								<xs:documentation>
+								The input_set attribute specifies which input set to bind. 
+								</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
 				<xs:element ref="extra" minOccurs="0" maxOccurs="unbounded">
 					<xs:annotation>
 						<xs:documentation>
@@ -3547,6 +3662,21 @@
 				<xs:annotation>
 					<xs:documentation>
 					The target attribute specifies the URL of the location of the object to instantiate.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="sid" type="xs:NCName">
+				<xs:annotation>
+					<xs:documentation>
+					The sid attribute is a text string value containing the sub-identifier of this element. This 
+					value must be unique within the scope of the parent element. Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="name" type="xs:NCName">
+				<xs:annotation>
+					<xs:documentation>
+					The name attribute is the text string name of this element. Optional attribute.
 					</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
@@ -3616,8 +3746,15 @@
 			<xs:attribute name="sid" type="xs:NCName">
 				<xs:annotation>
 					<xs:documentation>
-					The sid attribute is a text string value containing the sub-identifier of this element. This value 
-					must be unique within the scope of the parent element. Optional attribute.
+					The sid attribute is a text string value containing the sub-identifier of this element. This 
+					value must be unique within the scope of the parent element. Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="name" type="xs:NCName">
+				<xs:annotation>
+					<xs:documentation>
+					The name attribute is the text string name of this element. Optional attribute.
 					</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
@@ -3649,7 +3786,7 @@
 					</xs:annotation>
 					<xs:complexType>
 						<xs:sequence>
-							<xs:element name="angular_velocity" type="float3" minOccurs="0">
+							<xs:element name="angular_velocity" type="float3" default="0.0 0.0 0.0" minOccurs="0">
 								<xs:annotation>
 									<xs:documentation>
 									Specifies the initial angular velocity of the rigid_body instance in degrees per second 
@@ -3657,7 +3794,7 @@
 									</xs:documentation>
 								</xs:annotation>
 							</xs:element>
-							<xs:element name="velocity" type="float3" minOccurs="0">
+							<xs:element name="velocity" type="float3" default="0.0 0.0 0.0" minOccurs="0">
 								<xs:annotation>
 									<xs:documentation>
 									Specifies the initial linear velocity of the rigid_body instance.
@@ -3775,6 +3912,13 @@
 					</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
+			<xs:attribute name="name" type="xs:NCName">
+				<xs:annotation>
+					<xs:documentation>
+					The name attribute is the text string name of this element. Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="target" type="xs:anyURI" use="required">
 				<xs:annotation>
 					<xs:documentation>
@@ -3805,6 +3949,21 @@
 				<xs:annotation>
 					<xs:documentation>
 					The constraint attribute indicates which rigid_constraing to instantiate. Required attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="sid" type="xs:NCName">
+				<xs:annotation>
+					<xs:documentation>
+					The sid attribute is a text string value containing the sub-identifier of this element. This 
+					value must be unique within the scope of the parent element. Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="name" type="xs:NCName">
+				<xs:annotation>
+					<xs:documentation>
+					The name attribute is the text string name of this element. Optional attribute.
 					</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
@@ -4358,6 +4517,21 @@
 					</xs:annotation>
 				</xs:element>
 			</xs:sequence>
+			<xs:attribute name="id" type="xs:ID">
+				<xs:annotation>
+					<xs:documentation>
+					The id attribute is a text string containing the unique identifier of this element. 
+					This value must be unique within the instance document. Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="name" type="xs:NCName">
+				<xs:annotation>
+					<xs:documentation>
+					The name attribute is the text string name of this element. Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="library_physics_models">
@@ -4507,9 +4681,33 @@
 	<xs:simpleType name="fx_color_common">
 		<xs:restriction base="float4"/>
 	</xs:simpleType>
+	<xs:simpleType name="fx_opaque_enum">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="A_ONE">
+				<xs:annotation>
+					<xs:documentation>
+						When a transparent opaque attribute is set to A_ONE, it means the transparency information will be taken from the alpha channel of the color, texture, or parameter supplying the value. The value of 1.0 is opaque in this mode.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RGB_ZERO">
+				<xs:annotation>
+					<xs:documentation>
+						When a transparent opaque attribute is set to RGB_ZERO, it means the transparency information will be taken from the red, green, and blue channels of the color, texture, or parameter supplying the value. Each channel is modulated independently. The value of 0.0 is opaque in this mode.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
 	<xs:simpleType name="fx_surface_type_enum">
 		<xs:restriction base="xs:string">
-			<xs:enumeration value="UNTYPED"/>
+			<xs:enumeration value="UNTYPED">
+				<xs:annotation>
+					<xs:documentation>
+						When a surface's type attribute is set to UNTYPED, its type is initially unknown and established later by the context in which it is used, such as by a texture sampler that references it. A surface of any other type may be changed into an UNTYPED surface at run-time, as if it were created by &lt;newparam&gt;, using &lt;setparam&gt;. If there is a type mismatch between a &lt;setparam&gt; operation and what the run-time decides the type should be, the result is profile- and platform-specific behavior.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
 			<xs:enumeration value="1D"/>
 			<xs:enumeration value="2D"/>
 			<xs:enumeration value="3D"/>
@@ -4528,6 +4726,284 @@
 			<xs:enumeration value="NEGATIVE_Z"/>
 		</xs:restriction>
 	</xs:simpleType>
+	<xs:simpleType name="fx_surface_format_hint_channels_enum">
+		<xs:annotation>
+			<xs:documentation>The per-texel layout of the format.  The length of the string indicate how many channels there are and the letter respresents the name of the channel.  There are typically 0 to 4 channels.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="RGB">
+				<xs:annotation>
+					<xs:documentation>RGB color  map</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="RGBA">
+				<xs:annotation>
+					<xs:documentation>RGB color + Alpha map often used for color + transparency or other things packed into channel A like specular power </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="L">
+				<xs:annotation>
+					<xs:documentation>Luminance map often used for light mapping </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="LA">
+				<xs:annotation>
+					<xs:documentation>Luminance+Alpha map often used for light mapping </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="D">
+				<xs:annotation>
+					<xs:documentation>Depth map often used for displacement, parellax, relief, or shadow mapping </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="XYZ">
+				<xs:annotation>
+					<xs:documentation>Typically used for normal maps or 3component displacement maps.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="XYZW">
+				<xs:annotation>
+					<xs:documentation>Typically used for normal maps where W is the depth for relief or parrallax mapping </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="fx_surface_format_hint_precision_enum">
+		<xs:annotation>
+			<xs:documentation>Each channel of the texel has a precision.  Typically these are all linked together.  An exact format lay lower the precision of an individual channel but applying a higher precision by linking the channels together may still convey the same information.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="LOW">
+				<xs:annotation>
+					<xs:documentation>For integers this typically represents 8 bits.  For floats typically 16 bits.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MID">
+				<xs:annotation>
+					<xs:documentation>For integers this typically represents 8 to 24 bits.  For floats typically 16 to 32 bits.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="HIGH">
+				<xs:annotation>
+					<xs:documentation>For integers this typically represents 16 to 32 bits.  For floats typically 24 to 32 bits.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="fx_surface_format_hint_range_enum">
+		<xs:annotation>
+			<xs:documentation>Each channel represents a range of values. Some example ranges are signed or unsigned integers, or between between a clamped range such as 0.0f to 1.0f, or high dynamic range via floating point</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="SNORM">
+				<xs:annotation>
+					<xs:documentation>Format is representing a decimal value that remains within the -1 to 1 range. Implimentation could be integer-fixedpoint or floats.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="UNORM">
+				<xs:annotation>
+					<xs:documentation>Format is representing a decimal value that remains within the 0 to 1 range. Implimentation could be integer-fixedpoint or floats.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SINT">
+				<xs:annotation>
+					<xs:documentation>Format is representing signed integer numbers.  (ex. 8bits = -128 to 127)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="UINT">
+				<xs:annotation>
+					<xs:documentation>Format is representing unsigned integer numbers.  (ex. 8bits = 0 to 255)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="FLOAT">
+				<xs:annotation>
+					<xs:documentation>Format should support full floating point ranges.  High precision is expected to be 32bit. Mid precision may be 16 to 32 bit.  Low precision is expected to be 16 bit.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="fx_surface_format_hint_option_enum">
+		<xs:annotation>
+			<xs:documentation>Additional hints about data relationships and other things to help the application pick the best format.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="SRGB_GAMMA">
+				<xs:annotation>
+					<xs:documentation>colors are stored with respect to the sRGB 2.2 gamma curve rather than linear</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="NORMALIZED3">
+				<xs:annotation>
+					<xs:documentation>the texel's XYZ/RGB should be normalized such as in a normal map.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="NORMALIZED4">
+				<xs:annotation>
+					<xs:documentation>the texel's XYZW/RGBA should be normalized such as in a normal map.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="COMPRESSABLE">
+				<xs:annotation>
+					<xs:documentation>The surface may use run-time compression.  Considering the best compression based on desired, channel, range, precision, and options </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="fx_surface_format_hint_common">
+		<xs:annotation>
+			<xs:documentation>If the exact format cannot be resolve via other methods then the format_hint will describe the important features of the format so that the application may select a compatable or close format</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="channels" type="fx_surface_format_hint_channels_enum">
+				<xs:annotation>
+					<xs:documentation>The per-texel layout of the format.  The length of the string indicate how many channels there are and the letter respresents the name of the channel.  There are typically 0 to 4 channels.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="range" type="fx_surface_format_hint_range_enum">
+				<xs:annotation>
+					<xs:documentation>Each channel represents a range of values. Some example ranges are signed or unsigned integers, or between between a clamped range such as 0.0f to 1.0f, or high dynamic range via floating point</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="precision" type="fx_surface_format_hint_precision_enum" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Each channel of the texel has a precision.  Typically these are all linked together.  An exact format lay lower the precision of an individual channel but applying a higher precision by linking the channels together may still convey the same information.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="option" type="fx_surface_format_hint_option_enum" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Additional hints about data relationships and other things to help the application pick the best format.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="extra" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="fx_surface_init_planar_common">
+		<xs:annotation>
+			<xs:documentation>For 1D, 2D, RECT surface types</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:annotation>
+				<xs:documentation>This choice exists for consistancy with other init types (volume and cube).  When other initialization methods are needed.</xs:documentation>
+			</xs:annotation>
+			<xs:element name="all">
+				<xs:annotation>
+					<xs:documentation>Init the entire surface with one compound image such as DDS</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="ref" type="xs:IDREF" use="required"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="fx_surface_init_volume_common">
+		<xs:choice>
+			<xs:element name="all">
+				<xs:annotation>
+					<xs:documentation>Init the entire surface with one compound image such as DDS</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="ref" type="xs:IDREF" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="primary">
+				<xs:annotation>
+					<xs:documentation>Init mip level 0 of the surface with one compound image such as DDS.  Use of this element expects that the surface has element mip_levels=0 or mipmap_generate.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="ref" type="xs:IDREF" use="required"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="fx_surface_init_cube_common">
+		<xs:choice>
+			<xs:element name="all">
+				<xs:annotation>
+					<xs:documentation>Init the entire surface with one compound image such as DDS</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="ref" type="xs:IDREF" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="primary">
+				<xs:annotation>
+					<xs:documentation>Init all primary mip level 0 subsurfaces with one compound image such as DDS.  Use of this element expects that the surface has element mip_levels=0 or mipmap_generate.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>This sequence exists to allow the order elements to be optional but require that if they exist there must be 6 of them.</xs:documentation>
+						</xs:annotation>
+						<xs:element name="order" type="fx_surface_face_enum" minOccurs="6" maxOccurs="6">
+							<xs:annotation>
+								<xs:documentation>If the image dues not natively describe the face ordering then this series of order elements will describe which face the index belongs too</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute name="ref" type="xs:IDREF" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="face" minOccurs="6" maxOccurs="6">
+				<xs:annotation>
+					<xs:documentation>Init each face mipchain with one compound image such as DDS</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="ref" type="xs:IDREF" use="required"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="fx_surface_init_from_common">
+		<xs:annotation>
+			<xs:documentation>
+				This element is an IDREF which specifies the image to use to initialize a specific mip of a 1D or 2D surface, 3D slice, or Cube face.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:IDREF">
+				<xs:attribute name="mip" type="xs:unsignedInt" default="0"/>
+				<xs:attribute name="slice" type="xs:unsignedInt" default="0"/>
+				<xs:attribute name="face" type="fx_surface_face_enum" default="POSITIVE_X"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:group name="fx_surface_init_common">
+		<xs:annotation>
+			<xs:documentation>The common set of initalization options for surfaces.  Choose which is appropriate for your surface based on type and other characteristics. described by the annotation docs on the child elements.</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="init_as_null">
+				<xs:annotation>
+					<xs:documentation>This surface is intended to be initialized later externally by a "setparam" element.  If it is used before being initialized there is profile and platform specific behavior.  Most elements on the surface element containing this will be ignored including mip_levels, mipmap_generate, size, viewport_ratio, and format.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="init_as_target">
+				<xs:annotation>
+					<xs:documentation>Init as a target for depth, stencil, or color.  It does not need image data. Surface should not have mipmap_generate when using this.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="init_cube" type="fx_surface_init_cube_common">
+				<xs:annotation>
+					<xs:documentation>Init a CUBE from a compound image such as DDS</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="init_volume" type="fx_surface_init_volume_common">
+				<xs:annotation>
+					<xs:documentation>Init a 3D from a compound image such as DDS</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="init_planar" type="fx_surface_init_planar_common">
+				<xs:annotation>
+					<xs:documentation>Init a 1D,2D,RECT,DEPTH from a compound image such as DDS</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="init_from" type="fx_surface_init_from_common" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Initialize the surface one sub-surface at a time by specifying combinations of mip, face, and slice which make sense for a particular surface type.  Each sub-surface is initialized by a common 2D image, not a complex compound image such as DDS. If not all subsurfaces are initialized, it is invalid and will result in profile and platform specific behavior unless mipmap_generate is responsible for initializing the remainder of the sub-surfaces</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:choice>
+	</xs:group>
 	<xs:complexType name="fx_surface_common">
 		<xs:annotation>
 			<xs:documentation>
@@ -4535,38 +5011,50 @@
 			</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="init_from" minOccurs="0" maxOccurs="unbounded">
+			<xs:group ref="fx_surface_init_common" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation>
-					The init_from element is a list of IDREFs which specify the images to use to initialize this surface.
-					</xs:documentation>
+					<xs:documentation>The common set of initalization options for surfaces.  Choose which is appropriate for your surface based on the type attribute and other characteristics described by the annotation docs on the choiced child elements of this type.</xs:documentation>
 				</xs:annotation>
-				<xs:complexType>
-					<xs:simpleContent>
-						<xs:extension base="xs:IDREFS">
-							<xs:attribute name="mip" type="xs:unsignedInt" default="0"/>
-							<xs:attribute name="slice" type="xs:unsignedInt" default="0"/>
-							<xs:attribute name="face" type="fx_surface_face_enum" default="POSITIVE_X"/>
-						</xs:extension>
-					</xs:simpleContent>
-				</xs:complexType>
+			</xs:group>
+			<xs:element name="format" type="xs:token" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contains a string representing the profile and platform specific texel format that the author would like this surface to use.  If this element is not specified then the application will use a common format R8G8B8A8 with linear color gradient, not  sRGB.</xs:documentation>
+				</xs:annotation>
 			</xs:element>
-			<xs:element name="format">
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<xs:whiteSpace value="collapse"/>
-						<xs:maxLength value="24"/>
-					</xs:restriction>
-				</xs:simpleType>
+			<xs:element name="format_hint" type="fx_surface_format_hint_common" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>If the exact format cannot be resolved via the "format" element then the format_hint will describe the important features of the format so that the application may select a compatable or close format</xs:documentation>
+				</xs:annotation>
 			</xs:element>
 			<xs:choice minOccurs="0">
-				<xs:element name="size" type="int3" default="0 0 0"/>
-				<xs:element name="viewport_ratio" type="float2" default="1 1"/>
+				<xs:element name="size" type="int3" default="0 0 0">
+					<xs:annotation>
+						<xs:documentation>The surface should be sized to these exact dimensions</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="viewport_ratio" type="float2" default="1 1">
+					<xs:annotation>
+						<xs:documentation>The surface should be sized to a dimension based on this ratio of the viewport's dimensions in pixels</xs:documentation>
+					</xs:annotation>
+				</xs:element>
 			</xs:choice>
-			<xs:element name="mip_levels" type="xs:unsignedInt" default="0" minOccurs="0"/>
-			<xs:element name="mipmap_generate" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="mip_levels" type="xs:unsignedInt" default="0" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>the surface should contain the following number of MIP levels.  If this element is not present it is assumed that all miplevels exist until a dimension becomes 1 texel.  To create a surface that has only one level of mip maps (mip=0) set this to 1.  If the value is 0 the result is the same as if mip_levels was unspecified, all possible mip_levels will exist.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="mipmap_generate" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>By default it is assumed that mipmaps are supplied by the author so, if not all subsurfaces are initialized, it is invalid and will result in profile and platform specific behavior unless mipmap_generate is responsible for initializing the remainder of the sub-surfaces</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="extra" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
-		<xs:attribute name="type" type="fx_surface_type_enum" use="required"/>
+		<xs:attribute name="type" type="fx_surface_type_enum" use="required">
+			<xs:annotation>
+				<xs:documentation>Specifying the type of a surface is mandatory though the type may be "UNTYPED".  When a surface is typed as UNTYPED, it is said to be temporarily untyped and instead will be typed later by the context it is used in such as which samplers reference it in that are used in a particular technique or pass.   If there is a type mismatch between what is set into it later and what the runtime decides the type should be the result in profile and platform specific behavior.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
 	</xs:complexType>
 	<xs:simpleType name="fx_sampler_wrap_common">
 		<xs:restriction base="xs:NMTOKEN">
@@ -4603,6 +5091,7 @@
 			<xs:element name="border_color" type="fx_color_common" minOccurs="0"/>
 			<xs:element name="mipmap_maxlevel" type="xs:unsignedByte" default="0" minOccurs="0"/>
 			<xs:element name="mipmap_bias" type="xs:float" default="0.0" minOccurs="0"/>
+			<xs:element ref="extra" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="fx_sampler2D_common">
@@ -4621,6 +5110,7 @@
 			<xs:element name="border_color" type="fx_color_common" minOccurs="0"/>
 			<xs:element name="mipmap_maxlevel" type="xs:unsignedByte" default="255" minOccurs="0"/>
 			<xs:element name="mipmap_bias" type="xs:float" default="0.0" minOccurs="0"/>
+			<xs:element ref="extra" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="fx_sampler3D_common">
@@ -4640,6 +5130,7 @@
 			<xs:element name="border_color" type="fx_color_common" minOccurs="0"/>
 			<xs:element name="mipmap_maxlevel" type="xs:unsignedByte" default="255" minOccurs="0"/>
 			<xs:element name="mipmap_bias" type="xs:float" default="0.0" minOccurs="0"/>
+			<xs:element ref="extra" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="fx_samplerCUBE_common">
@@ -4659,6 +5150,7 @@
 			<xs:element name="border_color" type="fx_color_common" minOccurs="0"/>
 			<xs:element name="mipmap_maxlevel" type="xs:unsignedByte" default="255" minOccurs="0"/>
 			<xs:element name="mipmap_bias" type="xs:float" default="0.0" minOccurs="0"/>
+			<xs:element ref="extra" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="fx_samplerRECT_common">
@@ -4677,6 +5169,7 @@
 			<xs:element name="border_color" type="fx_color_common" minOccurs="0"/>
 			<xs:element name="mipmap_maxlevel" type="xs:unsignedByte" default="255" minOccurs="0"/>
 			<xs:element name="mipmap_bias" type="xs:float" default="0.0" minOccurs="0"/>
+			<xs:element ref="extra" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="fx_samplerDEPTH_common">
@@ -4691,6 +5184,7 @@
 			<xs:element name="wrap_t" type="fx_sampler_wrap_common" default="WRAP" minOccurs="0"/>
 			<xs:element name="minfilter" type="fx_sampler_filter_common" default="NONE" minOccurs="0"/>
 			<xs:element name="magfilter" type="fx_sampler_filter_common" default="NONE" minOccurs="0"/>
+			<xs:element ref="extra" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:group name="fx_annotate_type_common">
@@ -4778,6 +5272,8 @@
 		<xs:simpleContent>
 			<xs:extension base="xs:NCName">
 				<xs:attribute name="index" type="xs:nonNegativeInteger" use="optional" default="0"/>
+				<xs:attribute name="face" type="fx_surface_face_enum" use="optional" default="POSITIVE_X"/>
+				<xs:attribute name="mip" type="xs:nonNegativeInteger" use="optional" default="0"/>
 				<xs:attribute name="slice" type="xs:nonNegativeInteger" use="optional" default="0"/>
 			</xs:extension>
 		</xs:simpleContent>
@@ -4786,6 +5282,8 @@
 		<xs:simpleContent>
 			<xs:extension base="xs:NCName">
 				<xs:attribute name="index" type="xs:nonNegativeInteger" use="optional" default="0"/>
+				<xs:attribute name="face" type="fx_surface_face_enum" use="optional" default="POSITIVE_X"/>
+				<xs:attribute name="mip" type="xs:nonNegativeInteger" use="optional" default="0"/>
 				<xs:attribute name="slice" type="xs:nonNegativeInteger" use="optional" default="0"/>
 			</xs:extension>
 		</xs:simpleContent>
@@ -4794,6 +5292,8 @@
 		<xs:simpleContent>
 			<xs:extension base="xs:NCName">
 				<xs:attribute name="index" type="xs:nonNegativeInteger" use="optional" default="0"/>
+				<xs:attribute name="face" type="fx_surface_face_enum" use="optional" default="POSITIVE_X"/>
+				<xs:attribute name="mip" type="xs:nonNegativeInteger" use="optional" default="0"/>
 				<xs:attribute name="slice" type="xs:nonNegativeInteger" use="optional" default="0"/>
 			</xs:extension>
 		</xs:simpleContent>
@@ -4901,13 +5401,6 @@
 				</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-	</xs:complexType>
-	<xs:complexType name="fx_setparam_common">
-		<xs:sequence>
-			<xs:element name="annotate" type="fx_annotate_common" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:group ref="fx_basic_type_common"/>
-		</xs:sequence>
-		<xs:attribute name="ref" type="xs:NCName" use="required"/>
 	</xs:complexType>
 	<!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
 	<!-- COLLADA FX types in profile scope   -->
@@ -6231,6 +6724,12 @@
 					<xs:attribute name="param" type="xs:NCName" use="optional"/>
 				</xs:complexType>
 			</xs:element>
+			<xs:element name="color_material_enable">
+				<xs:complexType>
+					<xs:attribute name="value" type="bool" use="optional" default="true"/>
+					<xs:attribute name="param" type="xs:NCName" use="optional"/>
+				</xs:complexType>
+			</xs:element>
 			<xs:element name="cull_face_enable">
 				<xs:complexType>
 					<xs:attribute name="value" type="bool" use="optional" default="false"/>
@@ -6482,7 +6981,7 @@
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="glsl_identifier">
-		<xs:restriction base="xs:string"/>
+		<xs:restriction base="xs:token"/>
 	</xs:simpleType>
 	<xs:complexType name="glsl_newarray_type">
 		<xs:annotation>
@@ -6623,7 +7122,7 @@
 			<xs:element name="int2" type="glsl_int2"/>
 			<xs:element name="int3" type="glsl_int3"/>
 			<xs:element name="int4" type="glsl_int4"/>
-			<xs:element name="surface" type="fx_surface_common"/>
+			<xs:element name="surface" type="glsl_surface_type"/>
 			<xs:element name="sampler1D" type="gl_sampler1D"/>
 			<xs:element name="sampler2D" type="gl_sampler2D"/>
 			<xs:element name="sampler3D" type="gl_sampler3D"/>
@@ -6671,6 +7170,7 @@
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
+				<xs:element ref="asset" minOccurs="0"/>
 				<xs:choice minOccurs="0" maxOccurs="unbounded">
 					<xs:element name="code" type="fx_code_profile"/>
 					<xs:element name="include" type="fx_include_common"/>
@@ -6687,6 +7187,7 @@
 					</xs:annotation>
 					<xs:complexType>
 						<xs:sequence>
+							<xs:element name="annotate" type="fx_annotate_common" minOccurs="0" maxOccurs="unbounded"/>
 							<xs:choice minOccurs="0" maxOccurs="unbounded">
 								<xs:element name="code" type="fx_code_profile"/>
 								<xs:element name="include" type="fx_include_common"/>
@@ -6705,97 +7206,96 @@
 								<xs:complexType>
 									<xs:sequence>
 										<xs:element name="annotate" type="fx_annotate_common" minOccurs="0" maxOccurs="unbounded"/>
-										<xs:sequence>
-											<xs:element name="color_target" type="fx_colortarget_common" minOccurs="0" maxOccurs="unbounded"/>
-											<xs:element name="depth_target" type="fx_depthtarget_common" minOccurs="0" maxOccurs="unbounded"/>
-											<xs:element name="stencil_target" type="fx_stenciltarget_common" minOccurs="0" maxOccurs="unbounded"/>
-											<xs:element name="color_clear" type="fx_clearcolor_common" minOccurs="0" maxOccurs="unbounded"/>
-											<xs:element name="depth_clear" type="fx_cleardepth_common" minOccurs="0" maxOccurs="unbounded"/>
-											<xs:element name="stencil_clear" type="fx_clearstencil_common" minOccurs="0" maxOccurs="unbounded"/>
-											<xs:element name="draw" type="fx_draw_common" minOccurs="0"/>
-											<xs:choice maxOccurs="unbounded">
-												<xs:group ref="gl_pipeline_settings"/>
-												<xs:element name="shader">
-													<xs:annotation>
-														<xs:documentation>
-														Declare and prepare a shader for execution in the rendering pipeline of a pass.
-														</xs:documentation>
-													</xs:annotation>
-													<xs:complexType>
-														<xs:sequence>
-															<xs:element name="annotate" type="fx_annotate_common" minOccurs="0" maxOccurs="unbounded"/>
-															<xs:sequence minOccurs="0">
-																<xs:element name="compiler_target">
-																	<xs:annotation>
-																		<xs:documentation>
-																		A string declaring which profile or platform the compiler is targeting this shader for.
-																		</xs:documentation>
-																	</xs:annotation>
-																	<xs:complexType>
-																		<xs:simpleContent>
-																			<xs:extension base="xs:NMTOKEN"/>
-																		</xs:simpleContent>
-																	</xs:complexType>
-																</xs:element>
-																<xs:element name="compiler_options" type="xs:string" minOccurs="0">
-																	<xs:annotation>
-																		<xs:documentation>
-																		A string containing command-line operations for the shader compiler.
-																		</xs:documentation>
-																	</xs:annotation>
-																</xs:element>
-															</xs:sequence>
-															<xs:element name="name">
+										<xs:element name="color_target" type="fx_colortarget_common" minOccurs="0" maxOccurs="unbounded"/>
+										<xs:element name="depth_target" type="fx_depthtarget_common" minOccurs="0" maxOccurs="unbounded"/>
+										<xs:element name="stencil_target" type="fx_stenciltarget_common" minOccurs="0" maxOccurs="unbounded"/>
+										<xs:element name="color_clear" type="fx_clearcolor_common" minOccurs="0" maxOccurs="unbounded"/>
+										<xs:element name="depth_clear" type="fx_cleardepth_common" minOccurs="0" maxOccurs="unbounded"/>
+										<xs:element name="stencil_clear" type="fx_clearstencil_common" minOccurs="0" maxOccurs="unbounded"/>
+										<xs:element name="draw" type="fx_draw_common" minOccurs="0"/>
+										<xs:choice maxOccurs="unbounded">
+											<xs:group ref="gl_pipeline_settings"/>
+											<xs:element name="shader">
+												<xs:annotation>
+													<xs:documentation>
+													Declare and prepare a shader for execution in the rendering pipeline of a pass.
+													</xs:documentation>
+												</xs:annotation>
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="annotate" type="fx_annotate_common" minOccurs="0" maxOccurs="unbounded"/>
+														<xs:sequence minOccurs="0">
+															<xs:element name="compiler_target">
 																<xs:annotation>
 																	<xs:documentation>
-																	The entry symbol for the shader function.
+																	A string declaring which profile or platform the compiler is targeting this shader for.
 																	</xs:documentation>
 																</xs:annotation>
 																<xs:complexType>
 																	<xs:simpleContent>
-																		<xs:extension base="xs:NCName">
-																			<xs:attribute name="source" type="xs:NCName" use="optional"/>
-																		</xs:extension>
+																		<xs:extension base="xs:NMTOKEN"/>
 																	</xs:simpleContent>
 																</xs:complexType>
 															</xs:element>
-															<xs:element name="bind" minOccurs="0" maxOccurs="unbounded">
+															<xs:element name="compiler_options" type="xs:string" minOccurs="0">
 																<xs:annotation>
 																	<xs:documentation>
-																	Binds values to uniform inputs of a shader.
+																	A string containing command-line operations for the shader compiler.
 																	</xs:documentation>
 																</xs:annotation>
-																<xs:complexType>
-																	<xs:choice>
-																		<xs:group ref="glsl_param_type"/>
-																		<xs:element name="param">
-																			<xs:complexType>
-																				<xs:attribute name="ref" type="xs:string" use="required"/>
-																			</xs:complexType>
-																		</xs:element>
-																	</xs:choice>
-																	<xs:attribute name="symbol" type="xs:NCName" use="required">
-																		<xs:annotation>
-																			<xs:documentation>
-																			The identifier for a uniform input parameter to the shader (a formal function parameter or in-scope 
-																			global) that will be bound to an external resource.
-																			</xs:documentation>
-																		</xs:annotation>
-																	</xs:attribute>
-																</xs:complexType>
 															</xs:element>
 														</xs:sequence>
-														<xs:attribute name="stage" type="glsl_pipeline_stage">
+														<xs:element name="name">
 															<xs:annotation>
 																<xs:documentation>
-																In which pipeline stage this programmable shader is designed to execute, for example, VERTEX, FRAGMENT, etc.
+																The entry symbol for the shader function.
 																</xs:documentation>
 															</xs:annotation>
-														</xs:attribute>
-													</xs:complexType>
-												</xs:element>
-											</xs:choice>
-										</xs:sequence>
+															<xs:complexType>
+																<xs:simpleContent>
+																	<xs:extension base="xs:NCName">
+																		<xs:attribute name="source" type="xs:NCName" use="optional"/>
+																	</xs:extension>
+																</xs:simpleContent>
+															</xs:complexType>
+														</xs:element>
+														<xs:element name="bind" minOccurs="0" maxOccurs="unbounded">
+															<xs:annotation>
+																<xs:documentation>
+																Binds values to uniform inputs of a shader.
+																</xs:documentation>
+															</xs:annotation>
+															<xs:complexType>
+																<xs:choice>
+																	<xs:group ref="glsl_param_type"/>
+																	<xs:element name="param">
+																		<xs:complexType>
+																			<xs:attribute name="ref" type="xs:string" use="required"/>
+																		</xs:complexType>
+																	</xs:element>
+																</xs:choice>
+																<xs:attribute name="symbol" type="xs:NCName" use="required">
+																	<xs:annotation>
+																		<xs:documentation>
+																		The identifier for a uniform input parameter to the shader (a formal function parameter or in-scope 
+																		global) that will be bound to an external resource.
+																		</xs:documentation>
+																	</xs:annotation>
+																</xs:attribute>
+															</xs:complexType>
+														</xs:element>
+													</xs:sequence>
+													<xs:attribute name="stage" type="glsl_pipeline_stage">
+														<xs:annotation>
+															<xs:documentation>
+															In which pipeline stage this programmable shader is designed to execute, for example, VERTEX, FRAGMENT, etc.
+															</xs:documentation>
+														</xs:annotation>
+													</xs:attribute>
+												</xs:complexType>
+											</xs:element>
+										</xs:choice>
+										<xs:element ref="extra" minOccurs="0" maxOccurs="unbounded"/>
 									</xs:sequence>
 									<xs:attribute name="sid" type="xs:NCName" use="optional">
 										<xs:annotation>
@@ -6807,6 +7307,7 @@
 									</xs:attribute>
 								</xs:complexType>
 							</xs:element>
+							<xs:element ref="extra" minOccurs="0" maxOccurs="unbounded"/>
 						</xs:sequence>
 						<xs:attribute name="id" type="xs:ID">
 							<xs:annotation>
@@ -6826,7 +7327,16 @@
 						</xs:attribute>
 					</xs:complexType>
 				</xs:element>
+				<xs:element ref="extra" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:sequence>
+			<xs:attribute name="id" type="xs:ID" use="optional">
+				<xs:annotation>
+					<xs:documentation>
+					The id attribute is a text string containing the unique identifier of this element. 
+					This value must be unique within the instance document. Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 		</xs:complexType>
 	</xs:element>
 	<!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
@@ -6877,6 +7387,13 @@
 			</xs:element>
 		</xs:choice>
 	</xs:complexType>
+	<xs:complexType name="common_transparent_type">
+		<xs:complexContent>
+			<xs:extension base="common_color_or_texture_type">
+				<xs:attribute name="opaque" type="fx_opaque_enum" default="A_ONE"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
 	<xs:complexType name="common_newparam_type">
 		<xs:sequence>
 			<xs:element name="semantic" type="xs:NCName" minOccurs="0"/>
@@ -6906,6 +7423,7 @@
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
+				<xs:element ref="asset" minOccurs="0"/>
 				<xs:choice minOccurs="0" maxOccurs="unbounded">
 					<xs:element ref="image"/>
 					<xs:element name="newparam" type="common_newparam_type"/>
@@ -6936,7 +7454,7 @@
 											<xs:element name="emission" type="common_color_or_texture_type" minOccurs="0"/>
 											<xs:element name="reflective" type="common_color_or_texture_type" minOccurs="0"/>
 											<xs:element name="reflectivity" type="common_float_or_param_type" minOccurs="0"/>
-											<xs:element name="transparent" type="common_color_or_texture_type" minOccurs="0"/>
+											<xs:element name="transparent" type="common_transparent_type" minOccurs="0"/>
 											<xs:element name="transparency" type="common_float_or_param_type" minOccurs="0"/>
 											<xs:element name="index_of_refraction" type="common_float_or_param_type" minOccurs="0"/>
 										</xs:sequence>
@@ -6950,7 +7468,7 @@
 											<xs:element name="diffuse" type="common_color_or_texture_type" minOccurs="0"/>
 											<xs:element name="reflective" type="common_color_or_texture_type" minOccurs="0"/>
 											<xs:element name="reflectivity" type="common_float_or_param_type" minOccurs="0"/>
-											<xs:element name="transparent" type="common_color_or_texture_type" minOccurs="0"/>
+											<xs:element name="transparent" type="common_transparent_type" minOccurs="0"/>
 											<xs:element name="transparency" type="common_float_or_param_type" minOccurs="0"/>
 											<xs:element name="index_of_refraction" type="common_float_or_param_type" minOccurs="0"/>
 										</xs:sequence>
@@ -6966,10 +7484,10 @@
 											<xs:element name="shininess" type="common_float_or_param_type" minOccurs="0"/>
 											<xs:element name="reflective" type="common_color_or_texture_type" minOccurs="0"/>
 											<xs:element name="reflectivity" type="common_float_or_param_type" minOccurs="0"/>
-											<xs:element name="transparent" type="common_color_or_texture_type" minOccurs="0"/>
+											<xs:element name="transparent" type="common_transparent_type" minOccurs="0"/>
 											<xs:element name="transparency" type="common_float_or_param_type" minOccurs="0"/>
 											<xs:element name="index_of_refraction" type="common_float_or_param_type" minOccurs="0"/>
-										</xs:sequence>
+									</xs:sequence>
 									</xs:complexType>
 								</xs:element>
 								<xs:element name="blinn">
@@ -6982,7 +7500,7 @@
 											<xs:element name="shininess" type="common_float_or_param_type" minOccurs="0"/>
 											<xs:element name="reflective" type="common_color_or_texture_type" minOccurs="0"/>
 											<xs:element name="reflectivity" type="common_float_or_param_type" minOccurs="0"/>
-											<xs:element name="transparent" type="common_color_or_texture_type" minOccurs="0"/>
+											<xs:element name="transparent" type="common_transparent_type" minOccurs="0"/>
 											<xs:element name="transparency" type="common_float_or_param_type" minOccurs="0"/>
 											<xs:element name="index_of_refraction" type="common_float_or_param_type" minOccurs="0"/>
 										</xs:sequence>
@@ -7023,6 +7541,14 @@
 					</xs:annotation>
 				</xs:element>
 			</xs:sequence>
+			<xs:attribute name="id" type="xs:ID" use="optional">
+				<xs:annotation>
+					<xs:documentation>
+					The id attribute is a text string containing the unique identifier of this element. 
+					This value must be unique within the instance document. Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 		</xs:complexType>
 	</xs:element>
 	<!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
@@ -7688,7 +8214,7 @@
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="cg_identifier">
-		<xs:restriction base="xs:string"/>
+		<xs:restriction base="xs:token"/>
 		<!-- type used to represent identifiers in Cg, e.g. "myLight.bitmap[2].width" -->
 	</xs:simpleType>
 	<xs:complexType name="cg_connect_param">
@@ -7768,13 +8294,33 @@
 			Creates an instance of a structured class.
 			</xs:documentation>
 		</xs:annotation>
-		<xs:choice minOccurs="0" maxOccurs="unbounded">
-			<xs:group ref="cg_param_type"/>
-			<xs:element name="array" type="cg_setarray_type"/>
-			<xs:element name="usertype" type="cg_setuser_type"/>
-			<xs:element name="connect_param" type="cg_connect_param"/>
+		<xs:choice minOccurs="0">
+			<xs:annotation>
+				<xs:documentation>Some usertypes do not have data.  They may be used only to implement interface functions.</xs:documentation>
+			</xs:annotation>
+			<xs:choice maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Use a combination of these to initialize the usertype in an order-dependent manner.</xs:documentation>
+				</xs:annotation>
+				<xs:group ref="cg_param_type"/>
+				<xs:element name="array" type="cg_setarray_type"/>
+				<xs:element name="usertype" type="cg_setuser_type"/>
+				<xs:element name="connect_param" type="cg_connect_param"/>
+			</xs:choice>
+			<xs:element name="setparam" type="cg_setparam" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Use a series of these to set the members by name.  The ref attribute will be relative to the usertype you are in right now.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 		</xs:choice>
 		<xs:attribute name="name" type="cg_identifier" use="required"/>
+		<xs:attribute name="source" type="xs:NCName" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					Reference a code or include element which defines the usertype
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
 	</xs:complexType>
 	<xs:complexType name="cg_surface_type">
 		<xs:annotation>
@@ -8033,6 +8579,7 @@
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
+				<xs:element ref="asset" minOccurs="0"/>
 				<xs:choice minOccurs="0" maxOccurs="unbounded">
 					<xs:element name="code" type="fx_code_profile"/>
 					<xs:element name="include" type="fx_include_common"/>
@@ -8075,97 +8622,96 @@
 								<xs:complexType>
 									<xs:sequence>
 										<xs:element name="annotate" type="fx_annotate_common" minOccurs="0" maxOccurs="unbounded"/>
-										<xs:sequence>
-											<xs:element name="color_target" type="fx_colortarget_common" minOccurs="0" maxOccurs="unbounded"/>
-											<xs:element name="depth_target" type="fx_depthtarget_common" minOccurs="0" maxOccurs="unbounded"/>
-											<xs:element name="stencil_target" type="fx_stenciltarget_common" minOccurs="0" maxOccurs="unbounded"/>
-											<xs:element name="color_clear" type="fx_clearcolor_common" minOccurs="0" maxOccurs="unbounded"/>
-											<xs:element name="depth_clear" type="fx_cleardepth_common" minOccurs="0" maxOccurs="unbounded"/>
-											<xs:element name="stencil_clear" type="fx_clearstencil_common" minOccurs="0" maxOccurs="unbounded"/>
-											<xs:element name="draw" type="fx_draw_common" minOccurs="0"/>
-											<xs:choice maxOccurs="unbounded">
-												<xs:group ref="gl_pipeline_settings"/>
-												<xs:element name="shader">
-													<xs:annotation>
-														<xs:documentation>
-														Declare and prepare a shader for execution in the rendering pipeline of a pass.
-														</xs:documentation>
-													</xs:annotation>
-													<xs:complexType>
-														<xs:sequence>
-															<xs:element name="annotate" type="fx_annotate_common" minOccurs="0" maxOccurs="unbounded"/>
-															<xs:sequence minOccurs="0">
-																<xs:element name="compiler_target">
-																	<xs:complexType>
-																		<xs:simpleContent>
-																			<xs:extension base="xs:NMTOKEN"/>
-																		</xs:simpleContent>
-																	</xs:complexType>
-																</xs:element>
-																<xs:element name="compiler_options" type="xs:string" minOccurs="0">
-																	<xs:annotation>
-																		<xs:documentation>
-																		A string containing command-line operations for the shader compiler.
-																		</xs:documentation>
-																	</xs:annotation>
-																</xs:element>
-															</xs:sequence>
-															<xs:element name="name">
-																<xs:annotation>
-																	<xs:documentation>
-																	The entry symbol for the shader function.
-																	</xs:documentation>
-																</xs:annotation>
+										<xs:element name="color_target" type="fx_colortarget_common" minOccurs="0" maxOccurs="unbounded"/>
+										<xs:element name="depth_target" type="fx_depthtarget_common" minOccurs="0" maxOccurs="unbounded"/>
+										<xs:element name="stencil_target" type="fx_stenciltarget_common" minOccurs="0" maxOccurs="unbounded"/>
+										<xs:element name="color_clear" type="fx_clearcolor_common" minOccurs="0" maxOccurs="unbounded"/>
+										<xs:element name="depth_clear" type="fx_cleardepth_common" minOccurs="0" maxOccurs="unbounded"/>
+										<xs:element name="stencil_clear" type="fx_clearstencil_common" minOccurs="0" maxOccurs="unbounded"/>
+										<xs:element name="draw" type="fx_draw_common" minOccurs="0"/>
+										<xs:choice maxOccurs="unbounded">
+											<xs:group ref="gl_pipeline_settings"/>
+											<xs:element name="shader">
+												<xs:annotation>
+													<xs:documentation>
+													Declare and prepare a shader for execution in the rendering pipeline of a pass.
+													</xs:documentation>
+												</xs:annotation>
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="annotate" type="fx_annotate_common" minOccurs="0" maxOccurs="unbounded"/>
+														<xs:sequence minOccurs="0">
+															<xs:element name="compiler_target">
 																<xs:complexType>
 																	<xs:simpleContent>
-																		<xs:extension base="xs:NCName">
-																			<xs:attribute name="source" type="xs:NCName" use="optional"/>
-																		</xs:extension>
+																		<xs:extension base="xs:NMTOKEN"/>
 																	</xs:simpleContent>
 																</xs:complexType>
 															</xs:element>
-															<xs:element name="bind" minOccurs="0" maxOccurs="unbounded">
+															<xs:element name="compiler_options" type="xs:string" minOccurs="0">
 																<xs:annotation>
 																	<xs:documentation>
-																	Binds values to uniform inputs of a shader.
+																	A string containing command-line operations for the shader compiler.
 																	</xs:documentation>
 																</xs:annotation>
-																<xs:complexType>
-																	<xs:choice>
-																		<xs:group ref="cg_param_type"/>
-																		<xs:element name="param">
-																			<xs:annotation>
-																				<xs:documentation>
-																				References a predefined parameter in shader binding declarations.
-																				</xs:documentation>
-																			</xs:annotation>
-																			<xs:complexType>
-																				<xs:attribute name="ref" type="xs:NCName" use="required"/>
-																			</xs:complexType>
-																		</xs:element>
-																	</xs:choice>
-																	<xs:attribute name="symbol" type="xs:NCName" use="required">
-																		<xs:annotation>
-																			<xs:documentation>
-																			The identifier for a uniform input parameter to the shader (a formal function parameter or in-scope 
-																			global) that will be bound to an external resource.
-																			</xs:documentation>
-																		</xs:annotation>
-																	</xs:attribute>
-																</xs:complexType>
 															</xs:element>
 														</xs:sequence>
-														<xs:attribute name="stage" type="cg_pipeline_stage">
+														<xs:element name="name">
 															<xs:annotation>
 																<xs:documentation>
-																In which pipeline stage this programmable shader is designed to execute, for example, VERTEX, FRAGMENT, etc.
+																The entry symbol for the shader function.
 																</xs:documentation>
 															</xs:annotation>
-														</xs:attribute>
-													</xs:complexType>
-												</xs:element>
-											</xs:choice>
-										</xs:sequence>
+															<xs:complexType>
+																<xs:simpleContent>
+																	<xs:extension base="xs:NCName">
+																		<xs:attribute name="source" type="xs:NCName" use="optional"/>
+																	</xs:extension>
+																</xs:simpleContent>
+															</xs:complexType>
+														</xs:element>
+														<xs:element name="bind" minOccurs="0" maxOccurs="unbounded">
+															<xs:annotation>
+																<xs:documentation>
+																Binds values to uniform inputs of a shader.
+																</xs:documentation>
+															</xs:annotation>
+															<xs:complexType>
+																<xs:choice>
+																	<xs:group ref="cg_param_type"/>
+																	<xs:element name="param">
+																		<xs:annotation>
+																			<xs:documentation>
+																			References a predefined parameter in shader binding declarations.
+																			</xs:documentation>
+																		</xs:annotation>
+																		<xs:complexType>
+																			<xs:attribute name="ref" type="xs:NCName" use="required"/>
+																		</xs:complexType>
+																	</xs:element>
+																</xs:choice>
+																<xs:attribute name="symbol" type="xs:NCName" use="required">
+																	<xs:annotation>
+																		<xs:documentation>
+																		The identifier for a uniform input parameter to the shader (a formal function parameter or in-scope 
+																		global) that will be bound to an external resource.
+																		</xs:documentation>
+																	</xs:annotation>
+																</xs:attribute>
+															</xs:complexType>
+														</xs:element>
+													</xs:sequence>
+													<xs:attribute name="stage" type="cg_pipeline_stage">
+														<xs:annotation>
+															<xs:documentation>
+															In which pipeline stage this programmable shader is designed to execute, for example, VERTEX, FRAGMENT, etc.
+															</xs:documentation>
+														</xs:annotation>
+													</xs:attribute>
+												</xs:complexType>
+											</xs:element>
+										</xs:choice>
+										<xs:element ref="extra" minOccurs="0" maxOccurs="unbounded"/>
 									</xs:sequence>
 									<xs:attribute name="sid" type="xs:NCName" use="optional">
 										<xs:annotation>
@@ -8177,6 +8723,7 @@
 									</xs:attribute>
 								</xs:complexType>
 							</xs:element>
+							<xs:element ref="extra" minOccurs="0" maxOccurs="unbounded"/>
 						</xs:sequence>
 						<xs:attribute name="id" type="xs:ID">
 							<xs:annotation>
@@ -8196,7 +8743,16 @@
 						</xs:attribute>
 					</xs:complexType>
 				</xs:element>
+				<xs:element ref="extra" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:sequence>
+			<xs:attribute name="id" type="xs:ID" use="optional">
+				<xs:annotation>
+					<xs:documentation>
+					The id attribute is a text string containing the unique identifier of this element. 
+					This value must be unique within the instance document. Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="platform" type="xs:NCName" use="optional" default="PC">
 				<xs:annotation>
 					<xs:documentation>
@@ -8504,6 +9060,7 @@
 					<xs:attribute name="semantic" type="xs:NCName"/>
 				</xs:complexType>
 			</xs:element>
+			<xs:element ref="extra" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 		<xs:attribute name="sid" type="xs:NCName">
 			<xs:annotation>
@@ -9213,6 +9770,7 @@
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
+				<xs:element ref="asset" minOccurs="0"/>
 				<xs:choice minOccurs="0" maxOccurs="unbounded">
 					<xs:element ref="image"/>
 					<xs:element name="newparam" type="gles_newparam"/>
@@ -9226,7 +9784,7 @@
 					<xs:complexType>
 						<xs:sequence>
 							<xs:element ref="asset" minOccurs="0"/>
-							<xs:element name="annotate" type="fx_annotate_common" minOccurs="0"/>
+							<xs:element name="annotate" type="fx_annotate_common" minOccurs="0" maxOccurs="unbounded"/>
 							<xs:choice minOccurs="0" maxOccurs="unbounded">
 								<xs:element ref="image"/>
 								<xs:element name="newparam" type="gles_newparam"/>
@@ -9249,18 +9807,17 @@
 								<xs:complexType>
 									<xs:sequence>
 										<xs:element name="annotate" type="fx_annotate_common" minOccurs="0" maxOccurs="unbounded"/>
-										<xs:sequence>
-											<xs:element name="color_target" type="gles_rendertarget_common" minOccurs="0"/>
-											<xs:element name="depth_target" type="gles_rendertarget_common" minOccurs="0"/>
-											<xs:element name="stencil_target" type="gles_rendertarget_common" minOccurs="0"/>
-											<xs:element name="color_clear" type="fx_color_common" minOccurs="0"/>
-											<xs:element name="depth_clear" type="float" minOccurs="0"/>
-											<xs:element name="stencil_clear" type="xs:byte" minOccurs="0"/>
-											<xs:element name="draw" type="fx_draw_common" minOccurs="0"/>
-											<xs:choice minOccurs="0" maxOccurs="unbounded">
-												<xs:group ref="gles_pipeline_settings"/>
-											</xs:choice>
-										</xs:sequence>
+										<xs:element name="color_target" type="gles_rendertarget_common" minOccurs="0"/>
+										<xs:element name="depth_target" type="gles_rendertarget_common" minOccurs="0"/>
+										<xs:element name="stencil_target" type="gles_rendertarget_common" minOccurs="0"/>
+										<xs:element name="color_clear" type="fx_color_common" minOccurs="0"/>
+										<xs:element name="depth_clear" type="float" minOccurs="0"/>
+										<xs:element name="stencil_clear" type="xs:byte" minOccurs="0"/>
+										<xs:element name="draw" type="fx_draw_common" minOccurs="0"/>
+										<xs:choice minOccurs="0" maxOccurs="unbounded">
+											<xs:group ref="gles_pipeline_settings"/>
+										</xs:choice>
+										<xs:element ref="extra" minOccurs="0" maxOccurs="unbounded"/>
 									</xs:sequence>
 									<xs:attribute name="sid" type="xs:NCName" use="optional">
 										<xs:annotation>
@@ -9272,6 +9829,7 @@
 									</xs:attribute>
 								</xs:complexType>
 							</xs:element>
+							<xs:element ref="extra" minOccurs="0" maxOccurs="unbounded"/>
 						</xs:sequence>
 						<xs:attribute name="id" type="xs:ID"/>
 						<xs:attribute name="sid" type="xs:NCName" use="required">
@@ -9284,7 +9842,23 @@
 						</xs:attribute>
 					</xs:complexType>
 				</xs:element>
+				<xs:element ref="extra" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:sequence>
+			<xs:attribute name="id" type="xs:ID" use="optional">
+				<xs:annotation>
+					<xs:documentation>
+					The id attribute is a text string containing the unique identifier of this element. 
+					This value must be unique within the instance document. Optional attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="platform" type="xs:NCName" use="optional" default="PC">
+				<xs:annotation>
+					<xs:documentation>
+					The type of platform. This is a vendor-defined character string that indicates the platform or capability target for the technique. Optional
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 		</xs:complexType>
 	</xs:element>
 	<!-- COLLADA Physics -->
@@ -9529,7 +10103,7 @@
 			</xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
-			<xs:sequence>
+			<xs:sequence minOccurs="0">
 				<xs:element ref="source" maxOccurs="unbounded"/>
 				<xs:element ref="vertices"/>
 				<xs:choice minOccurs="0" maxOccurs="unbounded">
@@ -9798,7 +10372,7 @@
 							<xs:element name="dynamic" minOccurs="0">
 								<xs:annotation>
 									<xs:documentation>
-									If FALSE, the rigid_body is not moveable
+									If false, the rigid_body is not moveable
 									</xs:documentation>
 								</xs:annotation>
 								<xs:complexType>
@@ -9873,7 +10447,7 @@
 										<xs:element name="hollow" minOccurs="0">
 											<xs:annotation>
 												<xs:documentation>
-												If TRUE, the mass is distributed along the surface of the shape
+												If true, the mass is distributed along the surface of the shape
 												</xs:documentation>
 											</xs:annotation>
 											<xs:complexType>
@@ -10137,10 +10711,10 @@
 					</xs:annotation>
 					<xs:complexType>
 						<xs:sequence>
-							<xs:element name="enabled" minOccurs="0">
+							<xs:element name="enabled" default="true" minOccurs="0">
 								<xs:annotation>
 									<xs:documentation>
-									If FALSE, the constraint doesn’t exert any force or influence on the rigid bodies.
+									If false, the constraint doesn’t exert any force or influence on the rigid bodies.
 									</xs:documentation>
 								</xs:annotation>
 								<xs:complexType>
@@ -10158,7 +10732,7 @@
 									</xs:simpleContent>
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="interpenetrate" minOccurs="0">
+							<xs:element name="interpenetrate" default="false" minOccurs="0">
 								<xs:annotation>
 									<xs:documentation>
 									Indicates whether the attached rigid bodies may inter-penetrate.
@@ -10197,14 +10771,14 @@
 											</xs:annotation>
 											<xs:complexType>
 												<xs:sequence>
-													<xs:element name="min" type="TargetableFloat3" minOccurs="0">
+													<xs:element name="min" type="TargetableFloat3" default="0.0 0.0 0.0" minOccurs="0">
 														<xs:annotation>
 															<xs:documentation>
 															The minimum values for the limit.
 															</xs:documentation>
 														</xs:annotation>
 													</xs:element>
-													<xs:element name="max" type="TargetableFloat3" minOccurs="0">
+													<xs:element name="max" type="TargetableFloat3" default="0.0 0.0 0.0" minOccurs="0">
 														<xs:annotation>
 															<xs:documentation>
 															The maximum values for the limit.
@@ -10222,14 +10796,14 @@
 											</xs:annotation>
 											<xs:complexType>
 												<xs:sequence>
-													<xs:element name="min" type="TargetableFloat3" minOccurs="0">
+													<xs:element name="min" type="TargetableFloat3" default="0.0 0.0 0.0" minOccurs="0">
 														<xs:annotation>
 															<xs:documentation>
 															The minimum values for the limit.
 															</xs:documentation>
 														</xs:annotation>
 													</xs:element>
-													<xs:element name="max" type="TargetableFloat3" minOccurs="0">
+													<xs:element name="max" type="TargetableFloat3" default="0.0 0.0 0.0" minOccurs="0">
 														<xs:annotation>
 															<xs:documentation>
 															The maximum values for the limit.
@@ -10258,21 +10832,21 @@
 											</xs:annotation>
 											<xs:complexType>
 												<xs:sequence>
-													<xs:element name="stiffness" type="TargetableFloat" minOccurs="0">
+													<xs:element name="stiffness" type="TargetableFloat" default="1.0" minOccurs="0">
 														<xs:annotation>
 															<xs:documentation>
 															The stiffness (also called spring coefficient) has units of force/angle in degrees. 
 															</xs:documentation>
 														</xs:annotation>
 													</xs:element>
-													<xs:element name="damping" type="TargetableFloat" minOccurs="0">
+													<xs:element name="damping" type="TargetableFloat" default="0.0" minOccurs="0">
 														<xs:annotation>
 															<xs:documentation>
 															The spring damping coefficient.
 															</xs:documentation>
 														</xs:annotation>
 													</xs:element>
-													<xs:element name="target_value" type="TargetableFloat" minOccurs="0">
+													<xs:element name="target_value" type="TargetableFloat" default="0.0" minOccurs="0">
 														<xs:annotation>
 															<xs:documentation>
 															The spring's target or resting distance.
@@ -10290,21 +10864,21 @@
 											</xs:annotation>
 											<xs:complexType>
 												<xs:sequence>
-													<xs:element name="stiffness" type="TargetableFloat" minOccurs="0">
+													<xs:element name="stiffness" type="TargetableFloat" default="1.0" minOccurs="0">
 														<xs:annotation>
 															<xs:documentation>
 															The stiffness (also called spring coefficient) has units of force/distance. 
 															</xs:documentation>
 														</xs:annotation>
 													</xs:element>
-													<xs:element name="damping" type="TargetableFloat" minOccurs="0">
+													<xs:element name="damping" type="TargetableFloat" default="0.0" minOccurs="0">
 														<xs:annotation>
 															<xs:documentation>
 															The spring damping coefficient.
 															</xs:documentation>
 														</xs:annotation>
 													</xs:element>
-													<xs:element name="target_value" type="TargetableFloat" minOccurs="0">
+													<xs:element name="target_value" type="TargetableFloat" default="0.0" minOccurs="0">
 														<xs:annotation>
 															<xs:documentation>
 															The spring's target or resting distance.
@@ -10422,19 +10996,24 @@
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="BINORMAL"/>
 			<xs:enumeration value="COLOR"/>
+			<xs:enumeration value="CONTINUITY"/>
 			<xs:enumeration value="IMAGE"/>
 			<xs:enumeration value="IN_TANGENT"/>
 			<xs:enumeration value="INPUT"/>
 			<xs:enumeration value="INTERPOLATION"/>
 			<xs:enumeration value="INV_BIND_MATRIX"/>
 			<xs:enumeration value="JOINT"/>
+			<xs:enumeration value="LINEAR_STEPS"/>
+			<xs:enumeration value="MORPH_TARGET"/>
+			<xs:enumeration value="MORPH_WEIGHT"/>
 			<xs:enumeration value="NORMAL"/>
 			<xs:enumeration value="OUTPUT"/>
 			<xs:enumeration value="OUT_TANGENT"/>
 			<xs:enumeration value="POSITION"/>
 			<xs:enumeration value="TANGENT"/>
+			<xs:enumeration value="TEXBINORMAL"/>
 			<xs:enumeration value="TEXCOORD"/>
-			<xs:enumeration value="TEXTURE"/>
+			<xs:enumeration value="TEXTANGENT"/>
 			<xs:enumeration value="UV"/>
 			<xs:enumeration value="VERTEX"/>
 			<xs:enumeration value="WEIGHT"/>

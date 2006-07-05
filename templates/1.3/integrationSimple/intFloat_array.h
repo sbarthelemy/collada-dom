@@ -17,15 +17,18 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeMetaElement.h>
 
-/** The float_array element declares the storage for a homogenous array of floating point values.
-			The float_array element stores the data values for generic use within the COLLADA schema. 
-			The arrays themselves are strongly typed but without semantics. They simply describe a 
-			sequence of floating point values.
-*/class intFloat_array;
+class intFloat_array;
 
 typedef daeSmartRef<intFloat_array> intFloat_arrayRef;
 typedef daeTArray<intFloat_arrayRef> intFloat_arrayArray;
 
+/**
+ * The float_array element declares the storage for a homogenous array of
+ * floating point values. The float_array element stores the data values for
+ * generic use within the COLLADA schema.  The arrays themselves are strongly
+ * typed but without semantics. They simply describe a  sequence of floating
+ * point values.
+ */
 class intFloat_array : public daeIntegrationObject
 {
 public: // Constuctor and Destructor

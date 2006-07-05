@@ -60,6 +60,32 @@ domFx_depthtarget_common::registerElement()
 		_Meta->appendAttribute(ma);
 	}
 
+	//	Add attribute: face
+ 	{
+		daeMetaAttribute *ma = new daeMetaAttribute;
+		ma->setName( "face" );
+		ma->setType( daeAtomicType::get("Fx_surface_face_enum"));
+		ma->setOffset( daeOffsetOf( domFx_depthtarget_common , attrFace ));
+		ma->setContainer( _Meta );
+		ma->setDefault( "POSITIVE_X");
+		ma->setIsRequired( false );
+	
+		_Meta->appendAttribute(ma);
+	}
+
+	//	Add attribute: mip
+ 	{
+		daeMetaAttribute *ma = new daeMetaAttribute;
+		ma->setName( "mip" );
+		ma->setType( daeAtomicType::get("xsNonNegativeInteger"));
+		ma->setOffset( daeOffsetOf( domFx_depthtarget_common , attrMip ));
+		ma->setContainer( _Meta );
+		ma->setDefault( "0");
+		ma->setIsRequired( false );
+	
+		_Meta->appendAttribute(ma);
+	}
+
 	//	Add attribute: slice
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;

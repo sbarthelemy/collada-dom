@@ -35,7 +35,6 @@ intEffect::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "effect" );
-	_Meta->setStaticPointerAddress(&intEffect::_Meta);
 	_Meta->registerConstructor(intEffect::create);
 
 	domEffect::_Meta->setMetaIntegration(_Meta);

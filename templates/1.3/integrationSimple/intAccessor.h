@@ -17,15 +17,18 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeMetaElement.h>
 
-/** The accessor element declares an access pattern to one of the array elements: float_array,
-			int_array, Name_array, bool_array, and the generic array element.
-			The accessor element describes access to arrays that are organized in either an interleaved 
-			or noninterleaved manner according to the permutations of the offset and stride attributes.
-*/class intAccessor;
+class intAccessor;
 
 typedef daeSmartRef<intAccessor> intAccessorRef;
 typedef daeTArray<intAccessorRef> intAccessorArray;
 
+/**
+ * The accessor element declares an access pattern to one of the array elements:
+ * float_array, int_array, Name_array, bool_array, and the generic array element.
+ * The accessor element describes access to arrays that are organized in either
+ * an interleaved  or noninterleaved manner according to the permutations
+ * of the offset and stride attributes.
+ */
 class intAccessor : public daeIntegrationObject
 {
 public: // Constuctor and Destructor

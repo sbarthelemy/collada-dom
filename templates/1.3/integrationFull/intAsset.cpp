@@ -48,7 +48,6 @@ intAsset::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "asset" );
-	_Meta->setStaticPointerAddress(&intAsset::_Meta);
 	_Meta->registerConstructor(intAsset::create);
 
 	domAsset::_Meta->setMetaIntegration(_Meta);
@@ -73,7 +72,6 @@ intAsset::intAuthor::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "author" );
-	_Meta->setStaticPointerAddress(&intAsset::intAuthor::_Meta);
 	_Meta->registerConstructor(intAsset::intAuthor::create);
 
 	domAsset::domAuthor::_Meta->setMetaIntegration(_Meta);
@@ -98,7 +96,6 @@ intAsset::intAuthoring_tool::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "authoring_tool" );
-	_Meta->setStaticPointerAddress(&intAsset::intAuthoring_tool::_Meta);
 	_Meta->registerConstructor(intAsset::intAuthoring_tool::create);
 
 	domAsset::domAuthoring_tool::_Meta->setMetaIntegration(_Meta);
@@ -123,7 +120,6 @@ intAsset::intCreated::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "created" );
-	_Meta->setStaticPointerAddress(&intAsset::intCreated::_Meta);
 	_Meta->registerConstructor(intAsset::intCreated::create);
 
 	domAsset::domCreated::_Meta->setMetaIntegration(_Meta);
@@ -148,7 +144,6 @@ intAsset::intModified::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "modified" );
-	_Meta->setStaticPointerAddress(&intAsset::intModified::_Meta);
 	_Meta->registerConstructor(intAsset::intModified::create);
 
 	domAsset::domModified::_Meta->setMetaIntegration(_Meta);
@@ -173,7 +168,6 @@ intAsset::intRevision::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "revision" );
-	_Meta->setStaticPointerAddress(&intAsset::intRevision::_Meta);
 	_Meta->registerConstructor(intAsset::intRevision::create);
 
 	domAsset::domRevision::_Meta->setMetaIntegration(_Meta);
@@ -198,7 +192,6 @@ intAsset::intSource_data::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "source_data" );
-	_Meta->setStaticPointerAddress(&intAsset::intSource_data::_Meta);
 	_Meta->registerConstructor(intAsset::intSource_data::create);
 
 	domAsset::domSource_data::_Meta->setMetaIntegration(_Meta);
@@ -223,7 +216,6 @@ intAsset::intCopyright::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "copyright" );
-	_Meta->setStaticPointerAddress(&intAsset::intCopyright::_Meta);
 	_Meta->registerConstructor(intAsset::intCopyright::create);
 
 	domAsset::domCopyright::_Meta->setMetaIntegration(_Meta);
@@ -248,7 +240,6 @@ intAsset::intTitle::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "title" );
-	_Meta->setStaticPointerAddress(&intAsset::intTitle::_Meta);
 	_Meta->registerConstructor(intAsset::intTitle::create);
 
 	domAsset::domTitle::_Meta->setMetaIntegration(_Meta);
@@ -273,7 +264,6 @@ intAsset::intSubject::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "subject" );
-	_Meta->setStaticPointerAddress(&intAsset::intSubject::_Meta);
 	_Meta->registerConstructor(intAsset::intSubject::create);
 
 	domAsset::domSubject::_Meta->setMetaIntegration(_Meta);
@@ -298,7 +288,6 @@ intAsset::intKeywords::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "keywords" );
-	_Meta->setStaticPointerAddress(&intAsset::intKeywords::_Meta);
 	_Meta->registerConstructor(intAsset::intKeywords::create);
 
 	domAsset::domKeywords::_Meta->setMetaIntegration(_Meta);
@@ -323,7 +312,6 @@ intAsset::intComments::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "comments" );
-	_Meta->setStaticPointerAddress(&intAsset::intComments::_Meta);
 	_Meta->registerConstructor(intAsset::intComments::create);
 
 	domAsset::domComments::_Meta->setMetaIntegration(_Meta);
@@ -348,7 +336,6 @@ intAsset::intUp_axis::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "up_axis" );
-	_Meta->setStaticPointerAddress(&intAsset::intUp_axis::_Meta);
 	_Meta->registerConstructor(intAsset::intUp_axis::create);
 
 	domAsset::domUp_axis::_Meta->setMetaIntegration(_Meta);
@@ -373,7 +360,6 @@ intAsset::intUnit::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "unit" );
-	_Meta->setStaticPointerAddress(&intAsset::intUnit::_Meta);
 	_Meta->registerConstructor(intAsset::intUnit::create);
 
 	domAsset::domUnit::_Meta->setMetaIntegration(_Meta);

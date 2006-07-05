@@ -17,15 +17,18 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeMetaElement.h>
 
-/** The controller element categorizes the declaration of generic control information. A 
-			controller is a device or mechanism that manages and directs the operations of another 
-			object. A controller element contains the elements that describe control data. The actual
-			type and complexity of the data is left to the child elements to represent in detail.
-*/class intController;
+class intController;
 
 typedef daeSmartRef<intController> intControllerRef;
 typedef daeTArray<intControllerRef> intControllerArray;
 
+/**
+ * The controller element categorizes the declaration of generic control information.
+ * A  controller is a device or mechanism that manages and directs the operations
+ * of another  object. A controller element contains the elements that describe
+ * control data. The actual type and complexity of the data is left to the
+ * child elements to represent in detail.
+ */
 class intController : public daeIntegrationObject
 {
 public: // Constuctor and Destructor

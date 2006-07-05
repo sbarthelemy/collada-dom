@@ -80,7 +80,7 @@ public:
 		 * Sets the id attribute.
 		 * @param atId The new value for the id attribute.
 		 */
-		void setId( xsID atId ) { attrId = atId;	
+		void setId( xsID atId ) { *(daeStringRef*)&attrId = atId;	
 	 _validAttributeArray[0] = true; }
 
 		/**
@@ -92,7 +92,7 @@ public:
 		 * Sets the name attribute.
 		 * @param atName The new value for the name attribute.
 		 */
-		void setName( xsNCName atName ) { attrName = atName;	
+		void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName;	
 	 _validAttributeArray[1] = true; }
 
 		/**
@@ -104,7 +104,7 @@ public:
 		 * Sets the qualifier attribute.
 		 * @param atQualifier The new value for the qualifier attribute.
 		 */
-		void setQualifier( xsNMTOKEN atQualifier ) { attrQualifier = atQualifier;	
+		void setQualifier( xsNMTOKEN atQualifier ) { *(daeStringRef*)&attrQualifier = atQualifier;	
 	 _validAttributeArray[2] = true; }
 
 		/**
@@ -116,7 +116,7 @@ public:
 		 * Sets the semantic attribute.
 		 * @param atSemantic The new value for the semantic attribute.
 		 */
-		void setSemantic( xsToken atSemantic ) { attrSemantic = atSemantic;	
+		void setSemantic( xsToken atSemantic ) { *(daeStringRef*)&attrSemantic = atSemantic;	
 	 _validAttributeArray[3] = true; }
 
 		/**
@@ -128,7 +128,7 @@ public:
 		 * Sets the type attribute.
 		 * @param atType The new value for the type attribute.
 		 */
-		void setType( xsNMTOKEN atType ) { attrType = atType;	
+		void setType( xsNMTOKEN atType ) { *(daeStringRef*)&attrType = atType;	
 	 _validAttributeArray[4] = true; }
 
 		/**
@@ -213,7 +213,7 @@ public:	//Accessors and Mutators
 	 * Sets the function attribute.
 	 * @param atFunction The new value for the function attribute.
 	 */
-	void setFunction( xsNMTOKEN atFunction ) { attrFunction = atFunction;
+	void setFunction( xsNMTOKEN atFunction ) { *(daeStringRef*)&attrFunction = atFunction;
 	 _validAttributeArray[0] = true; }
 
 	/**
@@ -225,7 +225,7 @@ public:	//Accessors and Mutators
 	 * Sets the semantic attribute.
 	 * @param atSemantic The new value for the semantic attribute.
 	 */
-	void setSemantic( xsNMTOKEN atSemantic ) { attrSemantic = atSemantic;
+	void setSemantic( xsNMTOKEN atSemantic ) { *(daeStringRef*)&attrSemantic = atSemantic;
 	 _validAttributeArray[1] = true; }
 
 	/**

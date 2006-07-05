@@ -35,7 +35,6 @@ intLibrary_images::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "library_images" );
-	_Meta->setStaticPointerAddress(&intLibrary_images::_Meta);
 	_Meta->registerConstructor(intLibrary_images::create);
 
 	domLibrary_images::_Meta->setMetaIntegration(_Meta);

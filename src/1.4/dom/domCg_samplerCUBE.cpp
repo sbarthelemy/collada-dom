@@ -103,11 +103,17 @@ domCg_samplerCUBE::registerElement()
 	mea->setElementType( domMipmap_bias::registerElement() );
 	cm->appendChild( mea );
 	
-	cm->setMaxOrdinal( 9 );
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 10, 0, -1 );
+	mea->setName( "extra" );
+	mea->setOffset( daeOffsetOf(domCg_samplerCUBE,elemExtra_array) );
+	mea->setElementType( domExtra::registerElement() );
+	cm->appendChild( mea );
+	
+	cm->setMaxOrdinal( 10 );
 	cm->getParent()->appendChild( cm );
 	cm = cm->getParent();
 	
-	cm->setMaxOrdinal( 9 );
+	cm->setMaxOrdinal( 10 );
 	_Meta->setCMRoot( cm );	
 	
 	

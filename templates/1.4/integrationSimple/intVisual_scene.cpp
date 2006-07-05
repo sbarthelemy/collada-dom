@@ -35,7 +35,6 @@ intVisual_scene::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "visual_scene" );
-	_Meta->setStaticPointerAddress(&intVisual_scene::_Meta);
 	_Meta->registerConstructor(intVisual_scene::create);
 
 	domVisual_scene::_Meta->setMetaIntegration(_Meta);

@@ -16,7 +16,6 @@
 #include <dom/domFx_surface_common.h>
 
 daeMetaElement * intFx_surface_common::_Meta = NULL;
-daeMetaElement * intFx_surface_common::intInit_from::_Meta = NULL;
 daeMetaElement * intFx_surface_common::intFormat::_Meta = NULL;
 daeMetaElement * intFx_surface_common::intSize::_Meta = NULL;
 daeMetaElement * intFx_surface_common::intViewport_ratio::_Meta = NULL;
@@ -41,37 +40,11 @@ intFx_surface_common::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fx_surface_common" );
-	_Meta->setStaticPointerAddress(&intFx_surface_common::_Meta);
 	_Meta->registerConstructor(intFx_surface_common::create);
 
 	domFx_surface_common::_Meta->setMetaIntegration(_Meta);
 
 	_Meta->setElementSize(sizeof(intFx_surface_common));
-	_Meta->validate();
-
-	return _Meta;
-}
-
-daeElementRef
-intFx_surface_common::intInit_from::create(daeInt bytes)
-{
-	intFx_surface_common::intInit_fromRef ref = new(bytes) intFx_surface_common::intInit_from;
-	return ref;
-}
-
-daeMetaElement *
-intFx_surface_common::intInit_from::registerElement()
-{
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "init_from" );
-	_Meta->setStaticPointerAddress(&intFx_surface_common::intInit_from::_Meta);
-	_Meta->registerConstructor(intFx_surface_common::intInit_from::create);
-
-	domFx_surface_common::domInit_from::_Meta->setMetaIntegration(_Meta);
-
-	_Meta->setElementSize(sizeof(intFx_surface_common::intInit_from));
 	_Meta->validate();
 
 	return _Meta;
@@ -91,7 +64,6 @@ intFx_surface_common::intFormat::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "format" );
-	_Meta->setStaticPointerAddress(&intFx_surface_common::intFormat::_Meta);
 	_Meta->registerConstructor(intFx_surface_common::intFormat::create);
 
 	domFx_surface_common::domFormat::_Meta->setMetaIntegration(_Meta);
@@ -116,7 +88,6 @@ intFx_surface_common::intSize::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "size" );
-	_Meta->setStaticPointerAddress(&intFx_surface_common::intSize::_Meta);
 	_Meta->registerConstructor(intFx_surface_common::intSize::create);
 
 	domFx_surface_common::domSize::_Meta->setMetaIntegration(_Meta);
@@ -141,7 +112,6 @@ intFx_surface_common::intViewport_ratio::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "viewport_ratio" );
-	_Meta->setStaticPointerAddress(&intFx_surface_common::intViewport_ratio::_Meta);
 	_Meta->registerConstructor(intFx_surface_common::intViewport_ratio::create);
 
 	domFx_surface_common::domViewport_ratio::_Meta->setMetaIntegration(_Meta);
@@ -166,7 +136,6 @@ intFx_surface_common::intMip_levels::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "mip_levels" );
-	_Meta->setStaticPointerAddress(&intFx_surface_common::intMip_levels::_Meta);
 	_Meta->registerConstructor(intFx_surface_common::intMip_levels::create);
 
 	domFx_surface_common::domMip_levels::_Meta->setMetaIntegration(_Meta);
@@ -191,7 +160,6 @@ intFx_surface_common::intMipmap_generate::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "mipmap_generate" );
-	_Meta->setStaticPointerAddress(&intFx_surface_common::intMipmap_generate::_Meta);
 	_Meta->registerConstructor(intFx_surface_common::intMipmap_generate::create);
 
 	domFx_surface_common::domMipmap_generate::_Meta->setMetaIntegration(_Meta);
@@ -262,68 +230,6 @@ intFx_surface_common::toCOLLADA()
 
 void
 intFx_surface_common::toCOLLADAPostProcess()
-{
-	// INSERT CODE TO POST PROCESS HERE
-	// myRuntimeClassType* local = (myRuntimeClassType*)_object;
-	// local->renderingContext = MYGLOBAL::getRenderingContext;
-	// MYGLOBAL::registerInstance(local);
-}
-
-// CONSTRUCTOR AND DESTRUCTOR
-intFx_surface_common::intInit_from::intInit_from() {
-}
-
-intFx_surface_common::intInit_from::~intInit_from() {
-}
-
-// IMPORT
-
-void
-intFx_surface_common::intInit_from::createFrom(daeElementRef element)
-{
-	// INSERT CODE TO CREATE YOUR USER DATA HERE
-	// _object = new myRuntimeClass;
-}
-
-void
-intFx_surface_common::intInit_from::fromCOLLADA()
-{
-	// INSERT CODE TO TRANSLATE TO YOUR RUNTIME HERE
-	// myRuntimeClassType* local = (myRuntimeClassType*)_object;
-	// local->foo = element->foo;
-	// local->bar = element->subelem[0]->bar;
-}
-
-void
-intFx_surface_common::intInit_from::fromCOLLADAPostProcess()
-{
-	// INSERT CODE TO POST PROCESS HERE
-	// myRuntimeClassType* local = (myRuntimeClassType*)_object;
-	// local->renderingContext = MYGLOBAL::getRenderingContext;
-	// MYGLOBAL::registerInstance(local);
-}
-
-// EXPORT
-
-void
-intFx_surface_common::intInit_from::createTo(void* userData)
-{
-	// INSERT CODE TO CREATE COLLADA DOM OBJECTS HERE
-	// _element = new domGeometry;
-	// _object = userData;
-}
-
-void
-intFx_surface_common::intInit_from::toCOLLADA()
-{
-	// INSERT CODE TO TRANSLATE TO YOUR RUNTIME HERE
-	// myRuntimeClassType* local = (myRuntimeClassType*)_object;
-	// element->foo = local->foo;
-	// element->subelem[0]->bar = local->bar;
-}
-
-void
-intFx_surface_common::intInit_from::toCOLLADAPostProcess()
 {
 	// INSERT CODE TO POST PROCESS HERE
 	// myRuntimeClassType* local = (myRuntimeClassType*)_object;

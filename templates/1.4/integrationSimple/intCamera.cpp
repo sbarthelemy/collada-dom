@@ -35,7 +35,6 @@ intCamera::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "camera" );
-	_Meta->setStaticPointerAddress(&intCamera::_Meta);
 	_Meta->registerConstructor(intCamera::create);
 
 	domCamera::_Meta->setMetaIntegration(_Meta);

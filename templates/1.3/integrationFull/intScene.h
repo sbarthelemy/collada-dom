@@ -17,19 +17,23 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeMetaElement.h>
 
-/** The scene embodies the entire set of information that can be visualized from the contents of 
-			a COLLADA resource. The scene element declares the base of the scene hierarchy or scene graph. 
-			The scene contains elements that comprise much of the visual and transformational information 
-			content as created by the authoring tools. The hierarchical structure of the scene is 
-			organized into a scene graph. A scene graph is a directed acyclic graph (DAG) or tree data 
-			structure that contains nodes of visual information and related data. The structure of the 
-			scene graph contributes to optimal processing and rendering of the data and is therefore widely
-			used in the computer graphics domain.
-*/class intScene;
+class intScene;
 
 typedef daeSmartRef<intScene> intSceneRef;
 typedef daeTArray<intSceneRef> intSceneArray;
 
+/**
+ * The scene embodies the entire set of information that can be visualized
+ * from the contents of  a COLLADA resource. The scene element declares the
+ * base of the scene hierarchy or scene graph.  The scene contains elements
+ * that comprise much of the visual and transformational information  content
+ * as created by the authoring tools. The hierarchical structure of the scene
+ * is  organized into a scene graph. A scene graph is a directed acyclic graph
+ * (DAG) or tree data  structure that contains nodes of visual information
+ * and related data. The structure of the  scene graph contributes to optimal
+ * processing and rendering of the data and is therefore widely used in the
+ * computer graphics domain.
+ */
 class intScene : public daeIntegrationObject
 {
 public: // Constuctor and Destructor

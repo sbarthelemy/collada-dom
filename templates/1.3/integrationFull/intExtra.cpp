@@ -36,7 +36,6 @@ intExtra::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "extra" );
-	_Meta->setStaticPointerAddress(&intExtra::_Meta);
 	_Meta->registerConstructor(intExtra::create);
 
 	domExtra::_Meta->setMetaIntegration(_Meta);
@@ -61,7 +60,6 @@ intExtra::intTechnique::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "technique" );
-	_Meta->setStaticPointerAddress(&intExtra::intTechnique::_Meta);
 	_Meta->registerConstructor(intExtra::intTechnique::create);
 
 	domExtra::domTechnique::_Meta->setMetaIntegration(_Meta);

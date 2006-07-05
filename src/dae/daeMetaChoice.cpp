@@ -20,7 +20,7 @@ daeMetaChoice::daeMetaChoice( daeMetaElement *container, daeMetaCMPolicy *parent
 daeMetaChoice::~daeMetaChoice()
 {}
 
-daeBool daeMetaChoice::placeElement( daeElement *parent, daeElement *child, daeUInt &ordinal, daeInt offset, daeElement* before, daeElement *after ) {
+daeElement *daeMetaChoice::placeElement( daeElement *parent, daeElement *child, daeUInt &ordinal, daeInt offset, daeElement* before, daeElement *after ) {
 	(void)offset;
 	if ( _maxOccurs == -1 ) {
 		//Needed to prevent infinate loops. If unbounded check to see if you have the child before just trying to place
@@ -29,20 +29,20 @@ daeBool daeMetaChoice::placeElement( daeElement *parent, daeElement *child, daeU
 			nm = child->getTypeName();
 		}
 		if ( findChild( nm ) == NULL ) {
-			return false;
+			return NULL;
 		}
 	}
 
-	daeBool retVal = false;
+	daeElement *retVal = NULL;
 	for ( daeInt i = 0; ( i < _maxOccurs || _maxOccurs == -1 ); i++ ) {
 		for ( size_t x = 0; x < _children.getCount(); x++ ) {
-			if ( _children[x]->placeElement( parent, child, ordinal, i, before, after ) ) {
-				retVal = true;
+			if ( _children[x]->placeElement( parent, child, ordinal, i, before, after ) != NULL ) {
+				retVal = child;
 				ordinal = ordinal  + _ordinalOffset;
 				break;
 			}
 		}
-		if ( retVal ) break;
+		if ( retVal != NULL ) break;
 	}
 	/*if ( retVal && _maxOccurs != -1 ) {
 		//check if the place was valid - only if we aren't unbounded. unbounded is always valid

@@ -35,7 +35,6 @@ intLinestrips::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "linestrips" );
-	_Meta->setStaticPointerAddress(&intLinestrips::_Meta);
 	_Meta->registerConstructor(intLinestrips::create);
 
 	domLinestrips::_Meta->setMetaIntegration(_Meta);

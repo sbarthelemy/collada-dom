@@ -17,20 +17,24 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeMetaElement.h>
 
-/** The linestrips element declares a binding of geometric primitives and vertex attributes for 
-			a mesh element. The linestrips element provides the information needed to bind vertex 
-			attributes together and then organize those vertices into connected line-strips. The vertex 
-			information is supplied in distinct attribute arrays of the mesh element that are then 
-			indexed by the linestrips element. Each line-strip described by the mesh has an arbitrary 
-			number of vertices. Each line segment within the line-strip is formed from the current 
-			vertex and the preceding vertex. A linestrips element contains a sequence of p elements, 
-			where 'p' stands for primitive. Each p element describes the vertex attributes for an 
-			arbitrary number of connected line segments.
-*/class intLinestrips;
+class intLinestrips;
 
 typedef daeSmartRef<intLinestrips> intLinestripsRef;
 typedef daeTArray<intLinestripsRef> intLinestripsArray;
 
+/**
+ * The linestrips element declares a binding of geometric primitives and vertex
+ * attributes for  a mesh element. The linestrips element provides the information
+ * needed to bind vertex  attributes together and then organize those vertices
+ * into connected line-strips. The vertex  information is supplied in distinct
+ * attribute arrays of the mesh element that are then  indexed by the linestrips
+ * element. Each line-strip described by the mesh has an arbitrary  number
+ * of vertices. Each line segment within the line-strip is formed from the
+ * current  vertex and the preceding vertex. A linestrips element contains
+ * a sequence of p elements,  where 'p' stands for primitive. Each p element
+ * describes the vertex attributes for an  arbitrary number of connected line
+ * segments.
+ */
 class intLinestrips : public daeIntegrationObject
 {
 public: // Constuctor and Destructor

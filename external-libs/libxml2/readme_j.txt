@@ -9,10 +9,14 @@
  implied. See the License for the specific language governing permissions and limitations under the 
  License.
 
-このディレクトリは、libxml2、zlib、および、iconv のライブラリを配置する場所です。これらのライブラリはオープンソース・ソフトウェアで、インターネット上の URL http://xmlsoft.org/ から入手できます。
+このディレクトリは、libxml2、zlib、および、iconv のライブラリを配置する場所です。
+これらのライブラリはオープンソース・ソフトウェアで、インターネット上の
+URL http://xmlsoft.org/ から入手できます。
 
-このライブラリは、COLLADA DOM、および、それに依存するプログラムを、win32 プラットホーム上でビルドするために必要です。 
+このライブラリは、COLLADA DOM、および、それに依存するプログラムをwin32 プラットホーム上で
+ビルドするために必要です。 
 
-Linux システムのほとんどでは、libxml2 はシステムの include/library パスにインストール済みなので、このディレクトリには
-Linux バージョンは含まれていません。libxml2 のバージョンを調べてみてください。2.6.10 以降のバージョンであれば、COLLADA のコードが動作するはずです。
+Linux システムのほとんどでは、libxml2 はシステムの include/library パスにインストール済みなので、
+このディレクトリにはLinux バージョンは含まれていません。libxml2 のバージョンを調べてみてください。
+2.6.10 以降のバージョンであれば、COLLADA のコードが動作するはずです。
 ただし、古いバージョンを使うと、一部の機能が利用できない場合があります。

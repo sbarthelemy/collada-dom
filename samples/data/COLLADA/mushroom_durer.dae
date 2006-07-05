@@ -1,5 +1,17 @@
 <?xml version="1.0"?>
-<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0">
+<!--
+  Copyright 2006 Sony Computer Entertainment Inc.
+ 
+  Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this 
+  file except in compliance with the License. You may obtain a copy of the License at:
+  http://research.scea.com/scea_shared_source_license.html
+ 
+  Unless required by applicable law or agreed to in writing, software distributed under the License 
+  is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or 
+  implied. See the License for the specific language governing permissions and limitations under the 
+  License. 
+-->
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
 	<asset>
 		<contributor>
 			<author>jetstream</author>
@@ -13,7 +25,7 @@
 	</asset>
 	<library_images>
 		<image id="file1-image" name="file1">
-			<init_from>../images/mushroom140_Textures/mushroom.tga</init_from>
+			<init_from>../images/Shared/mushroom.tga</init_from>
 		</image>
 	</library_images>
 	<library_geometries>
@@ -73,7 +85,7 @@
 					<bind_material>
 						<technique_common>
 							<instance_material symbol="phong1" target="#phong1">
-								<bind semantic="UVSET0" target="#Mushroom_resting2Shape-lib-map1"/>
+								<bind_vertex_input semantic="TEXCOORD0" input_semantic="TEXCOORD"/>
 							</instance_material>
 						</technique_common>
 					</bind_material>

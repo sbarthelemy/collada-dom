@@ -32,6 +32,7 @@ SRC				 := dae.cpp \
 					daeMetaAny.cpp \
 					daeMetaAttribute.cpp \
 					daeMetaChoice.cpp \
+					daeMetaCMPolicy.cpp \
 					daeMetaElement.cpp \
 					daeMetaElementAttribute.cpp \
 					daeMetaGroup.cpp \

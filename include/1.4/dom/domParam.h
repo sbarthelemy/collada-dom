@@ -61,7 +61,7 @@ public:	//Accessors and Mutators
 	 * Sets the name attribute.
 	 * @param atName The new value for the name attribute.
 	 */
-	void setName( xsNCName atName ) { attrName = atName;
+	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName;
 	 _validAttributeArray[0] = true; }
 
 	/**
@@ -73,7 +73,7 @@ public:	//Accessors and Mutators
 	 * Sets the sid attribute.
 	 * @param atSid The new value for the sid attribute.
 	 */
-	void setSid( xsNCName atSid ) { attrSid = atSid;
+	void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid;
 	 _validAttributeArray[1] = true; }
 
 	/**
@@ -85,7 +85,7 @@ public:	//Accessors and Mutators
 	 * Sets the semantic attribute.
 	 * @param atSemantic The new value for the semantic attribute.
 	 */
-	void setSemantic( xsNMTOKEN atSemantic ) { attrSemantic = atSemantic;
+	void setSemantic( xsNMTOKEN atSemantic ) { *(daeStringRef*)&attrSemantic = atSemantic;
 	 _validAttributeArray[2] = true; }
 
 	/**
@@ -97,7 +97,7 @@ public:	//Accessors and Mutators
 	 * Sets the type attribute.
 	 * @param atType The new value for the type attribute.
 	 */
-	void setType( xsNMTOKEN atType ) { attrType = atType;
+	void setType( xsNMTOKEN atType ) { *(daeStringRef*)&attrType = atType;
 	 _validAttributeArray[3] = true; }
 
 	/**

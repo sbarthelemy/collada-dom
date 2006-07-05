@@ -35,7 +35,6 @@ intCg_samplerDEPTH::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "cg_samplerDEPTH" );
-	_Meta->setStaticPointerAddress(&intCg_samplerDEPTH::_Meta);
 	_Meta->registerConstructor(intCg_samplerDEPTH::create);
 
 	domCg_samplerDEPTH::_Meta->setMetaIntegration(_Meta);

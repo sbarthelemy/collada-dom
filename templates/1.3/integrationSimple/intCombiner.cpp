@@ -35,7 +35,6 @@ intCombiner::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "combiner" );
-	_Meta->setStaticPointerAddress(&intCombiner::_Meta);
 	_Meta->registerConstructor(intCombiner::create);
 
 	domCombiner::_Meta->setMetaIntegration(_Meta);

@@ -17,19 +17,23 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeMetaElement.h>
 
-/** The rotate element contains an angle and a mathematical vector that represents the axis of 
-			rotation. Rotations change the orientation of objects in a coordinated system without any 
-			translation. Computer graphics techniques apply a rotational transformation in order to 
-			orient or otherwise move values with respect to a coordinated system. Conversely, rotation 
-			can mean the translation of the coordinated axes about the local origin. The rotate element
-			contains a list of four floating-point values, similar to rotations in the OpenGL® and 
-			RenderMan® specification. These values are organized into a column vector [ X, Y, Z ] 
-			specifying the axis of rotation and an angle in degrees.
-*/class intRotate;
+class intRotate;
 
 typedef daeSmartRef<intRotate> intRotateRef;
 typedef daeTArray<intRotateRef> intRotateArray;
 
+/**
+ * The rotate element contains an angle and a mathematical vector that represents
+ * the axis of  rotation. Rotations change the orientation of objects in a
+ * coordinated system without any  translation. Computer graphics techniques
+ * apply a rotational transformation in order to  orient or otherwise move
+ * values with respect to a coordinated system. Conversely, rotation  can
+ * mean the translation of the coordinated axes about the local origin. The
+ * rotate element contains a list of four floating-point values, similar to
+ * rotations in the OpenGL® and  RenderMan® specification. These values
+ * are organized into a column vector [ X, Y, Z ]  specifying the axis of
+ * rotation and an angle in degrees.
+ */
 class intRotate : public daeIntegrationObject
 {
 public: // Constuctor and Destructor

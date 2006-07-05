@@ -35,7 +35,6 @@ intBox::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "box" );
-	_Meta->setStaticPointerAddress(&intBox::_Meta);
 	_Meta->registerConstructor(intBox::create);
 
 	domBox::_Meta->setMetaIntegration(_Meta);

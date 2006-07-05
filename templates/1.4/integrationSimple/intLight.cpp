@@ -35,7 +35,6 @@ intLight::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "light" );
-	_Meta->setStaticPointerAddress(&intLight::_Meta);
 	_Meta->registerConstructor(intLight::create);
 
 	domLight::_Meta->setMetaIntegration(_Meta);

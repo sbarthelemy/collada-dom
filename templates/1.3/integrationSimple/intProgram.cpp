@@ -35,7 +35,6 @@ intProgram::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "program" );
-	_Meta->setStaticPointerAddress(&intProgram::_Meta);
 	_Meta->registerConstructor(intProgram::create);
 
 	domProgram::_Meta->setMetaIntegration(_Meta);

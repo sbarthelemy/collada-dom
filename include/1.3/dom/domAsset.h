@@ -914,7 +914,7 @@ public:
 		 * Sets the name attribute.
 		 * @param atName The new value for the name attribute.
 		 */
-		void setName( xsNMTOKEN atName ) { attrName = atName;	
+		void setName( xsNMTOKEN atName ) { *(daeStringRef*)&attrName = atName;	
 	 _validAttributeArray[1] = true; }
 
 	protected:

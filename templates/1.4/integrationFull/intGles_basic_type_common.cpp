@@ -64,7 +64,6 @@ intGles_basic_type_common::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "gles_basic_type_common" );
-	_Meta->setStaticPointerAddress(&intGles_basic_type_common::_Meta);
 	_Meta->registerConstructor(intGles_basic_type_common::create);
 
 	domGles_basic_type_common::_Meta->setMetaIntegration(_Meta);
@@ -89,7 +88,6 @@ intGles_basic_type_common::intBool::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "bool" );
-	_Meta->setStaticPointerAddress(&intGles_basic_type_common::intBool::_Meta);
 	_Meta->registerConstructor(intGles_basic_type_common::intBool::create);
 
 	domGles_basic_type_common::domBool::_Meta->setMetaIntegration(_Meta);
@@ -114,7 +112,6 @@ intGles_basic_type_common::intBool2::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "bool2" );
-	_Meta->setStaticPointerAddress(&intGles_basic_type_common::intBool2::_Meta);
 	_Meta->registerConstructor(intGles_basic_type_common::intBool2::create);
 
 	domGles_basic_type_common::domBool2::_Meta->setMetaIntegration(_Meta);
@@ -139,7 +136,6 @@ intGles_basic_type_common::intBool3::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "bool3" );
-	_Meta->setStaticPointerAddress(&intGles_basic_type_common::intBool3::_Meta);
 	_Meta->registerConstructor(intGles_basic_type_common::intBool3::create);
 
 	domGles_basic_type_common::domBool3::_Meta->setMetaIntegration(_Meta);
@@ -164,7 +160,6 @@ intGles_basic_type_common::intBool4::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "bool4" );
-	_Meta->setStaticPointerAddress(&intGles_basic_type_common::intBool4::_Meta);
 	_Meta->registerConstructor(intGles_basic_type_common::intBool4::create);
 
 	domGles_basic_type_common::domBool4::_Meta->setMetaIntegration(_Meta);
@@ -189,7 +184,6 @@ intGles_basic_type_common::intInt::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "int" );
-	_Meta->setStaticPointerAddress(&intGles_basic_type_common::intInt::_Meta);
 	_Meta->registerConstructor(intGles_basic_type_common::intInt::create);
 
 	domGles_basic_type_common::domInt::_Meta->setMetaIntegration(_Meta);
@@ -214,7 +208,6 @@ intGles_basic_type_common::intInt2::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "int2" );
-	_Meta->setStaticPointerAddress(&intGles_basic_type_common::intInt2::_Meta);
 	_Meta->registerConstructor(intGles_basic_type_common::intInt2::create);
 
 	domGles_basic_type_common::domInt2::_Meta->setMetaIntegration(_Meta);
@@ -239,7 +232,6 @@ intGles_basic_type_common::intInt3::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "int3" );
-	_Meta->setStaticPointerAddress(&intGles_basic_type_common::intInt3::_Meta);
 	_Meta->registerConstructor(intGles_basic_type_common::intInt3::create);
 
 	domGles_basic_type_common::domInt3::_Meta->setMetaIntegration(_Meta);
@@ -264,7 +256,6 @@ intGles_basic_type_common::intInt4::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "int4" );
-	_Meta->setStaticPointerAddress(&intGles_basic_type_common::intInt4::_Meta);
 	_Meta->registerConstructor(intGles_basic_type_common::intInt4::create);
 
 	domGles_basic_type_common::domInt4::_Meta->setMetaIntegration(_Meta);
@@ -289,7 +280,6 @@ intGles_basic_type_common::intFloat::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float" );
-	_Meta->setStaticPointerAddress(&intGles_basic_type_common::intFloat::_Meta);
 	_Meta->registerConstructor(intGles_basic_type_common::intFloat::create);
 
 	domGles_basic_type_common::domFloat::_Meta->setMetaIntegration(_Meta);
@@ -314,7 +304,6 @@ intGles_basic_type_common::intFloat2::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float2" );
-	_Meta->setStaticPointerAddress(&intGles_basic_type_common::intFloat2::_Meta);
 	_Meta->registerConstructor(intGles_basic_type_common::intFloat2::create);
 
 	domGles_basic_type_common::domFloat2::_Meta->setMetaIntegration(_Meta);
@@ -339,7 +328,6 @@ intGles_basic_type_common::intFloat3::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float3" );
-	_Meta->setStaticPointerAddress(&intGles_basic_type_common::intFloat3::_Meta);
 	_Meta->registerConstructor(intGles_basic_type_common::intFloat3::create);
 
 	domGles_basic_type_common::domFloat3::_Meta->setMetaIntegration(_Meta);
@@ -364,7 +352,6 @@ intGles_basic_type_common::intFloat4::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float4" );
-	_Meta->setStaticPointerAddress(&intGles_basic_type_common::intFloat4::_Meta);
 	_Meta->registerConstructor(intGles_basic_type_common::intFloat4::create);
 
 	domGles_basic_type_common::domFloat4::_Meta->setMetaIntegration(_Meta);
@@ -389,7 +376,6 @@ intGles_basic_type_common::intFloat1x1::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float1x1" );
-	_Meta->setStaticPointerAddress(&intGles_basic_type_common::intFloat1x1::_Meta);
 	_Meta->registerConstructor(intGles_basic_type_common::intFloat1x1::create);
 
 	domGles_basic_type_common::domFloat1x1::_Meta->setMetaIntegration(_Meta);
@@ -414,7 +400,6 @@ intGles_basic_type_common::intFloat1x2::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float1x2" );
-	_Meta->setStaticPointerAddress(&intGles_basic_type_common::intFloat1x2::_Meta);
 	_Meta->registerConstructor(intGles_basic_type_common::intFloat1x2::create);
 
 	domGles_basic_type_common::domFloat1x2::_Meta->setMetaIntegration(_Meta);
@@ -439,7 +424,6 @@ intGles_basic_type_common::intFloat1x3::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float1x3" );
-	_Meta->setStaticPointerAddress(&intGles_basic_type_common::intFloat1x3::_Meta);
 	_Meta->registerConstructor(intGles_basic_type_common::intFloat1x3::create);
 
 	domGles_basic_type_common::domFloat1x3::_Meta->setMetaIntegration(_Meta);
@@ -464,7 +448,6 @@ intGles_basic_type_common::intFloat1x4::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float1x4" );
-	_Meta->setStaticPointerAddress(&intGles_basic_type_common::intFloat1x4::_Meta);
 	_Meta->registerConstructor(intGles_basic_type_common::intFloat1x4::create);
 
 	domGles_basic_type_common::domFloat1x4::_Meta->setMetaIntegration(_Meta);
@@ -489,7 +472,6 @@ intGles_basic_type_common::intFloat2x1::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float2x1" );
-	_Meta->setStaticPointerAddress(&intGles_basic_type_common::intFloat2x1::_Meta);
 	_Meta->registerConstructor(intGles_basic_type_common::intFloat2x1::create);
 
 	domGles_basic_type_common::domFloat2x1::_Meta->setMetaIntegration(_Meta);
@@ -514,7 +496,6 @@ intGles_basic_type_common::intFloat2x2::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float2x2" );
-	_Meta->setStaticPointerAddress(&intGles_basic_type_common::intFloat2x2::_Meta);
 	_Meta->registerConstructor(intGles_basic_type_common::intFloat2x2::create);
 
 	domGles_basic_type_common::domFloat2x2::_Meta->setMetaIntegration(_Meta);
@@ -539,7 +520,6 @@ intGles_basic_type_common::intFloat2x3::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float2x3" );
-	_Meta->setStaticPointerAddress(&intGles_basic_type_common::intFloat2x3::_Meta);
 	_Meta->registerConstructor(intGles_basic_type_common::intFloat2x3::create);
 
 	domGles_basic_type_common::domFloat2x3::_Meta->setMetaIntegration(_Meta);
@@ -564,7 +544,6 @@ intGles_basic_type_common::intFloat2x4::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float2x4" );
-	_Meta->setStaticPointerAddress(&intGles_basic_type_common::intFloat2x4::_Meta);
 	_Meta->registerConstructor(intGles_basic_type_common::intFloat2x4::create);
 
 	domGles_basic_type_common::domFloat2x4::_Meta->setMetaIntegration(_Meta);
@@ -589,7 +568,6 @@ intGles_basic_type_common::intFloat3x1::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float3x1" );
-	_Meta->setStaticPointerAddress(&intGles_basic_type_common::intFloat3x1::_Meta);
 	_Meta->registerConstructor(intGles_basic_type_common::intFloat3x1::create);
 
 	domGles_basic_type_common::domFloat3x1::_Meta->setMetaIntegration(_Meta);
@@ -614,7 +592,6 @@ intGles_basic_type_common::intFloat3x2::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float3x2" );
-	_Meta->setStaticPointerAddress(&intGles_basic_type_common::intFloat3x2::_Meta);
 	_Meta->registerConstructor(intGles_basic_type_common::intFloat3x2::create);
 
 	domGles_basic_type_common::domFloat3x2::_Meta->setMetaIntegration(_Meta);
@@ -639,7 +616,6 @@ intGles_basic_type_common::intFloat3x3::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float3x3" );
-	_Meta->setStaticPointerAddress(&intGles_basic_type_common::intFloat3x3::_Meta);
 	_Meta->registerConstructor(intGles_basic_type_common::intFloat3x3::create);
 
 	domGles_basic_type_common::domFloat3x3::_Meta->setMetaIntegration(_Meta);
@@ -664,7 +640,6 @@ intGles_basic_type_common::intFloat3x4::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float3x4" );
-	_Meta->setStaticPointerAddress(&intGles_basic_type_common::intFloat3x4::_Meta);
 	_Meta->registerConstructor(intGles_basic_type_common::intFloat3x4::create);
 
 	domGles_basic_type_common::domFloat3x4::_Meta->setMetaIntegration(_Meta);
@@ -689,7 +664,6 @@ intGles_basic_type_common::intFloat4x1::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float4x1" );
-	_Meta->setStaticPointerAddress(&intGles_basic_type_common::intFloat4x1::_Meta);
 	_Meta->registerConstructor(intGles_basic_type_common::intFloat4x1::create);
 
 	domGles_basic_type_common::domFloat4x1::_Meta->setMetaIntegration(_Meta);
@@ -714,7 +688,6 @@ intGles_basic_type_common::intFloat4x2::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float4x2" );
-	_Meta->setStaticPointerAddress(&intGles_basic_type_common::intFloat4x2::_Meta);
 	_Meta->registerConstructor(intGles_basic_type_common::intFloat4x2::create);
 
 	domGles_basic_type_common::domFloat4x2::_Meta->setMetaIntegration(_Meta);
@@ -739,7 +712,6 @@ intGles_basic_type_common::intFloat4x3::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float4x3" );
-	_Meta->setStaticPointerAddress(&intGles_basic_type_common::intFloat4x3::_Meta);
 	_Meta->registerConstructor(intGles_basic_type_common::intFloat4x3::create);
 
 	domGles_basic_type_common::domFloat4x3::_Meta->setMetaIntegration(_Meta);
@@ -764,7 +736,6 @@ intGles_basic_type_common::intFloat4x4::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float4x4" );
-	_Meta->setStaticPointerAddress(&intGles_basic_type_common::intFloat4x4::_Meta);
 	_Meta->registerConstructor(intGles_basic_type_common::intFloat4x4::create);
 
 	domGles_basic_type_common::domFloat4x4::_Meta->setMetaIntegration(_Meta);
@@ -789,7 +760,6 @@ intGles_basic_type_common::intEnum::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "enum" );
-	_Meta->setStaticPointerAddress(&intGles_basic_type_common::intEnum::_Meta);
 	_Meta->registerConstructor(intGles_basic_type_common::intEnum::create);
 
 	domGles_basic_type_common::domEnum::_Meta->setMetaIntegration(_Meta);

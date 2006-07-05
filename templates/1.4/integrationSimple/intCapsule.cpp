@@ -35,7 +35,6 @@ intCapsule::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "capsule" );
-	_Meta->setStaticPointerAddress(&intCapsule::_Meta);
 	_Meta->registerConstructor(intCapsule::create);
 
 	domCapsule::_Meta->setMetaIntegration(_Meta);

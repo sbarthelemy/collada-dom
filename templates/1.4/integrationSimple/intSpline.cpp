@@ -35,7 +35,6 @@ intSpline::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "spline" );
-	_Meta->setStaticPointerAddress(&intSpline::_Meta);
 	_Meta->registerConstructor(intSpline::create);
 
 	domSpline::_Meta->setMetaIntegration(_Meta);

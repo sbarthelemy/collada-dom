@@ -61,7 +61,7 @@ public:
 		 * Sets the semantic attribute.
 		 * @param atSemantic The new value for the semantic attribute.
 		 */
-		void setSemantic( xsNMTOKEN atSemantic ) { attrSemantic = atSemantic;	
+		void setSemantic( xsNMTOKEN atSemantic ) { *(daeStringRef*)&attrSemantic = atSemantic;	
 	 _validAttributeArray[0] = true; }
 
 		/**

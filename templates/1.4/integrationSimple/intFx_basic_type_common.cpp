@@ -35,7 +35,6 @@ intFx_basic_type_common::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fx_basic_type_common" );
-	_Meta->setStaticPointerAddress(&intFx_basic_type_common::_Meta);
 	_Meta->registerConstructor(intFx_basic_type_common::create);
 
 	domFx_basic_type_common::_Meta->setMetaIntegration(_Meta);

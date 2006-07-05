@@ -46,7 +46,7 @@ public:
 		 * Sets the sid attribute.
 		 * @param atSid The new value for the sid attribute.
 		 */
-		void setSid( xsNCName atSid ) { attrSid = atSid;	
+		void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid;	
 	 _validAttributeArray[0] = true; }
 
 		/**
@@ -120,7 +120,7 @@ public:
 		 * Sets the ref attribute.
 		 * @param atRef The new value for the ref attribute.
 		 */
-		void setRef( xsNCName atRef ) { attrRef = atRef;	
+		void setRef( xsNCName atRef ) { *(daeStringRef*)&attrRef = atRef;	
 	 _validAttributeArray[0] = true; }
 
 	protected:

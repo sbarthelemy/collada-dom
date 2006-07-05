@@ -17,12 +17,15 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeMetaElement.h>
 
-/** The entry element declares an entry point into the executable code for a program element.
-*/class intEntry;
+class intEntry;
 
 typedef daeSmartRef<intEntry> intEntryRef;
 typedef daeTArray<intEntryRef> intEntryArray;
 
+/**
+ * The entry element declares an entry point into the executable code for
+ * a program element.
+ */
 class intEntry : public daeIntegrationObject
 {
 public: // Constuctor and Destructor
@@ -66,15 +69,17 @@ public: // STATIC MEMBERS
 	static daeMetaElement* _Meta;
 
 public:
-/** The entry element may contain zero or more param elements. In the scope of the 
-						entry element, the param element must have the qualifier attribute. The value of
-						the qualifier attribute depends on the technique profile in scope.  Also the 
-						param element may not have the flow attribute.
-*/class intParam;
+class intParam;
 
 typedef daeSmartRef<intParam> intParamRef;
 typedef daeTArray<intParamRef> intParamArray;
 
+/**
+ * The entry element may contain zero or more param elements. In the scope
+ * of the  entry element, the param element must have the qualifier attribute.
+ * The value of the qualifier attribute depends on the technique profile in
+ * scope.  Also the  param element may not have the flow attribute.
+ */
 class intParam : public daeIntegrationObject
 {
 public: // Constuctor and Destructor

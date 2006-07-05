@@ -45,7 +45,6 @@ intProfile_GLES::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "profile_GLES" );
-	_Meta->setStaticPointerAddress(&intProfile_GLES::_Meta);
 	_Meta->registerConstructor(intProfile_GLES::create);
 
 	domProfile_GLES::_Meta->setMetaIntegration(_Meta);
@@ -70,7 +69,6 @@ intProfile_GLES::intTechnique::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "technique" );
-	_Meta->setStaticPointerAddress(&intProfile_GLES::intTechnique::_Meta);
 	_Meta->registerConstructor(intProfile_GLES::intTechnique::create);
 
 	domProfile_GLES::domTechnique::_Meta->setMetaIntegration(_Meta);
@@ -95,7 +93,6 @@ intProfile_GLES::intTechnique::intSetparam::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "setparam" );
-	_Meta->setStaticPointerAddress(&intProfile_GLES::intTechnique::intSetparam::_Meta);
 	_Meta->registerConstructor(intProfile_GLES::intTechnique::intSetparam::create);
 
 	domProfile_GLES::domTechnique::domSetparam::_Meta->setMetaIntegration(_Meta);
@@ -120,7 +117,6 @@ intProfile_GLES::intTechnique::intPass::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "pass" );
-	_Meta->setStaticPointerAddress(&intProfile_GLES::intTechnique::intPass::_Meta);
 	_Meta->registerConstructor(intProfile_GLES::intTechnique::intPass::create);
 
 	domProfile_GLES::domTechnique::domPass::_Meta->setMetaIntegration(_Meta);
@@ -145,7 +141,6 @@ intProfile_GLES::intTechnique::intPass::intColor_target::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "color_target" );
-	_Meta->setStaticPointerAddress(&intProfile_GLES::intTechnique::intPass::intColor_target::_Meta);
 	_Meta->registerConstructor(intProfile_GLES::intTechnique::intPass::intColor_target::create);
 
 	domProfile_GLES::domTechnique::domPass::domColor_target::_Meta->setMetaIntegration(_Meta);
@@ -170,7 +165,6 @@ intProfile_GLES::intTechnique::intPass::intDepth_target::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "depth_target" );
-	_Meta->setStaticPointerAddress(&intProfile_GLES::intTechnique::intPass::intDepth_target::_Meta);
 	_Meta->registerConstructor(intProfile_GLES::intTechnique::intPass::intDepth_target::create);
 
 	domProfile_GLES::domTechnique::domPass::domDepth_target::_Meta->setMetaIntegration(_Meta);
@@ -195,7 +189,6 @@ intProfile_GLES::intTechnique::intPass::intStencil_target::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "stencil_target" );
-	_Meta->setStaticPointerAddress(&intProfile_GLES::intTechnique::intPass::intStencil_target::_Meta);
 	_Meta->registerConstructor(intProfile_GLES::intTechnique::intPass::intStencil_target::create);
 
 	domProfile_GLES::domTechnique::domPass::domStencil_target::_Meta->setMetaIntegration(_Meta);
@@ -220,7 +213,6 @@ intProfile_GLES::intTechnique::intPass::intColor_clear::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "color_clear" );
-	_Meta->setStaticPointerAddress(&intProfile_GLES::intTechnique::intPass::intColor_clear::_Meta);
 	_Meta->registerConstructor(intProfile_GLES::intTechnique::intPass::intColor_clear::create);
 
 	domProfile_GLES::domTechnique::domPass::domColor_clear::_Meta->setMetaIntegration(_Meta);
@@ -245,7 +237,6 @@ intProfile_GLES::intTechnique::intPass::intDepth_clear::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "depth_clear" );
-	_Meta->setStaticPointerAddress(&intProfile_GLES::intTechnique::intPass::intDepth_clear::_Meta);
 	_Meta->registerConstructor(intProfile_GLES::intTechnique::intPass::intDepth_clear::create);
 
 	domProfile_GLES::domTechnique::domPass::domDepth_clear::_Meta->setMetaIntegration(_Meta);
@@ -270,7 +261,6 @@ intProfile_GLES::intTechnique::intPass::intStencil_clear::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "stencil_clear" );
-	_Meta->setStaticPointerAddress(&intProfile_GLES::intTechnique::intPass::intStencil_clear::_Meta);
 	_Meta->registerConstructor(intProfile_GLES::intTechnique::intPass::intStencil_clear::create);
 
 	domProfile_GLES::domTechnique::domPass::domStencil_clear::_Meta->setMetaIntegration(_Meta);
@@ -295,7 +285,6 @@ intProfile_GLES::intTechnique::intPass::intDraw::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "draw" );
-	_Meta->setStaticPointerAddress(&intProfile_GLES::intTechnique::intPass::intDraw::_Meta);
 	_Meta->registerConstructor(intProfile_GLES::intTechnique::intPass::intDraw::create);
 
 	domProfile_GLES::domTechnique::domPass::domDraw::_Meta->setMetaIntegration(_Meta);

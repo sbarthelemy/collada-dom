@@ -17,24 +17,29 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeMetaElement.h>
 
-/** The polygons element declares the binding of geometric primitives and vertex attributes for 
-			a mesh element. The polygons element provides the information needed to bind vertex 
-			attributes together and then organize those vertices into individual polygons. (A polygon 
-			is a closed plane figure bounded by straight lines or a closed figure on a sphere bounded 
-			by arcs of great circles per Merriam-Webster's 10th edition Dictionary). The vertex array 
-			information is supplied in distinct attribute arrays of the mesh element that are then
-			indexed by the polygons element. The polygons described can contain arbitrary numbers of 
-			vertices. Ideally, they would describe convex shapes, but they may be concave as well. The 
-			polygons may also contain holes. The winding order of vertices produced is counter-clockwise
-			and describe the front side of each polygon. If the primitives are assembled without vertex 
-			normals then the application may generate per-primitive normals to enable lighting. A 
-			polygons element contains a sequence of p elements, where 'p' stands for primitive. Each p
-			element describes the vertex attributes for an individual polygon.
-*/class intPolygons;
+class intPolygons;
 
 typedef daeSmartRef<intPolygons> intPolygonsRef;
 typedef daeTArray<intPolygonsRef> intPolygonsArray;
 
+/**
+ * The polygons element declares the binding of geometric primitives and vertex
+ * attributes for  a mesh element. The polygons element provides the information
+ * needed to bind vertex  attributes together and then organize those vertices
+ * into individual polygons. (A polygon  is a closed plane figure bounded
+ * by straight lines or a closed figure on a sphere bounded  by arcs of great
+ * circles per Merriam-Webster's 10th edition Dictionary). The vertex array
+ * information is supplied in distinct attribute arrays of the mesh element
+ * that are then indexed by the polygons element. The polygons described can
+ * contain arbitrary numbers of  vertices. Ideally, they would describe convex
+ * shapes, but they may be concave as well. The  polygons may also contain
+ * holes. The winding order of vertices produced is counter-clockwise and
+ * describe the front side of each polygon. If the primitives are assembled
+ * without vertex  normals then the application may generate per-primitive
+ * normals to enable lighting. A  polygons element contains a sequence of
+ * p elements, where 'p' stands for primitive. Each p element describes the
+ * vertex attributes for an individual polygon.
+ */
 class intPolygons : public daeIntegrationObject
 {
 public: // Constuctor and Destructor

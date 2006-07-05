@@ -17,23 +17,28 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeMetaElement.h>
 
-/** The combiner element declares the aggregation of input streams. The combiner element 
-			aggregates input data streams into arrays of data structures. The resulting data structures 
-			provide a logical organization of the input streams for higher-level elements.
-			A combiner element contains a sequence of v elements, where 'v' stands for value. Each v 
-			element describes the values for an arbitrary number of data structures. Each v element 
-			contains indices that reference into the input elements. These indices are position dependent 
-			and reference the accessor elements according to the order of the input elements. Here is an 
-			example of this: The first index references the first unique input element; the second index
-			references the second unique input element, and so on. This is a simple form of compression 
-			that reduces the number of indices required in each v element. The input elements are 
-			uniquely identified by their idx attribute values. A complete sampling of an aggregate value 
-			is completed by gathering one value from each input using the associated index in the v element.
-*/class intCombiner;
+class intCombiner;
 
 typedef daeSmartRef<intCombiner> intCombinerRef;
 typedef daeTArray<intCombinerRef> intCombinerArray;
 
+/**
+ * The combiner element declares the aggregation of input streams. The combiner
+ * element  aggregates input data streams into arrays of data structures.
+ * The resulting data structures  provide a logical organization of the input
+ * streams for higher-level elements. A combiner element contains a sequence
+ * of v elements, where 'v' stands for value. Each v  element describes the
+ * values for an arbitrary number of data structures. Each v element  contains
+ * indices that reference into the input elements. These indices are position
+ * dependent  and reference the accessor elements according to the order of
+ * the input elements. Here is an  example of this: The first index references
+ * the first unique input element; the second index references the second
+ * unique input element, and so on. This is a simple form of compression 
+ * that reduces the number of indices required in each v element. The input
+ * elements are  uniquely identified by their idx attribute values. A complete
+ * sampling of an aggregate value  is completed by gathering one value from
+ * each input using the associated index in the v element.
+ */
 class intCombiner : public daeIntegrationObject
 {
 public: // Constuctor and Destructor
@@ -77,14 +82,15 @@ public: // STATIC MEMBERS
 	static daeMetaElement* _Meta;
 
 public:
-/** Variable length value element. The indices form the source's output aggregated 
-						by the number of inputs.
-						The v element must occur one or more times.
-*/class intV;
+class intV;
 
 typedef daeSmartRef<intV> intVRef;
 typedef daeTArray<intVRef> intVArray;
 
+/**
+ * Variable length value element. The indices form the source's output aggregated
+ * by the number of inputs. The v element must occur one or more times.
+ */
 class intV : public daeIntegrationObject
 {
 public: // Constuctor and Destructor

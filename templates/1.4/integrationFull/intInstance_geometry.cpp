@@ -35,7 +35,6 @@ intInstance_geometry::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "instance_geometry" );
-	_Meta->setStaticPointerAddress(&intInstance_geometry::_Meta);
 	_Meta->registerConstructor(intInstance_geometry::create);
 
 	domInstance_geometry::_Meta->setMetaIntegration(_Meta);

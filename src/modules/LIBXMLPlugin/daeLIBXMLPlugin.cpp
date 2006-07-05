@@ -108,7 +108,9 @@ daeInt daeLIBXMLPlugin::read(daeURI& uri, daeString docBuffer)
 
 	if(!reader)
 	{
-		printf( "no libxml2 reader\n");
+		char msg[256];
+		sprintf( msg, "Failed to open %s\n", fileURI.getURI() );
+		daeErrorHandler::get()->handleError( msg );
 		return DAE_ERR_BACKEND_IO;
 	}
 
@@ -122,12 +124,9 @@ daeInt daeLIBXMLPlugin::read(daeURI& uri, daeString docBuffer)
 
 	if (!domObject)
 	{
-#if defined(_DEBUG) && defined(WIN32)
-		fprintf(stderr,"daeLIBXMLPlugin::read(%s) failed - XML Parse Failed\n",
-				fileURI.getFile());
-		fflush(stdout);
-#endif		
-		printf("not able to load\n");
+		char msg[256];
+		sprintf(msg,"daeLIBXMLPlugin::read(%s) failed - XML Parse Failed\n",fileURI.getFile());
+		daeErrorHandler::get()->handleError( msg );
 		return DAE_ERR_BACKEND_IO;
 	}
 
@@ -216,7 +215,7 @@ daeLIBXMLPlugin::startParse(daeMetaElement* thisMetaElement, xmlTextReaderPtr re
 	//try and read attributes
 	readAttributes( element, reader );
 
-#if 0
+#if 1
 	//Check COLLADA Version
 	if ( strcmp( element->getTypeName(), "COLLADA" ) != 0 ) {
 		//invalid root
@@ -582,7 +581,7 @@ daeInt daeLIBXMLPlugin::write(daeURI *name, daeDocument *document, daeBool repla
 	daeFixedName finalname;
 	if (!name->getPath(finalname,sizeof(finalname)))
 	{
-		printf( "can't get path in write\n" );
+		daeErrorHandler::get()->handleError( "can't get path in write\n" );
 		return DAE_ERR_BACKEND_IO;
 	}
 
@@ -602,7 +601,9 @@ daeInt daeLIBXMLPlugin::write(daeURI *name, daeDocument *document, daeBool repla
 	// Open the file we will write to
 	writer = xmlNewTextWriterFilename(name->getURI(), 0);
 	if ( !writer ) {
-		printf( "no libxml2 writer\n" );
+		char msg[256];
+		sprintf(msg,"daeLIBXMLPlugin::write(%s) failed\n",name->getURI());
+		daeErrorHandler::get()->handleError( msg );
 		return DAE_ERR_BACKEND_IO;
 	}
 	xmlChar indentString[10] = "    ";
@@ -640,7 +641,7 @@ void daeLIBXMLPlugin::writeElement( daeElement* element )
 		int acnt = (int)attrs.getCount();
 		
 		for(int i=0;i<acnt;i++) {
-			writeAttribute( attrs[i], element);
+			writeAttribute( attrs[i], element, i );
 		}
 	}
 	daeMetaAttribute* valueAttr = _meta->getValueAttribute();
@@ -683,7 +684,7 @@ void daeLIBXMLPlugin::writeElement( daeElement* element )
 
 #define TYPE_BUFFER_SIZE 4096
 
-void daeLIBXMLPlugin::writeAttribute( daeMetaAttribute* attr, daeElement* element )
+void daeLIBXMLPlugin::writeAttribute( daeMetaAttribute* attr, daeElement* element, daeInt attrNum )
 {
 	static daeChar atomicTypeBuf[TYPE_BUFFER_SIZE];
 	
@@ -714,10 +715,11 @@ void daeLIBXMLPlugin::writeAttribute( daeMetaAttribute* attr, daeElement* elemen
 				// DISABLE THIS CODE IF YOU WANT DEFAULT VALUES TO ALWAYS EXPORT
 				if(typeSize >= TYPE_BUFFER_SIZE)
 				{
-					fprintf(stderr,
+					char msg[256];
+					sprintf(msg,
 							"daeMetaAttribute::print() - buffer too small for default value of %s in %s\n",
 							(daeString)attr->getName(),(daeString)attr->getContainer()->getName());
-					fflush(stderr);
+					daeErrorHandler::get()->handleError( msg );
 					return;
 				}
 				attr->getType()->stringToMemory((daeChar*)attr->getDefault(),atomicTypeBuf);
@@ -727,12 +729,12 @@ void daeLIBXMLPlugin::writeAttribute( daeMetaAttribute* attr, daeElement* elemen
 			}
 			else
 			{
-				#if 1
+				#if 0
 				// The attribute does not have a default, suppress it if its value is all zeros (binary)
 				// DISABLE THIS CODE IF YOU WANT OPTIONAL ATTRIBUTES THAT HAVE A VALUE OF ZERO TO EXPORT
 				// Disabling this code may cause some unused attributes to be exported if _isValid is not
 				// enabled and properly used.
-			int i;
+				int i;
 				for(i=0; i<typeSize;i++)
 				{
 					if(elemMem[i] != 0)
@@ -743,16 +745,20 @@ void daeLIBXMLPlugin::writeAttribute( daeMetaAttribute* attr, daeElement* elemen
 					attr->getType()->getTypeEnum() != daeAtomicType::EnumType )
 					return;
 				#endif
+				if ( attrNum != -1 && !element->isAttributeSet( attr->getName() ) ) {
+					return;
+				}
 			}
 		}
 
 		// Convert the attribute to a string
 
 		if (attr->getType()->memoryToString(elemMem, atomicTypeBuf,	TYPE_BUFFER_SIZE)== false) {
-			fprintf(stderr,
+			char msg[256];
+			sprintf(msg,
 					"daeMetaAttribute::print() - buffer too small for %s in %s\n",
 					(daeString)attr->getName(),(daeString)attr->getContainer()->getName());
-			fflush(stderr);
+			daeErrorHandler::get()->handleError( msg );
 		}
 					
 		// Suppress attributes that convert to an empty string.
@@ -792,10 +798,11 @@ void daeLIBXMLPlugin::writeAttribute( daeMetaAttribute* attr, daeElement* elemen
 			char* elemMem = attr->get(element, i);
 			if (attr->getType()->memoryToString(elemMem, atomicTypeBuf,	TYPE_BUFFER_SIZE)== false) 
 			{
-				fprintf(stderr,
+				char msg[256];
+				sprintf(msg,
 						"daeMetaArrayAttribute::print() - buffer too small for %s in %s\n",
 						(daeString)attr->getName(),(daeString)attr->getContainer()->getName());
-				fflush(stderr);
+				daeErrorHandler::get()->handleError( msg );
 			}
 			xmlTextWriterWriteFormatString( writer, "%s ", (xmlChar*)atomicTypeBuf );
 		}

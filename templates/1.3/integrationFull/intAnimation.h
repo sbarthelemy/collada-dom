@@ -17,21 +17,26 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeMetaElement.h>
 
-/** The animation element categorizes the declaration of animation information. The animation 
-			contains elements that describe the animation's key-frame data and sampler functions.
-			Animation describes the transformation of an object or value over time. A common use of 
-			animation is to give the illusion of motion. A common animation technique is called 
-			key-frame animation. A key-frame is a sampling of data at a known point in time. Using a 
-			set of key-frames and an interpolation algorithm, intermediate values are computed for 
-			times in between the key-frames, producing a smooth set of output values over the interval 
-			between the key-frames. A key-frame animation engine performs these computations on the 
-			key-frame data. An animation element contains the elements that describe animation data. The
-			actual type and complexity of the data is left to the child elements to represent in detail.
-*/class intAnimation;
+class intAnimation;
 
 typedef daeSmartRef<intAnimation> intAnimationRef;
 typedef daeTArray<intAnimationRef> intAnimationArray;
 
+/**
+ * The animation element categorizes the declaration of animation information.
+ * The animation  contains elements that describe the animation's key-frame
+ * data and sampler functions. Animation describes the transformation of an
+ * object or value over time. A common use of  animation is to give the illusion
+ * of motion. A common animation technique is called  key-frame animation.
+ * A key-frame is a sampling of data at a known point in time. Using a  set
+ * of key-frames and an interpolation algorithm, intermediate values are computed
+ * for  times in between the key-frames, producing a smooth set of output
+ * values over the interval  between the key-frames. A key-frame animation
+ * engine performs these computations on the  key-frame data. An animation
+ * element contains the elements that describe animation data. The actual
+ * type and complexity of the data is left to the child elements to represent
+ * in detail.
+ */
 class intAnimation : public daeIntegrationObject
 {
 public: // Constuctor and Destructor

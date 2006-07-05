@@ -17,15 +17,18 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeMetaElement.h>
 
-/** The vertices element declares the attributes and identity of mesh-vertices.
-			The vertices element describes mesh-vertices in a mesh geometry or skin controller. The 
-			mesh vertices represent the position (identity) of the vertices comprising the mesh and 
-			other vertex attributes that are invariant to tessellation.
-*/class intVertices;
+class intVertices;
 
 typedef daeSmartRef<intVertices> intVerticesRef;
 typedef daeTArray<intVerticesRef> intVerticesArray;
 
+/**
+ * The vertices element declares the attributes and identity of mesh-vertices.
+ * The vertices element describes mesh-vertices in a mesh geometry or skin
+ * controller. The  mesh vertices represent the position (identity) of the
+ * vertices comprising the mesh and  other vertex attributes that are invariant
+ * to tessellation.
+ */
 class intVertices : public daeIntegrationObject
 {
 public: // Constuctor and Destructor

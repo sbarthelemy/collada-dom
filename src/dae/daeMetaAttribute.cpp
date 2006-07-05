@@ -13,18 +13,21 @@
 
 #include <dae/daeMetaAttribute.h>
 #include <dae/daeMetaElement.h>
+#include <dae/daeErrorHandler.h>
 
 void
 daeMetaAttribute::set(daeElement* e, daeString s)
 {
 	if( _type->getTypeEnum() == daeAtomicType::FloatType || _type->getTypeEnum() == daeAtomicType::DoubleType ) {
 		if ( strcmp(s, "NaN") == 0 ) {
-			fprintf(stderr, "NaN encountered while setting %s attribute in %s element.\n", (daeString)_name, (daeString)_container->getName() );
-			fflush(stderr);
+			char msg[256];
+			sprintf(msg, "NaN encountered while setting %s attribute in %s element.\n", (daeString)_name, (daeString)_container->getName() );
+			daeErrorHandler::get()->handleWarning(msg);
 		}
 		else if ( strcmp(s, "INF") == 0 ) {
-			fprintf(stderr, "INF encountered while setting %s attribute in %s element.\n", (daeString)_name, (daeString)_container->getName() );
-			fflush(stderr);
+			char msg[256];
+			sprintf(msg, "INF encountered while setting %s attribute in %s element.\n", (daeString)_name, (daeString)_container->getName() );
+			daeErrorHandler::get()->handleWarning( msg );
 		}
 	}
 	_type->stringToMemory((char*)s, getWritableMemory(e));
@@ -42,12 +45,14 @@ daeMetaArrayAttribute::set(daeElement* e, daeString s)
 {
 	if( _type->getTypeEnum() == daeAtomicType::FloatType || _type->getTypeEnum() == daeAtomicType::DoubleType ) {
 		if ( strcmp(s, "NaN") == 0 ) {
-			fprintf(stderr, "NaN encountered while setting %s attribute in %s element.\n", (daeString)_name, (daeString)_container->getName() );
-			fflush(stderr);
+			char msg[256];
+			sprintf(msg, "NaN encountered while setting %s attribute in %s element.\n", (daeString)_name, (daeString)_container->getName() );
+			daeErrorHandler::get()->handleWarning(msg);
 		}
 		else if ( strcmp(s, "INF") == 0 ) {
-			fprintf(stderr, "INF encountered while setting %s attribute in %s element.\n", (daeString)_name, (daeString)_container->getName() );
-			fflush(stderr);
+			char msg[256];
+			sprintf(msg, "INF encountered while setting %s attribute in %s element.\n", (daeString)_name, (daeString)_container->getName() );
+			daeErrorHandler::get()->handleWarning( msg );
 		}
 	}
 	daeArray* array = (daeArray*)getWritableMemory(e);

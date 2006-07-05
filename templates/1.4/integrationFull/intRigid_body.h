@@ -129,7 +129,7 @@ typedef daeSmartRef<intDynamic> intDynamicRef;
 typedef daeTArray<intDynamicRef> intDynamicArray;
 
 /**
- * If FALSE, the rigid_body is not moveable
+ * If false, the rigid_body is not moveable
  */
 class intDynamic : public daeIntegrationObject
 {
@@ -285,7 +285,7 @@ typedef daeSmartRef<intHollow> intHollowRef;
 typedef daeTArray<intHollowRef> intHollowArray;
 
 /**
- * If TRUE, the mass is distributed along the surface of the shape
+ * If true, the mass is distributed along the surface of the shape
  */
 class intHollow : public daeIntegrationObject
 {

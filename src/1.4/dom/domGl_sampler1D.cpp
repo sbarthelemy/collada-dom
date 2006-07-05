@@ -91,11 +91,17 @@ domGl_sampler1D::registerElement()
 	mea->setElementType( domMipmap_bias::registerElement() );
 	cm->appendChild( mea );
 	
-	cm->setMaxOrdinal( 7 );
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 8, 0, -1 );
+	mea->setName( "extra" );
+	mea->setOffset( daeOffsetOf(domGl_sampler1D,elemExtra_array) );
+	mea->setElementType( domExtra::registerElement() );
+	cm->appendChild( mea );
+	
+	cm->setMaxOrdinal( 8 );
 	cm->getParent()->appendChild( cm );
 	cm = cm->getParent();
 	
-	cm->setMaxOrdinal( 7 );
+	cm->setMaxOrdinal( 8 );
 	_Meta->setCMRoot( cm );	
 	
 	

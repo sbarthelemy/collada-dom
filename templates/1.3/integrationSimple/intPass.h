@@ -17,13 +17,16 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeMetaElement.h>
 
-/** A pass describes an algorithm that is executed during a single iteration of the rendering 
-			engine. The pass element declares the information required to execute a rendering pass.
-*/class intPass;
+class intPass;
 
 typedef daeSmartRef<intPass> intPassRef;
 typedef daeTArray<intPassRef> intPassArray;
 
+/**
+ * A pass describes an algorithm that is executed during a single iteration
+ * of the rendering  engine. The pass element declares the information required
+ * to execute a rendering pass.
+ */
 class intPass : public daeIntegrationObject
 {
 public: // Constuctor and Destructor

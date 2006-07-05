@@ -35,7 +35,6 @@ intCode::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "code" );
-	_Meta->setStaticPointerAddress(&intCode::_Meta);
 	_Meta->registerConstructor(intCode::create);
 
 	domCode::_Meta->setMetaIntegration(_Meta);

@@ -131,6 +131,13 @@ public:
 			set( i, cpy[i] ); 
 	}
 	/**
+	 * Constructor that takes one element and turns into an array
+	 */
+	daeTArray( const T &el ) : daeArray() {
+		_elementSize = sizeof(T);
+		append( el );
+	}
+	/**
 	*  Destructor.
 	 */
 	virtual ~daeTArray() {

@@ -35,7 +35,6 @@ intPhysics_model::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "physics_model" );
-	_Meta->setStaticPointerAddress(&intPhysics_model::_Meta);
 	_Meta->registerConstructor(intPhysics_model::create);
 
 	domPhysics_model::_Meta->setMetaIntegration(_Meta);

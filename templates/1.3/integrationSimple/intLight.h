@@ -17,21 +17,25 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeMetaElement.h>
 
-/** The light element declares a light source that illuminates the scene.
-			The light element may be referenced by an instance element to position and orient the light
-			in the scene. A light that is not instantiated in the scene is not active. If the type 
-			attribute value is 'DIRECTIONAL' or 'SPOT' then the light's default direction vector in 
-			local coordinates is [0,0,-1], pointing down the -Z axis. If the type attribute value is 
-			'POINT' or 'SPOT' then two additional param elements are required: one named 'ATTENUATION', 
-			and one named 'ATTENUATION_SCALE', as defined in the COMMON Profile. If the type attribute 
-			value is 'SPOT' then all the param elements required by 'POINT' are required. In addition 
-			three more param elements are required: one named 'ANGLE' for the cone shape, one named 
-			'FALLOFF', and one named 'FALLOFF_SCALE', as defined in the COMMON Profile.
-*/class intLight;
+class intLight;
 
 typedef daeSmartRef<intLight> intLightRef;
 typedef daeTArray<intLightRef> intLightArray;
 
+/**
+ * The light element declares a light source that illuminates the scene. The
+ * light element may be referenced by an instance element to position and
+ * orient the light in the scene. A light that is not instantiated in the
+ * scene is not active. If the type  attribute value is 'DIRECTIONAL' or 'SPOT'
+ * then the light's default direction vector in  local coordinates is [0,0,-1],
+ * pointing down the -Z axis. If the type attribute value is  'POINT' or 'SPOT'
+ * then two additional param elements are required: one named 'ATTENUATION',
+ * and one named 'ATTENUATION_SCALE', as defined in the COMMON Profile. If
+ * the type attribute  value is 'SPOT' then all the param elements required
+ * by 'POINT' are required. In addition  three more param elements are required:
+ * one named 'ANGLE' for the cone shape, one named  'FALLOFF', and one named
+ * 'FALLOFF_SCALE', as defined in the COMMON Profile.
+ */
 class intLight : public daeIntegrationObject
 {
 public: // Constuctor and Destructor

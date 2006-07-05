@@ -141,6 +141,20 @@ protected:
  */
 class domCg_newarray_type : public daeElement, public domCg_newarray_type_complexType
 {
+
+public:	//Accessors and Mutators
+	/**
+	 * Gets the length attribute.
+	 * @return Returns a xsPositiveInteger of the length attribute.
+	 */
+	xsPositiveInteger getLength() const { return attrLength; }
+	/**
+	 * Sets the length attribute.
+	 * @param atLength The new value for the length attribute.
+	 */
+	void setLength( xsPositiveInteger atLength ) { attrLength = atLength;
+	 _validAttributeArray[0] = true; }
+
 protected:
 	/**
 	 * Constructor

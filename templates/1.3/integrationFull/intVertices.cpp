@@ -36,7 +36,6 @@ intVertices::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "vertices" );
-	_Meta->setStaticPointerAddress(&intVertices::_Meta);
 	_Meta->registerConstructor(intVertices::create);
 
 	domVertices::_Meta->setMetaIntegration(_Meta);
@@ -61,7 +60,6 @@ intVertices::intInput::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "input" );
-	_Meta->setStaticPointerAddress(&intVertices::intInput::_Meta);
 	_Meta->registerConstructor(intVertices::intInput::create);
 
 	domVertices::domInput::_Meta->setMetaIntegration(_Meta);

@@ -35,7 +35,6 @@ intAccessor::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "accessor" );
-	_Meta->setStaticPointerAddress(&intAccessor::_Meta);
 	_Meta->registerConstructor(intAccessor::create);
 
 	domAccessor::_Meta->setMetaIntegration(_Meta);

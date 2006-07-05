@@ -35,7 +35,6 @@ intCylinder::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "cylinder" );
-	_Meta->setStaticPointerAddress(&intCylinder::_Meta);
 	_Meta->registerConstructor(intCylinder::create);
 
 	domCylinder::_Meta->setMetaIntegration(_Meta);

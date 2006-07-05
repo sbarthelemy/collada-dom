@@ -75,8 +75,8 @@ typedef daeSmartRef<intTechnique_common> intTechnique_commonRef;
 typedef daeTArray<intTechnique_commonRef> intTechnique_commonArray;
 
 /**
- * The technique_common element specifies the instance_rigid_body information
- * for the common  profile which all COLLADA implementations need to support.
+ * The technique_common element specifies the bind_material information for
+ * the common  profile which all COLLADA implementations need to support.
  */
 class intTechnique_common : public daeIntegrationObject
 {

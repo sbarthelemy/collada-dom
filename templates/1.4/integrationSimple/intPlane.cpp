@@ -35,7 +35,6 @@ intPlane::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "plane" );
-	_Meta->setStaticPointerAddress(&intPlane::_Meta);
 	_Meta->registerConstructor(intPlane::create);
 
 	domPlane::_Meta->setMetaIntegration(_Meta);

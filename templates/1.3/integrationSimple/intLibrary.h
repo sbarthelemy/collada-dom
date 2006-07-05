@@ -17,18 +17,21 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeMetaElement.h>
 
-/** The library element declares a module of elements of a single category. As data sets become
-			larger and more complex they become harder to manipulate within a single container. One 
-			approach to manage this complexity is to divide the data into smaller pieces organized by 
-			some criteria. These modular pieces can then be stored in separate resources as libraries.
-			The library element can have zero or more child elements that conform to the category of 
-			its type attribute. A library whose type attribute is 'MATERIAL' must contain only material
-			elements, for example.
-*/class intLibrary;
+class intLibrary;
 
 typedef daeSmartRef<intLibrary> intLibraryRef;
 typedef daeTArray<intLibraryRef> intLibraryArray;
 
+/**
+ * The library element declares a module of elements of a single category.
+ * As data sets become larger and more complex they become harder to manipulate
+ * within a single container. One  approach to manage this complexity is to
+ * divide the data into smaller pieces organized by  some criteria. These
+ * modular pieces can then be stored in separate resources as libraries. The
+ * library element can have zero or more child elements that conform to the
+ * category of  its type attribute. A library whose type attribute is 'MATERIAL'
+ * must contain only material elements, for example.
+ */
 class intLibrary : public daeIntegrationObject
 {
 public: // Constuctor and Destructor

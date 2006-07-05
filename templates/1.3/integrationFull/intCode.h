@@ -17,13 +17,16 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeMetaElement.h>
 
-/** The code element declares the executable code for a program element. The code element may 
-			contain a text string value. This string value is interpreted as source code.
-*/class intCode;
+class intCode;
 
 typedef daeSmartRef<intCode> intCodeRef;
 typedef daeTArray<intCodeRef> intCodeArray;
 
+/**
+ * The code element declares the executable code for a program element. The
+ * code element may  contain a text string value. This string value is interpreted
+ * as source code.
+ */
 class intCode : public daeIntegrationObject
 {
 public: // Constuctor and Destructor

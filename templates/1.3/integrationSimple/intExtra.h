@@ -17,16 +17,18 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeMetaElement.h>
 
-/** The extra element declares additional information regarding its parent element. An 
-			extensible schema requires a means for users to specify arbitrary information. This extra 
-			information can represent additional real data or semantic (meta) data to the application. 
-			COLLADA represents extra information as techniques containing an arbitrary number of param 
-			elements.
-*/class intExtra;
+class intExtra;
 
 typedef daeSmartRef<intExtra> intExtraRef;
 typedef daeTArray<intExtraRef> intExtraArray;
 
+/**
+ * The extra element declares additional information regarding its parent
+ * element. An  extensible schema requires a means for users to specify arbitrary
+ * information. This extra  information can represent additional real data
+ * or semantic (meta) data to the application.  COLLADA represents extra information
+ * as techniques containing an arbitrary number of param  elements.
+ */
 class intExtra : public daeIntegrationObject
 {
 public: // Constuctor and Destructor

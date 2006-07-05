@@ -49,6 +49,7 @@ SRC				 := domAccessor.cpp \
 					domCommon_color_or_texture_type.cpp \
 					domCommon_float_or_param_type.cpp \
 					domCommon_newparam_type.cpp \
+					domCommon_transparent_type.cpp \
 					domConstants.cpp \
 					domController.cpp \
 					domConvex_mesh.cpp \
@@ -76,9 +77,14 @@ SRC				 := domAccessor.cpp \
 					domFx_samplerCUBE_common.cpp \
 					domFx_samplerDEPTH_common.cpp \
 					domFx_samplerRECT_common.cpp \
-					domFx_setparam_common.cpp \
 					domFx_stenciltarget_common.cpp \
 					domFx_surface_common.cpp \
+					domFx_surface_format_hint_common.cpp \
+					domFx_surface_init_common.cpp \
+					domFx_surface_init_cube_common.cpp \
+					domFx_surface_init_from_common.cpp \
+					domFx_surface_init_planar_common.cpp \
+					domFx_surface_init_volume_common.cpp \
 					domGeometry.cpp \
 					domGles_basic_type_common.cpp \
 					domGles_newparam.cpp \

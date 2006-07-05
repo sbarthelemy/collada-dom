@@ -37,7 +37,6 @@ intCapsule::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "capsule" );
-	_Meta->setStaticPointerAddress(&intCapsule::_Meta);
 	_Meta->registerConstructor(intCapsule::create);
 
 	domCapsule::_Meta->setMetaIntegration(_Meta);
@@ -62,7 +61,6 @@ intCapsule::intHeight::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "height" );
-	_Meta->setStaticPointerAddress(&intCapsule::intHeight::_Meta);
 	_Meta->registerConstructor(intCapsule::intHeight::create);
 
 	domCapsule::domHeight::_Meta->setMetaIntegration(_Meta);
@@ -87,7 +85,6 @@ intCapsule::intRadius::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "radius" );
-	_Meta->setStaticPointerAddress(&intCapsule::intRadius::_Meta);
 	_Meta->registerConstructor(intCapsule::intRadius::create);
 
 	domCapsule::domRadius::_Meta->setMetaIntegration(_Meta);

@@ -134,6 +134,7 @@ daeMetaElement * intGl_pipeline_settings::intAlpha_test_enable::_Meta = NULL;
 daeMetaElement * intGl_pipeline_settings::intAuto_normal_enable::_Meta = NULL;
 daeMetaElement * intGl_pipeline_settings::intBlend_enable::_Meta = NULL;
 daeMetaElement * intGl_pipeline_settings::intColor_logic_op_enable::_Meta = NULL;
+daeMetaElement * intGl_pipeline_settings::intColor_material_enable::_Meta = NULL;
 daeMetaElement * intGl_pipeline_settings::intCull_face_enable::_Meta = NULL;
 daeMetaElement * intGl_pipeline_settings::intDepth_bounds_enable::_Meta = NULL;
 daeMetaElement * intGl_pipeline_settings::intDepth_clamp_enable::_Meta = NULL;
@@ -178,7 +179,6 @@ intGl_pipeline_settings::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "gl_pipeline_settings" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::create);
 
 	domGl_pipeline_settings::_Meta->setMetaIntegration(_Meta);
@@ -203,7 +203,6 @@ intGl_pipeline_settings::intAlpha_func::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "alpha_func" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intAlpha_func::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intAlpha_func::create);
 
 	domGl_pipeline_settings::domAlpha_func::_Meta->setMetaIntegration(_Meta);
@@ -228,7 +227,6 @@ intGl_pipeline_settings::intAlpha_func::intFunc::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "func" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intAlpha_func::intFunc::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intAlpha_func::intFunc::create);
 
 	domGl_pipeline_settings::domAlpha_func::domFunc::_Meta->setMetaIntegration(_Meta);
@@ -253,7 +251,6 @@ intGl_pipeline_settings::intAlpha_func::intValue::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "value" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intAlpha_func::intValue::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intAlpha_func::intValue::create);
 
 	domGl_pipeline_settings::domAlpha_func::domValue::_Meta->setMetaIntegration(_Meta);
@@ -278,7 +275,6 @@ intGl_pipeline_settings::intBlend_func::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "blend_func" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intBlend_func::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intBlend_func::create);
 
 	domGl_pipeline_settings::domBlend_func::_Meta->setMetaIntegration(_Meta);
@@ -303,7 +299,6 @@ intGl_pipeline_settings::intBlend_func::intSrc::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "src" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intBlend_func::intSrc::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intBlend_func::intSrc::create);
 
 	domGl_pipeline_settings::domBlend_func::domSrc::_Meta->setMetaIntegration(_Meta);
@@ -328,7 +323,6 @@ intGl_pipeline_settings::intBlend_func::intDest::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "dest" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intBlend_func::intDest::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intBlend_func::intDest::create);
 
 	domGl_pipeline_settings::domBlend_func::domDest::_Meta->setMetaIntegration(_Meta);
@@ -353,7 +347,6 @@ intGl_pipeline_settings::intBlend_func_separate::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "blend_func_separate" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intBlend_func_separate::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intBlend_func_separate::create);
 
 	domGl_pipeline_settings::domBlend_func_separate::_Meta->setMetaIntegration(_Meta);
@@ -378,7 +371,6 @@ intGl_pipeline_settings::intBlend_func_separate::intSrc_rgb::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "src_rgb" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intBlend_func_separate::intSrc_rgb::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intBlend_func_separate::intSrc_rgb::create);
 
 	domGl_pipeline_settings::domBlend_func_separate::domSrc_rgb::_Meta->setMetaIntegration(_Meta);
@@ -403,7 +395,6 @@ intGl_pipeline_settings::intBlend_func_separate::intDest_rgb::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "dest_rgb" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intBlend_func_separate::intDest_rgb::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intBlend_func_separate::intDest_rgb::create);
 
 	domGl_pipeline_settings::domBlend_func_separate::domDest_rgb::_Meta->setMetaIntegration(_Meta);
@@ -428,7 +419,6 @@ intGl_pipeline_settings::intBlend_func_separate::intSrc_alpha::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "src_alpha" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intBlend_func_separate::intSrc_alpha::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intBlend_func_separate::intSrc_alpha::create);
 
 	domGl_pipeline_settings::domBlend_func_separate::domSrc_alpha::_Meta->setMetaIntegration(_Meta);
@@ -453,7 +443,6 @@ intGl_pipeline_settings::intBlend_func_separate::intDest_alpha::registerElement(
     
     _Meta = new daeMetaElement;
     _Meta->setName( "dest_alpha" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intBlend_func_separate::intDest_alpha::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intBlend_func_separate::intDest_alpha::create);
 
 	domGl_pipeline_settings::domBlend_func_separate::domDest_alpha::_Meta->setMetaIntegration(_Meta);
@@ -478,7 +467,6 @@ intGl_pipeline_settings::intBlend_equation::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "blend_equation" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intBlend_equation::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intBlend_equation::create);
 
 	domGl_pipeline_settings::domBlend_equation::_Meta->setMetaIntegration(_Meta);
@@ -503,7 +491,6 @@ intGl_pipeline_settings::intBlend_equation_separate::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "blend_equation_separate" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intBlend_equation_separate::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intBlend_equation_separate::create);
 
 	domGl_pipeline_settings::domBlend_equation_separate::_Meta->setMetaIntegration(_Meta);
@@ -528,7 +515,6 @@ intGl_pipeline_settings::intBlend_equation_separate::intRgb::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "rgb" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intBlend_equation_separate::intRgb::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intBlend_equation_separate::intRgb::create);
 
 	domGl_pipeline_settings::domBlend_equation_separate::domRgb::_Meta->setMetaIntegration(_Meta);
@@ -553,7 +539,6 @@ intGl_pipeline_settings::intBlend_equation_separate::intAlpha::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "alpha" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intBlend_equation_separate::intAlpha::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intBlend_equation_separate::intAlpha::create);
 
 	domGl_pipeline_settings::domBlend_equation_separate::domAlpha::_Meta->setMetaIntegration(_Meta);
@@ -578,7 +563,6 @@ intGl_pipeline_settings::intColor_material::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "color_material" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intColor_material::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intColor_material::create);
 
 	domGl_pipeline_settings::domColor_material::_Meta->setMetaIntegration(_Meta);
@@ -603,7 +587,6 @@ intGl_pipeline_settings::intColor_material::intFace::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "face" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intColor_material::intFace::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intColor_material::intFace::create);
 
 	domGl_pipeline_settings::domColor_material::domFace::_Meta->setMetaIntegration(_Meta);
@@ -628,7 +611,6 @@ intGl_pipeline_settings::intColor_material::intMode::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "mode" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intColor_material::intMode::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intColor_material::intMode::create);
 
 	domGl_pipeline_settings::domColor_material::domMode::_Meta->setMetaIntegration(_Meta);
@@ -653,7 +635,6 @@ intGl_pipeline_settings::intCull_face::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "cull_face" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intCull_face::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intCull_face::create);
 
 	domGl_pipeline_settings::domCull_face::_Meta->setMetaIntegration(_Meta);
@@ -678,7 +659,6 @@ intGl_pipeline_settings::intDepth_func::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "depth_func" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intDepth_func::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intDepth_func::create);
 
 	domGl_pipeline_settings::domDepth_func::_Meta->setMetaIntegration(_Meta);
@@ -703,7 +683,6 @@ intGl_pipeline_settings::intFog_mode::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fog_mode" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intFog_mode::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intFog_mode::create);
 
 	domGl_pipeline_settings::domFog_mode::_Meta->setMetaIntegration(_Meta);
@@ -728,7 +707,6 @@ intGl_pipeline_settings::intFog_coord_src::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fog_coord_src" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intFog_coord_src::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intFog_coord_src::create);
 
 	domGl_pipeline_settings::domFog_coord_src::_Meta->setMetaIntegration(_Meta);
@@ -753,7 +731,6 @@ intGl_pipeline_settings::intFront_face::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "front_face" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intFront_face::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intFront_face::create);
 
 	domGl_pipeline_settings::domFront_face::_Meta->setMetaIntegration(_Meta);
@@ -778,7 +755,6 @@ intGl_pipeline_settings::intLight_model_color_control::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "light_model_color_control" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intLight_model_color_control::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intLight_model_color_control::create);
 
 	domGl_pipeline_settings::domLight_model_color_control::_Meta->setMetaIntegration(_Meta);
@@ -803,7 +779,6 @@ intGl_pipeline_settings::intLogic_op::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "logic_op" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intLogic_op::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intLogic_op::create);
 
 	domGl_pipeline_settings::domLogic_op::_Meta->setMetaIntegration(_Meta);
@@ -828,7 +803,6 @@ intGl_pipeline_settings::intPolygon_mode::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "polygon_mode" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intPolygon_mode::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intPolygon_mode::create);
 
 	domGl_pipeline_settings::domPolygon_mode::_Meta->setMetaIntegration(_Meta);
@@ -853,7 +827,6 @@ intGl_pipeline_settings::intPolygon_mode::intFace::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "face" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intPolygon_mode::intFace::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intPolygon_mode::intFace::create);
 
 	domGl_pipeline_settings::domPolygon_mode::domFace::_Meta->setMetaIntegration(_Meta);
@@ -878,7 +851,6 @@ intGl_pipeline_settings::intPolygon_mode::intMode::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "mode" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intPolygon_mode::intMode::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intPolygon_mode::intMode::create);
 
 	domGl_pipeline_settings::domPolygon_mode::domMode::_Meta->setMetaIntegration(_Meta);
@@ -903,7 +875,6 @@ intGl_pipeline_settings::intShade_model::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "shade_model" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intShade_model::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intShade_model::create);
 
 	domGl_pipeline_settings::domShade_model::_Meta->setMetaIntegration(_Meta);
@@ -928,7 +899,6 @@ intGl_pipeline_settings::intStencil_func::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "stencil_func" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intStencil_func::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intStencil_func::create);
 
 	domGl_pipeline_settings::domStencil_func::_Meta->setMetaIntegration(_Meta);
@@ -953,7 +923,6 @@ intGl_pipeline_settings::intStencil_func::intFunc::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "func" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intStencil_func::intFunc::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intStencil_func::intFunc::create);
 
 	domGl_pipeline_settings::domStencil_func::domFunc::_Meta->setMetaIntegration(_Meta);
@@ -978,7 +947,6 @@ intGl_pipeline_settings::intStencil_func::intRef::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "ref" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intStencil_func::intRef::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intStencil_func::intRef::create);
 
 	domGl_pipeline_settings::domStencil_func::domRef::_Meta->setMetaIntegration(_Meta);
@@ -1003,7 +971,6 @@ intGl_pipeline_settings::intStencil_func::intMask::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "mask" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intStencil_func::intMask::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intStencil_func::intMask::create);
 
 	domGl_pipeline_settings::domStencil_func::domMask::_Meta->setMetaIntegration(_Meta);
@@ -1028,7 +995,6 @@ intGl_pipeline_settings::intStencil_op::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "stencil_op" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intStencil_op::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intStencil_op::create);
 
 	domGl_pipeline_settings::domStencil_op::_Meta->setMetaIntegration(_Meta);
@@ -1053,7 +1019,6 @@ intGl_pipeline_settings::intStencil_op::intFail::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fail" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intStencil_op::intFail::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intStencil_op::intFail::create);
 
 	domGl_pipeline_settings::domStencil_op::domFail::_Meta->setMetaIntegration(_Meta);
@@ -1078,7 +1043,6 @@ intGl_pipeline_settings::intStencil_op::intZfail::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "zfail" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intStencil_op::intZfail::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intStencil_op::intZfail::create);
 
 	domGl_pipeline_settings::domStencil_op::domZfail::_Meta->setMetaIntegration(_Meta);
@@ -1103,7 +1067,6 @@ intGl_pipeline_settings::intStencil_op::intZpass::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "zpass" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intStencil_op::intZpass::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intStencil_op::intZpass::create);
 
 	domGl_pipeline_settings::domStencil_op::domZpass::_Meta->setMetaIntegration(_Meta);
@@ -1128,7 +1091,6 @@ intGl_pipeline_settings::intStencil_func_separate::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "stencil_func_separate" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intStencil_func_separate::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intStencil_func_separate::create);
 
 	domGl_pipeline_settings::domStencil_func_separate::_Meta->setMetaIntegration(_Meta);
@@ -1153,7 +1115,6 @@ intGl_pipeline_settings::intStencil_func_separate::intFront::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "front" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intStencil_func_separate::intFront::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intStencil_func_separate::intFront::create);
 
 	domGl_pipeline_settings::domStencil_func_separate::domFront::_Meta->setMetaIntegration(_Meta);
@@ -1178,7 +1139,6 @@ intGl_pipeline_settings::intStencil_func_separate::intBack::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "back" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intStencil_func_separate::intBack::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intStencil_func_separate::intBack::create);
 
 	domGl_pipeline_settings::domStencil_func_separate::domBack::_Meta->setMetaIntegration(_Meta);
@@ -1203,7 +1163,6 @@ intGl_pipeline_settings::intStencil_func_separate::intRef::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "ref" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intStencil_func_separate::intRef::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intStencil_func_separate::intRef::create);
 
 	domGl_pipeline_settings::domStencil_func_separate::domRef::_Meta->setMetaIntegration(_Meta);
@@ -1228,7 +1187,6 @@ intGl_pipeline_settings::intStencil_func_separate::intMask::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "mask" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intStencil_func_separate::intMask::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intStencil_func_separate::intMask::create);
 
 	domGl_pipeline_settings::domStencil_func_separate::domMask::_Meta->setMetaIntegration(_Meta);
@@ -1253,7 +1211,6 @@ intGl_pipeline_settings::intStencil_op_separate::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "stencil_op_separate" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intStencil_op_separate::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intStencil_op_separate::create);
 
 	domGl_pipeline_settings::domStencil_op_separate::_Meta->setMetaIntegration(_Meta);
@@ -1278,7 +1235,6 @@ intGl_pipeline_settings::intStencil_op_separate::intFace::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "face" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intStencil_op_separate::intFace::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intStencil_op_separate::intFace::create);
 
 	domGl_pipeline_settings::domStencil_op_separate::domFace::_Meta->setMetaIntegration(_Meta);
@@ -1303,7 +1259,6 @@ intGl_pipeline_settings::intStencil_op_separate::intFail::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fail" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intStencil_op_separate::intFail::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intStencil_op_separate::intFail::create);
 
 	domGl_pipeline_settings::domStencil_op_separate::domFail::_Meta->setMetaIntegration(_Meta);
@@ -1328,7 +1283,6 @@ intGl_pipeline_settings::intStencil_op_separate::intZfail::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "zfail" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intStencil_op_separate::intZfail::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intStencil_op_separate::intZfail::create);
 
 	domGl_pipeline_settings::domStencil_op_separate::domZfail::_Meta->setMetaIntegration(_Meta);
@@ -1353,7 +1307,6 @@ intGl_pipeline_settings::intStencil_op_separate::intZpass::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "zpass" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intStencil_op_separate::intZpass::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intStencil_op_separate::intZpass::create);
 
 	domGl_pipeline_settings::domStencil_op_separate::domZpass::_Meta->setMetaIntegration(_Meta);
@@ -1378,7 +1331,6 @@ intGl_pipeline_settings::intStencil_mask_separate::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "stencil_mask_separate" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intStencil_mask_separate::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intStencil_mask_separate::create);
 
 	domGl_pipeline_settings::domStencil_mask_separate::_Meta->setMetaIntegration(_Meta);
@@ -1403,7 +1355,6 @@ intGl_pipeline_settings::intStencil_mask_separate::intFace::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "face" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intStencil_mask_separate::intFace::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intStencil_mask_separate::intFace::create);
 
 	domGl_pipeline_settings::domStencil_mask_separate::domFace::_Meta->setMetaIntegration(_Meta);
@@ -1428,7 +1379,6 @@ intGl_pipeline_settings::intStencil_mask_separate::intMask::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "mask" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intStencil_mask_separate::intMask::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intStencil_mask_separate::intMask::create);
 
 	domGl_pipeline_settings::domStencil_mask_separate::domMask::_Meta->setMetaIntegration(_Meta);
@@ -1453,7 +1403,6 @@ intGl_pipeline_settings::intLight_enable::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "light_enable" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intLight_enable::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intLight_enable::create);
 
 	domGl_pipeline_settings::domLight_enable::_Meta->setMetaIntegration(_Meta);
@@ -1478,7 +1427,6 @@ intGl_pipeline_settings::intLight_ambient::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "light_ambient" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intLight_ambient::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intLight_ambient::create);
 
 	domGl_pipeline_settings::domLight_ambient::_Meta->setMetaIntegration(_Meta);
@@ -1503,7 +1451,6 @@ intGl_pipeline_settings::intLight_diffuse::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "light_diffuse" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intLight_diffuse::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intLight_diffuse::create);
 
 	domGl_pipeline_settings::domLight_diffuse::_Meta->setMetaIntegration(_Meta);
@@ -1528,7 +1475,6 @@ intGl_pipeline_settings::intLight_specular::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "light_specular" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intLight_specular::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intLight_specular::create);
 
 	domGl_pipeline_settings::domLight_specular::_Meta->setMetaIntegration(_Meta);
@@ -1553,7 +1499,6 @@ intGl_pipeline_settings::intLight_position::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "light_position" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intLight_position::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intLight_position::create);
 
 	domGl_pipeline_settings::domLight_position::_Meta->setMetaIntegration(_Meta);
@@ -1578,7 +1523,6 @@ intGl_pipeline_settings::intLight_constant_attenuation::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "light_constant_attenuation" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intLight_constant_attenuation::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intLight_constant_attenuation::create);
 
 	domGl_pipeline_settings::domLight_constant_attenuation::_Meta->setMetaIntegration(_Meta);
@@ -1603,7 +1547,6 @@ intGl_pipeline_settings::intLight_linear_attenuation::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "light_linear_attenuation" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intLight_linear_attenuation::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intLight_linear_attenuation::create);
 
 	domGl_pipeline_settings::domLight_linear_attenuation::_Meta->setMetaIntegration(_Meta);
@@ -1628,7 +1571,6 @@ intGl_pipeline_settings::intLight_quadratic_attenuation::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "light_quadratic_attenuation" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intLight_quadratic_attenuation::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intLight_quadratic_attenuation::create);
 
 	domGl_pipeline_settings::domLight_quadratic_attenuation::_Meta->setMetaIntegration(_Meta);
@@ -1653,7 +1595,6 @@ intGl_pipeline_settings::intLight_spot_cutoff::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "light_spot_cutoff" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intLight_spot_cutoff::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intLight_spot_cutoff::create);
 
 	domGl_pipeline_settings::domLight_spot_cutoff::_Meta->setMetaIntegration(_Meta);
@@ -1678,7 +1619,6 @@ intGl_pipeline_settings::intLight_spot_direction::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "light_spot_direction" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intLight_spot_direction::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intLight_spot_direction::create);
 
 	domGl_pipeline_settings::domLight_spot_direction::_Meta->setMetaIntegration(_Meta);
@@ -1703,7 +1643,6 @@ intGl_pipeline_settings::intLight_spot_exponent::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "light_spot_exponent" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intLight_spot_exponent::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intLight_spot_exponent::create);
 
 	domGl_pipeline_settings::domLight_spot_exponent::_Meta->setMetaIntegration(_Meta);
@@ -1728,7 +1667,6 @@ intGl_pipeline_settings::intTexture1D::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "texture1D" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intTexture1D::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intTexture1D::create);
 
 	domGl_pipeline_settings::domTexture1D::_Meta->setMetaIntegration(_Meta);
@@ -1753,7 +1691,6 @@ intGl_pipeline_settings::intTexture1D::intParam::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "param" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intTexture1D::intParam::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intTexture1D::intParam::create);
 
 	domGl_pipeline_settings::domTexture1D::domParam::_Meta->setMetaIntegration(_Meta);
@@ -1778,7 +1715,6 @@ intGl_pipeline_settings::intTexture2D::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "texture2D" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intTexture2D::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intTexture2D::create);
 
 	domGl_pipeline_settings::domTexture2D::_Meta->setMetaIntegration(_Meta);
@@ -1803,7 +1739,6 @@ intGl_pipeline_settings::intTexture2D::intParam::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "param" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intTexture2D::intParam::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intTexture2D::intParam::create);
 
 	domGl_pipeline_settings::domTexture2D::domParam::_Meta->setMetaIntegration(_Meta);
@@ -1828,7 +1763,6 @@ intGl_pipeline_settings::intTexture3D::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "texture3D" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intTexture3D::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intTexture3D::create);
 
 	domGl_pipeline_settings::domTexture3D::_Meta->setMetaIntegration(_Meta);
@@ -1853,7 +1787,6 @@ intGl_pipeline_settings::intTexture3D::intParam::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "param" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intTexture3D::intParam::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intTexture3D::intParam::create);
 
 	domGl_pipeline_settings::domTexture3D::domParam::_Meta->setMetaIntegration(_Meta);
@@ -1878,7 +1811,6 @@ intGl_pipeline_settings::intTextureCUBE::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "textureCUBE" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intTextureCUBE::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intTextureCUBE::create);
 
 	domGl_pipeline_settings::domTextureCUBE::_Meta->setMetaIntegration(_Meta);
@@ -1903,7 +1835,6 @@ intGl_pipeline_settings::intTextureCUBE::intParam::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "param" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intTextureCUBE::intParam::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intTextureCUBE::intParam::create);
 
 	domGl_pipeline_settings::domTextureCUBE::domParam::_Meta->setMetaIntegration(_Meta);
@@ -1928,7 +1859,6 @@ intGl_pipeline_settings::intTextureRECT::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "textureRECT" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intTextureRECT::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intTextureRECT::create);
 
 	domGl_pipeline_settings::domTextureRECT::_Meta->setMetaIntegration(_Meta);
@@ -1953,7 +1883,6 @@ intGl_pipeline_settings::intTextureRECT::intParam::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "param" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intTextureRECT::intParam::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intTextureRECT::intParam::create);
 
 	domGl_pipeline_settings::domTextureRECT::domParam::_Meta->setMetaIntegration(_Meta);
@@ -1978,7 +1907,6 @@ intGl_pipeline_settings::intTextureDEPTH::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "textureDEPTH" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intTextureDEPTH::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intTextureDEPTH::create);
 
 	domGl_pipeline_settings::domTextureDEPTH::_Meta->setMetaIntegration(_Meta);
@@ -2003,7 +1931,6 @@ intGl_pipeline_settings::intTextureDEPTH::intParam::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "param" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intTextureDEPTH::intParam::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intTextureDEPTH::intParam::create);
 
 	domGl_pipeline_settings::domTextureDEPTH::domParam::_Meta->setMetaIntegration(_Meta);
@@ -2028,7 +1955,6 @@ intGl_pipeline_settings::intTexture1D_enable::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "texture1D_enable" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intTexture1D_enable::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intTexture1D_enable::create);
 
 	domGl_pipeline_settings::domTexture1D_enable::_Meta->setMetaIntegration(_Meta);
@@ -2053,7 +1979,6 @@ intGl_pipeline_settings::intTexture2D_enable::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "texture2D_enable" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intTexture2D_enable::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intTexture2D_enable::create);
 
 	domGl_pipeline_settings::domTexture2D_enable::_Meta->setMetaIntegration(_Meta);
@@ -2078,7 +2003,6 @@ intGl_pipeline_settings::intTexture3D_enable::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "texture3D_enable" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intTexture3D_enable::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intTexture3D_enable::create);
 
 	domGl_pipeline_settings::domTexture3D_enable::_Meta->setMetaIntegration(_Meta);
@@ -2103,7 +2027,6 @@ intGl_pipeline_settings::intTextureCUBE_enable::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "textureCUBE_enable" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intTextureCUBE_enable::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intTextureCUBE_enable::create);
 
 	domGl_pipeline_settings::domTextureCUBE_enable::_Meta->setMetaIntegration(_Meta);
@@ -2128,7 +2051,6 @@ intGl_pipeline_settings::intTextureRECT_enable::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "textureRECT_enable" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intTextureRECT_enable::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intTextureRECT_enable::create);
 
 	domGl_pipeline_settings::domTextureRECT_enable::_Meta->setMetaIntegration(_Meta);
@@ -2153,7 +2075,6 @@ intGl_pipeline_settings::intTextureDEPTH_enable::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "textureDEPTH_enable" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intTextureDEPTH_enable::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intTextureDEPTH_enable::create);
 
 	domGl_pipeline_settings::domTextureDEPTH_enable::_Meta->setMetaIntegration(_Meta);
@@ -2178,7 +2099,6 @@ intGl_pipeline_settings::intTexture_env_color::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "texture_env_color" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intTexture_env_color::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intTexture_env_color::create);
 
 	domGl_pipeline_settings::domTexture_env_color::_Meta->setMetaIntegration(_Meta);
@@ -2203,7 +2123,6 @@ intGl_pipeline_settings::intTexture_env_mode::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "texture_env_mode" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intTexture_env_mode::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intTexture_env_mode::create);
 
 	domGl_pipeline_settings::domTexture_env_mode::_Meta->setMetaIntegration(_Meta);
@@ -2228,7 +2147,6 @@ intGl_pipeline_settings::intClip_plane::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "clip_plane" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intClip_plane::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intClip_plane::create);
 
 	domGl_pipeline_settings::domClip_plane::_Meta->setMetaIntegration(_Meta);
@@ -2253,7 +2171,6 @@ intGl_pipeline_settings::intClip_plane_enable::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "clip_plane_enable" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intClip_plane_enable::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intClip_plane_enable::create);
 
 	domGl_pipeline_settings::domClip_plane_enable::_Meta->setMetaIntegration(_Meta);
@@ -2278,7 +2195,6 @@ intGl_pipeline_settings::intBlend_color::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "blend_color" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intBlend_color::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intBlend_color::create);
 
 	domGl_pipeline_settings::domBlend_color::_Meta->setMetaIntegration(_Meta);
@@ -2303,7 +2219,6 @@ intGl_pipeline_settings::intClear_color::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "clear_color" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intClear_color::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intClear_color::create);
 
 	domGl_pipeline_settings::domClear_color::_Meta->setMetaIntegration(_Meta);
@@ -2328,7 +2243,6 @@ intGl_pipeline_settings::intClear_stencil::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "clear_stencil" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intClear_stencil::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intClear_stencil::create);
 
 	domGl_pipeline_settings::domClear_stencil::_Meta->setMetaIntegration(_Meta);
@@ -2353,7 +2267,6 @@ intGl_pipeline_settings::intClear_depth::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "clear_depth" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intClear_depth::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intClear_depth::create);
 
 	domGl_pipeline_settings::domClear_depth::_Meta->setMetaIntegration(_Meta);
@@ -2378,7 +2291,6 @@ intGl_pipeline_settings::intColor_mask::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "color_mask" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intColor_mask::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intColor_mask::create);
 
 	domGl_pipeline_settings::domColor_mask::_Meta->setMetaIntegration(_Meta);
@@ -2403,7 +2315,6 @@ intGl_pipeline_settings::intDepth_bounds::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "depth_bounds" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intDepth_bounds::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intDepth_bounds::create);
 
 	domGl_pipeline_settings::domDepth_bounds::_Meta->setMetaIntegration(_Meta);
@@ -2428,7 +2339,6 @@ intGl_pipeline_settings::intDepth_mask::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "depth_mask" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intDepth_mask::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intDepth_mask::create);
 
 	domGl_pipeline_settings::domDepth_mask::_Meta->setMetaIntegration(_Meta);
@@ -2453,7 +2363,6 @@ intGl_pipeline_settings::intDepth_range::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "depth_range" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intDepth_range::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intDepth_range::create);
 
 	domGl_pipeline_settings::domDepth_range::_Meta->setMetaIntegration(_Meta);
@@ -2478,7 +2387,6 @@ intGl_pipeline_settings::intFog_density::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fog_density" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intFog_density::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intFog_density::create);
 
 	domGl_pipeline_settings::domFog_density::_Meta->setMetaIntegration(_Meta);
@@ -2503,7 +2411,6 @@ intGl_pipeline_settings::intFog_start::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fog_start" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intFog_start::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intFog_start::create);
 
 	domGl_pipeline_settings::domFog_start::_Meta->setMetaIntegration(_Meta);
@@ -2528,7 +2435,6 @@ intGl_pipeline_settings::intFog_end::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fog_end" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intFog_end::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intFog_end::create);
 
 	domGl_pipeline_settings::domFog_end::_Meta->setMetaIntegration(_Meta);
@@ -2553,7 +2459,6 @@ intGl_pipeline_settings::intFog_color::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fog_color" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intFog_color::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intFog_color::create);
 
 	domGl_pipeline_settings::domFog_color::_Meta->setMetaIntegration(_Meta);
@@ -2578,7 +2483,6 @@ intGl_pipeline_settings::intLight_model_ambient::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "light_model_ambient" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intLight_model_ambient::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intLight_model_ambient::create);
 
 	domGl_pipeline_settings::domLight_model_ambient::_Meta->setMetaIntegration(_Meta);
@@ -2603,7 +2507,6 @@ intGl_pipeline_settings::intLighting_enable::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "lighting_enable" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intLighting_enable::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intLighting_enable::create);
 
 	domGl_pipeline_settings::domLighting_enable::_Meta->setMetaIntegration(_Meta);
@@ -2628,7 +2531,6 @@ intGl_pipeline_settings::intLine_stipple::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "line_stipple" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intLine_stipple::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intLine_stipple::create);
 
 	domGl_pipeline_settings::domLine_stipple::_Meta->setMetaIntegration(_Meta);
@@ -2653,7 +2555,6 @@ intGl_pipeline_settings::intLine_width::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "line_width" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intLine_width::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intLine_width::create);
 
 	domGl_pipeline_settings::domLine_width::_Meta->setMetaIntegration(_Meta);
@@ -2678,7 +2579,6 @@ intGl_pipeline_settings::intMaterial_ambient::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "material_ambient" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intMaterial_ambient::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intMaterial_ambient::create);
 
 	domGl_pipeline_settings::domMaterial_ambient::_Meta->setMetaIntegration(_Meta);
@@ -2703,7 +2603,6 @@ intGl_pipeline_settings::intMaterial_diffuse::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "material_diffuse" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intMaterial_diffuse::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intMaterial_diffuse::create);
 
 	domGl_pipeline_settings::domMaterial_diffuse::_Meta->setMetaIntegration(_Meta);
@@ -2728,7 +2627,6 @@ intGl_pipeline_settings::intMaterial_emission::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "material_emission" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intMaterial_emission::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intMaterial_emission::create);
 
 	domGl_pipeline_settings::domMaterial_emission::_Meta->setMetaIntegration(_Meta);
@@ -2753,7 +2651,6 @@ intGl_pipeline_settings::intMaterial_shininess::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "material_shininess" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intMaterial_shininess::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intMaterial_shininess::create);
 
 	domGl_pipeline_settings::domMaterial_shininess::_Meta->setMetaIntegration(_Meta);
@@ -2778,7 +2675,6 @@ intGl_pipeline_settings::intMaterial_specular::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "material_specular" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intMaterial_specular::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intMaterial_specular::create);
 
 	domGl_pipeline_settings::domMaterial_specular::_Meta->setMetaIntegration(_Meta);
@@ -2803,7 +2699,6 @@ intGl_pipeline_settings::intModel_view_matrix::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "model_view_matrix" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intModel_view_matrix::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intModel_view_matrix::create);
 
 	domGl_pipeline_settings::domModel_view_matrix::_Meta->setMetaIntegration(_Meta);
@@ -2828,7 +2723,6 @@ intGl_pipeline_settings::intPoint_distance_attenuation::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "point_distance_attenuation" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intPoint_distance_attenuation::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intPoint_distance_attenuation::create);
 
 	domGl_pipeline_settings::domPoint_distance_attenuation::_Meta->setMetaIntegration(_Meta);
@@ -2853,7 +2747,6 @@ intGl_pipeline_settings::intPoint_fade_threshold_size::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "point_fade_threshold_size" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intPoint_fade_threshold_size::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intPoint_fade_threshold_size::create);
 
 	domGl_pipeline_settings::domPoint_fade_threshold_size::_Meta->setMetaIntegration(_Meta);
@@ -2878,7 +2771,6 @@ intGl_pipeline_settings::intPoint_size::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "point_size" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intPoint_size::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intPoint_size::create);
 
 	domGl_pipeline_settings::domPoint_size::_Meta->setMetaIntegration(_Meta);
@@ -2903,7 +2795,6 @@ intGl_pipeline_settings::intPoint_size_min::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "point_size_min" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intPoint_size_min::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intPoint_size_min::create);
 
 	domGl_pipeline_settings::domPoint_size_min::_Meta->setMetaIntegration(_Meta);
@@ -2928,7 +2819,6 @@ intGl_pipeline_settings::intPoint_size_max::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "point_size_max" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intPoint_size_max::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intPoint_size_max::create);
 
 	domGl_pipeline_settings::domPoint_size_max::_Meta->setMetaIntegration(_Meta);
@@ -2953,7 +2843,6 @@ intGl_pipeline_settings::intPolygon_offset::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "polygon_offset" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intPolygon_offset::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intPolygon_offset::create);
 
 	domGl_pipeline_settings::domPolygon_offset::_Meta->setMetaIntegration(_Meta);
@@ -2978,7 +2867,6 @@ intGl_pipeline_settings::intProjection_matrix::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "projection_matrix" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intProjection_matrix::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intProjection_matrix::create);
 
 	domGl_pipeline_settings::domProjection_matrix::_Meta->setMetaIntegration(_Meta);
@@ -3003,7 +2891,6 @@ intGl_pipeline_settings::intScissor::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "scissor" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intScissor::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intScissor::create);
 
 	domGl_pipeline_settings::domScissor::_Meta->setMetaIntegration(_Meta);
@@ -3028,7 +2915,6 @@ intGl_pipeline_settings::intStencil_mask::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "stencil_mask" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intStencil_mask::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intStencil_mask::create);
 
 	domGl_pipeline_settings::domStencil_mask::_Meta->setMetaIntegration(_Meta);
@@ -3053,7 +2939,6 @@ intGl_pipeline_settings::intAlpha_test_enable::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "alpha_test_enable" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intAlpha_test_enable::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intAlpha_test_enable::create);
 
 	domGl_pipeline_settings::domAlpha_test_enable::_Meta->setMetaIntegration(_Meta);
@@ -3078,7 +2963,6 @@ intGl_pipeline_settings::intAuto_normal_enable::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "auto_normal_enable" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intAuto_normal_enable::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intAuto_normal_enable::create);
 
 	domGl_pipeline_settings::domAuto_normal_enable::_Meta->setMetaIntegration(_Meta);
@@ -3103,7 +2987,6 @@ intGl_pipeline_settings::intBlend_enable::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "blend_enable" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intBlend_enable::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intBlend_enable::create);
 
 	domGl_pipeline_settings::domBlend_enable::_Meta->setMetaIntegration(_Meta);
@@ -3128,12 +3011,35 @@ intGl_pipeline_settings::intColor_logic_op_enable::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "color_logic_op_enable" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intColor_logic_op_enable::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intColor_logic_op_enable::create);
 
 	domGl_pipeline_settings::domColor_logic_op_enable::_Meta->setMetaIntegration(_Meta);
 
 	_Meta->setElementSize(sizeof(intGl_pipeline_settings::intColor_logic_op_enable));
+	_Meta->validate();
+
+	return _Meta;
+}
+
+daeElementRef
+intGl_pipeline_settings::intColor_material_enable::create(daeInt bytes)
+{
+	intGl_pipeline_settings::intColor_material_enableRef ref = new(bytes) intGl_pipeline_settings::intColor_material_enable;
+	return ref;
+}
+
+daeMetaElement *
+intGl_pipeline_settings::intColor_material_enable::registerElement()
+{
+    if ( _Meta != NULL ) return _Meta;
+    
+    _Meta = new daeMetaElement;
+    _Meta->setName( "color_material_enable" );
+	_Meta->registerConstructor(intGl_pipeline_settings::intColor_material_enable::create);
+
+	domGl_pipeline_settings::domColor_material_enable::_Meta->setMetaIntegration(_Meta);
+
+	_Meta->setElementSize(sizeof(intGl_pipeline_settings::intColor_material_enable));
 	_Meta->validate();
 
 	return _Meta;
@@ -3153,7 +3059,6 @@ intGl_pipeline_settings::intCull_face_enable::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "cull_face_enable" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intCull_face_enable::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intCull_face_enable::create);
 
 	domGl_pipeline_settings::domCull_face_enable::_Meta->setMetaIntegration(_Meta);
@@ -3178,7 +3083,6 @@ intGl_pipeline_settings::intDepth_bounds_enable::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "depth_bounds_enable" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intDepth_bounds_enable::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intDepth_bounds_enable::create);
 
 	domGl_pipeline_settings::domDepth_bounds_enable::_Meta->setMetaIntegration(_Meta);
@@ -3203,7 +3107,6 @@ intGl_pipeline_settings::intDepth_clamp_enable::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "depth_clamp_enable" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intDepth_clamp_enable::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intDepth_clamp_enable::create);
 
 	domGl_pipeline_settings::domDepth_clamp_enable::_Meta->setMetaIntegration(_Meta);
@@ -3228,7 +3131,6 @@ intGl_pipeline_settings::intDepth_test_enable::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "depth_test_enable" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intDepth_test_enable::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intDepth_test_enable::create);
 
 	domGl_pipeline_settings::domDepth_test_enable::_Meta->setMetaIntegration(_Meta);
@@ -3253,7 +3155,6 @@ intGl_pipeline_settings::intDither_enable::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "dither_enable" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intDither_enable::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intDither_enable::create);
 
 	domGl_pipeline_settings::domDither_enable::_Meta->setMetaIntegration(_Meta);
@@ -3278,7 +3179,6 @@ intGl_pipeline_settings::intFog_enable::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fog_enable" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intFog_enable::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intFog_enable::create);
 
 	domGl_pipeline_settings::domFog_enable::_Meta->setMetaIntegration(_Meta);
@@ -3303,7 +3203,6 @@ intGl_pipeline_settings::intLight_model_local_viewer_enable::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "light_model_local_viewer_enable" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intLight_model_local_viewer_enable::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intLight_model_local_viewer_enable::create);
 
 	domGl_pipeline_settings::domLight_model_local_viewer_enable::_Meta->setMetaIntegration(_Meta);
@@ -3328,7 +3227,6 @@ intGl_pipeline_settings::intLight_model_two_side_enable::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "light_model_two_side_enable" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intLight_model_two_side_enable::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intLight_model_two_side_enable::create);
 
 	domGl_pipeline_settings::domLight_model_two_side_enable::_Meta->setMetaIntegration(_Meta);
@@ -3353,7 +3251,6 @@ intGl_pipeline_settings::intLine_smooth_enable::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "line_smooth_enable" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intLine_smooth_enable::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intLine_smooth_enable::create);
 
 	domGl_pipeline_settings::domLine_smooth_enable::_Meta->setMetaIntegration(_Meta);
@@ -3378,7 +3275,6 @@ intGl_pipeline_settings::intLine_stipple_enable::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "line_stipple_enable" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intLine_stipple_enable::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intLine_stipple_enable::create);
 
 	domGl_pipeline_settings::domLine_stipple_enable::_Meta->setMetaIntegration(_Meta);
@@ -3403,7 +3299,6 @@ intGl_pipeline_settings::intLogic_op_enable::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "logic_op_enable" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intLogic_op_enable::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intLogic_op_enable::create);
 
 	domGl_pipeline_settings::domLogic_op_enable::_Meta->setMetaIntegration(_Meta);
@@ -3428,7 +3323,6 @@ intGl_pipeline_settings::intMultisample_enable::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "multisample_enable" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intMultisample_enable::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intMultisample_enable::create);
 
 	domGl_pipeline_settings::domMultisample_enable::_Meta->setMetaIntegration(_Meta);
@@ -3453,7 +3347,6 @@ intGl_pipeline_settings::intNormalize_enable::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "normalize_enable" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intNormalize_enable::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intNormalize_enable::create);
 
 	domGl_pipeline_settings::domNormalize_enable::_Meta->setMetaIntegration(_Meta);
@@ -3478,7 +3371,6 @@ intGl_pipeline_settings::intPoint_smooth_enable::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "point_smooth_enable" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intPoint_smooth_enable::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intPoint_smooth_enable::create);
 
 	domGl_pipeline_settings::domPoint_smooth_enable::_Meta->setMetaIntegration(_Meta);
@@ -3503,7 +3395,6 @@ intGl_pipeline_settings::intPolygon_offset_fill_enable::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "polygon_offset_fill_enable" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intPolygon_offset_fill_enable::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intPolygon_offset_fill_enable::create);
 
 	domGl_pipeline_settings::domPolygon_offset_fill_enable::_Meta->setMetaIntegration(_Meta);
@@ -3528,7 +3419,6 @@ intGl_pipeline_settings::intPolygon_offset_line_enable::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "polygon_offset_line_enable" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intPolygon_offset_line_enable::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intPolygon_offset_line_enable::create);
 
 	domGl_pipeline_settings::domPolygon_offset_line_enable::_Meta->setMetaIntegration(_Meta);
@@ -3553,7 +3443,6 @@ intGl_pipeline_settings::intPolygon_offset_point_enable::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "polygon_offset_point_enable" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intPolygon_offset_point_enable::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intPolygon_offset_point_enable::create);
 
 	domGl_pipeline_settings::domPolygon_offset_point_enable::_Meta->setMetaIntegration(_Meta);
@@ -3578,7 +3467,6 @@ intGl_pipeline_settings::intPolygon_smooth_enable::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "polygon_smooth_enable" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intPolygon_smooth_enable::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intPolygon_smooth_enable::create);
 
 	domGl_pipeline_settings::domPolygon_smooth_enable::_Meta->setMetaIntegration(_Meta);
@@ -3603,7 +3491,6 @@ intGl_pipeline_settings::intPolygon_stipple_enable::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "polygon_stipple_enable" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intPolygon_stipple_enable::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intPolygon_stipple_enable::create);
 
 	domGl_pipeline_settings::domPolygon_stipple_enable::_Meta->setMetaIntegration(_Meta);
@@ -3628,7 +3515,6 @@ intGl_pipeline_settings::intRescale_normal_enable::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "rescale_normal_enable" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intRescale_normal_enable::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intRescale_normal_enable::create);
 
 	domGl_pipeline_settings::domRescale_normal_enable::_Meta->setMetaIntegration(_Meta);
@@ -3653,7 +3539,6 @@ intGl_pipeline_settings::intSample_alpha_to_coverage_enable::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "sample_alpha_to_coverage_enable" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intSample_alpha_to_coverage_enable::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intSample_alpha_to_coverage_enable::create);
 
 	domGl_pipeline_settings::domSample_alpha_to_coverage_enable::_Meta->setMetaIntegration(_Meta);
@@ -3678,7 +3563,6 @@ intGl_pipeline_settings::intSample_alpha_to_one_enable::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "sample_alpha_to_one_enable" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intSample_alpha_to_one_enable::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intSample_alpha_to_one_enable::create);
 
 	domGl_pipeline_settings::domSample_alpha_to_one_enable::_Meta->setMetaIntegration(_Meta);
@@ -3703,7 +3587,6 @@ intGl_pipeline_settings::intSample_coverage_enable::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "sample_coverage_enable" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intSample_coverage_enable::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intSample_coverage_enable::create);
 
 	domGl_pipeline_settings::domSample_coverage_enable::_Meta->setMetaIntegration(_Meta);
@@ -3728,7 +3611,6 @@ intGl_pipeline_settings::intScissor_test_enable::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "scissor_test_enable" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intScissor_test_enable::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intScissor_test_enable::create);
 
 	domGl_pipeline_settings::domScissor_test_enable::_Meta->setMetaIntegration(_Meta);
@@ -3753,7 +3635,6 @@ intGl_pipeline_settings::intStencil_test_enable::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "stencil_test_enable" );
-	_Meta->setStaticPointerAddress(&intGl_pipeline_settings::intStencil_test_enable::_Meta);
 	_Meta->registerConstructor(intGl_pipeline_settings::intStencil_test_enable::create);
 
 	domGl_pipeline_settings::domStencil_test_enable::_Meta->setMetaIntegration(_Meta);
@@ -11140,6 +11021,68 @@ intGl_pipeline_settings::intColor_logic_op_enable::toCOLLADA()
 
 void
 intGl_pipeline_settings::intColor_logic_op_enable::toCOLLADAPostProcess()
+{
+	// INSERT CODE TO POST PROCESS HERE
+	// myRuntimeClassType* local = (myRuntimeClassType*)_object;
+	// local->renderingContext = MYGLOBAL::getRenderingContext;
+	// MYGLOBAL::registerInstance(local);
+}
+
+// CONSTRUCTOR AND DESTRUCTOR
+intGl_pipeline_settings::intColor_material_enable::intColor_material_enable() {
+}
+
+intGl_pipeline_settings::intColor_material_enable::~intColor_material_enable() {
+}
+
+// IMPORT
+
+void
+intGl_pipeline_settings::intColor_material_enable::createFrom(daeElementRef element)
+{
+	// INSERT CODE TO CREATE YOUR USER DATA HERE
+	// _object = new myRuntimeClass;
+}
+
+void
+intGl_pipeline_settings::intColor_material_enable::fromCOLLADA()
+{
+	// INSERT CODE TO TRANSLATE TO YOUR RUNTIME HERE
+	// myRuntimeClassType* local = (myRuntimeClassType*)_object;
+	// local->foo = element->foo;
+	// local->bar = element->subelem[0]->bar;
+}
+
+void
+intGl_pipeline_settings::intColor_material_enable::fromCOLLADAPostProcess()
+{
+	// INSERT CODE TO POST PROCESS HERE
+	// myRuntimeClassType* local = (myRuntimeClassType*)_object;
+	// local->renderingContext = MYGLOBAL::getRenderingContext;
+	// MYGLOBAL::registerInstance(local);
+}
+
+// EXPORT
+
+void
+intGl_pipeline_settings::intColor_material_enable::createTo(void* userData)
+{
+	// INSERT CODE TO CREATE COLLADA DOM OBJECTS HERE
+	// _element = new domGeometry;
+	// _object = userData;
+}
+
+void
+intGl_pipeline_settings::intColor_material_enable::toCOLLADA()
+{
+	// INSERT CODE TO TRANSLATE TO YOUR RUNTIME HERE
+	// myRuntimeClassType* local = (myRuntimeClassType*)_object;
+	// element->foo = local->foo;
+	// element->subelem[0]->bar = local->bar;
+}
+
+void
+intGl_pipeline_settings::intColor_material_enable::toCOLLADAPostProcess()
 {
 	// INSERT CODE TO POST PROCESS HERE
 	// myRuntimeClassType* local = (myRuntimeClassType*)_object;

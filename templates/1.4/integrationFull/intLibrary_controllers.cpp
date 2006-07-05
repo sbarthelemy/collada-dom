@@ -35,7 +35,6 @@ intLibrary_controllers::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "library_controllers" );
-	_Meta->setStaticPointerAddress(&intLibrary_controllers::_Meta);
 	_Meta->registerConstructor(intLibrary_controllers::create);
 
 	domLibrary_controllers::_Meta->setMetaIntegration(_Meta);

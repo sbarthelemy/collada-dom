@@ -35,7 +35,6 @@ intTranslate::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "translate" );
-	_Meta->setStaticPointerAddress(&intTranslate::_Meta);
 	_Meta->registerConstructor(intTranslate::create);
 
 	domTranslate::_Meta->setMetaIntegration(_Meta);

@@ -35,7 +35,6 @@ intPhysics_scene::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "physics_scene" );
-	_Meta->setStaticPointerAddress(&intPhysics_scene::_Meta);
 	_Meta->registerConstructor(intPhysics_scene::create);
 
 	domPhysics_scene::_Meta->setMetaIntegration(_Meta);

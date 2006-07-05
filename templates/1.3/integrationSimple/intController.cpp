@@ -35,7 +35,6 @@ intController::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "controller" );
-	_Meta->setStaticPointerAddress(&intController::_Meta);
 	_Meta->registerConstructor(intController::create);
 
 	domController::_Meta->setMetaIntegration(_Meta);

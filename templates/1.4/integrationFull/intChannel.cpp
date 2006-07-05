@@ -35,7 +35,6 @@ intChannel::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "channel" );
-	_Meta->setStaticPointerAddress(&intChannel::_Meta);
 	_Meta->registerConstructor(intChannel::create);
 
 	domChannel::_Meta->setMetaIntegration(_Meta);

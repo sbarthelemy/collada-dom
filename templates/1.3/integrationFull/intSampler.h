@@ -17,18 +17,21 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeMetaElement.h>
 
-/** The sampler element declares an N-dimensional function. Animation function curves are 
-			represented by 1-D sampler elements in COLLADA. The sampler defines sampling points and how 
-			to interpolate between them. When used to compute values for an animation channel, the 
-			sampling points are the animation key-frames. Sampling points (key-frames) are input data 
-			sources to the sampler. Animation channels direct the output data values of the sampler to 
-			their targets. COLLADA recognizes the following interpolation types: LINEAR, BEZIER, 
-			CARDINAL, HERMITE, BSPLINE.
-*/class intSampler;
+class intSampler;
 
 typedef daeSmartRef<intSampler> intSamplerRef;
 typedef daeTArray<intSamplerRef> intSamplerArray;
 
+/**
+ * The sampler element declares an N-dimensional function. Animation function
+ * curves are  represented by 1-D sampler elements in COLLADA. The sampler
+ * defines sampling points and how  to interpolate between them. When used
+ * to compute values for an animation channel, the  sampling points are the
+ * animation key-frames. Sampling points (key-frames) are input data  sources
+ * to the sampler. Animation channels direct the output data values of the
+ * sampler to  their targets. COLLADA recognizes the following interpolation
+ * types: LINEAR, BEZIER,  CARDINAL, HERMITE, BSPLINE.
+ */
 class intSampler : public daeIntegrationObject
 {
 public: // Constuctor and Destructor
@@ -72,15 +75,17 @@ public: // STATIC MEMBERS
 	static daeMetaElement* _Meta;
 
 public:
-/** The input element must appear one or more times. Sampling points are described 
-						by the input elements that refer to source elements. The semantic attribute of 
-						the input element can be one of: INPUT, INTERPOLATION, IN_TANGENT, OUT_TANGENT, 
-						and OUTPUT.
-*/class intInput;
+class intInput;
 
 typedef daeSmartRef<intInput> intInputRef;
 typedef daeTArray<intInputRef> intInputArray;
 
+/**
+ * The input element must appear one or more times. Sampling points are described
+ * by the input elements that refer to source elements. The semantic attribute
+ * of  the input element can be one of: INPUT, INTERPOLATION, IN_TANGENT,
+ * OUT_TANGENT,  and OUTPUT.
+ */
 class intInput : public daeIntegrationObject
 {
 public: // Constuctor and Destructor

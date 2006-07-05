@@ -35,7 +35,6 @@ intForce_field::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "force_field" );
-	_Meta->setStaticPointerAddress(&intForce_field::_Meta);
 	_Meta->registerConstructor(intForce_field::create);
 
 	domForce_field::_Meta->setMetaIntegration(_Meta);

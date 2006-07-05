@@ -35,7 +35,6 @@ intInputLocalOffset::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "InputLocalOffset" );
-	_Meta->setStaticPointerAddress(&intInputLocalOffset::_Meta);
 	_Meta->registerConstructor(intInputLocalOffset::create);
 
 	domInputLocalOffset::_Meta->setMetaIntegration(_Meta);

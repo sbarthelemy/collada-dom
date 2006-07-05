@@ -17,23 +17,25 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeMetaElement.h>
 
-/** The lookat element contains a position and orientation transformation suitable for aiming a 
-			camera. Positioning and orienting a camera or object in the scene is often complicated when 
-			using a matrix. A lookat transform is an intuitive way to specify an eye position, interest 
-			point, and orientation. The lookat element contains a list of 9 floating-point values. As 
-			in the OpenGL® Utilities (GLU) implementation, these values are organized into three vectors 
-			as follows:
-			* Eye position is given as Px, Py, Pz.
-			* Interest point is given as Ix, Iy, Iz.
-			* Up-axis direction is given as UPx, UPy, UPz.
-			When computing the equivalent (viewing) matrix the interest point is mapped to the negative 
-			Z-axis and the eye position to the origin. The up-axis is mapped to the positive Y-axis of 
-			the viewing plane. The values are specified in local, object coordinates.
-*/class intLookat;
+class intLookat;
 
 typedef daeSmartRef<intLookat> intLookatRef;
 typedef daeTArray<intLookatRef> intLookatArray;
 
+/**
+ * The lookat element contains a position and orientation transformation suitable
+ * for aiming a  camera. Positioning and orienting a camera or object in the
+ * scene is often complicated when  using a matrix. A lookat transform is
+ * an intuitive way to specify an eye position, interest  point, and orientation.
+ * The lookat element contains a list of 9 floating-point values. As  in the
+ * OpenGL® Utilities (GLU) implementation, these values are organized into
+ * three vectors  as follows: * Eye position is given as Px, Py, Pz. * Interest
+ * point is given as Ix, Iy, Iz. * Up-axis direction is given as UPx, UPy,
+ * UPz. When computing the equivalent (viewing) matrix the interest point
+ * is mapped to the negative  Z-axis and the eye position to the origin. The
+ * up-axis is mapped to the positive Y-axis of  the viewing plane. The values
+ * are specified in local, object coordinates.
+ */
 class intLookat : public daeIntegrationObject
 {
 public: // Constuctor and Destructor

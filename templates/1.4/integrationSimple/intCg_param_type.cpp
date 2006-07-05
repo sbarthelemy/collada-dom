@@ -35,7 +35,6 @@ intCg_param_type::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "cg_param_type" );
-	_Meta->setStaticPointerAddress(&intCg_param_type::_Meta);
 	_Meta->registerConstructor(intCg_param_type::create);
 
 	domCg_param_type::_Meta->setMetaIntegration(_Meta);

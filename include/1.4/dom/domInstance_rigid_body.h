@@ -229,7 +229,7 @@ public:
 			 * Sets the sid attribute.
 			 * @param atSid The new value for the sid attribute.
 			 */
-			void setSid( xsNCName atSid ) { attrSid = atSid;		
+			void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid;		
 	 _validAttributeArray[0] = true; }
 
 			/**
@@ -413,7 +413,7 @@ public:
 				 * Sets the sid attribute.
 				 * @param atSid The new value for the sid attribute.
 				 */
-				void setSid( xsNCName atSid ) { attrSid = atSid;			
+				void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid;			
 	 _validAttributeArray[0] = true; }
 
 				/**
@@ -790,6 +790,10 @@ protected:  // Attributes
  */
 	xsNCName attrSid;
 /**
+ *  The name attribute is the text string name of this element. Optional attribute.
+ */
+	xsNCName attrName;
+/**
  *  The target attribute indicates which node is influenced by this rigid_body
  * instance.  Required attribute 
  */
@@ -822,7 +826,7 @@ public:	//Accessors and Mutators
 	 * Sets the body attribute.
 	 * @param atBody The new value for the body attribute.
 	 */
-	void setBody( xsNCName atBody ) { attrBody = atBody;
+	void setBody( xsNCName atBody ) { *(daeStringRef*)&attrBody = atBody;
 	 _validAttributeArray[0] = true; }
 
 	/**
@@ -834,8 +838,20 @@ public:	//Accessors and Mutators
 	 * Sets the sid attribute.
 	 * @param atSid The new value for the sid attribute.
 	 */
-	void setSid( xsNCName atSid ) { attrSid = atSid;
+	void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid;
 	 _validAttributeArray[1] = true; }
+
+	/**
+	 * Gets the name attribute.
+	 * @return Returns a xsNCName of the name attribute.
+	 */
+	xsNCName getName() const { return attrName; }
+	/**
+	 * Sets the name attribute.
+	 * @param atName The new value for the name attribute.
+	 */
+	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName;
+	 _validAttributeArray[2] = true; }
 
 	/**
 	 * Gets the target attribute.
@@ -852,7 +868,7 @@ public:	//Accessors and Mutators
 	 * @param atTarget The new value for the target attribute.
 	 */
 	void setTarget( const xsAnyURI &atTarget ) { attrTarget.setURI( atTarget.getURI() );
-	 _validAttributeArray[2] = true; }
+	 _validAttributeArray[3] = true; }
 
 	/**
 	 * Gets the technique_common element.
@@ -883,7 +899,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domInstance_rigid_body() : attrBody(), attrSid(), attrTarget(), elemTechnique_common(), elemTechnique_array(), elemExtra_array() {}
+	domInstance_rigid_body() : attrBody(), attrSid(), attrName(), attrTarget(), elemTechnique_common(), elemTechnique_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

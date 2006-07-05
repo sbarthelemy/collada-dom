@@ -99,7 +99,7 @@ public:
 		 * Sets the profile attribute.
 		 * @param atProfile The new value for the profile attribute.
 		 */
-		void setProfile( xsString atProfile ) { attrProfile = atProfile;	
+		void setProfile( xsString atProfile ) { *(daeStringRef*)&attrProfile = atProfile;	
 	 _validAttributeArray[0] = true; }
 
 		/**
@@ -228,7 +228,7 @@ public:	//Accessors and Mutators
 	 * Sets the id attribute.
 	 * @param atId The new value for the id attribute.
 	 */
-	void setId( xsID atId ) { attrId = atId;
+	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId;
 	 _validAttributeArray[0] = true; }
 
 	/**
@@ -240,7 +240,7 @@ public:	//Accessors and Mutators
 	 * Sets the name attribute.
 	 * @param atName The new value for the name attribute.
 	 */
-	void setName( xsNCName atName ) { attrName = atName;
+	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName;
 	 _validAttributeArray[1] = true; }
 
 	/**

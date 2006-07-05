@@ -41,7 +41,13 @@ domProfile_COMMON::registerElement()
 	daeMetaElementAttribute *mea = NULL;
 	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
 
-	cm = new daeMetaChoice( _Meta, cm, 0, 0, -1 );
+	mea = new daeMetaElementAttribute( _Meta, cm, 0, 0, 1 );
+	mea->setName( "asset" );
+	mea->setOffset( daeOffsetOf(domProfile_COMMON,elemAsset) );
+	mea->setElementType( domAsset::registerElement() );
+	cm->appendChild( mea );
+	
+	cm = new daeMetaChoice( _Meta, cm, 1, 0, -1 );
 
 	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "image" );
@@ -59,24 +65,36 @@ domProfile_COMMON::registerElement()
 	cm->getParent()->appendChild( cm );
 	cm = cm->getParent();
 	
-	mea = new daeMetaElementAttribute( _Meta, cm, 3001, 1, 1 );
+	mea = new daeMetaElementAttribute( _Meta, cm, 3002, 1, 1 );
 	mea->setName( "technique" );
 	mea->setOffset( daeOffsetOf(domProfile_COMMON,elemTechnique) );
 	mea->setElementType( domProfile_COMMON::domTechnique::registerElement() );
 	cm->appendChild( mea );
 	
-	mea = new daeMetaElementArrayAttribute( _Meta, cm, 3002, 0, -1 );
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 3003, 0, -1 );
 	mea->setName( "extra" );
 	mea->setOffset( daeOffsetOf(domProfile_COMMON,elemExtra_array) );
 	mea->setElementType( domExtra::registerElement() );
 	cm->appendChild( mea );
 	
-	cm->setMaxOrdinal( 3002 );
+	cm->setMaxOrdinal( 3003 );
 	_Meta->setCMRoot( cm );	
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domProfile_COMMON,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domProfile_COMMON,_contentsOrder));
 
+
+	//	Add attribute: id
+ 	{
+		daeMetaAttribute *ma = new daeMetaAttribute;
+		ma->setName( "id" );
+		ma->setType( daeAtomicType::get("xsID"));
+		ma->setOffset( daeOffsetOf( domProfile_COMMON , attrId ));
+		ma->setContainer( _Meta );
+		ma->setIsRequired( false );
+	
+		_Meta->appendAttribute(ma);
+	}
 	
 	
 	_Meta->setElementSize(sizeof(domProfile_COMMON));
@@ -247,7 +265,7 @@ domProfile_COMMON::domTechnique::domConstant::registerElement()
 	mea = new daeMetaElementAttribute( _Meta, cm, 3, 0, 1 );
 	mea->setName( "transparent" );
 	mea->setOffset( daeOffsetOf(domProfile_COMMON::domTechnique::domConstant,elemTransparent) );
-	mea->setElementType( domCommon_color_or_texture_type::registerElement() );
+	mea->setElementType( domCommon_transparent_type::registerElement() );
 	cm->appendChild( mea );
 	
 	mea = new daeMetaElementAttribute( _Meta, cm, 4, 0, 1 );
@@ -327,7 +345,7 @@ domProfile_COMMON::domTechnique::domLambert::registerElement()
 	mea = new daeMetaElementAttribute( _Meta, cm, 5, 0, 1 );
 	mea->setName( "transparent" );
 	mea->setOffset( daeOffsetOf(domProfile_COMMON::domTechnique::domLambert,elemTransparent) );
-	mea->setElementType( domCommon_color_or_texture_type::registerElement() );
+	mea->setElementType( domCommon_transparent_type::registerElement() );
 	cm->appendChild( mea );
 	
 	mea = new daeMetaElementAttribute( _Meta, cm, 6, 0, 1 );
@@ -419,7 +437,7 @@ domProfile_COMMON::domTechnique::domPhong::registerElement()
 	mea = new daeMetaElementAttribute( _Meta, cm, 7, 0, 1 );
 	mea->setName( "transparent" );
 	mea->setOffset( daeOffsetOf(domProfile_COMMON::domTechnique::domPhong,elemTransparent) );
-	mea->setElementType( domCommon_color_or_texture_type::registerElement() );
+	mea->setElementType( domCommon_transparent_type::registerElement() );
 	cm->appendChild( mea );
 	
 	mea = new daeMetaElementAttribute( _Meta, cm, 8, 0, 1 );
@@ -511,7 +529,7 @@ domProfile_COMMON::domTechnique::domBlinn::registerElement()
 	mea = new daeMetaElementAttribute( _Meta, cm, 7, 0, 1 );
 	mea->setName( "transparent" );
 	mea->setOffset( daeOffsetOf(domProfile_COMMON::domTechnique::domBlinn,elemTransparent) );
-	mea->setElementType( domCommon_color_or_texture_type::registerElement() );
+	mea->setElementType( domCommon_transparent_type::registerElement() );
 	cm->appendChild( mea );
 	
 	mea = new daeMetaElementAttribute( _Meta, cm, 8, 0, 1 );
@@ -535,7 +553,6 @@ domProfile_COMMON::domTechnique::domBlinn::registerElement()
 
 	return _Meta;
 }
-
 
 daeMetaElement * domProfile_COMMON::_Meta = NULL;
 daeMetaElement * domProfile_COMMON::domTechnique::_Meta = NULL;

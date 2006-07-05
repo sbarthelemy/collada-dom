@@ -267,13 +267,28 @@
 				RelativePath=".\intFx_samplerRECT_common.cpp">
 			</File>
 			<File
-				RelativePath=".\intFx_setparam_common.cpp">
-			</File>
-			<File
 				RelativePath=".\intFx_stenciltarget_common.cpp">
 			</File>
 			<File
 				RelativePath=".\intFx_surface_common.cpp">
+			</File>
+			<File
+				RelativePath=".\intFx_surface_format_hint_common.cpp">
+			</File>
+			<File
+				RelativePath=".\intFx_surface_init_common.cpp">
+			</File>
+			<File
+				RelativePath=".\intFx_surface_init_cube_common.cpp">
+			</File>
+			<File
+				RelativePath=".\intFx_surface_init_from_common.cpp">
+			</File>
+			<File
+				RelativePath=".\intFx_surface_init_planar_common.cpp">
+			</File>
+			<File
+				RelativePath=".\intFx_surface_init_volume_common.cpp">
 			</File>
 			<File
 				RelativePath=".\intGeometry.cpp">
@@ -770,13 +785,28 @@
 				RelativePath=".\intFx_samplerRECT_common.h">
 			</File>
 			<File
-				RelativePath=".\intFx_setparam_common.h">
-			</File>
-			<File
 				RelativePath=".\intFx_stenciltarget_common.h">
 			</File>
 			<File
 				RelativePath=".\intFx_surface_common.h">
+			</File>
+			<File
+				RelativePath=".\intFx_surface_format_hint_common.h">
+			</File>
+			<File
+				RelativePath=".\intFx_surface_init_common.h">
+			</File>
+			<File
+				RelativePath=".\intFx_surface_init_cube_common.h">
+			</File>
+			<File
+				RelativePath=".\intFx_surface_init_from_common.h">
+			</File>
+			<File
+				RelativePath=".\intFx_surface_init_planar_common.h">
+			</File>
+			<File
+				RelativePath=".\intFx_surface_init_volume_common.h">
 			</File>
 			<File
 				RelativePath=".\intGeometry.h">

@@ -86,6 +86,17 @@ domInstance_rigid_body::registerElement()
 		_Meta->appendAttribute(ma);
 	}
 
+	//	Add attribute: name
+ 	{
+		daeMetaAttribute *ma = new daeMetaAttribute;
+		ma->setName( "name" );
+		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setOffset( daeOffsetOf( domInstance_rigid_body , attrName ));
+		ma->setContainer( _Meta );
+	
+		_Meta->appendAttribute(ma);
+	}
+
 	//	Add attribute: target
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;

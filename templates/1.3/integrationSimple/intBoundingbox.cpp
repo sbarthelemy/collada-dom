@@ -35,7 +35,6 @@ intBoundingbox::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "boundingbox" );
-	_Meta->setStaticPointerAddress(&intBoundingbox::_Meta);
 	_Meta->registerConstructor(intBoundingbox::create);
 
 	domBoundingbox::_Meta->setMetaIntegration(_Meta);

@@ -35,7 +35,6 @@ intGles_basic_type_common::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "gles_basic_type_common" );
-	_Meta->setStaticPointerAddress(&intGles_basic_type_common::_Meta);
 	_Meta->registerConstructor(intGles_basic_type_common::create);
 
 	domGles_basic_type_common::_Meta->setMetaIntegration(_Meta);

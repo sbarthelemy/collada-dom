@@ -9,17 +9,19 @@
  implied. See the License for the specific language governing permissions and limitations under the 
  License.
 
-弊社では、スキーマから生成された統合用ライブラリのテンプレートを 2 種類提供しています。
+スキーマから生成された統合用ライブラリのテンプレートを2種類提供しています。
 
 integrationFull： 全 COLLADA オブジェクトを含む
 integrationSimple： xmlの「インライン」オブジェクトは含まない。
 
 統合用ライブラリを使うために、すべてのクラスを実装する必要はありません。
 必要とするオブジェクトを COLLADA から選んで、そのクラスだけを実装すれば十分です。
-そして、統合用ライブラリの中に実装したクラスの一覧に一致するように、メインヘッダ integrationFull.h やintegrationSimple.h を修正する (そして、名前を変更する）必要があります。
-メイクファイルや Visual Studio のプロジェクトについても同様です。
+そして、統合用ライブラリの中に実装したクラスの一覧に一致するように、
+メインヘッダ integrationFull.h やintegrationSimple.h を修正する（名前を変更する）
+必要があります。メイクファイルや Visual Studio のプロジェクトについても同様です。
 
 
-詳しくは、「integration」というサンプルを参照してください。このサンプルは、intGeometry オブジェクトを実装するだけの、きわめて単純な統合用ライブラリです。 
+詳しくは、「integration」というサンプルを参照してください。このサンプルは、
+intGeometry オブジェクトを実装するだけの、きわめて単純な統合用ライブラリです。 
 
 

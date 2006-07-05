@@ -250,6 +250,20 @@ protected:
  */
 class domGlsl_newparam : public daeElement, public domGlsl_newparam_complexType
 {
+
+public:	//Accessors and Mutators
+	/**
+	 * Gets the sid attribute.
+	 * @return Returns a domGlsl_identifier of the sid attribute.
+	 */
+	domGlsl_identifier getSid() const { return attrSid; }
+	/**
+	 * Sets the sid attribute.
+	 * @param atSid The new value for the sid attribute.
+	 */
+	void setSid( domGlsl_identifier atSid ) { attrSid = atSid;
+	 _validAttributeArray[0] = true; }
+
 protected:
 	/**
 	 * Constructor

@@ -35,7 +35,6 @@ intFx_cleardepth_common::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fx_cleardepth_common" );
-	_Meta->setStaticPointerAddress(&intFx_cleardepth_common::_Meta);
 	_Meta->registerConstructor(intFx_cleardepth_common::create);
 
 	domFx_cleardepth_common::_Meta->setMetaIntegration(_Meta);

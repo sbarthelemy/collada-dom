@@ -35,7 +35,6 @@ intGles_texcombiner_commandRGB_type::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "gles_texcombiner_commandRGB_type" );
-	_Meta->setStaticPointerAddress(&intGles_texcombiner_commandRGB_type::_Meta);
 	_Meta->registerConstructor(intGles_texcombiner_commandRGB_type::create);
 
 	domGles_texcombiner_commandRGB_type::_Meta->setMetaIntegration(_Meta);

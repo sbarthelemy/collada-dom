@@ -535,6 +535,12 @@ domGl_pipeline_settings::registerElement()
 	cm->appendChild( mea );
 	
 	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
+	mea->setName( "color_material_enable" );
+	mea->setOffset( daeOffsetOf(domGl_pipeline_settings,elemColor_material_enable) );
+	mea->setElementType( domGl_pipeline_settings::domColor_material_enable::registerElement() );
+	cm->appendChild( mea );
+	
+	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "cull_face_enable" );
 	mea->setOffset( daeOffsetOf(domGl_pipeline_settings,elemCull_face_enable) );
 	mea->setElementType( domGl_pipeline_settings::domCull_face_enable::registerElement() );
@@ -6890,6 +6896,57 @@ domGl_pipeline_settings::domColor_logic_op_enable::registerElement()
 }
 
 daeElementRef
+domGl_pipeline_settings::domColor_material_enable::create(daeInt bytes)
+{
+	domGl_pipeline_settings::domColor_material_enableRef ref = new(bytes) domGl_pipeline_settings::domColor_material_enable;
+	return ref;
+}
+
+
+daeMetaElement *
+domGl_pipeline_settings::domColor_material_enable::registerElement()
+{
+    if ( _Meta != NULL ) return _Meta;
+    
+    _Meta = new daeMetaElement;
+    _Meta->setName( "color_material_enable" );
+	_Meta->registerConstructor(domGl_pipeline_settings::domColor_material_enable::create);
+
+	_Meta->setIsInnerClass( true );
+
+	//	Add attribute: value
+ 	{
+		daeMetaAttribute *ma = new daeMetaAttribute;
+		ma->setName( "value" );
+		ma->setType( daeAtomicType::get("Bool"));
+		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domColor_material_enable , attrValue ));
+		ma->setContainer( _Meta );
+		ma->setDefault( "true");
+		ma->setIsRequired( false );
+	
+		_Meta->appendAttribute(ma);
+	}
+
+	//	Add attribute: param
+ 	{
+		daeMetaAttribute *ma = new daeMetaAttribute;
+		ma->setName( "param" );
+		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domColor_material_enable , attrParam ));
+		ma->setContainer( _Meta );
+		ma->setIsRequired( false );
+	
+		_Meta->appendAttribute(ma);
+	}
+	
+	
+	_Meta->setElementSize(sizeof(domGl_pipeline_settings::domColor_material_enable));
+	_Meta->validate();
+
+	return _Meta;
+}
+
+daeElementRef
 domGl_pipeline_settings::domCull_face_enable::create(daeInt bytes)
 {
 	domGl_pipeline_settings::domCull_face_enableRef ref = new(bytes) domGl_pipeline_settings::domCull_face_enable;
@@ -8284,6 +8341,7 @@ daeMetaElement * domGl_pipeline_settings::domAlpha_test_enable::_Meta = NULL;
 daeMetaElement * domGl_pipeline_settings::domAuto_normal_enable::_Meta = NULL;
 daeMetaElement * domGl_pipeline_settings::domBlend_enable::_Meta = NULL;
 daeMetaElement * domGl_pipeline_settings::domColor_logic_op_enable::_Meta = NULL;
+daeMetaElement * domGl_pipeline_settings::domColor_material_enable::_Meta = NULL;
 daeMetaElement * domGl_pipeline_settings::domCull_face_enable::_Meta = NULL;
 daeMetaElement * domGl_pipeline_settings::domDepth_bounds_enable::_Meta = NULL;
 daeMetaElement * domGl_pipeline_settings::domDepth_clamp_enable::_Meta = NULL;

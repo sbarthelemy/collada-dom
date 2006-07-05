@@ -35,7 +35,6 @@ intFx_annotate_common::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fx_annotate_common" );
-	_Meta->setStaticPointerAddress(&intFx_annotate_common::_Meta);
 	_Meta->registerConstructor(intFx_annotate_common::create);
 
 	domFx_annotate_common::_Meta->setMetaIntegration(_Meta);

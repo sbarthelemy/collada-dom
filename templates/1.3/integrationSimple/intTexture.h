@@ -17,13 +17,15 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeMetaElement.h>
 
-/** Textures embody the visual detail of the surface of a geometric object. The texture element 
-			embodies the sampling aspects of texturing.
-*/class intTexture;
+class intTexture;
 
 typedef daeSmartRef<intTexture> intTextureRef;
 typedef daeTArray<intTextureRef> intTextureArray;
 
+/**
+ * Textures embody the visual detail of the surface of a geometric object.
+ * The texture element  embodies the sampling aspects of texturing.
+ */
 class intTexture : public daeIntegrationObject
 {
 public: // Constuctor and Destructor

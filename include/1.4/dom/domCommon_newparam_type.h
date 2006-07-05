@@ -399,7 +399,7 @@ public:	//Accessors and Mutators
 	 * Sets the sid attribute.
 	 * @param atSid The new value for the sid attribute.
 	 */
-	void setSid( xsNCName atSid ) { attrSid = atSid; }
+	void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid; }
 
 	/**
 	 * Gets the semantic element.
@@ -471,6 +471,20 @@ protected:
  */
 class domCommon_newparam_type : public daeElement, public domCommon_newparam_type_complexType
 {
+
+public:	//Accessors and Mutators
+	/**
+	 * Gets the sid attribute.
+	 * @return Returns a xsNCName of the sid attribute.
+	 */
+	xsNCName getSid() const { return attrSid; }
+	/**
+	 * Sets the sid attribute.
+	 * @param atSid The new value for the sid attribute.
+	 */
+	void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid;
+	 _validAttributeArray[0] = true; }
+
 protected:
 	/**
 	 * Constructor

@@ -17,13 +17,16 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeMetaElement.h>
 
-/** The array element declares the storage for a homogenous array of generic data values.
-			The array element is deprecated in this version of COLLADA and may be removed in the future.
-*/class intArray;
+class intArray;
 
 typedef daeSmartRef<intArray> intArrayRef;
 typedef daeTArray<intArrayRef> intArrayArray;
 
+/**
+ * The array element declares the storage for a homogenous array of generic
+ * data values. The array element is deprecated in this version of COLLADA
+ * and may be removed in the future.
+ */
 class intArray : public daeIntegrationObject
 {
 public: // Constuctor and Destructor

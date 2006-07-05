@@ -9,6 +9,8 @@
  implied. See the License for the specific language governing permissions and limitations under the 
  License.
 
-external-libs ディレクトリツリーは、COLLADA_DOM のビルド対象が依存するライブラリファイルのための空のディレクトリ構造です。
+external-libs ディレクトリツリーは、COLLADA_DOM のビルド対象が依存するライブラリファイル
+のための空のディレクトリ構造です。
 
-このディレクトリには、libxml2、zlib、および、iconv のためのインクルード・ファイルをインストールする必要があります。
+このディレクトリには、libxml2、zlib、および、iconv のためのインクルード・ファイルを
+インストールする必要があります。

@@ -40,7 +40,6 @@ intCamera::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "camera" );
-	_Meta->setStaticPointerAddress(&intCamera::_Meta);
 	_Meta->registerConstructor(intCamera::create);
 
 	domCamera::_Meta->setMetaIntegration(_Meta);
@@ -65,7 +64,6 @@ intCamera::intOptics::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "optics" );
-	_Meta->setStaticPointerAddress(&intCamera::intOptics::_Meta);
 	_Meta->registerConstructor(intCamera::intOptics::create);
 
 	domCamera::domOptics::_Meta->setMetaIntegration(_Meta);
@@ -90,7 +88,6 @@ intCamera::intOptics::intTechnique_common::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "technique_common" );
-	_Meta->setStaticPointerAddress(&intCamera::intOptics::intTechnique_common::_Meta);
 	_Meta->registerConstructor(intCamera::intOptics::intTechnique_common::create);
 
 	domCamera::domOptics::domTechnique_common::_Meta->setMetaIntegration(_Meta);
@@ -115,7 +112,6 @@ intCamera::intOptics::intTechnique_common::intOrthographic::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "orthographic" );
-	_Meta->setStaticPointerAddress(&intCamera::intOptics::intTechnique_common::intOrthographic::_Meta);
 	_Meta->registerConstructor(intCamera::intOptics::intTechnique_common::intOrthographic::create);
 
 	domCamera::domOptics::domTechnique_common::domOrthographic::_Meta->setMetaIntegration(_Meta);
@@ -140,7 +136,6 @@ intCamera::intOptics::intTechnique_common::intPerspective::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "perspective" );
-	_Meta->setStaticPointerAddress(&intCamera::intOptics::intTechnique_common::intPerspective::_Meta);
 	_Meta->registerConstructor(intCamera::intOptics::intTechnique_common::intPerspective::create);
 
 	domCamera::domOptics::domTechnique_common::domPerspective::_Meta->setMetaIntegration(_Meta);
@@ -165,7 +160,6 @@ intCamera::intImager::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "imager" );
-	_Meta->setStaticPointerAddress(&intCamera::intImager::_Meta);
 	_Meta->registerConstructor(intCamera::intImager::create);
 
 	domCamera::domImager::_Meta->setMetaIntegration(_Meta);

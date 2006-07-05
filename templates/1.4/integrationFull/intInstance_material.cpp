@@ -17,6 +17,7 @@
 
 daeMetaElement * intInstance_material::_Meta = NULL;
 daeMetaElement * intInstance_material::intBind::_Meta = NULL;
+daeMetaElement * intInstance_material::intBind_vertex_input::_Meta = NULL;
 
 // ********************************************************
 // ***** GENERATED INTERFACE - do NOT touch ***************
@@ -36,7 +37,6 @@ intInstance_material::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "instance_material" );
-	_Meta->setStaticPointerAddress(&intInstance_material::_Meta);
 	_Meta->registerConstructor(intInstance_material::create);
 
 	domInstance_material::_Meta->setMetaIntegration(_Meta);
@@ -61,12 +61,35 @@ intInstance_material::intBind::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "bind" );
-	_Meta->setStaticPointerAddress(&intInstance_material::intBind::_Meta);
 	_Meta->registerConstructor(intInstance_material::intBind::create);
 
 	domInstance_material::domBind::_Meta->setMetaIntegration(_Meta);
 
 	_Meta->setElementSize(sizeof(intInstance_material::intBind));
+	_Meta->validate();
+
+	return _Meta;
+}
+
+daeElementRef
+intInstance_material::intBind_vertex_input::create(daeInt bytes)
+{
+	intInstance_material::intBind_vertex_inputRef ref = new(bytes) intInstance_material::intBind_vertex_input;
+	return ref;
+}
+
+daeMetaElement *
+intInstance_material::intBind_vertex_input::registerElement()
+{
+    if ( _Meta != NULL ) return _Meta;
+    
+    _Meta = new daeMetaElement;
+    _Meta->setName( "bind_vertex_input" );
+	_Meta->registerConstructor(intInstance_material::intBind_vertex_input::create);
+
+	domInstance_material::domBind_vertex_input::_Meta->setMetaIntegration(_Meta);
+
+	_Meta->setElementSize(sizeof(intInstance_material::intBind_vertex_input));
 	_Meta->validate();
 
 	return _Meta;
@@ -194,6 +217,68 @@ intInstance_material::intBind::toCOLLADA()
 
 void
 intInstance_material::intBind::toCOLLADAPostProcess()
+{
+	// INSERT CODE TO POST PROCESS HERE
+	// myRuntimeClassType* local = (myRuntimeClassType*)_object;
+	// local->renderingContext = MYGLOBAL::getRenderingContext;
+	// MYGLOBAL::registerInstance(local);
+}
+
+// CONSTRUCTOR AND DESTRUCTOR
+intInstance_material::intBind_vertex_input::intBind_vertex_input() {
+}
+
+intInstance_material::intBind_vertex_input::~intBind_vertex_input() {
+}
+
+// IMPORT
+
+void
+intInstance_material::intBind_vertex_input::createFrom(daeElementRef element)
+{
+	// INSERT CODE TO CREATE YOUR USER DATA HERE
+	// _object = new myRuntimeClass;
+}
+
+void
+intInstance_material::intBind_vertex_input::fromCOLLADA()
+{
+	// INSERT CODE TO TRANSLATE TO YOUR RUNTIME HERE
+	// myRuntimeClassType* local = (myRuntimeClassType*)_object;
+	// local->foo = element->foo;
+	// local->bar = element->subelem[0]->bar;
+}
+
+void
+intInstance_material::intBind_vertex_input::fromCOLLADAPostProcess()
+{
+	// INSERT CODE TO POST PROCESS HERE
+	// myRuntimeClassType* local = (myRuntimeClassType*)_object;
+	// local->renderingContext = MYGLOBAL::getRenderingContext;
+	// MYGLOBAL::registerInstance(local);
+}
+
+// EXPORT
+
+void
+intInstance_material::intBind_vertex_input::createTo(void* userData)
+{
+	// INSERT CODE TO CREATE COLLADA DOM OBJECTS HERE
+	// _element = new domGeometry;
+	// _object = userData;
+}
+
+void
+intInstance_material::intBind_vertex_input::toCOLLADA()
+{
+	// INSERT CODE TO TRANSLATE TO YOUR RUNTIME HERE
+	// myRuntimeClassType* local = (myRuntimeClassType*)_object;
+	// element->foo = local->foo;
+	// element->subelem[0]->bar = local->bar;
+}
+
+void
+intInstance_material::intBind_vertex_input::toCOLLADAPostProcess()
 {
 	// INSERT CODE TO POST PROCESS HERE
 	// myRuntimeClassType* local = (myRuntimeClassType*)_object;

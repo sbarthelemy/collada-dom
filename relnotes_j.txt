@@ -9,16 +9,14 @@
  implied. See the License for the specific language governing permissions and limitations under the 
  License.
 ======================================================================
-COLLADA 1.4 DOM Patch1
+COLLADA 1.4 DOM 1.1.0
 
-日付：2006年2月10日
+日付：2006年2月13日
 著者：Mark C. Barnes、Andrew C. Lorino
 ======================================================================
 ======================================================================
 
-これは、COLLADA 1.4 DOMです。
-
-このDOMは、COLLADA v1.4.0またはCOLLADA v1.3.1ドキュメントを処理するツールに対して、インポート／エクスポート機能を提供します。
+このDOMは、COLLADA v1.4.1またはCOLLADA v1.3.1ドキュメントを処理するツールに対して、インポート／エクスポート機能を提供します。
 
 
 ======================================================================
@@ -27,13 +25,19 @@ COLLADA 1.4 DOM Patch1
 ・[バグ]
 
   SourceForgeの未解決の問題
-  -なし
+  1498086  GCC 4.1 使用時の daeURI.h でのコンパイルエラー
+  1472586 	daeURI コピー・コンストラクタ
+  1467892 	Visual Studio PDB ファイル名がすべて同じ
+  1466019 	メモリリークの問題
+  1449595 	恒久的なメモリリーク
+  1444313 	「#」URI がうまく処理されていない
+  1437830 	プログラミング・ガイドのサンプル DOM コードの構文エラー
+  1431586 	間違ったファイルパス
 
   Mantisの未解決の問題（「major」以上のもの）
 
   0000445	DOM - Gen  major	RFC2396のURIへの準拠に関する問題
   0000461	DOM - OM   major	daeElement::cloneがURIを解決できない
-  0000525	DOM - Imp  major	daeXMLPluginがまだホワイトスペース処理のバグを抱えていることの覚え書き。このバグにより、dccでエクスポートされたファイルで問題が発生する可能性がある
   0000543	DOM - OM   major	DOMオブジェクトへの定数ポインタが与えられた場合、そのオブジェクトを読み取れない可能性がある
   0000592	DOM - Gen  major	dae/domの「設定」アクセッサで、オブジェクトのコピー作成に関して一貫性を保つ必要がある
 
@@ -55,11 +59,11 @@ COLLADA 1.4 DOM Patch1
   メモリーを直接コピーしたりする際には、十分に注意してください。
 
 ・[ガイドライン]
-  列挙名に関する規則は、ENUMTYPE_VALUEが、スキーマで定義された重複した値を持つ、#definesや列挙との衝突を避けることです。
- 
-  
+  列挙名に関する規則は、ENUMTYPE_VALUEが、スキーマで定義された重複した値を持つ、#definesや列挙との
+  衝突を避けることです。
+
 ・[制限]
-  DOMのバージョン1.3.1と1.4を同時にビルド／使用することはできません。
+  DOMのバージョン1.3.1と1.4.1を同時にビルド／使用することはできません。
   
 ・[制限]
   Windows用にビルドするには、libxml2をWebからダウンロードし、それを手動でインストールする必要があります。
@@ -70,29 +74,14 @@ COLLADA 1.4 DOM Patch1
   COLLADA_DOM/external-libs/libxml2/win32のlibサブディレクトリとincludeサブディレクトリに
   コピーしてください。
 
-  また、Windowsアプリケーションの場合、wsock32もリンクする必要があります。なぜなら、libxml2はネットワークをサポートするからです。
+  また、Windowsアプリケーションの場合、wsock32もリンクする必要があります。
+  libxml2はネットワークをサポートするからです。
  
   ビルド済みlibxml2ライブラリに対してデバッグビルドをリンクすると、MSVCRTに関するリンカーからの
   警告メッセージが表示されますが、これは無視してもかまいません。この警告が表示される理由は、
-  ビルド済みlibxml2にはデバッグ版のライブラリが含まれていないため、リリース版の  ライブラリとリンクすることになるからです。
+  ビルド済みlibxml2にはデバッグ版のライブラリが含まれていないため、リリース版のライブラリと
+  リンクすることになるからです。
 
-・[ガイドライン]
-  このリリースでは、daeLIBXMLPluginが、XMLファイル読み込み用のデフォルトプラグインとして
-  設定されています。このプラグインでは、標準への準拠度がオリジナルのEmdigoパーサに比べて
-  格段に高まっているほか、一部のファイルでの不正インポート発生の原因となっていたいくつかの  オリジナルパーサのバグが修正されています。
-
-  デフォルトプラグインを変更（手順についてはプログラマーズガイドを参照）しない限り、今後は
-  daeXMLPlugin.libの代わりにdaeLIBXMLPlugin.libを、アプリケーションにリンクする必要があります。
-  さらに、libxml2もアプリケーションにリンクしてやる必要があります。大部分のLinuxシステムには
-  すでにlibxml2がインストールされています。CELLをサポートするディストリビューションには、CELL
-  版のソースコードが付属しています。リンク方法の具体例については、サンプルに含まれているMakefile
-  やVisual C++プロジェクトファイルを参照してください。Windowsの場合、libxml2を手動でインストール
-  する必要があります。詳細については、下記を参照してください。
-
-  libxml2は、完全に独立した最小版としてビルドすることもできますし、iconv、zlib、および
-  ネットワークライブラリがないと動作しないフル機能版としてビルドすることもできます。
-  さきほどと同様、リンク方法の具体例については、サンプルのMakefileやVisual C++プロジェクトファイルを参照してください。
-  
 ・[ガイドライン]
   ドキュメントの完成後に、DOMの"getDomVersion"がDAEに追加されました。これは、DOMのビルド時に
   使用されたCOLLADAスキーマのバージョンを示すテキスト文字列（つまり「1.3.1」など）を返します。
@@ -105,12 +94,39 @@ COLLADA 1.4 DOM Patch1
  必要があるので、注意してください。
  
 ・[ガイドライン]
- 　daeURIResolver::setAutoLoadExternalReferences()　を呼び出すことによって外部のドキュメントの自動ロードを切り替えることができるようになりました。
- document->getReferencedDocuments() を呼び出すことによってドキュメント内に含まれている外部参照のリストが入手可能です。　自動ロードがオフで、さらに参照する外部ドキュメントのリストがあると、クライアントプログラムはロードされる内容、およびその時期に関してより大きな制御を持ちます。
+ 　daeURIResolver::setAutoLoadExternalReferences()を呼び出すことによって外部のドキュメントの
+  自動ロードを切り替えることができるようになりました。
+  document->getReferencedDocuments() を呼び出すことによってドキュメント内に含まれている
+  外部参照のリストが入手可能です。　自動ロードがオフで、さらに参照する外部ドキュメントの
+  リストがあると、クライアントプログラムはロードされる内容、およびその時期に関して
+  より大きな制御を持ちます。
+
+* [ガイドライン]
+SID ターゲットを解決する新しいクラス daeSIDResolver を追加。このクラスは、daeURI および
+daeIDRef リゾルバクラスのように、自動的に要素を解決しません。この機能を利用したい場合、
+daeSIDResolver を作成して、ターゲット文字列、および、プラットホーム文字列 (オプション) を
+含む要素へのポインタを渡します。プラットホーム文字列にNULLを設定すると、SIDリゾルバは、
+共通の方法で検索を行います。
+
+* [制限事項]
+aeElementに、属性を扱うための新しい機能が追加されました。この新しい関数は、isAttributeSet、
+hasAttribute、および、getAttributeValue です。isAttributeSet の利用には制限があります。
+この関数は、complexType のサブクラスでは正しく動作しません。これらは、匿名の型を持つ
+COLLADA スキーマの要素です。
+
 
 ======================================================================
 変更点（ディベロッパ向け）
 ======================================================================
+* COLLADA 1.4.1 DOM 1.1.0 で修正済み
+- 1503087 	COLLADA_RT_VIEWER のクラッシュ
+- 1499558 	daeURI、および、Windows パス
+- 1492973 	domInputLocal の不正な名前
+- 1491045 	sid 属性を取得することができない
+- 1490426 	daeTArray<T>::setCount(0) の無限ループ
+- 1477052 	animation_clipに「end」属性があるかどうかを知る方法がない
+- 1442300  	placeElement が要素を正しい順序で挿入するようになった
+
 ・COLLADA 1.4 DOM Patch 3での修正点
 
 - 1456261	Linux上でのビルドの問題
@@ -138,7 +154,7 @@ COLLADA 1.4 DOM Patch1
 
   Mantisの解決済みの問題
 
-- 0000595: ユーザーが異なる名前空間をロードしようとする際、[DOM - Documentation] DOM は、ドキュメントの名前空間をチェックし、エラーを報告すべきである。
+- 0000595: ユーザーが異なる名前空間をロードしようとする際、[DOM - Documentation] DOM は、ドキュメントの名前空間をチェックし、エラーを報告すべきである
 - 0000589: [DOM - General] エラー／警告メッセージは、標準出力／エラー経由ではなくプラグイン経由で出力される必要がある
 - 0000624: [DOM - General] エラー報告メカニズムを改善する必要がある
 - 0000508: [DOM - General] 非推奨のメソッドが削除されるため、既存のコードをチェック／更新する必要がある
@@ -150,7 +166,7 @@ COLLADA 1.4 DOM Patch1
 
   Mantisの解決済みの問題
 
-- 0000211: [DOM - Importer] インポートオブジェクトが破棄されない。
+- 0000211: [DOM - Importer] インポートオブジェクトが破棄されない
 - 0000307: [DOM - Object Model] API内の任意のXMLに対する拡張
 - 0000596: [DOM - Importer] IOプラグインの"load"メソッドは再入可能でなければならないが、そうなっていない
 - 0000611: [DOM - Interface] daeURIとdaeIDRefのメソッド／属性に一貫性がない
@@ -180,7 +196,7 @@ COLLADA 1.4 DOM Patch1
   Mantisの解決済みの問題 
 
 - 0000462: [DOM - General] daeMemorySystem::mallocはメモリーをクリアすべきでない
-- 0000486: [DOM - General] 以前に正常に解決されたURIに対してdaeURI::resolveURIを呼び出すと、何の処理も実行されない。
+- 0000486: [DOM - General] 以前に正常に解決されたURIに対してdaeURI::resolveURIを呼び出すと、何の処理も実行されない
 - 0000491: [DOM - Generator] データベース検索機能で「コレクション名」がキーとして使用されているが、代わりにコレクションURIが使用されるべきである
 - 0000489: [DOM - General] 使用可能なドキュメントURIをinsertCollectionが設定しない
 - 0000519: [DOM - General] すべてのプラグインで、daeURIResolver::resolveElementの実装が間違っている
@@ -190,23 +206,23 @@ COLLADA 1.4 DOM Patch1
 - 0000612: [DOM - Documentation] daeElement::removeFromParentから値が返されない場合がある
 - 0000607: [DOM - Documentation] サンプラがロードされない
 - 0000545: [DOM - Importer] DOMが"inf"と"Nan"を処理すべきである
-- 0000522: [DOM - General] daeArrayのメンバーの中には、size_tを使用しているものもあれば、daeIntを使用しているものもある。これらを統一すべきである。
-- 0000493: [DOM - Exporter] 現在のドキュメント保存実装では、ファイルの書き込み先や書き込み方法をIOプラグインが制御することができない。
+- 0000522: [DOM - General] daeArrayのメンバーの中には、size_tを使用しているものもあれば、daeIntを使用しているものもある。これらを統一すべきである
+- 0000493: [DOM - Exporter] 現在のドキュメント保存実装では、ファイルの書き込み先や書き込み方法をIOプラグインが制御することができない
 - 0000549: [DOM - General] daeとプラグインがスキーマのバージョンに依存している
 - 0000530: [DOM - General] daeLIBXMLPluginでコンパイルエラーが発生する
-- 0000534: [DOM - General] LibXML IOプラグインは、自身が呼び出したメソッドからの戻り値がエラーを示しているかどうかをチェックしない。
+- 0000534: [DOM - General] LibXML IOプラグインは、自身が呼び出したメソッドからの戻り値がエラーを示しているかどうかをチェックしない
 - 0000537: [DOM - General] 絶対URI（ドキュメント名またはベース）が標準化されていない
 - 0000533: [DOM - Documentation] アプリケーションのベースURIが、linux上では正しく設定されず、Windows上では正しく解釈されなかった
 - 0000526: [DOM - General] β09におけるドライブレター
 - 0000442: [DOM - General] DOMの生成対象となったCOLLADAスキーマのバージョンを確認する手段を用意する必要がある
 - 0000200: [DOM - Importer] ファイル名に区切り文字が含まれていると、getDom()が正しく動作しない
 - 0000505: [DOM - General] 「保存」操作時にIOプラグインがURIをサポートしない
-- 0000468: [DOM - Generator] simpletypeのインライン定義をCodeGeneratorが正しく処理できない。
-- 0000474: [DOM - Documentation] COLLADA_DOMのベースクラス内に、ドキュメントに記載されていないコードが存在する。
+- 0000468: [DOM - Generator] simpletypeのインライン定義をCodeGeneratorが正しく処理できない
+- 0000474: [DOM - Documentation] COLLADA_DOMのベースクラス内にドキュメントに記載されていないコードが存在する
 - 0000450: [DOM - Documentation] リファレンスマニュアルの正誤表（日本語版からのフィードバック）
 - 0000515: [DOM - General] daeElement::cloneでメモリーリークが発生する（参照カウント）
-- 0000513: [DOM - General] 著作権のタグが含まれていないファイルが、β09のチェックアウトに存在する。
-- 0000504: [DOM - Integration] daeIntegrationObjectのTO/FROMメソッドはprotectedにすべきである。
+- 0000513: [DOM - General] 著作権のタグが含まれていないファイルが、β09のチェックアウトに存在する
+- 0000504: [DOM - Integration] daeIntegrationObjectのTO/FROMメソッドはprotectedにすべきである
 - 0000507: [DOM - Generator] domクラスを生成し直さないとdaeURIアクセッサを使用できない
 
 
@@ -215,7 +231,7 @@ COLLADA 1.4 DOM Patch1
   Mantisの解決済みの問題 
 
 - 0000149: [DOM - Object Model] デスクチェックからのフィードバック。実装に関するさまざまな問題
-- 0000165: [DOM - Object Model] デスクチェック：ユーザーが生成したデータにstrlenとstrcmpが適用されている。
+- 0000165: [DOM - Object Model] デスクチェック：ユーザーが生成したデータにstrlenとstrcmpが適用されている
 - 0000204: [DOM - Object Model] 符号付きの配列カウント数
 - 0000206: [DOM - General] daeArrayの取得メソッドが一貫していない
 - 0000210: [DOM - Object Model] コンストラクタとデストラクタを自動生成するか?
@@ -235,7 +251,7 @@ daeDatabase::getAssetCountが含んでいない。- 0000414: [DOM - Object Model] 「コレ
 - 0000431: [DOM - Object Model] daeElement::createElementは役に立たないので、非推奨にすべきである
 - 0000440: [DOM - Object Model] daeXMLPlugin::readでファイルのURIが正しく作成されない。その結果、不正なbaseURIやその他の問題が発生する
 - 0000442: [DOM - General] DOMの生成対象となったCOLLADAスキーマのバージョンを確認する手段を用意する必要がある
-- 0000443: [DOM - Object Model] baseURIのホルダーが複数存在しており、それらの設定内容がすべて間違っている。
+- 0000443: [DOM - Object Model] baseURIのホルダーが複数存在しており、それらの設定内容がすべて間違っている
 - 0000444: [DOM - Object Model] daeElement::placeElementが無効な要素の配置を許可する
 - 0000446: [DOM - Object Model] daeURI::validateが相対URIを正しく解決しない
 - 0000447: [DOM - Object Model] daeURI::resolveURIが、解決しようとしていた要素を消去してしまう
@@ -254,7 +270,7 @@ daeDatabase::getAssetCountが含んでいない。- 0000414: [DOM - Object Model] 「コレ
 - 0000482: [DOM - General] URIの値が変更されるたびにdaeURIの"container"メンバーがクリアされる
 - 0000484: [DOM - General] ユーザーが作成したdaeURIでdaeURI::containerメンバーが設定されない
 - 0000485: [DOM - General] daeURIのコピーコンストラクタやcopyFromメソッドが「要素」をコピーしない
-- 0000498: [DOM - General] DOMクラスはpublicのアクセッサメソッドとprivateのデータメンバーを必要とするが、これにより、すべてのクライアントコードが使えなくなる。
+- 0000498: [DOM - General] DOMクラスはpublicのアクセッサメソッドとprivateのデータメンバーを必要とするが、これにより、すべてのクライアントコードが使えなくなる
 
 ・β08リリースでの修正点
 
@@ -282,10 +298,10 @@ daeDatabase::getAssetCountが含んでいない。- 0000414: [DOM - Object Model] 「コレ
 - 0000118: [DOM - DOM] fromCOLLADA()呼び出し
 - 0000185: [DOM - DOM] 穴の空いたポリゴン
 - 0000215: [DOM - Documentation] サンプルコード内の型"daeTrackedElement"が不正
-- 0000222: [DOM - Integration] daeIntegrationObject::getElement()とdaeIntegrationObject::setElement()が同一である。
+- 0000222: [DOM - Integration] daeIntegrationObject::getElement()とdaeIntegrationObject::setElement()が同一である
 - 0000225: [DOM - DOM] daeElement::createElement()が壊れたオブジェクトを返す
 - 0000285: [DOM - Documentation] リリースノートのバージョン番号が正しくない（β06）
-- 0000301: [DOM - Documentation] コンパイル済みのヘルプファイルが古いため、生成し直す必要がある 
+- 0000301: [DOM - Documentation] コンパイル済みのヘルプファイルが古いため、生成し直す必要がある
 - 0000302: [DOM - Integration] 変換順序の依存関係
 - 0000303: [DOM - DOM] daeAtomicType.cppで、scanf/printfのshort型に対する型文字列が間違っている
 - 0000309: [DOM - DOM] daeIDRefResolver::~daeIDRefResolver()は仮想(virtual)でなければならない
@@ -311,7 +327,7 @@ daeDatabase::getAssetCountが含んでいない。- 0000414: [DOM - Object Model] 「コレ
   Mantisの解決済みの問題  
 
 - 0000120: [DOM - Documentation] daeTrackedElement型のチェック
-- 0000121: [DOM - DOM] 同じ名前を持つ要素に対するdaeElement::getDomType()。
+- 0000121: [DOM - DOM] 同じ名前を持つ要素に対するdaeElement::getDomType()
 - 0000122: [DOM - DOM] 複数のファイルにまたがるリンク
 - 0000124: [DOM - Importer] 存在しないファイルへのリンク
 - 0000137: [DOM - DOM] 親要素のアクセス
@@ -349,10 +365,10 @@ daeDatabase::getAssetCountが含んでいない。- 0000414: [DOM - Object Model] 「コレ
 
   注：このパッケージは、欠落したファイルが見つかったため、配布が中止されました。
 
-- 0000101: [DOM - Integration] intGeometry::fromCOLLADA()で2つ以上の<polygon>要素の変換に失敗する。
-- 0000103: [DOM - Importer] 不明な要素が、パーサがクラッシュする
-- 0000102: [DOM - Importer] 標準のXMLコメントが、パーサがクラッシュする
-- 0000104: [DOM - Importer] 空の属性が、パーサがクラッシュする。
+- 0000101: [DOM - Integration] intGeometry::fromCOLLADA()で2つ以上の<polygon>要素の変換に失敗する
+- 0000103: [DOM - Importer] 不明な要素でパーサがクラッシュする
+- 0000102: [DOM - Importer] 標準のXMLコメントでパーサがクラッシュする
+- 0000104: [DOM - Importer] 空の属性でパーサがクラッシュする
   
 
 ・β01リリースでの修正点

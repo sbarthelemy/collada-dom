@@ -17,13 +17,15 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeMetaElement.h>
 
-/** Textures embody the visual detail of the surface of a geometric object. The texture element 
-			embodies the sampling aspects of texturing.
-*/class intTexture;
+class intTexture;
 
 typedef daeSmartRef<intTexture> intTextureRef;
 typedef daeTArray<intTextureRef> intTextureArray;
 
+/**
+ * Textures embody the visual detail of the surface of a geometric object.
+ * The texture element  embodies the sampling aspects of texturing.
+ */
 class intTexture : public daeIntegrationObject
 {
 public: // Constuctor and Destructor
@@ -67,13 +69,15 @@ public: // STATIC MEMBERS
 	static daeMetaElement* _Meta;
 
 public:
-/** The texture element may contain zero or more technique elements. The technique
-						elements embody its functionality such as image lookup or procedural generation.
-*/class intTechnique;
+class intTechnique;
 
 typedef daeSmartRef<intTechnique> intTechniqueRef;
 typedef daeTArray<intTechniqueRef> intTechniqueArray;
 
+/**
+ * The texture element may contain zero or more technique elements. The technique
+ * elements embody its functionality such as image lookup or procedural generation.
+ */
 class intTechnique : public daeIntegrationObject
 {
 public: // Constuctor and Destructor
@@ -117,12 +121,14 @@ public: // STATIC MEMBERS
 	static daeMetaElement* _Meta;
 
 public:
-/** The input element may occur zero or more times.
-*/class intInput;
+class intInput;
 
 typedef daeSmartRef<intInput> intInputRef;
 typedef daeTArray<intInputRef> intInputArray;
 
+/**
+ * The input element may occur zero or more times.
+ */
 class intInput : public daeIntegrationObject
 {
 public: // Constuctor and Destructor

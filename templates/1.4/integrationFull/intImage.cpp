@@ -37,7 +37,6 @@ intImage::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "image" );
-	_Meta->setStaticPointerAddress(&intImage::_Meta);
 	_Meta->registerConstructor(intImage::create);
 
 	domImage::_Meta->setMetaIntegration(_Meta);
@@ -62,7 +61,6 @@ intImage::intData::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "data" );
-	_Meta->setStaticPointerAddress(&intImage::intData::_Meta);
 	_Meta->registerConstructor(intImage::intData::create);
 
 	domImage::domData::_Meta->setMetaIntegration(_Meta);
@@ -87,7 +85,6 @@ intImage::intInit_from::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "init_from" );
-	_Meta->setStaticPointerAddress(&intImage::intInit_from::_Meta);
 	_Meta->registerConstructor(intImage::intInit_from::create);
 
 	domImage::domInit_from::_Meta->setMetaIntegration(_Meta);

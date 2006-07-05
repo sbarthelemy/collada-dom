@@ -44,7 +44,6 @@ intProfile_CG::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "profile_CG" );
-	_Meta->setStaticPointerAddress(&intProfile_CG::_Meta);
 	_Meta->registerConstructor(intProfile_CG::create);
 
 	domProfile_CG::_Meta->setMetaIntegration(_Meta);
@@ -69,7 +68,6 @@ intProfile_CG::intTechnique::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "technique" );
-	_Meta->setStaticPointerAddress(&intProfile_CG::intTechnique::_Meta);
 	_Meta->registerConstructor(intProfile_CG::intTechnique::create);
 
 	domProfile_CG::domTechnique::_Meta->setMetaIntegration(_Meta);
@@ -94,7 +92,6 @@ intProfile_CG::intTechnique::intPass::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "pass" );
-	_Meta->setStaticPointerAddress(&intProfile_CG::intTechnique::intPass::_Meta);
 	_Meta->registerConstructor(intProfile_CG::intTechnique::intPass::create);
 
 	domProfile_CG::domTechnique::domPass::_Meta->setMetaIntegration(_Meta);
@@ -119,7 +116,6 @@ intProfile_CG::intTechnique::intPass::intDraw::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "draw" );
-	_Meta->setStaticPointerAddress(&intProfile_CG::intTechnique::intPass::intDraw::_Meta);
 	_Meta->registerConstructor(intProfile_CG::intTechnique::intPass::intDraw::create);
 
 	domProfile_CG::domTechnique::domPass::domDraw::_Meta->setMetaIntegration(_Meta);
@@ -144,7 +140,6 @@ intProfile_CG::intTechnique::intPass::intShader::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "shader" );
-	_Meta->setStaticPointerAddress(&intProfile_CG::intTechnique::intPass::intShader::_Meta);
 	_Meta->registerConstructor(intProfile_CG::intTechnique::intPass::intShader::create);
 
 	domProfile_CG::domTechnique::domPass::domShader::_Meta->setMetaIntegration(_Meta);
@@ -169,7 +164,6 @@ intProfile_CG::intTechnique::intPass::intShader::intCompiler_target::registerEle
     
     _Meta = new daeMetaElement;
     _Meta->setName( "compiler_target" );
-	_Meta->setStaticPointerAddress(&intProfile_CG::intTechnique::intPass::intShader::intCompiler_target::_Meta);
 	_Meta->registerConstructor(intProfile_CG::intTechnique::intPass::intShader::intCompiler_target::create);
 
 	domProfile_CG::domTechnique::domPass::domShader::domCompiler_target::_Meta->setMetaIntegration(_Meta);
@@ -194,7 +188,6 @@ intProfile_CG::intTechnique::intPass::intShader::intCompiler_options::registerEl
     
     _Meta = new daeMetaElement;
     _Meta->setName( "compiler_options" );
-	_Meta->setStaticPointerAddress(&intProfile_CG::intTechnique::intPass::intShader::intCompiler_options::_Meta);
 	_Meta->registerConstructor(intProfile_CG::intTechnique::intPass::intShader::intCompiler_options::create);
 
 	domProfile_CG::domTechnique::domPass::domShader::domCompiler_options::_Meta->setMetaIntegration(_Meta);
@@ -219,7 +212,6 @@ intProfile_CG::intTechnique::intPass::intShader::intName::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "name" );
-	_Meta->setStaticPointerAddress(&intProfile_CG::intTechnique::intPass::intShader::intName::_Meta);
 	_Meta->registerConstructor(intProfile_CG::intTechnique::intPass::intShader::intName::create);
 
 	domProfile_CG::domTechnique::domPass::domShader::domName::_Meta->setMetaIntegration(_Meta);
@@ -244,7 +236,6 @@ intProfile_CG::intTechnique::intPass::intShader::intBind::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "bind" );
-	_Meta->setStaticPointerAddress(&intProfile_CG::intTechnique::intPass::intShader::intBind::_Meta);
 	_Meta->registerConstructor(intProfile_CG::intTechnique::intPass::intShader::intBind::create);
 
 	domProfile_CG::domTechnique::domPass::domShader::domBind::_Meta->setMetaIntegration(_Meta);
@@ -269,7 +260,6 @@ intProfile_CG::intTechnique::intPass::intShader::intBind::intParam::registerElem
     
     _Meta = new daeMetaElement;
     _Meta->setName( "param" );
-	_Meta->setStaticPointerAddress(&intProfile_CG::intTechnique::intPass::intShader::intBind::intParam::_Meta);
 	_Meta->registerConstructor(intProfile_CG::intTechnique::intPass::intShader::intBind::intParam::create);
 
 	domProfile_CG::domTechnique::domPass::domShader::domBind::domParam::_Meta->setMetaIntegration(_Meta);

@@ -41,19 +41,25 @@ domFx_surface_common::registerElement()
 	daeMetaElementAttribute *mea = NULL;
 	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
 
-	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 0, -1 );
-	mea->setName( "init_from" );
-	mea->setOffset( daeOffsetOf(domFx_surface_common,elemInit_from_array) );
-	mea->setElementType( domFx_surface_common::domInit_from::registerElement() );
-	cm->appendChild( mea );
+	mea = new daeMetaElementAttribute( _Meta, cm, 0, 0, 1 );
+	mea->setName( "fx_surface_init_common" );
+	mea->setOffset( daeOffsetOf(domFx_surface_common,elemFx_surface_init_common) );
+	mea->setElementType( domFx_surface_init_common::registerElement() );
+	cm->appendChild( new daeMetaGroup( mea, _Meta, cm, 0, 0, 1 ) );
 	
-	mea = new daeMetaElementAttribute( _Meta, cm, 1, 1, 1 );
+	mea = new daeMetaElementAttribute( _Meta, cm, 1, 0, 1 );
 	mea->setName( "format" );
 	mea->setOffset( daeOffsetOf(domFx_surface_common,elemFormat) );
 	mea->setElementType( domFx_surface_common::domFormat::registerElement() );
 	cm->appendChild( mea );
 	
-	cm = new daeMetaChoice( _Meta, cm, 2, 0, 1 );
+	mea = new daeMetaElementAttribute( _Meta, cm, 2, 0, 1 );
+	mea->setName( "format_hint" );
+	mea->setOffset( daeOffsetOf(domFx_surface_common,elemFormat_hint) );
+	mea->setElementType( domFx_surface_format_hint_common::registerElement() );
+	cm->appendChild( mea );
+	
+	cm = new daeMetaChoice( _Meta, cm, 3, 0, 1 );
 
 	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "size" );
@@ -71,19 +77,25 @@ domFx_surface_common::registerElement()
 	cm->getParent()->appendChild( cm );
 	cm = cm->getParent();
 	
-	mea = new daeMetaElementAttribute( _Meta, cm, 3, 0, 1 );
+	mea = new daeMetaElementAttribute( _Meta, cm, 4, 0, 1 );
 	mea->setName( "mip_levels" );
 	mea->setOffset( daeOffsetOf(domFx_surface_common,elemMip_levels) );
 	mea->setElementType( domFx_surface_common::domMip_levels::registerElement() );
 	cm->appendChild( mea );
 	
-	mea = new daeMetaElementAttribute( _Meta, cm, 4, 0, 1 );
+	mea = new daeMetaElementAttribute( _Meta, cm, 5, 0, 1 );
 	mea->setName( "mipmap_generate" );
 	mea->setOffset( daeOffsetOf(domFx_surface_common,elemMipmap_generate) );
 	mea->setElementType( domFx_surface_common::domMipmap_generate::registerElement() );
 	cm->appendChild( mea );
 	
-	cm->setMaxOrdinal( 4 );
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 6, 0, -1 );
+	mea->setName( "extra" );
+	mea->setOffset( daeOffsetOf(domFx_surface_common,elemExtra_array) );
+	mea->setElementType( domExtra::registerElement() );
+	cm->appendChild( mea );
+	
+	cm->setMaxOrdinal( 6 );
 	_Meta->setCMRoot( cm );	
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domFx_surface_common,_contents));
@@ -104,77 +116,6 @@ domFx_surface_common::registerElement()
 	
 	
 	_Meta->setElementSize(sizeof(domFx_surface_common));
-	_Meta->validate();
-
-	return _Meta;
-}
-
-daeElementRef
-domFx_surface_common::domInit_from::create(daeInt bytes)
-{
-	domFx_surface_common::domInit_fromRef ref = new(bytes) domFx_surface_common::domInit_from;
-	return ref;
-}
-
-
-daeMetaElement *
-domFx_surface_common::domInit_from::registerElement()
-{
-    if ( _Meta != NULL ) return _Meta;
-    
-    _Meta = new daeMetaElement;
-    _Meta->setName( "init_from" );
-	_Meta->registerConstructor(domFx_surface_common::domInit_from::create);
-
-	_Meta->setIsInnerClass( true );
-	//	Add attribute: _value
- 	{
-		daeMetaAttribute *ma = new daeMetaArrayAttribute;
-		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("xsIDREFS"));
-		ma->setOffset( daeOffsetOf( domFx_surface_common::domInit_from , _value ));
-		ma->setContainer( _Meta );
-		_Meta->appendAttribute(ma);
-	}
-
-	//	Add attribute: mip
- 	{
-		daeMetaAttribute *ma = new daeMetaAttribute;
-		ma->setName( "mip" );
-		ma->setType( daeAtomicType::get("xsUnsignedInt"));
-		ma->setOffset( daeOffsetOf( domFx_surface_common::domInit_from , attrMip ));
-		ma->setContainer( _Meta );
-		ma->setDefault( "0");
-	
-		_Meta->appendAttribute(ma);
-	}
-
-	//	Add attribute: slice
- 	{
-		daeMetaAttribute *ma = new daeMetaAttribute;
-		ma->setName( "slice" );
-		ma->setType( daeAtomicType::get("xsUnsignedInt"));
-		ma->setOffset( daeOffsetOf( domFx_surface_common::domInit_from , attrSlice ));
-		ma->setContainer( _Meta );
-		ma->setDefault( "0");
-	
-		_Meta->appendAttribute(ma);
-	}
-
-	//	Add attribute: face
- 	{
-		daeMetaAttribute *ma = new daeMetaAttribute;
-		ma->setName( "face" );
-		ma->setType( daeAtomicType::get("Fx_surface_face_enum"));
-		ma->setOffset( daeOffsetOf( domFx_surface_common::domInit_from , attrFace ));
-		ma->setContainer( _Meta );
-		ma->setDefault( "POSITIVE_X");
-	
-		_Meta->appendAttribute(ma);
-	}
-	
-	
-	_Meta->setElementSize(sizeof(domFx_surface_common::domInit_from));
 	_Meta->validate();
 
 	return _Meta;
@@ -202,7 +143,7 @@ domFx_surface_common::domFormat::registerElement()
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "_value" );
-		ma->setType( daeAtomicType::get("xsString"));
+		ma->setType( daeAtomicType::get("xsToken"));
 		ma->setOffset( daeOffsetOf( domFx_surface_common::domFormat , _value ));
 		ma->setContainer( _Meta );
 		_Meta->appendAttribute(ma);
@@ -357,11 +298,25 @@ domFx_surface_common::domMipmap_generate::registerElement()
 
 
 daeMetaElement * domFx_surface_common::_Meta = NULL;
-daeMetaElement * domFx_surface_common::domInit_from::_Meta = NULL;
 daeMetaElement * domFx_surface_common::domFormat::_Meta = NULL;
 daeMetaElement * domFx_surface_common::domSize::_Meta = NULL;
 daeMetaElement * domFx_surface_common::domViewport_ratio::_Meta = NULL;
 daeMetaElement * domFx_surface_common::domMip_levels::_Meta = NULL;
 daeMetaElement * domFx_surface_common::domMipmap_generate::_Meta = NULL;
 
+
+//Backwards Compatibility functions
+domFx_surface_common_complexType::domInit_from_Array &domFx_surface_common_complexType::getInit_from_array() { 
+	if (elemFx_surface_init_common != NULL ) {
+		return elemFx_surface_init_common->getInit_from_array(); 
+	}
+	return emptyArray;
+}
+
+const domFx_surface_common_complexType::domInit_from_Array &domFx_surface_common_complexType::getInit_from_array() const { 
+	if (elemFx_surface_init_common != NULL ) {
+		return elemFx_surface_init_common->getInit_from_array(); 
+	}
+	return emptyArray;
+}
 

@@ -21,7 +21,7 @@ daeMetaSequence::daeMetaSequence( daeMetaElement *container, daeMetaCMPolicy *pa
 daeMetaSequence::~daeMetaSequence()
 {}
 
-daeBool daeMetaSequence::placeElement( daeElement *parent, daeElement *child, daeUInt &ordinal, daeInt offset, daeElement* before, daeElement *after ) {
+daeElement *daeMetaSequence::placeElement( daeElement *parent, daeElement *child, daeUInt &ordinal, daeInt offset, daeElement* before, daeElement *after ) {
 	(void)offset;
 	if ( _maxOccurs == -1 ) {
 		//Needed to prevent infinate loops. If unbounded check to see if you have the child before just trying to place
@@ -30,19 +30,19 @@ daeBool daeMetaSequence::placeElement( daeElement *parent, daeElement *child, da
 			nm = child->getTypeName();
 		}
 		if ( findChild( nm ) == NULL ) {
-			return false;
+			return NULL;
 		}
 	}
 
 	for ( daeInt i = 0; ( i < _maxOccurs || _maxOccurs == -1 ); i++ ) {
 		for ( size_t x = 0; x < _children.getCount(); x++ ) {
-			if ( _children[x]->placeElement( parent, child, ordinal, i, before, after ) ) {
+			if ( _children[x]->placeElement( parent, child, ordinal, i, before, after ) != NULL ) {
 				ordinal = ordinal + (i * ( _maxOrdinal + 1 )) + _ordinalOffset;
-				return true;
+				return child;
 			}
 		}
 	}
-	return false;
+	return NULL;
 }
 
 daeBool daeMetaSequence::removeElement( daeElement *parent, daeElement *child ) {

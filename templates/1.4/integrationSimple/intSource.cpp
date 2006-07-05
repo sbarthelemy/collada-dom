@@ -35,7 +35,6 @@ intSource::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "source" );
-	_Meta->setStaticPointerAddress(&intSource::_Meta);
 	_Meta->registerConstructor(intSource::create);
 
 	domSource::_Meta->setMetaIntegration(_Meta);

@@ -40,7 +40,7 @@ domConvex_mesh::registerElement()
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
-	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
+	cm = new daeMetaSequence( _Meta, cm, 0, 0, 1 );
 
 	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, -1 );
 	mea->setName( "source" );

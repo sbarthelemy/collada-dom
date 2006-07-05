@@ -35,7 +35,6 @@ intFx_sampler2D_common::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fx_sampler2D_common" );
-	_Meta->setStaticPointerAddress(&intFx_sampler2D_common::_Meta);
 	_Meta->registerConstructor(intFx_sampler2D_common::create);
 
 	domFx_sampler2D_common::_Meta->setMetaIntegration(_Meta);

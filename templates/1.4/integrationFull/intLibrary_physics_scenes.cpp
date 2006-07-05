@@ -35,7 +35,6 @@ intLibrary_physics_scenes::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "library_physics_scenes" );
-	_Meta->setStaticPointerAddress(&intLibrary_physics_scenes::_Meta);
 	_Meta->registerConstructor(intLibrary_physics_scenes::create);
 
 	domLibrary_physics_scenes::_Meta->setMetaIntegration(_Meta);

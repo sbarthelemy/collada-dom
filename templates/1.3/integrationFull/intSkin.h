@@ -17,28 +17,32 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeMetaElement.h>
 
-/** The skin element contains vertex and primitive information sufficient to describe 
-			blend-weight skinning. The skinning information is stored outside of the affected geometry, 
-			under the skin element. This decoupling allows skeletons to 'skin' multiple geometries and 
-			different instances of a geometry element to be modified by different skeletons. 
-			* Bind-shape: represented with a source, the same way as mesh vertex positions. 
-			* Influences / joints: a combiner represents the variable-length influence lists for each 
-			vertex. 
-			* Bind-pose: to avoid inverting matrices on import, COLLADA stores the inverse of the 
-			bind-matrices. The matrices are per-node (they are the same for each vertex that is 
-			influenced by a certain node). This is represented by two matching arrays (one for the 
-			nodes and one for the matrices) and combined by the joints element. Note that any node can 
-			be an influence, not only joints. The name of the joints element was chosen for familiarity 
-			reasons. There must be a one-to-one correspondence between the vertices in skin and the mesh 
-			vertices. Naturally, if a mesh is exported in its bind-shape (the skeleton was not moved 
-			after binding), the bindshape positions in the skin will be the same as the vertex positions 
-			under the targeted mesh. Also, the skeleton's transforms will result in matrices that, after 
-			inverting, will match the inverse-bind matrices in the skin.
-*/class intSkin;
+class intSkin;
 
 typedef daeSmartRef<intSkin> intSkinRef;
 typedef daeTArray<intSkinRef> intSkinArray;
 
+/**
+ * The skin element contains vertex and primitive information sufficient to
+ * describe  blend-weight skinning. The skinning information is stored outside
+ * of the affected geometry,  under the skin element. This decoupling allows
+ * skeletons to 'skin' multiple geometries and  different instances of a geometry
+ * element to be modified by different skeletons.  * Bind-shape: represented
+ * with a source, the same way as mesh vertex positions.  * Influences / joints:
+ * a combiner represents the variable-length influence lists for each  vertex.
+ * * Bind-pose: to avoid inverting matrices on import, COLLADA stores the
+ * inverse of the  bind-matrices. The matrices are per-node (they are the
+ * same for each vertex that is  influenced by a certain node). This is represented
+ * by two matching arrays (one for the  nodes and one for the matrices) and
+ * combined by the joints element. Note that any node can  be an influence,
+ * not only joints. The name of the joints element was chosen for familiarity
+ * reasons. There must be a one-to-one correspondence between the vertices
+ * in skin and the mesh  vertices. Naturally, if a mesh is exported in its
+ * bind-shape (the skeleton was not moved  after binding), the bindshape positions
+ * in the skin will be the same as the vertex positions  under the targeted
+ * mesh. Also, the skeleton's transforms will result in matrices that, after
+ * inverting, will match the inverse-bind matrices in the skin.
+ */
 class intSkin : public daeIntegrationObject
 {
 public: // Constuctor and Destructor

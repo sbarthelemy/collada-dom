@@ -17,15 +17,18 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeMetaElement.h>
 
-/** -DEPRECATED- The boundingbox element declares an axially aligned bounding box that 
-			encompasses the geometric extent of a node in the scene graph. If the boundingbox is 
-			transformed by rotate elements then the resulting bounding box is an axial aligned box that 
-			encompasses the original bounding box.
-*/class intBoundingbox;
+class intBoundingbox;
 
 typedef daeSmartRef<intBoundingbox> intBoundingboxRef;
 typedef daeTArray<intBoundingboxRef> intBoundingboxArray;
 
+/**
+ * -DEPRECATED- The boundingbox element declares an axially aligned bounding
+ * box that  encompasses the geometric extent of a node in the scene graph.
+ * If the boundingbox is  transformed by rotate elements then the resulting
+ * bounding box is an axial aligned box that  encompasses the original bounding
+ * box.
+ */
 class intBoundingbox : public daeIntegrationObject
 {
 public: // Constuctor and Destructor

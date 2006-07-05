@@ -35,7 +35,6 @@ intBind_material::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "bind_material" );
-	_Meta->setStaticPointerAddress(&intBind_material::_Meta);
 	_Meta->registerConstructor(intBind_material::create);
 
 	domBind_material::_Meta->setMetaIntegration(_Meta);

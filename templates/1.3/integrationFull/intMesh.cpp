@@ -35,7 +35,6 @@ intMesh::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "mesh" );
-	_Meta->setStaticPointerAddress(&intMesh::_Meta);
 	_Meta->registerConstructor(intMesh::create);
 
 	domMesh::_Meta->setMetaIntegration(_Meta);

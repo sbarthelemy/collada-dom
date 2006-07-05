@@ -35,7 +35,6 @@ intAnimation::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "animation" );
-	_Meta->setStaticPointerAddress(&intAnimation::_Meta);
 	_Meta->registerConstructor(intAnimation::create);
 
 	domAnimation::_Meta->setMetaIntegration(_Meta);

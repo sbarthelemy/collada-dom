@@ -37,7 +37,6 @@ intFx_newparam_common::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fx_newparam_common" );
-	_Meta->setStaticPointerAddress(&intFx_newparam_common::_Meta);
 	_Meta->registerConstructor(intFx_newparam_common::create);
 
 	domFx_newparam_common::_Meta->setMetaIntegration(_Meta);
@@ -62,7 +61,6 @@ intFx_newparam_common::intSemantic::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "semantic" );
-	_Meta->setStaticPointerAddress(&intFx_newparam_common::intSemantic::_Meta);
 	_Meta->registerConstructor(intFx_newparam_common::intSemantic::create);
 
 	domFx_newparam_common::domSemantic::_Meta->setMetaIntegration(_Meta);
@@ -87,7 +85,6 @@ intFx_newparam_common::intModifier::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "modifier" );
-	_Meta->setStaticPointerAddress(&intFx_newparam_common::intModifier::_Meta);
 	_Meta->registerConstructor(intFx_newparam_common::intModifier::create);
 
 	domFx_newparam_common::domModifier::_Meta->setMetaIntegration(_Meta);

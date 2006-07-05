@@ -36,7 +36,6 @@ intJoints::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "joints" );
-	_Meta->setStaticPointerAddress(&intJoints::_Meta);
 	_Meta->registerConstructor(intJoints::create);
 
 	domJoints::_Meta->setMetaIntegration(_Meta);
@@ -61,7 +60,6 @@ intJoints::intInput::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "input" );
-	_Meta->setStaticPointerAddress(&intJoints::intInput::_Meta);
 	_Meta->registerConstructor(intJoints::intInput::create);
 
 	domJoints::domInput::_Meta->setMetaIntegration(_Meta);

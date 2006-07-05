@@ -65,17 +65,19 @@ public: // STATIC MEMBERS
 	static daeMetaElement* _Meta;
 
 public:
-/** The camera element contains one or more technique elements that describe its 
-						operating parameters for optics and imaging. The camera technique element must 
-						contain an optics element and zero or more imager elements. The optics and 
-						imager elements each contain a program element. For simple cameras, a generic 
-						technique need only contain an optics element that describes the field of view 
-						and viewing frustum using canonical parameters.
-*/class intTechnique;
+class intTechnique;
 
 typedef daeSmartRef<intTechnique> intTechniqueRef;
 typedef daeTArray<intTechniqueRef> intTechniqueArray;
 
+/**
+ * The camera element contains one or more technique elements that describe
+ * its  operating parameters for optics and imaging. The camera technique
+ * element must  contain an optics element and zero or more imager elements.
+ * The optics and  imager elements each contain a program element. For simple
+ * cameras, a generic  technique need only contain an optics element that
+ * describes the field of view  and viewing frustum using canonical parameters.
+ */
 class intTechnique : public daeIntegrationObject
 {
 public: // Constuctor and Destructor
@@ -119,12 +121,13 @@ public: // STATIC MEMBERS
 	static daeMetaElement* _Meta;
 
 public:
-/** 
-*/class intOptics;
+class intOptics;
 
 typedef daeSmartRef<intOptics> intOpticsRef;
 typedef daeTArray<intOpticsRef> intOpticsArray;
 
+/**
+ */
 class intOptics : public daeIntegrationObject
 {
 public: // Constuctor and Destructor
@@ -168,12 +171,13 @@ public: // STATIC MEMBERS
 	static daeMetaElement* _Meta;
 
 };
-/** 
-*/class intImager;
+class intImager;
 
 typedef daeSmartRef<intImager> intImagerRef;
 typedef daeTArray<intImagerRef> intImagerArray;
 
+/**
+ */
 class intImager : public daeIntegrationObject
 {
 public: // Constuctor and Destructor

@@ -36,7 +36,6 @@ intPhysics_scene::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "physics_scene" );
-	_Meta->setStaticPointerAddress(&intPhysics_scene::_Meta);
 	_Meta->registerConstructor(intPhysics_scene::create);
 
 	domPhysics_scene::_Meta->setMetaIntegration(_Meta);
@@ -61,7 +60,6 @@ intPhysics_scene::intTechnique_common::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "technique_common" );
-	_Meta->setStaticPointerAddress(&intPhysics_scene::intTechnique_common::_Meta);
 	_Meta->registerConstructor(intPhysics_scene::intTechnique_common::create);
 
 	domPhysics_scene::domTechnique_common::_Meta->setMetaIntegration(_Meta);

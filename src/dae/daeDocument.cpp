@@ -48,7 +48,7 @@ void daeDocument::removeExternalReference( daeURI &uri ) {
 }
 
 void daeDocument::resolveExternals( daeString docURI ) {
-	size_t idx;
+	size_t idx(0);
 	if ( referencedDocuments.find( docURI, idx ) == DAE_OK ) {
 		for ( unsigned int j = 0; j < externalURIs[idx]->getCount(); j++ ) {
 			daeURI *tempURI = externalURIs[idx]->get(j);

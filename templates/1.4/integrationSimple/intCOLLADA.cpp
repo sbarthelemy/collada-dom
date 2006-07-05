@@ -35,7 +35,6 @@ intCOLLADA::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "COLLADA" );
-	_Meta->setStaticPointerAddress(&intCOLLADA::_Meta);
 	_Meta->registerConstructor(intCOLLADA::create);
 
 	domCOLLADA::_Meta->setMetaIntegration(_Meta);

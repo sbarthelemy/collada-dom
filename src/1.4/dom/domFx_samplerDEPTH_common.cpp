@@ -71,7 +71,13 @@ domFx_samplerDEPTH_common::registerElement()
 	mea->setElementType( domFx_samplerDEPTH_common::domMagfilter::registerElement() );
 	cm->appendChild( mea );
 	
-	cm->setMaxOrdinal( 4 );
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 5, 0, -1 );
+	mea->setName( "extra" );
+	mea->setOffset( daeOffsetOf(domFx_samplerDEPTH_common,elemExtra_array) );
+	mea->setElementType( domExtra::registerElement() );
+	cm->appendChild( mea );
+	
+	cm->setMaxOrdinal( 5 );
 	_Meta->setCMRoot( cm );	
 	
 	

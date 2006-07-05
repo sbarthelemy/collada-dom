@@ -59,7 +59,13 @@ domBind_material::registerElement()
 	mea->setElementType( domTechnique::registerElement() );
 	cm->appendChild( mea );
 	
-	cm->setMaxOrdinal( 2 );
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 3, 0, -1 );
+	mea->setName( "extra" );
+	mea->setOffset( daeOffsetOf(domBind_material,elemExtra_array) );
+	mea->setElementType( domExtra::registerElement() );
+	cm->appendChild( mea );
+	
+	cm->setMaxOrdinal( 3 );
 	_Meta->setCMRoot( cm );	
 	
 	

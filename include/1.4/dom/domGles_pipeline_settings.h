@@ -66,7 +66,7 @@ public:
 			 * Sets the param attribute.
 			 * @param atParam The new value for the param attribute.
 			 */
-			void setParam( xsNCName atParam ) { attrParam = atParam;		
+			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;		
 	 _validAttributeArray[1] = true; }
 
 		protected:
@@ -142,7 +142,7 @@ public:
 			 * Sets the param attribute.
 			 * @param atParam The new value for the param attribute.
 			 */
-			void setParam( xsNCName atParam ) { attrParam = atParam;		
+			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;		
 	 _validAttributeArray[1] = true; }
 
 		protected:
@@ -282,7 +282,7 @@ public:
 			 * Sets the param attribute.
 			 * @param atParam The new value for the param attribute.
 			 */
-			void setParam( xsNCName atParam ) { attrParam = atParam;		
+			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;		
 	 _validAttributeArray[1] = true; }
 
 		protected:
@@ -358,7 +358,7 @@ public:
 			 * Sets the param attribute.
 			 * @param atParam The new value for the param attribute.
 			 */
-			void setParam( xsNCName atParam ) { attrParam = atParam;		
+			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;		
 	 _validAttributeArray[1] = true; }
 
 		protected:
@@ -495,7 +495,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:
@@ -571,7 +571,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:
@@ -647,7 +647,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:
@@ -729,7 +729,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 		/**
@@ -822,7 +822,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:
@@ -898,7 +898,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:
@@ -974,7 +974,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:
@@ -1050,7 +1050,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:
@@ -1131,7 +1131,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:
@@ -1212,7 +1212,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:
@@ -1288,7 +1288,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:
@@ -1364,7 +1364,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:
@@ -1440,7 +1440,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:
@@ -1516,7 +1516,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:
@@ -1592,7 +1592,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:
@@ -1657,7 +1657,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[0] = true; }
 
 		/**
@@ -1738,7 +1738,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:
@@ -1820,7 +1820,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 		/**
@@ -1914,7 +1914,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 		/**
@@ -2008,7 +2008,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 		/**
@@ -2102,7 +2102,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 		/**
@@ -2191,7 +2191,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 		/**
@@ -2280,7 +2280,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 		/**
@@ -2369,7 +2369,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 		/**
@@ -2458,7 +2458,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 		/**
@@ -2552,7 +2552,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 		/**
@@ -2641,7 +2641,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 		/**
@@ -2734,7 +2734,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:
@@ -2810,7 +2810,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:
@@ -2891,7 +2891,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:
@@ -2972,7 +2972,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:
@@ -3053,7 +3053,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:
@@ -3129,7 +3129,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:
@@ -3210,7 +3210,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:
@@ -3291,7 +3291,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:
@@ -3372,7 +3372,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:
@@ -3448,7 +3448,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:
@@ -3524,7 +3524,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:
@@ -3600,7 +3600,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:
@@ -3676,7 +3676,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:
@@ -3757,7 +3757,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:
@@ -3838,7 +3838,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:
@@ -3919,7 +3919,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:
@@ -3995,7 +3995,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:
@@ -4079,7 +4079,7 @@ public:
 			 * Sets the param attribute.
 			 * @param atParam The new value for the param attribute.
 			 */
-			void setParam( xsNCName atParam ) { attrParam = atParam;		
+			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;		
 	 _validAttributeArray[1] = true; }
 
 		protected:
@@ -4155,7 +4155,7 @@ public:
 			 * Sets the param attribute.
 			 * @param atParam The new value for the param attribute.
 			 */
-			void setParam( xsNCName atParam ) { attrParam = atParam;		
+			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;		
 	 _validAttributeArray[1] = true; }
 
 		protected:
@@ -4231,7 +4231,7 @@ public:
 			 * Sets the param attribute.
 			 * @param atParam The new value for the param attribute.
 			 */
-			void setParam( xsNCName atParam ) { attrParam = atParam;		
+			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;		
 	 _validAttributeArray[1] = true; }
 
 		protected:
@@ -4369,7 +4369,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:
@@ -4453,7 +4453,7 @@ public:
 			 * Sets the param attribute.
 			 * @param atParam The new value for the param attribute.
 			 */
-			void setParam( xsNCName atParam ) { attrParam = atParam;		
+			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;		
 	 _validAttributeArray[1] = true; }
 
 		protected:
@@ -4529,7 +4529,7 @@ public:
 			 * Sets the param attribute.
 			 * @param atParam The new value for the param attribute.
 			 */
-			void setParam( xsNCName atParam ) { attrParam = atParam;		
+			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;		
 	 _validAttributeArray[1] = true; }
 
 		protected:
@@ -4605,7 +4605,7 @@ public:
 			 * Sets the param attribute.
 			 * @param atParam The new value for the param attribute.
 			 */
-			void setParam( xsNCName atParam ) { attrParam = atParam;		
+			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;		
 	 _validAttributeArray[1] = true; }
 
 		protected:
@@ -4743,7 +4743,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:
@@ -4819,7 +4819,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:
@@ -4896,7 +4896,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 		/**
@@ -4984,7 +4984,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:
@@ -5060,7 +5060,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:
@@ -5136,7 +5136,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:
@@ -5212,7 +5212,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:
@@ -5288,7 +5288,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:
@@ -5364,7 +5364,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:
@@ -5440,7 +5440,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:
@@ -5517,7 +5517,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 		/**
@@ -5605,7 +5605,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:
@@ -5681,7 +5681,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:
@@ -5757,7 +5757,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:
@@ -5833,7 +5833,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:
@@ -5909,7 +5909,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:
@@ -5985,7 +5985,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:
@@ -6061,7 +6061,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:
@@ -6137,7 +6137,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:
@@ -6213,7 +6213,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:
@@ -6289,7 +6289,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:
@@ -6365,7 +6365,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:
@@ -6441,7 +6441,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:
@@ -6517,7 +6517,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { attrParam = atParam;	
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
 	 _validAttributeArray[1] = true; }
 
 	protected:

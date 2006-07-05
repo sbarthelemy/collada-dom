@@ -17,19 +17,22 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeMetaElement.h>
 
-/** The skew element contains an angle and two mathematical vectors that represent the axis of 
-			rotation and the axis of translation. Skew (shear) deforms an object along one axis of a 
-			coordinated system. It translates values along the affected axis in a direction that is 
-			parallel to that axis. Computer graphics techniques apply a skew or shear transformation in 
-			order to deform objects or to correct distortion in images. As in the RenderMan® 
-			specification, the skew element contains a list of seven floating-point values. These values 
-			are organized into an angle in degrees with two column vectors specifying the axes of 
-			rotation and translation.
-*/class intSkew;
+class intSkew;
 
 typedef daeSmartRef<intSkew> intSkewRef;
 typedef daeTArray<intSkewRef> intSkewArray;
 
+/**
+ * The skew element contains an angle and two mathematical vectors that represent
+ * the axis of  rotation and the axis of translation. Skew (shear) deforms
+ * an object along one axis of a  coordinated system. It translates values
+ * along the affected axis in a direction that is  parallel to that axis.
+ * Computer graphics techniques apply a skew or shear transformation in  order
+ * to deform objects or to correct distortion in images. As in the RenderMan®
+ * specification, the skew element contains a list of seven floating-point
+ * values. These values  are organized into an angle in degrees with two column
+ * vectors specifying the axes of  rotation and translation.
+ */
 class intSkew : public daeIntegrationObject
 {
 public: // Constuctor and Destructor

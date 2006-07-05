@@ -35,7 +35,6 @@ intName_array::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "Name_array" );
-	_Meta->setStaticPointerAddress(&intName_array::_Meta);
 	_Meta->registerConstructor(intName_array::create);
 
 	domName_array::_Meta->setMetaIntegration(_Meta);

@@ -70,7 +70,7 @@ public:	//Accessors and Mutators
 	 * Sets the sid attribute.
 	 * @param atSid The new value for the sid attribute.
 	 */
-	void setSid( xsNCName atSid ) { attrSid = atSid; }
+	void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid; }
 
 	/**
 	 * Gets the texcombiner element array.
@@ -137,6 +137,20 @@ protected:
  */
 class domGles_texture_pipeline : public daeElement, public domGles_texture_pipeline_complexType
 {
+
+public:	//Accessors and Mutators
+	/**
+	 * Gets the sid attribute.
+	 * @return Returns a xsNCName of the sid attribute.
+	 */
+	xsNCName getSid() const { return attrSid; }
+	/**
+	 * Sets the sid attribute.
+	 * @param atSid The new value for the sid attribute.
+	 */
+	void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid;
+	 _validAttributeArray[0] = true; }
+
 protected:
 	/**
 	 * Constructor

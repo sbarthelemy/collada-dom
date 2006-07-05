@@ -229,7 +229,7 @@ typedef daeSmartRef<intEnabled> intEnabledRef;
 typedef daeTArray<intEnabledRef> intEnabledArray;
 
 /**
- * If FALSE, the constraint doesn’t exert any force or influence on the
+ * If false, the constraint doesn’t exert any force or influence on the
  * rigid bodies.
  */
 class intEnabled : public daeIntegrationObject

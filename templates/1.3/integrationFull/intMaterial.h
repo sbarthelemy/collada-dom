@@ -17,16 +17,19 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeMetaElement.h>
 
-/** Materials describe the visual appearance of a geometric object. The material element 
-			categorizes the declaration of rendering appearance information. The material element 
-			contains declarations of shaders, parameters, techniques, and vertex and pixel programs.
-			A material element is the base container for all rendering and shading information. The 
-			visual appearance of a geometric object is described by its material properties.
-*/class intMaterial;
+class intMaterial;
 
 typedef daeSmartRef<intMaterial> intMaterialRef;
 typedef daeTArray<intMaterialRef> intMaterialArray;
 
+/**
+ * Materials describe the visual appearance of a geometric object. The material
+ * element  categorizes the declaration of rendering appearance information.
+ * The material element  contains declarations of shaders, parameters, techniques,
+ * and vertex and pixel programs. A material element is the base container
+ * for all rendering and shading information. The  visual appearance of a
+ * geometric object is described by its material properties.
+ */
 class intMaterial : public daeIntegrationObject
 {
 public: // Constuctor and Destructor

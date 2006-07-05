@@ -17,17 +17,21 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeMetaElement.h>
 
-/** The scale element contains a mathematical vector that represents the relative proportions of 
-			the X, Y and Z axes of a coordinated system. Scaling changes the size of objects in a 
-			coordinated system without any rotation or translation. Computer graphics techniques apply a 
-			scale transformation in order to change the size or proportions of values with respect to a 
-			coordinate system axis. The scale element contains a list of three floating-point values. 
-			These values are organized into a column vector suitable for matrix composition.
-*/class intScale;
+class intScale;
 
 typedef daeSmartRef<intScale> intScaleRef;
 typedef daeTArray<intScaleRef> intScaleArray;
 
+/**
+ * The scale element contains a mathematical vector that represents the relative
+ * proportions of  the X, Y and Z axes of a coordinated system. Scaling changes
+ * the size of objects in a  coordinated system without any rotation or translation.
+ * Computer graphics techniques apply a  scale transformation in order to
+ * change the size or proportions of values with respect to a  coordinate
+ * system axis. The scale element contains a list of three floating-point
+ * values.  These values are organized into a column vector suitable for matrix
+ * composition.
+ */
 class intScale : public daeIntegrationObject
 {
 public: // Constuctor and Destructor

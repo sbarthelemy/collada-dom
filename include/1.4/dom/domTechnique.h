@@ -78,7 +78,7 @@ public:	//Accessors and Mutators
 	 * Sets the profile attribute.
 	 * @param atProfile The new value for the profile attribute.
 	 */
-	void setProfile( xsNMTOKEN atProfile ) { attrProfile = atProfile;
+	void setProfile( xsNMTOKEN atProfile ) { *(daeStringRef*)&attrProfile = atProfile;
 	 _validAttributeArray[1] = true; }
 
 	/**

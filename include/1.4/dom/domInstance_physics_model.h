@@ -37,10 +37,14 @@ protected:  // Attributes
 	xsAnyURI attrUrl;
 /**
  *  The sid attribute is a text string value containing the sub-identifier
- * of this element. This value  must be unique within the scope of the parent
+ * of this element. This  value must be unique within the scope of the parent
  * element. Optional attribute. 
  */
 	xsNCName attrSid;
+/**
+ *  The name attribute is the text string name of this element. Optional attribute.
+ */
+	xsNCName attrName;
 /**
  *  The parent attribute points to the id of a node in the visual scene. This
  * allows a physics model  to be instantiated under a specific transform node,
@@ -97,8 +101,20 @@ public:	//Accessors and Mutators
 	 * Sets the sid attribute.
 	 * @param atSid The new value for the sid attribute.
 	 */
-	void setSid( xsNCName atSid ) { attrSid = atSid;
+	void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid;
 	 _validAttributeArray[1] = true; }
+
+	/**
+	 * Gets the name attribute.
+	 * @return Returns a xsNCName of the name attribute.
+	 */
+	xsNCName getName() const { return attrName; }
+	/**
+	 * Sets the name attribute.
+	 * @param atName The new value for the name attribute.
+	 */
+	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName;
+	 _validAttributeArray[2] = true; }
 
 	/**
 	 * Gets the parent attribute.
@@ -115,7 +131,7 @@ public:	//Accessors and Mutators
 	 * @param atParent The new value for the parent attribute.
 	 */
 	void setParent( const xsAnyURI &atParent ) { attrParent.setURI( atParent.getURI() );
-	 _validAttributeArray[2] = true; }
+	 _validAttributeArray[3] = true; }
 
 	/**
 	 * Gets the instance_force_field element array.
@@ -161,7 +177,7 @@ protected:
 	/**
 	 * Constructor
 	 */
-	domInstance_physics_model() : attrUrl(), attrSid(), attrParent(), elemInstance_force_field_array(), elemInstance_rigid_body_array(), elemInstance_rigid_constraint_array(), elemExtra_array() {}
+	domInstance_physics_model() : attrUrl(), attrSid(), attrName(), attrParent(), elemInstance_force_field_array(), elemInstance_rigid_body_array(), elemInstance_rigid_constraint_array(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

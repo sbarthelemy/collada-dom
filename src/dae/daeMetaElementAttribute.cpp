@@ -107,20 +107,20 @@ daeMetaElementArrayAttribute::get(daeElement* e, daeInt index)
 	return (daeMemoryRef)&(era->get(index));
 }
 
-daeBool
+daeElement *
 daeMetaElementAttribute::placeElement(daeElement* parent, daeElement* child, daeUInt &ordinal, daeInt offset, daeElement* before, daeElement *after )
 {
 	(void)offset;
 	(void)before;
 	(void)after;
 	if ((parent == NULL)||(child == NULL))
-		return false;
+		return NULL;
 	if ( child->getMeta() != _elementType || ( child->getElementName() != NULL && strcmp( child->getElementName(), _name ) != 0 )  ) {
-		return false;
+		return NULL;
 	}
 	if (child->getParentElement() == parent) {
 		//I Don't know why this gets called when the child already has this as parent.
-		return true;
+		return child;
 	}
 	daeElementRef* er = (daeElementRef*)getWritableMemory(parent);
 	
@@ -130,37 +130,37 @@ daeMetaElementAttribute::placeElement(daeElement* parent, daeElement* child, dae
 	*er = child;
 	ordinal = _ordinalOffset;
 
-	return true;
+	return child;
 }
 
-daeBool
+daeElement *
 daeMetaElementArrayAttribute::placeElement(daeElement* parent, daeElement* child, daeUInt &ordinal, daeInt offset, daeElement* before, daeElement *after )
 {
 	if ((parent == NULL)||(child == NULL))
-		return false;
+		return NULL;
 	if ( child->getMeta() != _elementType || ( child->getElementName() != NULL && strcmp( child->getElementName(), _name ) != 0 )  ) {
-		return false;
+		return NULL;
 	}
 	if (child->getParentElement() == parent) {
 		//I Don't know why this gets called when the child already has this as parent.
-		return true;
+		return child;
 	}
 	daeElementRefArray* era = (daeElementRefArray*)getWritableMemory(parent);
 	if ( _maxOccurs != -1 && (daeInt)era->getCount()-offset >= _maxOccurs ) {
-		return false;
+		return NULL;
 	}
 	removeElement( child->getParentElement(), child );
 	child->setParentElement( parent );
 
 	if ( before != NULL || after != NULL ) {
 		if ( before != NULL && before->getMeta() == _elementType ) {
-			size_t idx;
+			size_t idx(0);
 			if ( era->find( before, idx ) == DAE_OK ) {
 				era->insertAt( idx, child );
 			}
 		}
 		else if ( after != NULL && after->getMeta() == _elementType ) {
-			size_t idx;
+			size_t idx(0);
 			if ( era->find( after, idx ) == DAE_OK ) {
 				era->insertAt( idx+1, child );
 			}
@@ -171,7 +171,7 @@ daeMetaElementArrayAttribute::placeElement(daeElement* parent, daeElement* child
 	}
 	ordinal = _ordinalOffset;
 
-	return true;
+	return child;
 }
 
 // These are the opposite of the placeElement functions above

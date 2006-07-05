@@ -17,17 +17,20 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeMetaElement.h>
 
-/** Geometry describes the visual shape and appearance of an object in the scene. The geometry
-			element categorizes the declaration of geometric information. Geometry is a branch of 
-			mathematics that deals with the measurement, properties, and relationships of points, lines,
-			angles, surfaces, and solids. The geometry element contains a declaration of a mesh. A 
-			geometry element contains the elements that describe geometric data. The actual type and 
-			complexity of the data is left to the child elements to represent in detail.
-*/class intGeometry;
+class intGeometry;
 
 typedef daeSmartRef<intGeometry> intGeometryRef;
 typedef daeTArray<intGeometryRef> intGeometryArray;
 
+/**
+ * Geometry describes the visual shape and appearance of an object in the
+ * scene. The geometry element categorizes the declaration of geometric information.
+ * Geometry is a branch of  mathematics that deals with the measurement, properties,
+ * and relationships of points, lines, angles, surfaces, and solids. The geometry
+ * element contains a declaration of a mesh. A  geometry element contains
+ * the elements that describe geometric data. The actual type and  complexity
+ * of the data is left to the child elements to represent in detail.
+ */
 class intGeometry : public daeIntegrationObject
 {
 public: // Constuctor and Destructor

@@ -93,6 +93,17 @@ domInstance_physics_model::registerElement()
 		_Meta->appendAttribute(ma);
 	}
 
+	//	Add attribute: name
+ 	{
+		daeMetaAttribute *ma = new daeMetaAttribute;
+		ma->setName( "name" );
+		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setOffset( daeOffsetOf( domInstance_physics_model , attrName ));
+		ma->setContainer( _Meta );
+	
+		_Meta->appendAttribute(ma);
+	}
+
 	//	Add attribute: parent
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;

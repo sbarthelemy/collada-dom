@@ -71,7 +71,7 @@ public:	//Accessors and Mutators
 	 * Sets the version attribute.
 	 * @param atVersion The new value for the version attribute.
 	 */
-	void setVersion( xsString atVersion ) { attrVersion = atVersion;
+	void setVersion( xsString atVersion ) { *(daeStringRef*)&attrVersion = atVersion;
 	 _validAttributeArray[1] = true; }
 
 	/**

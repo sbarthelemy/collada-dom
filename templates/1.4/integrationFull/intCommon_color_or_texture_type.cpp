@@ -38,7 +38,6 @@ intCommon_color_or_texture_type::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "common_color_or_texture_type" );
-	_Meta->setStaticPointerAddress(&intCommon_color_or_texture_type::_Meta);
 	_Meta->registerConstructor(intCommon_color_or_texture_type::create);
 
 	domCommon_color_or_texture_type::_Meta->setMetaIntegration(_Meta);
@@ -63,7 +62,6 @@ intCommon_color_or_texture_type::intColor::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "color" );
-	_Meta->setStaticPointerAddress(&intCommon_color_or_texture_type::intColor::_Meta);
 	_Meta->registerConstructor(intCommon_color_or_texture_type::intColor::create);
 
 	domCommon_color_or_texture_type::domColor::_Meta->setMetaIntegration(_Meta);
@@ -88,7 +86,6 @@ intCommon_color_or_texture_type::intParam::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "param" );
-	_Meta->setStaticPointerAddress(&intCommon_color_or_texture_type::intParam::_Meta);
 	_Meta->registerConstructor(intCommon_color_or_texture_type::intParam::create);
 
 	domCommon_color_or_texture_type::domParam::_Meta->setMetaIntegration(_Meta);
@@ -113,7 +110,6 @@ intCommon_color_or_texture_type::intTexture::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "texture" );
-	_Meta->setStaticPointerAddress(&intCommon_color_or_texture_type::intTexture::_Meta);
 	_Meta->registerConstructor(intCommon_color_or_texture_type::intTexture::create);
 
 	domCommon_color_or_texture_type::domTexture::_Meta->setMetaIntegration(_Meta);

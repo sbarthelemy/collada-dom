@@ -17,12 +17,15 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeMetaElement.h>
 
-/** The entry element declares an entry point into the executable code for a program element.
-*/class intEntry;
+class intEntry;
 
 typedef daeSmartRef<intEntry> intEntryRef;
 typedef daeTArray<intEntryRef> intEntryArray;
 
+/**
+ * The entry element declares an entry point into the executable code for
+ * a program element.
+ */
 class intEntry : public daeIntegrationObject
 {
 public: // Constuctor and Destructor

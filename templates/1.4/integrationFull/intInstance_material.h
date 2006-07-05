@@ -120,6 +120,58 @@ public: // STATIC MEMBERS
 	static daeMetaElement* _Meta;
 
 };
+class intBind_vertex_input;
+
+typedef daeSmartRef<intBind_vertex_input> intBind_vertex_inputRef;
+typedef daeTArray<intBind_vertex_inputRef> intBind_vertex_inputArray;
+
+/**
+ * The bind_vertex_input element binds vertex inputs to effect parameters
+ * upon instantiation.
+ */
+class intBind_vertex_input : public daeIntegrationObject
+{
+public: // Constuctor and Destructor
+	/**
+	 * Default Constructor.
+	 */
+	intBind_vertex_input();
+	 
+	/**
+	 * Default Destructor.
+	 */
+	~intBind_vertex_input();
+	 
+protected: // VIRTUAL INTEGRATION INTERFACE
+
+// IMPORT FROM COLLADA	
+	// This Method is used to create tool/runtime object
+	virtual void createFrom(daeElementRef element);
+
+	// This method translate from COLLADA to tool/runtime object
+	virtual void fromCOLLADA();
+
+	// This method is used as a second pass post process on tool/runtime objs
+	virtual void fromCOLLADAPostProcess();
+
+// EXPORT TO COLLADA	
+	// This Method is used to create COLLADA objects
+	virtual void createTo(void* userData);
+
+	// This method translate to COLLADA from tool/runtime object
+	virtual void toCOLLADA();
+
+	// This method is used as a second pass post process on COLLADA dom
+	virtual void toCOLLADAPostProcess();
+
+public: // STATIC METHODS
+	static daeElementRef create(daeInt bytes);
+	static daeMetaElement* registerElement();
+	
+public: // STATIC MEMBERS
+	static daeMetaElement* _Meta;
+
+};
 
 };
 

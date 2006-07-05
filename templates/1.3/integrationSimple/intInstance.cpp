@@ -35,7 +35,6 @@ intInstance::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "instance" );
-	_Meta->setStaticPointerAddress(&intInstance::_Meta);
 	_Meta->registerConstructor(intInstance::create);
 
 	domInstance::_Meta->setMetaIntegration(_Meta);

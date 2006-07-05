@@ -35,7 +35,6 @@ intEllipsoid::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "ellipsoid" );
-	_Meta->setStaticPointerAddress(&intEllipsoid::_Meta);
 	_Meta->registerConstructor(intEllipsoid::create);
 
 	domEllipsoid::_Meta->setMetaIntegration(_Meta);

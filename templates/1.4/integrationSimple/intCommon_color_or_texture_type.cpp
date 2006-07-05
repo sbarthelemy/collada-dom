@@ -35,7 +35,6 @@ intCommon_color_or_texture_type::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "common_color_or_texture_type" );
-	_Meta->setStaticPointerAddress(&intCommon_color_or_texture_type::_Meta);
 	_Meta->registerConstructor(intCommon_color_or_texture_type::create);
 
 	domCommon_color_or_texture_type::_Meta->setMetaIntegration(_Meta);

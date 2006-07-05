@@ -35,7 +35,6 @@ intGles_newparam::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "gles_newparam" );
-	_Meta->setStaticPointerAddress(&intGles_newparam::_Meta);
 	_Meta->registerConstructor(intGles_newparam::create);
 
 	domGles_newparam::_Meta->setMetaIntegration(_Meta);

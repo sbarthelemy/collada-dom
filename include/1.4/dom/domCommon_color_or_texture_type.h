@@ -47,7 +47,7 @@ public:
 		 * Sets the sid attribute.
 		 * @param atSid The new value for the sid attribute.
 		 */
-		void setSid( xsNCName atSid ) { attrSid = atSid;	
+		void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid;	
 	 _validAttributeArray[0] = true; }
 
 		/**
@@ -126,7 +126,7 @@ public:
 		 * Sets the ref attribute.
 		 * @param atRef The new value for the ref attribute.
 		 */
-		void setRef( xsNCName atRef ) { attrRef = atRef;	
+		void setRef( xsNCName atRef ) { *(daeStringRef*)&attrRef = atRef;	
 	 _validAttributeArray[0] = true; }
 
 	protected:
@@ -192,7 +192,7 @@ public:
 		 * Sets the texture attribute.
 		 * @param atTexture The new value for the texture attribute.
 		 */
-		void setTexture( xsNCName atTexture ) { attrTexture = atTexture;	
+		void setTexture( xsNCName atTexture ) { *(daeStringRef*)&attrTexture = atTexture;	
 	 _validAttributeArray[0] = true; }
 
 		/**
@@ -204,7 +204,7 @@ public:
 		 * Sets the texcoord attribute.
 		 * @param atTexcoord The new value for the texcoord attribute.
 		 */
-		void setTexcoord( xsNCName atTexcoord ) { attrTexcoord = atTexcoord;	
+		void setTexcoord( xsNCName atTexcoord ) { *(daeStringRef*)&attrTexcoord = atTexcoord;	
 	 _validAttributeArray[1] = true; }
 
 		/**
@@ -250,7 +250,6 @@ public:
 		 */
 		static daeMetaElement* _Meta;
 	};
-
 
 
 protected:  // Elements

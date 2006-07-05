@@ -228,7 +228,7 @@ public:
 	daeBool hasAttribute( daeString attrName );
 
 	/**
-	 * Gets the value of the attribute specified.
+	 * Gets a pointer to the value of the attribute specified.
 	 * @param attrName The name of the attribute to look for.
 	 * @return Returns a daeMemoryRef (char *) to the value of the attribute. The return value will need 
 	 * to be typecast to the appropriate type. Returns NULL if the attribute does not exist.
@@ -298,8 +298,8 @@ public:
 	 */
 	daeElement* getParentElement() { return _parent;}
 	/**
-	 * Depricated. Use getParentElement()
-	 * @depricated
+	 * Deprecated. Use getParentElement()
+	 * @deprecated
 	 */
 	daeElement* getXMLParentElement() { return _parent;}
 	/**

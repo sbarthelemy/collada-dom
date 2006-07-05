@@ -35,7 +35,6 @@ intInstance_rigid_body::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "instance_rigid_body" );
-	_Meta->setStaticPointerAddress(&intInstance_rigid_body::_Meta);
 	_Meta->registerConstructor(intInstance_rigid_body::create);
 
 	domInstance_rigid_body::_Meta->setMetaIntegration(_Meta);

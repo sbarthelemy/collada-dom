@@ -22,6 +22,11 @@ registerElements()
   intInstanceWithExtra::registerElement();
   intTargetableFloat::registerElement();
   intTargetableFloat3::registerElement();
+  intFx_surface_format_hint_common::registerElement();
+  intFx_surface_init_planar_common::registerElement();
+  intFx_surface_init_volume_common::registerElement();
+  intFx_surface_init_cube_common::registerElement();
+  intFx_surface_init_from_common::registerElement();
   intFx_surface_common::registerElement();
   intFx_sampler1D_common::registerElement();
   intFx_sampler2D_common::registerElement();
@@ -38,7 +43,6 @@ registerElements()
   intFx_annotate_common::registerElement();
   intFx_include_common::registerElement();
   intFx_newparam_common::registerElement();
-  intFx_setparam_common::registerElement();
   intFx_code_profile::registerElement();
   intGl_sampler1D::registerElement();
   intGl_sampler2D::registerElement();
@@ -54,6 +58,7 @@ registerElements()
   intGlsl_setparam::registerElement();
   intCommon_float_or_param_type::registerElement();
   intCommon_color_or_texture_type::registerElement();
+  intCommon_transparent_type::registerElement();
   intCommon_newparam_type::registerElement();
   intCg_sampler1D::registerElement();
   intCg_sampler2D::registerElement();
@@ -80,6 +85,7 @@ registerElements()
   intGles_texture_unit::registerElement();
   intGles_sampler_state::registerElement();
   intGles_newparam::registerElement();
+  intFx_surface_init_common::registerElement();
   intFx_annotate_type_common::registerElement();
   intFx_basic_type_common::registerElement();
   intGl_pipeline_settings::registerElement();

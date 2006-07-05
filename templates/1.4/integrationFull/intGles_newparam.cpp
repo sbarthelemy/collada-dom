@@ -37,7 +37,6 @@ intGles_newparam::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "gles_newparam" );
-	_Meta->setStaticPointerAddress(&intGles_newparam::_Meta);
 	_Meta->registerConstructor(intGles_newparam::create);
 
 	domGles_newparam::_Meta->setMetaIntegration(_Meta);
@@ -62,7 +61,6 @@ intGles_newparam::intSemantic::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "semantic" );
-	_Meta->setStaticPointerAddress(&intGles_newparam::intSemantic::_Meta);
 	_Meta->registerConstructor(intGles_newparam::intSemantic::create);
 
 	domGles_newparam::domSemantic::_Meta->setMetaIntegration(_Meta);
@@ -87,7 +85,6 @@ intGles_newparam::intModifier::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "modifier" );
-	_Meta->setStaticPointerAddress(&intGles_newparam::intModifier::_Meta);
 	_Meta->registerConstructor(intGles_newparam::intModifier::create);
 
 	domGles_newparam::domModifier::_Meta->setMetaIntegration(_Meta);

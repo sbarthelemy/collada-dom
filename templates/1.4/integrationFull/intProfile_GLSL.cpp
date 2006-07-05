@@ -44,7 +44,6 @@ intProfile_GLSL::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "profile_GLSL" );
-	_Meta->setStaticPointerAddress(&intProfile_GLSL::_Meta);
 	_Meta->registerConstructor(intProfile_GLSL::create);
 
 	domProfile_GLSL::_Meta->setMetaIntegration(_Meta);
@@ -69,7 +68,6 @@ intProfile_GLSL::intTechnique::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "technique" );
-	_Meta->setStaticPointerAddress(&intProfile_GLSL::intTechnique::_Meta);
 	_Meta->registerConstructor(intProfile_GLSL::intTechnique::create);
 
 	domProfile_GLSL::domTechnique::_Meta->setMetaIntegration(_Meta);
@@ -94,7 +92,6 @@ intProfile_GLSL::intTechnique::intPass::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "pass" );
-	_Meta->setStaticPointerAddress(&intProfile_GLSL::intTechnique::intPass::_Meta);
 	_Meta->registerConstructor(intProfile_GLSL::intTechnique::intPass::create);
 
 	domProfile_GLSL::domTechnique::domPass::_Meta->setMetaIntegration(_Meta);
@@ -119,7 +116,6 @@ intProfile_GLSL::intTechnique::intPass::intDraw::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "draw" );
-	_Meta->setStaticPointerAddress(&intProfile_GLSL::intTechnique::intPass::intDraw::_Meta);
 	_Meta->registerConstructor(intProfile_GLSL::intTechnique::intPass::intDraw::create);
 
 	domProfile_GLSL::domTechnique::domPass::domDraw::_Meta->setMetaIntegration(_Meta);
@@ -144,7 +140,6 @@ intProfile_GLSL::intTechnique::intPass::intShader::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "shader" );
-	_Meta->setStaticPointerAddress(&intProfile_GLSL::intTechnique::intPass::intShader::_Meta);
 	_Meta->registerConstructor(intProfile_GLSL::intTechnique::intPass::intShader::create);
 
 	domProfile_GLSL::domTechnique::domPass::domShader::_Meta->setMetaIntegration(_Meta);
@@ -169,7 +164,6 @@ intProfile_GLSL::intTechnique::intPass::intShader::intCompiler_target::registerE
     
     _Meta = new daeMetaElement;
     _Meta->setName( "compiler_target" );
-	_Meta->setStaticPointerAddress(&intProfile_GLSL::intTechnique::intPass::intShader::intCompiler_target::_Meta);
 	_Meta->registerConstructor(intProfile_GLSL::intTechnique::intPass::intShader::intCompiler_target::create);
 
 	domProfile_GLSL::domTechnique::domPass::domShader::domCompiler_target::_Meta->setMetaIntegration(_Meta);
@@ -194,7 +188,6 @@ intProfile_GLSL::intTechnique::intPass::intShader::intCompiler_options::register
     
     _Meta = new daeMetaElement;
     _Meta->setName( "compiler_options" );
-	_Meta->setStaticPointerAddress(&intProfile_GLSL::intTechnique::intPass::intShader::intCompiler_options::_Meta);
 	_Meta->registerConstructor(intProfile_GLSL::intTechnique::intPass::intShader::intCompiler_options::create);
 
 	domProfile_GLSL::domTechnique::domPass::domShader::domCompiler_options::_Meta->setMetaIntegration(_Meta);
@@ -219,7 +212,6 @@ intProfile_GLSL::intTechnique::intPass::intShader::intName::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "name" );
-	_Meta->setStaticPointerAddress(&intProfile_GLSL::intTechnique::intPass::intShader::intName::_Meta);
 	_Meta->registerConstructor(intProfile_GLSL::intTechnique::intPass::intShader::intName::create);
 
 	domProfile_GLSL::domTechnique::domPass::domShader::domName::_Meta->setMetaIntegration(_Meta);
@@ -244,7 +236,6 @@ intProfile_GLSL::intTechnique::intPass::intShader::intBind::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "bind" );
-	_Meta->setStaticPointerAddress(&intProfile_GLSL::intTechnique::intPass::intShader::intBind::_Meta);
 	_Meta->registerConstructor(intProfile_GLSL::intTechnique::intPass::intShader::intBind::create);
 
 	domProfile_GLSL::domTechnique::domPass::domShader::domBind::_Meta->setMetaIntegration(_Meta);
@@ -269,7 +260,6 @@ intProfile_GLSL::intTechnique::intPass::intShader::intBind::intParam::registerEl
     
     _Meta = new daeMetaElement;
     _Meta->setName( "param" );
-	_Meta->setStaticPointerAddress(&intProfile_GLSL::intTechnique::intPass::intShader::intBind::intParam::_Meta);
 	_Meta->registerConstructor(intProfile_GLSL::intTechnique::intPass::intShader::intBind::intParam::create);
 
 	domProfile_GLSL::domTechnique::domPass::domShader::domBind::domParam::_Meta->setMetaIntegration(_Meta);

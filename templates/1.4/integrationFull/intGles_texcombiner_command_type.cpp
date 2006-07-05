@@ -35,7 +35,6 @@ intGles_texcombiner_command_type::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "gles_texcombiner_command_type" );
-	_Meta->setStaticPointerAddress(&intGles_texcombiner_command_type::_Meta);
 	_Meta->registerConstructor(intGles_texcombiner_command_type::create);
 
 	domGles_texcombiner_command_type::_Meta->setMetaIntegration(_Meta);

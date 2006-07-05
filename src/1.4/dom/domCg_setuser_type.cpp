@@ -39,7 +39,9 @@ domCg_setuser_type::registerElement()
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
-	cm = new daeMetaChoice( _Meta, cm, 0, 0, -1 );
+	cm = new daeMetaChoice( _Meta, cm, 0, 0, 1 );
+
+	cm = new daeMetaChoice( _Meta, cm, 0, 1, -1 );
 
 	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "cg_param_type" );
@@ -66,6 +68,16 @@ domCg_setuser_type::registerElement()
 	cm->appendChild( mea );
 	
 	cm->setMaxOrdinal( 0 );
+	cm->getParent()->appendChild( cm );
+	cm = cm->getParent();
+	
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 3001, 1, -1 );
+	mea->setName( "setparam" );
+	mea->setOffset( daeOffsetOf(domCg_setuser_type,elemSetparam_array) );
+	mea->setElementType( domCg_setparam::registerElement() );
+	cm->appendChild( mea );
+	
+	cm->setMaxOrdinal( 3000 );
 	_Meta->setCMRoot( cm );	
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domCg_setuser_type,_contents));
@@ -78,6 +90,18 @@ domCg_setuser_type::registerElement()
 		ma->setName( "name" );
 		ma->setType( daeAtomicType::get("Cg_identifier"));
 		ma->setOffset( daeOffsetOf( domCg_setuser_type , attrName ));
+		ma->setContainer( _Meta );
+		ma->setIsRequired( true );
+	
+		_Meta->appendAttribute(ma);
+	}
+
+	//	Add attribute: source
+ 	{
+		daeMetaAttribute *ma = new daeMetaAttribute;
+		ma->setName( "source" );
+		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setOffset( daeOffsetOf( domCg_setuser_type , attrSource ));
 		ma->setContainer( _Meta );
 		ma->setIsRequired( true );
 	

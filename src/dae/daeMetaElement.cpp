@@ -246,12 +246,12 @@ daeBool daeMetaElement::place(daeElement *parent, daeElement *child, daeUInt *or
 		return false;
 	}
 	daeUInt ord;
-	daeBool retVal = _contentModel->placeElement( parent, child, ord );
-	if ( retVal ) {
+	daeElement *retVal = _contentModel->placeElement( parent, child, ord );
+	if ( retVal != NULL ) {
 		//update document pointer
 		child->setDocument( parent->getDocument() );
 		if ( parent->getDocument() ) {
-			parent->getDocument()->insertElement( child );
+			parent->getDocument()->insertElement( retVal );
 			parent->getDocument()->setModified(true);
 		}
 		//add to _contents array
@@ -263,14 +263,14 @@ daeBool daeMetaElement::place(daeElement *parent, daeElement *child, daeUInt *or
 			daeBool needsAppend = true;
 			for ( size_t x = 0; x < contentsOrder->getCount(); x++ ) {
 				if ( contentsOrder->get(x) > ord ) {
-					contents->insertAt( x, child );
+					contents->insertAt( x, retVal );
 					contentsOrder->insertAt( x, ord );
 					needsAppend = false;
 					break;
 				}
 			}
 			if ( needsAppend ) {
-				contents->append(child);
+				contents->append(retVal);
 				contentsOrder->append( ord );
 			}
 		}
@@ -278,7 +278,7 @@ daeBool daeMetaElement::place(daeElement *parent, daeElement *child, daeUInt *or
 			*ordinal = ord;
 		}
 	}
-	return retVal;
+	return retVal!=NULL;
 }
 
 daeBool daeMetaElement::placeAt( daeInt index, daeElement *parent, daeElement *child )
@@ -287,14 +287,8 @@ daeBool daeMetaElement::placeAt( daeInt index, daeElement *parent, daeElement *c
 		return false;
 	}
 	daeUInt ord;
-	daeBool retVal = _contentModel->placeElement( parent, child, ord );
-	if ( retVal ) {
-		//update document pointer
-		child->setDocument( parent->getDocument() );
-		if ( parent->getDocument() ) {
-			parent->getDocument()->insertElement( child );
-			parent->getDocument()->setModified(true);
-		}
+	daeElement *retVal = _contentModel->placeElement( parent, child, ord );
+	if ( retVal != NULL ) {
 		//add to _contents array
 		if (_metaContents != NULL) {
 			daeElementRefArray* contents =
@@ -309,16 +303,24 @@ daeBool daeMetaElement::placeAt( daeInt index, daeElement *parent, daeElement *c
 				validLoc = contentsOrder->get(index) >= ord;
 			}
 			if ( validLoc ) {
-				contents->insertAt( index, child );
+				contents->insertAt( index, retVal );
 				contentsOrder->insertAt( index, ord );
 			}
 			else {
-				_contentModel->removeElement( parent, child );
-				retVal = false;
+				_contentModel->removeElement( parent, retVal );
+				retVal = NULL;
 			}
 		}
 	}
-	return retVal;
+	if ( retVal != NULL ) {
+		//update document pointer
+		child->setDocument( parent->getDocument() );
+		if ( parent->getDocument() ) {
+			parent->getDocument()->insertElement( retVal );
+			parent->getDocument()->setModified(true);
+		}
+	}
+	return retVal!=NULL;
 }
 
 daeBool daeMetaElement::placeBefore( daeElement *marker, daeElement *parent, daeElement *child, daeUInt *ordinal )
@@ -327,21 +329,15 @@ daeBool daeMetaElement::placeBefore( daeElement *marker, daeElement *parent, dae
 		return false;
 	}
 	daeUInt ord;
-	daeBool retVal = _contentModel->placeElement( parent, child, ord, 0, marker, NULL );
-	if ( retVal ) {
-		//update document pointer
-		child->setDocument( parent->getDocument() );
-		if ( parent->getDocument() ) {
-			parent->getDocument()->insertElement( child );
-			parent->getDocument()->setModified(true);
-		}
+	daeElement *retVal = _contentModel->placeElement( parent, child, ord, 0, marker, NULL );
+	if ( retVal != NULL ) {
 		//add to _contents array
 		if (_metaContents != NULL) {
 			daeElementRefArray* contents =
 				(daeElementRefArray*)_metaContents->getWritableMemory(parent);
 			daeUIntArray* contentsOrder =
 				(daeUIntArray*)_metaContentsOrder->getWritableMemory(parent);
-			size_t index;
+			size_t index(0);
 			daeBool validLoc = false;
 			if ( contents->find( marker, index ) == DAE_OK ) {
 				if ( index > 0 ) {
@@ -354,19 +350,27 @@ daeBool daeMetaElement::placeBefore( daeElement *marker, daeElement *parent, dae
 				}
 			}
 			if ( validLoc ) {
-				contents->insertAt( index, child );
+				contents->insertAt( index, retVal );
 				contentsOrder->insertAt( index, ord );
 				if ( ordinal != NULL ) {
 					*ordinal = ord;
 				}
 			}
 			else {
-				_contentModel->removeElement( parent, child );
-				retVal = false;
+				_contentModel->removeElement( parent, retVal );
+				retVal = NULL;
 			}
 		}
 	}
-	return retVal;
+	if ( retVal != NULL ) {
+		//update document pointer
+		child->setDocument( parent->getDocument() );
+		if ( parent->getDocument() ) {
+			parent->getDocument()->insertElement( retVal );
+			parent->getDocument()->setModified(true);
+		}
+	}
+	return retVal!=NULL;
 }
 
 daeBool daeMetaElement::placeAfter( daeElement *marker, daeElement *parent, daeElement *child, daeUInt *ordinal )
@@ -375,21 +379,15 @@ daeBool daeMetaElement::placeAfter( daeElement *marker, daeElement *parent, daeE
 		return false;
 	}
 	daeUInt ord;
-	daeBool retVal = _contentModel->placeElement( parent, child, ord, 0, marker, NULL );
-	if ( retVal ) {
-		//update document pointer
-		child->setDocument( parent->getDocument() );
-		if ( parent->getDocument() ) {
-			parent->getDocument()->insertElement( child );
-			parent->getDocument()->setModified(true);
-		}
+	daeElement *retVal = _contentModel->placeElement( parent, child, ord, 0, marker, NULL );
+	if ( retVal != NULL ) {
 		//add to _contents array
 		if (_metaContents != NULL) {
 			daeElementRefArray* contents =
 				(daeElementRefArray*)_metaContents->getWritableMemory(parent);
 			daeUIntArray* contentsOrder =
 				(daeUIntArray*)_metaContentsOrder->getWritableMemory(parent);
-			size_t index;
+			size_t index(0);
 			daeBool validLoc = false;
 			if ( contents->find( marker, index ) == DAE_OK ) {
 				if ( index < contentsOrder->getCount()-1 ) {
@@ -400,19 +398,27 @@ daeBool daeMetaElement::placeAfter( daeElement *marker, daeElement *parent, daeE
 				}
 			}
 			if ( validLoc ) {
-				contents->insertAt( index+1, child );
+				contents->insertAt( index+1, retVal );
 				contentsOrder->insertAt( index+1, ord );
 				if ( ordinal != NULL ) {
 					*ordinal = ord;
 				}
 			}
 			else {
-				_contentModel->removeElement( parent, child );
-				retVal = false;
+				_contentModel->removeElement( parent, retVal );
+				retVal = NULL;
 			}
 		}
 	}
-	return retVal;
+	if ( retVal != NULL ) {
+		//update document pointer
+		child->setDocument( parent->getDocument() );
+		if ( parent->getDocument() ) {
+			parent->getDocument()->insertElement( retVal );
+			parent->getDocument()->setModified(true);
+		}
+	}
+	return retVal!=NULL;
 }
 
 daeBool daeMetaElement::remove(daeElement *parent, daeElement *child)
@@ -427,7 +433,7 @@ daeBool daeMetaElement::remove(daeElement *parent, daeElement *child)
 		{
 			daeElementRefArray* contents = (daeElementRefArray*)_metaContents->getWritableMemory(parent);
 			daeUIntArray* contentsOrder = (daeUIntArray*)_metaContentsOrder->getWritableMemory(parent);
-			size_t idx;
+			size_t idx(0);
 			if ( contents->remove(child, &idx) == DAE_OK ) {
 				contentsOrder->removeIndex( idx );
 			}

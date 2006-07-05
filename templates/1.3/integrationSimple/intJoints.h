@@ -17,17 +17,20 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeMetaElement.h>
 
-/** The joints element declares the association between joint nodes and attribute data.
-			The joints element associates joint nodes in the scene hierarchy with bind-position matrices 
-			in a skin controller. The joint nodes represent the joints of a character skeleton. The 
-			skeleton can be resused by different skin controllers. Information particular to a specific 
-			skin controller is stored with the skin including the position of the joints at the time the 
-			skin was bound them.
-*/class intJoints;
+class intJoints;
 
 typedef daeSmartRef<intJoints> intJointsRef;
 typedef daeTArray<intJointsRef> intJointsArray;
 
+/**
+ * The joints element declares the association between joint nodes and attribute
+ * data. The joints element associates joint nodes in the scene hierarchy
+ * with bind-position matrices  in a skin controller. The joint nodes represent
+ * the joints of a character skeleton. The  skeleton can be resused by different
+ * skin controllers. Information particular to a specific  skin controller
+ * is stored with the skin including the position of the joints at the time
+ * the  skin was bound them.
+ */
 class intJoints : public daeIntegrationObject
 {
 public: // Constuctor and Destructor

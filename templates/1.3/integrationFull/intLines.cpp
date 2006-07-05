@@ -36,7 +36,6 @@ intLines::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "lines" );
-	_Meta->setStaticPointerAddress(&intLines::_Meta);
 	_Meta->registerConstructor(intLines::create);
 
 	domLines::_Meta->setMetaIntegration(_Meta);
@@ -61,7 +60,6 @@ intLines::intP::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "p" );
-	_Meta->setStaticPointerAddress(&intLines::intP::_Meta);
 	_Meta->registerConstructor(intLines::intP::create);
 
 	domLines::domP::_Meta->setMetaIntegration(_Meta);

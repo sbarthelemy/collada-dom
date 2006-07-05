@@ -35,7 +35,6 @@ intScale::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "scale" );
-	_Meta->setStaticPointerAddress(&intScale::_Meta);
 	_Meta->registerConstructor(intScale::create);
 
 	domScale::_Meta->setMetaIntegration(_Meta);

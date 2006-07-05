@@ -37,7 +37,6 @@ intBoundingbox::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "boundingbox" );
-	_Meta->setStaticPointerAddress(&intBoundingbox::_Meta);
 	_Meta->registerConstructor(intBoundingbox::create);
 
 	domBoundingbox::_Meta->setMetaIntegration(_Meta);
@@ -62,7 +61,6 @@ intBoundingbox::intMin::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "min" );
-	_Meta->setStaticPointerAddress(&intBoundingbox::intMin::_Meta);
 	_Meta->registerConstructor(intBoundingbox::intMin::create);
 
 	domBoundingbox::domMin::_Meta->setMetaIntegration(_Meta);
@@ -87,7 +85,6 @@ intBoundingbox::intMax::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "max" );
-	_Meta->setStaticPointerAddress(&intBoundingbox::intMax::_Meta);
 	_Meta->registerConstructor(intBoundingbox::intMax::create);
 
 	domBoundingbox::domMax::_Meta->setMetaIntegration(_Meta);

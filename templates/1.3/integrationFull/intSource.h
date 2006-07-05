@@ -17,20 +17,22 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeMetaElement.h>
 
-/** The source element declares a data repository that provides values according to the 
-			semantics of an input element that refers to it.
-			A data source is a well-known source of information that can be accessed through an 
-			established communication channel. The data source provides access methods to the information. 
-			These access methods implement various techniques according to the representation of the 
-			information. The information may be stored locally as an array of data or a program that 
-			generates the data.
-			One of the array elements (array, bool_array, float_array, int_array, or Name_array) may 
-			occur zero or more times.
-*/class intSource;
+class intSource;
 
 typedef daeSmartRef<intSource> intSourceRef;
 typedef daeTArray<intSourceRef> intSourceArray;
 
+/**
+ * The source element declares a data repository that provides values according
+ * to the  semantics of an input element that refers to it. A data source
+ * is a well-known source of information that can be accessed through an 
+ * established communication channel. The data source provides access methods
+ * to the information.  These access methods implement various techniques
+ * according to the representation of the  information. The information may
+ * be stored locally as an array of data or a program that  generates the
+ * data. One of the array elements (array, bool_array, float_array, int_array,
+ * or Name_array) may  occur zero or more times.
+ */
 class intSource : public daeIntegrationObject
 {
 public: // Constuctor and Destructor
@@ -74,14 +76,17 @@ public: // STATIC MEMBERS
 	static daeMetaElement* _Meta;
 
 public:
-/** The technique element must occur one or more times. Within the technique element, 
-						the common profile's accessor elements describe the output of the source element. 
-						The output is assembled from the accessor elements in the order they are specified.
-*/class intTechnique;
+class intTechnique;
 
 typedef daeSmartRef<intTechnique> intTechniqueRef;
 typedef daeTArray<intTechniqueRef> intTechniqueArray;
 
+/**
+ * The technique element must occur one or more times. Within the technique
+ * element,  the common profile's accessor elements describe the output of
+ * the source element.  The output is assembled from the accessor elements
+ * in the order they are specified.
+ */
 class intTechnique : public daeIntegrationObject
 {
 public: // Constuctor and Destructor

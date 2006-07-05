@@ -17,20 +17,24 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeMetaElement.h>
 
-/** The triangles element declares the binding of geometric primitives and vertex attributes 
-			for a mesh element. The triangles element provides the information needed to bind vertex 
-			attributes together and then organize those vertices into individual triangles. The vertex 
-			array information is supplied in distinct attribute arrays that are then indexed by the 
-			triangles element. Each triangle described by the mesh has three vertices. The first triangle 
-			is formed from the first, second, and third vertices. The second triangle is formed from the 
-			fourth, fifth, and sixth vertices, and so on. A triangles element contains a sequence of p 
-			elements, where 'p' stands for primitive. Each p element describes the vertex attributes for 
-			an individual triangle.
-*/class intTriangles;
+class intTriangles;
 
 typedef daeSmartRef<intTriangles> intTrianglesRef;
 typedef daeTArray<intTrianglesRef> intTrianglesArray;
 
+/**
+ * The triangles element declares the binding of geometric primitives and
+ * vertex attributes  for a mesh element. The triangles element provides the
+ * information needed to bind vertex  attributes together and then organize
+ * those vertices into individual triangles. The vertex  array information
+ * is supplied in distinct attribute arrays that are then indexed by the 
+ * triangles element. Each triangle described by the mesh has three vertices.
+ * The first triangle  is formed from the first, second, and third vertices.
+ * The second triangle is formed from the  fourth, fifth, and sixth vertices,
+ * and so on. A triangles element contains a sequence of p  elements, where
+ * 'p' stands for primitive. Each p element describes the vertex attributes
+ * for  an individual triangle.
+ */
 class intTriangles : public daeIntegrationObject
 {
 public: // Constuctor and Destructor
@@ -74,21 +78,24 @@ public: // STATIC MEMBERS
 	static daeMetaElement* _Meta;
 
 public:
-/** Primitive element. @brief Every three indices form a triangle.
-						Each p element contains indices that reference into the source elements. These 
-						indices are position dependent and reference the contents of the source elements
-						according to the order of the input elements. Here is an example of this: The 
-						first index references the first unique input element; the second index references 
-						the second unique input element, and so on. This is a simple form of compression 
-						that reduces the number of indices required in each p element. The input elements 
-						are uniquely identified by their idx attribute values. A complete sampling of a 
-						single vertex is completed by gathering one value from each input using the 
-						associated index in the p element.
-*/class intP;
+class intP;
 
 typedef daeSmartRef<intP> intPRef;
 typedef daeTArray<intPRef> intPArray;
 
+/**
+ * Primitive element. @brief Every three indices form a triangle. Each p element
+ * contains indices that reference into the source elements. These  indices
+ * are position dependent and reference the contents of the source elements
+ * according to the order of the input elements. Here is an example of this:
+ * The  first index references the first unique input element; the second
+ * index references  the second unique input element, and so on. This is a
+ * simple form of compression  that reduces the number of indices required
+ * in each p element. The input elements  are uniquely identified by their
+ * idx attribute values. A complete sampling of a  single vertex is completed
+ * by gathering one value from each input using the  associated index in the
+ * p element.
+ */
 class intP : public daeIntegrationObject
 {
 public: // Constuctor and Destructor

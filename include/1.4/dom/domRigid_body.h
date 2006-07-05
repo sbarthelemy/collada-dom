@@ -60,7 +60,7 @@ public:
 		typedef daeTArray<domDynamicRef> domDynamic_Array;
 
 /**
- * If FALSE, the rigid_body is not moveable
+ * If false, the rigid_body is not moveable
  */
 		class domDynamic : public daeElement
 		{
@@ -88,7 +88,7 @@ public:
 			 * Sets the sid attribute.
 			 * @param atSid The new value for the sid attribute.
 			 */
-			void setSid( xsNCName atSid ) { attrSid = atSid;		
+			void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid;		
 	 _validAttributeArray[0] = true; }
 
 			/**
@@ -256,7 +256,7 @@ public:
 			typedef daeTArray<domHollowRef> domHollow_Array;
 
 /**
- * If TRUE, the mass is distributed along the surface of the shape
+ * If true, the mass is distributed along the surface of the shape
  */
 			class domHollow : public daeElement
 			{
@@ -284,7 +284,7 @@ public:
 				 * Sets the sid attribute.
 				 * @param atSid The new value for the sid attribute.
 				 */
-				void setSid( xsNCName atSid ) { attrSid = atSid;			
+				void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid;			
 	 _validAttributeArray[0] = true; }
 
 				/**
@@ -341,7 +341,7 @@ public:
 
 		protected:  // Elements
 /**
- * If TRUE, the mass is distributed along the surface of the shape @see domHollow
+ * If true, the mass is distributed along the surface of the shape @see domHollow
  */
 			domHollowRef elemHollow;
 /**
@@ -564,7 +564,7 @@ public:
 
 	protected:  // Elements
 /**
- * If FALSE, the rigid_body is not moveable @see domDynamic
+ * If false, the rigid_body is not moveable @see domDynamic
  */
 		domDynamicRef elemDynamic;
 /**
@@ -737,7 +737,7 @@ public:	//Accessors and Mutators
 	 * Sets the sid attribute.
 	 * @param atSid The new value for the sid attribute.
 	 */
-	void setSid( xsNCName atSid ) { attrSid = atSid;
+	void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid;
 	 _validAttributeArray[0] = true; }
 
 	/**
@@ -749,7 +749,7 @@ public:	//Accessors and Mutators
 	 * Sets the name attribute.
 	 * @param atName The new value for the name attribute.
 	 */
-	void setName( xsNCName atName ) { attrName = atName;
+	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName;
 	 _validAttributeArray[1] = true; }
 
 	/**

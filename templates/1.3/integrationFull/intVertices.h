@@ -17,15 +17,18 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeMetaElement.h>
 
-/** The vertices element declares the attributes and identity of mesh-vertices.
-			The vertices element describes mesh-vertices in a mesh geometry or skin controller. The 
-			mesh vertices represent the position (identity) of the vertices comprising the mesh and 
-			other vertex attributes that are invariant to tessellation.
-*/class intVertices;
+class intVertices;
 
 typedef daeSmartRef<intVertices> intVerticesRef;
 typedef daeTArray<intVerticesRef> intVerticesArray;
 
+/**
+ * The vertices element declares the attributes and identity of mesh-vertices.
+ * The vertices element describes mesh-vertices in a mesh geometry or skin
+ * controller. The  mesh vertices represent the position (identity) of the
+ * vertices comprising the mesh and  other vertex attributes that are invariant
+ * to tessellation.
+ */
 class intVertices : public daeIntegrationObject
 {
 public: // Constuctor and Destructor
@@ -69,16 +72,19 @@ public: // STATIC MEMBERS
 	static daeMetaElement* _Meta;
 
 public:
-/** The input element must occur one or more times. One input must have the semantic 
-						attribute value of 'POSITION' to establish the topological identity of each 
-						vertex in the mesh. An input element may have a semantic attribute whose value 
-						is COLOR. These color inputs are RGB vectors (float3). The input element must 
-						not have the idx attribute when it is the child of a vertices element.
-*/class intInput;
+class intInput;
 
 typedef daeSmartRef<intInput> intInputRef;
 typedef daeTArray<intInputRef> intInputArray;
 
+/**
+ * The input element must occur one or more times. One input must have the
+ * semantic  attribute value of 'POSITION' to establish the topological identity
+ * of each  vertex in the mesh. An input element may have a semantic attribute
+ * whose value  is COLOR. These color inputs are RGB vectors (float3). The
+ * input element must  not have the idx attribute when it is the child of
+ * a vertices element.
+ */
 class intInput : public daeIntegrationObject
 {
 public: // Constuctor and Destructor

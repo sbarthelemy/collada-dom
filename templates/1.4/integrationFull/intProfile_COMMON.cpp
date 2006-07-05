@@ -40,7 +40,6 @@ intProfile_COMMON::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "profile_COMMON" );
-	_Meta->setStaticPointerAddress(&intProfile_COMMON::_Meta);
 	_Meta->registerConstructor(intProfile_COMMON::create);
 
 	domProfile_COMMON::_Meta->setMetaIntegration(_Meta);
@@ -65,7 +64,6 @@ intProfile_COMMON::intTechnique::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "technique" );
-	_Meta->setStaticPointerAddress(&intProfile_COMMON::intTechnique::_Meta);
 	_Meta->registerConstructor(intProfile_COMMON::intTechnique::create);
 
 	domProfile_COMMON::domTechnique::_Meta->setMetaIntegration(_Meta);
@@ -90,7 +88,6 @@ intProfile_COMMON::intTechnique::intConstant::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "constant" );
-	_Meta->setStaticPointerAddress(&intProfile_COMMON::intTechnique::intConstant::_Meta);
 	_Meta->registerConstructor(intProfile_COMMON::intTechnique::intConstant::create);
 
 	domProfile_COMMON::domTechnique::domConstant::_Meta->setMetaIntegration(_Meta);
@@ -115,7 +112,6 @@ intProfile_COMMON::intTechnique::intLambert::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "lambert" );
-	_Meta->setStaticPointerAddress(&intProfile_COMMON::intTechnique::intLambert::_Meta);
 	_Meta->registerConstructor(intProfile_COMMON::intTechnique::intLambert::create);
 
 	domProfile_COMMON::domTechnique::domLambert::_Meta->setMetaIntegration(_Meta);
@@ -140,7 +136,6 @@ intProfile_COMMON::intTechnique::intPhong::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "phong" );
-	_Meta->setStaticPointerAddress(&intProfile_COMMON::intTechnique::intPhong::_Meta);
 	_Meta->registerConstructor(intProfile_COMMON::intTechnique::intPhong::create);
 
 	domProfile_COMMON::domTechnique::domPhong::_Meta->setMetaIntegration(_Meta);
@@ -165,7 +160,6 @@ intProfile_COMMON::intTechnique::intBlinn::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "blinn" );
-	_Meta->setStaticPointerAddress(&intProfile_COMMON::intTechnique::intBlinn::_Meta);
 	_Meta->registerConstructor(intProfile_COMMON::intTechnique::intBlinn::create);
 
 	domProfile_COMMON::domTechnique::domBlinn::_Meta->setMetaIntegration(_Meta);

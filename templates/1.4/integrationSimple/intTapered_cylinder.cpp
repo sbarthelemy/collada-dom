@@ -35,7 +35,6 @@ intTapered_cylinder::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "tapered_cylinder" );
-	_Meta->setStaticPointerAddress(&intTapered_cylinder::_Meta);
 	_Meta->registerConstructor(intTapered_cylinder::create);
 
 	domTapered_cylinder::_Meta->setMetaIntegration(_Meta);

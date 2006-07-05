@@ -17,20 +17,23 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeMetaElement.h>
 
-/** The lines element declares the binding of geometric primitives and vertex attributes for a 
-			mesh element. The lines element provides the information needed to bind vertex attributes 
-			together and then organize those vertices into individual lines. The vertex array 
-			information is supplied in distinct attribute arrays of the mesh element that are then
-			indexed by the lines element. Each line described by the mesh has two vertices. The first 
-			line is formed from first and second vertices. The second line is formed from the third and 
-			fourth vertices and so on.
-			A lines element contains a sequence of p elements, where 'p' stands for primitive. Each p 
-			element describes the vertex attributes for an arbitrary number of individual lines.
-*/class intLines;
+class intLines;
 
 typedef daeSmartRef<intLines> intLinesRef;
 typedef daeTArray<intLinesRef> intLinesArray;
 
+/**
+ * The lines element declares the binding of geometric primitives and vertex
+ * attributes for a  mesh element. The lines element provides the information
+ * needed to bind vertex attributes  together and then organize those vertices
+ * into individual lines. The vertex array  information is supplied in distinct
+ * attribute arrays of the mesh element that are then indexed by the lines
+ * element. Each line described by the mesh has two vertices. The first  line
+ * is formed from first and second vertices. The second line is formed from
+ * the third and  fourth vertices and so on. A lines element contains a sequence
+ * of p elements, where 'p' stands for primitive. Each p  element describes
+ * the vertex attributes for an arbitrary number of individual lines.
+ */
 class intLines : public daeIntegrationObject
 {
 public: // Constuctor and Destructor
@@ -74,21 +77,24 @@ public: // STATIC MEMBERS
 	static daeMetaElement* _Meta;
 
 public:
-/** Primitive element. @breif Every two indices form a line.
-						Each p element contains indices that reference into the source elements. These 
-						indices are position dependent and reference the contents of the source elements
-						according to the order of the input elements. Here is an example of this: The 
-						first index references the first unique input element; the second index references 
-						the second unique input element, and so on. This is a simple form of compression 
-						that reduces the number of indices required in each p element. The input elements 
-						are uniquely identified by their idx attribute values. A complete sampling of a 
-						single vertex is completed by gathering one value from each input using the 
-						associated index in the p element.
-*/class intP;
+class intP;
 
 typedef daeSmartRef<intP> intPRef;
 typedef daeTArray<intPRef> intPArray;
 
+/**
+ * Primitive element. @breif Every two indices form a line. Each p element
+ * contains indices that reference into the source elements. These  indices
+ * are position dependent and reference the contents of the source elements
+ * according to the order of the input elements. Here is an example of this:
+ * The  first index references the first unique input element; the second
+ * index references  the second unique input element, and so on. This is a
+ * simple form of compression  that reduces the number of indices required
+ * in each p element. The input elements  are uniquely identified by their
+ * idx attribute values. A complete sampling of a  single vertex is completed
+ * by gathering one value from each input using the  associated index in the
+ * p element.
+ */
 class intP : public daeIntegrationObject
 {
 public: // Constuctor and Destructor

@@ -35,7 +35,6 @@ intPhysics_material::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "physics_material" );
-	_Meta->setStaticPointerAddress(&intPhysics_material::_Meta);
 	_Meta->registerConstructor(intPhysics_material::create);
 
 	domPhysics_material::_Meta->setMetaIntegration(_Meta);

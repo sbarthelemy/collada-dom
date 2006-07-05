@@ -17,18 +17,22 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeMetaElement.h>
 
-/** The param element declares parametric information regarding its parent element.
-			The param element describes parameters for generic data flow, program data, and entry points.
-			A functional or programmatical format requires a means for users to specify parametric 
-			information. This information represents function parameter (argument) data. The basic 
-			declaration of a parameter describes the name, data type, and value data of the parameter. 
-			That parameter name identifies it to the function or program. The parameter type indicates 
-			the encoding of its value. The parameter value is the actual data.
-*/class intParam;
+class intParam;
 
 typedef daeSmartRef<intParam> intParamRef;
 typedef daeTArray<intParamRef> intParamArray;
 
+/**
+ * The param element declares parametric information regarding its parent
+ * element. The param element describes parameters for generic data flow,
+ * program data, and entry points. A functional or programmatical format requires
+ * a means for users to specify parametric  information. This information
+ * represents function parameter (argument) data. The basic  declaration of
+ * a parameter describes the name, data type, and value data of the parameter.
+ * That parameter name identifies it to the function or program. The parameter
+ * type indicates  the encoding of its value. The parameter value is the actual
+ * data.
+ */
 class intParam : public daeIntegrationObject
 {
 public: // Constuctor and Destructor

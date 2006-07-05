@@ -17,19 +17,22 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeMetaElement.h>
 
-/** The program element declares parameters and program code that executes within the 
-			application runtime environment or the graphics pipeline. Programs use the same id/url 
-			linking (define/reference) facility as other elements. To define a program, specify an id 
-			attribute value. To refer to a program (i.e. a "function call"), reference that id value in 
-			a url attribute. Another way to refer to a program is by using a name as the URL value such 
-			as: <program url="PHONG"> In this case, the name refers to a well-known or built-in program.
-			It's not a URI fragment (#PHONG) because it's not in the same instance document. It's 
-			implicitly defined in the COMMON profile.
-*/class intProgram;
+class intProgram;
 
 typedef daeSmartRef<intProgram> intProgramRef;
 typedef daeTArray<intProgramRef> intProgramArray;
 
+/**
+ * The program element declares parameters and program code that executes
+ * within the  application runtime environment or the graphics pipeline. Programs
+ * use the same id/url  linking (define/reference) facility as other elements.
+ * To define a program, specify an id  attribute value. To refer to a program
+ * (i.e. a "function call"), reference that id value in  a url attribute.
+ * Another way to refer to a program is by using a name as the URL value such
+ * as: <program url="PHONG"> In this case, the name refers to a well-known
+ * or built-in program. It's not a URI fragment (#PHONG) because it's not
+ * in the same instance document. It's  implicitly defined in the COMMON profile.
+ */
 class intProgram : public daeIntegrationObject
 {
 public: // Constuctor and Destructor

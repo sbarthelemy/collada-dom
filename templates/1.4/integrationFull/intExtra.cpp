@@ -35,7 +35,6 @@ intExtra::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "extra" );
-	_Meta->setStaticPointerAddress(&intExtra::_Meta);
 	_Meta->registerConstructor(intExtra::create);
 
 	domExtra::_Meta->setMetaIntegration(_Meta);

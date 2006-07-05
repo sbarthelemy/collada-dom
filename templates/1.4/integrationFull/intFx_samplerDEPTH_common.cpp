@@ -40,7 +40,6 @@ intFx_samplerDEPTH_common::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fx_samplerDEPTH_common" );
-	_Meta->setStaticPointerAddress(&intFx_samplerDEPTH_common::_Meta);
 	_Meta->registerConstructor(intFx_samplerDEPTH_common::create);
 
 	domFx_samplerDEPTH_common::_Meta->setMetaIntegration(_Meta);
@@ -65,7 +64,6 @@ intFx_samplerDEPTH_common::intSource::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "source" );
-	_Meta->setStaticPointerAddress(&intFx_samplerDEPTH_common::intSource::_Meta);
 	_Meta->registerConstructor(intFx_samplerDEPTH_common::intSource::create);
 
 	domFx_samplerDEPTH_common::domSource::_Meta->setMetaIntegration(_Meta);
@@ -90,7 +88,6 @@ intFx_samplerDEPTH_common::intWrap_s::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "wrap_s" );
-	_Meta->setStaticPointerAddress(&intFx_samplerDEPTH_common::intWrap_s::_Meta);
 	_Meta->registerConstructor(intFx_samplerDEPTH_common::intWrap_s::create);
 
 	domFx_samplerDEPTH_common::domWrap_s::_Meta->setMetaIntegration(_Meta);
@@ -115,7 +112,6 @@ intFx_samplerDEPTH_common::intWrap_t::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "wrap_t" );
-	_Meta->setStaticPointerAddress(&intFx_samplerDEPTH_common::intWrap_t::_Meta);
 	_Meta->registerConstructor(intFx_samplerDEPTH_common::intWrap_t::create);
 
 	domFx_samplerDEPTH_common::domWrap_t::_Meta->setMetaIntegration(_Meta);
@@ -140,7 +136,6 @@ intFx_samplerDEPTH_common::intMinfilter::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "minfilter" );
-	_Meta->setStaticPointerAddress(&intFx_samplerDEPTH_common::intMinfilter::_Meta);
 	_Meta->registerConstructor(intFx_samplerDEPTH_common::intMinfilter::create);
 
 	domFx_samplerDEPTH_common::domMinfilter::_Meta->setMetaIntegration(_Meta);
@@ -165,7 +160,6 @@ intFx_samplerDEPTH_common::intMagfilter::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "magfilter" );
-	_Meta->setStaticPointerAddress(&intFx_samplerDEPTH_common::intMagfilter::_Meta);
 	_Meta->registerConstructor(intFx_samplerDEPTH_common::intMagfilter::create);
 
 	domFx_samplerDEPTH_common::domMagfilter::_Meta->setMetaIntegration(_Meta);

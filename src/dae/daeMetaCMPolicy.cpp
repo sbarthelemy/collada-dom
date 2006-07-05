@@ -19,3 +19,4 @@ daeMetaCMPolicy::~daeMetaCMPolicy()
 		delete _children[i];
 	}
 }
+

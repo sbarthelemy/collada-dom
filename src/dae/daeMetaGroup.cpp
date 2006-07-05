@@ -27,7 +27,7 @@ daeMetaGroup::~daeMetaGroup()
 	}
 }
 
-daeBool daeMetaGroup::placeElement( daeElement *parent, daeElement *child, daeUInt &ordinal, daeInt offset, daeElement* before, daeElement *after ) {
+daeElement *daeMetaGroup::placeElement( daeElement *parent, daeElement *child, daeUInt &ordinal, daeInt offset, daeElement* before, daeElement *after ) {
 	(void)offset;
 	daeString nm = child->getElementName();
 	if ( nm == NULL ) {
@@ -36,9 +36,13 @@ daeBool daeMetaGroup::placeElement( daeElement *parent, daeElement *child, daeUI
 	if ( findChild( nm ) == NULL ) {
 		return false;
 	}
-	daeInt elCnt = _elementContainer->getCount(parent);
 	daeElementRef el;
+#if 0
+	daeInt elCnt = _elementContainer->getCount(parent);
 	//check existing groups
+      //This doesn't work properly. Because the choice can't check if you make two decisions you cannot fail
+	  //here when you are supposed to. Luckily the current schema just has groups with single choices so
+	  //every element needs a new group container. Wasteful but thats how the schema is and its how it works.
 	for ( daeInt x = 0; x < elCnt; x++ ) {
 		daeMemoryRef mem = _elementContainer->get(parent, x );
 		if ( mem != NULL ) {
@@ -66,37 +70,62 @@ daeBool daeMetaGroup::placeElement( daeElement *parent, daeElement *child, daeUI
 			}
 		}
 	}
+#endif
+	//check if the element trying to be placed is a group element. If so Just add it don't create a new one.
+	if ( strcmp( nm, _elementContainer->getName() ) == 0 ) {
+		if ( _elementContainer->placeElement(parent, child, ordinal, offset ) != NULL ) {
+			return child;
+		}
+	}
 	//if you couldn't place in existing groups make a new one if you can
-	if ( _elementContainer->placeElement(parent, _elementContainer->_elementType->create(), ordinal ) ) {
-		el = *(daeElementRef*)_elementContainer->get(parent, elCnt );
+	el = _elementContainer->placeElement(parent, _elementContainer->_elementType->create(), ordinal, offset );
+	if ( el != NULL ) {
+		//el = *(daeElementRef*)_elementContainer->get(parent, elCnt );
 		if ( before != NULL ) {
 			if ( _elementContainer->_elementType->placeBefore( before, el, child, &ordinal ) ) {
 				ordinal = ordinal + _ordinalOffset;
-				return true;
+				return el;
 			}
 		}
 		else if ( after != NULL ) {
 			if ( _elementContainer->_elementType->placeAfter( after, el, child, &ordinal ) ) {
 				ordinal = ordinal + _ordinalOffset;
-				return true;
+				return el;
 			}
 		}
 		else {
 			if ( _elementContainer->_elementType->place( el, child, &ordinal ) ) {
 				ordinal = ordinal + _ordinalOffset;
-				return true;
+				return el;
 			}
+		}
+	}
+	return NULL;
+}
+
+daeBool daeMetaGroup::removeElement( daeElement *parent, daeElement *child ) {
+	daeElementRef el;
+	daeInt elCnt = _elementContainer->getCount(parent);
+	for ( daeInt x = 0; x < elCnt; x++ ) {
+		daeMemoryRef mem = _elementContainer->get(parent, x );
+		if ( mem != NULL ) {
+			el = *(daeElementRef*)mem;
+		}
+		if ( el == NULL ) {
+			continue;
+		}
+		if ( el->removeChildElement( child ) ) {
+			_elementContainer->removeChildElement( el );
+			return true;
 		}
 	}
 	return false;
 }
 
-daeBool daeMetaGroup::removeElement( daeElement *parent, daeElement *child ) {
-	//TODO: This will always fail. Make it work
-	return _elementContainer->removeElement( parent, child );
-}
-
 daeMetaElement * daeMetaGroup::findChild( daeString elementName ) {
+	if ( strcmp( _elementContainer->getName(), elementName ) == 0 ) {
+		return _elementContainer->getElementType();
+	}
 	return _elementContainer->_elementType->getCMRoot()->findChild( elementName );
 }
 

@@ -35,7 +35,6 @@ intShader::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "shader" );
-	_Meta->setStaticPointerAddress(&intShader::_Meta);
 	_Meta->registerConstructor(intShader::create);
 
 	domShader::_Meta->setMetaIntegration(_Meta);

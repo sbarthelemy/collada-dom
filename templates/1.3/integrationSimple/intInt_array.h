@@ -17,15 +17,17 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeMetaElement.h>
 
-/** The int_array element declares the storage for a homogenous array of integer values.
-			The int_array element stores the data values for generic use within the COLLADA schema. The
-			arrays themselves are strongly typed but without semantics. They simply describe a sequence 
-			of integer values.
-*/class intInt_array;
+class intInt_array;
 
 typedef daeSmartRef<intInt_array> intInt_arrayRef;
 typedef daeTArray<intInt_arrayRef> intInt_arrayArray;
 
+/**
+ * The int_array element declares the storage for a homogenous array of integer
+ * values. The int_array element stores the data values for generic use within
+ * the COLLADA schema. The arrays themselves are strongly typed but without
+ * semantics. They simply describe a sequence  of integer values.
+ */
 class intInt_array : public daeIntegrationObject
 {
 public: // Constuctor and Destructor

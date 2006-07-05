@@ -35,7 +35,6 @@ intTrifans::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "trifans" );
-	_Meta->setStaticPointerAddress(&intTrifans::_Meta);
 	_Meta->registerConstructor(intTrifans::create);
 
 	domTrifans::_Meta->setMetaIntegration(_Meta);

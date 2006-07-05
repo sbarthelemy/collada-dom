@@ -135,7 +135,7 @@ domGlsl_param_type::registerElement()
 	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "surface" );
 	mea->setOffset( daeOffsetOf(domGlsl_param_type,elemSurface) );
-	mea->setElementType( domFx_surface_common::registerElement() );
+	mea->setElementType( domGlsl_surface_type::registerElement() );
 	cm->appendChild( mea );
 	
 	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );

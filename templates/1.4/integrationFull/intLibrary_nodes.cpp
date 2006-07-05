@@ -35,7 +35,6 @@ intLibrary_nodes::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "library_nodes" );
-	_Meta->setStaticPointerAddress(&intLibrary_nodes::_Meta);
 	_Meta->registerConstructor(intLibrary_nodes::create);
 
 	domLibrary_nodes::_Meta->setMetaIntegration(_Meta);

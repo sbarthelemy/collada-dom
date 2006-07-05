@@ -35,7 +35,6 @@ intLibrary_force_fields::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "library_force_fields" );
-	_Meta->setStaticPointerAddress(&intLibrary_force_fields::_Meta);
 	_Meta->registerConstructor(intLibrary_force_fields::create);
 
 	domLibrary_force_fields::_Meta->setMetaIntegration(_Meta);

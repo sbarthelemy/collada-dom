@@ -310,9 +310,23 @@ public:
 	 * a _contents array will be placed normally.
 	 */
 	daeBool placeAt( daeInt index, daeElement *parent, daeElement *child );
-
+	/**
+	 * Places a child element into the <tt><i>parent</i></tt> element at a specific location which is right
+	 * before the marker element.
+	 * @param marker The element location in the contents array to insert before.
+	 * @param parent Element to act as the container.
+	 * @param child Child element to place in the parent.
+	 * @return Returns true if the operation was successful, false otherwise.
+	 */
 	daeBool placeBefore( daeElement* marker, daeElement *parent, daeElement *child, daeUInt *ordinal = NULL );
-
+	/**
+	 * Places a child element into the <tt><i>parent</i></tt> element at a specific location which is right
+	 * after the marker element.
+	 * @param marker The element location in the contents array to insert after.
+	 * @param parent Element to act as the container.
+	 * @param child Child element to place in the parent.
+	 * @return Returns true if the operation was successful, false otherwise.
+	 */
 	daeBool placeAfter( daeElement* marker, daeElement *parent, daeElement *child, daeUInt *ordinal = NULL );
 
 	/**

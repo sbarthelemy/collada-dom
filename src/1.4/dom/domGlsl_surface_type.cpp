@@ -43,19 +43,25 @@ domGlsl_surface_type::registerElement()
 
 	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
 
-	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 0, -1 );
-	mea->setName( "init_from" );
-	mea->setOffset( daeOffsetOf(domGlsl_surface_type,elemInit_from_array) );
-	mea->setElementType( domInit_from::registerElement() );
-	cm->appendChild( mea );
+	mea = new daeMetaElementAttribute( _Meta, cm, 0, 0, 1 );
+	mea->setName( "fx_surface_init_common" );
+	mea->setOffset( daeOffsetOf(domGlsl_surface_type,elemFx_surface_init_common) );
+	mea->setElementType( domFx_surface_init_common::registerElement() );
+	cm->appendChild( new daeMetaGroup( mea, _Meta, cm, 0, 0, 1 ) );
 	
-	mea = new daeMetaElementAttribute( _Meta, cm, 1, 1, 1 );
+	mea = new daeMetaElementAttribute( _Meta, cm, 1, 0, 1 );
 	mea->setName( "format" );
 	mea->setOffset( daeOffsetOf(domGlsl_surface_type,elemFormat) );
 	mea->setElementType( domFormat::registerElement() );
 	cm->appendChild( mea );
 	
-	cm = new daeMetaChoice( _Meta, cm, 2, 0, 1 );
+	mea = new daeMetaElementAttribute( _Meta, cm, 2, 0, 1 );
+	mea->setName( "format_hint" );
+	mea->setOffset( daeOffsetOf(domGlsl_surface_type,elemFormat_hint) );
+	mea->setElementType( domFx_surface_format_hint_common::registerElement() );
+	cm->appendChild( mea );
+	
+	cm = new daeMetaChoice( _Meta, cm, 3, 0, 1 );
 
 	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "size" );
@@ -73,23 +79,29 @@ domGlsl_surface_type::registerElement()
 	cm->getParent()->appendChild( cm );
 	cm = cm->getParent();
 	
-	mea = new daeMetaElementAttribute( _Meta, cm, 3, 0, 1 );
+	mea = new daeMetaElementAttribute( _Meta, cm, 4, 0, 1 );
 	mea->setName( "mip_levels" );
 	mea->setOffset( daeOffsetOf(domGlsl_surface_type,elemMip_levels) );
 	mea->setElementType( domMip_levels::registerElement() );
 	cm->appendChild( mea );
 	
-	mea = new daeMetaElementAttribute( _Meta, cm, 4, 0, 1 );
+	mea = new daeMetaElementAttribute( _Meta, cm, 5, 0, 1 );
 	mea->setName( "mipmap_generate" );
 	mea->setOffset( daeOffsetOf(domGlsl_surface_type,elemMipmap_generate) );
 	mea->setElementType( domMipmap_generate::registerElement() );
 	cm->appendChild( mea );
 	
-	cm->setMaxOrdinal( 4 );
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 6, 0, -1 );
+	mea->setName( "extra" );
+	mea->setOffset( daeOffsetOf(domGlsl_surface_type,elemExtra_array) );
+	mea->setElementType( domExtra::registerElement() );
+	cm->appendChild( mea );
+	
+	cm->setMaxOrdinal( 6 );
 	cm->getParent()->appendChild( cm );
 	cm = cm->getParent();
 	
-	cm = new daeMetaSequence( _Meta, cm, 5, 1, 1 );
+	cm = new daeMetaSequence( _Meta, cm, 7, 1, 1 );
 
 	mea = new daeMetaElementAttribute( _Meta, cm, 0, 0, 1 );
 	mea->setName( "generator" );
@@ -101,7 +113,7 @@ domGlsl_surface_type::registerElement()
 	cm->getParent()->appendChild( cm );
 	cm = cm->getParent();
 	
-	cm->setMaxOrdinal( 5 );
+	cm->setMaxOrdinal( 7 );
 	_Meta->setCMRoot( cm );	
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domGlsl_surface_type,_contents));

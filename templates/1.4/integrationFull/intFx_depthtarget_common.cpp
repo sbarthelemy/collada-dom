@@ -35,7 +35,6 @@ intFx_depthtarget_common::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fx_depthtarget_common" );
-	_Meta->setStaticPointerAddress(&intFx_depthtarget_common::_Meta);
 	_Meta->registerConstructor(intFx_depthtarget_common::create);
 
 	domFx_depthtarget_common::_Meta->setMetaIntegration(_Meta);

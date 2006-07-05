@@ -37,7 +37,6 @@ intGlsl_surface_type::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "glsl_surface_type" );
-	_Meta->setStaticPointerAddress(&intGlsl_surface_type::_Meta);
 	_Meta->registerConstructor(intGlsl_surface_type::create);
 
 	domGlsl_surface_type::_Meta->setMetaIntegration(_Meta);
@@ -62,7 +61,6 @@ intGlsl_surface_type::intGenerator::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "generator" );
-	_Meta->setStaticPointerAddress(&intGlsl_surface_type::intGenerator::_Meta);
 	_Meta->registerConstructor(intGlsl_surface_type::intGenerator::create);
 
 	domGlsl_surface_type::domGenerator::_Meta->setMetaIntegration(_Meta);
@@ -87,7 +85,6 @@ intGlsl_surface_type::intGenerator::intName::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "name" );
-	_Meta->setStaticPointerAddress(&intGlsl_surface_type::intGenerator::intName::_Meta);
 	_Meta->registerConstructor(intGlsl_surface_type::intGenerator::intName::create);
 
 	domGlsl_surface_type::domGenerator::domName::_Meta->setMetaIntegration(_Meta);

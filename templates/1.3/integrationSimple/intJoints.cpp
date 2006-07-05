@@ -35,7 +35,6 @@ intJoints::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "joints" );
-	_Meta->setStaticPointerAddress(&intJoints::_Meta);
 	_Meta->registerConstructor(intJoints::create);
 
 	domJoints::_Meta->setMetaIntegration(_Meta);

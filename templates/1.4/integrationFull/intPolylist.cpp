@@ -36,7 +36,6 @@ intPolylist::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "polylist" );
-	_Meta->setStaticPointerAddress(&intPolylist::_Meta);
 	_Meta->registerConstructor(intPolylist::create);
 
 	domPolylist::_Meta->setMetaIntegration(_Meta);
@@ -61,7 +60,6 @@ intPolylist::intVcount::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "vcount" );
-	_Meta->setStaticPointerAddress(&intPolylist::intVcount::_Meta);
 	_Meta->registerConstructor(intPolylist::intVcount::create);
 
 	domPolylist::domVcount::_Meta->setMetaIntegration(_Meta);

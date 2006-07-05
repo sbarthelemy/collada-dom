@@ -36,7 +36,6 @@ intShader::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "shader" );
-	_Meta->setStaticPointerAddress(&intShader::_Meta);
 	_Meta->registerConstructor(intShader::create);
 
 	domShader::_Meta->setMetaIntegration(_Meta);
@@ -61,7 +60,6 @@ intShader::intTechnique::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "technique" );
-	_Meta->setStaticPointerAddress(&intShader::intTechnique::_Meta);
 	_Meta->registerConstructor(intShader::intTechnique::create);
 
 	domShader::domTechnique::_Meta->setMetaIntegration(_Meta);

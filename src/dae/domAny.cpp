@@ -20,6 +20,7 @@
 #include <dae/daeMetaGroup.h>
 #include <dae/daeMetaAny.h>
 #include <dae/daeMetaElementAttribute.h>
+#include <dae/daeErrorHandler.h>
 
 daeElementRef
 domAny::create(daeInt bytes)
@@ -87,9 +88,7 @@ daeBool domAny::setAttribute(daeString attrName, daeString attrValue) {
 	}
 	//else register it and then set it.
 	if ( n >= MAX_ATTRIBUTES ) {
-		fprintf(stderr,	"daeAny::setAttribute() - too many attributes on this domAny.  The maximum number of attributes allowed is %d",
-						MAX_ATTRIBUTES );
-		fflush(stderr);
+		daeErrorHandler::get()->handleWarning( "domAny::setAttribute() - too many attributes on this domAny.  The maximum number of attributes allowed is MAX_ATTRIBUTES" );
 		return false;
 	}
 	daeMetaAttribute *ma = new daeMetaAttribute;

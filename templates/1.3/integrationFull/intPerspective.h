@@ -17,18 +17,21 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeMetaElement.h>
 
-/** The perspective element contains the horizontal field of view of the viewer or 'camera'.
-			Perspective embodies the appearance of objects relative to each other as determined by their
-			distance from a viewer. Computer graphics techniques apply a perspective projection in order
-			to render 3-D objects onto 2-D surfaces to create properly proportioned images on display
-			monitors. As in the RenderMan® specification, the focal point of the operation is at the 
-			local origin and the direction is along the z-axis. The focal length of the implied 'camera' 
-			is 1.0.
-*/class intPerspective;
+class intPerspective;
 
 typedef daeSmartRef<intPerspective> intPerspectiveRef;
 typedef daeTArray<intPerspectiveRef> intPerspectiveArray;
 
+/**
+ * The perspective element contains the horizontal field of view of the viewer
+ * or 'camera'. Perspective embodies the appearance of objects relative to
+ * each other as determined by their distance from a viewer. Computer graphics
+ * techniques apply a perspective projection in order to render 3-D objects
+ * onto 2-D surfaces to create properly proportioned images on display monitors.
+ * As in the RenderMan® specification, the focal point of the operation is
+ * at the  local origin and the direction is along the z-axis. The focal length
+ * of the implied 'camera'  is 1.0.
+ */
 class intPerspective : public daeIntegrationObject
 {
 public: // Constuctor and Destructor

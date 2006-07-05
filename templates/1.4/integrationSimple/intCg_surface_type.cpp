@@ -35,7 +35,6 @@ intCg_surface_type::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "cg_surface_type" );
-	_Meta->setStaticPointerAddress(&intCg_surface_type::_Meta);
 	_Meta->registerConstructor(intCg_surface_type::create);
 
 	domCg_surface_type::_Meta->setMetaIntegration(_Meta);

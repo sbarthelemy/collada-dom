@@ -5766,6 +5766,54 @@ public: // STATIC MEMBERS
 	static daeMetaElement* _Meta;
 
 };
+class intColor_material_enable;
+
+typedef daeSmartRef<intColor_material_enable> intColor_material_enableRef;
+typedef daeTArray<intColor_material_enableRef> intColor_material_enableArray;
+
+class intColor_material_enable : public daeIntegrationObject
+{
+public: // Constuctor and Destructor
+	/**
+	 * Default Constructor.
+	 */
+	intColor_material_enable();
+	 
+	/**
+	 * Default Destructor.
+	 */
+	~intColor_material_enable();
+	 
+protected: // VIRTUAL INTEGRATION INTERFACE
+
+// IMPORT FROM COLLADA	
+	// This Method is used to create tool/runtime object
+	virtual void createFrom(daeElementRef element);
+
+	// This method translate from COLLADA to tool/runtime object
+	virtual void fromCOLLADA();
+
+	// This method is used as a second pass post process on tool/runtime objs
+	virtual void fromCOLLADAPostProcess();
+
+// EXPORT TO COLLADA	
+	// This Method is used to create COLLADA objects
+	virtual void createTo(void* userData);
+
+	// This method translate to COLLADA from tool/runtime object
+	virtual void toCOLLADA();
+
+	// This method is used as a second pass post process on COLLADA dom
+	virtual void toCOLLADAPostProcess();
+
+public: // STATIC METHODS
+	static daeElementRef create(daeInt bytes);
+	static daeMetaElement* registerElement();
+	
+public: // STATIC MEMBERS
+	static daeMetaElement* _Meta;
+
+};
 class intCull_face_enable;
 
 typedef daeSmartRef<intCull_face_enable> intCull_face_enableRef;

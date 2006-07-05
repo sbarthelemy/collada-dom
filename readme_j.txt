@@ -11,42 +11,42 @@
 
 *********************
 * COLLADA DOM 
-* COLLADA スキーマ・バージョン：1.4、および、1.3.1
+* COLLADA スキーマ・バージョン：1.4、および1.3.1
 *********************
 
 プログラム構造：
 
 root:
-  visual studio 2003 のソリューション、メイクファイル、この readme.txt、relnotes_e.txt、および、ライセンス・ファイル。
+  visual studio 2003 のソリューション、makefile、readme.txt、relnotes_e.txt、およびライセンス・ファイル。
 
 /build:
-  メイクファイル定義
+  makefile定義
 
 /doc : 
-  ドキュメンテーション
+  ドキュメント
 
 /include:
   インクルード・ディレクトリ。トップ・レベルの参照ヘッダ dae.h を含む
 
    /dae:
-     COLLADA オブジェクトモデル・ヘッダ、および、ベース・インタフェース
+     COLLADA オブジェクトモデル・ヘッダ、およびベース・インタフェース
      ヘッダ・ファイルの全てを含む。
 
    /1.3:
    /dom:
-     	  v1.3 用に生成された COLLADA C++ DOM オブジェクト・ヘッダ・ファイルの全てを含む
+     	  v1.3 用に生成された COLLADA C++ DOM オブジェクト・ヘッダファイルの全てを含む
 
    /1.4:
 	/dom:
-	  v1.4 用に生成された COLLADA C++ DOM オブジェクト・ヘッダ・ファイルの全てを含む
+	  v1.4 用に生成された COLLADA C++ DOM オブジェクト・ヘッダファイルの全てを含む
 
 /modules:
-     COLLADA プラグインの参照実装としての daeDatabase、および、バックエンド入出力プラグインの実装ヘッダ・ファイルを含む
+     COLLADA プラグインの参照実装としての daeDatabase、およびバックエンド入出力プラグインの実装ヘッダファイルを含む
 
 /samples: 
    
    /integration:
-     統合用ライブラリの例として、COLLADA ビューアー・サンプルで使われている  intGeometry クラスを実装したものを含む
+     統合用ライブラリの例として、COLLADA ビューア・サンプルで使われている  intGeometry クラスを実装したものを含む
    
    /conditioners/Animation:
      アニメーション関数曲線を一定間隔てサンプリングするコンディショナーの例を含む
@@ -55,36 +55,34 @@ root:
      全サンプル条件で使われる共通コード
 
    /conditioners/DeIndexer:
-     COLLADA メッシュ・データのインデックスを解除するサンプル条件を含む
+     COLLADA メッシュデータのインデックスを解除するサンプル条件を含む。
 
    /conditioners/FileName:
-     画像ファイル名をすべて相対パスに変換するサンプル条件を含む
+     画像ファイル名をすべて相対パスに変換するサンプル条件を含む。
 
    /conditioners/Optimizer:
-     COLLADA メッシュ・データを最適化するサンプル条件を含む
+     COLLADA メッシュデータを最適化するサンプル条件を含む。
 
    /conditioners/Triangulation:
-     COLLADA メッシュ・データを三角形に分割するサンプル条件を含む
+     COLLADA メッシュデータを三角形に分割するサンプル条件を含む。
 
 /src:
 
    /dae:
-     COLLADA C++ API オブジェクト・モデル、および、抽象インタフェース・クラスを実装したC++ソースコードの全てを含む。
+     COLLADA C++ API オブジェクトモデル、および抽象インタフェースクラスを実装したC++ソースコードの全てを含む。
 
    /1.3:
 	/dom:
 	  COLLADA C++ オブジェクト定義用に「生成された」C++ ソースコードの全てを含む。
-	  このコードは、COLLADA v1.3 XML Schema から  直接生成されたものです。
+	  このコードは、COLLADA v1.3 XML Schema から直接生成されたものです。
 
    /1.4:
    /dom:
      COLLADA C++ オブジェクト定義用に「生成された」C++ ソースコードの全てを含む。
-     このコードは、COLLADA v1.4 XML Schema から 
-	  直接生成されたものです。
+     このコードは、COLLADA v1.4 XML Schema から直接生成されたものです。
 
    /modules:
-COLLADA の抽象的な API 概念の
-参照実装を含む。
+     COLLADA の抽象的な API 概念の参照実装を含む。
 
       /LIBXMLPlugin:
         LIBXML2 ライブラリを利用した XML 入出力バックエンドの例
@@ -100,5 +98,4 @@ COLLADA の抽象的な API 概念の
 注意：
 
 - データの検索は、実行可能ファイルとの相対位置で行われます。
-
 

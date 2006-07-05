@@ -35,7 +35,6 @@ intMatrix::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "matrix" );
-	_Meta->setStaticPointerAddress(&intMatrix::_Meta);
 	_Meta->registerConstructor(intMatrix::create);
 
 	domMatrix::_Meta->setMetaIntegration(_Meta);

@@ -35,7 +35,6 @@ intTechnique::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "technique" );
-	_Meta->setStaticPointerAddress(&intTechnique::_Meta);
 	_Meta->registerConstructor(intTechnique::create);
 
 	domTechnique::_Meta->setMetaIntegration(_Meta);

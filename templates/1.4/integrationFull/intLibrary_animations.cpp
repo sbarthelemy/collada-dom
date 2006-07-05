@@ -35,7 +35,6 @@ intLibrary_animations::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "library_animations" );
-	_Meta->setStaticPointerAddress(&intLibrary_animations::_Meta);
 	_Meta->registerConstructor(intLibrary_animations::create);
 
 	domLibrary_animations::_Meta->setMetaIntegration(_Meta);

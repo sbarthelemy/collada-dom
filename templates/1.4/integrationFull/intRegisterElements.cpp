@@ -22,8 +22,23 @@ registerElements()
   intInstanceWithExtra::registerElement();
   intTargetableFloat::registerElement();
   intTargetableFloat3::registerElement();
+  intFx_surface_format_hint_common::registerElement();
+  intFx_surface_format_hint_common::intChannels::registerElement();
+  intFx_surface_format_hint_common::intRange::registerElement();
+  intFx_surface_format_hint_common::intPrecision::registerElement();
+  intFx_surface_format_hint_common::intOption::registerElement();
+  intFx_surface_init_planar_common::registerElement();
+  intFx_surface_init_planar_common::intAll::registerElement();
+  intFx_surface_init_volume_common::registerElement();
+  intFx_surface_init_volume_common::intAll::registerElement();
+  intFx_surface_init_volume_common::intPrimary::registerElement();
+  intFx_surface_init_cube_common::registerElement();
+  intFx_surface_init_cube_common::intAll::registerElement();
+  intFx_surface_init_cube_common::intPrimary::registerElement();
+  intFx_surface_init_cube_common::intPrimary::intOrder::registerElement();
+  intFx_surface_init_cube_common::intFace::registerElement();
+  intFx_surface_init_from_common::registerElement();
   intFx_surface_common::registerElement();
-  intFx_surface_common::intInit_from::registerElement();
   intFx_surface_common::intFormat::registerElement();
   intFx_surface_common::intSize::registerElement();
   intFx_surface_common::intViewport_ratio::registerElement();
@@ -97,7 +112,6 @@ registerElements()
   intFx_newparam_common::registerElement();
   intFx_newparam_common::intSemantic::registerElement();
   intFx_newparam_common::intModifier::registerElement();
-  intFx_setparam_common::registerElement();
   intFx_code_profile::registerElement();
   intGl_sampler1D::registerElement();
   intGl_sampler2D::registerElement();
@@ -122,6 +136,7 @@ registerElements()
   intCommon_color_or_texture_type::intColor::registerElement();
   intCommon_color_or_texture_type::intParam::registerElement();
   intCommon_color_or_texture_type::intTexture::registerElement();
+  intCommon_transparent_type::registerElement();
   intCommon_newparam_type::registerElement();
   intCommon_newparam_type::intSemantic::registerElement();
   intCommon_newparam_type::intFloat::registerElement();
@@ -169,6 +184,9 @@ registerElements()
   intGles_newparam::registerElement();
   intGles_newparam::intSemantic::registerElement();
   intGles_newparam::intModifier::registerElement();
+  intFx_surface_init_common::registerElement();
+  intFx_surface_init_common::intInit_as_null::registerElement();
+  intFx_surface_init_common::intInit_as_target::registerElement();
   intFx_annotate_type_common::registerElement();
   intFx_annotate_type_common::intBool::registerElement();
   intFx_annotate_type_common::intBool2::registerElement();
@@ -335,6 +353,7 @@ registerElements()
   intGl_pipeline_settings::intAuto_normal_enable::registerElement();
   intGl_pipeline_settings::intBlend_enable::registerElement();
   intGl_pipeline_settings::intColor_logic_op_enable::registerElement();
+  intGl_pipeline_settings::intColor_material_enable::registerElement();
   intGl_pipeline_settings::intCull_face_enable::registerElement();
   intGl_pipeline_settings::intDepth_bounds_enable::registerElement();
   intGl_pipeline_settings::intDepth_clamp_enable::registerElement();
@@ -696,6 +715,7 @@ registerElements()
   intInstance_light::registerElement();
   intInstance_material::registerElement();
   intInstance_material::intBind::registerElement();
+  intInstance_material::intBind_vertex_input::registerElement();
   intInstance_node::registerElement();
   intInstance_physics_material::registerElement();
   intInstance_physics_model::registerElement();

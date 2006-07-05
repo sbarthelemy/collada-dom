@@ -59,7 +59,13 @@ domGles_texture_unit::registerElement()
 	mea->setElementType( domGles_texture_unit::domTexcoord::registerElement() );
 	cm->appendChild( mea );
 	
-	cm->setMaxOrdinal( 2 );
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 3, 0, -1 );
+	mea->setName( "extra" );
+	mea->setOffset( daeOffsetOf(domGles_texture_unit,elemExtra_array) );
+	mea->setElementType( domExtra::registerElement() );
+	cm->appendChild( mea );
+	
+	cm->setMaxOrdinal( 3 );
 	_Meta->setCMRoot( cm );	
 
 	//	Add attribute: sid

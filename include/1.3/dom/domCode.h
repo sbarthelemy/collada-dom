@@ -69,7 +69,7 @@ public:	//Accessors and Mutators
 	 * Sets the id attribute.
 	 * @param atId The new value for the id attribute.
 	 */
-	void setId( xsID atId ) { attrId = atId;
+	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId;
 	 _validAttributeArray[0] = true; }
 
 	/**
@@ -81,7 +81,7 @@ public:	//Accessors and Mutators
 	 * Sets the lang attribute.
 	 * @param atLang The new value for the lang attribute.
 	 */
-	void setLang( xsNMTOKEN atLang ) { attrLang = atLang;
+	void setLang( xsNMTOKEN atLang ) { *(daeStringRef*)&attrLang = atLang;
 	 _validAttributeArray[1] = true; }
 
 	/**
@@ -93,7 +93,7 @@ public:	//Accessors and Mutators
 	 * Sets the profile attribute.
 	 * @param atProfile The new value for the profile attribute.
 	 */
-	void setProfile( xsString atProfile ) { attrProfile = atProfile;
+	void setProfile( xsString atProfile ) { *(daeStringRef*)&attrProfile = atProfile;
 	 _validAttributeArray[2] = true; }
 
 	/**
@@ -105,7 +105,7 @@ public:	//Accessors and Mutators
 	 * Sets the semantic attribute.
 	 * @param atSemantic The new value for the semantic attribute.
 	 */
-	void setSemantic( xsNMTOKEN atSemantic ) { attrSemantic = atSemantic;
+	void setSemantic( xsNMTOKEN atSemantic ) { *(daeStringRef*)&attrSemantic = atSemantic;
 	 _validAttributeArray[3] = true; }
 
 	/**

@@ -16,6 +16,7 @@
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
+#include <dom/domExtra.h>
 
 /**
  * A one-dimensional texture sampler.
@@ -559,6 +560,7 @@ protected:  // Elements
 	domBorder_colorRef elemBorder_color;
 	domMipmap_maxlevelRef elemMipmap_maxlevel;
 	domMipmap_biasRef elemMipmap_bias;
+	domExtra_Array elemExtra_array;
 
 public:	//Accessors and Mutators
 	/**
@@ -601,11 +603,21 @@ public:	//Accessors and Mutators
 	 * @return a daeSmartRef to the mipmap_bias element.
 	 */
 	const domMipmap_biasRef getMipmap_bias() const { return elemMipmap_bias; }
+	/**
+	 * Gets the extra element array.
+	 * @return Returns a reference to the array of extra elements.
+	 */
+	domExtra_Array &getExtra_array() { return elemExtra_array; }
+	/**
+	 * Gets the extra element array.
+	 * @return Returns a constant reference to the array of extra elements.
+	 */
+	const domExtra_Array &getExtra_array() const { return elemExtra_array; }
 protected:
 	/**
 	 * Constructor
 	 */
-	domFx_sampler1D_common_complexType() : elemSource(), elemWrap_s(), elemMinfilter(), elemMagfilter(), elemMipfilter(), elemBorder_color(), elemMipmap_maxlevel(), elemMipmap_bias() {}
+	domFx_sampler1D_common_complexType() : elemSource(), elemWrap_s(), elemMinfilter(), elemMagfilter(), elemMipfilter(), elemBorder_color(), elemMipmap_maxlevel(), elemMipmap_bias(), elemExtra_array() {}
 	/**
 	 * Destructor
 	 */

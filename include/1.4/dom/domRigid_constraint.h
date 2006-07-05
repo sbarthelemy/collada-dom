@@ -324,7 +324,7 @@ public:
 		typedef daeTArray<domEnabledRef> domEnabled_Array;
 
 /**
- * If FALSE, the constraint doesn’t exert any force or influence on the
+ * If false, the constraint doesn’t exert any force or influence on the
  * rigid bodies.
  */
 		class domEnabled : public daeElement
@@ -353,7 +353,7 @@ public:
 			 * Sets the sid attribute.
 			 * @param atSid The new value for the sid attribute.
 			 */
-			void setSid( xsNCName atSid ) { attrSid = atSid;		
+			void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid;		
 	 _validAttributeArray[0] = true; }
 
 			/**
@@ -440,7 +440,7 @@ public:
 			 * Sets the sid attribute.
 			 * @param atSid The new value for the sid attribute.
 			 */
-			void setSid( xsNCName atSid ) { attrSid = atSid;		
+			void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid;		
 	 _validAttributeArray[0] = true; }
 
 			/**
@@ -953,7 +953,7 @@ public:
 
 	protected:  // Elements
 /**
- * If FALSE, the constraint doesn’t exert any force or influence on the
+ * If false, the constraint doesn’t exert any force or influence on the
  * rigid bodies. @see domEnabled
  */
 		domEnabledRef elemEnabled;
@@ -1081,7 +1081,7 @@ public:	//Accessors and Mutators
 	 * Sets the sid attribute.
 	 * @param atSid The new value for the sid attribute.
 	 */
-	void setSid( xsNCName atSid ) { attrSid = atSid;
+	void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid;
 	 _validAttributeArray[0] = true; }
 
 	/**
@@ -1093,7 +1093,7 @@ public:	//Accessors and Mutators
 	 * Sets the name attribute.
 	 * @param atName The new value for the name attribute.
 	 */
-	void setName( xsNCName atName ) { attrName = atName;
+	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName;
 	 _validAttributeArray[1] = true; }
 
 	/**

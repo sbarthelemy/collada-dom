@@ -74,6 +74,28 @@ domInstance_effect::registerElement()
 	
 		_Meta->appendAttribute(ma);
 	}
+
+	//	Add attribute: sid
+ 	{
+		daeMetaAttribute *ma = new daeMetaAttribute;
+		ma->setName( "sid" );
+		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setOffset( daeOffsetOf( domInstance_effect , attrSid ));
+		ma->setContainer( _Meta );
+	
+		_Meta->appendAttribute(ma);
+	}
+
+	//	Add attribute: name
+ 	{
+		daeMetaAttribute *ma = new daeMetaAttribute;
+		ma->setName( "name" );
+		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setOffset( daeOffsetOf( domInstance_effect , attrName ));
+		ma->setContainer( _Meta );
+	
+		_Meta->appendAttribute(ma);
+	}
 	
 	
 	_Meta->setElementSize(sizeof(domInstance_effect));
@@ -108,7 +130,19 @@ domInstance_effect::domTechnique_hint::registerElement()
 		ma->setType( daeAtomicType::get("xsNCName"));
 		ma->setOffset( daeOffsetOf( domInstance_effect::domTechnique_hint , attrPlatform ));
 		ma->setContainer( _Meta );
-		ma->setIsRequired( true );
+		ma->setIsRequired( false );
+	
+		_Meta->appendAttribute(ma);
+	}
+
+	//	Add attribute: profile
+ 	{
+		daeMetaAttribute *ma = new daeMetaAttribute;
+		ma->setName( "profile" );
+		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setOffset( daeOffsetOf( domInstance_effect::domTechnique_hint , attrProfile ));
+		ma->setContainer( _Meta );
+		ma->setIsRequired( false );
 	
 		_Meta->appendAttribute(ma);
 	}
@@ -167,7 +201,7 @@ domInstance_effect::domSetparam::registerElement()
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
 		ma->setName( "ref" );
-		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setType( daeAtomicType::get("xsToken"));
 		ma->setOffset( daeOffsetOf( domInstance_effect::domSetparam , attrRef ));
 		ma->setContainer( _Meta );
 		ma->setIsRequired( true );

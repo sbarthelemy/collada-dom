@@ -35,7 +35,6 @@ intTriangles::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "triangles" );
-	_Meta->setStaticPointerAddress(&intTriangles::_Meta);
 	_Meta->registerConstructor(intTriangles::create);
 
 	domTriangles::_Meta->setMetaIntegration(_Meta);

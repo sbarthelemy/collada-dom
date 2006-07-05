@@ -16,6 +16,7 @@
 #include <dae/daeAtomicType.h>
 #include <dae/daeMetaAttribute.h>
 #include <dae/daeMetaElement.h>
+#include <dae/daeURI.h>
 
 daeSIDResolver::daeSIDResolver( daeElement *container, daeString target, daeString profile )
 {
@@ -149,16 +150,22 @@ void daeSIDResolver::resolve()
 		strcpy( id, str );
 		str = str + strlen( str );
 	}
-    daeIDRef idref( id );
-	idref.setContainer( container );
-	idref.resolveElement();
-	if ( idref.getState() != daeIDRef::id_success ) {
-		state = sid_failed_not_found;
-		delete[] id;
-		return;
+	if ( strcmp( id, "." ) == 0 ) {
+		element = container;
+		state = sid_success_element;
 	}
-	element = idref.getElement();
-	state = sid_success_element;
+	else {
+		daeIDRef idref( id );
+		idref.setContainer( container );
+		idref.resolveElement();
+		if ( idref.getState() != daeIDRef::id_success ) {
+			state = sid_failed_not_found;
+			delete[] id;
+			return;
+		}
+		element = idref.getElement();
+		state = sid_success_element;
+	}
 
 	char * next = NULL;
 	while ( *str != '.' && *str != '(' && *str != 0 ) {
@@ -299,6 +306,28 @@ void daeSIDResolver::resolve()
 }
 
 daeElement *daeSIDResolver::findSID( daeElement *el, daeString sid ) {
+	//first check yourself
+	daeString *s = (daeString*)el->getAttributeValue( "sid" );
+	if ( s != NULL && *s != NULL && strcmp( *s, sid ) == 0 ) {
+		//found it
+		return el;
+	}
+	//and if you are a instance_* then check what you point to
+	daeString nm = el->getElementName();
+	if ( nm == NULL ) {
+		nm = el->getTypeName();
+	}
+	if ( strncmp( nm, "instance_", 9 ) == 0 ) {
+		daeURI *uri = (daeURI*)el->getAttributeValue("url");
+		if ( uri != NULL && uri->getElement() != NULL ) {
+			daeElement *e = findSID( uri->getElement(), sid );
+			if ( e != NULL ) {
+				//found it
+				return e;
+			}
+		}
+	}
+	
 	daeElementRefArray children;
 	el->getChildren( children );
 	size_t cnt = children.getCount();

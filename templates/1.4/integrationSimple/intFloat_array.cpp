@@ -35,7 +35,6 @@ intFloat_array::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float_array" );
-	_Meta->setStaticPointerAddress(&intFloat_array::_Meta);
 	_Meta->registerConstructor(intFloat_array::create);
 
 	domFloat_array::_Meta->setMetaIntegration(_Meta);

@@ -35,7 +35,6 @@ intAsset::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "asset" );
-	_Meta->setStaticPointerAddress(&intAsset::_Meta);
 	_Meta->registerConstructor(intAsset::create);
 
 	domAsset::_Meta->setMetaIntegration(_Meta);

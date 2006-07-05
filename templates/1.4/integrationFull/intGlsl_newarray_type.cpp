@@ -35,7 +35,6 @@ intGlsl_newarray_type::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "glsl_newarray_type" );
-	_Meta->setStaticPointerAddress(&intGlsl_newarray_type::_Meta);
 	_Meta->registerConstructor(intGlsl_newarray_type::create);
 
 	domGlsl_newarray_type::_Meta->setMetaIntegration(_Meta);

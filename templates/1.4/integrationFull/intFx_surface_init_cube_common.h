@@ -1,0 +1,280 @@
+/*
+ * Copyright 2006 Sony Computer Entertainment Inc.
+ *
+ * Licensed under the SCEA Shared Source License, Version 1.0 (the "License"); you may not use this 
+ * file except in compliance with the License. You may obtain a copy of the License at:
+ * http://research.scea.com/scea_shared_source_license.html
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under the License 
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or 
+ * implied. See the License for the specific language governing permissions and limitations under the 
+ * License. 
+ */
+
+#ifndef __intFx_surface_init_cube_common_h__
+#define __intFx_surface_init_cube_common_h__
+
+#include <dae/daeIntegrationObject.h>
+#include <dae/daeMetaElement.h>
+
+class intFx_surface_init_cube_common;
+
+typedef daeSmartRef<intFx_surface_init_cube_common> intFx_surface_init_cube_commonRef;
+typedef daeTArray<intFx_surface_init_cube_commonRef> intFx_surface_init_cube_commonArray;
+
+class intFx_surface_init_cube_common : public daeIntegrationObject
+{
+public: // Constuctor and Destructor
+	/**
+	 * Default Constructor.
+	 */
+	intFx_surface_init_cube_common();
+	 
+	/**
+	 * Default Destructor.
+	 */
+	~intFx_surface_init_cube_common();
+	 
+protected: // VIRTUAL INTEGRATION INTERFACE
+
+// IMPORT FROM COLLADA	
+	// This Method is used to create tool/runtime object
+	virtual void createFrom(daeElementRef element);
+
+	// This method translate from COLLADA to tool/runtime object
+	virtual void fromCOLLADA();
+
+	// This method is used as a second pass post process on tool/runtime objs
+	virtual void fromCOLLADAPostProcess();
+
+// EXPORT TO COLLADA	
+	// This Method is used to create COLLADA objects
+	virtual void createTo(void* userData);
+
+	// This method translate to COLLADA from tool/runtime object
+	virtual void toCOLLADA();
+
+	// This method is used as a second pass post process on COLLADA dom
+	virtual void toCOLLADAPostProcess();
+
+public: // STATIC METHODS
+	static daeElementRef create(daeInt bytes);
+	static daeMetaElement* registerElement();
+	
+public: // STATIC MEMBERS
+	static daeMetaElement* _Meta;
+
+public:
+class intAll;
+
+typedef daeSmartRef<intAll> intAllRef;
+typedef daeTArray<intAllRef> intAllArray;
+
+/**
+ * Init the entire surface with one compound image such as DDS
+ */
+class intAll : public daeIntegrationObject
+{
+public: // Constuctor and Destructor
+	/**
+	 * Default Constructor.
+	 */
+	intAll();
+	 
+	/**
+	 * Default Destructor.
+	 */
+	~intAll();
+	 
+protected: // VIRTUAL INTEGRATION INTERFACE
+
+// IMPORT FROM COLLADA	
+	// This Method is used to create tool/runtime object
+	virtual void createFrom(daeElementRef element);
+
+	// This method translate from COLLADA to tool/runtime object
+	virtual void fromCOLLADA();
+
+	// This method is used as a second pass post process on tool/runtime objs
+	virtual void fromCOLLADAPostProcess();
+
+// EXPORT TO COLLADA	
+	// This Method is used to create COLLADA objects
+	virtual void createTo(void* userData);
+
+	// This method translate to COLLADA from tool/runtime object
+	virtual void toCOLLADA();
+
+	// This method is used as a second pass post process on COLLADA dom
+	virtual void toCOLLADAPostProcess();
+
+public: // STATIC METHODS
+	static daeElementRef create(daeInt bytes);
+	static daeMetaElement* registerElement();
+	
+public: // STATIC MEMBERS
+	static daeMetaElement* _Meta;
+
+};
+class intPrimary;
+
+typedef daeSmartRef<intPrimary> intPrimaryRef;
+typedef daeTArray<intPrimaryRef> intPrimaryArray;
+
+/**
+ * Init all primary mip level 0 subsurfaces with one compound image such as
+ * DDS.  Use of this element expects that the surface has element mip_levels=0
+ * or mipmap_generate.
+ */
+class intPrimary : public daeIntegrationObject
+{
+public: // Constuctor and Destructor
+	/**
+	 * Default Constructor.
+	 */
+	intPrimary();
+	 
+	/**
+	 * Default Destructor.
+	 */
+	~intPrimary();
+	 
+protected: // VIRTUAL INTEGRATION INTERFACE
+
+// IMPORT FROM COLLADA	
+	// This Method is used to create tool/runtime object
+	virtual void createFrom(daeElementRef element);
+
+	// This method translate from COLLADA to tool/runtime object
+	virtual void fromCOLLADA();
+
+	// This method is used as a second pass post process on tool/runtime objs
+	virtual void fromCOLLADAPostProcess();
+
+// EXPORT TO COLLADA	
+	// This Method is used to create COLLADA objects
+	virtual void createTo(void* userData);
+
+	// This method translate to COLLADA from tool/runtime object
+	virtual void toCOLLADA();
+
+	// This method is used as a second pass post process on COLLADA dom
+	virtual void toCOLLADAPostProcess();
+
+public: // STATIC METHODS
+	static daeElementRef create(daeInt bytes);
+	static daeMetaElement* registerElement();
+	
+public: // STATIC MEMBERS
+	static daeMetaElement* _Meta;
+
+public:
+class intOrder;
+
+typedef daeSmartRef<intOrder> intOrderRef;
+typedef daeTArray<intOrderRef> intOrderArray;
+
+/**
+ * If the image dues not natively describe the face ordering then this series
+ * of order elements will describe which face the index belongs too
+ */
+class intOrder : public daeIntegrationObject
+{
+public: // Constuctor and Destructor
+	/**
+	 * Default Constructor.
+	 */
+	intOrder();
+	 
+	/**
+	 * Default Destructor.
+	 */
+	~intOrder();
+	 
+protected: // VIRTUAL INTEGRATION INTERFACE
+
+// IMPORT FROM COLLADA	
+	// This Method is used to create tool/runtime object
+	virtual void createFrom(daeElementRef element);
+
+	// This method translate from COLLADA to tool/runtime object
+	virtual void fromCOLLADA();
+
+	// This method is used as a second pass post process on tool/runtime objs
+	virtual void fromCOLLADAPostProcess();
+
+// EXPORT TO COLLADA	
+	// This Method is used to create COLLADA objects
+	virtual void createTo(void* userData);
+
+	// This method translate to COLLADA from tool/runtime object
+	virtual void toCOLLADA();
+
+	// This method is used as a second pass post process on COLLADA dom
+	virtual void toCOLLADAPostProcess();
+
+public: // STATIC METHODS
+	static daeElementRef create(daeInt bytes);
+	static daeMetaElement* registerElement();
+	
+public: // STATIC MEMBERS
+	static daeMetaElement* _Meta;
+
+};
+
+};
+class intFace;
+
+typedef daeSmartRef<intFace> intFaceRef;
+typedef daeTArray<intFaceRef> intFaceArray;
+
+/**
+ * Init each face mipchain with one compound image such as DDS
+ */
+class intFace : public daeIntegrationObject
+{
+public: // Constuctor and Destructor
+	/**
+	 * Default Constructor.
+	 */
+	intFace();
+	 
+	/**
+	 * Default Destructor.
+	 */
+	~intFace();
+	 
+protected: // VIRTUAL INTEGRATION INTERFACE
+
+// IMPORT FROM COLLADA	
+	// This Method is used to create tool/runtime object
+	virtual void createFrom(daeElementRef element);
+
+	// This method translate from COLLADA to tool/runtime object
+	virtual void fromCOLLADA();
+
+	// This method is used as a second pass post process on tool/runtime objs
+	virtual void fromCOLLADAPostProcess();
+
+// EXPORT TO COLLADA	
+	// This Method is used to create COLLADA objects
+	virtual void createTo(void* userData);
+
+	// This method translate to COLLADA from tool/runtime object
+	virtual void toCOLLADA();
+
+	// This method is used as a second pass post process on COLLADA dom
+	virtual void toCOLLADAPostProcess();
+
+public: // STATIC METHODS
+	static daeElementRef create(daeInt bytes);
+	static daeMetaElement* registerElement();
+	
+public: // STATIC MEMBERS
+	static daeMetaElement* _Meta;
+
+};
+
+};
+
+#endif

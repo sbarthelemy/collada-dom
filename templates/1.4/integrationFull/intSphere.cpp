@@ -36,7 +36,6 @@ intSphere::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "sphere" );
-	_Meta->setStaticPointerAddress(&intSphere::_Meta);
 	_Meta->registerConstructor(intSphere::create);
 
 	domSphere::_Meta->setMetaIntegration(_Meta);
@@ -61,7 +60,6 @@ intSphere::intRadius::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "radius" );
-	_Meta->setStaticPointerAddress(&intSphere::intRadius::_Meta);
 	_Meta->registerConstructor(intSphere::intRadius::create);
 
 	domSphere::domRadius::_Meta->setMetaIntegration(_Meta);

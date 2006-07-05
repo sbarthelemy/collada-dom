@@ -73,11 +73,17 @@ domCg_samplerDEPTH::registerElement()
 	mea->setElementType( domMagfilter::registerElement() );
 	cm->appendChild( mea );
 	
-	cm->setMaxOrdinal( 4 );
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 5, 0, -1 );
+	mea->setName( "extra" );
+	mea->setOffset( daeOffsetOf(domCg_samplerDEPTH,elemExtra_array) );
+	mea->setElementType( domExtra::registerElement() );
+	cm->appendChild( mea );
+	
+	cm->setMaxOrdinal( 5 );
 	cm->getParent()->appendChild( cm );
 	cm = cm->getParent();
 	
-	cm->setMaxOrdinal( 4 );
+	cm->setMaxOrdinal( 5 );
 	_Meta->setCMRoot( cm );	
 	
 	

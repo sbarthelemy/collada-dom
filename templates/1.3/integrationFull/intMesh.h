@@ -17,23 +17,22 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeMetaElement.h>
 
-/** The mesh element contains vertex and primitive information sufficient to describe basic 
-			geometric meshes. Meshes embody a general form of geometric description that primarily 
-			includes vertex and primitive information. Vertex information is the set of attributes 
-			associated with a point on the surface of the mesh. Each vertex includes data for attributes
-			such as:
-			* Vertex position
-			* Vertex color
-			* Vertex normal
-			* Vertex texture coordinate
-			The mesh also includes a description of how the vertices are organized to form the geometric 
-			shape of the mesh. The mesh vertices are collated into geometric primitives such as polygons, 
-			triangles, or lines.
-*/class intMesh;
+class intMesh;
 
 typedef daeSmartRef<intMesh> intMeshRef;
 typedef daeTArray<intMeshRef> intMeshArray;
 
+/**
+ * The mesh element contains vertex and primitive information sufficient to
+ * describe basic  geometric meshes. Meshes embody a general form of geometric
+ * description that primarily  includes vertex and primitive information.
+ * Vertex information is the set of attributes  associated with a point on
+ * the surface of the mesh. Each vertex includes data for attributes such
+ * as: * Vertex position * Vertex color * Vertex normal * Vertex texture coordinate
+ * The mesh also includes a description of how the vertices are organized
+ * to form the geometric  shape of the mesh. The mesh vertices are collated
+ * into geometric primitives such as polygons,  triangles, or lines.
+ */
 class intMesh : public daeIntegrationObject
 {
 public: // Constuctor and Destructor

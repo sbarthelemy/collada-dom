@@ -40,7 +40,6 @@ intRigid_body::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "rigid_body" );
-	_Meta->setStaticPointerAddress(&intRigid_body::_Meta);
 	_Meta->registerConstructor(intRigid_body::create);
 
 	domRigid_body::_Meta->setMetaIntegration(_Meta);
@@ -65,7 +64,6 @@ intRigid_body::intTechnique_common::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "technique_common" );
-	_Meta->setStaticPointerAddress(&intRigid_body::intTechnique_common::_Meta);
 	_Meta->registerConstructor(intRigid_body::intTechnique_common::create);
 
 	domRigid_body::domTechnique_common::_Meta->setMetaIntegration(_Meta);
@@ -90,7 +88,6 @@ intRigid_body::intTechnique_common::intDynamic::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "dynamic" );
-	_Meta->setStaticPointerAddress(&intRigid_body::intTechnique_common::intDynamic::_Meta);
 	_Meta->registerConstructor(intRigid_body::intTechnique_common::intDynamic::create);
 
 	domRigid_body::domTechnique_common::domDynamic::_Meta->setMetaIntegration(_Meta);
@@ -115,7 +112,6 @@ intRigid_body::intTechnique_common::intMass_frame::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "mass_frame" );
-	_Meta->setStaticPointerAddress(&intRigid_body::intTechnique_common::intMass_frame::_Meta);
 	_Meta->registerConstructor(intRigid_body::intTechnique_common::intMass_frame::create);
 
 	domRigid_body::domTechnique_common::domMass_frame::_Meta->setMetaIntegration(_Meta);
@@ -140,7 +136,6 @@ intRigid_body::intTechnique_common::intShape::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "shape" );
-	_Meta->setStaticPointerAddress(&intRigid_body::intTechnique_common::intShape::_Meta);
 	_Meta->registerConstructor(intRigid_body::intTechnique_common::intShape::create);
 
 	domRigid_body::domTechnique_common::domShape::_Meta->setMetaIntegration(_Meta);
@@ -165,7 +160,6 @@ intRigid_body::intTechnique_common::intShape::intHollow::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "hollow" );
-	_Meta->setStaticPointerAddress(&intRigid_body::intTechnique_common::intShape::intHollow::_Meta);
 	_Meta->registerConstructor(intRigid_body::intTechnique_common::intShape::intHollow::create);
 
 	domRigid_body::domTechnique_common::domShape::domHollow::_Meta->setMetaIntegration(_Meta);

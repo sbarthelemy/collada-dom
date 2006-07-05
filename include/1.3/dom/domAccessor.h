@@ -85,7 +85,7 @@ public:	//Accessors and Mutators
 	 * Sets the id attribute.
 	 * @param atId The new value for the id attribute.
 	 */
-	void setId( xsID atId ) { attrId = atId;
+	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId;
 	 _validAttributeArray[0] = true; }
 
 	/**

@@ -35,7 +35,6 @@ intGl_samplerCUBE::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "gl_samplerCUBE" );
-	_Meta->setStaticPointerAddress(&intGl_samplerCUBE::_Meta);
 	_Meta->registerConstructor(intGl_samplerCUBE::create);
 
 	domGl_samplerCUBE::_Meta->setMetaIntegration(_Meta);

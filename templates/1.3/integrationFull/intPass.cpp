@@ -36,7 +36,6 @@ intPass::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "pass" );
-	_Meta->setStaticPointerAddress(&intPass::_Meta);
 	_Meta->registerConstructor(intPass::create);
 
 	domPass::_Meta->setMetaIntegration(_Meta);
@@ -61,7 +60,6 @@ intPass::intInput::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "input" );
-	_Meta->setStaticPointerAddress(&intPass::intInput::_Meta);
 	_Meta->registerConstructor(intPass::intInput::create);
 
 	domPass::domInput::_Meta->setMetaIntegration(_Meta);

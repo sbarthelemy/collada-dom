@@ -17,15 +17,18 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeMetaElement.h>
 
-/** -DEPRECATED- The boundingbox element declares an axially aligned bounding box that 
-			encompasses the geometric extent of a node in the scene graph. If the boundingbox is 
-			transformed by rotate elements then the resulting bounding box is an axial aligned box that 
-			encompasses the original bounding box.
-*/class intBoundingbox;
+class intBoundingbox;
 
 typedef daeSmartRef<intBoundingbox> intBoundingboxRef;
 typedef daeTArray<intBoundingboxRef> intBoundingboxArray;
 
+/**
+ * -DEPRECATED- The boundingbox element declares an axially aligned bounding
+ * box that  encompasses the geometric extent of a node in the scene graph.
+ * If the boundingbox is  transformed by rotate elements then the resulting
+ * bounding box is an axial aligned box that  encompasses the original bounding
+ * box.
+ */
 class intBoundingbox : public daeIntegrationObject
 {
 public: // Constuctor and Destructor
@@ -69,13 +72,15 @@ public: // STATIC MEMBERS
 	static daeMetaElement* _Meta;
 
 public:
-/** The min element contains three floating-point values for the minimum corner of 
-						the box.
-*/class intMin;
+class intMin;
 
 typedef daeSmartRef<intMin> intMinRef;
 typedef daeTArray<intMinRef> intMinArray;
 
+/**
+ * The min element contains three floating-point values for the minimum corner
+ * of  the box.
+ */
 class intMin : public daeIntegrationObject
 {
 public: // Constuctor and Destructor
@@ -119,13 +124,15 @@ public: // STATIC MEMBERS
 	static daeMetaElement* _Meta;
 
 };
-/** The max element contains three floating-point values for the maximum corner of 
-						the box.
-*/class intMax;
+class intMax;
 
 typedef daeSmartRef<intMax> intMaxRef;
 typedef daeTArray<intMaxRef> intMaxArray;
 
+/**
+ * The max element contains three floating-point values for the maximum corner
+ * of  the box.
+ */
 class intMax : public daeIntegrationObject
 {
 public: // Constuctor and Destructor

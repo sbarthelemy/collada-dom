@@ -17,15 +17,17 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeMetaElement.h>
 
-/** The COLLADA element declares the root of the document that comprises some of the content in 
-			the COLLADA schema.
-			The COLLADA schema is XML based; therefore, it must have a 'document root element' or 
-			document entity to be a well-formed XML document.
-*/class intCOLLADA;
+class intCOLLADA;
 
 typedef daeSmartRef<intCOLLADA> intCOLLADARef;
 typedef daeTArray<intCOLLADARef> intCOLLADAArray;
 
+/**
+ * The COLLADA element declares the root of the document that comprises some
+ * of the content in  the COLLADA schema. The COLLADA schema is XML based;
+ * therefore, it must have a 'document root element' or  document entity to
+ * be a well-formed XML document.
+ */
 class intCOLLADA : public daeIntegrationObject
 {
 public: // Constuctor and Destructor

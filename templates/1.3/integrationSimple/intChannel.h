@@ -17,15 +17,18 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeMetaElement.h>
 
-/** The channel element declares an output channel of an animation. As an animation transforms 
-			value over time, those values are directed out to channels. The animation channels describe 
-			where to store the transformed values from the animation engine. The channels target the 
-			data structures that receive the animated values.
-*/class intChannel;
+class intChannel;
 
 typedef daeSmartRef<intChannel> intChannelRef;
 typedef daeTArray<intChannelRef> intChannelArray;
 
+/**
+ * The channel element declares an output channel of an animation. As an animation
+ * transforms  value over time, those values are directed out to channels.
+ * The animation channels describe  where to store the transformed values
+ * from the animation engine. The channels target the  data structures that
+ * receive the animated values.
+ */
 class intChannel : public daeIntegrationObject
 {
 public: // Constuctor and Destructor

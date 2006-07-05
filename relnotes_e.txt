@@ -9,17 +9,15 @@
  implied. See the License for the specific language governing permissions and limitations under the 
  License.
 ======================================================================
-COLLADA 1.4 DOM Patch1
+COLLADA 1.4.1 DOM 1.1.0
 
-Date: February 10, 2006
+Date: June 26, 2006
 Author: Mark C. Barnes, Andrew C. Lorino
 ======================================================================
 ======================================================================
 
-This is the COLLADA 1.4 DOM.
-
 This DOM provides import and export capabilities to tools that process
-COLLADA v1.4.0 or COLLADA v1.3.1 documents.
+COLLADA v1.4.1 or COLLADA v1.3.1 documents.
 
 
 ======================================================================
@@ -28,13 +26,21 @@ Known bugs
 * [Bug]
 
   SourceForge Open Issues
-  -None
+  
+  1507993	dae dependency on libxml.h?
+  1498086  	Compile error with GCC 4.1 on daeURI.h
+  1472586 	daeURI Copy Constructor
+  1467892 	Visual Studio PDB file names are all the same
+  1466019 	Memory Leak issue
+  1449595 	Permanent memory leaks
+  1444313 	Bad handling of "#" URIs
+  1437830 	syntax error in sample DOM code in programming guide
+  1431586 	Incorrect file paths
 
   Mantis Open Issues (major and above)
 
   0000445	DOM - Gen  major	rfc 2396 URI compliance issues
   0000461	DOM - OM   major	daeElement::clone does not resolve URI's
-  0000525	DOM - Imp  major	Reminder that daeXMLPlugin still has whitespace handling bugs, may cause problems with dcc exported files
   0000543	DOM - OM   major	given a const pointer to a dom object it might not be possible to read it
   0000592	DOM - Gen  major	"set" accessors in dae/dom need to be consistant about making copies of objects
 
@@ -59,7 +65,7 @@ Restriction
   #defines and enums defined in the schema with duplicate values.
   
 * [Limitation]
-  You cannot build and use the 1.3.1 and 1.4 versions of the DOM simultaneously.
+  You cannot build and use the 1.3.1 and 1.4.1 versions of the DOM simultaneously.
   
 * [Limitation]
   To build for Windows you will need to download libxml2 from the web and install
@@ -78,35 +84,17 @@ Restriction
   link with the release version.
 
 * [Guideline]
-  In this release the daeLIBXMLPlugin has been set as the default plugin for reading
-  XML files.  This plugin is much more standards compliant than the original Emdigo
-  parser and fixes a number of bugs with the original parser that were causing some
-  files to be imported incorrectly.
-
-  Unless you change the default plugin (see programmers guide for instructions) your
-  applications now need to link with daeLIBXMLPlugin.lib instead of daeXMLPlugin.lib.
-  You also need to link libxml2 into your applications. Most linux systems already
-  have libxml2 installed.  Source code for a CELL version is included with distributions
-  that support CELL.  See the makefiles and visual C++ project files in the 
-  samples for an example of how to link.  For windows you need to install libxml2 
-  yourself, see below for details.
-
-  Libxml2 can be built as a minimal version with no dependencies or a full-featured
-  version that requires iconv, zlib and a network library to function.  Again, see
-  the sample makefiles or visual C++ project files for examples of how to link.
-
-* [guideline]
-  A new DOM "getDomVersion" was added to DAE after the documentation was finalized.
+  A new function "getDomVersion" was added to DAE after the documentation was finalized.
   This returns a text string (ie 1.3.1) that indicates the version of the COLLADA
   schema that was used to build the DOM.  Applications that depend on a specific
   schema version should check this.
 
-* [guideline]
+* [Guideline]
   All load, save, query and other DOM calls that expect a document URI or a collection
   name now use URIs.  Remember to change backslashes to forward slashes and place
   file:/// or / in front of absolute URIs.
 
-* [guideline]
+* [Guideline]
   You can now toggle automatic loading of external documents by calling 
   daeURIResolver::setAutoLoadExternalReferences(). 
   You can now get a list of external references contained within a document by calling 
@@ -114,9 +102,26 @@ Restriction
   external documents you reference, the client program has a lot more control over what 
   gets loaded and when.
 
+* [Guideline]
+  Added a new class, daeSIDResolver, that will resolve SID targets. This class does not 
+  resolve elements automatically like the daeURI and daeIDRef resolver classes. If you 
+  want to use this functionality create a daeSIDResolver passing in a pointer to the element
+  that contains the target string, the target string, and optionally a platform string. A
+  NULL platform string will cause the SID resolver to search through the COMMON techniques.
+
 ======================================================================
 Changes (for developer)
 ======================================================================
+
+* Fixed in COLLADA 1.4.1 DOM 1.1.0
+- 1508961  	Can't write out set="0"
+- 1503087 	crash in COLLADA_RT_VIEWER
+- 1499558 	daeURI and Windows paths
+- 1492973 	wrong name in domInputLocal
+- 1491045 	Unable to get SID attribute.
+- 1490426 	daeTArray<T>::setCount(0) infinite loop
+- 1477052 	No way to tell if animation_clip "end" attribute is present.
+- 1442300  	placeElement should insert items in correct order
 
 * Fixed in COLLADA 1.4 DOM Patch 3
 - 1456261  	Build problems on Linux

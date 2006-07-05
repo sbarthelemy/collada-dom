@@ -61,6 +61,28 @@ domLibrary_physics_materials::registerElement()
 	
 	cm->setMaxOrdinal( 2 );
 	_Meta->setCMRoot( cm );	
+
+	//	Add attribute: id
+ 	{
+		daeMetaAttribute *ma = new daeMetaAttribute;
+		ma->setName( "id" );
+		ma->setType( daeAtomicType::get("xsID"));
+		ma->setOffset( daeOffsetOf( domLibrary_physics_materials , attrId ));
+		ma->setContainer( _Meta );
+	
+		_Meta->appendAttribute(ma);
+	}
+
+	//	Add attribute: name
+ 	{
+		daeMetaAttribute *ma = new daeMetaAttribute;
+		ma->setName( "name" );
+		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setOffset( daeOffsetOf( domLibrary_physics_materials , attrName ));
+		ma->setContainer( _Meta );
+	
+		_Meta->appendAttribute(ma);
+	}
 	
 	
 	_Meta->setElementSize(sizeof(domLibrary_physics_materials));

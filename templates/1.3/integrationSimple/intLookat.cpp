@@ -35,7 +35,6 @@ intLookat::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "lookat" );
-	_Meta->setStaticPointerAddress(&intLookat::_Meta);
 	_Meta->registerConstructor(intLookat::create);
 
 	domLookat::_Meta->setMetaIntegration(_Meta);

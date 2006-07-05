@@ -35,7 +35,6 @@ intFx_clearstencil_common::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fx_clearstencil_common" );
-	_Meta->setStaticPointerAddress(&intFx_clearstencil_common::_Meta);
 	_Meta->registerConstructor(intFx_clearstencil_common::create);
 
 	domFx_clearstencil_common::_Meta->setMetaIntegration(_Meta);

@@ -35,7 +35,6 @@ intTapered_capsule::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "tapered_capsule" );
-	_Meta->setStaticPointerAddress(&intTapered_capsule::_Meta);
 	_Meta->registerConstructor(intTapered_capsule::create);
 
 	domTapered_capsule::_Meta->setMetaIntegration(_Meta);

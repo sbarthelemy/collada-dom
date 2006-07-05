@@ -37,7 +37,6 @@ intTexture::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "texture" );
-	_Meta->setStaticPointerAddress(&intTexture::_Meta);
 	_Meta->registerConstructor(intTexture::create);
 
 	domTexture::_Meta->setMetaIntegration(_Meta);
@@ -62,7 +61,6 @@ intTexture::intTechnique::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "technique" );
-	_Meta->setStaticPointerAddress(&intTexture::intTechnique::_Meta);
 	_Meta->registerConstructor(intTexture::intTechnique::create);
 
 	domTexture::domTechnique::_Meta->setMetaIntegration(_Meta);
@@ -87,7 +85,6 @@ intTexture::intTechnique::intInput::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "input" );
-	_Meta->setStaticPointerAddress(&intTexture::intTechnique::intInput::_Meta);
 	_Meta->registerConstructor(intTexture::intTechnique::intInput::create);
 
 	domTexture::domTechnique::domInput::_Meta->setMetaIntegration(_Meta);

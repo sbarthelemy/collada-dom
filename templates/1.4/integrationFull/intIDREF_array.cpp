@@ -35,7 +35,6 @@ intIDREF_array::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "IDREF_array" );
-	_Meta->setStaticPointerAddress(&intIDREF_array::_Meta);
 	_Meta->registerConstructor(intIDREF_array::create);
 
 	domIDREF_array::_Meta->setMetaIntegration(_Meta);

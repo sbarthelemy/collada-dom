@@ -38,7 +38,6 @@ intVisual_scene::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "visual_scene" );
-	_Meta->setStaticPointerAddress(&intVisual_scene::_Meta);
 	_Meta->registerConstructor(intVisual_scene::create);
 
 	domVisual_scene::_Meta->setMetaIntegration(_Meta);
@@ -63,7 +62,6 @@ intVisual_scene::intEvaluate_scene::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "evaluate_scene" );
-	_Meta->setStaticPointerAddress(&intVisual_scene::intEvaluate_scene::_Meta);
 	_Meta->registerConstructor(intVisual_scene::intEvaluate_scene::create);
 
 	domVisual_scene::domEvaluate_scene::_Meta->setMetaIntegration(_Meta);
@@ -88,7 +86,6 @@ intVisual_scene::intEvaluate_scene::intRender::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "render" );
-	_Meta->setStaticPointerAddress(&intVisual_scene::intEvaluate_scene::intRender::_Meta);
 	_Meta->registerConstructor(intVisual_scene::intEvaluate_scene::intRender::create);
 
 	domVisual_scene::domEvaluate_scene::domRender::_Meta->setMetaIntegration(_Meta);
@@ -113,7 +110,6 @@ intVisual_scene::intEvaluate_scene::intRender::intLayer::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "layer" );
-	_Meta->setStaticPointerAddress(&intVisual_scene::intEvaluate_scene::intRender::intLayer::_Meta);
 	_Meta->registerConstructor(intVisual_scene::intEvaluate_scene::intRender::intLayer::create);
 
 	domVisual_scene::domEvaluate_scene::domRender::domLayer::_Meta->setMetaIntegration(_Meta);

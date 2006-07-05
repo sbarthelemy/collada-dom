@@ -28,8 +28,12 @@ domCOLLADA::create(daeInt bytes)
 {
 	domCOLLADARef ref = new(bytes) domCOLLADA;
 	ref->attrXmlns.setContainer( (domCOLLADA*)ref );
+	ref->attrXml_base.setContainer( (domCOLLADA*)ref );
+	ref->_meta = _Meta;
+	ref->_validAttributeArray.setCount( ref->_meta->getMetaAttributes().getCount() );
 	ref->setAttribute("version", COLLADA_VERSION );
 	ref->setAttribute("xmlns", COLLADA_NAMESPACE );
+	ref->_meta = NULL;
 	return ref;
 }
 
@@ -186,6 +190,17 @@ domCOLLADA::registerElement()
 		ma->setOffset( daeOffsetOf( domCOLLADA , attrVersion ));
 		ma->setContainer( _Meta );
 		ma->setIsRequired( true );
+	
+		_Meta->appendAttribute(ma);
+	}
+
+	//	Add attribute: xml_base
+ 	{
+		daeMetaAttribute *ma = new daeMetaAttribute;
+		ma->setName( "xml_base" );
+		ma->setType( daeAtomicType::get("xsAnyURI"));
+		ma->setOffset( daeOffsetOf( domCOLLADA , attrXml_base ));
+		ma->setContainer( _Meta );
 	
 		_Meta->appendAttribute(ma);
 	}

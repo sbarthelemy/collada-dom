@@ -35,7 +35,6 @@ intParam::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "param" );
-	_Meta->setStaticPointerAddress(&intParam::_Meta);
 	_Meta->registerConstructor(intParam::create);
 
 	domParam::_Meta->setMetaIntegration(_Meta);

@@ -192,6 +192,9 @@
 				RelativePath=".\domCommon_newparam_type.cpp">
 			</File>
 			<File
+				RelativePath=".\domCommon_transparent_type.cpp">
+			</File>
+			<File
 				RelativePath=".\domConstants.cpp">
 			</File>
 			<File
@@ -273,13 +276,28 @@
 				RelativePath=".\domFx_samplerRECT_common.cpp">
 			</File>
 			<File
-				RelativePath=".\domFx_setparam_common.cpp">
-			</File>
-			<File
 				RelativePath=".\domFx_stenciltarget_common.cpp">
 			</File>
 			<File
 				RelativePath=".\domFx_surface_common.cpp">
+			</File>
+			<File
+				RelativePath=".\domFx_surface_format_hint_common.cpp">
+			</File>
+			<File
+				RelativePath=".\domFx_surface_init_common.cpp">
+			</File>
+			<File
+				RelativePath=".\domFx_surface_init_cube_common.cpp">
+			</File>
+			<File
+				RelativePath=".\domFx_surface_init_from_common.cpp">
+			</File>
+			<File
+				RelativePath=".\domFx_surface_init_planar_common.cpp">
+			</File>
+			<File
+				RelativePath=".\domFx_surface_init_volume_common.cpp">
 			</File>
 			<File
 				RelativePath=".\domGeometry.cpp">
@@ -695,6 +713,9 @@
 				RelativePath="..\..\..\include\1.4\dom\domCommon_newparam_type.h">
 			</File>
 			<File
+				RelativePath="..\..\..\include\1.4\dom\domCommon_transparent_type.h">
+			</File>
+			<File
 				RelativePath="..\..\..\include\1.4\dom\domConstants.h">
 			</File>
 			<File
@@ -779,13 +800,28 @@
 				RelativePath="..\..\..\include\1.4\dom\domFx_samplerRECT_common.h">
 			</File>
 			<File
-				RelativePath="..\..\..\include\1.4\dom\domFx_setparam_common.h">
-			</File>
-			<File
 				RelativePath="..\..\..\include\1.4\dom\domFx_stenciltarget_common.h">
 			</File>
 			<File
 				RelativePath="..\..\..\include\1.4\dom\domFx_surface_common.h">
+			</File>
+			<File
+				RelativePath="..\..\..\include\1.4\dom\domFx_surface_format_hint_common.h">
+			</File>
+			<File
+				RelativePath="..\..\..\include\1.4\dom\domFx_surface_init_common.h">
+			</File>
+			<File
+				RelativePath="..\..\..\include\1.4\dom\domFx_surface_init_cube_common.h">
+			</File>
+			<File
+				RelativePath="..\..\..\include\1.4\dom\domFx_surface_init_from_common.h">
+			</File>
+			<File
+				RelativePath="..\..\..\include\1.4\dom\domFx_surface_init_planar_common.h">
+			</File>
+			<File
+				RelativePath="..\..\..\include\1.4\dom\domFx_surface_init_volume_common.h">
 			</File>
 			<File
 				RelativePath="..\..\..\include\1.4\dom\domGeometry.h">

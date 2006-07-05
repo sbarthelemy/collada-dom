@@ -68,6 +68,28 @@ domInstance_geometry::registerElement()
 	
 		_Meta->appendAttribute(ma);
 	}
+
+	//	Add attribute: sid
+ 	{
+		daeMetaAttribute *ma = new daeMetaAttribute;
+		ma->setName( "sid" );
+		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setOffset( daeOffsetOf( domInstance_geometry , attrSid ));
+		ma->setContainer( _Meta );
+	
+		_Meta->appendAttribute(ma);
+	}
+
+	//	Add attribute: name
+ 	{
+		daeMetaAttribute *ma = new daeMetaAttribute;
+		ma->setName( "name" );
+		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setOffset( daeOffsetOf( domInstance_geometry , attrName ));
+		ma->setContainer( _Meta );
+	
+		_Meta->appendAttribute(ma);
+	}
 	
 	
 	_Meta->setElementSize(sizeof(domInstance_geometry));

@@ -17,17 +17,20 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeMetaElement.h>
 
-/** The joints element declares the association between joint nodes and attribute data.
-			The joints element associates joint nodes in the scene hierarchy with bind-position matrices 
-			in a skin controller. The joint nodes represent the joints of a character skeleton. The 
-			skeleton can be resused by different skin controllers. Information particular to a specific 
-			skin controller is stored with the skin including the position of the joints at the time the 
-			skin was bound them.
-*/class intJoints;
+class intJoints;
 
 typedef daeSmartRef<intJoints> intJointsRef;
 typedef daeTArray<intJointsRef> intJointsArray;
 
+/**
+ * The joints element declares the association between joint nodes and attribute
+ * data. The joints element associates joint nodes in the scene hierarchy
+ * with bind-position matrices  in a skin controller. The joint nodes represent
+ * the joints of a character skeleton. The  skeleton can be resused by different
+ * skin controllers. Information particular to a specific  skin controller
+ * is stored with the skin including the position of the joints at the time
+ * the  skin was bound them.
+ */
 class intJoints : public daeIntegrationObject
 {
 public: // Constuctor and Destructor
@@ -71,14 +74,16 @@ public: // STATIC MEMBERS
 	static daeMetaElement* _Meta;
 
 public:
-/** The input element must occur two or more times because there must be at least 
-						two things associated with each other. The input element must not have the idx 
-						attribute when it is the child of a joints element.
-*/class intInput;
+class intInput;
 
 typedef daeSmartRef<intInput> intInputRef;
 typedef daeTArray<intInputRef> intInputArray;
 
+/**
+ * The input element must occur two or more times because there must be at
+ * least  two things associated with each other. The input element must not
+ * have the idx  attribute when it is the child of a joints element.
+ */
 class intInput : public daeIntegrationObject
 {
 public: // Constuctor and Destructor

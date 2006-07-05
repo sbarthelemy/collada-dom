@@ -41,7 +41,13 @@ domProfile_GLES::registerElement()
 	daeMetaElementAttribute *mea = NULL;
 	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
 
-	cm = new daeMetaChoice( _Meta, cm, 0, 0, -1 );
+	mea = new daeMetaElementAttribute( _Meta, cm, 0, 0, 1 );
+	mea->setName( "asset" );
+	mea->setOffset( daeOffsetOf(domProfile_GLES,elemAsset) );
+	mea->setElementType( domAsset::registerElement() );
+	cm->appendChild( mea );
+	
+	cm = new daeMetaChoice( _Meta, cm, 1, 0, -1 );
 
 	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "image" );
@@ -59,18 +65,49 @@ domProfile_GLES::registerElement()
 	cm->getParent()->appendChild( cm );
 	cm = cm->getParent();
 	
-	mea = new daeMetaElementArrayAttribute( _Meta, cm, 3001, 1, -1 );
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 3002, 1, -1 );
 	mea->setName( "technique" );
 	mea->setOffset( daeOffsetOf(domProfile_GLES,elemTechnique_array) );
 	mea->setElementType( domProfile_GLES::domTechnique::registerElement() );
 	cm->appendChild( mea );
 	
-	cm->setMaxOrdinal( 3001 );
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 3003, 0, -1 );
+	mea->setName( "extra" );
+	mea->setOffset( daeOffsetOf(domProfile_GLES,elemExtra_array) );
+	mea->setElementType( domExtra::registerElement() );
+	cm->appendChild( mea );
+	
+	cm->setMaxOrdinal( 3003 );
 	_Meta->setCMRoot( cm );	
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domProfile_GLES,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domProfile_GLES,_contentsOrder));
 
+
+	//	Add attribute: id
+ 	{
+		daeMetaAttribute *ma = new daeMetaAttribute;
+		ma->setName( "id" );
+		ma->setType( daeAtomicType::get("xsID"));
+		ma->setOffset( daeOffsetOf( domProfile_GLES , attrId ));
+		ma->setContainer( _Meta );
+		ma->setIsRequired( false );
+	
+		_Meta->appendAttribute(ma);
+	}
+
+	//	Add attribute: platform
+ 	{
+		daeMetaAttribute *ma = new daeMetaAttribute;
+		ma->setName( "platform" );
+		ma->setType( daeAtomicType::get("xsNCName"));
+		ma->setOffset( daeOffsetOf( domProfile_GLES , attrPlatform ));
+		ma->setContainer( _Meta );
+		ma->setDefault( "PC");
+		ma->setIsRequired( false );
+	
+		_Meta->appendAttribute(ma);
+	}
 	
 	
 	_Meta->setElementSize(sizeof(domProfile_GLES));
@@ -107,9 +144,9 @@ domProfile_GLES::domTechnique::registerElement()
 	mea->setElementType( domAsset::registerElement() );
 	cm->appendChild( mea );
 	
-	mea = new daeMetaElementAttribute( _Meta, cm, 1, 0, 1 );
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 1, 0, -1 );
 	mea->setName( "annotate" );
-	mea->setOffset( daeOffsetOf(domProfile_GLES::domTechnique,elemAnnotate) );
+	mea->setOffset( daeOffsetOf(domProfile_GLES::domTechnique,elemAnnotate_array) );
 	mea->setElementType( domFx_annotate_common::registerElement() );
 	cm->appendChild( mea );
 	
@@ -143,7 +180,13 @@ domProfile_GLES::domTechnique::registerElement()
 	mea->setElementType( domProfile_GLES::domTechnique::domPass::registerElement() );
 	cm->appendChild( mea );
 	
-	cm->setMaxOrdinal( 3003 );
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 3004, 0, -1 );
+	mea->setName( "extra" );
+	mea->setOffset( daeOffsetOf(domProfile_GLES::domTechnique,elemExtra_array) );
+	mea->setElementType( domExtra::registerElement() );
+	cm->appendChild( mea );
+	
+	cm->setMaxOrdinal( 3004 );
 	_Meta->setCMRoot( cm );	
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domProfile_GLES::domTechnique,_contents));
@@ -264,51 +307,49 @@ domProfile_GLES::domTechnique::domPass::registerElement()
 	mea->setElementType( domFx_annotate_common::registerElement() );
 	cm->appendChild( mea );
 	
-	cm = new daeMetaSequence( _Meta, cm, 1, 1, 1 );
-
-	mea = new daeMetaElementAttribute( _Meta, cm, 0, 0, 1 );
+	mea = new daeMetaElementAttribute( _Meta, cm, 1, 0, 1 );
 	mea->setName( "color_target" );
 	mea->setOffset( daeOffsetOf(domProfile_GLES::domTechnique::domPass,elemColor_target) );
 	mea->setElementType( domProfile_GLES::domTechnique::domPass::domColor_target::registerElement() );
 	cm->appendChild( mea );
 	
-	mea = new daeMetaElementAttribute( _Meta, cm, 1, 0, 1 );
+	mea = new daeMetaElementAttribute( _Meta, cm, 2, 0, 1 );
 	mea->setName( "depth_target" );
 	mea->setOffset( daeOffsetOf(domProfile_GLES::domTechnique::domPass,elemDepth_target) );
 	mea->setElementType( domProfile_GLES::domTechnique::domPass::domDepth_target::registerElement() );
 	cm->appendChild( mea );
 	
-	mea = new daeMetaElementAttribute( _Meta, cm, 2, 0, 1 );
+	mea = new daeMetaElementAttribute( _Meta, cm, 3, 0, 1 );
 	mea->setName( "stencil_target" );
 	mea->setOffset( daeOffsetOf(domProfile_GLES::domTechnique::domPass,elemStencil_target) );
 	mea->setElementType( domProfile_GLES::domTechnique::domPass::domStencil_target::registerElement() );
 	cm->appendChild( mea );
 	
-	mea = new daeMetaElementAttribute( _Meta, cm, 3, 0, 1 );
+	mea = new daeMetaElementAttribute( _Meta, cm, 4, 0, 1 );
 	mea->setName( "color_clear" );
 	mea->setOffset( daeOffsetOf(domProfile_GLES::domTechnique::domPass,elemColor_clear) );
 	mea->setElementType( domProfile_GLES::domTechnique::domPass::domColor_clear::registerElement() );
 	cm->appendChild( mea );
 	
-	mea = new daeMetaElementAttribute( _Meta, cm, 4, 0, 1 );
+	mea = new daeMetaElementAttribute( _Meta, cm, 5, 0, 1 );
 	mea->setName( "depth_clear" );
 	mea->setOffset( daeOffsetOf(domProfile_GLES::domTechnique::domPass,elemDepth_clear) );
 	mea->setElementType( domProfile_GLES::domTechnique::domPass::domDepth_clear::registerElement() );
 	cm->appendChild( mea );
 	
-	mea = new daeMetaElementAttribute( _Meta, cm, 5, 0, 1 );
+	mea = new daeMetaElementAttribute( _Meta, cm, 6, 0, 1 );
 	mea->setName( "stencil_clear" );
 	mea->setOffset( daeOffsetOf(domProfile_GLES::domTechnique::domPass,elemStencil_clear) );
 	mea->setElementType( domProfile_GLES::domTechnique::domPass::domStencil_clear::registerElement() );
 	cm->appendChild( mea );
 	
-	mea = new daeMetaElementAttribute( _Meta, cm, 6, 0, 1 );
+	mea = new daeMetaElementAttribute( _Meta, cm, 7, 0, 1 );
 	mea->setName( "draw" );
 	mea->setOffset( daeOffsetOf(domProfile_GLES::domTechnique::domPass,elemDraw) );
 	mea->setElementType( domProfile_GLES::domTechnique::domPass::domDraw::registerElement() );
 	cm->appendChild( mea );
 	
-	cm = new daeMetaChoice( _Meta, cm, 7, 0, -1 );
+	cm = new daeMetaChoice( _Meta, cm, 8, 0, -1 );
 
 	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "gles_pipeline_settings" );
@@ -320,11 +361,13 @@ domProfile_GLES::domTechnique::domPass::registerElement()
 	cm->getParent()->appendChild( cm );
 	cm = cm->getParent();
 	
-	cm->setMaxOrdinal( 3007 );
-	cm->getParent()->appendChild( cm );
-	cm = cm->getParent();
+	mea = new daeMetaElementArrayAttribute( _Meta, cm, 3009, 0, -1 );
+	mea->setName( "extra" );
+	mea->setOffset( daeOffsetOf(domProfile_GLES::domTechnique::domPass,elemExtra_array) );
+	mea->setElementType( domExtra::registerElement() );
+	cm->appendChild( mea );
 	
-	cm->setMaxOrdinal( 3008 );
+	cm->setMaxOrdinal( 3009 );
 	_Meta->setCMRoot( cm );	
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domProfile_GLES::domTechnique::domPass,_contents));

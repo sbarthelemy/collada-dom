@@ -35,7 +35,6 @@ intFx_samplerRECT_common::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fx_samplerRECT_common" );
-	_Meta->setStaticPointerAddress(&intFx_samplerRECT_common::_Meta);
 	_Meta->registerConstructor(intFx_samplerRECT_common::create);
 
 	domFx_samplerRECT_common::_Meta->setMetaIntegration(_Meta);

@@ -17,16 +17,19 @@
 #include <dae/daeIntegrationObject.h>
 #include <dae/daeMetaElement.h>
 
-/** Images embody the graphical representation of a scene or object. The image element declares 
-			the storage for the graphical representation of an object. The image element best describes 
-			raster image data, but can conceivably handle other forms of imagery. The image element may 
-			contain a sequence of hexadecimal, binary octets representing the embedded image data. These 
-			values are interpreted at pixel values according to the format attribute.
-*/class intImage;
+class intImage;
 
 typedef daeSmartRef<intImage> intImageRef;
 typedef daeTArray<intImageRef> intImageArray;
 
+/**
+ * Images embody the graphical representation of a scene or object. The image
+ * element declares  the storage for the graphical representation of an object.
+ * The image element best describes  raster image data, but can conceivably
+ * handle other forms of imagery. The image element may  contain a sequence
+ * of hexadecimal, binary octets representing the embedded image data. These
+ * values are interpreted at pixel values according to the format attribute.
+ */
 class intImage : public daeIntegrationObject
 {
 public: // Constuctor and Destructor
