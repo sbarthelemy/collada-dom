@@ -13,6 +13,33 @@
 
 #include <dae/daeDocument.h>
 
+void daeDocument::insertElement( daeElementRef element ) {
+	daeElement *parent = element->getParentElement();
+	size_t idx;
+	while ( parent != NULL ) {
+		if ( insertedElements.find( parent, idx ) == DAE_OK ) {
+			//found an ancestor in the list.. this child will already be added to the database
+			return;
+		}
+		parent = parent->getParentElement();
+	}
+	//if no ancestors are scheduled to be added then we can add element.
+	insertedElements.append( element );
+}
+
+void daeDocument::removeElement( daeElementRef element ) {
+	daeElement *parent = element->getParentElement();
+	size_t idx;
+	while ( parent != NULL ) {
+		if ( removedElements.find( parent, idx ) == DAE_OK ) {
+			//found an ancestor in the list.. this child will already be added to the database
+			return;
+		}
+		parent = parent->getParentElement();
+	}
+	removedElements.append( element );
+}
+
 void daeDocument::addExternalReference( daeURI &uri ) {
 	if ( uri.getContainer() == NULL || uri.getContainer()->getDocument() != this ) {
 		return;	

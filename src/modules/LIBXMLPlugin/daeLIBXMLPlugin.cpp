@@ -108,7 +108,7 @@ daeInt daeLIBXMLPlugin::read(daeURI& uri, daeString docBuffer)
 
 	if(!reader)
 	{
-		char msg[256];
+		char msg[512];
 		sprintf( msg, "Failed to open %s\n", fileURI.getURI() );
 		daeErrorHandler::get()->handleError( msg );
 		return DAE_ERR_BACKEND_IO;
@@ -124,7 +124,7 @@ daeInt daeLIBXMLPlugin::read(daeURI& uri, daeString docBuffer)
 
 	if (!domObject)
 	{
-		char msg[256];
+		char msg[512];
 		sprintf(msg,"daeLIBXMLPlugin::read(%s) failed - XML Parse Failed\n",fileURI.getFile());
 		daeErrorHandler::get()->handleError( msg );
 		return DAE_ERR_BACKEND_IO;
@@ -198,8 +198,8 @@ daeLIBXMLPlugin::startParse(daeMetaElement* thisMetaElement, xmlTextReaderPtr re
 	daeElementRef element = thisMetaElement->create((const daeString)xmlTextReaderConstName(reader));
 	if(!element)
 	{
-		char err[256];
-		memset( err, 0, 256 );
+		char err[512];
+		memset( err, 0, 512 );
 		const xmlChar * mine =xmlTextReaderConstName(reader);
 #if LIBXML_VERSION >= 20620
 		sprintf(err,"The DOM was unable to create an element type %s at line %d\nProbably a schema violation.\n", mine,xmlTextReaderGetParserLineNumber(reader));
@@ -255,8 +255,8 @@ daeLIBXMLPlugin::startParse(daeMetaElement* thisMetaElement, xmlTextReaderPtr re
 				// The element is a child of this one, so we recurse
 				if(!element->placeElement(nextElement(element->getMeta(), reader)))
 				{
-					char err[256];
-					memset( err, 0, 256 );
+					char err[512];
+					memset( err, 0, 512 );
 #if LIBXML_VERSION >= 20620
 				sprintf(err,"placeElement failed at line %d\n", xmlTextReaderGetParserLineNumber(reader));
 #else
@@ -309,8 +309,8 @@ void daeLIBXMLPlugin::readAttributes( daeElement *element, xmlTextReaderPtr read
 				{
 					const xmlChar * attName	 = xmlTextReaderConstName(reader);
 					const xmlChar * attValue = xmlTextReaderConstValue(reader);
-					char err[256];
-					memset( err, 0, 256 );
+					char err[512];
+					memset( err, 0, 512 );
 #if LIBXML_VERSION >= 20620
 					sprintf(err,"The DOM was unable to create an attribute %s = %s at line %d\nProbably a schema violation.\n", attName, attValue ,xmlTextReaderGetParserLineNumber(reader));
 #else
@@ -327,8 +327,8 @@ void daeLIBXMLPlugin::readAttributes( daeElement *element, xmlTextReaderPtr read
 				if ( ma == NULL ) {
 					const xmlChar * attName	 = xmlTextReaderConstName(reader);
 					const xmlChar * attValue = xmlTextReaderConstValue(reader);
-					char err[256];
-					memset( err, 0, 256 );
+					char err[512];
+					memset( err, 0, 512 );
 #if LIBXML_VERSION >= 20620
 					sprintf(err,"The DOM was unable to create an attribute %s = %s at line %d\nProbably a schema violation.\n", attName, attValue ,xmlTextReaderGetParserLineNumber(reader));
 #else				
@@ -358,8 +358,8 @@ void daeLIBXMLPlugin::readAttributes( daeElement *element, xmlTextReaderPtr read
 						{
 							const xmlChar * attName	 = xmlTextReaderConstName(reader);
 							const xmlChar * attValue = xmlTextReaderConstValue(reader);
-							char err[256];
-							memset( err, 0, 256 );
+							char err[512];
+							memset( err, 0, 512 );
 #if LIBXML_VERSION >= 20620
 							sprintf(err,"The DOM was unable to create an attribute %s = %s at line %d\nProbably a schema violation.\n", attName, attValue ,xmlTextReaderGetParserLineNumber(reader));
 #else
@@ -377,8 +377,8 @@ void daeLIBXMLPlugin::readAttributes( daeElement *element, xmlTextReaderPtr read
 
 void daeLIBXMLPlugin::readValue( daeElement *element, xmlTextReaderPtr reader ) {
 	if ( element->getMeta()->getValueAttribute() == NULL ) {
-		char err[256];
-		memset( err, 0, 256 );
+		char err[512];
+		memset( err, 0, 512 );
 #if LIBXML_VERSION >= 20620
 		sprintf(err,"The DOM was unable to set a value for element of type %s at line %d\nProbably a schema violation.\n", element->getTypeName() ,xmlTextReaderGetParserLineNumber(reader));
 #else
@@ -443,8 +443,8 @@ daeLIBXMLPlugin::nextElement(daeMetaElement* thisMetaElement, xmlTextReaderPtr r
 	if(!element)
 	{
 		const xmlChar * mine =xmlTextReaderConstName(reader);
-		char err[256];
-		memset( err, 0, 256 );
+		char err[512];
+		memset( err, 0, 512 );
 #if LIBXML_VERSION >= 20620
 		sprintf(err,"The DOM was unable to create an element type %s at line %d\nProbably a schema violation.\n", mine,xmlTextReaderGetParserLineNumber(reader));
 #else
@@ -484,8 +484,8 @@ daeLIBXMLPlugin::nextElement(daeMetaElement* thisMetaElement, xmlTextReaderPtr r
 				daeElementRef newEl = nextElement(element->getMeta(), reader);
 				if( newEl != NULL && !element->placeElement(newEl) )
 				{
-					char err[256];
-					memset( err, 0, 256 );
+					char err[512];
+					memset( err, 0, 512 );
 					sprintf(err,"placeElement failed placing element %s in element %s\n", newEl->getTypeName(), element->getTypeName() );
 					daeErrorHandler::get()->handleWarning( err );
 					ret = xmlTextReaderRead(reader);
@@ -601,7 +601,7 @@ daeInt daeLIBXMLPlugin::write(daeURI *name, daeDocument *document, daeBool repla
 	// Open the file we will write to
 	writer = xmlNewTextWriterFilename(name->getURI(), 0);
 	if ( !writer ) {
-		char msg[256];
+		char msg[512];
 		sprintf(msg,"daeLIBXMLPlugin::write(%s) failed\n",name->getURI());
 		daeErrorHandler::get()->handleError( msg );
 		return DAE_ERR_BACKEND_IO;
@@ -715,7 +715,7 @@ void daeLIBXMLPlugin::writeAttribute( daeMetaAttribute* attr, daeElement* elemen
 				// DISABLE THIS CODE IF YOU WANT DEFAULT VALUES TO ALWAYS EXPORT
 				if(typeSize >= TYPE_BUFFER_SIZE)
 				{
-					char msg[256];
+					char msg[512];
 					sprintf(msg,
 							"daeMetaAttribute::print() - buffer too small for default value of %s in %s\n",
 							(daeString)attr->getName(),(daeString)attr->getContainer()->getName());
@@ -754,7 +754,7 @@ void daeLIBXMLPlugin::writeAttribute( daeMetaAttribute* attr, daeElement* elemen
 		// Convert the attribute to a string
 
 		if (attr->getType()->memoryToString(elemMem, atomicTypeBuf,	TYPE_BUFFER_SIZE)== false) {
-			char msg[256];
+			char msg[512];
 			sprintf(msg,
 					"daeMetaAttribute::print() - buffer too small for %s in %s\n",
 					(daeString)attr->getName(),(daeString)attr->getContainer()->getName());
@@ -798,7 +798,7 @@ void daeLIBXMLPlugin::writeAttribute( daeMetaAttribute* attr, daeElement* elemen
 			char* elemMem = attr->get(element, i);
 			if (attr->getType()->memoryToString(elemMem, atomicTypeBuf,	TYPE_BUFFER_SIZE)== false) 
 			{
-				char msg[256];
+				char msg[512];
 				sprintf(msg,
 						"daeMetaArrayAttribute::print() - buffer too small for %s in %s\n",
 						(daeString)attr->getName(),(daeString)attr->getContainer()->getName());

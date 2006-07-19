@@ -622,7 +622,7 @@ daeEnumType::memoryToString(daeChar* src, daeChar* dst, daeInt dstSize)
 daeBool
 daeBoolType::stringToMemory(daeChar* srcChars, daeChar* dstMemory)
 {
-	if (strncmp(srcChars,"true",4)==0)
+	if (strncmp(srcChars,"true",4)==0 || strncmp(srcChars,"1",1)==0)
 		*((daeBool*)dstMemory) = true;
 	else
 		*((daeBool*)dstMemory) = false;

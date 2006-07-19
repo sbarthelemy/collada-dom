@@ -46,14 +46,14 @@ public:
 	public:	//Accessors and Mutators
 		/**
 		 * Gets the value of this element.
-		 * @return a xsNCName of the value.
+		 * @return Returns a xsNCName of the value.
 		 */
 		xsNCName getValue() const { return _value; }
 		/**
 		 * Sets the _value of this element.
 		 * @param val The new value for this element.
 		 */
-		void setValue( xsNCName val ) { _value = val; }
+		void setValue( xsNCName val ) { *(daeStringRef*)&_value = val; }
 
 	protected:
 		/**

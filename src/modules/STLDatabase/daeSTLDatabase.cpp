@@ -275,11 +275,10 @@ daeInt daeSTLDatabase::removeElement(daeDocument* document,daeElement* element)
 	std::vector<DAE_STL_DATABASE_CELL>::iterator iter = elements.begin();
 	while ( iter != elements.end() ) {
 		if ( (*iter).element == element ) {
-			iter = elements.erase(iter);
+			elements.erase(iter);
+			break;
 		}
-		else {
-			iter++;
-		}
+		iter++;
 	} 
 
 	if ( element->getID() != NULL ) {
@@ -566,14 +565,16 @@ void daeSTLDatabase::validate()
 			daeDocument *tmp = documents[i];
 			//removeDocument( tmp );
 			//insertDocument( tmp );
-			const daeElementRefArray &iea = tmp->getInsertedArray();
-			for ( unsigned int x = 0; x < iea.getCount(); x++ ) {
-				insertElement( tmp, iea[x] );
-			}
 			const daeElementRefArray &rea = tmp->getRemovedArray();
 			for ( unsigned int x = 0; x < rea.getCount(); x++ ) {
 				removeElement( tmp, rea[x] );
 			}
+
+			const daeElementRefArray &iea = tmp->getInsertedArray();
+			for ( unsigned int x = 0; x < iea.getCount(); x++ ) {
+				insertElement( tmp, iea[x] );
+			}
+			
 			tmp->setModified(false);
 		}
 	}

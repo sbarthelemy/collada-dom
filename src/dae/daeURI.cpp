@@ -1140,10 +1140,23 @@ void daeURI::normalizeURIPath(char *path)
 // another existing URI.  The new URI is stored in the "originalURI"
 int daeURI::makeRelativeTo(daeURI* relativeToURI)
 {
-	// !!!GAC for some reason, relativeToURI is in pending and not success state, why??
-	// Can't do this function unless both URIs have already been successfully resolved
-	if(getState() != uri_success /*|| relativeToURI->getState() != uri_success*/ )
-		return(DAE_ERR_INVALID_CALL);  // !!!GAC Need to assign a real error code to this
+	if( getState() == uri_empty || relativeToURI->getState() == uri_empty ) 
+		return(DAE_ERR_INVALID_CALL);
+	if( getState() == uri_loaded )
+	{
+		if (container != NULL)
+			validate(container->getDocumentURI());
+		else
+			validate();
+	}
+	if( relativeToURI->getState() == uri_loaded )
+	{
+		if (relativeToURI->getContainer() != NULL)
+			relativeToURI->validate(relativeToURI->getContainer()->getDocumentURI());
+		else
+			relativeToURI->validate();
+	}
+
 
 	// Can only do this function if both URIs have the same scheme and authority
 
@@ -1181,7 +1194,15 @@ int daeURI::makeRelativeTo(daeURI* relativeToURI)
 	// Delete old URI string
 	safeDelete(originalURIString);
 	// Allocate memory for a new "originalURI" and free the old one
-	char *newRelativeURI = (char*) daeMemorySystem::malloc("uri",strlen(relativeTo_slash)+ strlen(file)+(segment_count*3)+strlen(getID())+2);
+	char *newRelativeURI;
+	if ( getID() == NULL )
+	{
+		newRelativeURI = (char*) daeMemorySystem::malloc("uri",strlen(this_slash)+ strlen(file)+(segment_count*3)+1);
+	}
+	else
+	{
+		newRelativeURI = (char*) daeMemorySystem::malloc("uri",strlen(this_slash)+ strlen(file)+(segment_count*3)+strlen(id)+2);
+	}
 	char *temp = newRelativeURI;
 	for(int i = 0; i < segment_count; i++)
 	{

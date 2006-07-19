@@ -401,7 +401,6 @@ public:
 			 * @return a daeSmartRef to the transparent element.
 			 */
 			const domCommon_transparent_typeRef getTransparent() const { return elemTransparent; }
-			
 			/**
 			 * Gets the transparency element.
 			 * @return a daeSmartRef to the transparency element.

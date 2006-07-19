@@ -85,7 +85,7 @@ public:
 	 * Sets the _value of this element.
 	 * @param val The new value for this element.
 	 */
-	void setValue( daeString val ) { _value = val; }
+	void setValue( daeString val ) { *(daeStringRef*)&_value = val; }
 
 protected:
 	/**

@@ -51,14 +51,14 @@ public:
 	public:	//Accessors and Mutators
 		/**
 		 * Gets the value of this element.
-		 * @return a xsToken of the value.
+		 * @return Returns a xsToken of the value.
 		 */
 		xsToken getValue() const { return _value; }
 		/**
 		 * Sets the _value of this element.
 		 * @param val The new value for this element.
 		 */
-		void setValue( xsToken val ) { _value = val; }
+		void setValue( xsToken val ) { *(daeStringRef*)&_value = val; }
 
 	protected:
 		/**
