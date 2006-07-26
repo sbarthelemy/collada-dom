@@ -384,6 +384,11 @@ public:
 	 * which results in a new document in the database.
 	 */
 	static void resolveAll();
+
+	/**
+	 * Clears the resolveArray.
+	 */
+	static void clearResolveArray();
 public:
 	/**
 	 * Releases the element passed in. This function is a static wrapper that invokes 

@@ -325,6 +325,12 @@ daeElement::resolveAll()
 }
 
 void
+daeElement::clearResolveArray()
+{
+	resolveArray.clear();
+}
+
+void
 daeElement::resolve()
 {
 	if (_meta == NULL)
@@ -363,9 +369,9 @@ daeElement::setup(daeMetaElement* meta)
 			attrs[i]->set(this, attrs[i]->getDefault());
 			_validAttributeArray[i] = true;
 		}
-		else {
-			_validAttributeArray[i] = false;
-		}
+//		else {
+//			_validAttributeArray[i] = false;
+//		}
 	}
 
 #if 0	

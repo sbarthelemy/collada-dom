@@ -70,6 +70,7 @@ DAE::~DAE()
 		delete idResolver;
 	}
 	topMeta = NULL;
+	daeElement::clearResolveArray();
 	--DAEInstanceCount;
 }
 
@@ -297,6 +298,7 @@ daeInt DAE::unload(daeString name)
 
 daeInt DAE::clear()
 {
+	daeElement::clearResolveArray();
 	if (database)
 		database->clear();
 	return DAE_OK;

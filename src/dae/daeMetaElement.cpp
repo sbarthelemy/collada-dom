@@ -300,7 +300,12 @@ daeBool daeMetaElement::placeAt( daeInt index, daeElement *parent, daeElement *c
 				validLoc = contentsOrder->get(index) >= ord && contentsOrder->get(index) <= ord;
 			}
 			else {
-				validLoc = contentsOrder->get(index) >= ord;
+				if ( contentsOrder->getCount() == 0 ) {
+					validLoc = true;
+				}
+				else {
+					validLoc = contentsOrder->get(index) >= ord;
+				}
 			}
 			if ( validLoc ) {
 				contents->insertAt( index, retVal );
