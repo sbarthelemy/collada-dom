@@ -101,6 +101,7 @@ daeMetaElement::daeMetaElement()
 	_elementSize = sizeof(daeElement);
 	_metaValue = NULL;
 	_metaContents = NULL;
+    _metaContentsOrder = NULL; // sthomas
 	_metaIntegration = NULL;
 	_metaID = NULL;
 	_isTrackableForQueries = true;
@@ -118,6 +119,17 @@ daeMetaElement::~daeMetaElement()
 {
 	if (_metaContents)
 		delete _metaContents;
+    if (_contentModel) // sthomas
+        delete _contentModel;
+    if (_metaContentsOrder) // sthomas
+        delete _metaContentsOrder;
+}
+
+void daeMetaElement::setCMRoot( daeMetaCMPolicy *cm )
+{
+    if (_contentModel) 
+        delete _contentModel;
+    _contentModel = cm;
 }
 
 void
@@ -139,6 +151,10 @@ daeMetaElement::addContentsOrder(daeInt offset)
 	meaa->setName("contentsOrder");
 	meaa->setOffset(offset);
 	meaa->setContainer( this);
+
+    if (_metaContentsOrder)
+        delete _metaContentsOrder;
+
 	_metaContentsOrder = meaa;
 }
 

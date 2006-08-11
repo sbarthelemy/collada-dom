@@ -46,6 +46,10 @@ domInstance_node::registerElement()
 	mea->setOffset( daeOffsetOf(domInstance_node,elemExtra_array) );
 	mea->setElementType( domExtra::registerElement() );
 	cm->appendChild( mea );
+
+    // sthomas
+    //cm->setMaxOrdinal( 3003 );
+    _Meta->setCMRoot( cm );	
 	
 
 	//	Add attribute: url

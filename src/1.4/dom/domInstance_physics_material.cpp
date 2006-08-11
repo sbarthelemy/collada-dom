@@ -46,6 +46,10 @@ domInstance_physics_material::registerElement()
 	mea->setOffset( daeOffsetOf(domInstance_physics_material,elemExtra_array) );
 	mea->setElementType( domExtra::registerElement() );
 	cm->appendChild( mea );
+
+    // sthomas
+    //cm->setMaxOrdinal( 3003 );
+    _Meta->setCMRoot( cm );	
 	
 
 	//	Add attribute: url

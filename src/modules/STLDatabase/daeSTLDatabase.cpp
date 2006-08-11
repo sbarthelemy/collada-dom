@@ -174,10 +174,24 @@ daeInt daeSTLDatabase::removeDocument(daeDocument *document)
 	// the elements from this collection).
 	elements = newElements;
 
+    // sthomas (see bug 1520281)
+    std::multimap<std::string, DAE_STL_DATABASE_CELL>::iterator idMapIter = elementsIDMap.begin();
+    while ( idMapIter != elementsIDMap.end() ) {
+        if ( idMapIter->second.document == document ) {
+            std::multimap<std::string, DAE_STL_DATABASE_CELL>::iterator deleteIter = idMapIter;
+            idMapIter++;
+            elementsIDMap.erase(deleteIter);
+        }
+        else {
+            idMapIter++;
+        }
+    }
+
 	//remove the document from its vector
 	std::vector<daeDocument*>::iterator iter2 = documents.begin();
 	while ( iter2 != documents.end() ) {
 		if ( (*iter2) == document ) {
+            delete *iter2; // sthomas (see bug 1466019)
 			iter2 = documents.erase(iter2);
 		}
 		else {
@@ -271,6 +285,7 @@ daeInt daeSTLDatabase::removeElement(daeDocument* document,daeElement* element)
 	if ( !element ) {
 		return DAE_ERR_INVALID_CALL;
 	}
+
 	removeChildren( document, element );
 	std::vector<DAE_STL_DATABASE_CELL>::iterator iter = elements.begin();
 	while ( iter != elements.end() ) {

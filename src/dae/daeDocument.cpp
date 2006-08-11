@@ -13,6 +13,14 @@
 
 #include <dae/daeDocument.h>
 
+// sthomas
+daeDocument::~daeDocument()
+{
+    for( unsigned int i = 0; i < externalURIs.getCount(); i++ ) {
+        delete externalURIs[i];
+    }
+}
+
 void daeDocument::insertElement( daeElementRef element ) {
 	daeElement *parent = element->getParentElement();
 	size_t idx;

@@ -181,73 +181,73 @@
 			Filter="cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx"
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}">
 			<File
-				RelativePath=".\dae.cpp">
+				RelativePath="..\..\src\dae\dae.cpp">
 			</File>
 			<File
-				RelativePath=".\daeArray.cpp">
+				RelativePath="..\..\src\dae\daeArray.cpp">
 			</File>
 			<File
-				RelativePath=".\daeAtomicType.cpp">
+				RelativePath="..\..\src\dae\daeAtomicType.cpp">
 			</File>
 			<File
-				RelativePath=".\daeDocument.cpp">
+				RelativePath="..\..\src\dae\daeDocument.cpp">
 			</File>
 			<File
-				RelativePath=".\daeDom.cpp">
+				RelativePath="..\..\src\dae\daeDom.cpp">
 			</File>
 			<File
-				RelativePath=".\daeElement.cpp">
+				RelativePath="..\..\src\dae\daeElement.cpp">
 			</File>
 			<File
-				RelativePath=".\daeError.cpp">
+				RelativePath="..\..\src\dae\daeError.cpp">
 			</File>
 			<File
-				RelativePath=".\daeErrorHandler.cpp">
+				RelativePath="..\..\src\dae\daeErrorHandler.cpp">
 			</File>
 			<File
-				RelativePath=".\daeIDRef.cpp">
+				RelativePath="..\..\src\dae\daeIDRef.cpp">
 			</File>
 			<File
-				RelativePath=".\daeMemorySystem.cpp">
+				RelativePath="..\..\src\dae\daeMemorySystem.cpp">
 			</File>
 			<File
-				RelativePath=".\daeMetaAny.cpp">
+				RelativePath="..\..\src\dae\daeMetaAny.cpp">
 			</File>
 			<File
-				RelativePath=".\daeMetaAttribute.cpp">
+				RelativePath="..\..\src\dae\daeMetaAttribute.cpp">
 			</File>
 			<File
-				RelativePath=".\daeMetaChoice.cpp">
+				RelativePath="..\..\src\dae\daeMetaChoice.cpp">
 			</File>
 			<File
-				RelativePath=".\daeMetaCMPolicy.cpp">
+				RelativePath="..\..\src\dae\daeMetaCMPolicy.cpp">
 			</File>
 			<File
-				RelativePath=".\daeMetaElement.cpp">
+				RelativePath="..\..\src\dae\daeMetaElement.cpp">
 			</File>
 			<File
-				RelativePath=".\daeMetaElementAttribute.cpp">
+				RelativePath="..\..\src\dae\daeMetaElementAttribute.cpp">
 			</File>
 			<File
-				RelativePath=".\daeMetaGroup.cpp">
+				RelativePath="..\..\src\dae\daeMetaGroup.cpp">
 			</File>
 			<File
-				RelativePath=".\daeMetaSequence.cpp">
+				RelativePath="..\..\src\dae\daeMetaSequence.cpp">
 			</File>
 			<File
-				RelativePath=".\daeSIDResolver.cpp">
+				RelativePath="..\..\src\dae\daeSIDResolver.cpp">
 			</File>
 			<File
-				RelativePath=".\daeStringRef.cpp">
+				RelativePath="..\..\src\dae\daeStringRef.cpp">
 			</File>
 			<File
-				RelativePath=".\daeStringTable.cpp">
+				RelativePath="..\..\src\dae\daeStringTable.cpp">
 			</File>
 			<File
-				RelativePath=".\daeURI.cpp">
+				RelativePath="..\..\src\dae\daeURI.cpp">
 			</File>
 			<File
-				RelativePath=".\domAny.cpp">
+				RelativePath="..\..\src\dae\domAny.cpp">
 			</File>
 		</Filter>
 		<Filter

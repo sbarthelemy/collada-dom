@@ -47,6 +47,9 @@ domInstance_light::registerElement()
 	mea->setElementType( domExtra::registerElement() );
 	cm->appendChild( mea );
 	
+    // sthomas
+    //cm->setMaxOrdinal( 3003 );
+    _Meta->setCMRoot( cm );	
 
 	//	Add attribute: url
  	{

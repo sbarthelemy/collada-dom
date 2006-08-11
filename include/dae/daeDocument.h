@@ -25,6 +25,12 @@
 class daeDocument
 {
 public:
+    // sthomas
+    /**
+    * Destructor
+    */
+    ~daeDocument();
+
 	/**
 	* Accessor to get the @c domCollada associated with this document.
 	* @return A @c daeElementRef for the @c domCollada that is the root of this document.
