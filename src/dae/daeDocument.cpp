@@ -92,3 +92,13 @@ void daeDocument::resolveExternals( daeString docURI ) {
 		return;
 	}
 }
+
+const daeTArray<daeURI*> *daeDocument::getExternalURIs(daeStringRef docURI) const
+{
+	size_t idx;
+
+	if (referencedDocuments.find(docURI, idx) != DAE_OK)
+		return NULL;
+
+	return externalURIs[idx];
+}

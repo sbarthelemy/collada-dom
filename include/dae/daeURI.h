@@ -330,7 +330,7 @@ public:
 	inline bool operator==(const daeURI& other) const{
 		return (!strcmp(other.getURI(), getURI())); }
 
-	const daeURI &operator=( const daeURI& other) {
+	daeURI &operator=( const daeURI& other) {
 		setURI(other.getOriginalURI());
 		element = other.element;
 		state = other.state;

@@ -62,7 +62,7 @@ public:
 	virtual daeBool			isDocumentLoaded(daeString name);
 
 	// Elements 
-	virtual daeInt			insertElement(daeDocument* document, daeElement* element);  
+	virtual daeInt			insertElement(daeDocument* document, daeElement* element);
 	virtual daeInt			removeElement(daeDocument* document, daeElement* element); 
 	virtual daeInt			clear();
 	virtual void			validate();
@@ -73,59 +73,21 @@ public:
 	                        daeInt index,
 	                        daeString name = NULL,
 	                        daeString type = NULL,
-	                        daeString file = NULL);
+	                        daeString file = NULL); 
 
 	// Generic Query
 	virtual daeInt queryElement(daeElement** pElement, daeString genericQuery);
 
 private:
 
-	/**
-	 * A struct to describe a cell in the STL run-time database.
-	 */
-	typedef struct
-	{
-		daeElement* element;
-		daeString name;
-		daeString type;
-		daeDocument *document;
-	} DAE_STL_DATABASE_CELL;
-	
-	/**
-	 * Sorting structure.
-	 */
-	struct daeSTLDatabaseLess: public std::binary_function<DAE_STL_DATABASE_CELL,DAE_STL_DATABASE_CELL,bool>
-	{
-		bool operator() (const DAE_STL_DATABASE_CELL& x, const DAE_STL_DATABASE_CELL& y) const
-		{
-			int res = strcmp(x.type,y.type);
-			if (res != 0)
-				return res<0;
-			else
-				return strcmp(x.name,y.name)<0;
-		}
-	};
-	
-	/**
-	 * Sorting structure.
-	 */
-	struct daeSTLDatabaseTypeLess: public std::binary_function<DAE_STL_DATABASE_CELL,DAE_STL_DATABASE_CELL,bool>
-	{
-		bool operator() (const DAE_STL_DATABASE_CELL& x, const DAE_STL_DATABASE_CELL& y) const
-		{
-			int res = strcmp(x.type,y.type);
-			return res<0;
-		}
-	};
+	std::map< std::string, std::vector< daeElement* > > elements; //map for all elements keyed on Type
+	std::multimap< std::string, daeElement* > elementsIDMap; //map for elements keyed on ID
 
-	std::vector<DAE_STL_DATABASE_CELL> elements;
-	std::multimap< std::string, DAE_STL_DATABASE_CELL> elementsIDMap; 
 	std::vector<daeDocument*> documents;
 	daeMetaElement* topMeta;
 
 	daeInt insertChildren( daeDocument *c, daeElement *element );
 	daeInt removeChildren( daeDocument *c, daeElement *element );
-
 };
 
 #endif // __DAE_STLDATABASE__

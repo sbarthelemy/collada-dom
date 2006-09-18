@@ -124,6 +124,8 @@ public:
 	 */
 	void resolveExternals( daeString docURI);
 
+	const daeTArray<daeURI*> *getExternalURIs(daeStringRef docURI) const;
+
 private:
 	/**
 	* Top Level element for of the document, always a domCollada

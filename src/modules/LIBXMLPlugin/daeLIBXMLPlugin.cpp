@@ -85,6 +85,12 @@ daeInt daeLIBXMLPlugin::read(daeURI& uri, daeString docBuffer)
 
 	daeURI fileURI(uri.getURI(),true);
 
+	//check if document already exists
+	if ( database->isDocumentLoaded( fileURI.getURI() ) )
+	{
+		return DAE_ERR_COLLECTION_ALREADY_EXISTS;
+	}
+
 	// Create the right type of xmlTextReader on the stack so this function can be re-entrant
 
 	xmlTextReaderPtr reader;

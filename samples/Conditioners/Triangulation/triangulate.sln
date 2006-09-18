@@ -1,35 +1,31 @@
-Microsoft Visual Studio Solution File, Format Version 8.00
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "triangulate1.3.1", "triangulate1.3.1.vcproj", "{6881BC0E-2F92-4726-815D-74363EC67EE2}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "triangulate1.4", "triangulate1.4.vcproj", "{650A6059-4A8D-44F2-8480-C9D426641294}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
 EndProject
 Global
-	GlobalSection(SolutionConfiguration) = preSolution
-		Debug 1.3 = Debug 1.3
-		Debug 1.4 = Debug 1.4
-		Release 1.3 = Release 1.3
-		Release 1.4 = Release 1.4
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug 1.3|Win32 = Debug 1.3|Win32
+		Debug 1.4|Win32 = Debug 1.4|Win32
+		Release 1.3|Win32 = Release 1.3|Win32
+		Release 1.4|Win32 = Release 1.4|Win32
 	EndGlobalSection
-	GlobalSection(ProjectConfiguration) = postSolution
-		{6881BC0E-2F92-4726-815D-74363EC67EE2}.Debug 1.3.ActiveCfg = Debug 1.3|Win32
-		{6881BC0E-2F92-4726-815D-74363EC67EE2}.Debug 1.3.Build.0 = Debug 1.3|Win32
-		{6881BC0E-2F92-4726-815D-74363EC67EE2}.Debug 1.4.ActiveCfg = Debug 1.3|Win32
-		{6881BC0E-2F92-4726-815D-74363EC67EE2}.Release 1.3.ActiveCfg = Release 1.3|Win32
-		{6881BC0E-2F92-4726-815D-74363EC67EE2}.Release 1.3.Build.0 = Release 1.3|Win32
-		{6881BC0E-2F92-4726-815D-74363EC67EE2}.Release 1.4.ActiveCfg = Release 1.3|Win32
-		{650A6059-4A8D-44F2-8480-C9D426641294}.Debug 1.3.ActiveCfg = Debug 1.4|Win32
-		{650A6059-4A8D-44F2-8480-C9D426641294}.Debug 1.4.ActiveCfg = Debug 1.4|Win32
-		{650A6059-4A8D-44F2-8480-C9D426641294}.Debug 1.4.Build.0 = Debug 1.4|Win32
-		{650A6059-4A8D-44F2-8480-C9D426641294}.Release 1.3.ActiveCfg = Release 1.4|Win32
-		{650A6059-4A8D-44F2-8480-C9D426641294}.Release 1.4.ActiveCfg = Release 1.4|Win32
-		{650A6059-4A8D-44F2-8480-C9D426641294}.Release 1.4.Build.0 = Release 1.4|Win32
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6881BC0E-2F92-4726-815D-74363EC67EE2}.Debug 1.3|Win32.ActiveCfg = Debug 1.3|Win32
+		{6881BC0E-2F92-4726-815D-74363EC67EE2}.Debug 1.3|Win32.Build.0 = Debug 1.3|Win32
+		{6881BC0E-2F92-4726-815D-74363EC67EE2}.Debug 1.4|Win32.ActiveCfg = Debug 1.3|Win32
+		{6881BC0E-2F92-4726-815D-74363EC67EE2}.Release 1.3|Win32.ActiveCfg = Release 1.3|Win32
+		{6881BC0E-2F92-4726-815D-74363EC67EE2}.Release 1.3|Win32.Build.0 = Release 1.3|Win32
+		{6881BC0E-2F92-4726-815D-74363EC67EE2}.Release 1.4|Win32.ActiveCfg = Release 1.3|Win32
+		{650A6059-4A8D-44F2-8480-C9D426641294}.Debug 1.3|Win32.ActiveCfg = Debug 1.4|Win32
+		{650A6059-4A8D-44F2-8480-C9D426641294}.Debug 1.4|Win32.ActiveCfg = Debug 1.4|Win32
+		{650A6059-4A8D-44F2-8480-C9D426641294}.Debug 1.4|Win32.Build.0 = Debug 1.4|Win32
+		{650A6059-4A8D-44F2-8480-C9D426641294}.Release 1.3|Win32.ActiveCfg = Release 1.4|Win32
+		{650A6059-4A8D-44F2-8480-C9D426641294}.Release 1.4|Win32.ActiveCfg = Release 1.4|Win32
+		{650A6059-4A8D-44F2-8480-C9D426641294}.Release 1.4|Win32.Build.0 = Release 1.4|Win32
 	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-	EndGlobalSection
-	GlobalSection(ExtensibilityAddIns) = postSolution
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal
