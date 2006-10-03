@@ -22,7 +22,7 @@
  * The instance_physics_material element declares the instantiation of a COLLADA
  * physics_material  resource.
  */
-class domInstance_physics_material : public daeElement, public domInstanceWithExtra_complexType
+class DLL_EXPORT domInstance_physics_material : public daeElement, public domInstanceWithExtra_complexType
 {
 
 protected:

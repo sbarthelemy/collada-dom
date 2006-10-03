@@ -23,7 +23,7 @@
  * generic instance element  is one which does not have any specific child
  * elements declared.
  */
-class domInstanceWithExtra_complexType 
+class DLL_EXPORT domInstanceWithExtra_complexType 
 {
 protected:  // Attributes
 /**
@@ -121,7 +121,7 @@ protected:
 /**
  * An element of type domInstanceWithExtra_complexType.
  */
-class domInstanceWithExtra : public daeElement, public domInstanceWithExtra_complexType
+class DLL_EXPORT domInstanceWithExtra : public daeElement, public domInstanceWithExtra_complexType
 {
 
 public:	//Accessors and Mutators

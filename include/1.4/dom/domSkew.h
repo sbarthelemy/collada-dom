@@ -21,7 +21,7 @@
  * The skew element contains an angle and two mathematical vectors that represent
  * the axis of  rotation and the axis of translation.
  */
-class domSkew : public daeElement
+class DLL_EXPORT domSkew : public daeElement
 {
 protected:  // Attribute
 /**

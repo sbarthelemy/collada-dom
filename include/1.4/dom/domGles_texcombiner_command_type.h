@@ -20,7 +20,7 @@
 #include <dom/domGles_texcombiner_commandRGB_type.h>
 #include <dom/domGles_texcombiner_commandAlpha_type.h>
 
-class domGles_texcombiner_command_type_complexType 
+class DLL_EXPORT domGles_texcombiner_command_type_complexType 
 {
 
 protected:  // Elements
@@ -66,7 +66,7 @@ protected:
 /**
  * An element of type domGles_texcombiner_command_type_complexType.
  */
-class domGles_texcombiner_command_type : public daeElement, public domGles_texcombiner_command_type_complexType
+class DLL_EXPORT domGles_texcombiner_command_type : public daeElement, public domGles_texcombiner_command_type_complexType
 {
 protected:
 	/**

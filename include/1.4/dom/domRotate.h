@@ -21,7 +21,7 @@
  * The rotate element contains an angle and a mathematical vector that represents
  * the axis of rotation.
  */
-class domRotate : public daeElement
+class DLL_EXPORT domRotate : public daeElement
 {
 protected:  // Attribute
 /**

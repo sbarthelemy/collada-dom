@@ -20,7 +20,7 @@
 /**
  * For 1D, 2D, RECT surface types
  */
-class domFx_surface_init_planar_common_complexType 
+class DLL_EXPORT domFx_surface_init_planar_common_complexType 
 {
 public:
 	class domAll;
@@ -31,7 +31,7 @@ public:
 /**
  * Init the entire surface with one compound image such as DDS
  */
-	class domAll : public daeElement
+	class DLL_EXPORT domAll : public daeElement
 	{
 	protected:  // Attribute
 		xsIDREF attrRef;
@@ -130,7 +130,7 @@ protected:
 /**
  * An element of type domFx_surface_init_planar_common_complexType.
  */
-class domFx_surface_init_planar_common : public daeElement, public domFx_surface_init_planar_common_complexType
+class DLL_EXPORT domFx_surface_init_planar_common : public daeElement, public domFx_surface_init_planar_common_complexType
 {
 protected:
 	/**

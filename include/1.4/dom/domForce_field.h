@@ -24,7 +24,7 @@
  * A general container for force-fields. At the moment, it only has techniques
  * and extra elements.
  */
-class domForce_field : public daeElement
+class DLL_EXPORT domForce_field : public daeElement
 {
 protected:  // Attributes
 /**

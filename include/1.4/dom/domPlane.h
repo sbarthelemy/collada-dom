@@ -21,7 +21,7 @@
 /**
  * An infinite plane primitive.
  */
-class domPlane : public daeElement
+class DLL_EXPORT domPlane : public daeElement
 {
 public:
 	class domEquation;
@@ -33,7 +33,7 @@ public:
  * 4 float values that represent the coefficients for the plane’s equation:
  * Ax + By + Cz + D = 0
  */
-	class domEquation : public daeElement
+	class DLL_EXPORT domEquation : public daeElement
 	{
 
 	protected:  // Value

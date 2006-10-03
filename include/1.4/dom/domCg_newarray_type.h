@@ -24,7 +24,7 @@
 /**
  * Creates a parameter of a one-dimensional array type.
  */
-class domCg_newarray_type_complexType 
+class DLL_EXPORT domCg_newarray_type_complexType 
 {
 protected:  // Attribute
 /**
@@ -139,7 +139,7 @@ protected:
 /**
  * An element of type domCg_newarray_type_complexType.
  */
-class domCg_newarray_type : public daeElement, public domCg_newarray_type_complexType
+class DLL_EXPORT domCg_newarray_type : public daeElement, public domCg_newarray_type_complexType
 {
 
 public:	//Accessors and Mutators

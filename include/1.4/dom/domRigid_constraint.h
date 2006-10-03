@@ -27,7 +27,7 @@
  * This element allows for connecting components, such as rigid_body into
  * complex physics models  with moveable parts.
  */
-class domRigid_constraint : public daeElement
+class DLL_EXPORT domRigid_constraint : public daeElement
 {
 public:
 	class domRef_attachment;
@@ -38,7 +38,7 @@ public:
 /**
  * Defines the attachment (to a rigid_body or a node) to be used as the reference-frame.
  */
-	class domRef_attachment : public daeElement
+	class DLL_EXPORT domRef_attachment : public daeElement
 	{
 	protected:  // Attribute
 /**
@@ -176,7 +176,7 @@ public:
 /**
  * Defines an attachment to a rigid-body or a node.
  */
-	class domAttachment : public daeElement
+	class DLL_EXPORT domAttachment : public daeElement
 	{
 	protected:  // Attribute
 /**
@@ -315,7 +315,7 @@ public:
  * The technique_common element specifies the rigid_constraint information
  * for the common profile  which all COLLADA implementations need to support.
  */
-	class domTechnique_common : public daeElement
+	class DLL_EXPORT domTechnique_common : public daeElement
 	{
 	public:
 		class domEnabled;
@@ -327,7 +327,7 @@ public:
  * If false, the constraint doesn’t exert any force or influence on the
  * rigid bodies.
  */
-		class domEnabled : public daeElement
+		class DLL_EXPORT domEnabled : public daeElement
 		{
 		protected:  // Attribute
 /**
@@ -414,7 +414,7 @@ public:
 /**
  * Indicates whether the attached rigid bodies may inter-penetrate.
  */
-		class domInterpenetrate : public daeElement
+		class DLL_EXPORT domInterpenetrate : public daeElement
 		{
 		protected:  // Attribute
 /**
@@ -502,7 +502,7 @@ public:
  * The limits element provides a flexible way to specify the constraint limits
  * (degrees of freedom  and ranges).
  */
-		class domLimits : public daeElement
+		class DLL_EXPORT domLimits : public daeElement
 		{
 		public:
 			class domSwing_cone_and_twist;
@@ -515,7 +515,7 @@ public:
  * rotation axis in degrees. The the X and Y limits describe a “swing cone”
  * and the Z limits describe the “twist angle” range
  */
-			class domSwing_cone_and_twist : public daeElement
+			class DLL_EXPORT domSwing_cone_and_twist : public daeElement
 			{
 
 			protected:  // Elements
@@ -586,7 +586,7 @@ public:
 /**
  * The linear element describes linear (translational) limits along each axis.
  */
-			class domLinear : public daeElement
+			class DLL_EXPORT domLinear : public daeElement
 			{
 
 			protected:  // Elements
@@ -722,7 +722,7 @@ public:
 /**
  * Spring, based on distance (“LINEAR”) or angle (“ANGULAR”).
  */
-		class domSpring : public daeElement
+		class DLL_EXPORT domSpring : public daeElement
 		{
 		public:
 			class domAngular;
@@ -733,7 +733,7 @@ public:
 /**
  * The angular spring properties.
  */
-			class domAngular : public daeElement
+			class DLL_EXPORT domAngular : public daeElement
 			{
 
 			protected:  // Elements
@@ -814,7 +814,7 @@ public:
 /**
  * The linear spring properties.
  */
-			class domLinear : public daeElement
+			class DLL_EXPORT domLinear : public daeElement
 			{
 
 			protected:  // Elements

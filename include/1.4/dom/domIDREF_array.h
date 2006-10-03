@@ -21,7 +21,7 @@
  * The IDREF_array element declares the storage for a homogenous array of
  * ID reference values.
  */
-class domIDREF_array : public daeElement
+class DLL_EXPORT domIDREF_array : public daeElement
 {
 protected:  // Attributes
 /**

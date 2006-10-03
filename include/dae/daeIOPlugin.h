@@ -25,7 +25,7 @@ class daeDocument;
 * the interface between the COLLADA runtime and the backend storage. A native
 * COLLADA XML plugin implementation is provided along with this interface.
 */
-class daeIOPlugin
+class DLL_EXPORT daeIOPlugin
 {
 public:	
 	/**

@@ -34,7 +34,7 @@ class daeDocument;
  * and the entire referenced document will be loaded.  daeInterface::saveAs will only
  * handle a filename path at present (ie: no scheme or authority).
  */
-class daeLIBXMLPlugin : public daeIOPlugin
+class DLL_EXPORT daeLIBXMLPlugin : public daeIOPlugin
 {
 public:
 	// Constructor / destructor

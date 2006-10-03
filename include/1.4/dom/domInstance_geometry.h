@@ -23,7 +23,7 @@
  * The instance_geometry element declares the instantiation of a COLLADA geometry
  * resource.
  */
-class domInstance_geometry : public daeElement
+class DLL_EXPORT domInstance_geometry : public daeElement
 {
 protected:  // Attributes
 /**

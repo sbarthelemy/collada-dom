@@ -25,7 +25,7 @@
 /**
  * Creates an instance of a structured class.
  */
-class domCg_setuser_type_complexType 
+class DLL_EXPORT domCg_setuser_type_complexType 
 {
 protected:  // Attributes
 	domCg_identifier attrName;
@@ -160,7 +160,7 @@ protected:
 /**
  * An element of type domCg_setuser_type_complexType.
  */
-class domCg_setuser_type : public daeElement, public domCg_setuser_type_complexType
+class DLL_EXPORT domCg_setuser_type : public daeElement, public domCg_setuser_type_complexType
 {
 
 public:	//Accessors and Mutators

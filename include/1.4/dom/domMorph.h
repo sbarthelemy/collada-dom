@@ -25,7 +25,7 @@
  * static meshes. Each  possible mesh that can be blended (a morph target)
  * must be specified.
  */
-class domMorph : public daeElement
+class DLL_EXPORT domMorph : public daeElement
 {
 public:
 	class domTargets;
@@ -37,7 +37,7 @@ public:
  * The targets element declares the morph targets, their weights and any user
  * defined attributes  associated with them.
  */
-	class domTargets : public daeElement
+	class DLL_EXPORT domTargets : public daeElement
 	{
 
 	protected:  // Elements

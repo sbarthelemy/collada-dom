@@ -18,7 +18,7 @@
 
 #include <dom/domFx_annotate_type_common.h>
 
-class domFx_annotate_common_complexType 
+class DLL_EXPORT domFx_annotate_common_complexType 
 {
 protected:  // Attribute
 	xsNCName attrName;
@@ -65,7 +65,7 @@ protected:
 /**
  * An element of type domFx_annotate_common_complexType.
  */
-class domFx_annotate_common : public daeElement, public domFx_annotate_common_complexType
+class DLL_EXPORT domFx_annotate_common : public daeElement, public domFx_annotate_common_complexType
 {
 
 public:	//Accessors and Mutators

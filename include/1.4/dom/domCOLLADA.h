@@ -39,7 +39,7 @@
  * The COLLADA element declares the root of the document that comprises some
  * of the content  in the COLLADA schema.
  */
-class domCOLLADA : public daeElement
+class DLL_EXPORT domCOLLADA : public daeElement
 {
 public:
 	class domScene;
@@ -54,7 +54,7 @@ public:
  * that comprise much of the  visual and transformational information content
  * as created by the authoring tools.
  */
-	class domScene : public daeElement
+	class DLL_EXPORT domScene : public daeElement
 	{
 
 	protected:  // Elements

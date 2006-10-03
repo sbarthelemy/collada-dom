@@ -20,7 +20,7 @@
 /**
   *Defines the @c daeStringRef class.
  */
-class daeStringRef
+class DLL_EXPORT daeStringRef
 {
 public:
 	/**
@@ -29,7 +29,7 @@ public:
 	DAE_ALLOC;
 private:
 	daeString _string;
-	static daeStringTable _stringTable;
+	static daeStringTable &_stringTable();
 public:
 
 	/**

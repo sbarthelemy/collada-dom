@@ -35,7 +35,7 @@ domCg_newarray_type::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "cg_newarray_type" );
-	_Meta->registerConstructor(domCg_newarray_type::create);
+	_Meta->registerClass(domCg_newarray_type::create, &_Meta);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;

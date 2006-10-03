@@ -26,7 +26,7 @@
  * A controller is a device or mechanism that manages and directs the operations
  * of another object.
  */
-class domController : public daeElement
+class DLL_EXPORT domController : public daeElement
 {
 protected:  // Attributes
 /**

@@ -21,7 +21,7 @@
 /**
  * A texture sampler for depth maps.
  */
-class domFx_samplerDEPTH_common_complexType 
+class DLL_EXPORT domFx_samplerDEPTH_common_complexType 
 {
 public:
 	class domSource;
@@ -29,7 +29,7 @@ public:
 	typedef daeSmartRef<domSource> domSourceRef;
 	typedef daeTArray<domSourceRef> domSource_Array;
 
-	class domSource : public daeElement
+	class DLL_EXPORT domSource : public daeElement
 	{
 
 	protected:  // Value
@@ -94,7 +94,7 @@ public:
 	typedef daeSmartRef<domWrap_s> domWrap_sRef;
 	typedef daeTArray<domWrap_sRef> domWrap_s_Array;
 
-	class domWrap_s : public daeElement
+	class DLL_EXPORT domWrap_s : public daeElement
 	{
 
 	protected:  // Value
@@ -159,7 +159,7 @@ public:
 	typedef daeSmartRef<domWrap_t> domWrap_tRef;
 	typedef daeTArray<domWrap_tRef> domWrap_t_Array;
 
-	class domWrap_t : public daeElement
+	class DLL_EXPORT domWrap_t : public daeElement
 	{
 
 	protected:  // Value
@@ -224,7 +224,7 @@ public:
 	typedef daeSmartRef<domMinfilter> domMinfilterRef;
 	typedef daeTArray<domMinfilterRef> domMinfilter_Array;
 
-	class domMinfilter : public daeElement
+	class DLL_EXPORT domMinfilter : public daeElement
 	{
 
 	protected:  // Value
@@ -289,7 +289,7 @@ public:
 	typedef daeSmartRef<domMagfilter> domMagfilterRef;
 	typedef daeTArray<domMagfilterRef> domMagfilter_Array;
 
-	class domMagfilter : public daeElement
+	class DLL_EXPORT domMagfilter : public daeElement
 	{
 
 	protected:  // Value
@@ -417,7 +417,7 @@ protected:
 /**
  * An element of type domFx_samplerDEPTH_common_complexType.
  */
-class domFx_samplerDEPTH_common : public daeElement, public domFx_samplerDEPTH_common_complexType
+class DLL_EXPORT domFx_samplerDEPTH_common : public daeElement, public domFx_samplerDEPTH_common_complexType
 {
 protected:
 	/**

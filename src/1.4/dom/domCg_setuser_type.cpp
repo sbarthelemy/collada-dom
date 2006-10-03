@@ -35,7 +35,7 @@ domCg_setuser_type::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "cg_setuser_type" );
-	_Meta->registerConstructor(domCg_setuser_type::create);
+	_Meta->registerClass(domCg_setuser_type::create, &_Meta);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;

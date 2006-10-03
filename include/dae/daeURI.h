@@ -60,7 +60,7 @@
  * - foo.dae is a top-level file reference and is relative.
  * If the URI does not include a pound sign (#), the <tt><i>id</i></tt> is empty.
  */
-class daeURI
+class DLL_EXPORT daeURI
 {
 private:
 	void internalSetURI(daeString uri);
@@ -394,7 +394,7 @@ typedef daeTArray<daeURIResolver*> daeURIResolverPtrArray;
  * The list is ordered on a first come, first serve basis, and resolution
  * terminates after any resolver instance resolves the URI.
  */
-class daeURIResolver
+class DLL_EXPORT daeURIResolver
 {
 public:
 	/**
@@ -408,7 +408,7 @@ public:
 	virtual ~daeURIResolver();
 	
 protected:
-	static daeURIResolverPtrArray _KnownResolvers;
+	static daeURIResolverPtrArray &_KnownResolvers();
 
 	static daeBool _loadExternalDocuments;
 	
@@ -435,7 +435,7 @@ public:
 	 * @param load Set to true if you want the URI Resolver to automatically load other documents to
 	 * resolve URIs.
 	 */
-	static void setAutoLoadExternalDocuments( daeBool load ) { _loadExternalDocuments = load; }
+	static void setAutoLoadExternalDocuments( daeBool load );
 
 	/**
 	 * Gets a flag that tells if the URI resolver is set to load an external document if a URI
@@ -443,7 +443,7 @@ public:
 	 * @return Returns true if the resolver will automatically load documents to resolve a URI. 
 	 * False otherwise.
 	 */
-	static daeBool getAutoLoadExternalDocuments() { return _loadExternalDocuments; }
+	static daeBool getAutoLoadExternalDocuments();
 
 public: // Abstract Interface
 	/**

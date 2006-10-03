@@ -21,7 +21,7 @@
  * The Name_array element declares the storage for a homogenous array of Name
  * string values.
  */
-class domName_array : public daeElement
+class DLL_EXPORT domName_array : public daeElement
 {
 protected:  // Attributes
 /**

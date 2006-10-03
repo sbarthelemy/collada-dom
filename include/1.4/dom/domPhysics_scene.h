@@ -24,7 +24,7 @@
 #include <dom/domTargetableFloat3.h>
 #include <dom/domTargetableFloat.h>
 
-class domPhysics_scene : public daeElement
+class DLL_EXPORT domPhysics_scene : public daeElement
 {
 public:
 	class domTechnique_common;
@@ -36,7 +36,7 @@ public:
  * The technique_common element specifies the physics_scene information for
  * the common profile  which all COLLADA implementations need to support.
  */
-	class domTechnique_common : public daeElement
+	class DLL_EXPORT domTechnique_common : public daeElement
 	{
 
 	protected:  // Elements

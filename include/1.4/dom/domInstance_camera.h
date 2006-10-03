@@ -22,7 +22,7 @@
  * The instance_camera element declares the instantiation of a COLLADA camera
  * resource.
  */
-class domInstance_camera : public daeElement, public domInstanceWithExtra_complexType
+class DLL_EXPORT domInstance_camera : public daeElement, public domInstanceWithExtra_complexType
 {
 
 protected:

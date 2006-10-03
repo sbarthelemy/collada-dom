@@ -23,7 +23,7 @@
  * The instance_effect element declares the instantiation of a COLLADA effect
  * resource.
  */
-class domInstance_effect : public daeElement
+class DLL_EXPORT domInstance_effect : public daeElement
 {
 public:
 	class domTechnique_hint;
@@ -34,7 +34,7 @@ public:
 /**
  * Add a hint for a platform of which technique to use in this effect.
  */
-	class domTechnique_hint : public daeElement
+	class DLL_EXPORT domTechnique_hint : public daeElement
 	{
 	protected:  // Attributes
 /**
@@ -137,7 +137,7 @@ public:
 /**
  * Assigns a new value to a previously defined parameter
  */
-	class domSetparam : public daeElement
+	class DLL_EXPORT domSetparam : public daeElement
 	{
 	protected:  // Attribute
 		xsToken attrRef;

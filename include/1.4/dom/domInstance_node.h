@@ -22,7 +22,7 @@
  * The instance_node element declares the instantiation of a COLLADA node
  * resource.
  */
-class domInstance_node : public daeElement, public domInstanceWithExtra_complexType
+class DLL_EXPORT domInstance_node : public daeElement, public domInstanceWithExtra_complexType
 {
 
 protected:

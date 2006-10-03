@@ -21,7 +21,7 @@
  * The include element is used to import source code or precompiled binary
  * shaders into the FX Runtime by referencing an external resource.
  */
-class domFx_include_common_complexType 
+class DLL_EXPORT domFx_include_common_complexType 
 {
 protected:  // Attributes
 /**
@@ -89,7 +89,7 @@ protected:
 /**
  * An element of type domFx_include_common_complexType.
  */
-class domFx_include_common : public daeElement, public domFx_include_common_complexType
+class DLL_EXPORT domFx_include_common : public daeElement, public domFx_include_common_complexType
 {
 
 public:	//Accessors and Mutators

@@ -26,7 +26,7 @@
 /**
  * A self contained description of a shader effect.
  */
-class domEffect : public daeElement
+class DLL_EXPORT domEffect : public daeElement
 {
 protected:  // Attributes
 /**

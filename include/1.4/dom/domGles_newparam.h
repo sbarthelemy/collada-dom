@@ -23,7 +23,7 @@
  * Create a new, named param object in the GLES Runtime, assign it a type,
  * an initial value, and additional attributes at declaration time.
  */
-class domGles_newparam_complexType 
+class DLL_EXPORT domGles_newparam_complexType 
 {
 public:
 	class domSemantic;
@@ -34,7 +34,7 @@ public:
 /**
  * The semantic element allows you to specify a semantic for this new param.
  */
-	class domSemantic : public daeElement
+	class DLL_EXPORT domSemantic : public daeElement
 	{
 
 	protected:  // Value
@@ -102,7 +102,7 @@ public:
 /**
  * The modifier element allows you to specify a modifier for this new param.
  */
-	class domModifier : public daeElement
+	class DLL_EXPORT domModifier : public daeElement
 	{
 
 	protected:  // Value
@@ -248,7 +248,7 @@ protected:
 /**
  * An element of type domGles_newparam_complexType.
  */
-class domGles_newparam : public daeElement, public domGles_newparam_complexType
+class DLL_EXPORT domGles_newparam : public daeElement, public domGles_newparam_complexType
 {
 
 public:	//Accessors and Mutators

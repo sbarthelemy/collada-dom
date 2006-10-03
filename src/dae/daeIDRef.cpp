@@ -49,6 +49,7 @@ daeIDRef::daeIDRef(daeIDRef& copyFrom)
 	element = copyFrom.element;
 	setID(copyFrom.getID());
 	state = copyFrom.state;
+	container = copyFrom.container;
 }
 
 void
@@ -57,6 +58,7 @@ daeIDRef::copyFrom(daeIDRef& copyFrom)
 	element = copyFrom.element;
 	setID(copyFrom.getID());
 	state = copyFrom.state;
+	container = copyFrom.container;
 }
 
 daeString emptyID = "";
@@ -208,7 +210,15 @@ daeDefaultIDRefResolver::resolveElement(daeIDRef& idref, daeString typeNameHint)
 
 	daeString id = idref.getID();
 
-	status = _database->getElement(&resolved,0,id,typeNameHint,NULL);
+	if ( idref.getContainer() == NULL ) 
+	{
+		char msg[128];
+		sprintf(msg,"daeDefaultIDRefResolver::resolveElement() - failed to resolve %s\n",idref.getID(), ". IDRef needs a container element!" );
+		daeErrorHandler::get()->handleWarning( msg );
+		return false;
+	}
+
+	status = _database->getElement( &resolved, 0, id, typeNameHint, idref.getContainer()->getDocumentURI()->getURI() );
 
 	idref.setElement( resolved );
 

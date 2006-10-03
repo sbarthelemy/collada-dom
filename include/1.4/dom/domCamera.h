@@ -25,7 +25,7 @@
  * The camera element declares a view into the scene hierarchy or scene graph.
  * The camera contains  elements that describe the camera’s optics and imager.
  */
-class domCamera : public daeElement
+class DLL_EXPORT domCamera : public daeElement
 {
 public:
 	class domOptics;
@@ -37,7 +37,7 @@ public:
  * Optics represents the apparatus on a camera that projects the image onto
  * the image sensor.
  */
-	class domOptics : public daeElement
+	class DLL_EXPORT domOptics : public daeElement
 	{
 	public:
 		class domTechnique_common;
@@ -49,7 +49,7 @@ public:
  * The technique_common element specifies the optics information for the common
  * profile  which all COLLADA implementations need to support.
  */
-		class domTechnique_common : public daeElement
+		class DLL_EXPORT domTechnique_common : public daeElement
 		{
 		public:
 			class domOrthographic;
@@ -61,7 +61,7 @@ public:
  * The orthographic element describes the field of view of an orthographic
  * camera.
  */
-			class domOrthographic : public daeElement
+			class DLL_EXPORT domOrthographic : public daeElement
 			{
 
 			protected:  // Elements
@@ -188,7 +188,7 @@ public:
 /**
  * The perspective element describes the optics of a perspective camera.
  */
-			class domPerspective : public daeElement
+			class DLL_EXPORT domPerspective : public daeElement
 			{
 
 			protected:  // Elements
@@ -482,7 +482,7 @@ public:
 /**
  * Imagers represent the image sensor of a camera (for example film or CCD).
  */
-	class domImager : public daeElement
+	class DLL_EXPORT domImager : public daeElement
 	{
 
 	protected:  // Elements

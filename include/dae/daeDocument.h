@@ -22,7 +22,7 @@
 /**
  * The @c daeDocument class implements a COLLADA runtime database entry.
  */
-class daeDocument
+class DLL_EXPORT daeDocument
 {
 public:
     // sthomas

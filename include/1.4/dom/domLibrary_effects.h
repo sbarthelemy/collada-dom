@@ -23,7 +23,7 @@
 /**
  * The library_effects element declares a module of effect elements.
  */
-class domLibrary_effects : public daeElement
+class DLL_EXPORT domLibrary_effects : public daeElement
 {
 protected:  // Attributes
 /**

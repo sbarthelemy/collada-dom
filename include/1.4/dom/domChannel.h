@@ -20,7 +20,7 @@
 /**
  * The channel element declares an output channel of an animation.
  */
-class domChannel : public daeElement
+class DLL_EXPORT domChannel : public daeElement
 {
 protected:  // Attributes
 /**

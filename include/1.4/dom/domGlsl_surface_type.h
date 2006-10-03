@@ -26,7 +26,7 @@
  * A surface type for the GLSL profile. This surface inherits from the fx_surface_common
  * type and adds the ability to programmatically generate textures.
  */
-class domGlsl_surface_type_complexType : public domFx_surface_common_complexType
+class DLL_EXPORT domGlsl_surface_type_complexType : public domFx_surface_common_complexType
 {
 public:
 	class domGenerator;
@@ -37,7 +37,7 @@ public:
 /**
  * A procedural surface generator.
  */
-	class domGenerator : public daeElement
+	class DLL_EXPORT domGenerator : public daeElement
 	{
 	public:
 		class domName;
@@ -48,7 +48,7 @@ public:
 /**
  * The entry symbol for the shader function.
  */
-		class domName : public daeElement
+		class DLL_EXPORT domName : public daeElement
 		{
 		protected:  // Attribute
 			xsNCName attrSource;
@@ -291,7 +291,7 @@ protected:
 /**
  * An element of type domGlsl_surface_type_complexType.
  */
-class domGlsl_surface_type : public daeElement, public domGlsl_surface_type_complexType
+class DLL_EXPORT domGlsl_surface_type : public daeElement, public domGlsl_surface_type_complexType
 {
 protected:
 	/**

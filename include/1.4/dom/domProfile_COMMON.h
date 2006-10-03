@@ -28,7 +28,7 @@
 /**
  * Opens a block of COMMON platform-specific data types and technique declarations.
  */
-class domProfile_COMMON : public domFx_profile_abstract
+class DLL_EXPORT domProfile_COMMON : public domFx_profile_abstract
 {
 public:
 	class domTechnique;
@@ -40,7 +40,7 @@ public:
  * Holds a description of the textures, samplers, shaders, parameters, and
  * passes necessary for rendering this effect using one method.
  */
-	class domTechnique : public daeElement
+	class DLL_EXPORT domTechnique : public daeElement
 	{
 	public:
 		class domConstant;
@@ -48,7 +48,7 @@ public:
 		typedef daeSmartRef<domConstant> domConstantRef;
 		typedef daeTArray<domConstantRef> domConstant_Array;
 
-		class domConstant : public daeElement
+		class DLL_EXPORT domConstant : public daeElement
 		{
 
 		protected:  // Elements
@@ -80,7 +80,6 @@ public:
 			 * @return a daeSmartRef to the transparent element.
 			 */
 			const domCommon_transparent_typeRef getTransparent() const { return elemTransparent; }
-
 			/**
 			 * Gets the transparency element.
 			 * @return a daeSmartRef to the transparency element.
@@ -135,7 +134,7 @@ public:
 		typedef daeSmartRef<domLambert> domLambertRef;
 		typedef daeTArray<domLambertRef> domLambert_Array;
 
-		class domLambert : public daeElement
+		class DLL_EXPORT domLambert : public daeElement
 		{
 
 		protected:  // Elements
@@ -179,7 +178,6 @@ public:
 			 * @return a daeSmartRef to the transparent element.
 			 */
 			const domCommon_transparent_typeRef getTransparent() const { return elemTransparent; }
-
 			/**
 			 * Gets the transparency element.
 			 * @return a daeSmartRef to the transparency element.
@@ -234,7 +232,7 @@ public:
 		typedef daeSmartRef<domPhong> domPhongRef;
 		typedef daeTArray<domPhongRef> domPhong_Array;
 
-		class domPhong : public daeElement
+		class DLL_EXPORT domPhong : public daeElement
 		{
 
 		protected:  // Elements
@@ -290,7 +288,6 @@ public:
 			 * @return a daeSmartRef to the transparent element.
 			 */
 			const domCommon_transparent_typeRef getTransparent() const { return elemTransparent; }
-
 			/**
 			 * Gets the transparency element.
 			 * @return a daeSmartRef to the transparency element.
@@ -345,7 +342,7 @@ public:
 		typedef daeSmartRef<domBlinn> domBlinnRef;
 		typedef daeTArray<domBlinnRef> domBlinn_Array;
 
-		class domBlinn : public daeElement
+		class DLL_EXPORT domBlinn : public daeElement
 		{
 
 		protected:  // Elements

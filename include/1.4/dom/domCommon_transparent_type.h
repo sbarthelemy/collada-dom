@@ -21,7 +21,7 @@
 /**
  * An element of type domCommon_transparent_type_complexType.
  */
-class domCommon_transparent_type : public domCommon_color_or_texture_type
+class DLL_EXPORT domCommon_transparent_type : public domCommon_color_or_texture_type
 {
 
 protected:  // Attribute

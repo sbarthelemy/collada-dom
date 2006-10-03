@@ -18,18 +18,6 @@
 void
 daeMetaAttribute::set(daeElement* e, daeString s)
 {
-	if( _type->getTypeEnum() == daeAtomicType::FloatType || _type->getTypeEnum() == daeAtomicType::DoubleType ) {
-		if ( strcmp(s, "NaN") == 0 ) {
-			char msg[256];
-			sprintf(msg, "NaN encountered while setting %s attribute in %s element.\n", (daeString)_name, (daeString)_container->getName() );
-			daeErrorHandler::get()->handleWarning(msg);
-		}
-		else if ( strcmp(s, "INF") == 0 ) {
-			char msg[256];
-			sprintf(msg, "INF encountered while setting %s attribute in %s element.\n", (daeString)_name, (daeString)_container->getName() );
-			daeErrorHandler::get()->handleWarning( msg );
-		}
-	}
 	_type->stringToMemory((char*)s, getWritableMemory(e));
 }
 
@@ -43,18 +31,6 @@ void daeMetaAttribute::copy(daeElement* to, daeElement *from) {
 void
 daeMetaArrayAttribute::set(daeElement* e, daeString s)
 {
-	if( _type->getTypeEnum() == daeAtomicType::FloatType || _type->getTypeEnum() == daeAtomicType::DoubleType ) {
-		if ( strcmp(s, "NaN") == 0 ) {
-			char msg[256];
-			sprintf(msg, "NaN encountered while setting %s attribute in %s element.\n", (daeString)_name, (daeString)_container->getName() );
-			daeErrorHandler::get()->handleWarning(msg);
-		}
-		else if ( strcmp(s, "INF") == 0 ) {
-			char msg[256];
-			sprintf(msg, "INF encountered while setting %s attribute in %s element.\n", (daeString)_name, (daeString)_container->getName() );
-			daeErrorHandler::get()->handleWarning( msg );
-		}
-	}
 	daeArray* array = (daeArray*)getWritableMemory(e);
 	daeInt typeSize = _type->getSize();
 	daeInt cnt = (daeInt)array->getCount();
@@ -92,7 +68,18 @@ void
 daeMetaAttribute::resolve(daeElementRef element)
 {
 	if (_type != NULL)
-		_type->resolve(element, this);
+		_type->resolve(element, getWritableMemory(element) );
+}
+
+void
+daeMetaArrayAttribute::resolve(daeElementRef element)
+{
+	daeArray* era = (daeArray*)getWritableMemory(element);
+	size_t cnt = era->getCount();
+	for ( size_t i = 0; i < cnt; i++ )
+	{
+		_type->resolve( element, era->getRawData()+(i*era->getElementSize()) );
+	}
 }
 
 daeInt

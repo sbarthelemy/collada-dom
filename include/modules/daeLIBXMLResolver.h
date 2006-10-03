@@ -30,11 +30,11 @@ public:
 	 * @param database The @c daeDatabase used.
 	 * @param plugin The @c daeIOPlugin used.
 	 */
-	daeLIBXMLResolver(daeDatabase* database, daeIOPlugin* plugin);
+	DLL_EXPORT daeLIBXMLResolver(daeDatabase* database, daeIOPlugin* plugin);
 	/**
 	 * Destructor.
 	 */
-	~daeLIBXMLResolver();
+	DLL_EXPORT ~daeLIBXMLResolver();
 
 protected:
 	daeDatabase* _database;

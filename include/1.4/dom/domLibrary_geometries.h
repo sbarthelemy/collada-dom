@@ -23,7 +23,7 @@
 /**
  * The library_geometries element declares a module of geometry elements.
  */
-class domLibrary_geometries : public daeElement
+class DLL_EXPORT domLibrary_geometries : public daeElement
 {
 protected:  // Attributes
 /**

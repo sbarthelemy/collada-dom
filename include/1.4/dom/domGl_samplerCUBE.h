@@ -21,7 +21,7 @@
 /**
  * A cube map texture sampler for the GLSL profile.
  */
-class domGl_samplerCUBE_complexType : public domFx_samplerCUBE_common_complexType
+class DLL_EXPORT domGl_samplerCUBE_complexType : public domFx_samplerCUBE_common_complexType
 {
 
 protected:
@@ -46,7 +46,7 @@ protected:
 /**
  * An element of type domGl_samplerCUBE_complexType.
  */
-class domGl_samplerCUBE : public daeElement, public domGl_samplerCUBE_complexType
+class DLL_EXPORT domGl_samplerCUBE : public daeElement, public domGl_samplerCUBE_complexType
 {
 protected:
 	/**

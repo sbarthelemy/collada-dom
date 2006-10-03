@@ -23,7 +23,7 @@
 /**
  * The library_force_fields element declares a module of force_field elements.
  */
-class domLibrary_force_fields : public daeElement
+class DLL_EXPORT domLibrary_force_fields : public daeElement
 {
 protected:  // Attributes
 /**

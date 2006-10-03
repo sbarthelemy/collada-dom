@@ -21,7 +21,7 @@
  * The param element declares parametric information regarding its parent
  * element.
  */
-class domParam : public daeElement
+class DLL_EXPORT domParam : public daeElement
 {
 protected:  // Attributes
 /**

@@ -20,7 +20,7 @@
  * The @c daeStringTable is a simple string table class to hold a float list of strings
  * without a lot of allocations.
  */
-class daeStringTable
+class DLL_EXPORT daeStringTable
 {
 public: // allocate/construct/destruct/deallocate
 	/**

@@ -19,7 +19,7 @@
 #include <dom/domFx_surface_common.h>
 #include <dom/domFx_sampler2D_common.h>
 
-class domCommon_newparam_type_complexType 
+class DLL_EXPORT domCommon_newparam_type_complexType 
 {
 public:
 	class domSemantic;
@@ -27,7 +27,7 @@ public:
 	typedef daeSmartRef<domSemantic> domSemanticRef;
 	typedef daeTArray<domSemanticRef> domSemantic_Array;
 
-	class domSemantic : public daeElement
+	class DLL_EXPORT domSemantic : public daeElement
 	{
 
 	protected:  // Value
@@ -92,7 +92,7 @@ public:
 	typedef daeSmartRef<domFloat> domFloatRef;
 	typedef daeTArray<domFloatRef> domFloat_Array;
 
-	class domFloat : public daeElement
+	class DLL_EXPORT domFloat : public daeElement
 	{
 
 	protected:  // Value
@@ -157,7 +157,7 @@ public:
 	typedef daeSmartRef<domFloat2> domFloat2Ref;
 	typedef daeTArray<domFloat2Ref> domFloat2_Array;
 
-	class domFloat2 : public daeElement
+	class DLL_EXPORT domFloat2 : public daeElement
 	{
 
 	protected:  // Value
@@ -227,7 +227,7 @@ public:
 	typedef daeSmartRef<domFloat3> domFloat3Ref;
 	typedef daeTArray<domFloat3Ref> domFloat3_Array;
 
-	class domFloat3 : public daeElement
+	class DLL_EXPORT domFloat3 : public daeElement
 	{
 
 	protected:  // Value
@@ -297,7 +297,7 @@ public:
 	typedef daeSmartRef<domFloat4> domFloat4Ref;
 	typedef daeTArray<domFloat4Ref> domFloat4_Array;
 
-	class domFloat4 : public daeElement
+	class DLL_EXPORT domFloat4 : public daeElement
 	{
 
 	protected:  // Value
@@ -469,7 +469,7 @@ protected:
 /**
  * An element of type domCommon_newparam_type_complexType.
  */
-class domCommon_newparam_type : public daeElement, public domCommon_newparam_type_complexType
+class DLL_EXPORT domCommon_newparam_type : public daeElement, public domCommon_newparam_type_complexType
 {
 
 public:	//Accessors and Mutators

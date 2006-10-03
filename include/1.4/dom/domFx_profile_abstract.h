@@ -21,7 +21,7 @@
  * The fx_profile_abstract element is only used as a substitution group hook
  * for COLLADA FX profiles.
  */
-class domFx_profile_abstract : public daeElement
+class DLL_EXPORT domFx_profile_abstract : public daeElement
 {
 
 protected:

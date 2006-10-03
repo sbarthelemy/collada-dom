@@ -22,7 +22,7 @@
  * Defines the RGB portion of a texture_pipeline command. This is a combiner-mode
  * texturing operation.
  */
-class domGles_texcombiner_commandRGB_type_complexType 
+class DLL_EXPORT domGles_texcombiner_commandRGB_type_complexType 
 {
 protected:  // Attributes
 	domGles_texcombiner_operatorRGB_enums attrOperator;
@@ -86,7 +86,7 @@ protected:
 /**
  * An element of type domGles_texcombiner_commandRGB_type_complexType.
  */
-class domGles_texcombiner_commandRGB_type : public daeElement, public domGles_texcombiner_commandRGB_type_complexType
+class DLL_EXPORT domGles_texcombiner_commandRGB_type : public daeElement, public domGles_texcombiner_commandRGB_type_complexType
 {
 
 public:	//Accessors and Mutators

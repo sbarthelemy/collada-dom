@@ -22,7 +22,7 @@
  * Two-dimensional texture sampler state for profile_GLES. This is a bundle
  * of sampler-specific states that will be referenced by one or more texture_units.
  */
-class domGles_sampler_state_complexType 
+class DLL_EXPORT domGles_sampler_state_complexType 
 {
 public:
 	class domWrap_s;
@@ -30,7 +30,7 @@ public:
 	typedef daeSmartRef<domWrap_s> domWrap_sRef;
 	typedef daeTArray<domWrap_sRef> domWrap_s_Array;
 
-	class domWrap_s : public daeElement
+	class DLL_EXPORT domWrap_s : public daeElement
 	{
 
 	protected:  // Value
@@ -95,7 +95,7 @@ public:
 	typedef daeSmartRef<domWrap_t> domWrap_tRef;
 	typedef daeTArray<domWrap_tRef> domWrap_t_Array;
 
-	class domWrap_t : public daeElement
+	class DLL_EXPORT domWrap_t : public daeElement
 	{
 
 	protected:  // Value
@@ -160,7 +160,7 @@ public:
 	typedef daeSmartRef<domMinfilter> domMinfilterRef;
 	typedef daeTArray<domMinfilterRef> domMinfilter_Array;
 
-	class domMinfilter : public daeElement
+	class DLL_EXPORT domMinfilter : public daeElement
 	{
 
 	protected:  // Value
@@ -225,7 +225,7 @@ public:
 	typedef daeSmartRef<domMagfilter> domMagfilterRef;
 	typedef daeTArray<domMagfilterRef> domMagfilter_Array;
 
-	class domMagfilter : public daeElement
+	class DLL_EXPORT domMagfilter : public daeElement
 	{
 
 	protected:  // Value
@@ -290,7 +290,7 @@ public:
 	typedef daeSmartRef<domMipfilter> domMipfilterRef;
 	typedef daeTArray<domMipfilterRef> domMipfilter_Array;
 
-	class domMipfilter : public daeElement
+	class DLL_EXPORT domMipfilter : public daeElement
 	{
 
 	protected:  // Value
@@ -355,7 +355,7 @@ public:
 	typedef daeSmartRef<domMipmap_maxlevel> domMipmap_maxlevelRef;
 	typedef daeTArray<domMipmap_maxlevelRef> domMipmap_maxlevel_Array;
 
-	class domMipmap_maxlevel : public daeElement
+	class DLL_EXPORT domMipmap_maxlevel : public daeElement
 	{
 
 	protected:  // Value
@@ -420,7 +420,7 @@ public:
 	typedef daeSmartRef<domMipmap_bias> domMipmap_biasRef;
 	typedef daeTArray<domMipmap_biasRef> domMipmap_bias_Array;
 
-	class domMipmap_bias : public daeElement
+	class DLL_EXPORT domMipmap_bias : public daeElement
 	{
 
 	protected:  // Value
@@ -582,7 +582,7 @@ protected:
 /**
  * An element of type domGles_sampler_state_complexType.
  */
-class domGles_sampler_state : public daeElement, public domGles_sampler_state_complexType
+class DLL_EXPORT domGles_sampler_state : public daeElement, public domGles_sampler_state_complexType
 {
 
 public:	//Accessors and Mutators

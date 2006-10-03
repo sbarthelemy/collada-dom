@@ -26,7 +26,7 @@
  * appropriate for your surface based on type and other characteristics. described
  * by the annotation docs on the child elements.
  */
-class domFx_surface_init_common : public daeElement
+class DLL_EXPORT domFx_surface_init_common : public daeElement
 {
 public:
 	class domInit_as_null;
@@ -41,7 +41,7 @@ public:
  * will be ignored including mip_levels, mipmap_generate, size, viewport_ratio,
  * and format.
  */
-	class domInit_as_null : public daeElement
+	class DLL_EXPORT domInit_as_null : public daeElement
 	{
 
 	protected:
@@ -92,7 +92,7 @@ public:
  * Init as a target for depth, stencil, or color.  It does not need image
  * data. Surface should not have mipmap_generate when using this.
  */
-	class domInit_as_target : public daeElement
+	class DLL_EXPORT domInit_as_target : public daeElement
 	{
 
 	protected:

@@ -35,7 +35,7 @@ domInstance_light::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "instance_light" );
-	_Meta->registerConstructor(domInstance_light::create);
+	_Meta->registerClass(domInstance_light::create, &_Meta);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
@@ -47,9 +47,6 @@ domInstance_light::registerElement()
 	mea->setElementType( domExtra::registerElement() );
 	cm->appendChild( mea );
 	
-    // sthomas
-    //cm->setMaxOrdinal( 3003 );
-    _Meta->setCMRoot( cm );	
 
 	//	Add attribute: url
  	{

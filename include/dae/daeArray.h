@@ -20,7 +20,7 @@ class daeAtomicType;
 /**
  * COLLADA C++ class that implements storage for resizable array containers.
  */
-class daeArray
+class DLL_EXPORT daeArray
 {
 protected:
 	size_t			_count;
@@ -107,7 +107,7 @@ public:
  * COLLADA C++ templated version of @c daeArray for storing items of various types.
  */
 template <class T>
-class daeTArray : public daeArray
+class DLL_EXPORT daeTArray : public daeArray
 {
 public:
 	/**
@@ -122,11 +122,11 @@ public:
 	 */
 	daeTArray( const daeTArray<T> &cpy ) : daeArray() {
 		_count = cpy._count;
-		_capacity = cpy._capacity;
+		//_capacity = cpy._capacity;
 		_data = NULL;
 		_elementSize = cpy._elementSize;
 		_type = cpy._type;
-		grow(_capacity);
+		grow(_count);
 		for(size_t i=0;i<_count;i++)
 			set( i, cpy[i] ); 
 	}
@@ -315,8 +315,8 @@ public:
 	inline daeTArray<T> &operator=( const daeTArray<T> &other ) {
 		clear();
 		_count = other._count;
-		_capacity = other._capacity;
-		grow(_capacity);
+		//_capacity = other._capacity;
+		grow(_count);
 		for(size_t i=0;i<_count;i++)
 			set( i, other[i] ); 	
 

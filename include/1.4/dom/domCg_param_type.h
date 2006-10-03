@@ -27,7 +27,7 @@
 /**
  * A group that specifies the allowable types for CG profile parameters.
  */
-class domCg_param_type : public daeElement
+class DLL_EXPORT domCg_param_type : public daeElement
 {
 public:
 	class domBool;
@@ -35,7 +35,7 @@ public:
 	typedef daeSmartRef<domBool> domBoolRef;
 	typedef daeTArray<domBoolRef> domBool_Array;
 
-	class domBool : public daeElement
+	class DLL_EXPORT domBool : public daeElement
 	{
 
 	protected:  // Value
@@ -100,7 +100,7 @@ public:
 	typedef daeSmartRef<domBool1> domBool1Ref;
 	typedef daeTArray<domBool1Ref> domBool1_Array;
 
-	class domBool1 : public daeElement
+	class DLL_EXPORT domBool1 : public daeElement
 	{
 
 	protected:  // Value
@@ -165,7 +165,7 @@ public:
 	typedef daeSmartRef<domBool2> domBool2Ref;
 	typedef daeTArray<domBool2Ref> domBool2_Array;
 
-	class domBool2 : public daeElement
+	class DLL_EXPORT domBool2 : public daeElement
 	{
 
 	protected:  // Value
@@ -235,7 +235,7 @@ public:
 	typedef daeSmartRef<domBool3> domBool3Ref;
 	typedef daeTArray<domBool3Ref> domBool3_Array;
 
-	class domBool3 : public daeElement
+	class DLL_EXPORT domBool3 : public daeElement
 	{
 
 	protected:  // Value
@@ -305,7 +305,7 @@ public:
 	typedef daeSmartRef<domBool4> domBool4Ref;
 	typedef daeTArray<domBool4Ref> domBool4_Array;
 
-	class domBool4 : public daeElement
+	class DLL_EXPORT domBool4 : public daeElement
 	{
 
 	protected:  // Value
@@ -375,7 +375,7 @@ public:
 	typedef daeSmartRef<domBool1x1> domBool1x1Ref;
 	typedef daeTArray<domBool1x1Ref> domBool1x1_Array;
 
-	class domBool1x1 : public daeElement
+	class DLL_EXPORT domBool1x1 : public daeElement
 	{
 
 	protected:  // Value
@@ -445,7 +445,7 @@ public:
 	typedef daeSmartRef<domBool1x2> domBool1x2Ref;
 	typedef daeTArray<domBool1x2Ref> domBool1x2_Array;
 
-	class domBool1x2 : public daeElement
+	class DLL_EXPORT domBool1x2 : public daeElement
 	{
 
 	protected:  // Value
@@ -515,7 +515,7 @@ public:
 	typedef daeSmartRef<domBool1x3> domBool1x3Ref;
 	typedef daeTArray<domBool1x3Ref> domBool1x3_Array;
 
-	class domBool1x3 : public daeElement
+	class DLL_EXPORT domBool1x3 : public daeElement
 	{
 
 	protected:  // Value
@@ -585,7 +585,7 @@ public:
 	typedef daeSmartRef<domBool1x4> domBool1x4Ref;
 	typedef daeTArray<domBool1x4Ref> domBool1x4_Array;
 
-	class domBool1x4 : public daeElement
+	class DLL_EXPORT domBool1x4 : public daeElement
 	{
 
 	protected:  // Value
@@ -655,7 +655,7 @@ public:
 	typedef daeSmartRef<domBool2x1> domBool2x1Ref;
 	typedef daeTArray<domBool2x1Ref> domBool2x1_Array;
 
-	class domBool2x1 : public daeElement
+	class DLL_EXPORT domBool2x1 : public daeElement
 	{
 
 	protected:  // Value
@@ -725,7 +725,7 @@ public:
 	typedef daeSmartRef<domBool2x2> domBool2x2Ref;
 	typedef daeTArray<domBool2x2Ref> domBool2x2_Array;
 
-	class domBool2x2 : public daeElement
+	class DLL_EXPORT domBool2x2 : public daeElement
 	{
 
 	protected:  // Value
@@ -795,7 +795,7 @@ public:
 	typedef daeSmartRef<domBool2x3> domBool2x3Ref;
 	typedef daeTArray<domBool2x3Ref> domBool2x3_Array;
 
-	class domBool2x3 : public daeElement
+	class DLL_EXPORT domBool2x3 : public daeElement
 	{
 
 	protected:  // Value
@@ -865,7 +865,7 @@ public:
 	typedef daeSmartRef<domBool2x4> domBool2x4Ref;
 	typedef daeTArray<domBool2x4Ref> domBool2x4_Array;
 
-	class domBool2x4 : public daeElement
+	class DLL_EXPORT domBool2x4 : public daeElement
 	{
 
 	protected:  // Value
@@ -935,7 +935,7 @@ public:
 	typedef daeSmartRef<domBool3x1> domBool3x1Ref;
 	typedef daeTArray<domBool3x1Ref> domBool3x1_Array;
 
-	class domBool3x1 : public daeElement
+	class DLL_EXPORT domBool3x1 : public daeElement
 	{
 
 	protected:  // Value
@@ -1005,7 +1005,7 @@ public:
 	typedef daeSmartRef<domBool3x2> domBool3x2Ref;
 	typedef daeTArray<domBool3x2Ref> domBool3x2_Array;
 
-	class domBool3x2 : public daeElement
+	class DLL_EXPORT domBool3x2 : public daeElement
 	{
 
 	protected:  // Value
@@ -1075,7 +1075,7 @@ public:
 	typedef daeSmartRef<domBool3x3> domBool3x3Ref;
 	typedef daeTArray<domBool3x3Ref> domBool3x3_Array;
 
-	class domBool3x3 : public daeElement
+	class DLL_EXPORT domBool3x3 : public daeElement
 	{
 
 	protected:  // Value
@@ -1145,7 +1145,7 @@ public:
 	typedef daeSmartRef<domBool3x4> domBool3x4Ref;
 	typedef daeTArray<domBool3x4Ref> domBool3x4_Array;
 
-	class domBool3x4 : public daeElement
+	class DLL_EXPORT domBool3x4 : public daeElement
 	{
 
 	protected:  // Value
@@ -1215,7 +1215,7 @@ public:
 	typedef daeSmartRef<domBool4x1> domBool4x1Ref;
 	typedef daeTArray<domBool4x1Ref> domBool4x1_Array;
 
-	class domBool4x1 : public daeElement
+	class DLL_EXPORT domBool4x1 : public daeElement
 	{
 
 	protected:  // Value
@@ -1285,7 +1285,7 @@ public:
 	typedef daeSmartRef<domBool4x2> domBool4x2Ref;
 	typedef daeTArray<domBool4x2Ref> domBool4x2_Array;
 
-	class domBool4x2 : public daeElement
+	class DLL_EXPORT domBool4x2 : public daeElement
 	{
 
 	protected:  // Value
@@ -1355,7 +1355,7 @@ public:
 	typedef daeSmartRef<domBool4x3> domBool4x3Ref;
 	typedef daeTArray<domBool4x3Ref> domBool4x3_Array;
 
-	class domBool4x3 : public daeElement
+	class DLL_EXPORT domBool4x3 : public daeElement
 	{
 
 	protected:  // Value
@@ -1425,7 +1425,7 @@ public:
 	typedef daeSmartRef<domBool4x4> domBool4x4Ref;
 	typedef daeTArray<domBool4x4Ref> domBool4x4_Array;
 
-	class domBool4x4 : public daeElement
+	class DLL_EXPORT domBool4x4 : public daeElement
 	{
 
 	protected:  // Value
@@ -1495,7 +1495,7 @@ public:
 	typedef daeSmartRef<domFloat> domFloatRef;
 	typedef daeTArray<domFloatRef> domFloat_Array;
 
-	class domFloat : public daeElement
+	class DLL_EXPORT domFloat : public daeElement
 	{
 
 	protected:  // Value
@@ -1560,7 +1560,7 @@ public:
 	typedef daeSmartRef<domFloat1> domFloat1Ref;
 	typedef daeTArray<domFloat1Ref> domFloat1_Array;
 
-	class domFloat1 : public daeElement
+	class DLL_EXPORT domFloat1 : public daeElement
 	{
 
 	protected:  // Value
@@ -1625,7 +1625,7 @@ public:
 	typedef daeSmartRef<domFloat2> domFloat2Ref;
 	typedef daeTArray<domFloat2Ref> domFloat2_Array;
 
-	class domFloat2 : public daeElement
+	class DLL_EXPORT domFloat2 : public daeElement
 	{
 
 	protected:  // Value
@@ -1695,7 +1695,7 @@ public:
 	typedef daeSmartRef<domFloat3> domFloat3Ref;
 	typedef daeTArray<domFloat3Ref> domFloat3_Array;
 
-	class domFloat3 : public daeElement
+	class DLL_EXPORT domFloat3 : public daeElement
 	{
 
 	protected:  // Value
@@ -1765,7 +1765,7 @@ public:
 	typedef daeSmartRef<domFloat4> domFloat4Ref;
 	typedef daeTArray<domFloat4Ref> domFloat4_Array;
 
-	class domFloat4 : public daeElement
+	class DLL_EXPORT domFloat4 : public daeElement
 	{
 
 	protected:  // Value
@@ -1835,7 +1835,7 @@ public:
 	typedef daeSmartRef<domFloat1x1> domFloat1x1Ref;
 	typedef daeTArray<domFloat1x1Ref> domFloat1x1_Array;
 
-	class domFloat1x1 : public daeElement
+	class DLL_EXPORT domFloat1x1 : public daeElement
 	{
 
 	protected:  // Value
@@ -1905,7 +1905,7 @@ public:
 	typedef daeSmartRef<domFloat1x2> domFloat1x2Ref;
 	typedef daeTArray<domFloat1x2Ref> domFloat1x2_Array;
 
-	class domFloat1x2 : public daeElement
+	class DLL_EXPORT domFloat1x2 : public daeElement
 	{
 
 	protected:  // Value
@@ -1975,7 +1975,7 @@ public:
 	typedef daeSmartRef<domFloat1x3> domFloat1x3Ref;
 	typedef daeTArray<domFloat1x3Ref> domFloat1x3_Array;
 
-	class domFloat1x3 : public daeElement
+	class DLL_EXPORT domFloat1x3 : public daeElement
 	{
 
 	protected:  // Value
@@ -2045,7 +2045,7 @@ public:
 	typedef daeSmartRef<domFloat1x4> domFloat1x4Ref;
 	typedef daeTArray<domFloat1x4Ref> domFloat1x4_Array;
 
-	class domFloat1x4 : public daeElement
+	class DLL_EXPORT domFloat1x4 : public daeElement
 	{
 
 	protected:  // Value
@@ -2115,7 +2115,7 @@ public:
 	typedef daeSmartRef<domFloat2x1> domFloat2x1Ref;
 	typedef daeTArray<domFloat2x1Ref> domFloat2x1_Array;
 
-	class domFloat2x1 : public daeElement
+	class DLL_EXPORT domFloat2x1 : public daeElement
 	{
 
 	protected:  // Value
@@ -2185,7 +2185,7 @@ public:
 	typedef daeSmartRef<domFloat2x2> domFloat2x2Ref;
 	typedef daeTArray<domFloat2x2Ref> domFloat2x2_Array;
 
-	class domFloat2x2 : public daeElement
+	class DLL_EXPORT domFloat2x2 : public daeElement
 	{
 
 	protected:  // Value
@@ -2255,7 +2255,7 @@ public:
 	typedef daeSmartRef<domFloat2x3> domFloat2x3Ref;
 	typedef daeTArray<domFloat2x3Ref> domFloat2x3_Array;
 
-	class domFloat2x3 : public daeElement
+	class DLL_EXPORT domFloat2x3 : public daeElement
 	{
 
 	protected:  // Value
@@ -2325,7 +2325,7 @@ public:
 	typedef daeSmartRef<domFloat2x4> domFloat2x4Ref;
 	typedef daeTArray<domFloat2x4Ref> domFloat2x4_Array;
 
-	class domFloat2x4 : public daeElement
+	class DLL_EXPORT domFloat2x4 : public daeElement
 	{
 
 	protected:  // Value
@@ -2395,7 +2395,7 @@ public:
 	typedef daeSmartRef<domFloat3x1> domFloat3x1Ref;
 	typedef daeTArray<domFloat3x1Ref> domFloat3x1_Array;
 
-	class domFloat3x1 : public daeElement
+	class DLL_EXPORT domFloat3x1 : public daeElement
 	{
 
 	protected:  // Value
@@ -2465,7 +2465,7 @@ public:
 	typedef daeSmartRef<domFloat3x2> domFloat3x2Ref;
 	typedef daeTArray<domFloat3x2Ref> domFloat3x2_Array;
 
-	class domFloat3x2 : public daeElement
+	class DLL_EXPORT domFloat3x2 : public daeElement
 	{
 
 	protected:  // Value
@@ -2535,7 +2535,7 @@ public:
 	typedef daeSmartRef<domFloat3x3> domFloat3x3Ref;
 	typedef daeTArray<domFloat3x3Ref> domFloat3x3_Array;
 
-	class domFloat3x3 : public daeElement
+	class DLL_EXPORT domFloat3x3 : public daeElement
 	{
 
 	protected:  // Value
@@ -2605,7 +2605,7 @@ public:
 	typedef daeSmartRef<domFloat3x4> domFloat3x4Ref;
 	typedef daeTArray<domFloat3x4Ref> domFloat3x4_Array;
 
-	class domFloat3x4 : public daeElement
+	class DLL_EXPORT domFloat3x4 : public daeElement
 	{
 
 	protected:  // Value
@@ -2675,7 +2675,7 @@ public:
 	typedef daeSmartRef<domFloat4x1> domFloat4x1Ref;
 	typedef daeTArray<domFloat4x1Ref> domFloat4x1_Array;
 
-	class domFloat4x1 : public daeElement
+	class DLL_EXPORT domFloat4x1 : public daeElement
 	{
 
 	protected:  // Value
@@ -2745,7 +2745,7 @@ public:
 	typedef daeSmartRef<domFloat4x2> domFloat4x2Ref;
 	typedef daeTArray<domFloat4x2Ref> domFloat4x2_Array;
 
-	class domFloat4x2 : public daeElement
+	class DLL_EXPORT domFloat4x2 : public daeElement
 	{
 
 	protected:  // Value
@@ -2815,7 +2815,7 @@ public:
 	typedef daeSmartRef<domFloat4x3> domFloat4x3Ref;
 	typedef daeTArray<domFloat4x3Ref> domFloat4x3_Array;
 
-	class domFloat4x3 : public daeElement
+	class DLL_EXPORT domFloat4x3 : public daeElement
 	{
 
 	protected:  // Value
@@ -2885,7 +2885,7 @@ public:
 	typedef daeSmartRef<domFloat4x4> domFloat4x4Ref;
 	typedef daeTArray<domFloat4x4Ref> domFloat4x4_Array;
 
-	class domFloat4x4 : public daeElement
+	class DLL_EXPORT domFloat4x4 : public daeElement
 	{
 
 	protected:  // Value
@@ -2955,7 +2955,7 @@ public:
 	typedef daeSmartRef<domInt> domIntRef;
 	typedef daeTArray<domIntRef> domInt_Array;
 
-	class domInt : public daeElement
+	class DLL_EXPORT domInt : public daeElement
 	{
 
 	protected:  // Value
@@ -3020,7 +3020,7 @@ public:
 	typedef daeSmartRef<domInt1> domInt1Ref;
 	typedef daeTArray<domInt1Ref> domInt1_Array;
 
-	class domInt1 : public daeElement
+	class DLL_EXPORT domInt1 : public daeElement
 	{
 
 	protected:  // Value
@@ -3085,7 +3085,7 @@ public:
 	typedef daeSmartRef<domInt2> domInt2Ref;
 	typedef daeTArray<domInt2Ref> domInt2_Array;
 
-	class domInt2 : public daeElement
+	class DLL_EXPORT domInt2 : public daeElement
 	{
 
 	protected:  // Value
@@ -3155,7 +3155,7 @@ public:
 	typedef daeSmartRef<domInt3> domInt3Ref;
 	typedef daeTArray<domInt3Ref> domInt3_Array;
 
-	class domInt3 : public daeElement
+	class DLL_EXPORT domInt3 : public daeElement
 	{
 
 	protected:  // Value
@@ -3225,7 +3225,7 @@ public:
 	typedef daeSmartRef<domInt4> domInt4Ref;
 	typedef daeTArray<domInt4Ref> domInt4_Array;
 
-	class domInt4 : public daeElement
+	class DLL_EXPORT domInt4 : public daeElement
 	{
 
 	protected:  // Value
@@ -3295,7 +3295,7 @@ public:
 	typedef daeSmartRef<domInt1x1> domInt1x1Ref;
 	typedef daeTArray<domInt1x1Ref> domInt1x1_Array;
 
-	class domInt1x1 : public daeElement
+	class DLL_EXPORT domInt1x1 : public daeElement
 	{
 
 	protected:  // Value
@@ -3365,7 +3365,7 @@ public:
 	typedef daeSmartRef<domInt1x2> domInt1x2Ref;
 	typedef daeTArray<domInt1x2Ref> domInt1x2_Array;
 
-	class domInt1x2 : public daeElement
+	class DLL_EXPORT domInt1x2 : public daeElement
 	{
 
 	protected:  // Value
@@ -3435,7 +3435,7 @@ public:
 	typedef daeSmartRef<domInt1x3> domInt1x3Ref;
 	typedef daeTArray<domInt1x3Ref> domInt1x3_Array;
 
-	class domInt1x3 : public daeElement
+	class DLL_EXPORT domInt1x3 : public daeElement
 	{
 
 	protected:  // Value
@@ -3505,7 +3505,7 @@ public:
 	typedef daeSmartRef<domInt1x4> domInt1x4Ref;
 	typedef daeTArray<domInt1x4Ref> domInt1x4_Array;
 
-	class domInt1x4 : public daeElement
+	class DLL_EXPORT domInt1x4 : public daeElement
 	{
 
 	protected:  // Value
@@ -3575,7 +3575,7 @@ public:
 	typedef daeSmartRef<domInt2x1> domInt2x1Ref;
 	typedef daeTArray<domInt2x1Ref> domInt2x1_Array;
 
-	class domInt2x1 : public daeElement
+	class DLL_EXPORT domInt2x1 : public daeElement
 	{
 
 	protected:  // Value
@@ -3645,7 +3645,7 @@ public:
 	typedef daeSmartRef<domInt2x2> domInt2x2Ref;
 	typedef daeTArray<domInt2x2Ref> domInt2x2_Array;
 
-	class domInt2x2 : public daeElement
+	class DLL_EXPORT domInt2x2 : public daeElement
 	{
 
 	protected:  // Value
@@ -3715,7 +3715,7 @@ public:
 	typedef daeSmartRef<domInt2x3> domInt2x3Ref;
 	typedef daeTArray<domInt2x3Ref> domInt2x3_Array;
 
-	class domInt2x3 : public daeElement
+	class DLL_EXPORT domInt2x3 : public daeElement
 	{
 
 	protected:  // Value
@@ -3785,7 +3785,7 @@ public:
 	typedef daeSmartRef<domInt2x4> domInt2x4Ref;
 	typedef daeTArray<domInt2x4Ref> domInt2x4_Array;
 
-	class domInt2x4 : public daeElement
+	class DLL_EXPORT domInt2x4 : public daeElement
 	{
 
 	protected:  // Value
@@ -3855,7 +3855,7 @@ public:
 	typedef daeSmartRef<domInt3x1> domInt3x1Ref;
 	typedef daeTArray<domInt3x1Ref> domInt3x1_Array;
 
-	class domInt3x1 : public daeElement
+	class DLL_EXPORT domInt3x1 : public daeElement
 	{
 
 	protected:  // Value
@@ -3925,7 +3925,7 @@ public:
 	typedef daeSmartRef<domInt3x2> domInt3x2Ref;
 	typedef daeTArray<domInt3x2Ref> domInt3x2_Array;
 
-	class domInt3x2 : public daeElement
+	class DLL_EXPORT domInt3x2 : public daeElement
 	{
 
 	protected:  // Value
@@ -3995,7 +3995,7 @@ public:
 	typedef daeSmartRef<domInt3x3> domInt3x3Ref;
 	typedef daeTArray<domInt3x3Ref> domInt3x3_Array;
 
-	class domInt3x3 : public daeElement
+	class DLL_EXPORT domInt3x3 : public daeElement
 	{
 
 	protected:  // Value
@@ -4065,7 +4065,7 @@ public:
 	typedef daeSmartRef<domInt3x4> domInt3x4Ref;
 	typedef daeTArray<domInt3x4Ref> domInt3x4_Array;
 
-	class domInt3x4 : public daeElement
+	class DLL_EXPORT domInt3x4 : public daeElement
 	{
 
 	protected:  // Value
@@ -4135,7 +4135,7 @@ public:
 	typedef daeSmartRef<domInt4x1> domInt4x1Ref;
 	typedef daeTArray<domInt4x1Ref> domInt4x1_Array;
 
-	class domInt4x1 : public daeElement
+	class DLL_EXPORT domInt4x1 : public daeElement
 	{
 
 	protected:  // Value
@@ -4205,7 +4205,7 @@ public:
 	typedef daeSmartRef<domInt4x2> domInt4x2Ref;
 	typedef daeTArray<domInt4x2Ref> domInt4x2_Array;
 
-	class domInt4x2 : public daeElement
+	class DLL_EXPORT domInt4x2 : public daeElement
 	{
 
 	protected:  // Value
@@ -4275,7 +4275,7 @@ public:
 	typedef daeSmartRef<domInt4x3> domInt4x3Ref;
 	typedef daeTArray<domInt4x3Ref> domInt4x3_Array;
 
-	class domInt4x3 : public daeElement
+	class DLL_EXPORT domInt4x3 : public daeElement
 	{
 
 	protected:  // Value
@@ -4345,7 +4345,7 @@ public:
 	typedef daeSmartRef<domInt4x4> domInt4x4Ref;
 	typedef daeTArray<domInt4x4Ref> domInt4x4_Array;
 
-	class domInt4x4 : public daeElement
+	class DLL_EXPORT domInt4x4 : public daeElement
 	{
 
 	protected:  // Value
@@ -4415,7 +4415,7 @@ public:
 	typedef daeSmartRef<domHalf> domHalfRef;
 	typedef daeTArray<domHalfRef> domHalf_Array;
 
-	class domHalf : public daeElement
+	class DLL_EXPORT domHalf : public daeElement
 	{
 
 	protected:  // Value
@@ -4480,7 +4480,7 @@ public:
 	typedef daeSmartRef<domHalf1> domHalf1Ref;
 	typedef daeTArray<domHalf1Ref> domHalf1_Array;
 
-	class domHalf1 : public daeElement
+	class DLL_EXPORT domHalf1 : public daeElement
 	{
 
 	protected:  // Value
@@ -4545,7 +4545,7 @@ public:
 	typedef daeSmartRef<domHalf2> domHalf2Ref;
 	typedef daeTArray<domHalf2Ref> domHalf2_Array;
 
-	class domHalf2 : public daeElement
+	class DLL_EXPORT domHalf2 : public daeElement
 	{
 
 	protected:  // Value
@@ -4615,7 +4615,7 @@ public:
 	typedef daeSmartRef<domHalf3> domHalf3Ref;
 	typedef daeTArray<domHalf3Ref> domHalf3_Array;
 
-	class domHalf3 : public daeElement
+	class DLL_EXPORT domHalf3 : public daeElement
 	{
 
 	protected:  // Value
@@ -4685,7 +4685,7 @@ public:
 	typedef daeSmartRef<domHalf4> domHalf4Ref;
 	typedef daeTArray<domHalf4Ref> domHalf4_Array;
 
-	class domHalf4 : public daeElement
+	class DLL_EXPORT domHalf4 : public daeElement
 	{
 
 	protected:  // Value
@@ -4755,7 +4755,7 @@ public:
 	typedef daeSmartRef<domHalf1x1> domHalf1x1Ref;
 	typedef daeTArray<domHalf1x1Ref> domHalf1x1_Array;
 
-	class domHalf1x1 : public daeElement
+	class DLL_EXPORT domHalf1x1 : public daeElement
 	{
 
 	protected:  // Value
@@ -4825,7 +4825,7 @@ public:
 	typedef daeSmartRef<domHalf1x2> domHalf1x2Ref;
 	typedef daeTArray<domHalf1x2Ref> domHalf1x2_Array;
 
-	class domHalf1x2 : public daeElement
+	class DLL_EXPORT domHalf1x2 : public daeElement
 	{
 
 	protected:  // Value
@@ -4895,7 +4895,7 @@ public:
 	typedef daeSmartRef<domHalf1x3> domHalf1x3Ref;
 	typedef daeTArray<domHalf1x3Ref> domHalf1x3_Array;
 
-	class domHalf1x3 : public daeElement
+	class DLL_EXPORT domHalf1x3 : public daeElement
 	{
 
 	protected:  // Value
@@ -4965,7 +4965,7 @@ public:
 	typedef daeSmartRef<domHalf1x4> domHalf1x4Ref;
 	typedef daeTArray<domHalf1x4Ref> domHalf1x4_Array;
 
-	class domHalf1x4 : public daeElement
+	class DLL_EXPORT domHalf1x4 : public daeElement
 	{
 
 	protected:  // Value
@@ -5035,7 +5035,7 @@ public:
 	typedef daeSmartRef<domHalf2x1> domHalf2x1Ref;
 	typedef daeTArray<domHalf2x1Ref> domHalf2x1_Array;
 
-	class domHalf2x1 : public daeElement
+	class DLL_EXPORT domHalf2x1 : public daeElement
 	{
 
 	protected:  // Value
@@ -5105,7 +5105,7 @@ public:
 	typedef daeSmartRef<domHalf2x2> domHalf2x2Ref;
 	typedef daeTArray<domHalf2x2Ref> domHalf2x2_Array;
 
-	class domHalf2x2 : public daeElement
+	class DLL_EXPORT domHalf2x2 : public daeElement
 	{
 
 	protected:  // Value
@@ -5175,7 +5175,7 @@ public:
 	typedef daeSmartRef<domHalf2x3> domHalf2x3Ref;
 	typedef daeTArray<domHalf2x3Ref> domHalf2x3_Array;
 
-	class domHalf2x3 : public daeElement
+	class DLL_EXPORT domHalf2x3 : public daeElement
 	{
 
 	protected:  // Value
@@ -5245,7 +5245,7 @@ public:
 	typedef daeSmartRef<domHalf2x4> domHalf2x4Ref;
 	typedef daeTArray<domHalf2x4Ref> domHalf2x4_Array;
 
-	class domHalf2x4 : public daeElement
+	class DLL_EXPORT domHalf2x4 : public daeElement
 	{
 
 	protected:  // Value
@@ -5315,7 +5315,7 @@ public:
 	typedef daeSmartRef<domHalf3x1> domHalf3x1Ref;
 	typedef daeTArray<domHalf3x1Ref> domHalf3x1_Array;
 
-	class domHalf3x1 : public daeElement
+	class DLL_EXPORT domHalf3x1 : public daeElement
 	{
 
 	protected:  // Value
@@ -5385,7 +5385,7 @@ public:
 	typedef daeSmartRef<domHalf3x2> domHalf3x2Ref;
 	typedef daeTArray<domHalf3x2Ref> domHalf3x2_Array;
 
-	class domHalf3x2 : public daeElement
+	class DLL_EXPORT domHalf3x2 : public daeElement
 	{
 
 	protected:  // Value
@@ -5455,7 +5455,7 @@ public:
 	typedef daeSmartRef<domHalf3x3> domHalf3x3Ref;
 	typedef daeTArray<domHalf3x3Ref> domHalf3x3_Array;
 
-	class domHalf3x3 : public daeElement
+	class DLL_EXPORT domHalf3x3 : public daeElement
 	{
 
 	protected:  // Value
@@ -5525,7 +5525,7 @@ public:
 	typedef daeSmartRef<domHalf3x4> domHalf3x4Ref;
 	typedef daeTArray<domHalf3x4Ref> domHalf3x4_Array;
 
-	class domHalf3x4 : public daeElement
+	class DLL_EXPORT domHalf3x4 : public daeElement
 	{
 
 	protected:  // Value
@@ -5595,7 +5595,7 @@ public:
 	typedef daeSmartRef<domHalf4x1> domHalf4x1Ref;
 	typedef daeTArray<domHalf4x1Ref> domHalf4x1_Array;
 
-	class domHalf4x1 : public daeElement
+	class DLL_EXPORT domHalf4x1 : public daeElement
 	{
 
 	protected:  // Value
@@ -5665,7 +5665,7 @@ public:
 	typedef daeSmartRef<domHalf4x2> domHalf4x2Ref;
 	typedef daeTArray<domHalf4x2Ref> domHalf4x2_Array;
 
-	class domHalf4x2 : public daeElement
+	class DLL_EXPORT domHalf4x2 : public daeElement
 	{
 
 	protected:  // Value
@@ -5735,7 +5735,7 @@ public:
 	typedef daeSmartRef<domHalf4x3> domHalf4x3Ref;
 	typedef daeTArray<domHalf4x3Ref> domHalf4x3_Array;
 
-	class domHalf4x3 : public daeElement
+	class DLL_EXPORT domHalf4x3 : public daeElement
 	{
 
 	protected:  // Value
@@ -5805,7 +5805,7 @@ public:
 	typedef daeSmartRef<domHalf4x4> domHalf4x4Ref;
 	typedef daeTArray<domHalf4x4Ref> domHalf4x4_Array;
 
-	class domHalf4x4 : public daeElement
+	class DLL_EXPORT domHalf4x4 : public daeElement
 	{
 
 	protected:  // Value
@@ -5875,7 +5875,7 @@ public:
 	typedef daeSmartRef<domFixed> domFixedRef;
 	typedef daeTArray<domFixedRef> domFixed_Array;
 
-	class domFixed : public daeElement
+	class DLL_EXPORT domFixed : public daeElement
 	{
 
 	protected:  // Value
@@ -5940,7 +5940,7 @@ public:
 	typedef daeSmartRef<domFixed1> domFixed1Ref;
 	typedef daeTArray<domFixed1Ref> domFixed1_Array;
 
-	class domFixed1 : public daeElement
+	class DLL_EXPORT domFixed1 : public daeElement
 	{
 
 	protected:  // Value
@@ -6005,7 +6005,7 @@ public:
 	typedef daeSmartRef<domFixed2> domFixed2Ref;
 	typedef daeTArray<domFixed2Ref> domFixed2_Array;
 
-	class domFixed2 : public daeElement
+	class DLL_EXPORT domFixed2 : public daeElement
 	{
 
 	protected:  // Value
@@ -6075,7 +6075,7 @@ public:
 	typedef daeSmartRef<domFixed3> domFixed3Ref;
 	typedef daeTArray<domFixed3Ref> domFixed3_Array;
 
-	class domFixed3 : public daeElement
+	class DLL_EXPORT domFixed3 : public daeElement
 	{
 
 	protected:  // Value
@@ -6145,7 +6145,7 @@ public:
 	typedef daeSmartRef<domFixed4> domFixed4Ref;
 	typedef daeTArray<domFixed4Ref> domFixed4_Array;
 
-	class domFixed4 : public daeElement
+	class DLL_EXPORT domFixed4 : public daeElement
 	{
 
 	protected:  // Value
@@ -6215,7 +6215,7 @@ public:
 	typedef daeSmartRef<domFixed1x1> domFixed1x1Ref;
 	typedef daeTArray<domFixed1x1Ref> domFixed1x1_Array;
 
-	class domFixed1x1 : public daeElement
+	class DLL_EXPORT domFixed1x1 : public daeElement
 	{
 
 	protected:  // Value
@@ -6285,7 +6285,7 @@ public:
 	typedef daeSmartRef<domFixed1x2> domFixed1x2Ref;
 	typedef daeTArray<domFixed1x2Ref> domFixed1x2_Array;
 
-	class domFixed1x2 : public daeElement
+	class DLL_EXPORT domFixed1x2 : public daeElement
 	{
 
 	protected:  // Value
@@ -6355,7 +6355,7 @@ public:
 	typedef daeSmartRef<domFixed1x3> domFixed1x3Ref;
 	typedef daeTArray<domFixed1x3Ref> domFixed1x3_Array;
 
-	class domFixed1x3 : public daeElement
+	class DLL_EXPORT domFixed1x3 : public daeElement
 	{
 
 	protected:  // Value
@@ -6425,7 +6425,7 @@ public:
 	typedef daeSmartRef<domFixed1x4> domFixed1x4Ref;
 	typedef daeTArray<domFixed1x4Ref> domFixed1x4_Array;
 
-	class domFixed1x4 : public daeElement
+	class DLL_EXPORT domFixed1x4 : public daeElement
 	{
 
 	protected:  // Value
@@ -6495,7 +6495,7 @@ public:
 	typedef daeSmartRef<domFixed2x1> domFixed2x1Ref;
 	typedef daeTArray<domFixed2x1Ref> domFixed2x1_Array;
 
-	class domFixed2x1 : public daeElement
+	class DLL_EXPORT domFixed2x1 : public daeElement
 	{
 
 	protected:  // Value
@@ -6565,7 +6565,7 @@ public:
 	typedef daeSmartRef<domFixed2x2> domFixed2x2Ref;
 	typedef daeTArray<domFixed2x2Ref> domFixed2x2_Array;
 
-	class domFixed2x2 : public daeElement
+	class DLL_EXPORT domFixed2x2 : public daeElement
 	{
 
 	protected:  // Value
@@ -6635,7 +6635,7 @@ public:
 	typedef daeSmartRef<domFixed2x3> domFixed2x3Ref;
 	typedef daeTArray<domFixed2x3Ref> domFixed2x3_Array;
 
-	class domFixed2x3 : public daeElement
+	class DLL_EXPORT domFixed2x3 : public daeElement
 	{
 
 	protected:  // Value
@@ -6705,7 +6705,7 @@ public:
 	typedef daeSmartRef<domFixed2x4> domFixed2x4Ref;
 	typedef daeTArray<domFixed2x4Ref> domFixed2x4_Array;
 
-	class domFixed2x4 : public daeElement
+	class DLL_EXPORT domFixed2x4 : public daeElement
 	{
 
 	protected:  // Value
@@ -6775,7 +6775,7 @@ public:
 	typedef daeSmartRef<domFixed3x1> domFixed3x1Ref;
 	typedef daeTArray<domFixed3x1Ref> domFixed3x1_Array;
 
-	class domFixed3x1 : public daeElement
+	class DLL_EXPORT domFixed3x1 : public daeElement
 	{
 
 	protected:  // Value
@@ -6845,7 +6845,7 @@ public:
 	typedef daeSmartRef<domFixed3x2> domFixed3x2Ref;
 	typedef daeTArray<domFixed3x2Ref> domFixed3x2_Array;
 
-	class domFixed3x2 : public daeElement
+	class DLL_EXPORT domFixed3x2 : public daeElement
 	{
 
 	protected:  // Value
@@ -6915,7 +6915,7 @@ public:
 	typedef daeSmartRef<domFixed3x3> domFixed3x3Ref;
 	typedef daeTArray<domFixed3x3Ref> domFixed3x3_Array;
 
-	class domFixed3x3 : public daeElement
+	class DLL_EXPORT domFixed3x3 : public daeElement
 	{
 
 	protected:  // Value
@@ -6985,7 +6985,7 @@ public:
 	typedef daeSmartRef<domFixed3x4> domFixed3x4Ref;
 	typedef daeTArray<domFixed3x4Ref> domFixed3x4_Array;
 
-	class domFixed3x4 : public daeElement
+	class DLL_EXPORT domFixed3x4 : public daeElement
 	{
 
 	protected:  // Value
@@ -7055,7 +7055,7 @@ public:
 	typedef daeSmartRef<domFixed4x1> domFixed4x1Ref;
 	typedef daeTArray<domFixed4x1Ref> domFixed4x1_Array;
 
-	class domFixed4x1 : public daeElement
+	class DLL_EXPORT domFixed4x1 : public daeElement
 	{
 
 	protected:  // Value
@@ -7125,7 +7125,7 @@ public:
 	typedef daeSmartRef<domFixed4x2> domFixed4x2Ref;
 	typedef daeTArray<domFixed4x2Ref> domFixed4x2_Array;
 
-	class domFixed4x2 : public daeElement
+	class DLL_EXPORT domFixed4x2 : public daeElement
 	{
 
 	protected:  // Value
@@ -7195,7 +7195,7 @@ public:
 	typedef daeSmartRef<domFixed4x3> domFixed4x3Ref;
 	typedef daeTArray<domFixed4x3Ref> domFixed4x3_Array;
 
-	class domFixed4x3 : public daeElement
+	class DLL_EXPORT domFixed4x3 : public daeElement
 	{
 
 	protected:  // Value
@@ -7265,7 +7265,7 @@ public:
 	typedef daeSmartRef<domFixed4x4> domFixed4x4Ref;
 	typedef daeTArray<domFixed4x4Ref> domFixed4x4_Array;
 
-	class domFixed4x4 : public daeElement
+	class DLL_EXPORT domFixed4x4 : public daeElement
 	{
 
 	protected:  // Value
@@ -7335,7 +7335,7 @@ public:
 	typedef daeSmartRef<domString> domStringRef;
 	typedef daeTArray<domStringRef> domString_Array;
 
-	class domString : public daeElement
+	class DLL_EXPORT domString : public daeElement
 	{
 
 	protected:  // Value
@@ -7400,7 +7400,7 @@ public:
 	typedef daeSmartRef<domEnum> domEnumRef;
 	typedef daeTArray<domEnumRef> domEnum_Array;
 
-	class domEnum : public daeElement
+	class DLL_EXPORT domEnum : public daeElement
 	{
 
 	protected:  // Value

@@ -24,7 +24,7 @@
  * The library_physics_materials element declares a module of physics_material
  * elements.
  */
-class domLibrary_physics_materials : public daeElement
+class DLL_EXPORT domLibrary_physics_materials : public daeElement
 {
 protected:  // Attributes
 /**

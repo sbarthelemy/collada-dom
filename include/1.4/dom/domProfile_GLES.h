@@ -28,7 +28,7 @@
 /**
  * Opens a block of GLES platform-specific data types and technique declarations.
  */
-class domProfile_GLES : public domFx_profile_abstract
+class DLL_EXPORT domProfile_GLES : public domFx_profile_abstract
 {
 public:
 	class domTechnique;
@@ -40,7 +40,7 @@ public:
  * Holds a description of the textures, samplers, shaders, parameters, and
  * passes necessary for rendering this effect using one method.
  */
-	class domTechnique : public daeElement
+	class DLL_EXPORT domTechnique : public daeElement
 	{
 	public:
 		class domSetparam;
@@ -48,7 +48,7 @@ public:
 		typedef daeSmartRef<domSetparam> domSetparamRef;
 		typedef daeTArray<domSetparamRef> domSetparam_Array;
 
-		class domSetparam : public daeElement
+		class DLL_EXPORT domSetparam : public daeElement
 		{
 		protected:  // Attribute
 			xsNCName attrRef;
@@ -133,7 +133,7 @@ public:
  * A static declaration of all the render states, shaders, and settings for
  * one rendering pipeline.
  */
-		class domPass : public daeElement
+		class DLL_EXPORT domPass : public daeElement
 		{
 		public:
 			class domColor_target;
@@ -141,7 +141,7 @@ public:
 			typedef daeSmartRef<domColor_target> domColor_targetRef;
 			typedef daeTArray<domColor_targetRef> domColor_target_Array;
 
-			class domColor_target : public daeElement
+			class DLL_EXPORT domColor_target : public daeElement
 			{
 
 			protected:  // Value
@@ -206,7 +206,7 @@ public:
 			typedef daeSmartRef<domDepth_target> domDepth_targetRef;
 			typedef daeTArray<domDepth_targetRef> domDepth_target_Array;
 
-			class domDepth_target : public daeElement
+			class DLL_EXPORT domDepth_target : public daeElement
 			{
 
 			protected:  // Value
@@ -271,7 +271,7 @@ public:
 			typedef daeSmartRef<domStencil_target> domStencil_targetRef;
 			typedef daeTArray<domStencil_targetRef> domStencil_target_Array;
 
-			class domStencil_target : public daeElement
+			class DLL_EXPORT domStencil_target : public daeElement
 			{
 
 			protected:  // Value
@@ -336,7 +336,7 @@ public:
 			typedef daeSmartRef<domColor_clear> domColor_clearRef;
 			typedef daeTArray<domColor_clearRef> domColor_clear_Array;
 
-			class domColor_clear : public daeElement
+			class DLL_EXPORT domColor_clear : public daeElement
 			{
 
 			protected:  // Value
@@ -406,7 +406,7 @@ public:
 			typedef daeSmartRef<domDepth_clear> domDepth_clearRef;
 			typedef daeTArray<domDepth_clearRef> domDepth_clear_Array;
 
-			class domDepth_clear : public daeElement
+			class DLL_EXPORT domDepth_clear : public daeElement
 			{
 
 			protected:  // Value
@@ -471,7 +471,7 @@ public:
 			typedef daeSmartRef<domStencil_clear> domStencil_clearRef;
 			typedef daeTArray<domStencil_clearRef> domStencil_clear_Array;
 
-			class domStencil_clear : public daeElement
+			class DLL_EXPORT domStencil_clear : public daeElement
 			{
 
 			protected:  // Value
@@ -536,7 +536,7 @@ public:
 			typedef daeSmartRef<domDraw> domDrawRef;
 			typedef daeTArray<domDrawRef> domDraw_Array;
 
-			class domDraw : public daeElement
+			class DLL_EXPORT domDraw : public daeElement
 			{
 
 			protected:  // Value

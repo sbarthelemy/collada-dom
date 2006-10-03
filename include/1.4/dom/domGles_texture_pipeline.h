@@ -24,7 +24,7 @@
  * Defines a set of texturing commands that will be converted into multitexturing
  * operations using glTexEnv in regular and combiner mode.
  */
-class domGles_texture_pipeline_complexType 
+class DLL_EXPORT domGles_texture_pipeline_complexType 
 {
 protected:  // Attribute
 /**
@@ -135,7 +135,7 @@ protected:
 /**
  * An element of type domGles_texture_pipeline_complexType.
  */
-class domGles_texture_pipeline : public daeElement, public domGles_texture_pipeline_complexType
+class DLL_EXPORT domGles_texture_pipeline : public daeElement, public domGles_texture_pipeline_complexType
 {
 
 public:	//Accessors and Mutators

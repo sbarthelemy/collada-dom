@@ -35,7 +35,7 @@ domGlsl_newarray_type::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "glsl_newarray_type" );
-	_Meta->registerConstructor(domGlsl_newarray_type::create);
+	_Meta->registerClass(domGlsl_newarray_type::create, &_Meta);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;

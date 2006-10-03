@@ -21,7 +21,7 @@
 /**
  * A depth texture sampler for the GLSL profile.
  */
-class domGl_samplerDEPTH_complexType : public domFx_samplerDEPTH_common_complexType
+class DLL_EXPORT domGl_samplerDEPTH_complexType : public domFx_samplerDEPTH_common_complexType
 {
 
 protected:
@@ -46,7 +46,7 @@ protected:
 /**
  * An element of type domGl_samplerDEPTH_complexType.
  */
-class domGl_samplerDEPTH : public daeElement, public domGl_samplerDEPTH_complexType
+class DLL_EXPORT domGl_samplerDEPTH : public daeElement, public domGl_samplerDEPTH_complexType
 {
 protected:
 	/**

@@ -21,7 +21,7 @@
 /**
  * A texture sampler for cube maps.
  */
-class domFx_samplerCUBE_common_complexType 
+class DLL_EXPORT domFx_samplerCUBE_common_complexType 
 {
 public:
 	class domSource;
@@ -29,7 +29,7 @@ public:
 	typedef daeSmartRef<domSource> domSourceRef;
 	typedef daeTArray<domSourceRef> domSource_Array;
 
-	class domSource : public daeElement
+	class DLL_EXPORT domSource : public daeElement
 	{
 
 	protected:  // Value
@@ -94,7 +94,7 @@ public:
 	typedef daeSmartRef<domWrap_s> domWrap_sRef;
 	typedef daeTArray<domWrap_sRef> domWrap_s_Array;
 
-	class domWrap_s : public daeElement
+	class DLL_EXPORT domWrap_s : public daeElement
 	{
 
 	protected:  // Value
@@ -159,7 +159,7 @@ public:
 	typedef daeSmartRef<domWrap_t> domWrap_tRef;
 	typedef daeTArray<domWrap_tRef> domWrap_t_Array;
 
-	class domWrap_t : public daeElement
+	class DLL_EXPORT domWrap_t : public daeElement
 	{
 
 	protected:  // Value
@@ -224,7 +224,7 @@ public:
 	typedef daeSmartRef<domWrap_p> domWrap_pRef;
 	typedef daeTArray<domWrap_pRef> domWrap_p_Array;
 
-	class domWrap_p : public daeElement
+	class DLL_EXPORT domWrap_p : public daeElement
 	{
 
 	protected:  // Value
@@ -289,7 +289,7 @@ public:
 	typedef daeSmartRef<domMinfilter> domMinfilterRef;
 	typedef daeTArray<domMinfilterRef> domMinfilter_Array;
 
-	class domMinfilter : public daeElement
+	class DLL_EXPORT domMinfilter : public daeElement
 	{
 
 	protected:  // Value
@@ -354,7 +354,7 @@ public:
 	typedef daeSmartRef<domMagfilter> domMagfilterRef;
 	typedef daeTArray<domMagfilterRef> domMagfilter_Array;
 
-	class domMagfilter : public daeElement
+	class DLL_EXPORT domMagfilter : public daeElement
 	{
 
 	protected:  // Value
@@ -419,7 +419,7 @@ public:
 	typedef daeSmartRef<domMipfilter> domMipfilterRef;
 	typedef daeTArray<domMipfilterRef> domMipfilter_Array;
 
-	class domMipfilter : public daeElement
+	class DLL_EXPORT domMipfilter : public daeElement
 	{
 
 	protected:  // Value
@@ -484,7 +484,7 @@ public:
 	typedef daeSmartRef<domBorder_color> domBorder_colorRef;
 	typedef daeTArray<domBorder_colorRef> domBorder_color_Array;
 
-	class domBorder_color : public daeElement
+	class DLL_EXPORT domBorder_color : public daeElement
 	{
 
 	protected:  // Value
@@ -554,7 +554,7 @@ public:
 	typedef daeSmartRef<domMipmap_maxlevel> domMipmap_maxlevelRef;
 	typedef daeTArray<domMipmap_maxlevelRef> domMipmap_maxlevel_Array;
 
-	class domMipmap_maxlevel : public daeElement
+	class DLL_EXPORT domMipmap_maxlevel : public daeElement
 	{
 
 	protected:  // Value
@@ -619,7 +619,7 @@ public:
 	typedef daeSmartRef<domMipmap_bias> domMipmap_biasRef;
 	typedef daeTArray<domMipmap_biasRef> domMipmap_bias_Array;
 
-	class domMipmap_bias : public daeElement
+	class DLL_EXPORT domMipmap_bias : public daeElement
 	{
 
 	protected:  // Value
@@ -777,7 +777,7 @@ protected:
 /**
  * An element of type domFx_samplerCUBE_common_complexType.
  */
-class domFx_samplerCUBE_common : public daeElement, public domFx_samplerCUBE_common_complexType
+class DLL_EXPORT domFx_samplerCUBE_common : public daeElement, public domFx_samplerCUBE_common_complexType
 {
 protected:
 	/**

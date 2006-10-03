@@ -23,7 +23,7 @@ template<class T> class daeElementWrapper {};
  * The @c daeSmartRef template class automates reference counting for
  * objects derived from @c daeElement.
  */
-template<class T> class daeSmartRef
+template<class T> class DLL_EXPORT daeSmartRef
 {
 public:
 	/**

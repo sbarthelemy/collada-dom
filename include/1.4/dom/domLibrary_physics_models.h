@@ -23,7 +23,7 @@
 /**
  * The library_physics_models element declares a module of physics_model elements.
  */
-class domLibrary_physics_models : public daeElement
+class DLL_EXPORT domLibrary_physics_models : public daeElement
 {
 protected:  // Attributes
 /**

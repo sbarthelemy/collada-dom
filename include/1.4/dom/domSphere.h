@@ -21,7 +21,7 @@
 /**
  * A centered sphere primitive.
  */
-class domSphere : public daeElement
+class DLL_EXPORT domSphere : public daeElement
 {
 public:
 	class domRadius;
@@ -32,7 +32,7 @@ public:
 /**
  * A float value that represents the radius of the sphere
  */
-	class domRadius : public daeElement
+	class DLL_EXPORT domRadius : public daeElement
 	{
 
 	protected:  // Value

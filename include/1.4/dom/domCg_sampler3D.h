@@ -18,7 +18,7 @@
 
 #include <dom/domFx_sampler3D_common.h>
 
-class domCg_sampler3D_complexType : public domFx_sampler3D_common_complexType
+class DLL_EXPORT domCg_sampler3D_complexType : public domFx_sampler3D_common_complexType
 {
 
 protected:
@@ -43,7 +43,7 @@ protected:
 /**
  * An element of type domCg_sampler3D_complexType.
  */
-class domCg_sampler3D : public daeElement, public domCg_sampler3D_complexType
+class DLL_EXPORT domCg_sampler3D : public daeElement, public domCg_sampler3D_complexType
 {
 protected:
 	/**

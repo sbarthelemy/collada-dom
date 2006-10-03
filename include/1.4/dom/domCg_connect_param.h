@@ -20,7 +20,7 @@
 /**
  * Creates a symbolic connection between two previously defined parameters.
  */
-class domCg_connect_param_complexType 
+class DLL_EXPORT domCg_connect_param_complexType 
 {
 protected:  // Attribute
 	domCg_identifier attrRef;
@@ -60,7 +60,7 @@ protected:
 /**
  * An element of type domCg_connect_param_complexType.
  */
-class domCg_connect_param : public daeElement, public domCg_connect_param_complexType
+class DLL_EXPORT domCg_connect_param : public daeElement, public domCg_connect_param_complexType
 {
 
 public:	//Accessors and Mutators

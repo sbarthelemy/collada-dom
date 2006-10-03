@@ -24,7 +24,7 @@
 /**
  * Assigns a new value to a previously defined parameter.
  */
-class domCg_setparam_complexType 
+class DLL_EXPORT domCg_setparam_complexType 
 {
 protected:  // Attributes
 	domCg_identifier attrRef;
@@ -121,7 +121,7 @@ protected:
 /**
  * An element of type domCg_setparam_complexType.
  */
-class domCg_setparam : public daeElement, public domCg_setparam_complexType
+class DLL_EXPORT domCg_setparam : public daeElement, public domCg_setparam_complexType
 {
 
 public:	//Accessors and Mutators

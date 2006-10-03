@@ -22,7 +22,7 @@
  * The translate element contains a mathematical vector that represents the
  * distance along the  X, Y and Z-axes.
  */
-class domTranslate : public daeElement, public domTargetableFloat3_complexType
+class DLL_EXPORT domTranslate : public daeElement, public domTargetableFloat3_complexType
 {
 
 protected:

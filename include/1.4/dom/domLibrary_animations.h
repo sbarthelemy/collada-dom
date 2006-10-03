@@ -23,7 +23,7 @@
 /**
  * The library_animations element declares a module of animation elements.
  */
-class domLibrary_animations : public daeElement
+class DLL_EXPORT domLibrary_animations : public daeElement
 {
 protected:  // Attributes
 /**

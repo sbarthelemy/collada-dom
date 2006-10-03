@@ -35,7 +35,7 @@ domGles_texture_pipeline::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "gles_texture_pipeline" );
-	_Meta->registerConstructor(domGles_texture_pipeline::create);
+	_Meta->registerClass(domGles_texture_pipeline::create, &_Meta);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;

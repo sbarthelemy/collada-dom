@@ -21,7 +21,7 @@
  * The float_array element declares the storage for a homogenous array of
  * floating point values.
  */
-class domFloat_array : public daeElement
+class DLL_EXPORT domFloat_array : public daeElement
 {
 protected:  // Attributes
 /**

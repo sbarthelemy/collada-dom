@@ -18,7 +18,7 @@
 
 #include <dom/domGles_texcombiner_argumentAlpha_type.h>
 
-class domGles_texcombiner_commandAlpha_type_complexType 
+class DLL_EXPORT domGles_texcombiner_commandAlpha_type_complexType 
 {
 protected:  // Attributes
 	domGles_texcombiner_operatorAlpha_enums attrOperator;
@@ -82,7 +82,7 @@ protected:
 /**
  * An element of type domGles_texcombiner_commandAlpha_type_complexType.
  */
-class domGles_texcombiner_commandAlpha_type : public daeElement, public domGles_texcombiner_commandAlpha_type_complexType
+class DLL_EXPORT domGles_texcombiner_commandAlpha_type : public daeElement, public domGles_texcombiner_commandAlpha_type_complexType
 {
 
 public:	//Accessors and Mutators

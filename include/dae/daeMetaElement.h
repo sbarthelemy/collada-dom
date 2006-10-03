@@ -42,7 +42,7 @@ typedef daeElementRef (*daeElementConstructFunctionPtr)(daeInt bytes);
  * @par
  * See @c daeElement for information about the functionality that every @c daeElement implements.
  */
-class daeMetaElement : public daeElement
+class DLL_EXPORT daeMetaElement : public daeElement
 {
 protected:
 	daeStringRef						_name;
@@ -69,7 +69,8 @@ protected:
 	daeBool								_allowsAny;
 	daeBool								_innerClass;
 	
-	static daeTArray<daeSmartRef<daeMetaElement> >		_metas;
+	static daeTArray<daeSmartRef<daeMetaElement> >		&_metas();
+	static daeTArray< daeMetaElement** >				&_classMetaPointers();
 
     daeMetaCMPolicy *					_contentModel;	
 
@@ -268,14 +269,15 @@ public:
 	void appendAttribute(daeMetaAttribute* attr);
 
 	/**
-	 * Registers the function that can construct a C++ instance
-	 * of this class.  Necessary for the factory system such that C++
+	 * Registers the function that can construct a C++ instance of this class and the 
+	 * pointer to the classes static meta.  Necessary for the factory system such that C++
 	 * can still call @c new and the @c vptr will still be initialized even when
 	 * constructed via the factory system.
 	 * @param func Pointer to a function that does object construction.
+	 * @param metaPtr Pointer to the class static meta pointer.
 	 */
-	void registerConstructor(daeElementConstructFunctionPtr func) {
-		_createFunc = func; }
+	void registerClass(daeElementConstructFunctionPtr func, daeMetaElement** metaPtr ) {
+		_createFunc = func; _classMetaPointers().append( metaPtr );	}
 
 	/**
 	 * Determines if this element contains attributes
@@ -379,7 +381,7 @@ public:
 	 */
 	static void releaseMetas();
 
-	static const daeTArray<daeSmartRef<daeMetaElement> > &getAllMetas() { return _metas; }
+	static const daeTArray<daeSmartRef<daeMetaElement> > &getAllMetas() { return _metas(); }
 };
 
 typedef daeSmartRef<daeMetaElement> daeMetaElementRef;

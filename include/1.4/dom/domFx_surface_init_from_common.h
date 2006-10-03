@@ -21,7 +21,7 @@
  * This element is an IDREF which specifies the image to use to initialize
  * a specific mip of a 1D or 2D surface, 3D slice, or Cube face.
  */
-class domFx_surface_init_from_common_complexType 
+class DLL_EXPORT domFx_surface_init_from_common_complexType 
 {
 protected:  // Attributes
 	xsUnsignedInt attrMip;
@@ -106,7 +106,7 @@ protected:
 /**
  * An element of type domFx_surface_init_from_common_complexType.
  */
-class domFx_surface_init_from_common : public daeElement, public domFx_surface_init_from_common_complexType
+class DLL_EXPORT domFx_surface_init_from_common : public daeElement, public domFx_surface_init_from_common_complexType
 {
 
 public:	//Accessors and Mutators

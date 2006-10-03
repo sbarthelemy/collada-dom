@@ -482,16 +482,18 @@ daeInt daeSTLDatabase::getElement(daeElement** pElement,daeInt index,daeString n
 				}
 				++i;
 			}
+			*pElement = NULL;
 			return DAE_ERR_QUERY_NO_MATCH;
 		}
 		else 
 		{ 
 			//no document specified
-			if ( index > (daeInt)elementsIDMap.count( std::string( name ) ) )
+			std::multimap< std::string, daeElement* >::iterator i = elementsIDMap.find( std::string( name ) );
+			if ( index > (daeInt)elementsIDMap.count( std::string( name ) ) || i == elementsIDMap.end() )
 			{
+				*pElement = NULL;
 				return DAE_ERR_QUERY_NO_MATCH;
 			}
-			std::multimap< std::string, daeElement* >::iterator i = elementsIDMap.find( std::string( name ) );
 			for ( int x = 0; x < index; x++ )
 			{
 				++i;

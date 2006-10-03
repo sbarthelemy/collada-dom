@@ -17,7 +17,7 @@
 #include <dom/domElements.h>
 
 
-class domEllipsoid : public daeElement
+class DLL_EXPORT domEllipsoid : public daeElement
 {
 public:
 	class domSize;
@@ -25,7 +25,7 @@ public:
 	typedef daeSmartRef<domSize> domSizeRef;
 	typedef daeTArray<domSizeRef> domSize_Array;
 
-	class domSize : public daeElement
+	class DLL_EXPORT domSize : public daeElement
 	{
 
 	protected:  // Value

@@ -25,7 +25,7 @@
  * Bind a specific material to a piece of geometry, binding varying and uniform
  * parameters at the  same time.
  */
-class domBind_material : public daeElement
+class DLL_EXPORT domBind_material : public daeElement
 {
 public:
 	class domTechnique_common;
@@ -37,7 +37,7 @@ public:
  * The technique_common element specifies the bind_material information for
  * the common  profile which all COLLADA implementations need to support.
  */
-	class domTechnique_common : public daeElement
+	class DLL_EXPORT domTechnique_common : public daeElement
 	{
 
 	protected:  // Element

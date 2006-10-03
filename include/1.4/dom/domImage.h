@@ -26,7 +26,7 @@
  * for specifying an external image file with  the init_from element or embed
  * image data with the data element.
  */
-class domImage : public daeElement
+class DLL_EXPORT domImage : public daeElement
 {
 public:
 	class domData;
@@ -38,7 +38,7 @@ public:
  * The data child element contains a sequence of hexadecimal encoded  binary
  * octets representing  the embedded image data.
  */
-	class domData : public daeElement
+	class DLL_EXPORT domData : public daeElement
 	{
 
 	protected:  // Value
@@ -112,7 +112,7 @@ public:
  * The init_from element allows you to specify an external image file to use
  * for the image element.
  */
-	class domInit_from : public daeElement
+	class DLL_EXPORT domInit_from : public daeElement
 	{
 
 	protected:  // Value

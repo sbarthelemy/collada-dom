@@ -35,7 +35,7 @@ domInstance_node::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "instance_node" );
-	_Meta->registerConstructor(domInstance_node::create);
+	_Meta->registerClass(domInstance_node::create, &_Meta);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
@@ -46,10 +46,6 @@ domInstance_node::registerElement()
 	mea->setOffset( daeOffsetOf(domInstance_node,elemExtra_array) );
 	mea->setElementType( domExtra::registerElement() );
 	cm->appendChild( mea );
-
-    // sthomas
-    //cm->setMaxOrdinal( 3003 );
-    _Meta->setCMRoot( cm );	
 	
 
 	//	Add attribute: url

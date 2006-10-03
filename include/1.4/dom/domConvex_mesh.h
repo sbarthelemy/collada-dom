@@ -34,7 +34,7 @@
  * shape. The latter case means that the convex hull of that geometry should
  * be computed and is indicated by the optional “convex_hull_of” attribute.
  */
-class domConvex_mesh : public daeElement
+class DLL_EXPORT domConvex_mesh : public daeElement
 {
 protected:  // Attribute
 /**

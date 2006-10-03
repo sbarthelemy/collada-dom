@@ -27,7 +27,7 @@
  * is formed from first, second, and third vertices. Each subsequent  triangle
  * is formed from the current vertex, reusing the previous two vertices.
  */
-class domTristrips : public daeElement
+class DLL_EXPORT domTristrips : public daeElement
 {
 protected:  // Attributes
 /**

@@ -23,7 +23,7 @@
  * This element creates a new, named param object in the FX Runtime, assigns
  * it a type, an initial value, and additional attributes at declaration time.
  */
-class domFx_newparam_common_complexType 
+class DLL_EXPORT domFx_newparam_common_complexType 
 {
 public:
 	class domSemantic;
@@ -34,7 +34,7 @@ public:
 /**
  * The semantic element allows you to specify a semantic for this new param.
  */
-	class domSemantic : public daeElement
+	class DLL_EXPORT domSemantic : public daeElement
 	{
 
 	protected:  // Value
@@ -102,7 +102,7 @@ public:
 /**
  * The modifier element allows you to specify a modifier for this new param.
  */
-	class domModifier : public daeElement
+	class DLL_EXPORT domModifier : public daeElement
 	{
 
 	protected:  // Value
@@ -248,7 +248,7 @@ protected:
 /**
  * An element of type domFx_newparam_common_complexType.
  */
-class domFx_newparam_common : public daeElement, public domFx_newparam_common_complexType
+class DLL_EXPORT domFx_newparam_common : public daeElement, public domFx_newparam_common_complexType
 {
 
 public:	//Accessors and Mutators

@@ -21,7 +21,7 @@
 /**
  * This element allows instancing a rigid_constraint within an instance_physics_model.
  */
-class domInstance_rigid_constraint : public daeElement
+class DLL_EXPORT domInstance_rigid_constraint : public daeElement
 {
 protected:  // Attributes
 /**

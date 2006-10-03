@@ -21,7 +21,7 @@
  * The bool_array element declares the storage for a homogenous array of boolean
  * values.
  */
-class domBool_array : public daeElement
+class DLL_EXPORT domBool_array : public daeElement
 {
 protected:  // Attributes
 /**

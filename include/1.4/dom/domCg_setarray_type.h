@@ -23,7 +23,7 @@
 /**
  * Creates a parameter of a one-dimensional array type.
  */
-class domCg_setarray_type_complexType 
+class DLL_EXPORT domCg_setarray_type_complexType 
 {
 protected:  // Attribute
 /**
@@ -127,7 +127,7 @@ protected:
 /**
  * An element of type domCg_setarray_type_complexType.
  */
-class domCg_setarray_type : public daeElement, public domCg_setarray_type_complexType
+class DLL_EXPORT domCg_setarray_type : public daeElement, public domCg_setarray_type_complexType
 {
 
 public:	//Accessors and Mutators

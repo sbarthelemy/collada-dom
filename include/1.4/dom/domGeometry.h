@@ -28,7 +28,7 @@
  * Geometry is a  branch of mathematics that deals with the measurement, properties,
  * and relationships of  points, lines, angles, surfaces, and solids.
  */
-class domGeometry : public daeElement
+class DLL_EXPORT domGeometry : public daeElement
 {
 protected:  // Attributes
 /**

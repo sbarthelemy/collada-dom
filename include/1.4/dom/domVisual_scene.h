@@ -27,7 +27,7 @@
  * visual and transformational information  content as created by the authoring
  * tools.
  */
-class domVisual_scene : public daeElement
+class DLL_EXPORT domVisual_scene : public daeElement
 {
 public:
 	class domEvaluate_scene;
@@ -40,7 +40,7 @@ public:
  * to evaluate this  visual_scene. There may be any number of evaluate_scene
  * elements.
  */
-	class domEvaluate_scene : public daeElement
+	class DLL_EXPORT domEvaluate_scene : public daeElement
 	{
 	public:
 		class domRender;
@@ -52,7 +52,7 @@ public:
  * The render element describes one effect pass to evaluate the scene. There
  * must be at least one render element.
  */
-		class domRender : public daeElement
+		class DLL_EXPORT domRender : public daeElement
 		{
 		public:
 			class domLayer;
@@ -64,7 +64,7 @@ public:
  * The layer element specifies which layer to render in this compositing step
  * while evaluating the scene. You may specify any number of layers.
  */
-			class domLayer : public daeElement
+			class DLL_EXPORT domLayer : public daeElement
 			{
 
 			protected:  // Value

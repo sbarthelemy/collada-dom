@@ -25,7 +25,7 @@
  * represent the position (identity)  of the vertices comprising the mesh
  * and other vertex attributes that are invariant to tessellation.
  */
-class domVertices : public daeElement
+class DLL_EXPORT domVertices : public daeElement
 {
 protected:  // Attributes
 /**

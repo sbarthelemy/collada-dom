@@ -27,7 +27,7 @@ class daeIntegrationObject;
 class daeDocument;
 class daeURI;
 
-template <typename T> class daeSmartRef;
+template <typename T> class DLL_EXPORT daeSmartRef;
 
 /**
  * The @c daeElement class represents an instance of a COLLADA "Element";
@@ -38,7 +38,7 @@ template <typename T> class daeSmartRef;
  * - Reference counted via daeSmartRef
  * - Contains information for XML base URI, and XML containing element
  */
-class daeElement
+class DLL_EXPORT daeElement
 {
 public:
 	/**
@@ -101,8 +101,8 @@ public:
 	inline void ref() const {_refCount++;}
 
 	/**
-	 * Resolves all fields of type daeURI.
-	 * This is done via database query of the URI.
+	 * Resolves all fields of type daeURI and IDRef.
+	 * This is done via database query of the URI or IDRef.
 	 */
 	void resolve();
 
@@ -234,6 +234,19 @@ public:
 	 * to be typecast to the appropriate type. Returns NULL if the attribute does not exist.
 	 */
 	daeMemoryRef getAttributeValue( daeString attrName );
+
+	/**
+	 * Checks if this element can have a value.
+	 * @return Returns true is this element can have a value. False otherwise.
+	 */
+	daeBool hasValue();
+
+	/**
+	 * Gets a pointer to the element's value.
+	 * @return Returns a daeMemoryRef (char *) to the value of the element. The return value will need 
+	 * to be typecast to the appropriate type. Returns NULL if the element does not allow a value.
+	 */
+	daeMemoryRef getValuePointer();
 
 	/**
 	 * Finds the database document associated with @c this element.
@@ -416,10 +429,10 @@ public:
 
 };
 #include <dae/daeSmartRef.h>
-typedef daeSmartRef<daeElement> daeElementRef;
-typedef daeSmartRef<const daeElement> daeElementConstRef;
+typedef DLL_EXPORT daeSmartRef<daeElement> daeElementRef;
+typedef DLL_EXPORT daeSmartRef<const daeElement> daeElementConstRef;
 //#include <dae/daeArray.h>
-typedef daeTArray<daeElementRef> daeElementRefArray;
+typedef DLL_EXPORT daeTArray<daeElementRef> daeElementRefArray;
 
 extern daeElementRef DAECreateElement(int nbytes);
 

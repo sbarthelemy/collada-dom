@@ -32,7 +32,7 @@ typedef void (*daeIntegrationLibraryFunc)();
 /**
 * The @c daeInterface class provides an interface with the COLLADA runtime database.
 */
-class daeInterface
+class DLL_EXPORT daeInterface
 {
 public:	
 	/**

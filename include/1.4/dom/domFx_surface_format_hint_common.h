@@ -23,7 +23,7 @@
  * will describe the important features of the format so that the application
  * may select a compatable or close format
  */
-class domFx_surface_format_hint_common_complexType 
+class DLL_EXPORT domFx_surface_format_hint_common_complexType 
 {
 public:
 	class domChannels;
@@ -36,7 +36,7 @@ public:
  * how many channels there are and the letter respresents the name of the
  * channel.  There are typically 0 to 4 channels.
  */
-	class domChannels : public daeElement
+	class DLL_EXPORT domChannels : public daeElement
 	{
 
 	protected:  // Value
@@ -106,7 +106,7 @@ public:
  * or unsigned integers, or between between a clamped range such as 0.0f to
  * 1.0f, or high dynamic range via floating point
  */
-	class domRange : public daeElement
+	class DLL_EXPORT domRange : public daeElement
 	{
 
 	protected:  // Value
@@ -177,7 +177,7 @@ public:
  * but applying a higher precision by linking the channels together may still
  * convey the same information.
  */
-	class domPrecision : public daeElement
+	class DLL_EXPORT domPrecision : public daeElement
 	{
 
 	protected:  // Value
@@ -246,7 +246,7 @@ public:
  * Additional hints about data relationships and other things to help the
  * application pick the best format.
  */
-	class domOption : public daeElement
+	class DLL_EXPORT domOption : public daeElement
 	{
 
 	protected:  // Value
@@ -393,7 +393,7 @@ protected:
 /**
  * An element of type domFx_surface_format_hint_common_complexType.
  */
-class domFx_surface_format_hint_common : public daeElement, public domFx_surface_format_hint_common_complexType
+class DLL_EXPORT domFx_surface_format_hint_common : public daeElement, public domFx_surface_format_hint_common_complexType
 {
 protected:
 	/**

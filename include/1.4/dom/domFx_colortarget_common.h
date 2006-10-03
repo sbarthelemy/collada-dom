@@ -17,7 +17,7 @@
 #include <dom/domElements.h>
 
 
-class domFx_colortarget_common_complexType 
+class DLL_EXPORT domFx_colortarget_common_complexType 
 {
 protected:  // Attributes
 	xsNonNegativeInteger attrIndex;
@@ -109,7 +109,7 @@ protected:
 /**
  * An element of type domFx_colortarget_common_complexType.
  */
-class domFx_colortarget_common : public daeElement, public domFx_colortarget_common_complexType
+class DLL_EXPORT domFx_colortarget_common : public daeElement, public domFx_colortarget_common_complexType
 {
 
 public:	//Accessors and Mutators

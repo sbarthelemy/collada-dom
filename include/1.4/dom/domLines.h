@@ -27,7 +27,7 @@
  * from first and second vertices. The second line is formed from the  third
  * and fourth vertices and so on.
  */
-class domLines : public daeElement
+class DLL_EXPORT domLines : public daeElement
 {
 protected:  // Attributes
 /**

@@ -24,7 +24,7 @@
  * The animation_clip element defines a section of the animation curves to
  * be used together as  an animation clip.
  */
-class domAnimation_clip : public daeElement
+class DLL_EXPORT domAnimation_clip : public daeElement
 {
 protected:  // Attributes
 /**

@@ -22,7 +22,7 @@
  * A tapered capsule primitive that is centered on, and aligned with, the
  * local Y axis.
  */
-class domTapered_capsule : public daeElement
+class DLL_EXPORT domTapered_capsule : public daeElement
 {
 public:
 	class domHeight;
@@ -34,7 +34,7 @@ public:
  * A float value that represents the length of the line segment connecting
  * the centers of the  capping hemispheres.
  */
-	class domHeight : public daeElement
+	class DLL_EXPORT domHeight : public daeElement
 	{
 
 	protected:  // Value
@@ -103,7 +103,7 @@ public:
  * Two float values that represent the radii of the tapered capsule at the
  * positive (height/2)  Y value.Both ends of the tapered capsule may be elliptical.
  */
-	class domRadius1 : public daeElement
+	class DLL_EXPORT domRadius1 : public daeElement
 	{
 
 	protected:  // Value
@@ -177,7 +177,7 @@ public:
  * Two float values that represent the radii of the tapered capsule at the
  * negative (height/2)  Y value.Both ends of the tapered capsule may be elliptical.
  */
-	class domRadius2 : public daeElement
+	class DLL_EXPORT domRadius2 : public daeElement
 	{
 
 	protected:  // Value

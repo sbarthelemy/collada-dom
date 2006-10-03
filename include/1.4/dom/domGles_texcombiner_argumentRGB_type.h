@@ -17,7 +17,7 @@
 #include <dom/domElements.h>
 
 
-class domGles_texcombiner_argumentRGB_type_complexType 
+class DLL_EXPORT domGles_texcombiner_argumentRGB_type_complexType 
 {
 protected:  // Attributes
 	domGles_texcombiner_source_enums attrSource;
@@ -81,7 +81,7 @@ protected:
 /**
  * An element of type domGles_texcombiner_argumentRGB_type_complexType.
  */
-class domGles_texcombiner_argumentRGB_type : public daeElement, public domGles_texcombiner_argumentRGB_type_complexType
+class DLL_EXPORT domGles_texcombiner_argumentRGB_type : public daeElement, public domGles_texcombiner_argumentRGB_type_complexType
 {
 
 public:	//Accessors and Mutators

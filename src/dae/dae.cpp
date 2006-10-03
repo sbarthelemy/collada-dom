@@ -37,13 +37,15 @@
 extern daeString COLLADA_VERSION;		 
 
 daeInt DAEInstanceCount = 0;
+daeMetaElement *DAE::topMeta = NULL;
 
 void
 DAE::cleanup()
 {
-	if (DAEInstanceCount == 0) {
+	if (topMeta != NULL) {
 		daeMetaElement::releaseMetas();
 		daeAtomicType::uninitializeKnownTypes();
+		topMeta = NULL;
 	}
 }
 	
@@ -56,7 +58,9 @@ DAE::DAE() : database(NULL),
 	     defaultPlugin(false),
 	     registerFunc(NULL)
 {
-	topMeta = initializeDomMeta();
+	if ( DAEInstanceCount == 0 ) {
+		topMeta = initializeDomMeta();
+	}
 	DAEInstanceCount++;
 }
 
@@ -69,9 +73,12 @@ DAE::~DAE()
 		delete resolver;
 		delete idResolver;
 	}
-	topMeta = NULL;
 	daeElement::clearResolveArray();
 	--DAEInstanceCount;
+	if ( DAEInstanceCount <= 0 )
+	{
+		cleanup();
+	}
 }
 
 // Database setup	

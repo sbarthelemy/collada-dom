@@ -23,7 +23,7 @@
 /**
  * The library_materials element declares a module of material elements.
  */
-class domLibrary_materials : public daeElement
+class DLL_EXPORT domLibrary_materials : public daeElement
 {
 protected:  // Attributes
 /**

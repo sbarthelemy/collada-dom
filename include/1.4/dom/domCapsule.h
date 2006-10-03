@@ -21,7 +21,7 @@
 /**
  * A capsule primitive that is centered on and aligned with the local Y axis.
  */
-class domCapsule : public daeElement
+class DLL_EXPORT domCapsule : public daeElement
 {
 public:
 	class domHeight;
@@ -33,7 +33,7 @@ public:
  * A float value that represents the length of the line segment connecting
  * the centers  of the capping hemispheres.
  */
-	class domHeight : public daeElement
+	class DLL_EXPORT domHeight : public daeElement
 	{
 
 	protected:  // Value
@@ -101,7 +101,7 @@ public:
 /**
  * Two float values that represent the radii of the capsule (it may be elliptical)
  */
-	class domRadius : public daeElement
+	class DLL_EXPORT domRadius : public daeElement
 	{
 
 	protected:  // Value

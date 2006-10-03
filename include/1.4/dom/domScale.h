@@ -22,7 +22,7 @@
  * The scale element contains a mathematical vector that represents the relative
  * proportions of the  X, Y and Z axes of a coordinated system.
  */
-class domScale : public daeElement, public domTargetableFloat3_complexType
+class DLL_EXPORT domScale : public daeElement, public domTargetableFloat3_complexType
 {
 
 protected:

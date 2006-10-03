@@ -25,7 +25,7 @@
  * both as the source for texture samples and as the target of a rendering
  * pass.
  */
-class domFx_surface_common_complexType 
+class DLL_EXPORT domFx_surface_common_complexType 
 {
 public:
 	class domFormat;
@@ -39,7 +39,7 @@ public:
  * is not specified then the application will use a common format R8G8B8A8
  * with linear color gradient, not  sRGB.
  */
-	class domFormat : public daeElement
+	class DLL_EXPORT domFormat : public daeElement
 	{
 
 	protected:  // Value
@@ -107,7 +107,7 @@ public:
 /**
  * The surface should be sized to these exact dimensions
  */
-	class domSize : public daeElement
+	class DLL_EXPORT domSize : public daeElement
 	{
 
 	protected:  // Value
@@ -181,7 +181,7 @@ public:
  * The surface should be sized to a dimension based on this ratio of the viewport's
  * dimensions in pixels
  */
-	class domViewport_ratio : public daeElement
+	class DLL_EXPORT domViewport_ratio : public daeElement
 	{
 
 	protected:  // Value
@@ -258,7 +258,7 @@ public:
  * (mip=0) set this to 1.  If the value is 0 the result is the same as if
  * mip_levels was unspecified, all possible mip_levels will exist.
  */
-	class domMip_levels : public daeElement
+	class DLL_EXPORT domMip_levels : public daeElement
 	{
 
 	protected:  // Value
@@ -329,7 +329,7 @@ public:
  * and platform specific behavior unless mipmap_generate is responsible for
  * initializing the remainder of the sub-surfaces
  */
-	class domMipmap_generate : public daeElement
+	class DLL_EXPORT domMipmap_generate : public daeElement
 	{
 
 	protected:  // Value
@@ -567,7 +567,7 @@ private:
 /**
  * An element of type domFx_surface_common_complexType.
  */
-class domFx_surface_common : public daeElement, public domFx_surface_common_complexType
+class DLL_EXPORT domFx_surface_common : public daeElement, public domFx_surface_common_complexType
 {
 
 public:	//Accessors and Mutators

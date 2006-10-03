@@ -29,7 +29,7 @@
  * to search for the @c daeElement inside of a @c daeDatabase.
  *
  */
-class daeIDRef
+class DLL_EXPORT daeIDRef
 {
 public:
 	/**
@@ -191,6 +191,20 @@ public:
 	 * Initializes the @c daeIDREf, setting <tt><i>id, element,</i></tt>  and <tt><i>container</i></tt> to NULL.
 	 */
 	void initialize();
+
+	/**
+	 * Comparison operator.
+	 * @return Returns true if URI's are equal.
+	 */
+	inline bool operator==(const daeIDRef& other) const{
+		return (!strcmp(other.getID(), getID())); }
+
+	daeIDRef &operator=( const daeIDRef& other) {
+		setID(other.getID());
+		element = other.element;
+		state = other.state;
+		return *this;
+	}
 
 	//Backwards Compatibility
 	daeIDRef &get( daeUInt idx ) { (void)idx; return *this; }

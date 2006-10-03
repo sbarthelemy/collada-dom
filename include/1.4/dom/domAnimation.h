@@ -29,7 +29,7 @@
  * key-frame data and sampler functions,  ordered in such a way to group together
  * animations that should be executed together.
  */
-class domAnimation : public daeElement
+class DLL_EXPORT domAnimation : public daeElement
 {
 protected:  // Attributes
 /**

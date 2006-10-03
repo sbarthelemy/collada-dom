@@ -18,7 +18,7 @@
 
 #include <dom/domFx_samplerRECT_common.h>
 
-class domCg_samplerRECT_complexType : public domFx_samplerRECT_common_complexType
+class DLL_EXPORT domCg_samplerRECT_complexType : public domFx_samplerRECT_common_complexType
 {
 
 protected:
@@ -43,7 +43,7 @@ protected:
 /**
  * An element of type domCg_samplerRECT_complexType.
  */
-class domCg_samplerRECT : public daeElement, public domCg_samplerRECT_complexType
+class DLL_EXPORT domCg_samplerRECT : public daeElement, public domCg_samplerRECT_complexType
 {
 protected:
 	/**

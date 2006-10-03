@@ -21,7 +21,7 @@
  * The asset element defines asset management information regarding its parent
  * element.
  */
-class domAsset : public daeElement
+class DLL_EXPORT domAsset : public daeElement
 {
 public:
 	class domContributor;
@@ -32,7 +32,7 @@ public:
 /**
  * The contributor element defines authoring information for asset management
  */
-	class domContributor : public daeElement
+	class DLL_EXPORT domContributor : public daeElement
 	{
 	public:
 		class domAuthor;
@@ -44,7 +44,7 @@ public:
  * The author element contains a string with the author's name. There may
  * be only one author element.
  */
-		class domAuthor : public daeElement
+		class DLL_EXPORT domAuthor : public daeElement
 		{
 
 		protected:  // Value
@@ -113,7 +113,7 @@ public:
  * The authoring_tool element contains a string with the authoring tool's
  * name. There may be only one authoring_tool element.
  */
-		class domAuthoring_tool : public daeElement
+		class DLL_EXPORT domAuthoring_tool : public daeElement
 		{
 
 		protected:  // Value
@@ -182,7 +182,7 @@ public:
  * The comments element contains a string with comments from this contributor.
  * There may be only one comments element.
  */
-		class domComments : public daeElement
+		class DLL_EXPORT domComments : public daeElement
 		{
 
 		protected:  // Value
@@ -251,7 +251,7 @@ public:
  * The copyright element contains a string with copyright information. There
  * may be only one copyright element.
  */
-		class domCopyright : public daeElement
+		class DLL_EXPORT domCopyright : public daeElement
 		{
 
 		protected:  // Value
@@ -320,7 +320,7 @@ public:
  * The source_data element contains a URI reference to the source data used
  * for this asset. There may be only one source_data element.
  */
-		class domSource_data : public daeElement
+		class DLL_EXPORT domSource_data : public daeElement
 		{
 
 		protected:  // Value
@@ -489,7 +489,7 @@ public:
  * was created and is  represented in an ISO 8601 format.  The created element
  * may appear zero or one time.
  */
-	class domCreated : public daeElement
+	class DLL_EXPORT domCreated : public daeElement
 	{
 
 	protected:  // Value
@@ -558,7 +558,7 @@ public:
  * The keywords element contains a list of words used as search criteria for
  * the parent element.  The keywords element may appear zero or more times.
  */
-	class domKeywords : public daeElement
+	class DLL_EXPORT domKeywords : public daeElement
 	{
 
 	protected:  // Value
@@ -628,7 +628,7 @@ public:
  * was last modified and  represented in an ISO 8601 format. The modified
  * element may appear zero or one time.
  */
-	class domModified : public daeElement
+	class DLL_EXPORT domModified : public daeElement
 	{
 
 	protected:  // Value
@@ -697,7 +697,7 @@ public:
  * The revision element contains the revision information for the parent element.
  * The revision  element may appear zero or one time.
  */
-	class domRevision : public daeElement
+	class DLL_EXPORT domRevision : public daeElement
 	{
 
 	protected:  // Value
@@ -766,7 +766,7 @@ public:
  * The subject element contains a description of the topical subject of the
  * parent element. The  subject element may appear zero or one time.
  */
-	class domSubject : public daeElement
+	class DLL_EXPORT domSubject : public daeElement
 	{
 
 	protected:  // Value
@@ -835,7 +835,7 @@ public:
  * The title element contains the title information for the parent element.
  * The title element may  appear zero or one time.
  */
-	class domTitle : public daeElement
+	class DLL_EXPORT domTitle : public daeElement
 	{
 
 	protected:  // Value
@@ -905,7 +905,7 @@ public:
  * It has attributes for  the name of the unit and the measurement with respect
  * to the meter. The unit element may appear  zero or one time.
  */
-	class domUnit : public daeElement
+	class DLL_EXPORT domUnit : public daeElement
 	{
 	protected:  // Attributes
 /**
@@ -995,7 +995,7 @@ public:
  * This element specifies which axis is  considered up. The default is the
  * Y-axis. The up_axis element may appear zero or one time.
  */
-	class domUp_axis : public daeElement
+	class DLL_EXPORT domUp_axis : public daeElement
 	{
 
 	protected:  // Value

@@ -21,7 +21,7 @@
 /**
  * An axis-aligned, centered box primitive.
  */
-class domBox : public daeElement
+class DLL_EXPORT domBox : public daeElement
 {
 public:
 	class domHalf_extents;
@@ -32,7 +32,7 @@ public:
 /**
  * 3 float values that represent the extents of the box
  */
-	class domHalf_extents : public daeElement
+	class DLL_EXPORT domHalf_extents : public daeElement
 	{
 
 	protected:  // Value

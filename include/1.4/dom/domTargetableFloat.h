@@ -21,7 +21,7 @@
  * The TargetableFloat type is used to represent elements which contain a
  * single float value which can  be targeted for animation.
  */
-class domTargetableFloat_complexType 
+class DLL_EXPORT domTargetableFloat_complexType 
 {
 protected:  // Attribute
 /**
@@ -82,7 +82,7 @@ protected:
 /**
  * An element of type domTargetableFloat_complexType.
  */
-class domTargetableFloat : public daeElement, public domTargetableFloat_complexType
+class DLL_EXPORT domTargetableFloat : public daeElement, public domTargetableFloat_complexType
 {
 
 public:	//Accessors and Mutators

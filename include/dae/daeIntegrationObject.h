@@ -22,7 +22,7 @@ typedef daeSmartRef<daeIntegrationObject> daeIntegrationObjectRef;
  * The @c daeIntegrationObject class provides methods to translate COLLADA
  * objects to and from application objects.
  */
-class daeIntegrationObject : public daeElement
+class DLL_EXPORT daeIntegrationObject : public daeElement
 {
 public:
 	/**

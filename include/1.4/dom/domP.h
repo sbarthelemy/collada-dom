@@ -23,7 +23,7 @@
  * element contains indices that reference into  the parent's source elements
  * referenced by the input elements.
  */
-class domP : public daeElement
+class DLL_EXPORT domP : public daeElement
 {
 
 protected:  // Value

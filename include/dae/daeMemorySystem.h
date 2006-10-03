@@ -22,7 +22,7 @@
  * in the future different pools can be used based on allocation type.
  * Currently the system is just a pass-through to system @c malloc.
  */
-class daeMemorySystem
+class DLL_EXPORT daeMemorySystem
 {
 public:
 	/**

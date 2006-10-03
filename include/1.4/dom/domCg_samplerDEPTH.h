@@ -18,7 +18,7 @@
 
 #include <dom/domFx_samplerDEPTH_common.h>
 
-class domCg_samplerDEPTH_complexType : public domFx_samplerDEPTH_common_complexType
+class DLL_EXPORT domCg_samplerDEPTH_complexType : public domFx_samplerDEPTH_common_complexType
 {
 
 protected:
@@ -43,7 +43,7 @@ protected:
 /**
  * An element of type domCg_samplerDEPTH_complexType.
  */
-class domCg_samplerDEPTH : public daeElement, public domCg_samplerDEPTH_complexType
+class DLL_EXPORT domCg_samplerDEPTH : public daeElement, public domCg_samplerDEPTH_complexType
 {
 protected:
 	/**

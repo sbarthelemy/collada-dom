@@ -22,7 +22,7 @@
  * A tapered cylinder primitive that is centered on and aligned with the local
  * Y axis.
  */
-class domTapered_cylinder : public daeElement
+class DLL_EXPORT domTapered_cylinder : public daeElement
 {
 public:
 	class domHeight;
@@ -33,7 +33,7 @@ public:
 /**
  * A float value that represents the length of the cylinder along the Y axis.
  */
-	class domHeight : public daeElement
+	class DLL_EXPORT domHeight : public daeElement
 	{
 
 	protected:  // Value
@@ -103,7 +103,7 @@ public:
  * positive (height/2)  Y value. Both ends of the tapered cylinder may be
  * elliptical.
  */
-	class domRadius1 : public daeElement
+	class DLL_EXPORT domRadius1 : public daeElement
 	{
 
 	protected:  // Value
@@ -177,7 +177,7 @@ public:
  * Two float values that represent the radii of the tapered cylinder at the
  * negative (height/2)  Y value.Both ends of the tapered cylinder may be elliptical.
  */
-	class domRadius2 : public daeElement
+	class DLL_EXPORT domRadius2 : public daeElement
 	{
 
 	protected:  // Value

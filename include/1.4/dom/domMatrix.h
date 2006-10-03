@@ -22,7 +22,7 @@
  * systems or the  coordinate system itself. The matrix element contains a
  * 4-by-4 matrix of floating-point values.
  */
-class domMatrix : public daeElement
+class DLL_EXPORT domMatrix : public daeElement
 {
 protected:  // Attribute
 /**

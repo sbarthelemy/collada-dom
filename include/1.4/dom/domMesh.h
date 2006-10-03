@@ -31,7 +31,7 @@
  * The mesh element contains vertex and primitive information sufficient to
  * describe basic geometric meshes.
  */
-class domMesh : public daeElement
+class DLL_EXPORT domMesh : public daeElement
 {
 
 protected:  // Elements

@@ -29,7 +29,7 @@
  * are defined in the COMMON profile glossary of the COLLADA specification, or values reference with the (#)
  * syntax. You can check the return value from getState() to see which level of resolution is possible.
  */
-class daeSIDResolver
+class DLL_EXPORT daeSIDResolver
 {
 public:
 	/**

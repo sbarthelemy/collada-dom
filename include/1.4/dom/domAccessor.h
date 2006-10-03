@@ -24,7 +24,7 @@
  * element describes access  to arrays that are organized in either an interleaved
  * or non-interleaved manner, depending  on the offset and stride attributes.
  */
-class domAccessor : public daeElement
+class DLL_EXPORT domAccessor : public daeElement
 {
 protected:  // Attributes
 /**

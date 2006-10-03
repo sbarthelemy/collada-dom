@@ -23,7 +23,7 @@
 /**
  * The library_lights element declares a module of light elements.
  */
-class domLibrary_lights : public daeElement
+class DLL_EXPORT domLibrary_lights : public daeElement
 {
 protected:  // Attributes
 /**

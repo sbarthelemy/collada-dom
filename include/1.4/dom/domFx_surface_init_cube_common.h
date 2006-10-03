@@ -17,7 +17,7 @@
 #include <dom/domElements.h>
 
 
-class domFx_surface_init_cube_common_complexType 
+class DLL_EXPORT domFx_surface_init_cube_common_complexType 
 {
 public:
 	class domAll;
@@ -28,7 +28,7 @@ public:
 /**
  * Init the entire surface with one compound image such as DDS
  */
-	class domAll : public daeElement
+	class DLL_EXPORT domAll : public daeElement
 	{
 	protected:  // Attribute
 		xsIDREF attrRef;
@@ -101,7 +101,7 @@ public:
  * DDS.  Use of this element expects that the surface has element mip_levels=0
  * or mipmap_generate.
  */
-	class domPrimary : public daeElement
+	class DLL_EXPORT domPrimary : public daeElement
 	{
 	public:
 		class domOrder;
@@ -113,7 +113,7 @@ public:
  * If the image dues not natively describe the face ordering then this series
  * of order elements will describe which face the index belongs too
  */
-		class domOrder : public daeElement
+		class DLL_EXPORT domOrder : public daeElement
 		{
 
 		protected:  // Value
@@ -259,7 +259,7 @@ public:
 /**
  * Init each face mipchain with one compound image such as DDS
  */
-	class domFace : public daeElement
+	class DLL_EXPORT domFace : public daeElement
 	{
 	protected:  // Attribute
 		xsIDREF attrRef;
@@ -403,7 +403,7 @@ protected:
 /**
  * An element of type domFx_surface_init_cube_common_complexType.
  */
-class domFx_surface_init_cube_common : public daeElement, public domFx_surface_init_cube_common_complexType
+class DLL_EXPORT domFx_surface_init_cube_common : public daeElement, public domFx_surface_init_cube_common_complexType
 {
 protected:
 	/**

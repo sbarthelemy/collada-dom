@@ -23,7 +23,7 @@
 /**
  * The @c daeDatabase class defines the COLLADA runtime database interface.
  */
-class daeDatabase
+class DLL_EXPORT daeDatabase
 {
 public:
 	/**

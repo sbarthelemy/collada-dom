@@ -22,7 +22,7 @@
  * A cylinder primitive that is centered on, and aligned with. the local Y
  * axis.
  */
-class domCylinder : public daeElement
+class DLL_EXPORT domCylinder : public daeElement
 {
 public:
 	class domHeight;
@@ -33,7 +33,7 @@ public:
 /**
  * A float value that represents the length of the cylinder along the Y axis.
  */
-	class domHeight : public daeElement
+	class DLL_EXPORT domHeight : public daeElement
 	{
 
 	protected:  // Value
@@ -101,7 +101,7 @@ public:
 /**
  * float2 values that represent the radii of the cylinder.
  */
-	class domRadius : public daeElement
+	class DLL_EXPORT domRadius : public daeElement
 	{
 
 	protected:  // Value

@@ -23,7 +23,7 @@
 /**
  * The library_images element declares a module of image elements.
  */
-class domLibrary_images : public daeElement
+class DLL_EXPORT domLibrary_images : public daeElement
 {
 protected:  // Attributes
 /**

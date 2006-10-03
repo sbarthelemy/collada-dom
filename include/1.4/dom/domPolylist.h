@@ -27,7 +27,7 @@
  * Unlike the polygons element, the polylist element cannot  contain polygons
  * with holes.
  */
-class domPolylist : public daeElement
+class DLL_EXPORT domPolylist : public daeElement
 {
 public:
 	class domVcount;
@@ -40,7 +40,7 @@ public:
  * sides for each polygon  described by the polylist element. The vcount element
  * may occur once.
  */
-	class domVcount : public daeElement
+	class DLL_EXPORT domVcount : public daeElement
 	{
 
 	protected:  // Value

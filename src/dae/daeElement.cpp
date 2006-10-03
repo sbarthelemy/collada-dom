@@ -302,6 +302,24 @@ daeMemoryRef daeElement::getAttributeValue( daeString attrName ) {
 	return NULL;
 }
 
+daeBool daeElement::hasValue() {
+	if (_meta == NULL)
+		return false;
+	
+	return (_meta->getValueAttribute() != NULL );
+}
+
+daeMemoryRef daeElement::getValuePointer() {
+	if (_meta == NULL)
+		return false;
+	
+	if ( _meta->getValueAttribute() != NULL )
+	{
+		return _meta->getValueAttribute()->getWritableMemory(this);
+	}
+	return NULL;	
+}
+
 void
 daeElement::appendResolveElement(daeElement* elem)
 {
@@ -336,7 +354,7 @@ daeElement::resolve()
 	if (_meta == NULL)
 		return;
 	
-	daeMetaAttributeRefArray& maa = _meta->getMetaAttributes();
+	daeMetaAttributePtrArray& maa = _meta->getMetaResolvers();
 	int n = (int)maa.getCount();
 	int i;
 	for(i=0;i<n;i++)

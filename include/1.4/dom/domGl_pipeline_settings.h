@@ -27,7 +27,7 @@
 /**
  * A group that defines all of the renderstates used for the CG and GLSL profiles.
  */
-class domGl_pipeline_settings : public daeElement
+class DLL_EXPORT domGl_pipeline_settings : public daeElement
 {
 public:
 	class domAlpha_func;
@@ -35,7 +35,7 @@ public:
 	typedef daeSmartRef<domAlpha_func> domAlpha_funcRef;
 	typedef daeTArray<domAlpha_funcRef> domAlpha_func_Array;
 
-	class domAlpha_func : public daeElement
+	class DLL_EXPORT domAlpha_func : public daeElement
 	{
 	public:
 		class domFunc;
@@ -43,7 +43,7 @@ public:
 		typedef daeSmartRef<domFunc> domFuncRef;
 		typedef daeTArray<domFuncRef> domFunc_Array;
 
-		class domFunc : public daeElement
+		class DLL_EXPORT domFunc : public daeElement
 		{
 		protected:  // Attributes
 			domGl_func_type attrValue;
@@ -119,7 +119,7 @@ public:
 		typedef daeSmartRef<domValue> domValueRef;
 		typedef daeTArray<domValueRef> domValue_Array;
 
-		class domValue : public daeElement
+		class DLL_EXPORT domValue : public daeElement
 		{
 		protected:  // Attributes
 			domGl_alpha_value_type attrValue;
@@ -251,7 +251,7 @@ public:
 	typedef daeSmartRef<domBlend_func> domBlend_funcRef;
 	typedef daeTArray<domBlend_funcRef> domBlend_func_Array;
 
-	class domBlend_func : public daeElement
+	class DLL_EXPORT domBlend_func : public daeElement
 	{
 	public:
 		class domSrc;
@@ -259,7 +259,7 @@ public:
 		typedef daeSmartRef<domSrc> domSrcRef;
 		typedef daeTArray<domSrcRef> domSrc_Array;
 
-		class domSrc : public daeElement
+		class DLL_EXPORT domSrc : public daeElement
 		{
 		protected:  // Attributes
 			domGl_blend_type attrValue;
@@ -335,7 +335,7 @@ public:
 		typedef daeSmartRef<domDest> domDestRef;
 		typedef daeTArray<domDestRef> domDest_Array;
 
-		class domDest : public daeElement
+		class DLL_EXPORT domDest : public daeElement
 		{
 		protected:  // Attributes
 			domGl_blend_type attrValue;
@@ -467,7 +467,7 @@ public:
 	typedef daeSmartRef<domBlend_func_separate> domBlend_func_separateRef;
 	typedef daeTArray<domBlend_func_separateRef> domBlend_func_separate_Array;
 
-	class domBlend_func_separate : public daeElement
+	class DLL_EXPORT domBlend_func_separate : public daeElement
 	{
 	public:
 		class domSrc_rgb;
@@ -475,7 +475,7 @@ public:
 		typedef daeSmartRef<domSrc_rgb> domSrc_rgbRef;
 		typedef daeTArray<domSrc_rgbRef> domSrc_rgb_Array;
 
-		class domSrc_rgb : public daeElement
+		class DLL_EXPORT domSrc_rgb : public daeElement
 		{
 		protected:  // Attributes
 			domGl_blend_type attrValue;
@@ -551,7 +551,7 @@ public:
 		typedef daeSmartRef<domDest_rgb> domDest_rgbRef;
 		typedef daeTArray<domDest_rgbRef> domDest_rgb_Array;
 
-		class domDest_rgb : public daeElement
+		class DLL_EXPORT domDest_rgb : public daeElement
 		{
 		protected:  // Attributes
 			domGl_blend_type attrValue;
@@ -627,7 +627,7 @@ public:
 		typedef daeSmartRef<domSrc_alpha> domSrc_alphaRef;
 		typedef daeTArray<domSrc_alphaRef> domSrc_alpha_Array;
 
-		class domSrc_alpha : public daeElement
+		class DLL_EXPORT domSrc_alpha : public daeElement
 		{
 		protected:  // Attributes
 			domGl_blend_type attrValue;
@@ -703,7 +703,7 @@ public:
 		typedef daeSmartRef<domDest_alpha> domDest_alphaRef;
 		typedef daeTArray<domDest_alphaRef> domDest_alpha_Array;
 
-		class domDest_alpha : public daeElement
+		class DLL_EXPORT domDest_alpha : public daeElement
 		{
 		protected:  // Attributes
 			domGl_blend_type attrValue;
@@ -847,7 +847,7 @@ public:
 	typedef daeSmartRef<domBlend_equation> domBlend_equationRef;
 	typedef daeTArray<domBlend_equationRef> domBlend_equation_Array;
 
-	class domBlend_equation : public daeElement
+	class DLL_EXPORT domBlend_equation : public daeElement
 	{
 	protected:  // Attributes
 		domGl_blend_equation_type attrValue;
@@ -923,7 +923,7 @@ public:
 	typedef daeSmartRef<domBlend_equation_separate> domBlend_equation_separateRef;
 	typedef daeTArray<domBlend_equation_separateRef> domBlend_equation_separate_Array;
 
-	class domBlend_equation_separate : public daeElement
+	class DLL_EXPORT domBlend_equation_separate : public daeElement
 	{
 	public:
 		class domRgb;
@@ -931,7 +931,7 @@ public:
 		typedef daeSmartRef<domRgb> domRgbRef;
 		typedef daeTArray<domRgbRef> domRgb_Array;
 
-		class domRgb : public daeElement
+		class DLL_EXPORT domRgb : public daeElement
 		{
 		protected:  // Attributes
 			domGl_blend_equation_type attrValue;
@@ -1007,7 +1007,7 @@ public:
 		typedef daeSmartRef<domAlpha> domAlphaRef;
 		typedef daeTArray<domAlphaRef> domAlpha_Array;
 
-		class domAlpha : public daeElement
+		class DLL_EXPORT domAlpha : public daeElement
 		{
 		protected:  // Attributes
 			domGl_blend_equation_type attrValue;
@@ -1139,7 +1139,7 @@ public:
 	typedef daeSmartRef<domColor_material> domColor_materialRef;
 	typedef daeTArray<domColor_materialRef> domColor_material_Array;
 
-	class domColor_material : public daeElement
+	class DLL_EXPORT domColor_material : public daeElement
 	{
 	public:
 		class domFace;
@@ -1147,7 +1147,7 @@ public:
 		typedef daeSmartRef<domFace> domFaceRef;
 		typedef daeTArray<domFaceRef> domFace_Array;
 
-		class domFace : public daeElement
+		class DLL_EXPORT domFace : public daeElement
 		{
 		protected:  // Attributes
 			domGl_face_type attrValue;
@@ -1223,7 +1223,7 @@ public:
 		typedef daeSmartRef<domMode> domModeRef;
 		typedef daeTArray<domModeRef> domMode_Array;
 
-		class domMode : public daeElement
+		class DLL_EXPORT domMode : public daeElement
 		{
 		protected:  // Attributes
 			domGl_material_type attrValue;
@@ -1355,7 +1355,7 @@ public:
 	typedef daeSmartRef<domCull_face> domCull_faceRef;
 	typedef daeTArray<domCull_faceRef> domCull_face_Array;
 
-	class domCull_face : public daeElement
+	class DLL_EXPORT domCull_face : public daeElement
 	{
 	protected:  // Attributes
 		domGl_face_type attrValue;
@@ -1431,7 +1431,7 @@ public:
 	typedef daeSmartRef<domDepth_func> domDepth_funcRef;
 	typedef daeTArray<domDepth_funcRef> domDepth_func_Array;
 
-	class domDepth_func : public daeElement
+	class DLL_EXPORT domDepth_func : public daeElement
 	{
 	protected:  // Attributes
 		domGl_func_type attrValue;
@@ -1507,7 +1507,7 @@ public:
 	typedef daeSmartRef<domFog_mode> domFog_modeRef;
 	typedef daeTArray<domFog_modeRef> domFog_mode_Array;
 
-	class domFog_mode : public daeElement
+	class DLL_EXPORT domFog_mode : public daeElement
 	{
 	protected:  // Attributes
 		domGl_fog_type attrValue;
@@ -1583,7 +1583,7 @@ public:
 	typedef daeSmartRef<domFog_coord_src> domFog_coord_srcRef;
 	typedef daeTArray<domFog_coord_srcRef> domFog_coord_src_Array;
 
-	class domFog_coord_src : public daeElement
+	class DLL_EXPORT domFog_coord_src : public daeElement
 	{
 	protected:  // Attributes
 		domGl_fog_coord_src_type attrValue;
@@ -1659,7 +1659,7 @@ public:
 	typedef daeSmartRef<domFront_face> domFront_faceRef;
 	typedef daeTArray<domFront_faceRef> domFront_face_Array;
 
-	class domFront_face : public daeElement
+	class DLL_EXPORT domFront_face : public daeElement
 	{
 	protected:  // Attributes
 		domGl_front_face_type attrValue;
@@ -1735,7 +1735,7 @@ public:
 	typedef daeSmartRef<domLight_model_color_control> domLight_model_color_controlRef;
 	typedef daeTArray<domLight_model_color_controlRef> domLight_model_color_control_Array;
 
-	class domLight_model_color_control : public daeElement
+	class DLL_EXPORT domLight_model_color_control : public daeElement
 	{
 	protected:  // Attributes
 		domGl_light_model_color_control_type attrValue;
@@ -1811,7 +1811,7 @@ public:
 	typedef daeSmartRef<domLogic_op> domLogic_opRef;
 	typedef daeTArray<domLogic_opRef> domLogic_op_Array;
 
-	class domLogic_op : public daeElement
+	class DLL_EXPORT domLogic_op : public daeElement
 	{
 	protected:  // Attributes
 		domGl_logic_op_type attrValue;
@@ -1887,7 +1887,7 @@ public:
 	typedef daeSmartRef<domPolygon_mode> domPolygon_modeRef;
 	typedef daeTArray<domPolygon_modeRef> domPolygon_mode_Array;
 
-	class domPolygon_mode : public daeElement
+	class DLL_EXPORT domPolygon_mode : public daeElement
 	{
 	public:
 		class domFace;
@@ -1895,7 +1895,7 @@ public:
 		typedef daeSmartRef<domFace> domFaceRef;
 		typedef daeTArray<domFaceRef> domFace_Array;
 
-		class domFace : public daeElement
+		class DLL_EXPORT domFace : public daeElement
 		{
 		protected:  // Attributes
 			domGl_face_type attrValue;
@@ -1971,7 +1971,7 @@ public:
 		typedef daeSmartRef<domMode> domModeRef;
 		typedef daeTArray<domModeRef> domMode_Array;
 
-		class domMode : public daeElement
+		class DLL_EXPORT domMode : public daeElement
 		{
 		protected:  // Attributes
 			domGl_polygon_mode_type attrValue;
@@ -2103,7 +2103,7 @@ public:
 	typedef daeSmartRef<domShade_model> domShade_modelRef;
 	typedef daeTArray<domShade_modelRef> domShade_model_Array;
 
-	class domShade_model : public daeElement
+	class DLL_EXPORT domShade_model : public daeElement
 	{
 	protected:  // Attributes
 		domGl_shade_model_type attrValue;
@@ -2179,7 +2179,7 @@ public:
 	typedef daeSmartRef<domStencil_func> domStencil_funcRef;
 	typedef daeTArray<domStencil_funcRef> domStencil_func_Array;
 
-	class domStencil_func : public daeElement
+	class DLL_EXPORT domStencil_func : public daeElement
 	{
 	public:
 		class domFunc;
@@ -2187,7 +2187,7 @@ public:
 		typedef daeSmartRef<domFunc> domFuncRef;
 		typedef daeTArray<domFuncRef> domFunc_Array;
 
-		class domFunc : public daeElement
+		class DLL_EXPORT domFunc : public daeElement
 		{
 		protected:  // Attributes
 			domGl_func_type attrValue;
@@ -2263,7 +2263,7 @@ public:
 		typedef daeSmartRef<domRef> domRefRef;
 		typedef daeTArray<domRefRef> domRef_Array;
 
-		class domRef : public daeElement
+		class DLL_EXPORT domRef : public daeElement
 		{
 		protected:  // Attributes
 			xsUnsignedByte attrValue;
@@ -2339,7 +2339,7 @@ public:
 		typedef daeSmartRef<domMask> domMaskRef;
 		typedef daeTArray<domMaskRef> domMask_Array;
 
-		class domMask : public daeElement
+		class DLL_EXPORT domMask : public daeElement
 		{
 		protected:  // Attributes
 			xsUnsignedByte attrValue;
@@ -2477,7 +2477,7 @@ public:
 	typedef daeSmartRef<domStencil_op> domStencil_opRef;
 	typedef daeTArray<domStencil_opRef> domStencil_op_Array;
 
-	class domStencil_op : public daeElement
+	class DLL_EXPORT domStencil_op : public daeElement
 	{
 	public:
 		class domFail;
@@ -2485,7 +2485,7 @@ public:
 		typedef daeSmartRef<domFail> domFailRef;
 		typedef daeTArray<domFailRef> domFail_Array;
 
-		class domFail : public daeElement
+		class DLL_EXPORT domFail : public daeElement
 		{
 		protected:  // Attributes
 			domGl_stencil_op_type attrValue;
@@ -2561,7 +2561,7 @@ public:
 		typedef daeSmartRef<domZfail> domZfailRef;
 		typedef daeTArray<domZfailRef> domZfail_Array;
 
-		class domZfail : public daeElement
+		class DLL_EXPORT domZfail : public daeElement
 		{
 		protected:  // Attributes
 			domGl_stencil_op_type attrValue;
@@ -2637,7 +2637,7 @@ public:
 		typedef daeSmartRef<domZpass> domZpassRef;
 		typedef daeTArray<domZpassRef> domZpass_Array;
 
-		class domZpass : public daeElement
+		class DLL_EXPORT domZpass : public daeElement
 		{
 		protected:  // Attributes
 			domGl_stencil_op_type attrValue;
@@ -2775,7 +2775,7 @@ public:
 	typedef daeSmartRef<domStencil_func_separate> domStencil_func_separateRef;
 	typedef daeTArray<domStencil_func_separateRef> domStencil_func_separate_Array;
 
-	class domStencil_func_separate : public daeElement
+	class DLL_EXPORT domStencil_func_separate : public daeElement
 	{
 	public:
 		class domFront;
@@ -2783,7 +2783,7 @@ public:
 		typedef daeSmartRef<domFront> domFrontRef;
 		typedef daeTArray<domFrontRef> domFront_Array;
 
-		class domFront : public daeElement
+		class DLL_EXPORT domFront : public daeElement
 		{
 		protected:  // Attributes
 			domGl_func_type attrValue;
@@ -2859,7 +2859,7 @@ public:
 		typedef daeSmartRef<domBack> domBackRef;
 		typedef daeTArray<domBackRef> domBack_Array;
 
-		class domBack : public daeElement
+		class DLL_EXPORT domBack : public daeElement
 		{
 		protected:  // Attributes
 			domGl_func_type attrValue;
@@ -2935,7 +2935,7 @@ public:
 		typedef daeSmartRef<domRef> domRefRef;
 		typedef daeTArray<domRefRef> domRef_Array;
 
-		class domRef : public daeElement
+		class DLL_EXPORT domRef : public daeElement
 		{
 		protected:  // Attributes
 			xsUnsignedByte attrValue;
@@ -3011,7 +3011,7 @@ public:
 		typedef daeSmartRef<domMask> domMaskRef;
 		typedef daeTArray<domMaskRef> domMask_Array;
 
-		class domMask : public daeElement
+		class DLL_EXPORT domMask : public daeElement
 		{
 		protected:  // Attributes
 			xsUnsignedByte attrValue;
@@ -3155,7 +3155,7 @@ public:
 	typedef daeSmartRef<domStencil_op_separate> domStencil_op_separateRef;
 	typedef daeTArray<domStencil_op_separateRef> domStencil_op_separate_Array;
 
-	class domStencil_op_separate : public daeElement
+	class DLL_EXPORT domStencil_op_separate : public daeElement
 	{
 	public:
 		class domFace;
@@ -3163,7 +3163,7 @@ public:
 		typedef daeSmartRef<domFace> domFaceRef;
 		typedef daeTArray<domFaceRef> domFace_Array;
 
-		class domFace : public daeElement
+		class DLL_EXPORT domFace : public daeElement
 		{
 		protected:  // Attributes
 			domGl_face_type attrValue;
@@ -3239,7 +3239,7 @@ public:
 		typedef daeSmartRef<domFail> domFailRef;
 		typedef daeTArray<domFailRef> domFail_Array;
 
-		class domFail : public daeElement
+		class DLL_EXPORT domFail : public daeElement
 		{
 		protected:  // Attributes
 			domGl_stencil_op_type attrValue;
@@ -3315,7 +3315,7 @@ public:
 		typedef daeSmartRef<domZfail> domZfailRef;
 		typedef daeTArray<domZfailRef> domZfail_Array;
 
-		class domZfail : public daeElement
+		class DLL_EXPORT domZfail : public daeElement
 		{
 		protected:  // Attributes
 			domGl_stencil_op_type attrValue;
@@ -3391,7 +3391,7 @@ public:
 		typedef daeSmartRef<domZpass> domZpassRef;
 		typedef daeTArray<domZpassRef> domZpass_Array;
 
-		class domZpass : public daeElement
+		class DLL_EXPORT domZpass : public daeElement
 		{
 		protected:  // Attributes
 			domGl_stencil_op_type attrValue;
@@ -3535,7 +3535,7 @@ public:
 	typedef daeSmartRef<domStencil_mask_separate> domStencil_mask_separateRef;
 	typedef daeTArray<domStencil_mask_separateRef> domStencil_mask_separate_Array;
 
-	class domStencil_mask_separate : public daeElement
+	class DLL_EXPORT domStencil_mask_separate : public daeElement
 	{
 	public:
 		class domFace;
@@ -3543,7 +3543,7 @@ public:
 		typedef daeSmartRef<domFace> domFaceRef;
 		typedef daeTArray<domFaceRef> domFace_Array;
 
-		class domFace : public daeElement
+		class DLL_EXPORT domFace : public daeElement
 		{
 		protected:  // Attributes
 			domGl_face_type attrValue;
@@ -3619,7 +3619,7 @@ public:
 		typedef daeSmartRef<domMask> domMaskRef;
 		typedef daeTArray<domMaskRef> domMask_Array;
 
-		class domMask : public daeElement
+		class DLL_EXPORT domMask : public daeElement
 		{
 		protected:  // Attributes
 			xsUnsignedByte attrValue;
@@ -3751,7 +3751,7 @@ public:
 	typedef daeSmartRef<domLight_enable> domLight_enableRef;
 	typedef daeTArray<domLight_enableRef> domLight_enable_Array;
 
-	class domLight_enable : public daeElement
+	class DLL_EXPORT domLight_enable : public daeElement
 	{
 	protected:  // Attributes
 		domBool attrValue;
@@ -3840,7 +3840,7 @@ public:
 	typedef daeSmartRef<domLight_ambient> domLight_ambientRef;
 	typedef daeTArray<domLight_ambientRef> domLight_ambient_Array;
 
-	class domLight_ambient : public daeElement
+	class DLL_EXPORT domLight_ambient : public daeElement
 	{
 	protected:  // Attributes
 		domFloat4 attrValue;
@@ -3934,7 +3934,7 @@ public:
 	typedef daeSmartRef<domLight_diffuse> domLight_diffuseRef;
 	typedef daeTArray<domLight_diffuseRef> domLight_diffuse_Array;
 
-	class domLight_diffuse : public daeElement
+	class DLL_EXPORT domLight_diffuse : public daeElement
 	{
 	protected:  // Attributes
 		domFloat4 attrValue;
@@ -4028,7 +4028,7 @@ public:
 	typedef daeSmartRef<domLight_specular> domLight_specularRef;
 	typedef daeTArray<domLight_specularRef> domLight_specular_Array;
 
-	class domLight_specular : public daeElement
+	class DLL_EXPORT domLight_specular : public daeElement
 	{
 	protected:  // Attributes
 		domFloat4 attrValue;
@@ -4122,7 +4122,7 @@ public:
 	typedef daeSmartRef<domLight_position> domLight_positionRef;
 	typedef daeTArray<domLight_positionRef> domLight_position_Array;
 
-	class domLight_position : public daeElement
+	class DLL_EXPORT domLight_position : public daeElement
 	{
 	protected:  // Attributes
 		domFloat4 attrValue;
@@ -4216,7 +4216,7 @@ public:
 	typedef daeSmartRef<domLight_constant_attenuation> domLight_constant_attenuationRef;
 	typedef daeTArray<domLight_constant_attenuationRef> domLight_constant_attenuation_Array;
 
-	class domLight_constant_attenuation : public daeElement
+	class DLL_EXPORT domLight_constant_attenuation : public daeElement
 	{
 	protected:  // Attributes
 		domFloat attrValue;
@@ -4305,7 +4305,7 @@ public:
 	typedef daeSmartRef<domLight_linear_attenuation> domLight_linear_attenuationRef;
 	typedef daeTArray<domLight_linear_attenuationRef> domLight_linear_attenuation_Array;
 
-	class domLight_linear_attenuation : public daeElement
+	class DLL_EXPORT domLight_linear_attenuation : public daeElement
 	{
 	protected:  // Attributes
 		domFloat attrValue;
@@ -4394,7 +4394,7 @@ public:
 	typedef daeSmartRef<domLight_quadratic_attenuation> domLight_quadratic_attenuationRef;
 	typedef daeTArray<domLight_quadratic_attenuationRef> domLight_quadratic_attenuation_Array;
 
-	class domLight_quadratic_attenuation : public daeElement
+	class DLL_EXPORT domLight_quadratic_attenuation : public daeElement
 	{
 	protected:  // Attributes
 		domFloat attrValue;
@@ -4483,7 +4483,7 @@ public:
 	typedef daeSmartRef<domLight_spot_cutoff> domLight_spot_cutoffRef;
 	typedef daeTArray<domLight_spot_cutoffRef> domLight_spot_cutoff_Array;
 
-	class domLight_spot_cutoff : public daeElement
+	class DLL_EXPORT domLight_spot_cutoff : public daeElement
 	{
 	protected:  // Attributes
 		domFloat attrValue;
@@ -4572,7 +4572,7 @@ public:
 	typedef daeSmartRef<domLight_spot_direction> domLight_spot_directionRef;
 	typedef daeTArray<domLight_spot_directionRef> domLight_spot_direction_Array;
 
-	class domLight_spot_direction : public daeElement
+	class DLL_EXPORT domLight_spot_direction : public daeElement
 	{
 	protected:  // Attributes
 		domFloat3 attrValue;
@@ -4666,7 +4666,7 @@ public:
 	typedef daeSmartRef<domLight_spot_exponent> domLight_spot_exponentRef;
 	typedef daeTArray<domLight_spot_exponentRef> domLight_spot_exponent_Array;
 
-	class domLight_spot_exponent : public daeElement
+	class DLL_EXPORT domLight_spot_exponent : public daeElement
 	{
 	protected:  // Attributes
 		domFloat attrValue;
@@ -4755,7 +4755,7 @@ public:
 	typedef daeSmartRef<domTexture1D> domTexture1DRef;
 	typedef daeTArray<domTexture1DRef> domTexture1D_Array;
 
-	class domTexture1D : public daeElement
+	class DLL_EXPORT domTexture1D : public daeElement
 	{
 	public:
 		class domParam;
@@ -4763,7 +4763,7 @@ public:
 		typedef daeSmartRef<domParam> domParamRef;
 		typedef daeTArray<domParamRef> domParam_Array;
 
-		class domParam : public daeElement
+		class DLL_EXPORT domParam : public daeElement
 		{
 
 		protected:  // Value
@@ -4918,7 +4918,7 @@ public:
 	typedef daeSmartRef<domTexture2D> domTexture2DRef;
 	typedef daeTArray<domTexture2DRef> domTexture2D_Array;
 
-	class domTexture2D : public daeElement
+	class DLL_EXPORT domTexture2D : public daeElement
 	{
 	public:
 		class domParam;
@@ -4926,7 +4926,7 @@ public:
 		typedef daeSmartRef<domParam> domParamRef;
 		typedef daeTArray<domParamRef> domParam_Array;
 
-		class domParam : public daeElement
+		class DLL_EXPORT domParam : public daeElement
 		{
 
 		protected:  // Value
@@ -5081,7 +5081,7 @@ public:
 	typedef daeSmartRef<domTexture3D> domTexture3DRef;
 	typedef daeTArray<domTexture3DRef> domTexture3D_Array;
 
-	class domTexture3D : public daeElement
+	class DLL_EXPORT domTexture3D : public daeElement
 	{
 	public:
 		class domParam;
@@ -5089,7 +5089,7 @@ public:
 		typedef daeSmartRef<domParam> domParamRef;
 		typedef daeTArray<domParamRef> domParam_Array;
 
-		class domParam : public daeElement
+		class DLL_EXPORT domParam : public daeElement
 		{
 
 		protected:  // Value
@@ -5244,7 +5244,7 @@ public:
 	typedef daeSmartRef<domTextureCUBE> domTextureCUBERef;
 	typedef daeTArray<domTextureCUBERef> domTextureCUBE_Array;
 
-	class domTextureCUBE : public daeElement
+	class DLL_EXPORT domTextureCUBE : public daeElement
 	{
 	public:
 		class domParam;
@@ -5252,7 +5252,7 @@ public:
 		typedef daeSmartRef<domParam> domParamRef;
 		typedef daeTArray<domParamRef> domParam_Array;
 
-		class domParam : public daeElement
+		class DLL_EXPORT domParam : public daeElement
 		{
 
 		protected:  // Value
@@ -5407,7 +5407,7 @@ public:
 	typedef daeSmartRef<domTextureRECT> domTextureRECTRef;
 	typedef daeTArray<domTextureRECTRef> domTextureRECT_Array;
 
-	class domTextureRECT : public daeElement
+	class DLL_EXPORT domTextureRECT : public daeElement
 	{
 	public:
 		class domParam;
@@ -5415,7 +5415,7 @@ public:
 		typedef daeSmartRef<domParam> domParamRef;
 		typedef daeTArray<domParamRef> domParam_Array;
 
-		class domParam : public daeElement
+		class DLL_EXPORT domParam : public daeElement
 		{
 
 		protected:  // Value
@@ -5570,7 +5570,7 @@ public:
 	typedef daeSmartRef<domTextureDEPTH> domTextureDEPTHRef;
 	typedef daeTArray<domTextureDEPTHRef> domTextureDEPTH_Array;
 
-	class domTextureDEPTH : public daeElement
+	class DLL_EXPORT domTextureDEPTH : public daeElement
 	{
 	public:
 		class domParam;
@@ -5578,7 +5578,7 @@ public:
 		typedef daeSmartRef<domParam> domParamRef;
 		typedef daeTArray<domParamRef> domParam_Array;
 
-		class domParam : public daeElement
+		class DLL_EXPORT domParam : public daeElement
 		{
 
 		protected:  // Value
@@ -5733,7 +5733,7 @@ public:
 	typedef daeSmartRef<domTexture1D_enable> domTexture1D_enableRef;
 	typedef daeTArray<domTexture1D_enableRef> domTexture1D_enable_Array;
 
-	class domTexture1D_enable : public daeElement
+	class DLL_EXPORT domTexture1D_enable : public daeElement
 	{
 	protected:  // Attributes
 		domBool attrValue;
@@ -5822,7 +5822,7 @@ public:
 	typedef daeSmartRef<domTexture2D_enable> domTexture2D_enableRef;
 	typedef daeTArray<domTexture2D_enableRef> domTexture2D_enable_Array;
 
-	class domTexture2D_enable : public daeElement
+	class DLL_EXPORT domTexture2D_enable : public daeElement
 	{
 	protected:  // Attributes
 		domBool attrValue;
@@ -5911,7 +5911,7 @@ public:
 	typedef daeSmartRef<domTexture3D_enable> domTexture3D_enableRef;
 	typedef daeTArray<domTexture3D_enableRef> domTexture3D_enable_Array;
 
-	class domTexture3D_enable : public daeElement
+	class DLL_EXPORT domTexture3D_enable : public daeElement
 	{
 	protected:  // Attributes
 		domBool attrValue;
@@ -6000,7 +6000,7 @@ public:
 	typedef daeSmartRef<domTextureCUBE_enable> domTextureCUBE_enableRef;
 	typedef daeTArray<domTextureCUBE_enableRef> domTextureCUBE_enable_Array;
 
-	class domTextureCUBE_enable : public daeElement
+	class DLL_EXPORT domTextureCUBE_enable : public daeElement
 	{
 	protected:  // Attributes
 		domBool attrValue;
@@ -6089,7 +6089,7 @@ public:
 	typedef daeSmartRef<domTextureRECT_enable> domTextureRECT_enableRef;
 	typedef daeTArray<domTextureRECT_enableRef> domTextureRECT_enable_Array;
 
-	class domTextureRECT_enable : public daeElement
+	class DLL_EXPORT domTextureRECT_enable : public daeElement
 	{
 	protected:  // Attributes
 		domBool attrValue;
@@ -6178,7 +6178,7 @@ public:
 	typedef daeSmartRef<domTextureDEPTH_enable> domTextureDEPTH_enableRef;
 	typedef daeTArray<domTextureDEPTH_enableRef> domTextureDEPTH_enable_Array;
 
-	class domTextureDEPTH_enable : public daeElement
+	class DLL_EXPORT domTextureDEPTH_enable : public daeElement
 	{
 	protected:  // Attributes
 		domBool attrValue;
@@ -6267,7 +6267,7 @@ public:
 	typedef daeSmartRef<domTexture_env_color> domTexture_env_colorRef;
 	typedef daeTArray<domTexture_env_colorRef> domTexture_env_color_Array;
 
-	class domTexture_env_color : public daeElement
+	class DLL_EXPORT domTexture_env_color : public daeElement
 	{
 	protected:  // Attributes
 		domFloat4 attrValue;
@@ -6361,7 +6361,7 @@ public:
 	typedef daeSmartRef<domTexture_env_mode> domTexture_env_modeRef;
 	typedef daeTArray<domTexture_env_modeRef> domTexture_env_mode_Array;
 
-	class domTexture_env_mode : public daeElement
+	class DLL_EXPORT domTexture_env_mode : public daeElement
 	{
 	protected:  // Attributes
 		domString attrValue;
@@ -6450,7 +6450,7 @@ public:
 	typedef daeSmartRef<domClip_plane> domClip_planeRef;
 	typedef daeTArray<domClip_planeRef> domClip_plane_Array;
 
-	class domClip_plane : public daeElement
+	class DLL_EXPORT domClip_plane : public daeElement
 	{
 	protected:  // Attributes
 		domFloat4 attrValue;
@@ -6544,7 +6544,7 @@ public:
 	typedef daeSmartRef<domClip_plane_enable> domClip_plane_enableRef;
 	typedef daeTArray<domClip_plane_enableRef> domClip_plane_enable_Array;
 
-	class domClip_plane_enable : public daeElement
+	class DLL_EXPORT domClip_plane_enable : public daeElement
 	{
 	protected:  // Attributes
 		domBool attrValue;
@@ -6633,7 +6633,7 @@ public:
 	typedef daeSmartRef<domBlend_color> domBlend_colorRef;
 	typedef daeTArray<domBlend_colorRef> domBlend_color_Array;
 
-	class domBlend_color : public daeElement
+	class DLL_EXPORT domBlend_color : public daeElement
 	{
 	protected:  // Attributes
 		domFloat4 attrValue;
@@ -6714,7 +6714,7 @@ public:
 	typedef daeSmartRef<domClear_color> domClear_colorRef;
 	typedef daeTArray<domClear_colorRef> domClear_color_Array;
 
-	class domClear_color : public daeElement
+	class DLL_EXPORT domClear_color : public daeElement
 	{
 	protected:  // Attributes
 		domFloat4 attrValue;
@@ -6795,7 +6795,7 @@ public:
 	typedef daeSmartRef<domClear_stencil> domClear_stencilRef;
 	typedef daeTArray<domClear_stencilRef> domClear_stencil_Array;
 
-	class domClear_stencil : public daeElement
+	class DLL_EXPORT domClear_stencil : public daeElement
 	{
 	protected:  // Attributes
 		domInt attrValue;
@@ -6871,7 +6871,7 @@ public:
 	typedef daeSmartRef<domClear_depth> domClear_depthRef;
 	typedef daeTArray<domClear_depthRef> domClear_depth_Array;
 
-	class domClear_depth : public daeElement
+	class DLL_EXPORT domClear_depth : public daeElement
 	{
 	protected:  // Attributes
 		domFloat attrValue;
@@ -6947,7 +6947,7 @@ public:
 	typedef daeSmartRef<domColor_mask> domColor_maskRef;
 	typedef daeTArray<domColor_maskRef> domColor_mask_Array;
 
-	class domColor_mask : public daeElement
+	class DLL_EXPORT domColor_mask : public daeElement
 	{
 	protected:  // Attributes
 		domBool4 attrValue;
@@ -7028,7 +7028,7 @@ public:
 	typedef daeSmartRef<domDepth_bounds> domDepth_boundsRef;
 	typedef daeTArray<domDepth_boundsRef> domDepth_bounds_Array;
 
-	class domDepth_bounds : public daeElement
+	class DLL_EXPORT domDepth_bounds : public daeElement
 	{
 	protected:  // Attributes
 		domFloat2 attrValue;
@@ -7109,7 +7109,7 @@ public:
 	typedef daeSmartRef<domDepth_mask> domDepth_maskRef;
 	typedef daeTArray<domDepth_maskRef> domDepth_mask_Array;
 
-	class domDepth_mask : public daeElement
+	class DLL_EXPORT domDepth_mask : public daeElement
 	{
 	protected:  // Attributes
 		domBool attrValue;
@@ -7185,7 +7185,7 @@ public:
 	typedef daeSmartRef<domDepth_range> domDepth_rangeRef;
 	typedef daeTArray<domDepth_rangeRef> domDepth_range_Array;
 
-	class domDepth_range : public daeElement
+	class DLL_EXPORT domDepth_range : public daeElement
 	{
 	protected:  // Attributes
 		domFloat2 attrValue;
@@ -7266,7 +7266,7 @@ public:
 	typedef daeSmartRef<domFog_density> domFog_densityRef;
 	typedef daeTArray<domFog_densityRef> domFog_density_Array;
 
-	class domFog_density : public daeElement
+	class DLL_EXPORT domFog_density : public daeElement
 	{
 	protected:  // Attributes
 		domFloat attrValue;
@@ -7342,7 +7342,7 @@ public:
 	typedef daeSmartRef<domFog_start> domFog_startRef;
 	typedef daeTArray<domFog_startRef> domFog_start_Array;
 
-	class domFog_start : public daeElement
+	class DLL_EXPORT domFog_start : public daeElement
 	{
 	protected:  // Attributes
 		domFloat attrValue;
@@ -7418,7 +7418,7 @@ public:
 	typedef daeSmartRef<domFog_end> domFog_endRef;
 	typedef daeTArray<domFog_endRef> domFog_end_Array;
 
-	class domFog_end : public daeElement
+	class DLL_EXPORT domFog_end : public daeElement
 	{
 	protected:  // Attributes
 		domFloat attrValue;
@@ -7494,7 +7494,7 @@ public:
 	typedef daeSmartRef<domFog_color> domFog_colorRef;
 	typedef daeTArray<domFog_colorRef> domFog_color_Array;
 
-	class domFog_color : public daeElement
+	class DLL_EXPORT domFog_color : public daeElement
 	{
 	protected:  // Attributes
 		domFloat4 attrValue;
@@ -7575,7 +7575,7 @@ public:
 	typedef daeSmartRef<domLight_model_ambient> domLight_model_ambientRef;
 	typedef daeTArray<domLight_model_ambientRef> domLight_model_ambient_Array;
 
-	class domLight_model_ambient : public daeElement
+	class DLL_EXPORT domLight_model_ambient : public daeElement
 	{
 	protected:  // Attributes
 		domFloat4 attrValue;
@@ -7656,7 +7656,7 @@ public:
 	typedef daeSmartRef<domLighting_enable> domLighting_enableRef;
 	typedef daeTArray<domLighting_enableRef> domLighting_enable_Array;
 
-	class domLighting_enable : public daeElement
+	class DLL_EXPORT domLighting_enable : public daeElement
 	{
 	protected:  // Attributes
 		domBool attrValue;
@@ -7732,7 +7732,7 @@ public:
 	typedef daeSmartRef<domLine_stipple> domLine_stippleRef;
 	typedef daeTArray<domLine_stippleRef> domLine_stipple_Array;
 
-	class domLine_stipple : public daeElement
+	class DLL_EXPORT domLine_stipple : public daeElement
 	{
 	protected:  // Attributes
 		domInt2 attrValue;
@@ -7813,7 +7813,7 @@ public:
 	typedef daeSmartRef<domLine_width> domLine_widthRef;
 	typedef daeTArray<domLine_widthRef> domLine_width_Array;
 
-	class domLine_width : public daeElement
+	class DLL_EXPORT domLine_width : public daeElement
 	{
 	protected:  // Attributes
 		domFloat attrValue;
@@ -7889,7 +7889,7 @@ public:
 	typedef daeSmartRef<domMaterial_ambient> domMaterial_ambientRef;
 	typedef daeTArray<domMaterial_ambientRef> domMaterial_ambient_Array;
 
-	class domMaterial_ambient : public daeElement
+	class DLL_EXPORT domMaterial_ambient : public daeElement
 	{
 	protected:  // Attributes
 		domFloat4 attrValue;
@@ -7970,7 +7970,7 @@ public:
 	typedef daeSmartRef<domMaterial_diffuse> domMaterial_diffuseRef;
 	typedef daeTArray<domMaterial_diffuseRef> domMaterial_diffuse_Array;
 
-	class domMaterial_diffuse : public daeElement
+	class DLL_EXPORT domMaterial_diffuse : public daeElement
 	{
 	protected:  // Attributes
 		domFloat4 attrValue;
@@ -8051,7 +8051,7 @@ public:
 	typedef daeSmartRef<domMaterial_emission> domMaterial_emissionRef;
 	typedef daeTArray<domMaterial_emissionRef> domMaterial_emission_Array;
 
-	class domMaterial_emission : public daeElement
+	class DLL_EXPORT domMaterial_emission : public daeElement
 	{
 	protected:  // Attributes
 		domFloat4 attrValue;
@@ -8132,7 +8132,7 @@ public:
 	typedef daeSmartRef<domMaterial_shininess> domMaterial_shininessRef;
 	typedef daeTArray<domMaterial_shininessRef> domMaterial_shininess_Array;
 
-	class domMaterial_shininess : public daeElement
+	class DLL_EXPORT domMaterial_shininess : public daeElement
 	{
 	protected:  // Attributes
 		domFloat attrValue;
@@ -8208,7 +8208,7 @@ public:
 	typedef daeSmartRef<domMaterial_specular> domMaterial_specularRef;
 	typedef daeTArray<domMaterial_specularRef> domMaterial_specular_Array;
 
-	class domMaterial_specular : public daeElement
+	class DLL_EXPORT domMaterial_specular : public daeElement
 	{
 	protected:  // Attributes
 		domFloat4 attrValue;
@@ -8289,7 +8289,7 @@ public:
 	typedef daeSmartRef<domModel_view_matrix> domModel_view_matrixRef;
 	typedef daeTArray<domModel_view_matrixRef> domModel_view_matrix_Array;
 
-	class domModel_view_matrix : public daeElement
+	class DLL_EXPORT domModel_view_matrix : public daeElement
 	{
 	protected:  // Attributes
 		domFloat4x4 attrValue;
@@ -8370,7 +8370,7 @@ public:
 	typedef daeSmartRef<domPoint_distance_attenuation> domPoint_distance_attenuationRef;
 	typedef daeTArray<domPoint_distance_attenuationRef> domPoint_distance_attenuation_Array;
 
-	class domPoint_distance_attenuation : public daeElement
+	class DLL_EXPORT domPoint_distance_attenuation : public daeElement
 	{
 	protected:  // Attributes
 		domFloat3 attrValue;
@@ -8451,7 +8451,7 @@ public:
 	typedef daeSmartRef<domPoint_fade_threshold_size> domPoint_fade_threshold_sizeRef;
 	typedef daeTArray<domPoint_fade_threshold_sizeRef> domPoint_fade_threshold_size_Array;
 
-	class domPoint_fade_threshold_size : public daeElement
+	class DLL_EXPORT domPoint_fade_threshold_size : public daeElement
 	{
 	protected:  // Attributes
 		domFloat attrValue;
@@ -8527,7 +8527,7 @@ public:
 	typedef daeSmartRef<domPoint_size> domPoint_sizeRef;
 	typedef daeTArray<domPoint_sizeRef> domPoint_size_Array;
 
-	class domPoint_size : public daeElement
+	class DLL_EXPORT domPoint_size : public daeElement
 	{
 	protected:  // Attributes
 		domFloat attrValue;
@@ -8603,7 +8603,7 @@ public:
 	typedef daeSmartRef<domPoint_size_min> domPoint_size_minRef;
 	typedef daeTArray<domPoint_size_minRef> domPoint_size_min_Array;
 
-	class domPoint_size_min : public daeElement
+	class DLL_EXPORT domPoint_size_min : public daeElement
 	{
 	protected:  // Attributes
 		domFloat attrValue;
@@ -8679,7 +8679,7 @@ public:
 	typedef daeSmartRef<domPoint_size_max> domPoint_size_maxRef;
 	typedef daeTArray<domPoint_size_maxRef> domPoint_size_max_Array;
 
-	class domPoint_size_max : public daeElement
+	class DLL_EXPORT domPoint_size_max : public daeElement
 	{
 	protected:  // Attributes
 		domFloat attrValue;
@@ -8755,7 +8755,7 @@ public:
 	typedef daeSmartRef<domPolygon_offset> domPolygon_offsetRef;
 	typedef daeTArray<domPolygon_offsetRef> domPolygon_offset_Array;
 
-	class domPolygon_offset : public daeElement
+	class DLL_EXPORT domPolygon_offset : public daeElement
 	{
 	protected:  // Attributes
 		domFloat2 attrValue;
@@ -8836,7 +8836,7 @@ public:
 	typedef daeSmartRef<domProjection_matrix> domProjection_matrixRef;
 	typedef daeTArray<domProjection_matrixRef> domProjection_matrix_Array;
 
-	class domProjection_matrix : public daeElement
+	class DLL_EXPORT domProjection_matrix : public daeElement
 	{
 	protected:  // Attributes
 		domFloat4x4 attrValue;
@@ -8917,7 +8917,7 @@ public:
 	typedef daeSmartRef<domScissor> domScissorRef;
 	typedef daeTArray<domScissorRef> domScissor_Array;
 
-	class domScissor : public daeElement
+	class DLL_EXPORT domScissor : public daeElement
 	{
 	protected:  // Attributes
 		domInt4 attrValue;
@@ -8998,7 +8998,7 @@ public:
 	typedef daeSmartRef<domStencil_mask> domStencil_maskRef;
 	typedef daeTArray<domStencil_maskRef> domStencil_mask_Array;
 
-	class domStencil_mask : public daeElement
+	class DLL_EXPORT domStencil_mask : public daeElement
 	{
 	protected:  // Attributes
 		domInt attrValue;
@@ -9074,7 +9074,7 @@ public:
 	typedef daeSmartRef<domAlpha_test_enable> domAlpha_test_enableRef;
 	typedef daeTArray<domAlpha_test_enableRef> domAlpha_test_enable_Array;
 
-	class domAlpha_test_enable : public daeElement
+	class DLL_EXPORT domAlpha_test_enable : public daeElement
 	{
 	protected:  // Attributes
 		domBool attrValue;
@@ -9150,7 +9150,7 @@ public:
 	typedef daeSmartRef<domAuto_normal_enable> domAuto_normal_enableRef;
 	typedef daeTArray<domAuto_normal_enableRef> domAuto_normal_enable_Array;
 
-	class domAuto_normal_enable : public daeElement
+	class DLL_EXPORT domAuto_normal_enable : public daeElement
 	{
 	protected:  // Attributes
 		domBool attrValue;
@@ -9226,7 +9226,7 @@ public:
 	typedef daeSmartRef<domBlend_enable> domBlend_enableRef;
 	typedef daeTArray<domBlend_enableRef> domBlend_enable_Array;
 
-	class domBlend_enable : public daeElement
+	class DLL_EXPORT domBlend_enable : public daeElement
 	{
 	protected:  // Attributes
 		domBool attrValue;
@@ -9302,7 +9302,7 @@ public:
 	typedef daeSmartRef<domColor_logic_op_enable> domColor_logic_op_enableRef;
 	typedef daeTArray<domColor_logic_op_enableRef> domColor_logic_op_enable_Array;
 
-	class domColor_logic_op_enable : public daeElement
+	class DLL_EXPORT domColor_logic_op_enable : public daeElement
 	{
 	protected:  // Attributes
 		domBool attrValue;
@@ -9378,7 +9378,7 @@ public:
 	typedef daeSmartRef<domColor_material_enable> domColor_material_enableRef;
 	typedef daeTArray<domColor_material_enableRef> domColor_material_enable_Array;
 
-	class domColor_material_enable : public daeElement
+	class DLL_EXPORT domColor_material_enable : public daeElement
 	{
 	protected:  // Attributes
 		domBool attrValue;
@@ -9454,7 +9454,7 @@ public:
 	typedef daeSmartRef<domCull_face_enable> domCull_face_enableRef;
 	typedef daeTArray<domCull_face_enableRef> domCull_face_enable_Array;
 
-	class domCull_face_enable : public daeElement
+	class DLL_EXPORT domCull_face_enable : public daeElement
 	{
 	protected:  // Attributes
 		domBool attrValue;
@@ -9530,7 +9530,7 @@ public:
 	typedef daeSmartRef<domDepth_bounds_enable> domDepth_bounds_enableRef;
 	typedef daeTArray<domDepth_bounds_enableRef> domDepth_bounds_enable_Array;
 
-	class domDepth_bounds_enable : public daeElement
+	class DLL_EXPORT domDepth_bounds_enable : public daeElement
 	{
 	protected:  // Attributes
 		domBool attrValue;
@@ -9606,7 +9606,7 @@ public:
 	typedef daeSmartRef<domDepth_clamp_enable> domDepth_clamp_enableRef;
 	typedef daeTArray<domDepth_clamp_enableRef> domDepth_clamp_enable_Array;
 
-	class domDepth_clamp_enable : public daeElement
+	class DLL_EXPORT domDepth_clamp_enable : public daeElement
 	{
 	protected:  // Attributes
 		domBool attrValue;
@@ -9682,7 +9682,7 @@ public:
 	typedef daeSmartRef<domDepth_test_enable> domDepth_test_enableRef;
 	typedef daeTArray<domDepth_test_enableRef> domDepth_test_enable_Array;
 
-	class domDepth_test_enable : public daeElement
+	class DLL_EXPORT domDepth_test_enable : public daeElement
 	{
 	protected:  // Attributes
 		domBool attrValue;
@@ -9758,7 +9758,7 @@ public:
 	typedef daeSmartRef<domDither_enable> domDither_enableRef;
 	typedef daeTArray<domDither_enableRef> domDither_enable_Array;
 
-	class domDither_enable : public daeElement
+	class DLL_EXPORT domDither_enable : public daeElement
 	{
 	protected:  // Attributes
 		domBool attrValue;
@@ -9834,7 +9834,7 @@ public:
 	typedef daeSmartRef<domFog_enable> domFog_enableRef;
 	typedef daeTArray<domFog_enableRef> domFog_enable_Array;
 
-	class domFog_enable : public daeElement
+	class DLL_EXPORT domFog_enable : public daeElement
 	{
 	protected:  // Attributes
 		domBool attrValue;
@@ -9910,7 +9910,7 @@ public:
 	typedef daeSmartRef<domLight_model_local_viewer_enable> domLight_model_local_viewer_enableRef;
 	typedef daeTArray<domLight_model_local_viewer_enableRef> domLight_model_local_viewer_enable_Array;
 
-	class domLight_model_local_viewer_enable : public daeElement
+	class DLL_EXPORT domLight_model_local_viewer_enable : public daeElement
 	{
 	protected:  // Attributes
 		domBool attrValue;
@@ -9986,7 +9986,7 @@ public:
 	typedef daeSmartRef<domLight_model_two_side_enable> domLight_model_two_side_enableRef;
 	typedef daeTArray<domLight_model_two_side_enableRef> domLight_model_two_side_enable_Array;
 
-	class domLight_model_two_side_enable : public daeElement
+	class DLL_EXPORT domLight_model_two_side_enable : public daeElement
 	{
 	protected:  // Attributes
 		domBool attrValue;
@@ -10062,7 +10062,7 @@ public:
 	typedef daeSmartRef<domLine_smooth_enable> domLine_smooth_enableRef;
 	typedef daeTArray<domLine_smooth_enableRef> domLine_smooth_enable_Array;
 
-	class domLine_smooth_enable : public daeElement
+	class DLL_EXPORT domLine_smooth_enable : public daeElement
 	{
 	protected:  // Attributes
 		domBool attrValue;
@@ -10138,7 +10138,7 @@ public:
 	typedef daeSmartRef<domLine_stipple_enable> domLine_stipple_enableRef;
 	typedef daeTArray<domLine_stipple_enableRef> domLine_stipple_enable_Array;
 
-	class domLine_stipple_enable : public daeElement
+	class DLL_EXPORT domLine_stipple_enable : public daeElement
 	{
 	protected:  // Attributes
 		domBool attrValue;
@@ -10214,7 +10214,7 @@ public:
 	typedef daeSmartRef<domLogic_op_enable> domLogic_op_enableRef;
 	typedef daeTArray<domLogic_op_enableRef> domLogic_op_enable_Array;
 
-	class domLogic_op_enable : public daeElement
+	class DLL_EXPORT domLogic_op_enable : public daeElement
 	{
 	protected:  // Attributes
 		domBool attrValue;
@@ -10290,7 +10290,7 @@ public:
 	typedef daeSmartRef<domMultisample_enable> domMultisample_enableRef;
 	typedef daeTArray<domMultisample_enableRef> domMultisample_enable_Array;
 
-	class domMultisample_enable : public daeElement
+	class DLL_EXPORT domMultisample_enable : public daeElement
 	{
 	protected:  // Attributes
 		domBool attrValue;
@@ -10366,7 +10366,7 @@ public:
 	typedef daeSmartRef<domNormalize_enable> domNormalize_enableRef;
 	typedef daeTArray<domNormalize_enableRef> domNormalize_enable_Array;
 
-	class domNormalize_enable : public daeElement
+	class DLL_EXPORT domNormalize_enable : public daeElement
 	{
 	protected:  // Attributes
 		domBool attrValue;
@@ -10442,7 +10442,7 @@ public:
 	typedef daeSmartRef<domPoint_smooth_enable> domPoint_smooth_enableRef;
 	typedef daeTArray<domPoint_smooth_enableRef> domPoint_smooth_enable_Array;
 
-	class domPoint_smooth_enable : public daeElement
+	class DLL_EXPORT domPoint_smooth_enable : public daeElement
 	{
 	protected:  // Attributes
 		domBool attrValue;
@@ -10518,7 +10518,7 @@ public:
 	typedef daeSmartRef<domPolygon_offset_fill_enable> domPolygon_offset_fill_enableRef;
 	typedef daeTArray<domPolygon_offset_fill_enableRef> domPolygon_offset_fill_enable_Array;
 
-	class domPolygon_offset_fill_enable : public daeElement
+	class DLL_EXPORT domPolygon_offset_fill_enable : public daeElement
 	{
 	protected:  // Attributes
 		domBool attrValue;
@@ -10594,7 +10594,7 @@ public:
 	typedef daeSmartRef<domPolygon_offset_line_enable> domPolygon_offset_line_enableRef;
 	typedef daeTArray<domPolygon_offset_line_enableRef> domPolygon_offset_line_enable_Array;
 
-	class domPolygon_offset_line_enable : public daeElement
+	class DLL_EXPORT domPolygon_offset_line_enable : public daeElement
 	{
 	protected:  // Attributes
 		domBool attrValue;
@@ -10670,7 +10670,7 @@ public:
 	typedef daeSmartRef<domPolygon_offset_point_enable> domPolygon_offset_point_enableRef;
 	typedef daeTArray<domPolygon_offset_point_enableRef> domPolygon_offset_point_enable_Array;
 
-	class domPolygon_offset_point_enable : public daeElement
+	class DLL_EXPORT domPolygon_offset_point_enable : public daeElement
 	{
 	protected:  // Attributes
 		domBool attrValue;
@@ -10746,7 +10746,7 @@ public:
 	typedef daeSmartRef<domPolygon_smooth_enable> domPolygon_smooth_enableRef;
 	typedef daeTArray<domPolygon_smooth_enableRef> domPolygon_smooth_enable_Array;
 
-	class domPolygon_smooth_enable : public daeElement
+	class DLL_EXPORT domPolygon_smooth_enable : public daeElement
 	{
 	protected:  // Attributes
 		domBool attrValue;
@@ -10822,7 +10822,7 @@ public:
 	typedef daeSmartRef<domPolygon_stipple_enable> domPolygon_stipple_enableRef;
 	typedef daeTArray<domPolygon_stipple_enableRef> domPolygon_stipple_enable_Array;
 
-	class domPolygon_stipple_enable : public daeElement
+	class DLL_EXPORT domPolygon_stipple_enable : public daeElement
 	{
 	protected:  // Attributes
 		domBool attrValue;
@@ -10898,7 +10898,7 @@ public:
 	typedef daeSmartRef<domRescale_normal_enable> domRescale_normal_enableRef;
 	typedef daeTArray<domRescale_normal_enableRef> domRescale_normal_enable_Array;
 
-	class domRescale_normal_enable : public daeElement
+	class DLL_EXPORT domRescale_normal_enable : public daeElement
 	{
 	protected:  // Attributes
 		domBool attrValue;
@@ -10974,7 +10974,7 @@ public:
 	typedef daeSmartRef<domSample_alpha_to_coverage_enable> domSample_alpha_to_coverage_enableRef;
 	typedef daeTArray<domSample_alpha_to_coverage_enableRef> domSample_alpha_to_coverage_enable_Array;
 
-	class domSample_alpha_to_coverage_enable : public daeElement
+	class DLL_EXPORT domSample_alpha_to_coverage_enable : public daeElement
 	{
 	protected:  // Attributes
 		domBool attrValue;
@@ -11050,7 +11050,7 @@ public:
 	typedef daeSmartRef<domSample_alpha_to_one_enable> domSample_alpha_to_one_enableRef;
 	typedef daeTArray<domSample_alpha_to_one_enableRef> domSample_alpha_to_one_enable_Array;
 
-	class domSample_alpha_to_one_enable : public daeElement
+	class DLL_EXPORT domSample_alpha_to_one_enable : public daeElement
 	{
 	protected:  // Attributes
 		domBool attrValue;
@@ -11126,7 +11126,7 @@ public:
 	typedef daeSmartRef<domSample_coverage_enable> domSample_coverage_enableRef;
 	typedef daeTArray<domSample_coverage_enableRef> domSample_coverage_enable_Array;
 
-	class domSample_coverage_enable : public daeElement
+	class DLL_EXPORT domSample_coverage_enable : public daeElement
 	{
 	protected:  // Attributes
 		domBool attrValue;
@@ -11202,7 +11202,7 @@ public:
 	typedef daeSmartRef<domScissor_test_enable> domScissor_test_enableRef;
 	typedef daeTArray<domScissor_test_enableRef> domScissor_test_enable_Array;
 
-	class domScissor_test_enable : public daeElement
+	class DLL_EXPORT domScissor_test_enable : public daeElement
 	{
 	protected:  // Attributes
 		domBool attrValue;
@@ -11278,7 +11278,7 @@ public:
 	typedef daeSmartRef<domStencil_test_enable> domStencil_test_enableRef;
 	typedef daeTArray<domStencil_test_enableRef> domStencil_test_enable_Array;
 
-	class domStencil_test_enable : public daeElement
+	class DLL_EXPORT domStencil_test_enable : public daeElement
 	{
 	protected:  // Attributes
 		domBool attrValue;

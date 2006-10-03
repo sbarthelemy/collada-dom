@@ -14,14 +14,14 @@
 #define __domTargetableFloat3_h__
 
 #include <dom/domTypes.h>
-#include <dom/domElements.h>
+//#include <dom/domElements.h> //Commenting out this line so we don't polute dae library with a whole bunch of unneeded symbols
 
 
 /**
  * The TargetableFloat3 type is used to represent elements which contain a
  * float3 value which can  be targeted for animation.
  */
-class domTargetableFloat3_complexType 
+class DLL_EXPORT domTargetableFloat3_complexType 
 {
 protected:  // Attribute
 /**
@@ -87,7 +87,7 @@ protected:
 /**
  * An element of type domTargetableFloat3_complexType.
  */
-class domTargetableFloat3 : public daeElement, public domTargetableFloat3_complexType
+class DLL_EXPORT domTargetableFloat3 : public daeElement, public domTargetableFloat3_complexType
 {
 
 public:	//Accessors and Mutators

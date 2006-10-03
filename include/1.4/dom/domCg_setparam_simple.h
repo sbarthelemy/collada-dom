@@ -19,7 +19,7 @@
 #include <dom/domCg_param_type.h>
 #include <dom/domFx_annotate_common.h>
 
-class domCg_setparam_simple_complexType 
+class DLL_EXPORT domCg_setparam_simple_complexType 
 {
 protected:  // Attribute
 	domCg_identifier attrRef;
@@ -77,7 +77,7 @@ protected:
 /**
  * An element of type domCg_setparam_simple_complexType.
  */
-class domCg_setparam_simple : public daeElement, public domCg_setparam_simple_complexType
+class DLL_EXPORT domCg_setparam_simple : public daeElement, public domCg_setparam_simple_complexType
 {
 
 public:	//Accessors and Mutators

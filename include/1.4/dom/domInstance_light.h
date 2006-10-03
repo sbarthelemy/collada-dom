@@ -22,7 +22,7 @@
  * The instance_light element declares the instantiation of a COLLADA light
  * resource.
  */
-class domInstance_light : public daeElement, public domInstanceWithExtra_complexType
+class DLL_EXPORT domInstance_light : public daeElement, public domInstanceWithExtra_complexType
 {
 
 protected:

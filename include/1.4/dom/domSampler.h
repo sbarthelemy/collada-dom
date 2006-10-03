@@ -23,7 +23,7 @@
  * Animation function curves  are represented by 1-D sampler elements in COLLADA.
  * The sampler defines sampling points and how to  interpolate between them.
  */
-class domSampler : public daeElement
+class DLL_EXPORT domSampler : public daeElement
 {
 protected:  // Attribute
 /**

@@ -26,7 +26,7 @@
  * COLLADA schema where an xs:any element appears. The content and type information for a domAny
  * object is generated at runtime.
  */
-class domAny : public daeElement
+class DLL_EXPORT domAny : public daeElement
 {
 protected:  // Attribute
 	

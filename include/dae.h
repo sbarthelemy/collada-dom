@@ -35,7 +35,7 @@ class domCOLLADA;
  * and initializes default versions of the COLLADA backend, the COLLADA
  * runtime database, and registered integration libraries. 
  */
-class DAE : public daeInterface
+class DLL_EXPORT DAE : public daeInterface
 {
 public:	
 	/** 
@@ -48,14 +48,10 @@ public:
 	virtual ~DAE();
 
 	/**
-	 * Before exiting an application, call @c cleanup()
-	 * to release all static meta information associated with the
-	 * COLLADA api.
-	 * The @c daeMetaElement::releaseMetas() and
-	 * @c daeAtomicType::uninitializeKnownTypes() functions are called
-	 * if there are no remaining instances of a @c DAE.
-	 * @note This function is useless when called by the application in a non-static
-	 * context. It should be called after you delete your DAE object.
+	 * Releases all static meta information associated with the COLLADA DOM.
+	 * Ff there are no remaining instances of a @c DAE cleanup happens automatically.
+	 * @note This function is useless if called by the application in a non-static
+	 * context.
 	 */
 	static void cleanup();
 	
@@ -102,7 +98,7 @@ private:
 	bool defaultDatabase;
 	bool defaultPlugin;
 	daeIntegrationLibraryFunc registerFunc; 
-	daeMetaElement *topMeta;
+	static daeMetaElement *topMeta;
 };
 
 #endif // __DAE_INTERFACE__

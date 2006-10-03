@@ -20,7 +20,7 @@
 #include <dom/domFx_annotate_common.h>
 #include <dom/domGlsl_newarray_type.h>
 
-class domGlsl_newparam_complexType 
+class DLL_EXPORT domGlsl_newparam_complexType 
 {
 public:
 	class domSemantic;
@@ -28,7 +28,7 @@ public:
 	typedef daeSmartRef<domSemantic> domSemanticRef;
 	typedef daeTArray<domSemanticRef> domSemantic_Array;
 
-	class domSemantic : public daeElement
+	class DLL_EXPORT domSemantic : public daeElement
 	{
 
 	protected:  // Value
@@ -93,7 +93,7 @@ public:
 	typedef daeSmartRef<domModifier> domModifierRef;
 	typedef daeTArray<domModifierRef> domModifier_Array;
 
-	class domModifier : public daeElement
+	class DLL_EXPORT domModifier : public daeElement
 	{
 
 	protected:  // Value
@@ -248,7 +248,7 @@ protected:
 /**
  * An element of type domGlsl_newparam_complexType.
  */
-class domGlsl_newparam : public daeElement, public domGlsl_newparam_complexType
+class DLL_EXPORT domGlsl_newparam : public daeElement, public domGlsl_newparam_complexType
 {
 
 public:	//Accessors and Mutators

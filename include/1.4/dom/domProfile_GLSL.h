@@ -37,7 +37,7 @@
 /**
  * Opens a block of GLSL platform-specific data types and technique declarations.
  */
-class domProfile_GLSL : public domFx_profile_abstract
+class DLL_EXPORT domProfile_GLSL : public domFx_profile_abstract
 {
 public:
 	class domTechnique;
@@ -49,7 +49,7 @@ public:
  * Holds a description of the textures, samplers, shaders, parameters, and
  * passes necessary for rendering this effect using one method.
  */
-	class domTechnique : public daeElement
+	class DLL_EXPORT domTechnique : public daeElement
 	{
 	public:
 		class domPass;
@@ -61,7 +61,7 @@ public:
  * A static declaration of all the render states, shaders, and settings for
  * one rendering pipeline.
  */
-		class domPass : public daeElement
+		class DLL_EXPORT domPass : public daeElement
 		{
 		public:
 			class domDraw;
@@ -69,7 +69,7 @@ public:
 			typedef daeSmartRef<domDraw> domDrawRef;
 			typedef daeTArray<domDrawRef> domDraw_Array;
 
-			class domDraw : public daeElement
+			class DLL_EXPORT domDraw : public daeElement
 			{
 
 			protected:  // Value
@@ -138,7 +138,7 @@ public:
  * Declare and prepare a shader for execution in the rendering pipeline of
  * a pass.
  */
-			class domShader : public daeElement
+			class DLL_EXPORT domShader : public daeElement
 			{
 			public:
 				class domCompiler_target;
@@ -150,7 +150,7 @@ public:
  * A string declaring which profile or platform the compiler is targeting
  * this shader for.
  */
-				class domCompiler_target : public daeElement
+				class DLL_EXPORT domCompiler_target : public daeElement
 				{
 
 				protected:  // Value
@@ -218,7 +218,7 @@ public:
 /**
  * A string containing command-line operations for the shader compiler.
  */
-				class domCompiler_options : public daeElement
+				class DLL_EXPORT domCompiler_options : public daeElement
 				{
 
 				protected:  // Value
@@ -286,7 +286,7 @@ public:
 /**
  * The entry symbol for the shader function.
  */
-				class domName : public daeElement
+				class DLL_EXPORT domName : public daeElement
 				{
 				protected:  // Attribute
 					xsNCName attrSource;
@@ -368,7 +368,7 @@ public:
 /**
  * Binds values to uniform inputs of a shader.
  */
-				class domBind : public daeElement
+				class DLL_EXPORT domBind : public daeElement
 				{
 				public:
 					class domParam;
@@ -376,7 +376,7 @@ public:
 					typedef daeSmartRef<domParam> domParamRef;
 					typedef daeTArray<domParamRef> domParam_Array;
 
-					class domParam : public daeElement
+					class DLL_EXPORT domParam : public daeElement
 					{
 					protected:  // Attribute
 						xsString attrRef;

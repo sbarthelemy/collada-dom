@@ -23,7 +23,7 @@
  * The extra element declares additional information regarding its parent
  * element.
  */
-class domExtra : public daeElement
+class DLL_EXPORT domExtra : public daeElement
 {
 protected:  // Attributes
 /**

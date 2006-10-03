@@ -23,7 +23,7 @@
 daeElementRef
 domTargetableFloat3::create(daeInt bytes)
 {
-	domTargetableFloat3Ref ref = new(bytes) domTargetableFloat3;
+	daeSmartRef<domTargetableFloat3> ref = new(bytes) domTargetableFloat3;
 	return ref;
 }
 
@@ -35,7 +35,7 @@ domTargetableFloat3::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "TargetableFloat3" );
-	_Meta->registerConstructor(domTargetableFloat3::create);
+	_Meta->registerClass(domTargetableFloat3::create, &_Meta);
 
 	//	Add attribute: _value
  	{
@@ -64,7 +64,6 @@ domTargetableFloat3::registerElement()
 
 	return _Meta;
 }
-
 
 daeMetaElement * domTargetableFloat3::_Meta = NULL;
 

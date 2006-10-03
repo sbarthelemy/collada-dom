@@ -21,7 +21,7 @@
  * The int_array element declares the storage for a homogenous array of integer
  * values.
  */
-class domInt_array : public daeElement
+class DLL_EXPORT domInt_array : public daeElement
 {
 protected:  // Attributes
 /**

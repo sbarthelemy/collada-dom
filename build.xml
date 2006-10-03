@@ -1,0 +1,34 @@
+<project name="COLLADA_DOM" default="All" basedir="./">
+    <target name="All" depends="Win32_debug_rebuild,Win32_release_rebuild" >
+	</target>
+    <target name="Win32_debug">
+        <exec executable="make" failonerror="true">
+			<arg line="COLLADA_DOM_PLATFORM=WIN32 BUILD=debug"/>
+        </exec>
+	</target>
+    <target name="Win32_release">
+        <exec executable="make" failonerror="true">
+			<arg line="COLLADA_DOM_PLATFORM=WIN32 BUILD=release"/>
+        </exec>
+	</target>
+    <target name="Win32_debug_rebuild" depends="Win32_debug_clean" >
+        <exec executable="make" failonerror="true">
+			<arg line="COLLADA_DOM_PLATFORM=WIN32 BUILD=debug"/>
+        </exec>
+	</target>
+    <target name="Win32_release_rebuild" depends="Win32_release_clean" >
+        <exec executable="make" failonerror="true">
+			<arg line="COLLADA_DOM_PLATFORM=WIN32 BUILD=release"/>
+        </exec>
+	</target>
+    <target name="Win32_debug_clean">
+        <exec executable="make" failonerror="true">
+			<arg line="COLLADA_DOM_PLATFORM=WIN32 BUILD=debug clean"/>
+        </exec>
+	</target>
+    <target name="Win32_release_clean">
+        <exec executable="make" failonerror="true">
+			<arg line="COLLADA_DOM_PLATFORM=WIN32 BUILD=release clean"/>
+        </exec>
+	</target>
+</project>

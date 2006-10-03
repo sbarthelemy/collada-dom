@@ -21,7 +21,7 @@
  * The InputLocal type is used to represent inputs that can only reference
  * resources declared in the same document.
  */
-class domInputLocal_complexType 
+class DLL_EXPORT domInputLocal_complexType 
 {
 protected:  // Attributes
 /**
@@ -86,7 +86,7 @@ protected:
 /**
  * An element of type domInputLocal_complexType.
  */
-class domInputLocal : public daeElement, public domInputLocal_complexType
+class DLL_EXPORT domInputLocal : public daeElement, public domInputLocal_complexType
 {
 
 public:	//Accessors and Mutators

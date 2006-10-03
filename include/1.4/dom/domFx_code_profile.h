@@ -21,7 +21,7 @@
  * The fx_code_profile type allows you to specify an inline block of source
  * code.
  */
-class domFx_code_profile_complexType 
+class DLL_EXPORT domFx_code_profile_complexType 
 {
 protected:  // Attribute
 /**
@@ -82,7 +82,7 @@ protected:
 /**
  * An element of type domFx_code_profile_complexType.
  */
-class domFx_code_profile : public daeElement, public domFx_code_profile_complexType
+class DLL_EXPORT domFx_code_profile : public daeElement, public domFx_code_profile_complexType
 {
 
 public:	//Accessors and Mutators

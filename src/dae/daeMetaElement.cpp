@@ -18,8 +18,6 @@
 #include <dae/daeMetaCMPolicy.h>
 #include <dae/daeMetaElementAttribute.h>
 
-daeMetaElementRefArray daeMetaElement::_metas;
-
 daeElementRef
 daeMetaElement::create() 
 {
@@ -110,7 +108,7 @@ daeMetaElement::daeMetaElement()
 	_isAbstract = false;
 	_allowsAny = false;
 	_innerClass = false;
-	_metas.append(this);
+	_metas().append(this);
 
 	_contentModel = NULL;
 }
@@ -253,7 +251,13 @@ daeMetaElement::getMetaAttribute(daeString s)
 
 void daeMetaElement::releaseMetas()
 {
-	_metas.clear();
+	_metas().clear();
+	size_t count = _classMetaPointers().getCount();
+	for ( size_t i = 0; i < count; i++ )
+	{
+		*(_classMetaPointers()[i]) = NULL;
+	}
+	_classMetaPointers().clear();
 }
 
 daeBool daeMetaElement::place(daeElement *parent, daeElement *child, daeUInt *ordinal )
@@ -277,7 +281,8 @@ daeBool daeMetaElement::place(daeElement *parent, daeElement *child, daeUInt *or
 			daeUIntArray* contentsOrder =
 				(daeUIntArray*)_metaContentsOrder->getWritableMemory(parent);
 			daeBool needsAppend = true;
-			for ( size_t x = 0; x < contentsOrder->getCount(); x++ ) {
+			size_t cnt = contentsOrder->getCount();
+			for ( size_t x = 0; x < cnt; x++ ) {
 				if ( contentsOrder->get(x) > ord ) {
 					contents->insertAt( x, retVal );
 					contentsOrder->insertAt( x, ord );
@@ -483,3 +488,16 @@ void daeMetaElement::getChildren( daeElement* parent, daeElementRefArray &array 
 		_contentModel->getChildren( parent, array );
 	}
 }
+
+daeMetaElementRefArray &daeMetaElement::_metas()
+{
+	static daeMetaElementRefArray *mera = new daeMetaElementRefArray();
+	return *mera;
+}
+
+daeTArray< daeMetaElement** > &daeMetaElement::_classMetaPointers()
+{
+	static daeTArray< daeMetaElement** > *mes = new daeTArray< daeMetaElement** >();
+	return *mes;
+}
+

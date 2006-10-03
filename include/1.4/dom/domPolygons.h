@@ -26,7 +26,7 @@
  * polygons described can contain  arbitrary numbers of vertices. These polygons
  * may be self intersecting and may also contain holes.
  */
-class domPolygons : public daeElement
+class DLL_EXPORT domPolygons : public daeElement
 {
 public:
 	class domPh;
@@ -37,7 +37,7 @@ public:
 /**
  * The ph element descripes a polygon with holes.
  */
-	class domPh : public daeElement
+	class DLL_EXPORT domPh : public daeElement
 	{
 	public:
 		class domH;
@@ -49,7 +49,7 @@ public:
  * The h element represents a hole in the polygon specified. There must be
  * at least one h element.
  */
-		class domH : public daeElement
+		class DLL_EXPORT domH : public daeElement
 		{
 
 		protected:  // Value

@@ -27,7 +27,7 @@
  * Each line segment within the line-strip is formed from the  current vertex
  * and the preceding vertex.
  */
-class domLinestrips : public daeElement
+class DLL_EXPORT domLinestrips : public daeElement
 {
 protected:  // Attributes
 /**

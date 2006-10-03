@@ -21,7 +21,7 @@
  * The InputLocalOffset type is used to represent indexed inputs that can
  * only reference resources declared in the same document.
  */
-class domInputLocalOffset_complexType 
+class DLL_EXPORT domInputLocalOffset_complexType 
 {
 protected:  // Attributes
 /**
@@ -120,7 +120,7 @@ protected:
 /**
  * An element of type domInputLocalOffset_complexType.
  */
-class domInputLocalOffset : public daeElement, public domInputLocalOffset_complexType
+class DLL_EXPORT domInputLocalOffset : public daeElement, public domInputLocalOffset_complexType
 {
 
 public:	//Accessors and Mutators

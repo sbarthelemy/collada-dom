@@ -17,7 +17,7 @@
 #include <dom/domElements.h>
 
 
-class domCommon_float_or_param_type_complexType 
+class DLL_EXPORT domCommon_float_or_param_type_complexType 
 {
 public:
 	class domFloat;
@@ -25,7 +25,7 @@ public:
 	typedef daeSmartRef<domFloat> domFloatRef;
 	typedef daeTArray<domFloatRef> domFloat_Array;
 
-	class domFloat : public daeElement
+	class DLL_EXPORT domFloat : public daeElement
 	{
 	protected:  // Attribute
 		xsNCName attrSid;
@@ -104,7 +104,7 @@ public:
 	typedef daeSmartRef<domParam> domParamRef;
 	typedef daeTArray<domParamRef> domParam_Array;
 
-	class domParam : public daeElement
+	class DLL_EXPORT domParam : public daeElement
 	{
 	protected:  // Attribute
 		xsNCName attrRef;
@@ -221,7 +221,7 @@ protected:
 /**
  * An element of type domCommon_float_or_param_type_complexType.
  */
-class domCommon_float_or_param_type : public daeElement, public domCommon_float_or_param_type_complexType
+class DLL_EXPORT domCommon_float_or_param_type : public daeElement, public domCommon_float_or_param_type_complexType
 {
 protected:
 	/**

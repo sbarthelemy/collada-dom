@@ -17,7 +17,7 @@
 #include <dom/domElements.h>
 
 
-class domFx_clearstencil_common_complexType 
+class DLL_EXPORT domFx_clearstencil_common_complexType 
 {
 protected:  // Attribute
 	xsNonNegativeInteger attrIndex;
@@ -73,7 +73,7 @@ protected:
 /**
  * An element of type domFx_clearstencil_common_complexType.
  */
-class domFx_clearstencil_common : public daeElement, public domFx_clearstencil_common_complexType
+class DLL_EXPORT domFx_clearstencil_common : public daeElement, public domFx_clearstencil_common_complexType
 {
 
 public:	//Accessors and Mutators

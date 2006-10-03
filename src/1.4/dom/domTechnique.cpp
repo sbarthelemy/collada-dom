@@ -36,14 +36,12 @@ domTechnique::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "technique" );
-	_Meta->registerConstructor(domTechnique::create);
+	_Meta->registerClass(domTechnique::create, &_Meta);
 
 	daeMetaCMPolicy *cm = NULL;
 	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
 
 	cm = new daeMetaAny( _Meta, cm, 0, 0, -1 );
-    cm->getParent()->appendChild( cm ); // sthomas
-    cm = cm->getParent();
 
 	cm->setMaxOrdinal( 0 );
 	_Meta->setCMRoot( cm );	

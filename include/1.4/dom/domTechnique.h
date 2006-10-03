@@ -26,7 +26,7 @@
  * can support. Techniques contain application data and programs, making them
  * assets that can be managed as a unit.
  */
-class domTechnique : public daeElement
+class DLL_EXPORT domTechnique : public daeElement
 {
 protected:  // Attribute
 	/**

@@ -20,7 +20,7 @@
 #include <dom/domFx_annotate_common.h>
 #include <dom/domGlsl_setarray_type.h>
 
-class domGlsl_setparam_complexType 
+class DLL_EXPORT domGlsl_setparam_complexType 
 {
 protected:  // Attributes
 	domGlsl_identifier attrRef;
@@ -116,7 +116,7 @@ protected:
 /**
  * An element of type domGlsl_setparam_complexType.
  */
-class domGlsl_setparam : public daeElement, public domGlsl_setparam_complexType
+class DLL_EXPORT domGlsl_setparam : public daeElement, public domGlsl_setparam_complexType
 {
 
 public:	//Accessors and Mutators

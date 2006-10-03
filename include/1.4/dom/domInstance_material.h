@@ -22,7 +22,7 @@
  * The instance_material element declares the instantiation of a COLLADA material
  * resource.
  */
-class domInstance_material : public daeElement
+class DLL_EXPORT domInstance_material : public daeElement
 {
 public:
 	class domBind;
@@ -33,7 +33,7 @@ public:
 /**
  * The bind element binds values to effect parameters upon instantiation.
  */
-	class domBind : public daeElement
+	class DLL_EXPORT domBind : public daeElement
 	{
 	protected:  // Attributes
 /**
@@ -121,7 +121,7 @@ public:
  * The bind_vertex_input element binds vertex inputs to effect parameters
  * upon instantiation.
  */
-	class domBind_vertex_input : public daeElement
+	class DLL_EXPORT domBind_vertex_input : public daeElement
 	{
 	protected:  // Attributes
 /**

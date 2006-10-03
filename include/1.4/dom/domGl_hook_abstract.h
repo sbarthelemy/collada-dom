@@ -17,7 +17,7 @@
 #include <dom/domElements.h>
 
 
-class domGl_hook_abstract : public daeElement
+class DLL_EXPORT domGl_hook_abstract : public daeElement
 {
 
 protected:

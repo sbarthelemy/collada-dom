@@ -21,7 +21,7 @@
  * The InputGlobal type is used to represent inputs that can reference external
  * resources.
  */
-class domInputGlobal_complexType 
+class DLL_EXPORT domInputGlobal_complexType 
 {
 protected:  // Attributes
 /**
@@ -86,7 +86,7 @@ protected:
 /**
  * An element of type domInputGlobal_complexType.
  */
-class domInputGlobal : public daeElement, public domInputGlobal_complexType
+class DLL_EXPORT domInputGlobal : public daeElement, public domInputGlobal_complexType
 {
 
 public:	//Accessors and Mutators

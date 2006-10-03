@@ -21,7 +21,7 @@
 /**
  * A two-dimensional texture sampler for the GLSL profile.
  */
-class domGl_samplerRECT_complexType : public domFx_samplerRECT_common_complexType
+class DLL_EXPORT domGl_samplerRECT_complexType : public domFx_samplerRECT_common_complexType
 {
 
 protected:
@@ -46,7 +46,7 @@ protected:
 /**
  * An element of type domGl_samplerRECT_complexType.
  */
-class domGl_samplerRECT : public daeElement, public domGl_samplerRECT_complexType
+class DLL_EXPORT domGl_samplerRECT : public daeElement, public domGl_samplerRECT_complexType
 {
 protected:
 	/**

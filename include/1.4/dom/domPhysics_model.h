@@ -26,7 +26,7 @@
  * This element allows for building complex combinations of rigid-bodies and
  * constraints that  may be instantiated multiple times.
  */
-class domPhysics_model : public daeElement
+class DLL_EXPORT domPhysics_model : public daeElement
 {
 protected:  // Attributes
 /**

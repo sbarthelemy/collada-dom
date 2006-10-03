@@ -23,7 +23,7 @@
  * The instance_controller element declares the instantiation of a COLLADA
  * controller resource.
  */
-class domInstance_controller : public daeElement
+class DLL_EXPORT domInstance_controller : public daeElement
 {
 public:
 	class domSkeleton;
@@ -36,7 +36,7 @@ public:
  * start to search for  the joint nodes it needs.  This element is meaningless
  * for morph controllers.
  */
-	class domSkeleton : public daeElement
+	class DLL_EXPORT domSkeleton : public daeElement
 	{
 
 	protected:  // Value

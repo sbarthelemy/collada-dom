@@ -25,7 +25,7 @@
  * The skin element contains vertex and primitive information sufficient to
  * describe blend-weight skinning.
  */
-class domSkin : public daeElement
+class DLL_EXPORT domSkin : public daeElement
 {
 public:
 	class domBind_shape_matrix;
@@ -39,7 +39,7 @@ public:
  * identity matrix may be used as the bind_shape_matrix. The bind_shape_matrix
  * element may occur zero or one times.
  */
-	class domBind_shape_matrix : public daeElement
+	class DLL_EXPORT domBind_shape_matrix : public daeElement
 	{
 
 	protected:  // Value
@@ -114,7 +114,7 @@ public:
  * data.   In COLLADA, this is specified by the inverse bind matrix of each
  * joint (influence) in the skeleton.
  */
-	class domJoints : public daeElement
+	class DLL_EXPORT domJoints : public daeElement
 	{
 
 	protected:  // Elements
@@ -197,7 +197,7 @@ public:
  * The vertex_weights element associates a set of joint-weight pairs with
  * each vertex in the base mesh.
  */
-	class domVertex_weights : public daeElement
+	class DLL_EXPORT domVertex_weights : public daeElement
 	{
 	public:
 		class domVcount;
@@ -209,7 +209,7 @@ public:
  * The vcount element contains a list of integers describing the number of
  * influences for each vertex. The vcount element may occur once.
  */
-		class domVcount : public daeElement
+		class DLL_EXPORT domVcount : public daeElement
 		{
 
 		protected:  // Value
@@ -285,7 +285,7 @@ public:
  * bind shape.  Weights should be normalized before use. The v element must
  * occur zero or one times.
  */
-		class domV : public daeElement
+		class DLL_EXPORT domV : public daeElement
 		{
 
 		protected:  // Value

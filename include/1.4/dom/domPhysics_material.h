@@ -26,7 +26,7 @@
  * a technique/profile with  parameters. The COMMON profile defines the built-in
  * names, such as static_friction.
  */
-class domPhysics_material : public daeElement
+class DLL_EXPORT domPhysics_material : public daeElement
 {
 public:
 	class domTechnique_common;
@@ -38,7 +38,7 @@ public:
  * The technique_common element specifies the physics_material information
  * for the common profile  which all COLLADA implementations need to support.
  */
-	class domTechnique_common : public daeElement
+	class DLL_EXPORT domTechnique_common : public daeElement
 	{
 
 	protected:  // Elements

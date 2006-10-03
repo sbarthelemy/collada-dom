@@ -23,7 +23,7 @@
 /**
  * Materials describe the visual appearance of a geometric object.
  */
-class domMaterial : public daeElement
+class DLL_EXPORT domMaterial : public daeElement
 {
 protected:  // Attributes
 /**

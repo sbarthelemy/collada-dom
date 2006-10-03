@@ -39,7 +39,7 @@
  * etc.).  Rigid-bodies, constraints etc. are  encapsulated in physics_model
  * elements to allow for instantiating complex models.
  */
-class domRigid_body : public daeElement
+class DLL_EXPORT domRigid_body : public daeElement
 {
 public:
 	class domTechnique_common;
@@ -51,7 +51,7 @@ public:
  * The technique_common element specifies the rigid_body information for the
  * common profile which all  COLLADA implementations need to support.
  */
-	class domTechnique_common : public daeElement
+	class DLL_EXPORT domTechnique_common : public daeElement
 	{
 	public:
 		class domDynamic;
@@ -62,7 +62,7 @@ public:
 /**
  * If false, the rigid_body is not moveable
  */
-		class domDynamic : public daeElement
+		class DLL_EXPORT domDynamic : public daeElement
 		{
 		protected:  // Attribute
 /**
@@ -152,7 +152,7 @@ public:
  * of the inertia tensor (products of inertia) all  0 and allows us to just
  * store the diagonal elements (moments of inertia).
  */
-		class domMass_frame : public daeElement
+		class DLL_EXPORT domMass_frame : public daeElement
 		{
 
 		protected:  // Elements
@@ -247,7 +247,7 @@ public:
 /**
  * This element allows for describing components of a rigid_body.
  */
-		class domShape : public daeElement
+		class DLL_EXPORT domShape : public daeElement
 		{
 		public:
 			class domHollow;
@@ -258,7 +258,7 @@ public:
 /**
  * If true, the mass is distributed along the surface of the shape
  */
-			class domHollow : public daeElement
+			class DLL_EXPORT domHollow : public daeElement
 			{
 			protected:  // Attribute
 /**

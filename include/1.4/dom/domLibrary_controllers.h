@@ -23,7 +23,7 @@
 /**
  * The library_controllers element declares a module of controller elements.
  */
-class domLibrary_controllers : public daeElement
+class DLL_EXPORT domLibrary_controllers : public daeElement
 {
 protected:  // Attributes
 /**

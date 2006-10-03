@@ -36,7 +36,7 @@
 /**
  * This element allows instancing a rigid_body within an instance_physics_model.
  */
-class domInstance_rigid_body : public daeElement
+class DLL_EXPORT domInstance_rigid_body : public daeElement
 {
 public:
 	class domTechnique_common;
@@ -48,7 +48,7 @@ public:
  * The technique_common element specifies the instance_rigid_body information
  * for the common  profile which all COLLADA implementations need to support.
  */
-	class domTechnique_common : public daeElement
+	class DLL_EXPORT domTechnique_common : public daeElement
 	{
 	public:
 		class domAngular_velocity;
@@ -60,7 +60,7 @@ public:
  * Specifies the initial angular velocity of the rigid_body instance in degrees
  * per second  around each axis, in the form of an X-Y-Z Euler rotation.
  */
-		class domAngular_velocity : public daeElement
+		class DLL_EXPORT domAngular_velocity : public daeElement
 		{
 
 		protected:  // Value
@@ -133,7 +133,7 @@ public:
 /**
  * Specifies the initial linear velocity of the rigid_body instance.
  */
-		class domVelocity : public daeElement
+		class DLL_EXPORT domVelocity : public daeElement
 		{
 
 		protected:  // Value
@@ -203,7 +203,7 @@ public:
 		typedef daeSmartRef<domDynamic> domDynamicRef;
 		typedef daeTArray<domDynamicRef> domDynamic_Array;
 
-		class domDynamic : public daeElement
+		class DLL_EXPORT domDynamic : public daeElement
 		{
 		protected:  // Attribute
 /**
@@ -287,7 +287,7 @@ public:
 		typedef daeSmartRef<domMass_frame> domMass_frameRef;
 		typedef daeTArray<domMass_frameRef> domMass_frame_Array;
 
-		class domMass_frame : public daeElement
+		class DLL_EXPORT domMass_frame : public daeElement
 		{
 
 		protected:  // Elements
@@ -379,7 +379,7 @@ public:
 		typedef daeSmartRef<domShape> domShapeRef;
 		typedef daeTArray<domShapeRef> domShape_Array;
 
-		class domShape : public daeElement
+		class DLL_EXPORT domShape : public daeElement
 		{
 		public:
 			class domHollow;
@@ -387,7 +387,7 @@ public:
 			typedef daeSmartRef<domHollow> domHollowRef;
 			typedef daeTArray<domHollowRef> domHollow_Array;
 
-			class domHollow : public daeElement
+			class DLL_EXPORT domHollow : public daeElement
 			{
 			protected:  // Attribute
 /**

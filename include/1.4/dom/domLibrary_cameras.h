@@ -23,7 +23,7 @@
 /**
  * The library_cameras element declares a module of camera elements.
  */
-class domLibrary_cameras : public daeElement
+class DLL_EXPORT domLibrary_cameras : public daeElement
 {
 protected:  // Attributes
 /**

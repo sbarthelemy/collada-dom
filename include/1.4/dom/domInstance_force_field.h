@@ -22,7 +22,7 @@
  * The instance_force_field element declares the instantiation of a COLLADA
  * force_field resource.
  */
-class domInstance_force_field : public daeElement, public domInstanceWithExtra_complexType
+class DLL_EXPORT domInstance_force_field : public daeElement, public domInstanceWithExtra_complexType
 {
 
 protected:

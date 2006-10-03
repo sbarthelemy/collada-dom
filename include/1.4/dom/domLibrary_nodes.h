@@ -23,7 +23,7 @@
 /**
  * The library_nodes element declares a module of node elements.
  */
-class domLibrary_nodes : public daeElement
+class DLL_EXPORT domLibrary_nodes : public daeElement
 {
 protected:  // Attributes
 /**

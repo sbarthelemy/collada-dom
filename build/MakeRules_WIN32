@@ -1,0 +1,56 @@
+## --- DO NOT REMOVE THIS LINE --- SNIP_SDK_COPYRIGHT_MAKE_BEGIN
+## --- DO NOT REMOVE THIS LINE --- SNIP_SDK_COPYRIGHT_MAKE_END
+
+COLLADA_DOM_LIB_PATH	= $(COLLADA_DOM_PATH)/$(BUILD_LIB)/$(COLLADA_DOM_VERSION)
+
+# external file dependence
+ExternalLib			= \
+	$(COLLADA_DOM_PATH)/external-libs/libxml2/win32/lib/iconv_a.lib		\
+	$(COLLADA_DOM_PATH)/external-libs/libxml2/win32/lib/zlib.lib		\
+	$(COLLADA_DOM_PATH)/external-libs/libxml2/win32/lib/libxml2_a.lib
+
+COLLDADA_DOM_LIB_FILENAME = \
+	$(COLLADA_DOM_LIB_PATH)/libcollada_dae				\
+	$(COLLADA_DOM_LIB_PATH)/libcollada_LIBXMLPlugin			\
+	$(COLLADA_DOM_LIB_PATH)/libcollada_stdErrPlugin			\
+	$(COLLADA_DOM_LIB_PATH)/libcollada_STLDatabase			\
+	$(COLLADA_DOM_LIB_PATH)/libcollada_dom				\
+
+LIBLOADER_LIB = $(ROOT_DIR)/libloader.lib	
+
+ifeq ($(BUILD),debug)
+COLLDADA_DOM_LIB_FILES = $(addsuffix _d.lib,$(COLLDADA_DOM_LIB_FILENAME))
+endif
+
+ifeq ($(BUILD),release)
+COLLDADA_DOM_LIB_FILES = $(addsuffix .lib,$(COLLDADA_DOM_LIB_FILENAME))
+endif
+	
+# target
+
+TARGET_LIB	= $(ROOT_DIR)/$(BUILD_LIB)/$(TARGET_LIB_NAME).lib
+
+.PHONY: $(SUBDIRS) $(PROJECT_FILES) 
+
+all: $(SUBDIRS) $(PROJECT_FILES) $(SRC)
+	
+$(LIBLOADER_LIB) :
+	$(VCC) $(ROOT_DIR)/src/libloader/libloader.vcproj /rebuild $(PROJECT_CONFIG)
+
+$(PROJECT_FILES):
+	$(VCC) $@ /build $(PROJECT_CONFIG)
+	
+rebuild: $(SUBDIRS)
+	$(VCC) $(PROJECT_FILES) /rebuild $(PROJECT_CONFIG)
+
+clean: 
+	for dirs in $(SUBDIRS); do \
+		$(MAKE) -C $$dirs clean; \
+	done
+	for project in $(PROJECT_FILES); do \
+		$(VCC) $$project /clean $(PROJECT_CONFIG); \
+	done
+
+$(SUBDIRS):
+	$(MAKE) -C $@
+

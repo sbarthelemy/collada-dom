@@ -23,7 +23,7 @@
  * within it that describe:  1.The position of the object; 2.The position
  * of the interest point; 3.The direction that points up.
  */
-class domLookat : public daeElement
+class DLL_EXPORT domLookat : public daeElement
 {
 protected:  // Attribute
 /**

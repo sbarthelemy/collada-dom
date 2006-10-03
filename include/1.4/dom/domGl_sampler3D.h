@@ -21,7 +21,7 @@
 /**
  * A three-dimensional texture sampler for the GLSL profile.
  */
-class domGl_sampler3D_complexType : public domFx_sampler3D_common_complexType
+class DLL_EXPORT domGl_sampler3D_complexType : public domFx_sampler3D_common_complexType
 {
 
 protected:
@@ -46,7 +46,7 @@ protected:
 /**
  * An element of type domGl_sampler3D_complexType.
  */
-class domGl_sampler3D : public daeElement, public domGl_sampler3D_complexType
+class DLL_EXPORT domGl_sampler3D : public daeElement, public domGl_sampler3D_complexType
 {
 protected:
 	/**

@@ -24,7 +24,7 @@
  * The library_animation_clips element declares a module of animation_clip
  * elements.
  */
-class domLibrary_animation_clips : public daeElement
+class DLL_EXPORT domLibrary_animation_clips : public daeElement
 {
 protected:  // Attributes
 /**

@@ -23,7 +23,7 @@
 /**
  * The library_physics_scenes element declares a module of physics_scene elements.
  */
-class domLibrary_physics_scenes : public daeElement
+class DLL_EXPORT domLibrary_physics_scenes : public daeElement
 {
 protected:  // Attributes
 /**

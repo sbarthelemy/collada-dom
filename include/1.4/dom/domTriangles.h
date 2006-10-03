@@ -27,7 +27,7 @@
  * is formed from the first, second, and third vertices. The  second triangle
  * is formed from the fourth, fifth, and sixth vertices, and so on.
  */
-class domTriangles : public daeElement
+class DLL_EXPORT domTriangles : public daeElement
 {
 protected:  // Attributes
 /**

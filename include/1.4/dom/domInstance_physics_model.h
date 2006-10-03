@@ -25,7 +25,7 @@
  * This element allows instancing physics model within another physics model,
  * or in a physics scene.
  */
-class domInstance_physics_model : public daeElement
+class DLL_EXPORT domInstance_physics_model : public daeElement
 {
 protected:  // Attributes
 /**

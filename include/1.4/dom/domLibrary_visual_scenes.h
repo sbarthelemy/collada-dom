@@ -23,7 +23,7 @@
 /**
  * The library_visual_scenes element declares a module of visual_scene elements.
  */
-class domLibrary_visual_scenes : public daeElement
+class DLL_EXPORT domLibrary_visual_scenes : public daeElement
 {
 protected:  // Attributes
 /**

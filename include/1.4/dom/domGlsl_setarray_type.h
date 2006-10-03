@@ -23,7 +23,7 @@
  * The glsl_newarray_type is used to creates a parameter of a one-dimensional
  * array type.
  */
-class domGlsl_setarray_type_complexType 
+class DLL_EXPORT domGlsl_setarray_type_complexType 
 {
 protected:  // Attribute
 /**
@@ -113,7 +113,7 @@ protected:
 /**
  * An element of type domGlsl_setarray_type_complexType.
  */
-class domGlsl_setarray_type : public daeElement, public domGlsl_setarray_type_complexType
+class DLL_EXPORT domGlsl_setarray_type : public daeElement, public domGlsl_setarray_type_complexType
 {
 
 public:	//Accessors and Mutators

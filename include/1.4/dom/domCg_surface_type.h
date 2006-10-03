@@ -26,7 +26,7 @@
  * Declares a resource that can be used both as the source for texture samples
  * and as the target of a rendering pass.
  */
-class domCg_surface_type_complexType : public domFx_surface_common_complexType
+class DLL_EXPORT domCg_surface_type_complexType : public domFx_surface_common_complexType
 {
 public:
 	class domGenerator;
@@ -37,7 +37,7 @@ public:
 /**
  * A procedural surface generator for the cg profile.
  */
-	class domGenerator : public daeElement
+	class DLL_EXPORT domGenerator : public daeElement
 	{
 	public:
 		class domName;
@@ -48,7 +48,7 @@ public:
 /**
  * The entry symbol for the shader function.
  */
-		class domName : public daeElement
+		class DLL_EXPORT domName : public daeElement
 		{
 		protected:  // Attribute
 			xsNCName attrSource;
@@ -290,7 +290,7 @@ protected:
 /**
  * An element of type domCg_surface_type_complexType.
  */
-class domCg_surface_type : public daeElement, public domCg_surface_type_complexType
+class DLL_EXPORT domCg_surface_type : public daeElement, public domCg_surface_type_complexType
 {
 protected:
 	/**

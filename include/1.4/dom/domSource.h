@@ -29,7 +29,7 @@
  * The source element declares a data repository that provides values according
  * to the semantics of an  input element that refers to it.
  */
-class domSource : public daeElement
+class DLL_EXPORT domSource : public daeElement
 {
 public:
 	class domTechnique_common;
@@ -41,7 +41,7 @@ public:
  * The technique common specifies the common method for accessing this source
  * element's data.
  */
-	class domTechnique_common : public daeElement
+	class DLL_EXPORT domTechnique_common : public daeElement
 	{
 
 	protected:  // Element

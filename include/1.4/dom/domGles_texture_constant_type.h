@@ -17,7 +17,7 @@
 #include <dom/domElements.h>
 
 
-class domGles_texture_constant_type_complexType 
+class DLL_EXPORT domGles_texture_constant_type_complexType 
 {
 protected:  // Attributes
 	domFloat4 attrValue;
@@ -74,7 +74,7 @@ protected:
 /**
  * An element of type domGles_texture_constant_type_complexType.
  */
-class domGles_texture_constant_type : public daeElement, public domGles_texture_constant_type_complexType
+class DLL_EXPORT domGles_texture_constant_type : public daeElement, public domGles_texture_constant_type_complexType
 {
 
 public:	//Accessors and Mutators

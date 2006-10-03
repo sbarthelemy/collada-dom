@@ -18,7 +18,7 @@
 
 #include <dom/domGles_texture_constant_type.h>
 
-class domGles_texenv_command_type_complexType 
+class DLL_EXPORT domGles_texenv_command_type_complexType 
 {
 protected:  // Attributes
 	domGles_texenv_mode_enums attrOperator;
@@ -77,7 +77,7 @@ protected:
 /**
  * An element of type domGles_texenv_command_type_complexType.
  */
-class domGles_texenv_command_type : public daeElement, public domGles_texenv_command_type_complexType
+class DLL_EXPORT domGles_texenv_command_type : public daeElement, public domGles_texenv_command_type_complexType
 {
 
 public:	//Accessors and Mutators

@@ -18,7 +18,7 @@
 
 #include <dom/domExtra.h>
 
-class domGles_texture_unit_complexType 
+class DLL_EXPORT domGles_texture_unit_complexType 
 {
 public:
 	class domSurface;
@@ -26,7 +26,7 @@ public:
 	typedef daeSmartRef<domSurface> domSurfaceRef;
 	typedef daeTArray<domSurfaceRef> domSurface_Array;
 
-	class domSurface : public daeElement
+	class DLL_EXPORT domSurface : public daeElement
 	{
 
 	protected:  // Value
@@ -91,7 +91,7 @@ public:
 	typedef daeSmartRef<domSampler_state> domSampler_stateRef;
 	typedef daeTArray<domSampler_stateRef> domSampler_state_Array;
 
-	class domSampler_state : public daeElement
+	class DLL_EXPORT domSampler_state : public daeElement
 	{
 
 	protected:  // Value
@@ -156,7 +156,7 @@ public:
 	typedef daeSmartRef<domTexcoord> domTexcoordRef;
 	typedef daeTArray<domTexcoordRef> domTexcoord_Array;
 
-	class domTexcoord : public daeElement
+	class DLL_EXPORT domTexcoord : public daeElement
 	{
 	protected:  // Attribute
 		xsNCName attrSemantic;
@@ -288,7 +288,7 @@ protected:
 /**
  * An element of type domGles_texture_unit_complexType.
  */
-class domGles_texture_unit : public daeElement, public domGles_texture_unit_complexType
+class DLL_EXPORT domGles_texture_unit : public daeElement, public domGles_texture_unit_complexType
 {
 
 public:	//Accessors and Mutators

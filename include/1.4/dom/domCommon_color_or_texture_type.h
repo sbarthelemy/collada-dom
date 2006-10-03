@@ -18,7 +18,7 @@
 
 #include <dom/domExtra.h>
 
-class domCommon_color_or_texture_type_complexType 
+class DLL_EXPORT domCommon_color_or_texture_type_complexType 
 {
 public:
 	class domColor;
@@ -26,7 +26,7 @@ public:
 	typedef daeSmartRef<domColor> domColorRef;
 	typedef daeTArray<domColorRef> domColor_Array;
 
-	class domColor : public daeElement
+	class DLL_EXPORT domColor : public daeElement
 	{
 	protected:  // Attribute
 		xsNCName attrSid;
@@ -110,7 +110,7 @@ public:
 	typedef daeSmartRef<domParam> domParamRef;
 	typedef daeTArray<domParamRef> domParam_Array;
 
-	class domParam : public daeElement
+	class DLL_EXPORT domParam : public daeElement
 	{
 	protected:  // Attribute
 		xsNCName attrRef;
@@ -173,7 +173,7 @@ public:
 	typedef daeSmartRef<domTexture> domTextureRef;
 	typedef daeTArray<domTextureRef> domTexture_Array;
 
-	class domTexture : public daeElement
+	class DLL_EXPORT domTexture : public daeElement
 	{
 	protected:  // Attributes
 		xsNCName attrTexture;
@@ -252,6 +252,7 @@ public:
 	};
 
 
+
 protected:  // Elements
 	domColorRef elemColor;
 	domParamRef elemParam;
@@ -315,7 +316,7 @@ protected:
 /**
  * An element of type domCommon_color_or_texture_type_complexType.
  */
-class domCommon_color_or_texture_type : public daeElement, public domCommon_color_or_texture_type_complexType
+class DLL_EXPORT domCommon_color_or_texture_type : public daeElement, public domCommon_color_or_texture_type_complexType
 {
 protected:
 	/**

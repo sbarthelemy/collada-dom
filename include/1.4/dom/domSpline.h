@@ -24,7 +24,7 @@
  * The spline element contains control vertex information sufficient to describe
  * basic splines.
  */
-class domSpline : public daeElement
+class DLL_EXPORT domSpline : public daeElement
 {
 public:
 	class domControl_vertices;
@@ -36,7 +36,7 @@ public:
  * The control vertices element  must occur  exactly one time. It is used
  * to describe the CVs of the spline.
  */
-	class domControl_vertices : public daeElement
+	class DLL_EXPORT domControl_vertices : public daeElement
 	{
 
 	protected:  // Elements

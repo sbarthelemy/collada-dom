@@ -13,17 +13,23 @@
 
 #include <dae/daeStringRef.h>
 
-daeStringTable daeStringRef::_stringTable;
+daeStringTable &daeStringRef::_stringTable()
+{
+	static daeStringTable *st = new daeStringTable();
+	return *st;
+}
 
 daeStringRef::daeStringRef(daeString string)
 {
-	_string = _stringTable.allocString(string);
+	static daeStringTable &st = _stringTable();
+	_string = st.allocString(string);
 }
 
 const daeStringRef&
 daeStringRef::set(daeString string)
 {
-	_string = _stringTable.allocString(string);
+	static daeStringTable &st = _stringTable();
+	_string = st.allocString(string);
 	return *this;
 }
 

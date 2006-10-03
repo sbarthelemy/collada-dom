@@ -34,7 +34,7 @@
 /**
  * Nodes embody the hierarchical relationship of elements in the scene.
  */
-class domNode : public daeElement
+class DLL_EXPORT domNode : public daeElement
 {
 protected:  // Attributes
 /**

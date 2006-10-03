@@ -27,7 +27,7 @@
  * sources have many different properties and radiate light in many different
  * patterns and  frequencies.
  */
-class domLight : public daeElement
+class DLL_EXPORT domLight : public daeElement
 {
 public:
 	class domTechnique_common;
@@ -39,7 +39,7 @@ public:
  * The technique_common element specifies the light information for the common
  * profile which all  COLLADA implementations need to support.
  */
-	class domTechnique_common : public daeElement
+	class DLL_EXPORT domTechnique_common : public daeElement
 	{
 	public:
 		class domAmbient;
@@ -52,7 +52,7 @@ public:
  * light source.   An ambient light is one that lights everything evenly,
  * regardless of location or orientation.
  */
-		class domAmbient : public daeElement
+		class DLL_EXPORT domAmbient : public daeElement
 		{
 
 		protected:  // Element
@@ -120,7 +120,7 @@ public:
  * axis.  The actual direction of the light is defined by the transform of
  * the node where the light is  instantiated.
  */
-		class domDirectional : public daeElement
+		class DLL_EXPORT domDirectional : public daeElement
 		{
 
 		protected:  // Element
@@ -187,7 +187,7 @@ public:
  * as the distance to the light source increases. The position of the light
  * is defined by the transform of the node in which it is instantiated.
  */
-		class domPoint : public daeElement
+		class DLL_EXPORT domPoint : public daeElement
 		{
 
 		protected:  // Elements
@@ -293,7 +293,7 @@ public:
  * actual direction of the  light is defined by the transform of the node
  * where the light is instantiated.
  */
-		class domSpot : public daeElement
+		class DLL_EXPORT domSpot : public daeElement
 		{
 
 		protected:  // Elements

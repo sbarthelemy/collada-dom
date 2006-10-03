@@ -35,7 +35,7 @@ domInstance_camera::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "instance_camera" );
-	_Meta->registerConstructor(domInstance_camera::create);
+	_Meta->registerClass(domInstance_camera::create, &_Meta);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
@@ -46,10 +46,6 @@ domInstance_camera::registerElement()
 	mea->setOffset( daeOffsetOf(domInstance_camera,elemExtra_array) );
 	mea->setElementType( domExtra::registerElement() );
 	cm->appendChild( mea );
-
-    // sthomas
-    //cm->setMaxOrdinal( 3003 );
-    _Meta->setCMRoot( cm );	
 	
 
 	//	Add attribute: url
