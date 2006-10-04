@@ -1,34 +1,78 @@
-<project name="COLLADA_DOM" default="All" basedir="./">
-    <target name="All" depends="Win32_debug_rebuild,Win32_release_rebuild" >
-	</target>
-    <target name="Win32_debug">
-        <exec executable="make" failonerror="true">
-			<arg line="COLLADA_DOM_PLATFORM=WIN32 BUILD=debug"/>
-        </exec>
-	</target>
-    <target name="Win32_release">
-        <exec executable="make" failonerror="true">
-			<arg line="COLLADA_DOM_PLATFORM=WIN32 BUILD=release"/>
-        </exec>
-	</target>
-    <target name="Win32_debug_rebuild" depends="Win32_debug_clean" >
-        <exec executable="make" failonerror="true">
-			<arg line="COLLADA_DOM_PLATFORM=WIN32 BUILD=debug"/>
-        </exec>
-	</target>
-    <target name="Win32_release_rebuild" depends="Win32_release_clean" >
-        <exec executable="make" failonerror="true">
-			<arg line="COLLADA_DOM_PLATFORM=WIN32 BUILD=release"/>
-        </exec>
-	</target>
-    <target name="Win32_debug_clean">
-        <exec executable="make" failonerror="true">
-			<arg line="COLLADA_DOM_PLATFORM=WIN32 BUILD=debug clean"/>
-        </exec>
-	</target>
-    <target name="Win32_release_clean">
-        <exec executable="make" failonerror="true">
-			<arg line="COLLADA_DOM_PLATFORM=WIN32 BUILD=release clean"/>
-        </exec>
-	</target>
+<project name="COLLADA_DOM" default="BuildAll" basedir="./">
+  <target name="All" depends="Win32_debug_rebuild,Win32_release_rebuild" />
+
+  <target name="BuildAll" depends="Win32_debug,Win32_release,Win32VC8_debug,Win32VC8_release" />
+  <target name="BuildVC7" depends="Win32_debug,Win32_release" />
+  <target name="BuildVC8" depends="Win32VC8_debug,Win32VC8_release" />
+
+  <target name="RebuildAll" depends="Win32_debug_rebuild,Win32_release_rebuild,Win32VC8_debug_rebuild,Win32VC8_release_rebuild" />
+  <target name="RebuildVC7" depends="Win32_debug_rebuild,Win32_release_rebuild" />
+  <target name="RebuildVC8" depends="Win32VC8_debug_rebuild,Win32VC8_release_rebuild" />
+
+  <target name="CleanAll" depends="Win32_debug_clean,Win32_release_clean,Win32VC8_debug_clean,Win32VC8_release_clean" />
+  <target name="CleanVC7" depends="Win32_debug_clean,Win32_release_clean" />
+  <target name="CleanVC8" depends="Win32VC8_debug_clean,Win32VC8_release_clean" />
+
+  <target name="Win32_debug">
+    <exec executable="make" failonerror="true">
+      <arg line="COLLADA_DOM_PLATFORM=WIN32 BUILD=debug -i"/>
+    </exec>
+  </target>
+  <target name="Win32_release">
+    <exec executable="make" failonerror="true">
+      <arg line="COLLADA_DOM_PLATFORM=WIN32 BUILD=release -i"/>
+    </exec>
+  </target>
+  <target name="Win32_debug_rebuild" depends="Win32_debug_clean" >
+    <exec executable="make" failonerror="true">
+      <arg line="COLLADA_DOM_PLATFORM=WIN32 BUILD=debug -i"/>
+    </exec>
+  </target>
+  <target name="Win32_release_rebuild" depends="Win32_release_clean" >
+    <exec executable="make" failonerror="true">
+      <arg line="COLLADA_DOM_PLATFORM=WIN32 BUILD=release -i"/>
+    </exec>
+  </target>
+  <target name="Win32_debug_clean">
+    <exec executable="make" failonerror="true">
+      <arg line="COLLADA_DOM_PLATFORM=WIN32 BUILD=debug clean -i"/>
+    </exec>
+  </target>
+  <target name="Win32_release_clean">
+    <exec executable="make" failonerror="true">
+      <arg line="COLLADA_DOM_PLATFORM=WIN32 BUILD=release clean -i"/>
+    </exec>
+  </target>
+
+  <target name="Win32VC8_debug">
+    <exec executable="make" failonerror="true">
+      <arg line="COLLADA_DOM_PLATFORM=WIN32 BUILD=debug CC=VC8 -i"/>
+    </exec>
+  </target>
+  <target name="Win32VC8_release">
+    <exec executable="make" failonerror="true">
+      <arg line="COLLADA_DOM_PLATFORM=WIN32 BUILD=release CC=VC8 -i"/>
+    </exec>
+  </target>
+  <target name="Win32VC8_debug_rebuild" depends="Win32VC8_debug_clean" >
+    <exec executable="make" failonerror="true">
+      <arg line="COLLADA_DOM_PLATFORM=WIN32 BUILD=debug CC=VC8 -i"/>
+    </exec>
+  </target>
+  <target name="Win32VC8_release_rebuild" depends="Win32VC8_release_clean" >
+    <exec executable="make" failonerror="true">
+      <arg line="COLLADA_DOM_PLATFORM=WIN32 BUILD=release CC=VC8 -i"/>
+    </exec>
+  </target>
+  <target name="Win32VC8_debug_clean">
+    <exec executable="make" failonerror="true">
+      <arg line="COLLADA_DOM_PLATFORM=WIN32 BUILD=debug CC=VC8 clean -i"/>
+    </exec>
+  </target>
+  <target name="Win32VC8_release_clean">
+    <exec executable="make" failonerror="true">
+      <arg line="COLLADA_DOM_PLATFORM=WIN32 BUILD=release CC=VC8 clean -i"/>
+    </exec>
+  </target>
+
 </project>

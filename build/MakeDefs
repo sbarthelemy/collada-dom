@@ -8,6 +8,13 @@ endif
 
 include $(ROOT_DIR)/build/buildpath
 
+ifeq ($(CC),VC8)
+VCC						:= $(VCC8)
+endif
+ifeq ($(CC),)
+CC						:= VC7
+VCC						:= $(VCC7)
+endif
 
 # HOST can be WIN32 or LINUX, default is WIN32
 ifeq ($(HOST),)

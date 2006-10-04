@@ -13,6 +13,11 @@
 ROOT_DIR = .
 include $(ROOT_DIR)/build/MakeDefs
 
+ifeq ($(CC),VC8)
+SUBDIRS += 	projects/VC++8
+endif
+ifeq ($(CC),VC7)
 SUBDIRS += 	projects/VC++7
+endif
 
 include $(ROOT_DIR)/build/MakeRules

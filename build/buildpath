@@ -1,7 +1,9 @@
 ## --- DO NOT REMOVE THIS LINE --- SNIP_SDK_COPYRIGHT_MAKE_BEGIN
 ## --- DO NOT REMOVE THIS LINE --- SNIP_SDK_COPYRIGHT_MAKE_END
 
-VCC				:= "$(ROOT_DIR)/../../Program Files/Microsoft Visual Studio .NET 2003/Common7/IDE/devenv.com"
+VCC7				:= "$(VS71COMNTOOLS)/../IDE/devenv.com"
+VCC8				:= "$(VS80COMNTOOLS)/../IDE/devenv.com"
+
 COLLADA_DOM_PATH		:= $(ROOT_DIR)/../COLLADA_DOM
 JAVAC				:= "$(JAVA_HOME)/bin/javac.exe"
 JAR				:= "$(JAVA_HOME)/bin/jar.exe"

@@ -688,7 +688,7 @@ void daeLIBXMLPlugin::writeElement( daeElement* element )
 	}
 }
 
-#define TYPE_BUFFER_SIZE 4096
+#define TYPE_BUFFER_SIZE 1024*1024
 
 /*void daeLIBXMLPlugin::writeAttribute( daeMetaAttribute* attr, daeElement* element, daeInt attrNum )
 {
@@ -822,6 +822,8 @@ void daeLIBXMLPlugin::writeElement( daeElement* element )
 void daeLIBXMLPlugin::writeAttribute( daeMetaAttribute* attr, daeElement* element, daeInt attrNum )
 {
 	static daeChar atomicTypeBuf[TYPE_BUFFER_SIZE+1];
+	daeChar *buf = atomicTypeBuf;
+	daeUInt bufSz = TYPE_BUFFER_SIZE;
 
 	size_t valCount = attr->getCount(element);
 	//default values will not check correctly if they are arrays. Luckily there is only one array attribute in COLLADA.
@@ -836,6 +838,14 @@ void daeLIBXMLPlugin::writeAttribute( daeMetaAttribute* attr, daeElement* elemen
 			(daeString)attr->getName(),(daeString)attr->getContainer()->getName());
 		daeErrorHandler::get()->handleError( msg );
 		return;
+	}
+
+	if ( !attr->isArrayAttribute() && ( attr->getType()->getTypeEnum() == daeAtomicType::StringRefType || 
+		 attr->getType()->getTypeEnum() == daeAtomicType::TokenType ) &&
+		 *(char**)attr->getWritableMemory( element ) != NULL )
+	{
+		bufSz = strlen( *(char**)attr->getWritableMemory( element ) ) +1;
+		buf = new char[ bufSz ];
 	}
 
 	//always print value
@@ -856,9 +866,9 @@ void daeLIBXMLPlugin::writeAttribute( daeMetaAttribute* attr, daeElement* elemen
 			if ( attr->getDefault() != NULL )
 			{
 				//has a default value
-				attr->getType()->stringToMemory( (daeChar*)attr->getDefault(), atomicTypeBuf );
+				attr->getType()->stringToMemory( (daeChar*)attr->getDefault(), buf );
 				char* elemMem = attr->get( element, 0 );
-				if( memcmp( atomicTypeBuf, elemMem, typeSize ) == 0 )
+				if( memcmp( buf, elemMem, typeSize ) == 0 )
 				{
 					//is the default value so exit early
 					return;
@@ -877,20 +887,24 @@ void daeLIBXMLPlugin::writeAttribute( daeMetaAttribute* attr, daeElement* elemen
 	{
 		//do val 0 first then space and the rest of the vals.
 		char* elemMem = attr->get( element, 0 );
-		attr->getType()->memoryToString( elemMem, atomicTypeBuf, TYPE_BUFFER_SIZE );
-		xmlTextWriterWriteString( writer, (xmlChar*)atomicTypeBuf );
+		attr->getType()->memoryToString( elemMem, buf, bufSz );
+		xmlTextWriterWriteString( writer, (xmlChar*)buf );
 
-		*atomicTypeBuf = ' ';
+		*buf = ' ';
 		for( size_t i = 1; i < valCount; i++ ) 
 		{
 			elemMem = attr->get( element, (int)i );
-			attr->getType()->memoryToString( elemMem, atomicTypeBuf+1, TYPE_BUFFER_SIZE );
-			xmlTextWriterWriteString( writer, (xmlChar*)atomicTypeBuf );
+			attr->getType()->memoryToString( elemMem, buf+1, bufSz );
+			xmlTextWriterWriteString( writer, (xmlChar*)buf );
 		}
 	}
 	if ( attrNum != -1 )
 	{
 		xmlTextWriterEndAttribute( writer );
+	}
+	if ( buf != atomicTypeBuf )
+	{
+		delete[] buf;
 	}
 }
 

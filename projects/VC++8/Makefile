@@ -19,8 +19,10 @@ PROJECT_FILES				+= \
 							LIBXMLPlugin.vcproj  \
 							stdErrPlugin.vcproj \
 							STLDatabase.vcproj   \
-
+							
+ifeq ($(PROJECT_CONFIG),)
 PROJECT_CONFIG				:= $(BUILD)\($(COLLADA_DOM_VERSION)\)
+endif
 
 include						$(ROOT_DIR)/build/MakeRules
 
