@@ -448,11 +448,11 @@ daeBool
 	{
 		strcpy( dst, "NaN" );
 	}
-	else if ( *(daeLong*)src == 0x7ff0000000000000 ) //+INF
+	else if ( *(daeLong*)src == 0x7ff0000000000000LL ) //+INF
 	{
 		strcpy( dst, "INF" );
 	}
-	else if ( *(daeLong*)src == 0xfff0000000000000 ) //-INF
+	else if ( *(daeLong*)src == 0xfff0000000000000LL ) //-INF
 	{
 		strcpy( dst, "-INF" );
 	}
@@ -468,15 +468,15 @@ daeDoubleType::stringToMemory(daeChar *src, daeChar* dstMemory)
 {
 	if ( strcmp(src, "NaN") == 0 ) {
 		daeErrorHandler::get()->handleWarning( "NaN encountered while setting an attribute or value\n" );
-		*(daeLong*)(dstMemory) = 0x7ff0000000000002;
+		*(daeLong*)(dstMemory) = 0x7ff0000000000002LL;
 	}
 	else if ( strcmp(src, "INF") == 0 ) {
 		daeErrorHandler::get()->handleWarning( "INF encountered while setting an attribute or value\n" );
-		*(daeLong*)(dstMemory) = 0x7ff0000000000000;
+		*(daeLong*)(dstMemory) = 0x7ff0000000000000LL;
 	}
 	else if ( strcmp(src, "-INF") == 0 ) {
 		daeErrorHandler::get()->handleWarning( "-INF encountered while setting an attribute or value\n" );
-		*(daeLong*)(dstMemory) = 0xfff0000000000000;
+		*(daeLong*)(dstMemory) = 0xfff0000000000000LL;
 	}
 	else
 	{

@@ -647,6 +647,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\include\dae\daeGCCPlatform.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\include\dae\daeGenericPlatform.h"
 				>
 			</File>
