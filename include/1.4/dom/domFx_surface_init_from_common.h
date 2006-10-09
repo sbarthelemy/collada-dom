@@ -21,7 +21,7 @@
  * This element is an IDREF which specifies the image to use to initialize
  * a specific mip of a 1D or 2D surface, 3D slice, or Cube face.
  */
-class DLL_EXPORT domFx_surface_init_from_common_complexType 
+class domFx_surface_init_from_common_complexType 
 {
 protected:  // Attributes
 	xsUnsignedInt attrMip;
@@ -106,7 +106,7 @@ protected:
 /**
  * An element of type domFx_surface_init_from_common_complexType.
  */
-class DLL_EXPORT domFx_surface_init_from_common : public daeElement, public domFx_surface_init_from_common_complexType
+class domFx_surface_init_from_common : public daeElement, public domFx_surface_init_from_common_complexType
 {
 
 public:	//Accessors and Mutators
@@ -170,19 +170,19 @@ public: // STATIC METHODS
 	 * @param bytes The size allocated for this instance.
 	 * @return a daeElementRef referencing an instance of this object.
 	 */
-	static daeElementRef create(daeInt bytes);
+	static DLLSPEC daeElementRef create(daeInt bytes);
 	/**
 	 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 	 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 	 * @return A daeMetaElement describing this COLLADA element.
 	 */
-	static daeMetaElement* registerElement();
+	static DLLSPEC daeMetaElement* registerElement();
 
 public: // STATIC MEMBERS
 	/**
 	 * The daeMetaElement that describes this element in the meta object reflection framework.
 	 */
-	static daeMetaElement* _Meta;
+	static DLLSPEC daeMetaElement* _Meta;
 };
 
 

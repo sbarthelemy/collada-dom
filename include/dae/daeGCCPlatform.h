@@ -25,6 +25,6 @@
 #define PLATFORM_FLOAT32 float
 #define PLATFORM_FLOAT64 double
 
-#define DLL_EXPORT
+#define DLLSPEC
 
 #endif

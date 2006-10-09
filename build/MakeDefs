@@ -11,6 +11,9 @@ include $(ROOT_DIR)/build/buildpath
 ifeq ($(CC),VC8)
 VCC						:= $(VCC8)
 endif
+ifeq ($(CC),VC7)
+VCC						:= $(VCC7)
+endif
 ifeq ($(CC),)
 CC						:= VC7
 VCC						:= $(VCC7)

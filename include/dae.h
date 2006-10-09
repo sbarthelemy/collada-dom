@@ -35,17 +35,17 @@ class domCOLLADA;
  * and initializes default versions of the COLLADA backend, the COLLADA
  * runtime database, and registered integration libraries. 
  */
-class DLL_EXPORT DAE : public daeInterface
+class DAE : public daeInterface
 {
 public:	
 	/** 
 	*  Constructor.
 	*/	
-	DAE();
+	DLLSPEC DAE();
 	/** 
 	* Destructor.
 	*/	
-	virtual ~DAE();
+	virtual DLLSPEC ~DAE();
 
 	/**
 	 * Releases all static meta information associated with the COLLADA DOM.
@@ -53,42 +53,42 @@ public:
 	 * @note This function is useless if called by the application in a non-static
 	 * context.
 	 */
-	static void cleanup();
+	static DLLSPEC void cleanup();
 	
 	// Abstract Interface Class for the daeDatabase front end
 public:
 	// Database setup	
-	virtual daeDatabase* getDatabase();
-	virtual daeInt setDatabase(daeDatabase* database);
+	virtual DLLSPEC daeDatabase* getDatabase();
+	virtual DLLSPEC daeInt setDatabase(daeDatabase* database);
 
 	// IO Plugin setup
-	virtual daeIOPlugin* getIOPlugin();
-	virtual daeInt setIOPlugin(daeIOPlugin* plugin);
+	virtual DLLSPEC daeIOPlugin* getIOPlugin();
+	virtual DLLSPEC daeInt setIOPlugin(daeIOPlugin* plugin);
 
 	// Integration Library Setup
-	virtual daeIntegrationLibraryFunc getIntegrationLibrary();
-	virtual daeInt setIntegrationLibrary(daeIntegrationLibraryFunc regFunc);
+	virtual DLLSPEC daeIntegrationLibraryFunc getIntegrationLibrary();
+	virtual DLLSPEC daeInt setIntegrationLibrary(daeIntegrationLibraryFunc regFunc);
 
 	// batch file operations
-	virtual daeInt load(daeString name, daeString docBuffer = NULL);
-	virtual daeInt save(daeString documentName, daeBool replace=true);
-	virtual daeInt save(daeUInt documentIndex, daeBool replace=true);
-	virtual daeInt saveAs(daeString name, daeString documentName, daeBool replace=true);
-	virtual daeInt saveAs(daeString name, daeUInt documentIndex=0, daeBool replace=true);
+	virtual DLLSPEC daeInt load(daeString name, daeString docBuffer = NULL);
+	virtual DLLSPEC daeInt save(daeString documentName, daeBool replace=true);
+	virtual DLLSPEC daeInt save(daeUInt documentIndex, daeBool replace=true);
+	virtual DLLSPEC daeInt saveAs(daeString name, daeString documentName, daeBool replace=true);
+	virtual DLLSPEC daeInt saveAs(daeString name, daeUInt documentIndex=0, daeBool replace=true);
 
-	virtual daeInt unload(daeString name);
-	virtual daeInt clear();
+	virtual DLLSPEC daeInt unload(daeString name);
+	virtual DLLSPEC daeInt clear();
 
 	// Load/Save Progress	
-	virtual void getProgress(daeInt* bytesParsed,
+	virtual DLLSPEC void getProgress(daeInt* bytesParsed,
 		daeInt* lineNumber,
 		daeInt* totalBytes,
 		daeBool reset = false );
 
 	// Simple Query
-	virtual domCOLLADA* getDom(daeString name);
-	virtual daeString getDomVersion();
-	virtual daeInt setDom(daeString name, domCOLLADA* dom);
+	virtual DLLSPEC domCOLLADA* getDom(daeString name);
+	virtual DLLSPEC daeString getDomVersion();
+	virtual DLLSPEC daeInt setDom(daeString name, domCOLLADA* dom);
 
 private:
 	daeDatabase *database;

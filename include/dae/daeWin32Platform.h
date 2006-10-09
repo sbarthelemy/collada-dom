@@ -29,6 +29,16 @@
 typedef int intptr_t;
 #endif
 
-#define DLL_EXPORT __declspec( dllexport )
+#ifdef DOM_DYNAMIC
+
+#ifdef DOM_EXPORT
+#define DLLSPEC __declspec( dllexport )
+#else
+#define DLLSPEC __declspec( dllimport )
+#endif
+
+#else
+#define DLLSPEC
+#endif
 
 #endif

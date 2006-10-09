@@ -14,14 +14,14 @@
 #define __domTargetableFloat3_h__
 
 #include <dom/domTypes.h>
-//#include <dom/domElements.h> //Commenting out this line so we don't polute dae library with a whole bunch of unneeded symbols
+#include <dom/domElements.h>
 
 
 /**
  * The TargetableFloat3 type is used to represent elements which contain a
  * float3 value which can  be targeted for animation.
  */
-class DLL_EXPORT domTargetableFloat3_complexType 
+class domTargetableFloat3_complexType 
 {
 protected:  // Attribute
 /**
@@ -87,7 +87,7 @@ protected:
 /**
  * An element of type domTargetableFloat3_complexType.
  */
-class DLL_EXPORT domTargetableFloat3 : public daeElement, public domTargetableFloat3_complexType
+class domTargetableFloat3 : public daeElement, public domTargetableFloat3_complexType
 {
 
 public:	//Accessors and Mutators
@@ -127,19 +127,19 @@ public: // STATIC METHODS
 	 * @param bytes The size allocated for this instance.
 	 * @return a daeElementRef referencing an instance of this object.
 	 */
-	static daeElementRef create(daeInt bytes);
+	static DLLSPEC daeElementRef create(daeInt bytes);
 	/**
 	 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 	 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 	 * @return A daeMetaElement describing this COLLADA element.
 	 */
-	static daeMetaElement* registerElement();
+	static DLLSPEC daeMetaElement* registerElement();
 
 public: // STATIC MEMBERS
 	/**
 	 * The daeMetaElement that describes this element in the meta object reflection framework.
 	 */
-	static daeMetaElement* _Meta;
+	static DLLSPEC daeMetaElement* _Meta;
 };
 
 

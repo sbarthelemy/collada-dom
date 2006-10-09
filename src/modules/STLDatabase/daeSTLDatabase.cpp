@@ -544,6 +544,11 @@ daeInt daeSTLDatabase::getElement(daeElement** pElement,daeInt index,daeString n
 		else 
 		{ 
 			//no document specified
+			if ( index >= (daeInt)(*iter).second.size() )
+			{
+				*pElement = NULL;
+				return DAE_ERR_QUERY_NO_MATCH;
+			}
 			*pElement = (*iter).second[index];
 			return DAE_OK;
 		}

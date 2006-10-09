@@ -35,48 +35,48 @@ public:
 	/**
 	  * Constructor
 	  */
-	DLL_EXPORT daeSTLDatabase();
+	DLLSPEC daeSTLDatabase();
 	/**
 	  * Destructor
 	  */
-	virtual DLL_EXPORT ~daeSTLDatabase();
+	virtual DLLSPEC ~daeSTLDatabase();
 
 public:
 	// Element Types of all Elements
-	virtual DLL_EXPORT daeUInt			getTypeCount();
-	virtual DLL_EXPORT daeString		getTypeName(daeUInt index);
-	virtual DLL_EXPORT daeInt			setMeta(daeMetaElement *_topMeta);
+	virtual DLLSPEC daeUInt			getTypeCount();
+	virtual DLLSPEC daeString		getTypeName(daeUInt index);
+	virtual DLLSPEC daeInt			setMeta(daeMetaElement *_topMeta);
 
 	// Documents
-	virtual DLL_EXPORT daeInt			insertDocument(const char *name, daeElement* dom, daeDocument** document = NULL);
-	virtual DLL_EXPORT daeInt			insertDocument(daeString name, daeDocument** document = NULL);
-	virtual DLL_EXPORT daeInt			createDocument(daeString name, daeElement* dom, daeDocument** document = NULL);
-	virtual DLL_EXPORT daeInt			createDocument(daeString name, daeDocument** document = NULL);
-	virtual DLL_EXPORT daeInt			insertDocument( daeDocument *c );
+	virtual DLLSPEC daeInt			insertDocument(const char *name, daeElement* dom, daeDocument** document = NULL);
+	virtual DLLSPEC daeInt			insertDocument(daeString name, daeDocument** document = NULL);
+	virtual DLLSPEC daeInt			createDocument(daeString name, daeElement* dom, daeDocument** document = NULL);
+	virtual DLLSPEC daeInt			createDocument(daeString name, daeDocument** document = NULL);
+	virtual DLLSPEC daeInt			insertDocument( daeDocument *c );
 
-	virtual DLL_EXPORT daeInt			removeDocument(daeDocument* document);
-	virtual DLL_EXPORT daeUInt			getDocumentCount();
-	virtual DLL_EXPORT daeDocument*		getDocument(daeUInt index);
-	virtual DLL_EXPORT daeDocument*		getDocument(daeString name);
-	virtual DLL_EXPORT daeString		getDocumentName(daeUInt index);
-	virtual DLL_EXPORT daeBool			isDocumentLoaded(daeString name);
+	virtual DLLSPEC daeInt			removeDocument(daeDocument* document);
+	virtual DLLSPEC daeUInt			getDocumentCount();
+	virtual DLLSPEC daeDocument*		getDocument(daeUInt index);
+	virtual DLLSPEC daeDocument*		getDocument(daeString name);
+	virtual DLLSPEC daeString		getDocumentName(daeUInt index);
+	virtual DLLSPEC daeBool			isDocumentLoaded(daeString name);
 
 	// Elements 
-	virtual DLL_EXPORT daeInt			insertElement(daeDocument* document, daeElement* element);
-	virtual DLL_EXPORT daeInt			removeElement(daeDocument* document, daeElement* element); 
-	virtual DLL_EXPORT daeInt			clear();
-	virtual DLL_EXPORT void				validate();
-	virtual DLL_EXPORT daeUInt			getElementCount(daeString name = NULL,
+	virtual DLLSPEC daeInt			insertElement(daeDocument* document, daeElement* element);
+	virtual DLLSPEC daeInt			removeElement(daeDocument* document, daeElement* element); 
+	virtual DLLSPEC daeInt			clear();
+	virtual DLLSPEC void				validate();
+	virtual DLLSPEC daeUInt			getElementCount(daeString name = NULL,
 														  daeString type = NULL,
 														  daeString file = NULL);
-	virtual DLL_EXPORT daeInt			getElement(daeElement** pElement, 
+	virtual DLLSPEC daeInt			getElement(daeElement** pElement, 
 														daeInt index,
 														daeString name = NULL,
 														daeString type = NULL,
 														daeString file = NULL); 
 
 	// Generic Query
-	virtual DLL_EXPORT daeInt			queryElement(daeElement** pElement, daeString genericQuery);
+	virtual DLLSPEC daeInt			queryElement(daeElement** pElement, daeString genericQuery);
 
 private:
 

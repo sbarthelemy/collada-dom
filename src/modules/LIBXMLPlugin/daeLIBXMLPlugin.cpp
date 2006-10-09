@@ -844,8 +844,11 @@ void daeLIBXMLPlugin::writeAttribute( daeMetaAttribute* attr, daeElement* elemen
 		 attr->getType()->getTypeEnum() == daeAtomicType::TokenType ) &&
 		 *(char**)attr->getWritableMemory( element ) != NULL )
 	{
-		bufSz = strlen( *(char**)attr->getWritableMemory( element ) ) +1;
-		buf = new char[ bufSz ];
+		daeUInt sz = (daeUInt)strlen( *(char**)attr->getWritableMemory( element ) ) +1;
+		if ( bufSz > TYPE_BUFFER_SIZE ) {
+			buf = new char[ bufSz ];
+			bufSz = sz;
+		}
 	}
 
 	//always print value

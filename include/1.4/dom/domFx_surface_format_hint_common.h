@@ -23,7 +23,7 @@
  * will describe the important features of the format so that the application
  * may select a compatable or close format
  */
-class DLL_EXPORT domFx_surface_format_hint_common_complexType 
+class domFx_surface_format_hint_common_complexType 
 {
 public:
 	class domChannels;
@@ -36,7 +36,7 @@ public:
  * how many channels there are and the letter respresents the name of the
  * channel.  There are typically 0 to 4 channels.
  */
-	class DLL_EXPORT domChannels : public daeElement
+	class domChannels : public daeElement
 	{
 
 	protected:  // Value
@@ -81,19 +81,19 @@ public:
 		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(daeInt bytes);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static daeMetaElement* registerElement();
+		static DLLSPEC daeMetaElement* registerElement();
 
 	public: // STATIC MEMBERS
 		/**
 		 * The daeMetaElement that describes this element in the meta object reflection framework.
 		 */
-		static daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* _Meta;
 	};
 
 	class domRange;
@@ -106,7 +106,7 @@ public:
  * or unsigned integers, or between between a clamped range such as 0.0f to
  * 1.0f, or high dynamic range via floating point
  */
-	class DLL_EXPORT domRange : public daeElement
+	class domRange : public daeElement
 	{
 
 	protected:  // Value
@@ -151,19 +151,19 @@ public:
 		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(daeInt bytes);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static daeMetaElement* registerElement();
+		static DLLSPEC daeMetaElement* registerElement();
 
 	public: // STATIC MEMBERS
 		/**
 		 * The daeMetaElement that describes this element in the meta object reflection framework.
 		 */
-		static daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* _Meta;
 	};
 
 	class domPrecision;
@@ -177,7 +177,7 @@ public:
  * but applying a higher precision by linking the channels together may still
  * convey the same information.
  */
-	class DLL_EXPORT domPrecision : public daeElement
+	class domPrecision : public daeElement
 	{
 
 	protected:  // Value
@@ -222,19 +222,19 @@ public:
 		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(daeInt bytes);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static daeMetaElement* registerElement();
+		static DLLSPEC daeMetaElement* registerElement();
 
 	public: // STATIC MEMBERS
 		/**
 		 * The daeMetaElement that describes this element in the meta object reflection framework.
 		 */
-		static daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* _Meta;
 	};
 
 	class domOption;
@@ -246,7 +246,7 @@ public:
  * Additional hints about data relationships and other things to help the
  * application pick the best format.
  */
-	class DLL_EXPORT domOption : public daeElement
+	class domOption : public daeElement
 	{
 
 	protected:  // Value
@@ -291,19 +291,19 @@ public:
 		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(daeInt bytes);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static daeMetaElement* registerElement();
+		static DLLSPEC daeMetaElement* registerElement();
 
 	public: // STATIC MEMBERS
 		/**
 		 * The daeMetaElement that describes this element in the meta object reflection framework.
 		 */
-		static daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* _Meta;
 	};
 
 
@@ -393,7 +393,7 @@ protected:
 /**
  * An element of type domFx_surface_format_hint_common_complexType.
  */
-class DLL_EXPORT domFx_surface_format_hint_common : public daeElement, public domFx_surface_format_hint_common_complexType
+class domFx_surface_format_hint_common : public daeElement, public domFx_surface_format_hint_common_complexType
 {
 protected:
 	/**
@@ -419,19 +419,19 @@ public: // STATIC METHODS
 	 * @param bytes The size allocated for this instance.
 	 * @return a daeElementRef referencing an instance of this object.
 	 */
-	static daeElementRef create(daeInt bytes);
+	static DLLSPEC daeElementRef create(daeInt bytes);
 	/**
 	 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 	 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 	 * @return A daeMetaElement describing this COLLADA element.
 	 */
-	static daeMetaElement* registerElement();
+	static DLLSPEC daeMetaElement* registerElement();
 
 public: // STATIC MEMBERS
 	/**
 	 * The daeMetaElement that describes this element in the meta object reflection framework.
 	 */
-	static daeMetaElement* _Meta;
+	static DLLSPEC daeMetaElement* _Meta;
 };
 
 

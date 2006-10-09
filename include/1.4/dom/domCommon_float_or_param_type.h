@@ -17,7 +17,7 @@
 #include <dom/domElements.h>
 
 
-class DLL_EXPORT domCommon_float_or_param_type_complexType 
+class domCommon_float_or_param_type_complexType 
 {
 public:
 	class domFloat;
@@ -25,7 +25,7 @@ public:
 	typedef daeSmartRef<domFloat> domFloatRef;
 	typedef daeTArray<domFloatRef> domFloat_Array;
 
-	class DLL_EXPORT domFloat : public daeElement
+	class domFloat : public daeElement
 	{
 	protected:  // Attribute
 		xsNCName attrSid;
@@ -84,19 +84,19 @@ public:
 		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(daeInt bytes);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static daeMetaElement* registerElement();
+		static DLLSPEC daeMetaElement* registerElement();
 
 	public: // STATIC MEMBERS
 		/**
 		 * The daeMetaElement that describes this element in the meta object reflection framework.
 		 */
-		static daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* _Meta;
 	};
 
 	class domParam;
@@ -104,7 +104,7 @@ public:
 	typedef daeSmartRef<domParam> domParamRef;
 	typedef daeTArray<domParamRef> domParam_Array;
 
-	class DLL_EXPORT domParam : public daeElement
+	class domParam : public daeElement
 	{
 	protected:  // Attribute
 		xsNCName attrRef;
@@ -147,19 +147,19 @@ public:
 		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(daeInt bytes);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static daeMetaElement* registerElement();
+		static DLLSPEC daeMetaElement* registerElement();
 
 	public: // STATIC MEMBERS
 		/**
 		 * The daeMetaElement that describes this element in the meta object reflection framework.
 		 */
-		static daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* _Meta;
 	};
 
 
@@ -221,7 +221,7 @@ protected:
 /**
  * An element of type domCommon_float_or_param_type_complexType.
  */
-class DLL_EXPORT domCommon_float_or_param_type : public daeElement, public domCommon_float_or_param_type_complexType
+class domCommon_float_or_param_type : public daeElement, public domCommon_float_or_param_type_complexType
 {
 protected:
 	/**
@@ -247,19 +247,19 @@ public: // STATIC METHODS
 	 * @param bytes The size allocated for this instance.
 	 * @return a daeElementRef referencing an instance of this object.
 	 */
-	static daeElementRef create(daeInt bytes);
+	static DLLSPEC daeElementRef create(daeInt bytes);
 	/**
 	 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 	 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 	 * @return A daeMetaElement describing this COLLADA element.
 	 */
-	static daeMetaElement* registerElement();
+	static DLLSPEC daeMetaElement* registerElement();
 
 public: // STATIC MEMBERS
 	/**
 	 * The daeMetaElement that describes this element in the meta object reflection framework.
 	 */
-	static daeMetaElement* _Meta;
+	static DLLSPEC daeMetaElement* _Meta;
 };
 
 

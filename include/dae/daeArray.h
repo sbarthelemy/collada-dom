@@ -20,7 +20,7 @@ class daeAtomicType;
 /**
  * COLLADA C++ class that implements storage for resizable array containers.
  */
-class DLL_EXPORT daeArray
+class daeArray
 {
 protected:
 	size_t			_count;
@@ -32,7 +32,7 @@ public:
 	/**
 	 * Constructor
 	 */
-	daeArray();
+	DLLSPEC daeArray();
 	/**
 	 * Copy Constructor
 	 */
@@ -45,7 +45,7 @@ public:
 	/**
 	 * Destructor
 	 */
-	virtual ~daeArray();
+	virtual DLLSPEC ~daeArray();
 	/**
 	 * Clears the contents of the array. Do not use this function if the array contains @c daeSmartRef objects and the
 	 * @c dom* class the array belongs to has a @c _contents member.
@@ -55,7 +55,7 @@ public:
 	 * objects will not be removed from @c _contents, which can cause problems when you
 	 * save the data.  We recommended that @c clear() not be used on arrays that are part of a @c dom* object.
 	 */
-	virtual void clear();
+	virtual DLLSPEC void clear();
 	/**
 	 * Sets the size of an element in the array when creating a @c daeArray of a specific type.
 	 * @param elementSize Size of an element in the array.
@@ -91,7 +91,7 @@ public:
 	 * Increases the size of the @c daeArray.
 	 * @param sz  Size to grow the array to.
 	 */
-	void grow(size_t sz);
+	void DLLSPEC grow(size_t sz);
 	/**
 	 * Removes an item at a specific index in the @c daeArray. 
 	 * @param index  Index number of the item to delete.
@@ -100,14 +100,14 @@ public:
 	 * objects in two places, the class member and the <i> @c _contents </i> array, when you remove something from the
 	 * dom, you must remove it from both places.
 	 */
-	virtual daeInt removeIndex(size_t index);
+	virtual DLLSPEC daeInt removeIndex(size_t index);
 };
 
 /**
  * COLLADA C++ templated version of @c daeArray for storing items of various types.
  */
 template <class T>
-class DLL_EXPORT daeTArray : public daeArray
+class daeTArray : public daeArray
 {
 public:
 	/**

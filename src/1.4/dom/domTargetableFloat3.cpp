@@ -23,7 +23,7 @@
 daeElementRef
 domTargetableFloat3::create(daeInt bytes)
 {
-	daeSmartRef<domTargetableFloat3> ref = new(bytes) domTargetableFloat3;
+	domTargetableFloat3Ref ref = new(bytes) domTargetableFloat3;
 	return ref;
 }
 

@@ -27,7 +27,7 @@ class daeIntegrationObject;
 class daeDocument;
 class daeURI;
 
-template <typename T> class DLL_EXPORT daeSmartRef;
+template <typename T> class daeSmartRef;
 
 /**
  * The @c daeElement class represents an instance of a COLLADA "Element";
@@ -38,7 +38,7 @@ template <typename T> class DLL_EXPORT daeSmartRef;
  * - Reference counted via daeSmartRef
  * - Contains information for XML base URI, and XML containing element
  */
-class DLL_EXPORT daeElement
+class daeElement
 {
 public:
 	/**
@@ -58,7 +58,7 @@ protected:
 
 public:
 	/** An enum that describes the state of user integration with this object */
-	enum IntegrationState {
+	DLLSPEC enum IntegrationState {
 		/** The user integration is not initialized */
 		int_uninitialized,
 		/** The user integration object has been created */
@@ -78,20 +78,20 @@ public:
 	 * @note This should not be used externally.
 	 * Use factories to create elements
 	 */
-	daeElement();
+	DLLSPEC daeElement();
 	/**
 	 * Element Destructor.
 	 * @note This should not be used externally, 
 	 * if daeSmartRefs are being used.
 	 */
-	virtual ~daeElement();
+	virtual DLLSPEC ~daeElement();
 
 	/**
 	 * Decrements the reference count and deletes the object if reference count is zero.
 	 * @note Should not be used externally if daeSmartRefs are being used, they call it
 	 * automatically.
 	 */
-	void release() const;
+	DLLSPEC void release() const;
 
 	/**
 	 * Increments the reference count of this element.
@@ -104,14 +104,14 @@ public:
 	 * Resolves all fields of type daeURI and IDRef.
 	 * This is done via database query of the URI or IDRef.
 	 */
-	void resolve();
+	DLLSPEC void resolve();
 
 	/**
 	 * Sets up a @c daeElement. Called on all @c daeElements as part of their initialization.
 	 * @param meta Meta element to use to configure this element.
 	 * @note Should not be called externally.
 	 */
-	void setup(daeMetaElement* meta);
+	DLLSPEC void setup(daeMetaElement* meta);
 
 	/**
 	 * Places an element as a child of @c this element. 
@@ -124,7 +124,7 @@ public:
 	 * @param element Element to be placed in the @c this container.
 	 * @return Returns true if the element was successfully placed, false otherwise.
 	 */
-	daeBool placeElement(daeElement* element);
+	DLLSPEC daeBool placeElement(daeElement* element);
 	
 	/**
 	 * This function searches through the list of potential child elements
@@ -139,7 +139,7 @@ public:
 	 * @param element is the element to be placed in the 'this' container.
 	 * @return return whether or not the element was successfully placed.
 	 */
-	daeBool placeElementAt(daeInt index, daeElement* element);
+	DLLSPEC daeBool placeElementAt(daeInt index, daeElement* element);
 
 	/**
 	 * Places an element as a child of @c this element. 
@@ -149,7 +149,7 @@ public:
 	 * @param element Element to be placed in the @c this container.
 	 * @return Returns true if the element was successfully placed, false otherwise.
 	 */
-	daeBool placeElementBefore( daeElement* marker, daeElement *element );
+	DLLSPEC daeBool placeElementBefore( daeElement* marker, daeElement *element );
 
 	/**
 	 * Places an element as a child of @c this element. 
@@ -159,7 +159,7 @@ public:
 	 * @param element Element to be placed in the @c this container.
 	 * @return Returns true if the element was successfully placed, false otherwise.
 	 */
-	daeBool placeElementAfter( daeElement* marker, daeElement *element );
+	DLLSPEC daeBool placeElementAfter( daeElement* marker, daeElement *element );
 
 	/**
 	 * Finds the last index into the array of children of the type specified.
@@ -167,7 +167,7 @@ public:
 	 * @return Returns the index into the children array of the last element of type typeName. -1 if
 	 *         there are no children of type typeName.
 	 */
-	daeInt findLastIndexOf( daeString elementName );
+	DLLSPEC daeInt findLastIndexOf( daeString elementName );
 
 	/**
 	 * Removes the specified element from it parent, the @c this element.
@@ -179,7 +179,7 @@ public:
 	 * @param element Element to be removed in the @c this container.
 	 * @return Returns true if the element was successfully removed, false otherwise.
 	 */
-	daeBool removeChildElement(daeElement* element);
+	DLLSPEC daeBool removeChildElement(daeElement* element);
 	
 	/**
 	 * Removes the specified element from its parent element. 
@@ -209,7 +209,7 @@ public:
 	 * @param attrValue String-based value to apply to the attribute.
 	 * @return Returns true if the attribute was found and the value was set, false otherwise.
 	 */
-	virtual daeBool setAttribute(daeString attrName, daeString attrValue);
+	virtual DLLSPEC daeBool setAttribute(daeString attrName, daeString attrValue);
 
 	/**
 	 * Checks if an attribute has been set either by being loaded from the COLLADA document or set
@@ -218,14 +218,14 @@ public:
 	 * @return Returns true if the attribute has been set. False if the attribute hasn't been set 
 	 * or doesn't exist for this element.
 	 */
-	daeBool isAttributeSet( daeString attrName );
+	DLLSPEC daeBool isAttributeSet( daeString attrName );
 
 	/**
 	 * Checks if this element can have the attribute specified.
 	 * @param attrName The name of the attribute to look for.
 	 * @return Returns true is this element can have an attribute with the name specified. False otherwise.
 	 */
-	daeBool hasAttribute( daeString attrName );
+	DLLSPEC daeBool hasAttribute( daeString attrName );
 
 	/**
 	 * Gets a pointer to the value of the attribute specified.
@@ -233,20 +233,20 @@ public:
 	 * @return Returns a daeMemoryRef (char *) to the value of the attribute. The return value will need 
 	 * to be typecast to the appropriate type. Returns NULL if the attribute does not exist.
 	 */
-	daeMemoryRef getAttributeValue( daeString attrName );
+	DLLSPEC daeMemoryRef getAttributeValue( daeString attrName );
 
 	/**
 	 * Checks if this element can have a value.
 	 * @return Returns true is this element can have a value. False otherwise.
 	 */
-	daeBool hasValue();
+	DLLSPEC daeBool hasValue();
 
 	/**
 	 * Gets a pointer to the element's value.
 	 * @return Returns a daeMemoryRef (char *) to the value of the element. The return value will need 
 	 * to be typecast to the appropriate type. Returns NULL if the element does not allow a value.
 	 */
-	daeMemoryRef getValuePointer();
+	DLLSPEC daeMemoryRef getValuePointer();
 
 	/**
 	 * Finds the database document associated with @c this element.
@@ -264,17 +264,17 @@ public:
 	 * Sets the database document associated with this element.
 	 * @param c The daeDocument to associate with this element.
 	 */
-	void setDocument(daeDocument* c );
+	DLLSPEC void setDocument(daeDocument* c );
 	/**
 	 * Deprecated.
 	 */
-	void setCollection(daeDocument* c );
+	DLLSPEC void setCollection(daeDocument* c );
 
 	/**
 	 * Gets the URI of the document containing this element, note that this is NOT the URI of the element.
 	 * @return Returns a pointer to the daeURI of the document containing this element.
 	 */
-	daeURI*	getDocumentURI() const;
+	DLLSPEC daeURI*	getDocumentURI() const;
 
 	/**
 	 * Creates an element via the element factory system.  This creation
@@ -282,7 +282,7 @@ public:
 	 * @param className Class name of the subelement to create.
 	 * @return Returns the created @c daeElement, if it was successfully created.
 	 */
-	daeSmartRef<daeElement> createElement(daeString className);
+	DLLSPEC daeSmartRef<daeElement> createElement(daeString className);
 
 	/**
 	 * Creates a subelement via @c createElement() and places it via @c placeElement().
@@ -291,7 +291,7 @@ public:
 	 * @param className - Class name of the subelement to create.
 	 * @return Returns the created @c daeElement, if it was successfully created.
 	 */
-	daeElement* createAndPlace(daeString className);
+	DLLSPEC daeElement* createAndPlace(daeString className);
 
 	/**
 	 * Create a sub-element via #createElement and place it via #placeElementAt
@@ -302,7 +302,7 @@ public:
 	 * @param className - the className of the sub-element to be created
 	 * @return the created element if it was in fact successfully created.
 	 */
-	daeElement* createAndPlaceAt(daeInt index, daeString className);
+	DLLSPEC daeElement* createAndPlaceAt(daeInt index, daeString className);
 
 	/**
 	 * Gets the container element for @c this element.
@@ -341,25 +341,25 @@ public:
 	 * @return Returns the @c daeIntegrationObject associated with this COLLADA element
 	 * instance.
 	 */
-	daeIntegrationObject* getIntObject( IntegrationState from_state = int_converted, IntegrationState to_state = int_uninitialized );
+	DLLSPEC daeIntegrationObject* getIntObject( IntegrationState from_state = int_converted, IntegrationState to_state = int_uninitialized );
 
 	/**
 	 * Gets the element type name for this element.
 	 * @return Returns the string for the type name.
 	 */
-	daeString getTypeName() const;
+	DLLSPEC daeString getTypeName() const;
 	/**
 	 * Gets this element's name.
 	 * @return Returns the string for the name.
 	 * @remarks This function returns NULL if the element's name is identical to it's type's name.
 	 */
-	daeString getElementName() const;
+	DLLSPEC daeString getElementName() const;
 	/**
 	 * Sets this element's name.
 	 * @param nm Specifies the string to use as the element's name.
 	 * @remarks Use caution when using this function since you can easily create invalid COLLADA documents.
 	 */
-	void setElementName( daeString nm );
+	DLLSPEC void setElementName( daeString nm );
 	
 	/**
 	 * Gets the element ID if it exists.
@@ -367,7 +367,7 @@ public:
 	 * an attribute on this element type.
 	 * @return the string for the element ID if it exists.
 	 */
-    daeString getID() const;
+    DLLSPEC daeString getID() const;
 
 	/**
 	 * Gets the children/sub-elements of this element.
@@ -377,7 +377,7 @@ public:
 	 * @param array The return value.  An elementref array to append this element's children to.
 	 */
 	//void getChildren( daeElementRefArray &array );
-	void getChildren( daeTArray<daeSmartRef<daeElement> > &array );
+	DLLSPEC void getChildren( daeTArray<daeSmartRef<daeElement> > &array );
 
 	/**
 	 * Clones/deep copies this @c daeElement and all of it's subtree.
@@ -387,7 +387,7 @@ public:
 	 *        Default is no name mangling.
 	 * @return Returns a @c daeElement smartref of the copy of this element.
 	 */
-	daeSmartRef<daeElement> clone( daeString idSuffix = NULL, daeString nameSuffix = NULL );
+	DLLSPEC daeSmartRef<daeElement> clone( daeString idSuffix = NULL, daeString nameSuffix = NULL );
 	
 public:
 	/**
@@ -396,12 +396,12 @@ public:
 	 * This is used as part of post-parsing process of a COLLADA instance document, 
 	 * which results in a new document in the database.
 	 */
-	static void resolveAll();
+	static DLLSPEC void resolveAll();
 
 	/**
 	 * Clears the resolveArray.
 	 */
-	static void clearResolveArray();
+	static DLLSPEC void clearResolveArray();
 public:
 	/**
 	 * Releases the element passed in. This function is a static wrapper that invokes 
@@ -409,7 +409,7 @@ public:
 	 * if it is not NULL.
 	 * @param elem Element to call @c release() for, if the element exists.
 	 */
-	static void release(const daeElement* elem) {if (elem != NULL) elem->release();}
+	static DLLSPEC void release(const daeElement* elem) {if (elem != NULL) elem->release();}
 	
 	/**
 	 * Increments the reference counter for the element passed in. This function is a static wrapper
@@ -417,7 +417,7 @@ public:
 	 * if it is not NULL.
 	 * @param elem Element to call @c ref() for, if the element exists.
 	 */
-	static void ref(const daeElement* elem) { if (elem != NULL) elem->ref(); }
+	static DLLSPEC void ref(const daeElement* elem) { if (elem != NULL) elem->ref(); }
 
 	/**
 	 * Appends the passed in element to the list of elements that need to be resolved.
@@ -425,14 +425,14 @@ public:
 	 * @param elem Element to add to the list of elements
 	 * waiting for their @c daeURIs to be resolved.
 	 */
-	static void appendResolveElement(daeElement* elem);
+	static DLLSPEC void appendResolveElement(daeElement* elem);
 
 };
 #include <dae/daeSmartRef.h>
-typedef DLL_EXPORT daeSmartRef<daeElement> daeElementRef;
-typedef DLL_EXPORT daeSmartRef<const daeElement> daeElementConstRef;
+typedef daeSmartRef<daeElement> daeElementRef;
+typedef daeSmartRef<const daeElement> daeElementConstRef;
 //#include <dae/daeArray.h>
-typedef DLL_EXPORT daeTArray<daeElementRef> daeElementRefArray;
+typedef daeTArray<daeElementRef> daeElementRefArray;
 
 extern daeElementRef DAECreateElement(int nbytes);
 

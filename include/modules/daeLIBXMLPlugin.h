@@ -34,34 +34,34 @@ class daeDocument;
  * and the entire referenced document will be loaded.  daeInterface::saveAs will only
  * handle a filename path at present (ie: no scheme or authority).
  */
-class DLL_EXPORT daeLIBXMLPlugin : public daeIOPlugin
+class daeLIBXMLPlugin : public daeIOPlugin
 {
 public:
 	// Constructor / destructor
 	/**
 	 * Constructor.
 	 */
-	daeLIBXMLPlugin();
+	DLLSPEC daeLIBXMLPlugin();
 	/**
 	 * Destructor.
 	 */
-	virtual ~daeLIBXMLPlugin();
-	virtual daeInt setMeta(daeMetaElement *topMeta);
+	virtual DLLSPEC ~daeLIBXMLPlugin();
+	virtual DLLSPEC daeInt setMeta(daeMetaElement *topMeta);
 
 	// Database setup	
-	virtual void setDatabase(daeDatabase* database);
+	virtual DLLSPEC void setDatabase(daeDatabase* database);
 
 	// Operations
-	virtual daeInt read(daeURI& uri, daeString docBuffer);
-	virtual daeInt write(daeURI *name, daeDocument *document, daeBool replace);
+	virtual DLLSPEC daeInt read(daeURI& uri, daeString docBuffer);
+	virtual DLLSPEC daeInt write(daeURI *name, daeDocument *document, daeBool replace);
 
 	// Parsing support
 
-	daeElementRef startParse(daeMetaElement* thisMetaElement, xmlTextReaderPtr reader);
-	daeElementRef nextElement(daeMetaElement* thisMetaElement, xmlTextReaderPtr reader);
+	DLLSPEC daeElementRef startParse(daeMetaElement* thisMetaElement, xmlTextReaderPtr reader);
+	DLLSPEC daeElementRef nextElement(daeMetaElement* thisMetaElement, xmlTextReaderPtr reader);
 
 	// Stats	
-	virtual void getProgress(daeInt* bytesParsed,
+	virtual DLLSPEC void getProgress(daeInt* bytesParsed,
 		daeInt* lineNumber,
 		daeInt* totalBytes,
 		daeBool reset = false );

@@ -19,7 +19,7 @@
 #include <dom/domGlsl_param_type.h>
 #include <dom/domFx_annotate_common.h>
 
-class DLL_EXPORT domGlsl_setparam_simple_complexType 
+class domGlsl_setparam_simple_complexType 
 {
 protected:  // Attribute
 	domGlsl_identifier attrRef;
@@ -77,7 +77,7 @@ protected:
 /**
  * An element of type domGlsl_setparam_simple_complexType.
  */
-class DLL_EXPORT domGlsl_setparam_simple : public daeElement, public domGlsl_setparam_simple_complexType
+class domGlsl_setparam_simple : public daeElement, public domGlsl_setparam_simple_complexType
 {
 
 public:	//Accessors and Mutators
@@ -117,19 +117,19 @@ public: // STATIC METHODS
 	 * @param bytes The size allocated for this instance.
 	 * @return a daeElementRef referencing an instance of this object.
 	 */
-	static daeElementRef create(daeInt bytes);
+	static DLLSPEC daeElementRef create(daeInt bytes);
 	/**
 	 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 	 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 	 * @return A daeMetaElement describing this COLLADA element.
 	 */
-	static daeMetaElement* registerElement();
+	static DLLSPEC daeMetaElement* registerElement();
 
 public: // STATIC MEMBERS
 	/**
 	 * The daeMetaElement that describes this element in the meta object reflection framework.
 	 */
-	static daeMetaElement* _Meta;
+	static DLLSPEC daeMetaElement* _Meta;
 };
 
 

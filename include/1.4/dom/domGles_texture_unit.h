@@ -18,7 +18,7 @@
 
 #include <dom/domExtra.h>
 
-class DLL_EXPORT domGles_texture_unit_complexType 
+class domGles_texture_unit_complexType 
 {
 public:
 	class domSurface;
@@ -26,7 +26,7 @@ public:
 	typedef daeSmartRef<domSurface> domSurfaceRef;
 	typedef daeTArray<domSurfaceRef> domSurface_Array;
 
-	class DLL_EXPORT domSurface : public daeElement
+	class domSurface : public daeElement
 	{
 
 	protected:  // Value
@@ -71,19 +71,19 @@ public:
 		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(daeInt bytes);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static daeMetaElement* registerElement();
+		static DLLSPEC daeMetaElement* registerElement();
 
 	public: // STATIC MEMBERS
 		/**
 		 * The daeMetaElement that describes this element in the meta object reflection framework.
 		 */
-		static daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* _Meta;
 	};
 
 	class domSampler_state;
@@ -91,7 +91,7 @@ public:
 	typedef daeSmartRef<domSampler_state> domSampler_stateRef;
 	typedef daeTArray<domSampler_stateRef> domSampler_state_Array;
 
-	class DLL_EXPORT domSampler_state : public daeElement
+	class domSampler_state : public daeElement
 	{
 
 	protected:  // Value
@@ -136,19 +136,19 @@ public:
 		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(daeInt bytes);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static daeMetaElement* registerElement();
+		static DLLSPEC daeMetaElement* registerElement();
 
 	public: // STATIC MEMBERS
 		/**
 		 * The daeMetaElement that describes this element in the meta object reflection framework.
 		 */
-		static daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* _Meta;
 	};
 
 	class domTexcoord;
@@ -156,7 +156,7 @@ public:
 	typedef daeSmartRef<domTexcoord> domTexcoordRef;
 	typedef daeTArray<domTexcoordRef> domTexcoord_Array;
 
-	class DLL_EXPORT domTexcoord : public daeElement
+	class domTexcoord : public daeElement
 	{
 	protected:  // Attribute
 		xsNCName attrSemantic;
@@ -199,19 +199,19 @@ public:
 		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(daeInt bytes);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static daeMetaElement* registerElement();
+		static DLLSPEC daeMetaElement* registerElement();
 
 	public: // STATIC MEMBERS
 		/**
 		 * The daeMetaElement that describes this element in the meta object reflection framework.
 		 */
-		static daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* _Meta;
 	};
 
 
@@ -288,7 +288,7 @@ protected:
 /**
  * An element of type domGles_texture_unit_complexType.
  */
-class DLL_EXPORT domGles_texture_unit : public daeElement, public domGles_texture_unit_complexType
+class domGles_texture_unit : public daeElement, public domGles_texture_unit_complexType
 {
 
 public:	//Accessors and Mutators
@@ -328,19 +328,19 @@ public: // STATIC METHODS
 	 * @param bytes The size allocated for this instance.
 	 * @return a daeElementRef referencing an instance of this object.
 	 */
-	static daeElementRef create(daeInt bytes);
+	static DLLSPEC daeElementRef create(daeInt bytes);
 	/**
 	 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 	 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 	 * @return A daeMetaElement describing this COLLADA element.
 	 */
-	static daeMetaElement* registerElement();
+	static DLLSPEC daeMetaElement* registerElement();
 
 public: // STATIC MEMBERS
 	/**
 	 * The daeMetaElement that describes this element in the meta object reflection framework.
 	 */
-	static daeMetaElement* _Meta;
+	static DLLSPEC daeMetaElement* _Meta;
 };
 
 

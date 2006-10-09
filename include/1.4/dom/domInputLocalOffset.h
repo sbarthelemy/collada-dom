@@ -21,7 +21,7 @@
  * The InputLocalOffset type is used to represent indexed inputs that can
  * only reference resources declared in the same document.
  */
-class DLL_EXPORT domInputLocalOffset_complexType 
+class domInputLocalOffset_complexType 
 {
 protected:  // Attributes
 /**
@@ -120,7 +120,7 @@ protected:
 /**
  * An element of type domInputLocalOffset_complexType.
  */
-class DLL_EXPORT domInputLocalOffset : public daeElement, public domInputLocalOffset_complexType
+class domInputLocalOffset : public daeElement, public domInputLocalOffset_complexType
 {
 
 public:	//Accessors and Mutators
@@ -201,19 +201,19 @@ public: // STATIC METHODS
 	 * @param bytes The size allocated for this instance.
 	 * @return a daeElementRef referencing an instance of this object.
 	 */
-	static daeElementRef create(daeInt bytes);
+	static DLLSPEC daeElementRef create(daeInt bytes);
 	/**
 	 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 	 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 	 * @return A daeMetaElement describing this COLLADA element.
 	 */
-	static daeMetaElement* registerElement();
+	static DLLSPEC daeMetaElement* registerElement();
 
 public: // STATIC MEMBERS
 	/**
 	 * The daeMetaElement that describes this element in the meta object reflection framework.
 	 */
-	static daeMetaElement* _Meta;
+	static DLLSPEC daeMetaElement* _Meta;
 };
 
 

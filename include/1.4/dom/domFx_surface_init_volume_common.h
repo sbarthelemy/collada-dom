@@ -17,7 +17,7 @@
 #include <dom/domElements.h>
 
 
-class DLL_EXPORT domFx_surface_init_volume_common_complexType 
+class domFx_surface_init_volume_common_complexType 
 {
 public:
 	class domAll;
@@ -28,7 +28,7 @@ public:
 /**
  * Init the entire surface with one compound image such as DDS
  */
-	class DLL_EXPORT domAll : public daeElement
+	class domAll : public daeElement
 	{
 	protected:  // Attribute
 		xsIDREF attrRef;
@@ -76,19 +76,19 @@ public:
 		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(daeInt bytes);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static daeMetaElement* registerElement();
+		static DLLSPEC daeMetaElement* registerElement();
 
 	public: // STATIC MEMBERS
 		/**
 		 * The daeMetaElement that describes this element in the meta object reflection framework.
 		 */
-		static daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* _Meta;
 	};
 
 	class domPrimary;
@@ -100,7 +100,7 @@ public:
  * Init mip level 0 of the surface with one compound image such as DDS.  Use
  * of this element expects that the surface has element mip_levels=0 or mipmap_generate.
  */
-	class DLL_EXPORT domPrimary : public daeElement
+	class domPrimary : public daeElement
 	{
 	protected:  // Attribute
 		xsIDREF attrRef;
@@ -148,19 +148,19 @@ public:
 		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(daeInt bytes);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static daeMetaElement* registerElement();
+		static DLLSPEC daeMetaElement* registerElement();
 
 	public: // STATIC MEMBERS
 		/**
 		 * The daeMetaElement that describes this element in the meta object reflection framework.
 		 */
-		static daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* _Meta;
 	};
 
 
@@ -230,7 +230,7 @@ protected:
 /**
  * An element of type domFx_surface_init_volume_common_complexType.
  */
-class DLL_EXPORT domFx_surface_init_volume_common : public daeElement, public domFx_surface_init_volume_common_complexType
+class domFx_surface_init_volume_common : public daeElement, public domFx_surface_init_volume_common_complexType
 {
 protected:
 	/**
@@ -256,19 +256,19 @@ public: // STATIC METHODS
 	 * @param bytes The size allocated for this instance.
 	 * @return a daeElementRef referencing an instance of this object.
 	 */
-	static daeElementRef create(daeInt bytes);
+	static DLLSPEC daeElementRef create(daeInt bytes);
 	/**
 	 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 	 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 	 * @return A daeMetaElement describing this COLLADA element.
 	 */
-	static daeMetaElement* registerElement();
+	static DLLSPEC daeMetaElement* registerElement();
 
 public: // STATIC MEMBERS
 	/**
 	 * The daeMetaElement that describes this element in the meta object reflection framework.
 	 */
-	static daeMetaElement* _Meta;
+	static DLLSPEC daeMetaElement* _Meta;
 };
 
 

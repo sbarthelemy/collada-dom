@@ -25,7 +25,7 @@
  * Create a new, named param object in the CG Runtime, assign it a type, an
  * initial value, and additional attributes at declaration time.
  */
-class DLL_EXPORT domCg_newparam_complexType 
+class domCg_newparam_complexType 
 {
 public:
 	class domSemantic;
@@ -36,7 +36,7 @@ public:
 /**
  * The semantic element allows you to specify a semantic for this new param.
  */
-	class DLL_EXPORT domSemantic : public daeElement
+	class domSemantic : public daeElement
 	{
 
 	protected:  // Value
@@ -81,19 +81,19 @@ public:
 		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(daeInt bytes);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static daeMetaElement* registerElement();
+		static DLLSPEC daeMetaElement* registerElement();
 
 	public: // STATIC MEMBERS
 		/**
 		 * The daeMetaElement that describes this element in the meta object reflection framework.
 		 */
-		static daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* _Meta;
 	};
 
 	class domModifier;
@@ -104,7 +104,7 @@ public:
 /**
  * The modifier element allows you to specify a modifier for this new param.
  */
-	class DLL_EXPORT domModifier : public daeElement
+	class domModifier : public daeElement
 	{
 
 	protected:  // Value
@@ -149,19 +149,19 @@ public:
 		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(daeInt bytes);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static daeMetaElement* registerElement();
+		static DLLSPEC daeMetaElement* registerElement();
 
 	public: // STATIC MEMBERS
 		/**
 		 * The daeMetaElement that describes this element in the meta object reflection framework.
 		 */
-		static daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* _Meta;
 	};
 
 
@@ -277,7 +277,7 @@ protected:
 /**
  * An element of type domCg_newparam_complexType.
  */
-class DLL_EXPORT domCg_newparam : public daeElement, public domCg_newparam_complexType
+class domCg_newparam : public daeElement, public domCg_newparam_complexType
 {
 
 public:	//Accessors and Mutators
@@ -317,19 +317,19 @@ public: // STATIC METHODS
 	 * @param bytes The size allocated for this instance.
 	 * @return a daeElementRef referencing an instance of this object.
 	 */
-	static daeElementRef create(daeInt bytes);
+	static DLLSPEC daeElementRef create(daeInt bytes);
 	/**
 	 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 	 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 	 * @return A daeMetaElement describing this COLLADA element.
 	 */
-	static daeMetaElement* registerElement();
+	static DLLSPEC daeMetaElement* registerElement();
 
 public: // STATIC MEMBERS
 	/**
 	 * The daeMetaElement that describes this element in the meta object reflection framework.
 	 */
-	static daeMetaElement* _Meta;
+	static DLLSPEC daeMetaElement* _Meta;
 };
 
 

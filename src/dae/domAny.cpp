@@ -37,7 +37,7 @@ domAny::registerElement()
     daeMetaElement *_Meta = new daeMetaElement;
     _Meta->setName( "any" );
 	//_Meta->setStaticPointerAddress(&domAny::_Meta);
-	//_Meta->registerConstructor(domAny::create);
+	_Meta->registerClass(domAny::create);
 	_Meta->setIsInnerClass( true );
 
 	daeMetaCMPolicy *cm = NULL;

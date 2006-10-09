@@ -20,7 +20,7 @@
 /**
   *Defines the @c daeStringRef class.
  */
-class DLL_EXPORT daeStringRef
+class daeStringRef
 {
 public:
 	/**
@@ -53,7 +53,7 @@ public:
 	 * Constructor that creates from a <tt>const char *.</tt>
 	 * @param string External string to create from.
 	 */
-	daeStringRef(daeString string);
+	DLLSPEC daeStringRef(daeString string);
 
 	/**
 	 * Assignment operator.
@@ -70,14 +70,14 @@ public:
 	 * @param string The daeString to copy.
 	 * @return A reference to this object.
 	 */
-	const daeStringRef& set(daeString string);
+	DLLSPEC const daeStringRef& set(daeString string);
 
 	/**
 	 * Assignment operator from an external <tt>const char *.</tt>
 	 * @param string The daeString to copy.
 	 * @return A reference to this object.
 	 */
-	const daeStringRef& operator= (daeString string);
+	DLLSPEC const daeStringRef& operator= (daeString string);
 
 	/**
 	 * Cast operator that returns a <tt>const char *.</tt>
