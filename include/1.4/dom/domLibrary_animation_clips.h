@@ -26,6 +26,8 @@
  */
 class domLibrary_animation_clips : public daeElement
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIBRARY_ANIMATION_CLIPS; }
 protected:  // Attributes
 /**
  *  The id attribute is a text string containing the unique identifier of

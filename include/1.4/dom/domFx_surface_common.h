@@ -41,6 +41,8 @@ public:
  */
 	class domFormat : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FORMAT; }
 
 	protected:  // Value
 		/**
@@ -109,6 +111,8 @@ public:
  */
 	class domSize : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SIZE; }
 
 	protected:  // Value
 		/**
@@ -183,6 +187,8 @@ public:
  */
 	class domViewport_ratio : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::VIEWPORT_RATIO; }
 
 	protected:  // Value
 		/**
@@ -260,6 +266,8 @@ public:
  */
 	class domMip_levels : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MIP_LEVELS; }
 
 	protected:  // Value
 		/**
@@ -331,6 +339,8 @@ public:
  */
 	class domMipmap_generate : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MIPMAP_GENERATE; }
 
 	protected:  // Value
 		/**
@@ -569,6 +579,8 @@ private:
  */
 class domFx_surface_common : public daeElement, public domFx_surface_common_complexType
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FX_SURFACE_COMMON; }
 
 public:	//Accessors and Mutators
 	/**

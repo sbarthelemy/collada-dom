@@ -26,6 +26,8 @@
 class domInstance_effect : public daeElement
 {
 public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INSTANCE_EFFECT; }
+public:
 	class domTechnique_hint;
 
 	typedef daeSmartRef<domTechnique_hint> domTechnique_hintRef;
@@ -36,6 +38,8 @@ public:
  */
 	class domTechnique_hint : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TECHNIQUE_HINT; }
 	protected:  // Attributes
 /**
  *  A platform defines a string that specifies which platform this is hint
@@ -139,6 +143,8 @@ public:
  */
 	class domSetparam : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SETPARAM; }
 	protected:  // Attribute
 		xsToken attrRef;
 

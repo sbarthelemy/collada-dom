@@ -48,6 +48,8 @@ protected:
  */
 class domGl_samplerCUBE : public daeElement, public domGl_samplerCUBE_complexType
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::GL_SAMPLERCUBE; }
 protected:
 	/**
 	 * Constructor

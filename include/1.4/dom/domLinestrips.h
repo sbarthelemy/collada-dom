@@ -29,6 +29,8 @@
  */
 class domLinestrips : public daeElement
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LINESTRIPS; }
 protected:  // Attributes
 /**
  *  The name attribute is the text string name of this element. Optional attribute.

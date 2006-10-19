@@ -24,6 +24,8 @@
 class domPlane : public daeElement
 {
 public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PLANE; }
+public:
 	class domEquation;
 
 	typedef daeSmartRef<domEquation> domEquationRef;
@@ -35,6 +37,8 @@ public:
  */
 	class domEquation : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::EQUATION; }
 
 	protected:  // Value
 		/**

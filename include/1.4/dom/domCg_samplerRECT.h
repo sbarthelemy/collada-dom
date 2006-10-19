@@ -45,6 +45,8 @@ protected:
  */
 class domCg_samplerRECT : public daeElement, public domCg_samplerRECT_complexType
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CG_SAMPLERRECT; }
 protected:
 	/**
 	 * Constructor

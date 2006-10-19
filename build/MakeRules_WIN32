@@ -12,11 +12,9 @@ rebuild: $(SUBDIRS)
 	$(VCC) $(PROJECT_FILES) /rebuild $(PROJECT_CONFIG)
 
 clean: 
+	rm -rf $(CLEAN_DIR)
 	for dirs in $(SUBDIRS); do \
 		$(MAKE) -C $$dirs clean; \
-	done
-	for project in $(PROJECT_FILES); do \
-		$(VCC) $$project /clean $(PROJECT_CONFIG); \
 	done
 
 $(SUBDIRS):

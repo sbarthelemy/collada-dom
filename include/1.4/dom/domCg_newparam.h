@@ -38,6 +38,8 @@ public:
  */
 	class domSemantic : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SEMANTIC; }
 
 	protected:  // Value
 		/**
@@ -106,6 +108,8 @@ public:
  */
 	class domModifier : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MODIFIER; }
 
 	protected:  // Value
 		/**
@@ -279,6 +283,8 @@ protected:
  */
 class domCg_newparam : public daeElement, public domCg_newparam_complexType
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CG_NEWPARAM; }
 
 public:	//Accessors and Mutators
 	/**

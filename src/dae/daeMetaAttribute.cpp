@@ -23,7 +23,7 @@ daeMetaAttribute::set(daeElement* e, daeString s)
 
 void daeMetaAttribute::copy(daeElement* to, daeElement *from) {
 	daeChar str[4096];
-	_type->memoryToString( getWritableMemory(from), str, 2048 );
+	_type->memoryToString( getWritableMemory(from), str, 4096 );
 	_type->stringToMemory( str, getWritableMemory( to ) );
 	//memcpy( getWritableMemory( to ), getWritableMemory( from ), getSize() );
 }

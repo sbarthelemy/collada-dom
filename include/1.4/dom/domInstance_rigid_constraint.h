@@ -23,6 +23,8 @@
  */
 class domInstance_rigid_constraint : public daeElement
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INSTANCE_RIGID_CONSTRAINT; }
 protected:  // Attributes
 /**
  *  The constraint attribute indicates which rigid_constraing to instantiate.

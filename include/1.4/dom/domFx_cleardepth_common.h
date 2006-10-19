@@ -75,6 +75,8 @@ protected:
  */
 class domFx_cleardepth_common : public daeElement, public domFx_cleardepth_common_complexType
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FX_CLEARDEPTH_COMMON; }
 
 public:	//Accessors and Mutators
 	/**

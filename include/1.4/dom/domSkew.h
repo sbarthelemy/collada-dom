@@ -23,6 +23,8 @@
  */
 class domSkew : public daeElement
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SKEW; }
 protected:  // Attribute
 /**
  *  The sid attribute is a text string value containing the sub-identifier

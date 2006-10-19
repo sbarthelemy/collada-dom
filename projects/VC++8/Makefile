@@ -20,6 +20,12 @@ PROJECT_FILES				+= \
 							stdErrPlugin.vcproj \
 							STLDatabase.vcproj   \
 							
+CLEAN_DIR					+=  ../../bin \
+								../../bin-dbg \
+								../../lib \
+								../../lib-dbg \
+								../../tmp \
+															
 ifeq ($(PROJECT_CONFIG),)
 PROJECT_CONFIG				:= $(BUILD)\($(COLLADA_DOM_VERSION)\)
 endif

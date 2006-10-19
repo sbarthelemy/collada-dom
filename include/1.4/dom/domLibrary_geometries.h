@@ -25,6 +25,8 @@
  */
 class domLibrary_geometries : public daeElement
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIBRARY_GEOMETRIES; }
 protected:  // Attributes
 /**
  *  The id attribute is a text string containing the unique identifier of

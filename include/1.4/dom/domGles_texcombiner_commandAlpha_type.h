@@ -84,6 +84,8 @@ protected:
  */
 class domGles_texcombiner_commandAlpha_type : public daeElement, public domGles_texcombiner_commandAlpha_type_complexType
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::GLES_TEXCOMBINER_COMMANDALPHA_TYPE; }
 
 public:	//Accessors and Mutators
 	/**

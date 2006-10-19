@@ -30,6 +30,8 @@ public:
  */
 	class domAll : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ALL; }
 	protected:  // Attribute
 		xsIDREF attrRef;
 
@@ -104,6 +106,8 @@ public:
 	class domPrimary : public daeElement
 	{
 	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PRIMARY; }
+	public:
 		class domOrder;
 
 		typedef daeSmartRef<domOrder> domOrderRef;
@@ -115,6 +119,8 @@ public:
  */
 		class domOrder : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ORDER; }
 
 		protected:  // Value
 			/**
@@ -261,6 +267,8 @@ public:
  */
 	class domFace : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FACE; }
 	protected:  // Attribute
 		xsIDREF attrRef;
 
@@ -405,6 +413,8 @@ protected:
  */
 class domFx_surface_init_cube_common : public daeElement, public domFx_surface_init_cube_common_complexType
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FX_SURFACE_INIT_CUBE_COMMON; }
 protected:
 	/**
 	 * Constructor

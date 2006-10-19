@@ -30,6 +30,8 @@ public:
  */
 	class domAll : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ALL; }
 	protected:  // Attribute
 		xsIDREF attrRef;
 
@@ -102,6 +104,8 @@ public:
  */
 	class domPrimary : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PRIMARY; }
 	protected:  // Attribute
 		xsIDREF attrRef;
 
@@ -232,6 +236,8 @@ protected:
  */
 class domFx_surface_init_volume_common : public daeElement, public domFx_surface_init_volume_common_complexType
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FX_SURFACE_INIT_VOLUME_COMMON; }
 protected:
 	/**
 	 * Constructor

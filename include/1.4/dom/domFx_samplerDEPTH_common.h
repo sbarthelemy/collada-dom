@@ -31,6 +31,8 @@ public:
 
 	class domSource : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SOURCE; }
 
 	protected:  // Value
 		/**
@@ -96,6 +98,8 @@ public:
 
 	class domWrap_s : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::WRAP_S; }
 
 	protected:  // Value
 		/**
@@ -161,6 +165,8 @@ public:
 
 	class domWrap_t : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::WRAP_T; }
 
 	protected:  // Value
 		/**
@@ -226,6 +232,8 @@ public:
 
 	class domMinfilter : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MINFILTER; }
 
 	protected:  // Value
 		/**
@@ -291,6 +299,8 @@ public:
 
 	class domMagfilter : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MAGFILTER; }
 
 	protected:  // Value
 		/**
@@ -419,6 +429,8 @@ protected:
  */
 class domFx_samplerDEPTH_common : public daeElement, public domFx_samplerDEPTH_common_complexType
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FX_SAMPLERDEPTH_COMMON; }
 protected:
 	/**
 	 * Constructor

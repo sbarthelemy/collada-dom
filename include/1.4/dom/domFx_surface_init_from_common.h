@@ -108,6 +108,8 @@ protected:
  */
 class domFx_surface_init_from_common : public daeElement, public domFx_surface_init_from_common_complexType
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FX_SURFACE_INIT_FROM_COMMON; }
 
 public:	//Accessors and Mutators
 	/**

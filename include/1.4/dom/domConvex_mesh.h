@@ -36,6 +36,8 @@
  */
 class domConvex_mesh : public daeElement
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CONVEX_MESH; }
 protected:  // Attribute
 /**
  *  The convex_hull_of attribute is a URI string of geometry to compute the

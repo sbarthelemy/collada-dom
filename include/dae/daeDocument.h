@@ -43,7 +43,7 @@ public:
 	* @param domRoot the domCollada that is the root of this document
 	* @remarks Should really require a domColladaRef but we're trying to avoid having dae classes depend on generated dom classes.
 	*/
-	void setDomRoot(daeElement* domRoot) {dom = domRoot;}
+	void setDomRoot(daeElement* domRoot) {dom = domRoot; domRoot->setDocument(this); }
 	/**
 	* Accessor to get the URI associated with the document in this document; 
 	* this is currently set to the URI from which the document was loaded, but

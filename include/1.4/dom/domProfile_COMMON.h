@@ -31,6 +31,8 @@
 class domProfile_COMMON : public domFx_profile_abstract
 {
 public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PROFILE_COMMON; }
+public:
 	class domTechnique;
 
 	typedef daeSmartRef<domTechnique> domTechniqueRef;
@@ -43,6 +45,8 @@ public:
 	class domTechnique : public daeElement
 	{
 	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TECHNIQUE; }
+	public:
 		class domConstant;
 
 		typedef daeSmartRef<domConstant> domConstantRef;
@@ -50,6 +54,8 @@ public:
 
 		class domConstant : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CONSTANT; }
 
 		protected:  // Elements
 			domCommon_color_or_texture_typeRef elemEmission;
@@ -136,6 +142,8 @@ public:
 
 		class domLambert : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LAMBERT; }
 
 		protected:  // Elements
 			domCommon_color_or_texture_typeRef elemEmission;
@@ -234,6 +242,8 @@ public:
 
 		class domPhong : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PHONG; }
 
 		protected:  // Elements
 			domCommon_color_or_texture_typeRef elemEmission;
@@ -344,6 +354,8 @@ public:
 
 		class domBlinn : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BLINN; }
 
 		protected:  // Elements
 			domCommon_color_or_texture_typeRef elemEmission;

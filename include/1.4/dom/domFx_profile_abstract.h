@@ -23,6 +23,8 @@
  */
 class domFx_profile_abstract : public daeElement
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FX_PROFILE_ABSTRACT; }
 
 protected:
 	/**

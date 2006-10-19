@@ -48,6 +48,8 @@ protected:
  */
 class domGl_sampler3D : public daeElement, public domGl_sampler3D_complexType
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::GL_SAMPLER3D; }
 protected:
 	/**
 	 * Constructor

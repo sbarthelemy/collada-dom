@@ -40,6 +40,8 @@
 class domProfile_GLSL : public domFx_profile_abstract
 {
 public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PROFILE_GLSL; }
+public:
 	class domTechnique;
 
 	typedef daeSmartRef<domTechnique> domTechniqueRef;
@@ -51,6 +53,8 @@ public:
  */
 	class domTechnique : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TECHNIQUE; }
 	public:
 		class domPass;
 
@@ -64,6 +68,8 @@ public:
 		class domPass : public daeElement
 		{
 		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PASS; }
+		public:
 			class domDraw;
 
 			typedef daeSmartRef<domDraw> domDrawRef;
@@ -71,6 +77,8 @@ public:
 
 			class domDraw : public daeElement
 			{
+			public:
+				COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::DRAW; }
 
 			protected:  // Value
 				/**
@@ -141,6 +149,8 @@ public:
 			class domShader : public daeElement
 			{
 			public:
+				COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SHADER; }
+			public:
 				class domCompiler_target;
 
 				typedef daeSmartRef<domCompiler_target> domCompiler_targetRef;
@@ -152,6 +162,8 @@ public:
  */
 				class domCompiler_target : public daeElement
 				{
+				public:
+					COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::COMPILER_TARGET; }
 
 				protected:  // Value
 					/**
@@ -220,6 +232,8 @@ public:
  */
 				class domCompiler_options : public daeElement
 				{
+				public:
+					COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::COMPILER_OPTIONS; }
 
 				protected:  // Value
 					/**
@@ -288,6 +302,8 @@ public:
  */
 				class domName : public daeElement
 				{
+				public:
+					COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::NAME; }
 				protected:  // Attribute
 					xsNCName attrSource;
 
@@ -371,6 +387,8 @@ public:
 				class domBind : public daeElement
 				{
 				public:
+					COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BIND; }
+				public:
 					class domParam;
 
 					typedef daeSmartRef<domParam> domParamRef;
@@ -378,6 +396,8 @@ public:
 
 					class domParam : public daeElement
 					{
+					public:
+						COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PARAM; }
 					protected:  // Attribute
 						xsString attrRef;
 

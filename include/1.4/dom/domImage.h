@@ -29,6 +29,8 @@
 class domImage : public daeElement
 {
 public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::IMAGE; }
+public:
 	class domData;
 
 	typedef daeSmartRef<domData> domDataRef;
@@ -40,6 +42,8 @@ public:
  */
 	class domData : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::DATA; }
 
 	protected:  // Value
 		/**
@@ -114,6 +118,8 @@ public:
  */
 	class domInit_from : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INIT_FROM; }
 
 	protected:  // Value
 		/**

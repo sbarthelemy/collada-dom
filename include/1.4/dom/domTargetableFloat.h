@@ -84,6 +84,8 @@ protected:
  */
 class domTargetableFloat : public daeElement, public domTargetableFloat_complexType
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TARGETABLEFLOAT; }
 
 public:	//Accessors and Mutators
 	/**

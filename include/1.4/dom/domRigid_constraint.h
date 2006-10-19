@@ -30,6 +30,8 @@
 class domRigid_constraint : public daeElement
 {
 public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::RIGID_CONSTRAINT; }
+public:
 	class domRef_attachment;
 
 	typedef daeSmartRef<domRef_attachment> domRef_attachmentRef;
@@ -40,6 +42,8 @@ public:
  */
 	class domRef_attachment : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::REF_ATTACHMENT; }
 	protected:  // Attribute
 /**
  *  The “rigid_body” attribute is a relative reference to a rigid-body
@@ -178,6 +182,8 @@ public:
  */
 	class domAttachment : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ATTACHMENT; }
 	protected:  // Attribute
 /**
  *  The “rigid_body” attribute is a relative reference to a rigid-body
@@ -318,6 +324,8 @@ public:
 	class domTechnique_common : public daeElement
 	{
 	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TECHNIQUE_COMMON; }
+	public:
 		class domEnabled;
 
 		typedef daeSmartRef<domEnabled> domEnabledRef;
@@ -329,6 +337,8 @@ public:
  */
 		class domEnabled : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ENABLED; }
 		protected:  // Attribute
 /**
  *  The sid attribute is a text string value containing the sub-identifier
@@ -416,6 +426,8 @@ public:
  */
 		class domInterpenetrate : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INTERPENETRATE; }
 		protected:  // Attribute
 /**
  *  The sid attribute is a text string value containing the sub-identifier
@@ -505,6 +517,8 @@ public:
 		class domLimits : public daeElement
 		{
 		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIMITS; }
+		public:
 			class domSwing_cone_and_twist;
 
 			typedef daeSmartRef<domSwing_cone_and_twist> domSwing_cone_and_twistRef;
@@ -517,6 +531,8 @@ public:
  */
 			class domSwing_cone_and_twist : public daeElement
 			{
+			public:
+				COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SWING_CONE_AND_TWIST; }
 
 			protected:  // Elements
 /**
@@ -588,6 +604,8 @@ public:
  */
 			class domLinear : public daeElement
 			{
+			public:
+				COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LINEAR; }
 
 			protected:  // Elements
 /**
@@ -725,6 +743,8 @@ public:
 		class domSpring : public daeElement
 		{
 		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SPRING; }
+		public:
 			class domAngular;
 
 			typedef daeSmartRef<domAngular> domAngularRef;
@@ -735,6 +755,8 @@ public:
  */
 			class domAngular : public daeElement
 			{
+			public:
+				COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ANGULAR; }
 
 			protected:  // Elements
 /**
@@ -816,6 +838,8 @@ public:
  */
 			class domLinear : public daeElement
 			{
+			public:
+				COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LINEAR; }
 
 			protected:  // Elements
 /**

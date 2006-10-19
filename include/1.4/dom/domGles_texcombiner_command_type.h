@@ -68,6 +68,8 @@ protected:
  */
 class domGles_texcombiner_command_type : public daeElement, public domGles_texcombiner_command_type_complexType
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::GLES_TEXCOMBINER_COMMAND_TYPE; }
 protected:
 	/**
 	 * Constructor

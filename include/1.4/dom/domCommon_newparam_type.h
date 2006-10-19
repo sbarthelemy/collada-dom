@@ -29,6 +29,8 @@ public:
 
 	class domSemantic : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SEMANTIC; }
 
 	protected:  // Value
 		/**
@@ -94,6 +96,8 @@ public:
 
 	class domFloat : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT; }
 
 	protected:  // Value
 		/**
@@ -159,6 +163,8 @@ public:
 
 	class domFloat2 : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT2; }
 
 	protected:  // Value
 		/**
@@ -229,6 +235,8 @@ public:
 
 	class domFloat3 : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT3; }
 
 	protected:  // Value
 		/**
@@ -299,6 +307,8 @@ public:
 
 	class domFloat4 : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT4; }
 
 	protected:  // Value
 		/**
@@ -471,6 +481,8 @@ protected:
  */
 class domCommon_newparam_type : public daeElement, public domCommon_newparam_type_complexType
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::COMMON_NEWPARAM_TYPE; }
 
 public:	//Accessors and Mutators
 	/**

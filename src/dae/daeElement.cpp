@@ -211,7 +211,15 @@ void daeElement::setDocument( daeDocument *c ) {
 	if( _document == c ) {
 		return;
 	}
+	if (_document != NULL )
+	{
+		_document->removeElement(this);
+	}
 	_document = c;
+	if ( _document != NULL )
+	{
+		_document->insertElement(this);
+	}
 
 	daeElementRefArray ea;
 	getChildren( ea );
@@ -462,6 +470,7 @@ daeSmartRef<daeElement> daeElement::clone(daeString idSuffix, daeString nameSuff
 	for ( unsigned int i = 0; i < attrs.getCount(); i++ ) {
 		//memcpy( attrs[i]->getWritableMemory( ret ), attrs[i]->getWritableMemory( this ), attrs[i]->getSize() );
 		attrs[i]->copy( ret, this );
+		ret->_validAttributeArray[i] = _validAttributeArray[i];
 	}
 	if ( _meta->getValueAttribute() != NULL ) {
 		daeMetaAttribute *val = _meta->getValueAttribute();
@@ -482,7 +491,8 @@ daeSmartRef<daeElement> daeElement::clone(daeString idSuffix, daeString nameSuff
 		if ( strcmp( str, "" ) ) {
 			strcat( str, idSuffix );
 		}
-		id->getType()->stringToMemory( str, id->getWritableMemory( ret ) );
+		//id->getType()->stringToMemory( str, id->getWritableMemory( ret ) );
+		id->set( ret, str );
 	}
 	//mangle the name
 	daeMetaAttribute *nm = _meta->getMetaAttribute("name");
@@ -492,7 +502,8 @@ daeSmartRef<daeElement> daeElement::clone(daeString idSuffix, daeString nameSuff
 		if ( strcmp( str, "" ) ) {
 			strcat( str, nameSuffix );
 		}
-		nm->getType()->stringToMemory( str, nm->getWritableMemory( ret ) );
+		//nm->getType()->stringToMemory( str, nm->getWritableMemory( ret ) );
+		nm->set( ret, str );
 	}
 	//ret->_intObject = _intObject;
 	return ret;

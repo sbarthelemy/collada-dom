@@ -23,6 +23,8 @@
 class domFx_annotate_type_common : public daeElement
 {
 public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FX_ANNOTATE_TYPE_COMMON; }
+public:
 	class domBool;
 
 	typedef daeSmartRef<domBool> domBoolRef;
@@ -30,6 +32,8 @@ public:
 
 	class domBool : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL; }
 
 	protected:  // Value
 		/**
@@ -95,6 +99,8 @@ public:
 
 	class domBool2 : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL2; }
 
 	protected:  // Value
 		/**
@@ -165,6 +171,8 @@ public:
 
 	class domBool3 : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL3; }
 
 	protected:  // Value
 		/**
@@ -235,6 +243,8 @@ public:
 
 	class domBool4 : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOOL4; }
 
 	protected:  // Value
 		/**
@@ -305,6 +315,8 @@ public:
 
 	class domInt : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT; }
 
 	protected:  // Value
 		/**
@@ -370,6 +382,8 @@ public:
 
 	class domInt2 : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT2; }
 
 	protected:  // Value
 		/**
@@ -440,6 +454,8 @@ public:
 
 	class domInt3 : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT3; }
 
 	protected:  // Value
 		/**
@@ -510,6 +526,8 @@ public:
 
 	class domInt4 : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INT4; }
 
 	protected:  // Value
 		/**
@@ -580,6 +598,8 @@ public:
 
 	class domFloat : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT; }
 
 	protected:  // Value
 		/**
@@ -645,6 +665,8 @@ public:
 
 	class domFloat2 : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT2; }
 
 	protected:  // Value
 		/**
@@ -715,6 +737,8 @@ public:
 
 	class domFloat3 : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT3; }
 
 	protected:  // Value
 		/**
@@ -785,6 +809,8 @@ public:
 
 	class domFloat4 : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT4; }
 
 	protected:  // Value
 		/**
@@ -855,6 +881,8 @@ public:
 
 	class domFloat2x2 : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT2X2; }
 
 	protected:  // Value
 		/**
@@ -925,6 +953,8 @@ public:
 
 	class domFloat3x3 : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT3X3; }
 
 	protected:  // Value
 		/**
@@ -995,6 +1025,8 @@ public:
 
 	class domFloat4x4 : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT4X4; }
 
 	protected:  // Value
 		/**
@@ -1065,6 +1097,8 @@ public:
 
 	class domString : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::STRING; }
 
 	protected:  // Value
 		/**

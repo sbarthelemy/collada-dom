@@ -25,6 +25,8 @@
 class domTapered_cylinder : public daeElement
 {
 public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TAPERED_CYLINDER; }
+public:
 	class domHeight;
 
 	typedef daeSmartRef<domHeight> domHeightRef;
@@ -35,6 +37,8 @@ public:
  */
 	class domHeight : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HEIGHT; }
 
 	protected:  // Value
 		/**
@@ -105,6 +109,8 @@ public:
  */
 	class domRadius1 : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::RADIUS1; }
 
 	protected:  // Value
 		/**
@@ -179,6 +185,8 @@ public:
  */
 	class domRadius2 : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::RADIUS2; }
 
 	protected:  // Value
 		/**

@@ -25,6 +25,8 @@
  */
 class domLibrary_physics_models : public daeElement
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIBRARY_PHYSICS_MODELS; }
 protected:  // Attributes
 /**
  *  The id attribute is a text string containing the unique identifier of

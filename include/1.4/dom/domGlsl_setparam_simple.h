@@ -79,6 +79,8 @@ protected:
  */
 class domGlsl_setparam_simple : public daeElement, public domGlsl_setparam_simple_complexType
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::GLSL_SETPARAM_SIMPLE; }
 
 public:	//Accessors and Mutators
 	/**

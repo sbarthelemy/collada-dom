@@ -86,11 +86,11 @@ daeInt daeSTLDatabase::createDocument(const char *name, daeElement* dom, daeDocu
 	// Create a Reference on the domCOLLADA passed into us
 	newDocument->setDomRoot(dom);
 	// Set the domCollada's document to this one
-	dom->setDocument(newDocument);
+	//dom->setDocument(newDocument);
 	// Set and resolve the document URI
 	newDocument->getDocumentURI()->setURI(name);
 	newDocument->getDocumentURI()->validate();
-	insertElement( newDocument, dom );
+	//insertElement( newDocument, dom );
 	newDocument->setModified(true);
 	// Push the connection into the database
 	documents.push_back(newDocument);

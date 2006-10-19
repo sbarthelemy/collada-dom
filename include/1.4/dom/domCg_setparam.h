@@ -123,6 +123,8 @@ protected:
  */
 class domCg_setparam : public daeElement, public domCg_setparam_complexType
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CG_SETPARAM; }
 
 public:	//Accessors and Mutators
 	/**

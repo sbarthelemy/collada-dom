@@ -19,6 +19,8 @@
 
 class domGl_hook_abstract : public daeElement
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::GL_HOOK_ABSTRACT; }
 
 protected:
 	/**

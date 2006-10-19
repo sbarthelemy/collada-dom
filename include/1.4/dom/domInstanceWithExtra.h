@@ -123,6 +123,8 @@ protected:
  */
 class domInstanceWithExtra : public daeElement, public domInstanceWithExtra_complexType
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INSTANCEWITHEXTRA; }
 
 public:	//Accessors and Mutators
 	/**

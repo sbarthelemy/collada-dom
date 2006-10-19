@@ -24,6 +24,8 @@
  */
 class domInstance_physics_material : public daeElement, public domInstanceWithExtra_complexType
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INSTANCE_PHYSICS_MATERIAL; }
 
 protected:
 	/**

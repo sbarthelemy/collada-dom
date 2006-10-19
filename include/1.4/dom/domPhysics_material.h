@@ -29,6 +29,8 @@
 class domPhysics_material : public daeElement
 {
 public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PHYSICS_MATERIAL; }
+public:
 	class domTechnique_common;
 
 	typedef daeSmartRef<domTechnique_common> domTechnique_commonRef;
@@ -40,6 +42,8 @@ public:
  */
 	class domTechnique_common : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TECHNIQUE_COMMON; }
 
 	protected:  // Elements
 /**

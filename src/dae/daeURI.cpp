@@ -650,7 +650,7 @@ daeURI::validate(daeURI* baseURI)
 	uriString = newURI;
 	state = uri_pending;
 
-	if ( container != NULL ) {
+	if ( container != NULL && container->getDocumentURI() != NULL ) {
 	    daeString fp = container->getDocumentURI()->getFilepath();
 	    daeString f = container->getDocumentURI()->getFile();
 		if ( strcmp( fp, filepath ) != 0 || strcmp( f, file ) != 0 ) {

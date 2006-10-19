@@ -67,6 +67,8 @@ protected:
  */
 class domFx_annotate_common : public daeElement, public domFx_annotate_common_complexType
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FX_ANNOTATE_COMMON; }
 
 public:	//Accessors and Mutators
 	/**

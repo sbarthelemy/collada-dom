@@ -28,6 +28,8 @@ public:
 
 	class domColor : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::COLOR; }
 	protected:  // Attribute
 		xsNCName attrSid;
 
@@ -112,6 +114,8 @@ public:
 
 	class domParam : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PARAM; }
 	protected:  // Attribute
 		xsNCName attrRef;
 
@@ -175,6 +179,8 @@ public:
 
 	class domTexture : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TEXTURE; }
 	protected:  // Attributes
 		xsNCName attrTexture;
 		xsNCName attrTexcoord;
@@ -318,6 +324,8 @@ protected:
  */
 class domCommon_color_or_texture_type : public daeElement, public domCommon_color_or_texture_type_complexType
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::COMMON_COLOR_OR_TEXTURE_TYPE; }
 protected:
 	/**
 	 * Constructor

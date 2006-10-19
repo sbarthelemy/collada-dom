@@ -28,6 +28,8 @@
  */
 class domController : public daeElement
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CONTROLLER; }
 protected:  // Attributes
 /**
  *  The id attribute is a text string containing the unique identifier of

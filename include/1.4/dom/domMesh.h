@@ -33,6 +33,8 @@
  */
 class domMesh : public daeElement
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MESH; }
 
 protected:  // Elements
 /**

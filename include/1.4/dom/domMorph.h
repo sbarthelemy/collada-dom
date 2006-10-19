@@ -28,6 +28,8 @@
 class domMorph : public daeElement
 {
 public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MORPH; }
+public:
 	class domTargets;
 
 	typedef daeSmartRef<domTargets> domTargetsRef;
@@ -39,6 +41,8 @@ public:
  */
 	class domTargets : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TARGETS; }
 
 	protected:  // Elements
 /**

@@ -24,6 +24,8 @@
  */
 class domInstance_node : public daeElement, public domInstanceWithExtra_complexType
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INSTANCE_NODE; }
 
 protected:
 	/**

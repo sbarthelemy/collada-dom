@@ -30,6 +30,8 @@
 class domLight : public daeElement
 {
 public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT; }
+public:
 	class domTechnique_common;
 
 	typedef daeSmartRef<domTechnique_common> domTechnique_commonRef;
@@ -41,6 +43,8 @@ public:
  */
 	class domTechnique_common : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TECHNIQUE_COMMON; }
 	public:
 		class domAmbient;
 
@@ -54,6 +58,8 @@ public:
  */
 		class domAmbient : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::AMBIENT; }
 
 		protected:  // Element
 /**
@@ -122,6 +128,8 @@ public:
  */
 		class domDirectional : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::DIRECTIONAL; }
 
 		protected:  // Element
 /**
@@ -189,6 +197,8 @@ public:
  */
 		class domPoint : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::POINT; }
 
 		protected:  // Elements
 /**
@@ -295,6 +305,8 @@ public:
  */
 		class domSpot : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SPOT; }
 
 		protected:  // Elements
 /**

@@ -111,6 +111,8 @@ protected:
  */
 class domFx_stenciltarget_common : public daeElement, public domFx_stenciltarget_common_complexType
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FX_STENCILTARGET_COMMON; }
 
 public:	//Accessors and Mutators
 	/**

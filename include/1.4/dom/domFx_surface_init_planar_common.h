@@ -33,6 +33,8 @@ public:
  */
 	class domAll : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ALL; }
 	protected:  // Attribute
 		xsIDREF attrRef;
 
@@ -132,6 +134,8 @@ protected:
  */
 class domFx_surface_init_planar_common : public daeElement, public domFx_surface_init_planar_common_complexType
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FX_SURFACE_INIT_PLANAR_COMMON; }
 protected:
 	/**
 	 * Constructor

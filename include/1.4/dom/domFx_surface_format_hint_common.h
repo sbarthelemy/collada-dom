@@ -38,6 +38,8 @@ public:
  */
 	class domChannels : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CHANNELS; }
 
 	protected:  // Value
 		/**
@@ -108,6 +110,8 @@ public:
  */
 	class domRange : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::RANGE; }
 
 	protected:  // Value
 		/**
@@ -179,6 +183,8 @@ public:
  */
 	class domPrecision : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PRECISION; }
 
 	protected:  // Value
 		/**
@@ -248,6 +254,8 @@ public:
  */
 	class domOption : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::OPTION; }
 
 	protected:  // Value
 		/**
@@ -395,6 +403,8 @@ protected:
  */
 class domFx_surface_format_hint_common : public daeElement, public domFx_surface_format_hint_common_complexType
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FX_SURFACE_FORMAT_HINT_COMMON; }
 protected:
 	/**
 	 * Constructor

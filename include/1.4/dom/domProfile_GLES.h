@@ -31,6 +31,8 @@
 class domProfile_GLES : public domFx_profile_abstract
 {
 public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PROFILE_GLES; }
+public:
 	class domTechnique;
 
 	typedef daeSmartRef<domTechnique> domTechniqueRef;
@@ -43,6 +45,8 @@ public:
 	class domTechnique : public daeElement
 	{
 	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TECHNIQUE; }
+	public:
 		class domSetparam;
 
 		typedef daeSmartRef<domSetparam> domSetparamRef;
@@ -50,6 +54,8 @@ public:
 
 		class domSetparam : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SETPARAM; }
 		protected:  // Attribute
 			xsNCName attrRef;
 
@@ -136,6 +142,8 @@ public:
 		class domPass : public daeElement
 		{
 		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PASS; }
+		public:
 			class domColor_target;
 
 			typedef daeSmartRef<domColor_target> domColor_targetRef;
@@ -143,6 +151,8 @@ public:
 
 			class domColor_target : public daeElement
 			{
+			public:
+				COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::COLOR_TARGET; }
 
 			protected:  // Value
 				/**
@@ -208,6 +218,8 @@ public:
 
 			class domDepth_target : public daeElement
 			{
+			public:
+				COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::DEPTH_TARGET; }
 
 			protected:  // Value
 				/**
@@ -273,6 +285,8 @@ public:
 
 			class domStencil_target : public daeElement
 			{
+			public:
+				COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::STENCIL_TARGET; }
 
 			protected:  // Value
 				/**
@@ -338,6 +352,8 @@ public:
 
 			class domColor_clear : public daeElement
 			{
+			public:
+				COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::COLOR_CLEAR; }
 
 			protected:  // Value
 				/**
@@ -408,6 +424,8 @@ public:
 
 			class domDepth_clear : public daeElement
 			{
+			public:
+				COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::DEPTH_CLEAR; }
 
 			protected:  // Value
 				/**
@@ -473,6 +491,8 @@ public:
 
 			class domStencil_clear : public daeElement
 			{
+			public:
+				COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::STENCIL_CLEAR; }
 
 			protected:  // Value
 				/**
@@ -538,6 +558,8 @@ public:
 
 			class domDraw : public daeElement
 			{
+			public:
+				COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::DRAW; }
 
 			protected:  // Value
 				/**

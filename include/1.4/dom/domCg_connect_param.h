@@ -62,6 +62,8 @@ protected:
  */
 class domCg_connect_param : public daeElement, public domCg_connect_param_complexType
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CG_CONNECT_PARAM; }
 
 public:	//Accessors and Mutators
 	/**

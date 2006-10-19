@@ -122,6 +122,8 @@ protected:
  */
 class domInputLocalOffset : public daeElement, public domInputLocalOffset_complexType
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INPUTLOCALOFFSET; }
 
 public:	//Accessors and Mutators
 	/**

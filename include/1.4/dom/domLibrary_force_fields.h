@@ -25,6 +25,8 @@
  */
 class domLibrary_force_fields : public daeElement
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIBRARY_FORCE_FIELDS; }
 protected:  // Attributes
 /**
  *  The id attribute is a text string containing the unique identifier of

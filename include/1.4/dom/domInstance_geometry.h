@@ -25,6 +25,8 @@
  */
 class domInstance_geometry : public daeElement
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INSTANCE_GEOMETRY; }
 protected:  // Attributes
 /**
  *  The url attribute refers to resource.  This may refer to a local resource

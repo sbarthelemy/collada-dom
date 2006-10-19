@@ -141,6 +141,8 @@ protected:
  */
 class domCg_newarray_type : public daeElement, public domCg_newarray_type_complexType
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CG_NEWARRAY_TYPE; }
 
 public:	//Accessors and Mutators
 	/**

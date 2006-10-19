@@ -79,6 +79,8 @@ protected:
  */
 class domGles_texenv_command_type : public daeElement, public domGles_texenv_command_type_complexType
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::GLES_TEXENV_COMMAND_TYPE; }
 
 public:	//Accessors and Mutators
 	/**

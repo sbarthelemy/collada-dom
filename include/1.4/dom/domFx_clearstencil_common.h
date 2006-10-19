@@ -75,6 +75,8 @@ protected:
  */
 class domFx_clearstencil_common : public daeElement, public domFx_clearstencil_common_complexType
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FX_CLEARSTENCIL_COMMON; }
 
 public:	//Accessors and Mutators
 	/**

@@ -891,7 +891,10 @@ void daeLIBXMLPlugin::writeAttribute( daeMetaAttribute* attr, daeElement* elemen
 		//do val 0 first then space and the rest of the vals.
 		char* elemMem = attr->get( element, 0 );
 		attr->getType()->memoryToString( elemMem, buf, bufSz );
-		xmlTextWriterWriteString( writer, (xmlChar*)buf );
+		if ( buf[0] != 0 ) //null string check
+		{
+			xmlTextWriterWriteString( writer, (xmlChar*)buf );
+		}
 
 		*buf = ' ';
 		for( size_t i = 1; i < valCount; i++ ) 

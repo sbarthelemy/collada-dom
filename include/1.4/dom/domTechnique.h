@@ -28,6 +28,8 @@
  */
 class domTechnique : public daeElement
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TECHNIQUE; }
 protected:  // Attribute
 	/**
 	 * This element may specify its own xmlns.

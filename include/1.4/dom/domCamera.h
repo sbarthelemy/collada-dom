@@ -28,6 +28,8 @@
 class domCamera : public daeElement
 {
 public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CAMERA; }
+public:
 	class domOptics;
 
 	typedef daeSmartRef<domOptics> domOpticsRef;
@@ -39,6 +41,8 @@ public:
  */
 	class domOptics : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::OPTICS; }
 	public:
 		class domTechnique_common;
 
@@ -52,6 +56,8 @@ public:
 		class domTechnique_common : public daeElement
 		{
 		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TECHNIQUE_COMMON; }
+		public:
 			class domOrthographic;
 
 			typedef daeSmartRef<domOrthographic> domOrthographicRef;
@@ -63,6 +69,8 @@ public:
  */
 			class domOrthographic : public daeElement
 			{
+			public:
+				COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ORTHOGRAPHIC; }
 
 			protected:  // Elements
 /**
@@ -190,6 +198,8 @@ public:
  */
 			class domPerspective : public daeElement
 			{
+			public:
+				COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PERSPECTIVE; }
 
 			protected:  // Elements
 /**
@@ -484,6 +494,8 @@ public:
  */
 	class domImager : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::IMAGER; }
 
 	protected:  // Elements
 /**

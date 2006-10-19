@@ -30,6 +30,8 @@
 class domPolylist : public daeElement
 {
 public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::POLYLIST; }
+public:
 	class domVcount;
 
 	typedef daeSmartRef<domVcount> domVcountRef;
@@ -42,6 +44,8 @@ public:
  */
 	class domVcount : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::VCOUNT; }
 
 	protected:  // Value
 		/**

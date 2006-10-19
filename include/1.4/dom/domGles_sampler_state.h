@@ -32,6 +32,8 @@ public:
 
 	class domWrap_s : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::WRAP_S; }
 
 	protected:  // Value
 		/**
@@ -97,6 +99,8 @@ public:
 
 	class domWrap_t : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::WRAP_T; }
 
 	protected:  // Value
 		/**
@@ -162,6 +166,8 @@ public:
 
 	class domMinfilter : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MINFILTER; }
 
 	protected:  // Value
 		/**
@@ -227,6 +233,8 @@ public:
 
 	class domMagfilter : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MAGFILTER; }
 
 	protected:  // Value
 		/**
@@ -292,6 +300,8 @@ public:
 
 	class domMipfilter : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MIPFILTER; }
 
 	protected:  // Value
 		/**
@@ -357,6 +367,8 @@ public:
 
 	class domMipmap_maxlevel : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MIPMAP_MAXLEVEL; }
 
 	protected:  // Value
 		/**
@@ -422,6 +434,8 @@ public:
 
 	class domMipmap_bias : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MIPMAP_BIAS; }
 
 	protected:  // Value
 		/**
@@ -584,6 +598,8 @@ protected:
  */
 class domGles_sampler_state : public daeElement, public domGles_sampler_state_complexType
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::GLES_SAMPLER_STATE; }
 
 public:	//Accessors and Mutators
 	/**

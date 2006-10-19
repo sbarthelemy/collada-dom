@@ -88,6 +88,8 @@ protected:
  */
 class domInputGlobal : public daeElement, public domInputGlobal_complexType
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INPUTGLOBAL; }
 
 public:	//Accessors and Mutators
 	/**

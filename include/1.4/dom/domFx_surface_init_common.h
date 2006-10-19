@@ -29,6 +29,8 @@
 class domFx_surface_init_common : public daeElement
 {
 public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FX_SURFACE_INIT_COMMON; }
+public:
 	class domInit_as_null;
 
 	typedef daeSmartRef<domInit_as_null> domInit_as_nullRef;
@@ -43,6 +45,8 @@ public:
  */
 	class domInit_as_null : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INIT_AS_NULL; }
 
 	protected:
 		/**
@@ -94,6 +98,8 @@ public:
  */
 	class domInit_as_target : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INIT_AS_TARGET; }
 
 	protected:
 		/**

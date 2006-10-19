@@ -22,6 +22,8 @@
  */
 class domChannel : public daeElement
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CHANNEL; }
 protected:  // Attributes
 /**
  *  The source attribute indicates the location of the sampler using a URL

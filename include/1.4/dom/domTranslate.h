@@ -24,6 +24,8 @@
  */
 class domTranslate : public daeElement, public domTargetableFloat3_complexType
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TRANSLATE; }
 
 protected:
 	/**

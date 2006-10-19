@@ -22,6 +22,11 @@
 //#include <malloc.h>
 //#endif
 
+namespace COLLADA_TYPE
+{
+	enum TypeEnum;
+};
+
 class daeMetaElement;
 class daeIntegrationObject;
 class daeDocument;
@@ -344,10 +349,16 @@ public:
 	DLLSPEC daeIntegrationObject* getIntObject( IntegrationState from_state = int_converted, IntegrationState to_state = int_uninitialized );
 
 	/**
+	 * Gets the element type.
+	 * @return Returns the COLLADA_TYPE::TypeEnum value corresponding to this element's type.
+	 */
+	virtual COLLADA_TYPE::TypeEnum getElementType() const { return (COLLADA_TYPE::TypeEnum)0; }
+	/**
 	 * Gets the element type name for this element.
 	 * @return Returns the string for the type name.
 	 */
 	DLLSPEC daeString getTypeName() const;
+
 	/**
 	 * Gets this element's name.
 	 * @return Returns the string for the name.

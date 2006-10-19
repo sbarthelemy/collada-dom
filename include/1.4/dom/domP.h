@@ -25,6 +25,8 @@
  */
 class domP : public daeElement
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::P; }
 
 protected:  // Value
 	/**

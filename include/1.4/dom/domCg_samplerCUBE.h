@@ -45,6 +45,8 @@ protected:
  */
 class domCg_samplerCUBE : public daeElement, public domCg_samplerCUBE_complexType
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CG_SAMPLERCUBE; }
 protected:
 	/**
 	 * Constructor

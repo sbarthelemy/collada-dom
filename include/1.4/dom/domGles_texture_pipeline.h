@@ -137,6 +137,8 @@ protected:
  */
 class domGles_texture_pipeline : public daeElement, public domGles_texture_pipeline_complexType
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::GLES_TEXTURE_PIPELINE; }
 
 public:	//Accessors and Mutators
 	/**

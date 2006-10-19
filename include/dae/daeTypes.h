@@ -58,4 +58,13 @@ typedef daeChar				daeFixedName[512];
 #include <dae/daeArray.h>
 #include <dae/daeArrayTypes.h>
 
+class daeElement;
+template <typename T> 
+inline T *daeSafeCast( daeElement *element ) 
+{ 
+    if ( element && element->getMeta() == T::_Meta ) 
+        return (T *)element; 
+    return NULL; 
+} 
+
 #endif //__DAE_TYPES_H__

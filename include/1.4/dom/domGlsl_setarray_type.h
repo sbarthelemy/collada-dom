@@ -115,6 +115,8 @@ protected:
  */
 class domGlsl_setarray_type : public daeElement, public domGlsl_setarray_type_complexType
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::GLSL_SETARRAY_TYPE; }
 
 public:	//Accessors and Mutators
 	/**

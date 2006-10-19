@@ -267,7 +267,7 @@ daeInt DAE::saveAs(daeString name, daeString documentName, daeBool replace)
 
 	// Make a URI from "name" and save to that
 
-	daeURI tempURI(name);
+	daeURI tempURI(name, true);
 	return plugin->write(&tempURI, document, replace);
 	
 }

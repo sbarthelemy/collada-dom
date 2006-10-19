@@ -26,6 +26,8 @@
  */
 class domAccessor : public daeElement
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ACCESSOR; }
 protected:  // Attributes
 /**
  *  The count attribute indicates the number of times the array is accessed.

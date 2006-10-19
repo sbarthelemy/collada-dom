@@ -30,6 +30,8 @@
 class domVisual_scene : public daeElement
 {
 public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::VISUAL_SCENE; }
+public:
 	class domEvaluate_scene;
 
 	typedef daeSmartRef<domEvaluate_scene> domEvaluate_sceneRef;
@@ -43,6 +45,8 @@ public:
 	class domEvaluate_scene : public daeElement
 	{
 	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::EVALUATE_SCENE; }
+	public:
 		class domRender;
 
 		typedef daeSmartRef<domRender> domRenderRef;
@@ -55,6 +59,8 @@ public:
 		class domRender : public daeElement
 		{
 		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::RENDER; }
+		public:
 			class domLayer;
 
 			typedef daeSmartRef<domLayer> domLayerRef;
@@ -66,6 +72,8 @@ public:
  */
 			class domLayer : public daeElement
 			{
+			public:
+				COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LAYER; }
 
 			protected:  // Value
 				/**

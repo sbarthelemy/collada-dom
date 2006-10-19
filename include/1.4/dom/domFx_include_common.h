@@ -91,6 +91,8 @@ protected:
  */
 class domFx_include_common : public daeElement, public domFx_include_common_complexType
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FX_INCLUDE_COMMON; }
 
 public:	//Accessors and Mutators
 	/**

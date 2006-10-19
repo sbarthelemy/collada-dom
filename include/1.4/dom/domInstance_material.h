@@ -25,6 +25,8 @@
 class domInstance_material : public daeElement
 {
 public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INSTANCE_MATERIAL; }
+public:
 	class domBind;
 
 	typedef daeSmartRef<domBind> domBindRef;
@@ -35,6 +37,8 @@ public:
  */
 	class domBind : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BIND; }
 	protected:  // Attributes
 /**
  *  The semantic attribute specifies which effect parameter to bind. 
@@ -123,6 +127,8 @@ public:
  */
 	class domBind_vertex_input : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BIND_VERTEX_INPUT; }
 	protected:  // Attributes
 /**
  *  The semantic attribute specifies which effect parameter to bind. 

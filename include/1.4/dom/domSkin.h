@@ -28,6 +28,8 @@
 class domSkin : public daeElement
 {
 public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SKIN; }
+public:
 	class domBind_shape_matrix;
 
 	typedef daeSmartRef<domBind_shape_matrix> domBind_shape_matrixRef;
@@ -41,6 +43,8 @@ public:
  */
 	class domBind_shape_matrix : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BIND_SHAPE_MATRIX; }
 
 	protected:  // Value
 		/**
@@ -116,6 +120,8 @@ public:
  */
 	class domJoints : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::JOINTS; }
 
 	protected:  // Elements
 /**
@@ -200,6 +206,8 @@ public:
 	class domVertex_weights : public daeElement
 	{
 	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::VERTEX_WEIGHTS; }
+	public:
 		class domVcount;
 
 		typedef daeSmartRef<domVcount> domVcountRef;
@@ -211,6 +219,8 @@ public:
  */
 		class domVcount : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::VCOUNT; }
 
 		protected:  // Value
 			/**
@@ -287,6 +297,8 @@ public:
  */
 		class domV : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::V; }
 
 		protected:  // Value
 			/**

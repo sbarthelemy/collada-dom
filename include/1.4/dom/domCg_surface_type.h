@@ -40,6 +40,8 @@ public:
 	class domGenerator : public daeElement
 	{
 	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::GENERATOR; }
+	public:
 		class domName;
 
 		typedef daeSmartRef<domName> domNameRef;
@@ -50,6 +52,8 @@ public:
  */
 		class domName : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::NAME; }
 		protected:  // Attribute
 			xsNCName attrSource;
 
@@ -292,6 +296,8 @@ protected:
  */
 class domCg_surface_type : public daeElement, public domCg_surface_type_complexType
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CG_SURFACE_TYPE; }
 protected:
 	/**
 	 * Constructor

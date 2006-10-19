@@ -129,6 +129,8 @@ protected:
  */
 class domCg_setarray_type : public daeElement, public domCg_setarray_type_complexType
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CG_SETARRAY_TYPE; }
 
 public:	//Accessors and Mutators
 	/**

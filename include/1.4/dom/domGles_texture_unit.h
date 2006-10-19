@@ -28,6 +28,8 @@ public:
 
 	class domSurface : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SURFACE; }
 
 	protected:  // Value
 		/**
@@ -93,6 +95,8 @@ public:
 
 	class domSampler_state : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SAMPLER_STATE; }
 
 	protected:  // Value
 		/**
@@ -158,6 +162,8 @@ public:
 
 	class domTexcoord : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TEXCOORD; }
 	protected:  // Attribute
 		xsNCName attrSemantic;
 
@@ -290,6 +296,8 @@ protected:
  */
 class domGles_texture_unit : public daeElement, public domGles_texture_unit_complexType
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::GLES_TEXTURE_UNIT; }
 
 public:	//Accessors and Mutators
 	/**

@@ -24,6 +24,8 @@
 class domAsset : public daeElement
 {
 public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ASSET; }
+public:
 	class domContributor;
 
 	typedef daeSmartRef<domContributor> domContributorRef;
@@ -34,6 +36,8 @@ public:
  */
 	class domContributor : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CONTRIBUTOR; }
 	public:
 		class domAuthor;
 
@@ -46,6 +50,8 @@ public:
  */
 		class domAuthor : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::AUTHOR; }
 
 		protected:  // Value
 			/**
@@ -115,6 +121,8 @@ public:
  */
 		class domAuthoring_tool : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::AUTHORING_TOOL; }
 
 		protected:  // Value
 			/**
@@ -184,6 +192,8 @@ public:
  */
 		class domComments : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::COMMENTS; }
 
 		protected:  // Value
 			/**
@@ -253,6 +263,8 @@ public:
  */
 		class domCopyright : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::COPYRIGHT; }
 
 		protected:  // Value
 			/**
@@ -322,6 +334,8 @@ public:
  */
 		class domSource_data : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SOURCE_DATA; }
 
 		protected:  // Value
 			/**
@@ -491,6 +505,8 @@ public:
  */
 	class domCreated : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CREATED; }
 
 	protected:  // Value
 		/**
@@ -560,6 +576,8 @@ public:
  */
 	class domKeywords : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::KEYWORDS; }
 
 	protected:  // Value
 		/**
@@ -630,6 +648,8 @@ public:
  */
 	class domModified : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MODIFIED; }
 
 	protected:  // Value
 		/**
@@ -699,6 +719,8 @@ public:
  */
 	class domRevision : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::REVISION; }
 
 	protected:  // Value
 		/**
@@ -768,6 +790,8 @@ public:
  */
 	class domSubject : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SUBJECT; }
 
 	protected:  // Value
 		/**
@@ -837,6 +861,8 @@ public:
  */
 	class domTitle : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TITLE; }
 
 	protected:  // Value
 		/**
@@ -907,6 +933,8 @@ public:
  */
 	class domUnit : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::UNIT; }
 	protected:  // Attributes
 /**
  *  The meter attribute specifies the measurement with respect to the meter.
@@ -997,6 +1025,8 @@ public:
  */
 	class domUp_axis : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::UP_AXIS; }
 
 	protected:  // Value
 		/**

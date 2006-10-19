@@ -26,6 +26,8 @@
 class domInstance_controller : public daeElement
 {
 public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INSTANCE_CONTROLLER; }
+public:
 	class domSkeleton;
 
 	typedef daeSmartRef<domSkeleton> domSkeletonRef;
@@ -38,6 +40,8 @@ public:
  */
 	class domSkeleton : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SKELETON; }
 
 	protected:  // Value
 		/**

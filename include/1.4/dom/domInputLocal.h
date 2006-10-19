@@ -88,6 +88,8 @@ protected:
  */
 class domInputLocal : public daeElement, public domInputLocal_complexType
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INPUTLOCAL; }
 
 public:	//Accessors and Mutators
 	/**

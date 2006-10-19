@@ -20,6 +20,8 @@
 class domEllipsoid : public daeElement
 {
 public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ELLIPSOID; }
+public:
 	class domSize;
 
 	typedef daeSmartRef<domSize> domSizeRef;
@@ -27,6 +29,8 @@ public:
 
 	class domSize : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SIZE; }
 
 	protected:  // Value
 		/**

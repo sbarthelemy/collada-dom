@@ -199,8 +199,11 @@ public:
 	 * @param value Value to store at index in the array.
 	 */
 	inline void set(size_t index, const T& value) {
-		if (index >= _capacity)
-			grow(index);
+		if (index >= _count)
+		{
+			//grow(index);
+			setCount(index+1);
+		}
 		((T*)_data)[index] = value; }
 	
 	/**
@@ -219,7 +222,7 @@ public:
 	 */
 	inline size_t append(const T& value) {
 		set(_count, value);
-		_count++;
+		//_count++;
 		return _count-1;
 	}
 
@@ -300,11 +303,14 @@ public:
 			grow( _count +1 );
 		}
 		//memmove( &(((T*)_data)[index+1]), &(((T*)_data)[index]), (_count - index)*_elementSize );
-		for (size_t i = _count; i > index; i-- ) {
-			set( i, ((T*)_data)[i-1] );
+		for (size_t i = _count; i > index; i-- ) 
+		{
+			T tmp = ((T*)_data)[i-1];
+			set( i, tmp );
+			//set( i, ((T*)_data)[i-1] );
 		}
 		set( index, value );
-		_count++;
+		//_count++;
 	}
 
 	/**

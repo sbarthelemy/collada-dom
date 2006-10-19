@@ -24,6 +24,8 @@
 class domSphere : public daeElement
 {
 public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SPHERE; }
+public:
 	class domRadius;
 
 	typedef daeSmartRef<domRadius> domRadiusRef;
@@ -34,6 +36,8 @@ public:
  */
 	class domRadius : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::RADIUS; }
 
 	protected:  // Value
 		/**

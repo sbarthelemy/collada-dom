@@ -27,6 +27,8 @@
  */
 class domInstance_physics_model : public daeElement
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INSTANCE_PHYSICS_MODEL; }
 protected:  // Attributes
 /**
  *  The url attribute refers to resource.  This may refer to a local resource

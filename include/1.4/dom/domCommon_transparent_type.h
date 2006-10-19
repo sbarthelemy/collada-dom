@@ -23,6 +23,8 @@
  */
 class domCommon_transparent_type : public domCommon_color_or_texture_type
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::COMMON_TRANSPARENT_TYPE; }
 
 protected:  // Attribute
 	domFx_opaque_enum attrOpaque;

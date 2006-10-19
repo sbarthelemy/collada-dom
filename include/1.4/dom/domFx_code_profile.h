@@ -84,6 +84,8 @@ protected:
  */
 class domFx_code_profile : public daeElement, public domFx_code_profile_complexType
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FX_CODE_PROFILE; }
 
 public:	//Accessors and Mutators
 	/**

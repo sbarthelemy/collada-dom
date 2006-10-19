@@ -27,6 +27,8 @@
 class domSpline : public daeElement
 {
 public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SPLINE; }
+public:
 	class domControl_vertices;
 
 	typedef daeSmartRef<domControl_vertices> domControl_verticesRef;
@@ -38,6 +40,8 @@ public:
  */
 	class domControl_vertices : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CONTROL_VERTICES; }
 
 	protected:  // Elements
 /**

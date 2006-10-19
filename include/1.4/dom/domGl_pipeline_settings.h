@@ -30,6 +30,8 @@
 class domGl_pipeline_settings : public daeElement
 {
 public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::GL_PIPELINE_SETTINGS; }
+public:
 	class domAlpha_func;
 
 	typedef daeSmartRef<domAlpha_func> domAlpha_funcRef;
@@ -38,6 +40,8 @@ public:
 	class domAlpha_func : public daeElement
 	{
 	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ALPHA_FUNC; }
+	public:
 		class domFunc;
 
 		typedef daeSmartRef<domFunc> domFuncRef;
@@ -45,6 +49,8 @@ public:
 
 		class domFunc : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FUNC; }
 		protected:  // Attributes
 			domGl_func_type attrValue;
 			xsNCName attrParam;
@@ -121,6 +127,8 @@ public:
 
 		class domValue : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::VALUE; }
 		protected:  // Attributes
 			domGl_alpha_value_type attrValue;
 			xsNCName attrParam;
@@ -254,6 +262,8 @@ public:
 	class domBlend_func : public daeElement
 	{
 	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BLEND_FUNC; }
+	public:
 		class domSrc;
 
 		typedef daeSmartRef<domSrc> domSrcRef;
@@ -261,6 +271,8 @@ public:
 
 		class domSrc : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SRC; }
 		protected:  // Attributes
 			domGl_blend_type attrValue;
 			xsNCName attrParam;
@@ -337,6 +349,8 @@ public:
 
 		class domDest : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::DEST; }
 		protected:  // Attributes
 			domGl_blend_type attrValue;
 			xsNCName attrParam;
@@ -470,6 +484,8 @@ public:
 	class domBlend_func_separate : public daeElement
 	{
 	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BLEND_FUNC_SEPARATE; }
+	public:
 		class domSrc_rgb;
 
 		typedef daeSmartRef<domSrc_rgb> domSrc_rgbRef;
@@ -477,6 +493,8 @@ public:
 
 		class domSrc_rgb : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SRC_RGB; }
 		protected:  // Attributes
 			domGl_blend_type attrValue;
 			xsNCName attrParam;
@@ -553,6 +571,8 @@ public:
 
 		class domDest_rgb : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::DEST_RGB; }
 		protected:  // Attributes
 			domGl_blend_type attrValue;
 			xsNCName attrParam;
@@ -629,6 +649,8 @@ public:
 
 		class domSrc_alpha : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SRC_ALPHA; }
 		protected:  // Attributes
 			domGl_blend_type attrValue;
 			xsNCName attrParam;
@@ -705,6 +727,8 @@ public:
 
 		class domDest_alpha : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::DEST_ALPHA; }
 		protected:  // Attributes
 			domGl_blend_type attrValue;
 			xsNCName attrParam;
@@ -849,6 +873,8 @@ public:
 
 	class domBlend_equation : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BLEND_EQUATION; }
 	protected:  // Attributes
 		domGl_blend_equation_type attrValue;
 		xsNCName attrParam;
@@ -926,6 +952,8 @@ public:
 	class domBlend_equation_separate : public daeElement
 	{
 	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BLEND_EQUATION_SEPARATE; }
+	public:
 		class domRgb;
 
 		typedef daeSmartRef<domRgb> domRgbRef;
@@ -933,6 +961,8 @@ public:
 
 		class domRgb : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::RGB; }
 		protected:  // Attributes
 			domGl_blend_equation_type attrValue;
 			xsNCName attrParam;
@@ -1009,6 +1039,8 @@ public:
 
 		class domAlpha : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ALPHA; }
 		protected:  // Attributes
 			domGl_blend_equation_type attrValue;
 			xsNCName attrParam;
@@ -1142,6 +1174,8 @@ public:
 	class domColor_material : public daeElement
 	{
 	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::COLOR_MATERIAL; }
+	public:
 		class domFace;
 
 		typedef daeSmartRef<domFace> domFaceRef;
@@ -1149,6 +1183,8 @@ public:
 
 		class domFace : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FACE; }
 		protected:  // Attributes
 			domGl_face_type attrValue;
 			xsNCName attrParam;
@@ -1225,6 +1261,8 @@ public:
 
 		class domMode : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MODE; }
 		protected:  // Attributes
 			domGl_material_type attrValue;
 			xsNCName attrParam;
@@ -1357,6 +1395,8 @@ public:
 
 	class domCull_face : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CULL_FACE; }
 	protected:  // Attributes
 		domGl_face_type attrValue;
 		xsNCName attrParam;
@@ -1433,6 +1473,8 @@ public:
 
 	class domDepth_func : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::DEPTH_FUNC; }
 	protected:  // Attributes
 		domGl_func_type attrValue;
 		xsNCName attrParam;
@@ -1509,6 +1551,8 @@ public:
 
 	class domFog_mode : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FOG_MODE; }
 	protected:  // Attributes
 		domGl_fog_type attrValue;
 		xsNCName attrParam;
@@ -1585,6 +1629,8 @@ public:
 
 	class domFog_coord_src : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FOG_COORD_SRC; }
 	protected:  // Attributes
 		domGl_fog_coord_src_type attrValue;
 		xsNCName attrParam;
@@ -1661,6 +1707,8 @@ public:
 
 	class domFront_face : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FRONT_FACE; }
 	protected:  // Attributes
 		domGl_front_face_type attrValue;
 		xsNCName attrParam;
@@ -1737,6 +1785,8 @@ public:
 
 	class domLight_model_color_control : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_MODEL_COLOR_CONTROL; }
 	protected:  // Attributes
 		domGl_light_model_color_control_type attrValue;
 		xsNCName attrParam;
@@ -1813,6 +1863,8 @@ public:
 
 	class domLogic_op : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LOGIC_OP; }
 	protected:  // Attributes
 		domGl_logic_op_type attrValue;
 		xsNCName attrParam;
@@ -1890,6 +1942,8 @@ public:
 	class domPolygon_mode : public daeElement
 	{
 	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::POLYGON_MODE; }
+	public:
 		class domFace;
 
 		typedef daeSmartRef<domFace> domFaceRef;
@@ -1897,6 +1951,8 @@ public:
 
 		class domFace : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FACE; }
 		protected:  // Attributes
 			domGl_face_type attrValue;
 			xsNCName attrParam;
@@ -1973,6 +2029,8 @@ public:
 
 		class domMode : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MODE; }
 		protected:  // Attributes
 			domGl_polygon_mode_type attrValue;
 			xsNCName attrParam;
@@ -2105,6 +2163,8 @@ public:
 
 	class domShade_model : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SHADE_MODEL; }
 	protected:  // Attributes
 		domGl_shade_model_type attrValue;
 		xsNCName attrParam;
@@ -2182,6 +2242,8 @@ public:
 	class domStencil_func : public daeElement
 	{
 	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::STENCIL_FUNC; }
+	public:
 		class domFunc;
 
 		typedef daeSmartRef<domFunc> domFuncRef;
@@ -2189,6 +2251,8 @@ public:
 
 		class domFunc : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FUNC; }
 		protected:  // Attributes
 			domGl_func_type attrValue;
 			xsNCName attrParam;
@@ -2265,6 +2329,8 @@ public:
 
 		class domRef : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::REF; }
 		protected:  // Attributes
 			xsUnsignedByte attrValue;
 			xsNCName attrParam;
@@ -2341,6 +2407,8 @@ public:
 
 		class domMask : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MASK; }
 		protected:  // Attributes
 			xsUnsignedByte attrValue;
 			xsNCName attrParam;
@@ -2480,6 +2548,8 @@ public:
 	class domStencil_op : public daeElement
 	{
 	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::STENCIL_OP; }
+	public:
 		class domFail;
 
 		typedef daeSmartRef<domFail> domFailRef;
@@ -2487,6 +2557,8 @@ public:
 
 		class domFail : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FAIL; }
 		protected:  // Attributes
 			domGl_stencil_op_type attrValue;
 			xsNCName attrParam;
@@ -2563,6 +2635,8 @@ public:
 
 		class domZfail : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ZFAIL; }
 		protected:  // Attributes
 			domGl_stencil_op_type attrValue;
 			xsNCName attrParam;
@@ -2639,6 +2713,8 @@ public:
 
 		class domZpass : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ZPASS; }
 		protected:  // Attributes
 			domGl_stencil_op_type attrValue;
 			xsNCName attrParam;
@@ -2778,6 +2854,8 @@ public:
 	class domStencil_func_separate : public daeElement
 	{
 	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::STENCIL_FUNC_SEPARATE; }
+	public:
 		class domFront;
 
 		typedef daeSmartRef<domFront> domFrontRef;
@@ -2785,6 +2863,8 @@ public:
 
 		class domFront : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FRONT; }
 		protected:  // Attributes
 			domGl_func_type attrValue;
 			xsNCName attrParam;
@@ -2861,6 +2941,8 @@ public:
 
 		class domBack : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BACK; }
 		protected:  // Attributes
 			domGl_func_type attrValue;
 			xsNCName attrParam;
@@ -2937,6 +3019,8 @@ public:
 
 		class domRef : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::REF; }
 		protected:  // Attributes
 			xsUnsignedByte attrValue;
 			xsNCName attrParam;
@@ -3013,6 +3097,8 @@ public:
 
 		class domMask : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MASK; }
 		protected:  // Attributes
 			xsUnsignedByte attrValue;
 			xsNCName attrParam;
@@ -3158,6 +3244,8 @@ public:
 	class domStencil_op_separate : public daeElement
 	{
 	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::STENCIL_OP_SEPARATE; }
+	public:
 		class domFace;
 
 		typedef daeSmartRef<domFace> domFaceRef;
@@ -3165,6 +3253,8 @@ public:
 
 		class domFace : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FACE; }
 		protected:  // Attributes
 			domGl_face_type attrValue;
 			xsNCName attrParam;
@@ -3241,6 +3331,8 @@ public:
 
 		class domFail : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FAIL; }
 		protected:  // Attributes
 			domGl_stencil_op_type attrValue;
 			xsNCName attrParam;
@@ -3317,6 +3409,8 @@ public:
 
 		class domZfail : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ZFAIL; }
 		protected:  // Attributes
 			domGl_stencil_op_type attrValue;
 			xsNCName attrParam;
@@ -3393,6 +3487,8 @@ public:
 
 		class domZpass : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ZPASS; }
 		protected:  // Attributes
 			domGl_stencil_op_type attrValue;
 			xsNCName attrParam;
@@ -3538,6 +3634,8 @@ public:
 	class domStencil_mask_separate : public daeElement
 	{
 	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::STENCIL_MASK_SEPARATE; }
+	public:
 		class domFace;
 
 		typedef daeSmartRef<domFace> domFaceRef;
@@ -3545,6 +3643,8 @@ public:
 
 		class domFace : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FACE; }
 		protected:  // Attributes
 			domGl_face_type attrValue;
 			xsNCName attrParam;
@@ -3621,6 +3721,8 @@ public:
 
 		class domMask : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MASK; }
 		protected:  // Attributes
 			xsUnsignedByte attrValue;
 			xsNCName attrParam;
@@ -3753,6 +3855,8 @@ public:
 
 	class domLight_enable : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -3842,6 +3946,8 @@ public:
 
 	class domLight_ambient : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_AMBIENT; }
 	protected:  // Attributes
 		domFloat4 attrValue;
 		xsNCName attrParam;
@@ -3936,6 +4042,8 @@ public:
 
 	class domLight_diffuse : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_DIFFUSE; }
 	protected:  // Attributes
 		domFloat4 attrValue;
 		xsNCName attrParam;
@@ -4030,6 +4138,8 @@ public:
 
 	class domLight_specular : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_SPECULAR; }
 	protected:  // Attributes
 		domFloat4 attrValue;
 		xsNCName attrParam;
@@ -4124,6 +4234,8 @@ public:
 
 	class domLight_position : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_POSITION; }
 	protected:  // Attributes
 		domFloat4 attrValue;
 		xsNCName attrParam;
@@ -4218,6 +4330,8 @@ public:
 
 	class domLight_constant_attenuation : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_CONSTANT_ATTENUATION; }
 	protected:  // Attributes
 		domFloat attrValue;
 		xsNCName attrParam;
@@ -4307,6 +4421,8 @@ public:
 
 	class domLight_linear_attenuation : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_LINEAR_ATTENUATION; }
 	protected:  // Attributes
 		domFloat attrValue;
 		xsNCName attrParam;
@@ -4396,6 +4512,8 @@ public:
 
 	class domLight_quadratic_attenuation : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_QUADRATIC_ATTENUATION; }
 	protected:  // Attributes
 		domFloat attrValue;
 		xsNCName attrParam;
@@ -4485,6 +4603,8 @@ public:
 
 	class domLight_spot_cutoff : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_SPOT_CUTOFF; }
 	protected:  // Attributes
 		domFloat attrValue;
 		xsNCName attrParam;
@@ -4574,6 +4694,8 @@ public:
 
 	class domLight_spot_direction : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_SPOT_DIRECTION; }
 	protected:  // Attributes
 		domFloat3 attrValue;
 		xsNCName attrParam;
@@ -4668,6 +4790,8 @@ public:
 
 	class domLight_spot_exponent : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_SPOT_EXPONENT; }
 	protected:  // Attributes
 		domFloat attrValue;
 		xsNCName attrParam;
@@ -4758,6 +4882,8 @@ public:
 	class domTexture1D : public daeElement
 	{
 	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TEXTURE1D; }
+	public:
 		class domParam;
 
 		typedef daeSmartRef<domParam> domParamRef;
@@ -4765,6 +4891,8 @@ public:
 
 		class domParam : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PARAM; }
 
 		protected:  // Value
 			/**
@@ -4921,6 +5049,8 @@ public:
 	class domTexture2D : public daeElement
 	{
 	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TEXTURE2D; }
+	public:
 		class domParam;
 
 		typedef daeSmartRef<domParam> domParamRef;
@@ -4928,6 +5058,8 @@ public:
 
 		class domParam : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PARAM; }
 
 		protected:  // Value
 			/**
@@ -5084,6 +5216,8 @@ public:
 	class domTexture3D : public daeElement
 	{
 	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TEXTURE3D; }
+	public:
 		class domParam;
 
 		typedef daeSmartRef<domParam> domParamRef;
@@ -5091,6 +5225,8 @@ public:
 
 		class domParam : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PARAM; }
 
 		protected:  // Value
 			/**
@@ -5247,6 +5383,8 @@ public:
 	class domTextureCUBE : public daeElement
 	{
 	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TEXTURECUBE; }
+	public:
 		class domParam;
 
 		typedef daeSmartRef<domParam> domParamRef;
@@ -5254,6 +5392,8 @@ public:
 
 		class domParam : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PARAM; }
 
 		protected:  // Value
 			/**
@@ -5410,6 +5550,8 @@ public:
 	class domTextureRECT : public daeElement
 	{
 	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TEXTURERECT; }
+	public:
 		class domParam;
 
 		typedef daeSmartRef<domParam> domParamRef;
@@ -5417,6 +5559,8 @@ public:
 
 		class domParam : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PARAM; }
 
 		protected:  // Value
 			/**
@@ -5573,6 +5717,8 @@ public:
 	class domTextureDEPTH : public daeElement
 	{
 	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TEXTUREDEPTH; }
+	public:
 		class domParam;
 
 		typedef daeSmartRef<domParam> domParamRef;
@@ -5580,6 +5726,8 @@ public:
 
 		class domParam : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PARAM; }
 
 		protected:  // Value
 			/**
@@ -5735,6 +5883,8 @@ public:
 
 	class domTexture1D_enable : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TEXTURE1D_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -5824,6 +5974,8 @@ public:
 
 	class domTexture2D_enable : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TEXTURE2D_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -5913,6 +6065,8 @@ public:
 
 	class domTexture3D_enable : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TEXTURE3D_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -6002,6 +6156,8 @@ public:
 
 	class domTextureCUBE_enable : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TEXTURECUBE_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -6091,6 +6247,8 @@ public:
 
 	class domTextureRECT_enable : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TEXTURERECT_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -6180,6 +6338,8 @@ public:
 
 	class domTextureDEPTH_enable : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TEXTUREDEPTH_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -6269,6 +6429,8 @@ public:
 
 	class domTexture_env_color : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TEXTURE_ENV_COLOR; }
 	protected:  // Attributes
 		domFloat4 attrValue;
 		xsNCName attrParam;
@@ -6363,6 +6525,8 @@ public:
 
 	class domTexture_env_mode : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TEXTURE_ENV_MODE; }
 	protected:  // Attributes
 		domString attrValue;
 		xsNCName attrParam;
@@ -6452,6 +6616,8 @@ public:
 
 	class domClip_plane : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CLIP_PLANE; }
 	protected:  // Attributes
 		domFloat4 attrValue;
 		xsNCName attrParam;
@@ -6546,6 +6712,8 @@ public:
 
 	class domClip_plane_enable : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CLIP_PLANE_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -6635,6 +6803,8 @@ public:
 
 	class domBlend_color : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BLEND_COLOR; }
 	protected:  // Attributes
 		domFloat4 attrValue;
 		xsNCName attrParam;
@@ -6716,6 +6886,8 @@ public:
 
 	class domClear_color : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CLEAR_COLOR; }
 	protected:  // Attributes
 		domFloat4 attrValue;
 		xsNCName attrParam;
@@ -6797,6 +6969,8 @@ public:
 
 	class domClear_stencil : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CLEAR_STENCIL; }
 	protected:  // Attributes
 		domInt attrValue;
 		xsNCName attrParam;
@@ -6873,6 +7047,8 @@ public:
 
 	class domClear_depth : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CLEAR_DEPTH; }
 	protected:  // Attributes
 		domFloat attrValue;
 		xsNCName attrParam;
@@ -6949,6 +7125,8 @@ public:
 
 	class domColor_mask : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::COLOR_MASK; }
 	protected:  // Attributes
 		domBool4 attrValue;
 		xsNCName attrParam;
@@ -7030,6 +7208,8 @@ public:
 
 	class domDepth_bounds : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::DEPTH_BOUNDS; }
 	protected:  // Attributes
 		domFloat2 attrValue;
 		xsNCName attrParam;
@@ -7111,6 +7291,8 @@ public:
 
 	class domDepth_mask : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::DEPTH_MASK; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -7187,6 +7369,8 @@ public:
 
 	class domDepth_range : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::DEPTH_RANGE; }
 	protected:  // Attributes
 		domFloat2 attrValue;
 		xsNCName attrParam;
@@ -7268,6 +7452,8 @@ public:
 
 	class domFog_density : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FOG_DENSITY; }
 	protected:  // Attributes
 		domFloat attrValue;
 		xsNCName attrParam;
@@ -7344,6 +7530,8 @@ public:
 
 	class domFog_start : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FOG_START; }
 	protected:  // Attributes
 		domFloat attrValue;
 		xsNCName attrParam;
@@ -7420,6 +7608,8 @@ public:
 
 	class domFog_end : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FOG_END; }
 	protected:  // Attributes
 		domFloat attrValue;
 		xsNCName attrParam;
@@ -7496,6 +7686,8 @@ public:
 
 	class domFog_color : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FOG_COLOR; }
 	protected:  // Attributes
 		domFloat4 attrValue;
 		xsNCName attrParam;
@@ -7577,6 +7769,8 @@ public:
 
 	class domLight_model_ambient : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_MODEL_AMBIENT; }
 	protected:  // Attributes
 		domFloat4 attrValue;
 		xsNCName attrParam;
@@ -7658,6 +7852,8 @@ public:
 
 	class domLighting_enable : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHTING_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -7734,6 +7930,8 @@ public:
 
 	class domLine_stipple : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LINE_STIPPLE; }
 	protected:  // Attributes
 		domInt2 attrValue;
 		xsNCName attrParam;
@@ -7815,6 +8013,8 @@ public:
 
 	class domLine_width : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LINE_WIDTH; }
 	protected:  // Attributes
 		domFloat attrValue;
 		xsNCName attrParam;
@@ -7891,6 +8091,8 @@ public:
 
 	class domMaterial_ambient : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MATERIAL_AMBIENT; }
 	protected:  // Attributes
 		domFloat4 attrValue;
 		xsNCName attrParam;
@@ -7972,6 +8174,8 @@ public:
 
 	class domMaterial_diffuse : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MATERIAL_DIFFUSE; }
 	protected:  // Attributes
 		domFloat4 attrValue;
 		xsNCName attrParam;
@@ -8053,6 +8257,8 @@ public:
 
 	class domMaterial_emission : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MATERIAL_EMISSION; }
 	protected:  // Attributes
 		domFloat4 attrValue;
 		xsNCName attrParam;
@@ -8134,6 +8340,8 @@ public:
 
 	class domMaterial_shininess : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MATERIAL_SHININESS; }
 	protected:  // Attributes
 		domFloat attrValue;
 		xsNCName attrParam;
@@ -8210,6 +8418,8 @@ public:
 
 	class domMaterial_specular : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MATERIAL_SPECULAR; }
 	protected:  // Attributes
 		domFloat4 attrValue;
 		xsNCName attrParam;
@@ -8291,6 +8501,8 @@ public:
 
 	class domModel_view_matrix : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MODEL_VIEW_MATRIX; }
 	protected:  // Attributes
 		domFloat4x4 attrValue;
 		xsNCName attrParam;
@@ -8372,6 +8584,8 @@ public:
 
 	class domPoint_distance_attenuation : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::POINT_DISTANCE_ATTENUATION; }
 	protected:  // Attributes
 		domFloat3 attrValue;
 		xsNCName attrParam;
@@ -8453,6 +8667,8 @@ public:
 
 	class domPoint_fade_threshold_size : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::POINT_FADE_THRESHOLD_SIZE; }
 	protected:  // Attributes
 		domFloat attrValue;
 		xsNCName attrParam;
@@ -8529,6 +8745,8 @@ public:
 
 	class domPoint_size : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::POINT_SIZE; }
 	protected:  // Attributes
 		domFloat attrValue;
 		xsNCName attrParam;
@@ -8605,6 +8823,8 @@ public:
 
 	class domPoint_size_min : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::POINT_SIZE_MIN; }
 	protected:  // Attributes
 		domFloat attrValue;
 		xsNCName attrParam;
@@ -8681,6 +8901,8 @@ public:
 
 	class domPoint_size_max : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::POINT_SIZE_MAX; }
 	protected:  // Attributes
 		domFloat attrValue;
 		xsNCName attrParam;
@@ -8757,6 +8979,8 @@ public:
 
 	class domPolygon_offset : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::POLYGON_OFFSET; }
 	protected:  // Attributes
 		domFloat2 attrValue;
 		xsNCName attrParam;
@@ -8838,6 +9062,8 @@ public:
 
 	class domProjection_matrix : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PROJECTION_MATRIX; }
 	protected:  // Attributes
 		domFloat4x4 attrValue;
 		xsNCName attrParam;
@@ -8919,6 +9145,8 @@ public:
 
 	class domScissor : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SCISSOR; }
 	protected:  // Attributes
 		domInt4 attrValue;
 		xsNCName attrParam;
@@ -9000,6 +9228,8 @@ public:
 
 	class domStencil_mask : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::STENCIL_MASK; }
 	protected:  // Attributes
 		domInt attrValue;
 		xsNCName attrParam;
@@ -9076,6 +9306,8 @@ public:
 
 	class domAlpha_test_enable : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ALPHA_TEST_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -9152,6 +9384,8 @@ public:
 
 	class domAuto_normal_enable : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::AUTO_NORMAL_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -9228,6 +9462,8 @@ public:
 
 	class domBlend_enable : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BLEND_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -9304,6 +9540,8 @@ public:
 
 	class domColor_logic_op_enable : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::COLOR_LOGIC_OP_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -9380,6 +9618,8 @@ public:
 
 	class domColor_material_enable : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::COLOR_MATERIAL_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -9456,6 +9696,8 @@ public:
 
 	class domCull_face_enable : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::CULL_FACE_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -9532,6 +9774,8 @@ public:
 
 	class domDepth_bounds_enable : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::DEPTH_BOUNDS_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -9608,6 +9852,8 @@ public:
 
 	class domDepth_clamp_enable : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::DEPTH_CLAMP_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -9684,6 +9930,8 @@ public:
 
 	class domDepth_test_enable : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::DEPTH_TEST_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -9760,6 +10008,8 @@ public:
 
 	class domDither_enable : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::DITHER_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -9836,6 +10086,8 @@ public:
 
 	class domFog_enable : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FOG_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -9912,6 +10164,8 @@ public:
 
 	class domLight_model_local_viewer_enable : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_MODEL_LOCAL_VIEWER_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -9988,6 +10242,8 @@ public:
 
 	class domLight_model_two_side_enable : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LIGHT_MODEL_TWO_SIDE_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -10064,6 +10320,8 @@ public:
 
 	class domLine_smooth_enable : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LINE_SMOOTH_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -10140,6 +10398,8 @@ public:
 
 	class domLine_stipple_enable : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LINE_STIPPLE_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -10216,6 +10476,8 @@ public:
 
 	class domLogic_op_enable : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::LOGIC_OP_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -10292,6 +10554,8 @@ public:
 
 	class domMultisample_enable : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MULTISAMPLE_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -10368,6 +10632,8 @@ public:
 
 	class domNormalize_enable : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::NORMALIZE_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -10444,6 +10710,8 @@ public:
 
 	class domPoint_smooth_enable : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::POINT_SMOOTH_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -10520,6 +10788,8 @@ public:
 
 	class domPolygon_offset_fill_enable : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::POLYGON_OFFSET_FILL_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -10596,6 +10866,8 @@ public:
 
 	class domPolygon_offset_line_enable : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::POLYGON_OFFSET_LINE_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -10672,6 +10944,8 @@ public:
 
 	class domPolygon_offset_point_enable : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::POLYGON_OFFSET_POINT_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -10748,6 +11022,8 @@ public:
 
 	class domPolygon_smooth_enable : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::POLYGON_SMOOTH_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -10824,6 +11100,8 @@ public:
 
 	class domPolygon_stipple_enable : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::POLYGON_STIPPLE_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -10900,6 +11178,8 @@ public:
 
 	class domRescale_normal_enable : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::RESCALE_NORMAL_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -10976,6 +11256,8 @@ public:
 
 	class domSample_alpha_to_coverage_enable : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SAMPLE_ALPHA_TO_COVERAGE_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -11052,6 +11334,8 @@ public:
 
 	class domSample_alpha_to_one_enable : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SAMPLE_ALPHA_TO_ONE_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -11128,6 +11412,8 @@ public:
 
 	class domSample_coverage_enable : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SAMPLE_COVERAGE_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -11204,6 +11490,8 @@ public:
 
 	class domScissor_test_enable : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SCISSOR_TEST_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;
@@ -11280,6 +11568,8 @@ public:
 
 	class domStencil_test_enable : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::STENCIL_TEST_ENABLE; }
 	protected:  // Attributes
 		domBool attrValue;
 		xsNCName attrParam;

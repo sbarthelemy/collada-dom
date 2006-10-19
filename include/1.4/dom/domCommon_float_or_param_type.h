@@ -27,6 +27,8 @@ public:
 
 	class domFloat : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::FLOAT; }
 	protected:  // Attribute
 		xsNCName attrSid;
 
@@ -106,6 +108,8 @@ public:
 
 	class domParam : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PARAM; }
 	protected:  // Attribute
 		xsNCName attrRef;
 
@@ -223,6 +227,8 @@ protected:
  */
 class domCommon_float_or_param_type : public daeElement, public domCommon_float_or_param_type_complexType
 {
+public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::COMMON_FLOAT_OR_PARAM_TYPE; }
 protected:
 	/**
 	 * Constructor

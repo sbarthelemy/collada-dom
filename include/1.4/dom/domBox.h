@@ -24,6 +24,8 @@
 class domBox : public daeElement
 {
 public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::BOX; }
+public:
 	class domHalf_extents;
 
 	typedef daeSmartRef<domHalf_extents> domHalf_extentsRef;
@@ -34,6 +36,8 @@ public:
  */
 	class domHalf_extents : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HALF_EXTENTS; }
 
 	protected:  // Value
 		/**

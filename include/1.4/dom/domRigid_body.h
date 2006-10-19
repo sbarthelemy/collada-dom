@@ -42,6 +42,8 @@
 class domRigid_body : public daeElement
 {
 public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::RIGID_BODY; }
+public:
 	class domTechnique_common;
 
 	typedef daeSmartRef<domTechnique_common> domTechnique_commonRef;
@@ -54,6 +56,8 @@ public:
 	class domTechnique_common : public daeElement
 	{
 	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TECHNIQUE_COMMON; }
+	public:
 		class domDynamic;
 
 		typedef daeSmartRef<domDynamic> domDynamicRef;
@@ -64,6 +68,8 @@ public:
  */
 		class domDynamic : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::DYNAMIC; }
 		protected:  // Attribute
 /**
  *  The sid attribute is a text string value containing the sub-identifier
@@ -154,6 +160,8 @@ public:
  */
 		class domMass_frame : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::MASS_FRAME; }
 
 		protected:  // Elements
 			domTranslate_Array elemTranslate_array;
@@ -250,6 +258,8 @@ public:
 		class domShape : public daeElement
 		{
 		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SHAPE; }
+		public:
 			class domHollow;
 
 			typedef daeSmartRef<domHollow> domHollowRef;
@@ -260,6 +270,8 @@ public:
  */
 			class domHollow : public daeElement
 			{
+			public:
+				COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::HOLLOW; }
 			protected:  // Attribute
 /**
  *  The sid attribute is a text string value containing the sub-identifier

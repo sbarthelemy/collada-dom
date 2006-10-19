@@ -29,6 +29,8 @@
 class domPolygons : public daeElement
 {
 public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::POLYGONS; }
+public:
 	class domPh;
 
 	typedef daeSmartRef<domPh> domPhRef;
@@ -39,6 +41,8 @@ public:
  */
 	class domPh : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::PH; }
 	public:
 		class domH;
 
@@ -51,6 +55,8 @@ public:
  */
 		class domH : public daeElement
 		{
+		public:
+			COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::H; }
 
 		protected:  // Value
 			/**

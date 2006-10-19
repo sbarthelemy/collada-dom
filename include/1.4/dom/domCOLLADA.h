@@ -42,6 +42,8 @@
 class domCOLLADA : public daeElement
 {
 public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::COLLADA; }
+public:
 	class domScene;
 
 	typedef daeSmartRef<domScene> domSceneRef;
@@ -56,6 +58,8 @@ public:
  */
 	class domScene : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SCENE; }
 
 	protected:  // Elements
 /**
