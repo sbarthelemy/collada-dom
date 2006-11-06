@@ -42,7 +42,7 @@ intGles_sampler_state::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "gles_sampler_state" );
-	_Meta->registerConstructor(intGles_sampler_state::create);
+	_Meta->registerClass(intGles_sampler_state::create, &_Meta);
 
 	domGles_sampler_state::_Meta->setMetaIntegration(_Meta);
 
@@ -66,7 +66,7 @@ intGles_sampler_state::intWrap_s::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "wrap_s" );
-	_Meta->registerConstructor(intGles_sampler_state::intWrap_s::create);
+	_Meta->registerClass(intGles_sampler_state::intWrap_s::create, &_Meta);
 
 	domGles_sampler_state::domWrap_s::_Meta->setMetaIntegration(_Meta);
 
@@ -90,7 +90,7 @@ intGles_sampler_state::intWrap_t::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "wrap_t" );
-	_Meta->registerConstructor(intGles_sampler_state::intWrap_t::create);
+	_Meta->registerClass(intGles_sampler_state::intWrap_t::create, &_Meta);
 
 	domGles_sampler_state::domWrap_t::_Meta->setMetaIntegration(_Meta);
 
@@ -114,7 +114,7 @@ intGles_sampler_state::intMinfilter::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "minfilter" );
-	_Meta->registerConstructor(intGles_sampler_state::intMinfilter::create);
+	_Meta->registerClass(intGles_sampler_state::intMinfilter::create, &_Meta);
 
 	domGles_sampler_state::domMinfilter::_Meta->setMetaIntegration(_Meta);
 
@@ -138,7 +138,7 @@ intGles_sampler_state::intMagfilter::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "magfilter" );
-	_Meta->registerConstructor(intGles_sampler_state::intMagfilter::create);
+	_Meta->registerClass(intGles_sampler_state::intMagfilter::create, &_Meta);
 
 	domGles_sampler_state::domMagfilter::_Meta->setMetaIntegration(_Meta);
 
@@ -162,7 +162,7 @@ intGles_sampler_state::intMipfilter::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "mipfilter" );
-	_Meta->registerConstructor(intGles_sampler_state::intMipfilter::create);
+	_Meta->registerClass(intGles_sampler_state::intMipfilter::create, &_Meta);
 
 	domGles_sampler_state::domMipfilter::_Meta->setMetaIntegration(_Meta);
 
@@ -186,7 +186,7 @@ intGles_sampler_state::intMipmap_maxlevel::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "mipmap_maxlevel" );
-	_Meta->registerConstructor(intGles_sampler_state::intMipmap_maxlevel::create);
+	_Meta->registerClass(intGles_sampler_state::intMipmap_maxlevel::create, &_Meta);
 
 	domGles_sampler_state::domMipmap_maxlevel::_Meta->setMetaIntegration(_Meta);
 
@@ -210,7 +210,7 @@ intGles_sampler_state::intMipmap_bias::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "mipmap_bias" );
-	_Meta->registerConstructor(intGles_sampler_state::intMipmap_bias::create);
+	_Meta->registerClass(intGles_sampler_state::intMipmap_bias::create, &_Meta);
 
 	domGles_sampler_state::domMipmap_bias::_Meta->setMetaIntegration(_Meta);
 

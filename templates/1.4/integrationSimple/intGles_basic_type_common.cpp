@@ -35,7 +35,7 @@ intGles_basic_type_common::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "gles_basic_type_common" );
-	_Meta->registerConstructor(intGles_basic_type_common::create);
+	_Meta->registerClass(intGles_basic_type_common::create, &_Meta);
 
 	domGles_basic_type_common::_Meta->setMetaIntegration(_Meta);
 

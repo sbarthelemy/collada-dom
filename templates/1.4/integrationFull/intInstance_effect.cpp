@@ -37,7 +37,7 @@ intInstance_effect::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "instance_effect" );
-	_Meta->registerConstructor(intInstance_effect::create);
+	_Meta->registerClass(intInstance_effect::create, &_Meta);
 
 	domInstance_effect::_Meta->setMetaIntegration(_Meta);
 
@@ -61,7 +61,7 @@ intInstance_effect::intTechnique_hint::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "technique_hint" );
-	_Meta->registerConstructor(intInstance_effect::intTechnique_hint::create);
+	_Meta->registerClass(intInstance_effect::intTechnique_hint::create, &_Meta);
 
 	domInstance_effect::domTechnique_hint::_Meta->setMetaIntegration(_Meta);
 
@@ -85,7 +85,7 @@ intInstance_effect::intSetparam::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "setparam" );
-	_Meta->registerConstructor(intInstance_effect::intSetparam::create);
+	_Meta->registerClass(intInstance_effect::intSetparam::create, &_Meta);
 
 	domInstance_effect::domSetparam::_Meta->setMetaIntegration(_Meta);
 

@@ -89,7 +89,7 @@ public:
 		 * Sets the rigid_body attribute.
 		 * @param atRigid_body The new value for the rigid_body attribute.
 		 */
-		void setRigid_body( const xsAnyURI &atRigid_body ) { attrRigid_body.setURI( atRigid_body.getURI() );	
+		void setRigid_body( const xsAnyURI &atRigid_body ) { attrRigid_body = atRigid_body;	
 	 _validAttributeArray[0] = true; }
 
 		/**
@@ -229,7 +229,7 @@ public:
 		 * Sets the rigid_body attribute.
 		 * @param atRigid_body The new value for the rigid_body attribute.
 		 */
-		void setRigid_body( const xsAnyURI &atRigid_body ) { attrRigid_body.setURI( atRigid_body.getURI() );	
+		void setRigid_body( const xsAnyURI &atRigid_body ) { attrRigid_body = atRigid_body;	
 	 _validAttributeArray[0] = true; }
 
 		/**

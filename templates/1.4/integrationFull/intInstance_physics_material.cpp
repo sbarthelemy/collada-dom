@@ -35,7 +35,7 @@ intInstance_physics_material::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "instance_physics_material" );
-	_Meta->registerConstructor(intInstance_physics_material::create);
+	_Meta->registerClass(intInstance_physics_material::create, &_Meta);
 
 	domInstance_physics_material::_Meta->setMetaIntegration(_Meta);
 

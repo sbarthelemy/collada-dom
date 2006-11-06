@@ -35,7 +35,7 @@ intEntry::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "entry" );
-	_Meta->registerConstructor(intEntry::create);
+	_Meta->registerClass(intEntry::create, &_Meta);
 
 	domEntry::_Meta->setMetaIntegration(_Meta);
 

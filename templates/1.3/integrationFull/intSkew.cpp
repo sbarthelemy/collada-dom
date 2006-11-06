@@ -35,7 +35,7 @@ intSkew::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "skew" );
-	_Meta->registerConstructor(intSkew::create);
+	_Meta->registerClass(intSkew::create, &_Meta);
 
 	domSkew::_Meta->setMetaIntegration(_Meta);
 

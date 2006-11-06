@@ -35,7 +35,7 @@ intScene::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "scene" );
-	_Meta->registerConstructor(intScene::create);
+	_Meta->registerClass(intScene::create, &_Meta);
 
 	domScene::_Meta->setMetaIntegration(_Meta);
 

@@ -40,7 +40,7 @@ intLight::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "light" );
-	_Meta->registerConstructor(intLight::create);
+	_Meta->registerClass(intLight::create, &_Meta);
 
 	domLight::_Meta->setMetaIntegration(_Meta);
 
@@ -64,7 +64,7 @@ intLight::intTechnique_common::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "technique_common" );
-	_Meta->registerConstructor(intLight::intTechnique_common::create);
+	_Meta->registerClass(intLight::intTechnique_common::create, &_Meta);
 
 	domLight::domTechnique_common::_Meta->setMetaIntegration(_Meta);
 
@@ -88,7 +88,7 @@ intLight::intTechnique_common::intAmbient::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "ambient" );
-	_Meta->registerConstructor(intLight::intTechnique_common::intAmbient::create);
+	_Meta->registerClass(intLight::intTechnique_common::intAmbient::create, &_Meta);
 
 	domLight::domTechnique_common::domAmbient::_Meta->setMetaIntegration(_Meta);
 
@@ -112,7 +112,7 @@ intLight::intTechnique_common::intDirectional::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "directional" );
-	_Meta->registerConstructor(intLight::intTechnique_common::intDirectional::create);
+	_Meta->registerClass(intLight::intTechnique_common::intDirectional::create, &_Meta);
 
 	domLight::domTechnique_common::domDirectional::_Meta->setMetaIntegration(_Meta);
 
@@ -136,7 +136,7 @@ intLight::intTechnique_common::intPoint::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "point" );
-	_Meta->registerConstructor(intLight::intTechnique_common::intPoint::create);
+	_Meta->registerClass(intLight::intTechnique_common::intPoint::create, &_Meta);
 
 	domLight::domTechnique_common::domPoint::_Meta->setMetaIntegration(_Meta);
 
@@ -160,7 +160,7 @@ intLight::intTechnique_common::intSpot::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "spot" );
-	_Meta->registerConstructor(intLight::intTechnique_common::intSpot::create);
+	_Meta->registerClass(intLight::intTechnique_common::intSpot::create, &_Meta);
 
 	domLight::domTechnique_common::domSpot::_Meta->setMetaIntegration(_Meta);
 

@@ -37,7 +37,7 @@ intTexture::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "texture" );
-	_Meta->registerConstructor(intTexture::create);
+	_Meta->registerClass(intTexture::create, &_Meta);
 
 	domTexture::_Meta->setMetaIntegration(_Meta);
 
@@ -61,7 +61,7 @@ intTexture::intTechnique::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "technique" );
-	_Meta->registerConstructor(intTexture::intTechnique::create);
+	_Meta->registerClass(intTexture::intTechnique::create, &_Meta);
 
 	domTexture::domTechnique::_Meta->setMetaIntegration(_Meta);
 
@@ -85,7 +85,7 @@ intTexture::intTechnique::intInput::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "input" );
-	_Meta->registerConstructor(intTexture::intTechnique::intInput::create);
+	_Meta->registerClass(intTexture::intTechnique::intInput::create, &_Meta);
 
 	domTexture::domTechnique::domInput::_Meta->setMetaIntegration(_Meta);
 

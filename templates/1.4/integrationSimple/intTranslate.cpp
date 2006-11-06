@@ -35,7 +35,7 @@ intTranslate::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "translate" );
-	_Meta->registerConstructor(intTranslate::create);
+	_Meta->registerClass(intTranslate::create, &_Meta);
 
 	domTranslate::_Meta->setMetaIntegration(_Meta);
 

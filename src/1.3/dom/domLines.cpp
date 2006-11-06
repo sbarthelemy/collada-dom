@@ -36,7 +36,7 @@ domLines::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "lines" );
-	_Meta->registerConstructor(domLines::create);
+	_Meta->registerClass(domLines::create, &_Meta);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
@@ -108,7 +108,7 @@ domLines::domP::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "p" );
-	_Meta->registerConstructor(domLines::domP::create);
+	_Meta->registerClass(domLines::domP::create, &_Meta);
 
 	_Meta->setIsInnerClass( true );
 	//	Add attribute: _value

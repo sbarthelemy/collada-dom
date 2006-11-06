@@ -35,7 +35,7 @@ intTargetableFloat::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "TargetableFloat" );
-	_Meta->registerConstructor(intTargetableFloat::create);
+	_Meta->registerClass(intTargetableFloat::create, &_Meta);
 
 	domTargetableFloat::_Meta->setMetaIntegration(_Meta);
 

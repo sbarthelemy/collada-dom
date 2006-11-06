@@ -35,7 +35,7 @@ domSkin::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "skin" );
-	_Meta->registerConstructor(domSkin::create);
+	_Meta->registerClass(domSkin::create, &_Meta);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;

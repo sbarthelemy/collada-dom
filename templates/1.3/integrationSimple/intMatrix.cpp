@@ -35,7 +35,7 @@ intMatrix::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "matrix" );
-	_Meta->registerConstructor(intMatrix::create);
+	_Meta->registerClass(intMatrix::create, &_Meta);
 
 	domMatrix::_Meta->setMetaIntegration(_Meta);
 

@@ -40,7 +40,7 @@ intFx_surface_common::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fx_surface_common" );
-	_Meta->registerConstructor(intFx_surface_common::create);
+	_Meta->registerClass(intFx_surface_common::create, &_Meta);
 
 	domFx_surface_common::_Meta->setMetaIntegration(_Meta);
 
@@ -64,7 +64,7 @@ intFx_surface_common::intFormat::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "format" );
-	_Meta->registerConstructor(intFx_surface_common::intFormat::create);
+	_Meta->registerClass(intFx_surface_common::intFormat::create, &_Meta);
 
 	domFx_surface_common::domFormat::_Meta->setMetaIntegration(_Meta);
 
@@ -88,7 +88,7 @@ intFx_surface_common::intSize::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "size" );
-	_Meta->registerConstructor(intFx_surface_common::intSize::create);
+	_Meta->registerClass(intFx_surface_common::intSize::create, &_Meta);
 
 	domFx_surface_common::domSize::_Meta->setMetaIntegration(_Meta);
 
@@ -112,7 +112,7 @@ intFx_surface_common::intViewport_ratio::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "viewport_ratio" );
-	_Meta->registerConstructor(intFx_surface_common::intViewport_ratio::create);
+	_Meta->registerClass(intFx_surface_common::intViewport_ratio::create, &_Meta);
 
 	domFx_surface_common::domViewport_ratio::_Meta->setMetaIntegration(_Meta);
 
@@ -136,7 +136,7 @@ intFx_surface_common::intMip_levels::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "mip_levels" );
-	_Meta->registerConstructor(intFx_surface_common::intMip_levels::create);
+	_Meta->registerClass(intFx_surface_common::intMip_levels::create, &_Meta);
 
 	domFx_surface_common::domMip_levels::_Meta->setMetaIntegration(_Meta);
 
@@ -160,7 +160,7 @@ intFx_surface_common::intMipmap_generate::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "mipmap_generate" );
-	_Meta->registerConstructor(intFx_surface_common::intMipmap_generate::create);
+	_Meta->registerClass(intFx_surface_common::intMipmap_generate::create, &_Meta);
 
 	domFx_surface_common::domMipmap_generate::_Meta->setMetaIntegration(_Meta);
 

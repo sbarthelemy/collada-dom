@@ -35,7 +35,7 @@ domBoundingbox::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "boundingbox" );
-	_Meta->registerConstructor(domBoundingbox::create);
+	_Meta->registerClass(domBoundingbox::create, &_Meta);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
@@ -89,7 +89,7 @@ domBoundingbox::domMin::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "min" );
-	_Meta->registerConstructor(domBoundingbox::domMin::create);
+	_Meta->registerClass(domBoundingbox::domMin::create, &_Meta);
 
 	_Meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -135,7 +135,7 @@ domBoundingbox::domMax::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "max" );
-	_Meta->registerConstructor(domBoundingbox::domMax::create);
+	_Meta->registerClass(domBoundingbox::domMax::create, &_Meta);
 
 	_Meta->setIsInnerClass( true );
 	//	Add attribute: _value

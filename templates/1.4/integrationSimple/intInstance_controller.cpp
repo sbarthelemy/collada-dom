@@ -35,7 +35,7 @@ intInstance_controller::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "instance_controller" );
-	_Meta->registerConstructor(intInstance_controller::create);
+	_Meta->registerClass(intInstance_controller::create, &_Meta);
 
 	domInstance_controller::_Meta->setMetaIntegration(_Meta);
 

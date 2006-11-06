@@ -36,7 +36,7 @@ intBind_material::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "bind_material" );
-	_Meta->registerConstructor(intBind_material::create);
+	_Meta->registerClass(intBind_material::create, &_Meta);
 
 	domBind_material::_Meta->setMetaIntegration(_Meta);
 
@@ -60,7 +60,7 @@ intBind_material::intTechnique_common::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "technique_common" );
-	_Meta->registerConstructor(intBind_material::intTechnique_common::create);
+	_Meta->registerClass(intBind_material::intTechnique_common::create, &_Meta);
 
 	domBind_material::domTechnique_common::_Meta->setMetaIntegration(_Meta);
 

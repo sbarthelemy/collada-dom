@@ -9,10 +9,10 @@
  implied. See the License for the specific language governing permissions and limitations under the 
  License.
 ======================================================================
-COLLADA 1.4.1 DOM 1.1.0
+COLLADA 1.4.1 DOM 1.2.0
 
-Date: June 26, 2006
-Author: Mark C. Barnes, Andrew C. Lorino
+Date: November 2, 2006
+Author: Andrew C. Lorino, Mark C. Barnes
 ======================================================================
 ======================================================================
 
@@ -27,22 +27,13 @@ Known bugs
 
   SourceForge Open Issues
   
-  1507993	dae dependency on libxml.h?
-  1498086  	Compile error with GCC 4.1 on daeURI.h
-  1472586 	daeURI Copy Constructor
-  1467892 	Visual Studio PDB file names are all the same
-  1466019 	Memory Leak issue
-  1449595 	Permanent memory leaks
-  1444313 	Bad handling of "#" URIs
+  1561338   New daeTArray single element constructor should be explicit
   1437830 	syntax error in sample DOM code in programming guide
-  1431586 	Incorrect file paths
 
   Mantis Open Issues (major and above)
 
-  0000445	DOM - Gen  major	rfc 2396 URI compliance issues
   0000461	DOM - OM   major	daeElement::clone does not resolve URI's
   0000543	DOM - OM   major	given a const pointer to a dom object it might not be possible to read it
-  0000592	DOM - Gen  major	"set" accessors in dae/dom need to be consistant about making copies of objects
 
 
 ======================================================================
@@ -56,43 +47,41 @@ Restriction
   Refer to the COLLADA_DOM-Programming_Guide.pdf user documention for further information.
   Refer to the COLLADA_DOM.chm reference documentation for online help.
 
-* [Limitation]
-  A common problem will be that domListOfFloats is actually a daeDoubleArray since COLLADA 
-  defines a float as xs:Double. Be carefull when accessing or copying memory directly.
+* [Guideline]
+  To build for Windows you will need to set an environment variable 
+  COLLADA_EXTERNAL_LIBS_LOCATION equal to the path which contains the libxml2 files required.
+  The directory structure needs to be 
+	COLLADA_EXTERNAL_LIBS_LOCATION\libxml2
+	COLLADA_EXTERNAL_LIBS_LOCATION\libxml2\win32
+	COLLADA_EXTERNAL_LIBS_LOCATION\libxml2\win32\include - This contains the header files for libxml2 as 
+		well as iconv and zlib
+	COLLADA_EXTERNAL_LIBS_LOCATION\libxml2\win32\lib - This contains the lib files for libxml2 as well as
+		iconv and zlib
+  The other COLLADA DOM projects, COLLADA_RT, COLLADA_FX, COLLADA_REFINERY, require additional dependencies
+  to be placed in the COLLADA_EXTERNAL_LIBS_LOCATION directoy.
+  The install package will install these dependencies and set this environment variable for you. If you
+  are building from the .zip source archive or from a SVN checkout you will need to set this up yourself.
+  Prebuilt win32 binaries for libxml2, iconv, and zlib are available for download at 
+  http://www.zlatkovic.com/libxml.en.html 
 
 * [Guideline]
-  The rule for enum names is ENUMTYPE_VALUE to avoid collisions with 
-  #defines and enums defined in the schema with duplicate values.
-  
-* [Limitation]
-  You cannot build and use the 1.3.1 and 1.4.1 versions of the DOM simultaneously.
-  
-* [Limitation]
-  To build for Windows you will need to download libxml2 from the web and install
-  them yourself.
-
-  Pre-built win32 binaries are available for libxml2, iconv and zlib.  All these
-  are available from http://www.zlatkovic.com/libxml.en.html and should be installed
-  by copying the lib and include directories from these distributions into the 
-  lib and include subdirectories COLLADA_DOM/external-libs/libxml2/win32
-
-  Windows applications also need to link in wsock32 as libxml2 supports networking.
-
-  When linking debug builts against the prebuilt libxml2 libraries, you will see
-  a linker warning about MSVCRT, this can be safely ignored.  The warning appears
-  because the prebuil libxml2 doesn't supply a debug version of the library, so we
-  link with the release version.
+  The COLLADA DOM, as of release 1.2.0, is now available as a Windows DLL. The DLL naming conventions is
+  libcollada($COLLADA_VERSION)dom($DOM_VERSION).dll. For this release the library is named
+  libcollada141dom12.dll and the import library to use when building client applications is 
+  libcollada141dom12.lib and can be found in the COLLADA_DOM/lib directory. Debug versions have _d appended
+  to the end of the filename.
 
 * [Guideline]
-  A new function "getDomVersion" was added to DAE after the documentation was finalized.
-  This returns a text string (ie 1.3.1) that indicates the version of the COLLADA
-  schema that was used to build the DOM.  Applications that depend on a specific
-  schema version should check this.
+  The COLLADA DOM DLL dynamically links against the iconv library. Be sure to have the iconv.dll available
+  for client applications which may need libxml2 international character set support. The reason for
+  this is the viral-like nature of the GPL and LGPL licenses which requiires programs staticly linked
+  against a GPL or LGPL library to also be licesed under the GPL or LGPL. 
 
 * [Guideline]
-  All load, save, query and other DOM calls that expect a document URI or a collection
-  name now use URIs.  Remember to change backslashes to forward slashes and place
-  file:/// or / in front of absolute URIs.
+  Be careful when static linking COLLADA DOM applications. The iconv library, that libxml2 depends on, is 
+  licensed under the LGPL. Any programs staticly linked with this software must also be released as LGPL.
+  To get around this you can either dynamic link iconv or build libxml2 without iconv support. The COLLADA DOM
+  install package installs the default configuration of the libxml2 library which requires iconv.
 
 * [Guideline]
   You can now toggle automatic loading of external documents by calling 
@@ -109,9 +98,61 @@ Restriction
   that contains the target string, the target string, and optionally a platform string. A
   NULL platform string will cause the SID resolver to search through the COMMON techniques.
 
+
+* [Guideline]
+  A common problem will be that domListOfFloats is actually a daeDoubleArray since COLLADA 
+  defines a float as xs:Double. Be carefull when accessing or copying memory directly.
+
+* [Guideline]
+  The rule for enum names is ENUMTYPE_VALUE to avoid collisions with 
+  #defines and enums defined in the schema with duplicate values.
+  
+* [Limitation]
+  You cannot build and use the 1.3.1 and 1.4.1 versions of the DOM simultaneously.
+  
+* [Guideline]
+  A new function "getDomVersion" returns a text string (ie 1.3.1) that indicates the version 
+  of the COLLADA schema that was used to build the DOM.  Applications that depend on a specific
+  schema version should check this.
+
+* [Guideline]
+  All load, save, query and other DOM calls that expect a document URI or a collection
+  name now use URIs.  Remember to change backslashes to forward slashes and place
+  file:/// or / in front of absolute URIs.
+
+======================================================================
+Contributions
+======================================================================
+Thanks to Nicholas Yue for contributing the xcode project files.
+Special Thanks to SThomas (sthomas_agi on sourceforge) for contributing patches to many files to 
+fix up most of the memory leak issues and a few other issues.
+
 ======================================================================
 Changes (for developer)
 ======================================================================
+* Fixed in COLLADA 1.4.1 DOM 1.2.0
+- 1584357 	uninitializeKnownTypes() does not check _TypesInitialized
+- 1583559 	Dangling Meta pointers
+- 1573541 	Calling DAE::cleanup() without running any DAE init crashes
+- 1561318 	daeIDRef needs copy constructor
+- 1541271 	Copy constructor for domInputLocalOffset
+- 1530106 	INF and -INF is not handled for constraint limits
+- 1528050 	Memory leaks/errors
+- 1522731 	DOM creates invalid COLLADA documents
+- 1522729 	DOM doesn't handle "1" as true when loading a document
+- 1522727 	setValue() functions do not take ownership of strings
+- 1522726 	DOM crashes when setting string attributes to NULL
+- 1520582 	DOM 1.4.1 buffer overflow
+- 1520281 	Database corruption
+- 1516104 	Circular references with integration objects
+- 1507993  	dae dependency on libxml.h?
+- 1498086 	Compile error with GCC 4.1 on daeURI.h
+- 1472586 	daeURI Copy Constructor
+- 1467892 	Visual Studio PDB file names are all the same
+- 1466019 	Memory Leak issue
+- 1449595 	Permanent memory leaks
+- 1444313 	Bad handling of "#" URIs
+- 1431586 	Incorrect file paths
 
 * Fixed in COLLADA 1.4.1 DOM 1.1.0
 - 1508961  	Can't write out set="0"

@@ -21,6 +21,7 @@
 #include <dom.h>
 #include <dae/daeMetaElement.h>
 #include <libxml/xmlreader.h>
+#include <libxml/xmlwriter.h>
 #include <libxml/xmlmemory.h>
 #include <dae/daeErrorHandler.h>
 #include <dae/daeMetaElementAttribute.h>

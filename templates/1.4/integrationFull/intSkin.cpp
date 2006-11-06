@@ -40,7 +40,7 @@ intSkin::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "skin" );
-	_Meta->registerConstructor(intSkin::create);
+	_Meta->registerClass(intSkin::create, &_Meta);
 
 	domSkin::_Meta->setMetaIntegration(_Meta);
 
@@ -64,7 +64,7 @@ intSkin::intBind_shape_matrix::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "bind_shape_matrix" );
-	_Meta->registerConstructor(intSkin::intBind_shape_matrix::create);
+	_Meta->registerClass(intSkin::intBind_shape_matrix::create, &_Meta);
 
 	domSkin::domBind_shape_matrix::_Meta->setMetaIntegration(_Meta);
 
@@ -88,7 +88,7 @@ intSkin::intJoints::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "joints" );
-	_Meta->registerConstructor(intSkin::intJoints::create);
+	_Meta->registerClass(intSkin::intJoints::create, &_Meta);
 
 	domSkin::domJoints::_Meta->setMetaIntegration(_Meta);
 
@@ -112,7 +112,7 @@ intSkin::intVertex_weights::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "vertex_weights" );
-	_Meta->registerConstructor(intSkin::intVertex_weights::create);
+	_Meta->registerClass(intSkin::intVertex_weights::create, &_Meta);
 
 	domSkin::domVertex_weights::_Meta->setMetaIntegration(_Meta);
 
@@ -136,7 +136,7 @@ intSkin::intVertex_weights::intVcount::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "vcount" );
-	_Meta->registerConstructor(intSkin::intVertex_weights::intVcount::create);
+	_Meta->registerClass(intSkin::intVertex_weights::intVcount::create, &_Meta);
 
 	domSkin::domVertex_weights::domVcount::_Meta->setMetaIntegration(_Meta);
 
@@ -160,7 +160,7 @@ intSkin::intVertex_weights::intV::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "v" );
-	_Meta->registerConstructor(intSkin::intVertex_weights::intV::create);
+	_Meta->registerClass(intSkin::intVertex_weights::intV::create, &_Meta);
 
 	domSkin::domVertex_weights::domV::_Meta->setMetaIntegration(_Meta);
 

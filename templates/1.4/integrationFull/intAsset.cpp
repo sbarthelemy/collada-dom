@@ -49,7 +49,7 @@ intAsset::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "asset" );
-	_Meta->registerConstructor(intAsset::create);
+	_Meta->registerClass(intAsset::create, &_Meta);
 
 	domAsset::_Meta->setMetaIntegration(_Meta);
 
@@ -73,7 +73,7 @@ intAsset::intContributor::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "contributor" );
-	_Meta->registerConstructor(intAsset::intContributor::create);
+	_Meta->registerClass(intAsset::intContributor::create, &_Meta);
 
 	domAsset::domContributor::_Meta->setMetaIntegration(_Meta);
 
@@ -97,7 +97,7 @@ intAsset::intContributor::intAuthor::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "author" );
-	_Meta->registerConstructor(intAsset::intContributor::intAuthor::create);
+	_Meta->registerClass(intAsset::intContributor::intAuthor::create, &_Meta);
 
 	domAsset::domContributor::domAuthor::_Meta->setMetaIntegration(_Meta);
 
@@ -121,7 +121,7 @@ intAsset::intContributor::intAuthoring_tool::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "authoring_tool" );
-	_Meta->registerConstructor(intAsset::intContributor::intAuthoring_tool::create);
+	_Meta->registerClass(intAsset::intContributor::intAuthoring_tool::create, &_Meta);
 
 	domAsset::domContributor::domAuthoring_tool::_Meta->setMetaIntegration(_Meta);
 
@@ -145,7 +145,7 @@ intAsset::intContributor::intComments::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "comments" );
-	_Meta->registerConstructor(intAsset::intContributor::intComments::create);
+	_Meta->registerClass(intAsset::intContributor::intComments::create, &_Meta);
 
 	domAsset::domContributor::domComments::_Meta->setMetaIntegration(_Meta);
 
@@ -169,7 +169,7 @@ intAsset::intContributor::intCopyright::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "copyright" );
-	_Meta->registerConstructor(intAsset::intContributor::intCopyright::create);
+	_Meta->registerClass(intAsset::intContributor::intCopyright::create, &_Meta);
 
 	domAsset::domContributor::domCopyright::_Meta->setMetaIntegration(_Meta);
 
@@ -193,7 +193,7 @@ intAsset::intContributor::intSource_data::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "source_data" );
-	_Meta->registerConstructor(intAsset::intContributor::intSource_data::create);
+	_Meta->registerClass(intAsset::intContributor::intSource_data::create, &_Meta);
 
 	domAsset::domContributor::domSource_data::_Meta->setMetaIntegration(_Meta);
 
@@ -217,7 +217,7 @@ intAsset::intCreated::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "created" );
-	_Meta->registerConstructor(intAsset::intCreated::create);
+	_Meta->registerClass(intAsset::intCreated::create, &_Meta);
 
 	domAsset::domCreated::_Meta->setMetaIntegration(_Meta);
 
@@ -241,7 +241,7 @@ intAsset::intKeywords::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "keywords" );
-	_Meta->registerConstructor(intAsset::intKeywords::create);
+	_Meta->registerClass(intAsset::intKeywords::create, &_Meta);
 
 	domAsset::domKeywords::_Meta->setMetaIntegration(_Meta);
 
@@ -265,7 +265,7 @@ intAsset::intModified::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "modified" );
-	_Meta->registerConstructor(intAsset::intModified::create);
+	_Meta->registerClass(intAsset::intModified::create, &_Meta);
 
 	domAsset::domModified::_Meta->setMetaIntegration(_Meta);
 
@@ -289,7 +289,7 @@ intAsset::intRevision::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "revision" );
-	_Meta->registerConstructor(intAsset::intRevision::create);
+	_Meta->registerClass(intAsset::intRevision::create, &_Meta);
 
 	domAsset::domRevision::_Meta->setMetaIntegration(_Meta);
 
@@ -313,7 +313,7 @@ intAsset::intSubject::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "subject" );
-	_Meta->registerConstructor(intAsset::intSubject::create);
+	_Meta->registerClass(intAsset::intSubject::create, &_Meta);
 
 	domAsset::domSubject::_Meta->setMetaIntegration(_Meta);
 
@@ -337,7 +337,7 @@ intAsset::intTitle::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "title" );
-	_Meta->registerConstructor(intAsset::intTitle::create);
+	_Meta->registerClass(intAsset::intTitle::create, &_Meta);
 
 	domAsset::domTitle::_Meta->setMetaIntegration(_Meta);
 
@@ -361,7 +361,7 @@ intAsset::intUnit::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "unit" );
-	_Meta->registerConstructor(intAsset::intUnit::create);
+	_Meta->registerClass(intAsset::intUnit::create, &_Meta);
 
 	domAsset::domUnit::_Meta->setMetaIntegration(_Meta);
 
@@ -385,7 +385,7 @@ intAsset::intUp_axis::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "up_axis" );
-	_Meta->registerConstructor(intAsset::intUp_axis::create);
+	_Meta->registerClass(intAsset::intUp_axis::create, &_Meta);
 
 	domAsset::domUp_axis::_Meta->setMetaIntegration(_Meta);
 

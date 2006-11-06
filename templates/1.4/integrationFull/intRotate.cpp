@@ -35,7 +35,7 @@ intRotate::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "rotate" );
-	_Meta->registerConstructor(intRotate::create);
+	_Meta->registerClass(intRotate::create, &_Meta);
 
 	domRotate::_Meta->setMetaIntegration(_Meta);
 

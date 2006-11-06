@@ -37,7 +37,7 @@ intCylinder::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "cylinder" );
-	_Meta->registerConstructor(intCylinder::create);
+	_Meta->registerClass(intCylinder::create, &_Meta);
 
 	domCylinder::_Meta->setMetaIntegration(_Meta);
 
@@ -61,7 +61,7 @@ intCylinder::intHeight::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "height" );
-	_Meta->registerConstructor(intCylinder::intHeight::create);
+	_Meta->registerClass(intCylinder::intHeight::create, &_Meta);
 
 	domCylinder::domHeight::_Meta->setMetaIntegration(_Meta);
 
@@ -85,7 +85,7 @@ intCylinder::intRadius::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "radius" );
-	_Meta->registerConstructor(intCylinder::intRadius::create);
+	_Meta->registerClass(intCylinder::intRadius::create, &_Meta);
 
 	domCylinder::domRadius::_Meta->setMetaIntegration(_Meta);
 

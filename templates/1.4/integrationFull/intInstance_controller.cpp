@@ -36,7 +36,7 @@ intInstance_controller::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "instance_controller" );
-	_Meta->registerConstructor(intInstance_controller::create);
+	_Meta->registerClass(intInstance_controller::create, &_Meta);
 
 	domInstance_controller::_Meta->setMetaIntegration(_Meta);
 
@@ -60,7 +60,7 @@ intInstance_controller::intSkeleton::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "skeleton" );
-	_Meta->registerConstructor(intInstance_controller::intSkeleton::create);
+	_Meta->registerClass(intInstance_controller::intSkeleton::create, &_Meta);
 
 	domInstance_controller::domSkeleton::_Meta->setMetaIntegration(_Meta);
 

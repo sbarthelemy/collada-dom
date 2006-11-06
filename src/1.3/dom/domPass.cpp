@@ -35,7 +35,7 @@ domPass::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "pass" );
-	_Meta->registerConstructor(domPass::create);
+	_Meta->registerClass(domPass::create, &_Meta);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
@@ -85,7 +85,7 @@ domPass::domInput::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "input" );
-	_Meta->registerConstructor(domPass::domInput::create);
+	_Meta->registerClass(domPass::domInput::create, &_Meta);
 
 	_Meta->setIsInnerClass( true );
 

@@ -40,7 +40,7 @@ intProfile_COMMON::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "profile_COMMON" );
-	_Meta->registerConstructor(intProfile_COMMON::create);
+	_Meta->registerClass(intProfile_COMMON::create, &_Meta);
 
 	domProfile_COMMON::_Meta->setMetaIntegration(_Meta);
 
@@ -64,7 +64,7 @@ intProfile_COMMON::intTechnique::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "technique" );
-	_Meta->registerConstructor(intProfile_COMMON::intTechnique::create);
+	_Meta->registerClass(intProfile_COMMON::intTechnique::create, &_Meta);
 
 	domProfile_COMMON::domTechnique::_Meta->setMetaIntegration(_Meta);
 
@@ -88,7 +88,7 @@ intProfile_COMMON::intTechnique::intConstant::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "constant" );
-	_Meta->registerConstructor(intProfile_COMMON::intTechnique::intConstant::create);
+	_Meta->registerClass(intProfile_COMMON::intTechnique::intConstant::create, &_Meta);
 
 	domProfile_COMMON::domTechnique::domConstant::_Meta->setMetaIntegration(_Meta);
 
@@ -112,7 +112,7 @@ intProfile_COMMON::intTechnique::intLambert::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "lambert" );
-	_Meta->registerConstructor(intProfile_COMMON::intTechnique::intLambert::create);
+	_Meta->registerClass(intProfile_COMMON::intTechnique::intLambert::create, &_Meta);
 
 	domProfile_COMMON::domTechnique::domLambert::_Meta->setMetaIntegration(_Meta);
 
@@ -136,7 +136,7 @@ intProfile_COMMON::intTechnique::intPhong::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "phong" );
-	_Meta->registerConstructor(intProfile_COMMON::intTechnique::intPhong::create);
+	_Meta->registerClass(intProfile_COMMON::intTechnique::intPhong::create, &_Meta);
 
 	domProfile_COMMON::domTechnique::domPhong::_Meta->setMetaIntegration(_Meta);
 
@@ -160,7 +160,7 @@ intProfile_COMMON::intTechnique::intBlinn::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "blinn" );
-	_Meta->registerConstructor(intProfile_COMMON::intTechnique::intBlinn::create);
+	_Meta->registerClass(intProfile_COMMON::intTechnique::intBlinn::create, &_Meta);
 
 	domProfile_COMMON::domTechnique::domBlinn::_Meta->setMetaIntegration(_Meta);
 

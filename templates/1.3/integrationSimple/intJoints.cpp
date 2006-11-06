@@ -35,7 +35,7 @@ intJoints::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "joints" );
-	_Meta->registerConstructor(intJoints::create);
+	_Meta->registerClass(intJoints::create, &_Meta);
 
 	domJoints::_Meta->setMetaIntegration(_Meta);
 

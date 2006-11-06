@@ -34,14 +34,17 @@ daeAtomicType::initializeKnownTypes()
 void 
 daeAtomicType::uninitializeKnownTypes()
 {
-	_TypesInitialized = false;
-	unsigned int i;
-	for (i=0;i<_Types->getCount();i++)
-	{
-		daeAtomicType* type = _Types->get(i);
-		delete type;
+	if ( _TypesInitialized )
+		{
+		_TypesInitialized = false;
+		unsigned int i;
+		for (i=0;i<_Types->getCount();i++)
+		{
+			daeAtomicType* type = _Types->get(i);
+			delete type;
+		}
+		delete _Types;
 	}
-	delete _Types;
 }
 
 void
@@ -211,8 +214,8 @@ daeLongType::daeLongType()
 	_maxStringLength = 32;
 	_nameBindings.append("xsLong");
 	_nameBindings.append("xsLongArray");
-	_printFormat = "%ld";
-	_scanFormat = "%ld";
+	_printFormat = "%lld";
+	_scanFormat = "%lld";
 	_typeString = "long";
 }
 daeShortType::daeShortType()
@@ -250,8 +253,8 @@ daeULongType::daeULongType()
 	_maxStringLength = 32;
 	_nameBindings.append("ulong");
 	_nameBindings.append("xsUnsignedLong");
-	_printFormat = "%lu";
-	_scanFormat = "%lu";
+	_printFormat = "%llu";
+	_scanFormat = "%llu";
 	_typeString = "ulong";
 }
 daeFloatType::daeFloatType()
@@ -544,7 +547,7 @@ daeResolverType::memoryToString(daeChar* src, daeChar* dst, daeInt dstSize)
 		// or some other document so we know what URI to write out.
 		// !!!GAC this approach should be safe, if the collection pointer of our document matches the collection pointer 
 		// !!!GAC of the element our URI is pointing at, we are pointing at our own doc.
-		if(thisURI->getElement()->getCollection() == thisURI->getContainer()->getDocument())
+		if(thisURI->getElement()->getDocument() == thisURI->getContainer()->getDocument())
 		{
 			// we will send back the original URI if we're pointing at ourselves
 			s = thisURI->getOriginalURI();

@@ -35,7 +35,7 @@ intCapsule::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "capsule" );
-	_Meta->registerConstructor(intCapsule::create);
+	_Meta->registerClass(intCapsule::create, &_Meta);
 
 	domCapsule::_Meta->setMetaIntegration(_Meta);
 

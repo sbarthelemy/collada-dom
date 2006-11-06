@@ -35,7 +35,7 @@ intPhysics_scene::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "physics_scene" );
-	_Meta->registerConstructor(intPhysics_scene::create);
+	_Meta->registerClass(intPhysics_scene::create, &_Meta);
 
 	domPhysics_scene::_Meta->setMetaIntegration(_Meta);
 

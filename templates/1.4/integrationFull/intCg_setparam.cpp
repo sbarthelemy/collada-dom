@@ -35,7 +35,7 @@ intCg_setparam::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "cg_setparam" );
-	_Meta->registerConstructor(intCg_setparam::create);
+	_Meta->registerClass(intCg_setparam::create, &_Meta);
 
 	domCg_setparam::_Meta->setMetaIntegration(_Meta);
 

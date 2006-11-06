@@ -38,7 +38,7 @@ intVisual_scene::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "visual_scene" );
-	_Meta->registerConstructor(intVisual_scene::create);
+	_Meta->registerClass(intVisual_scene::create, &_Meta);
 
 	domVisual_scene::_Meta->setMetaIntegration(_Meta);
 
@@ -62,7 +62,7 @@ intVisual_scene::intEvaluate_scene::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "evaluate_scene" );
-	_Meta->registerConstructor(intVisual_scene::intEvaluate_scene::create);
+	_Meta->registerClass(intVisual_scene::intEvaluate_scene::create, &_Meta);
 
 	domVisual_scene::domEvaluate_scene::_Meta->setMetaIntegration(_Meta);
 
@@ -86,7 +86,7 @@ intVisual_scene::intEvaluate_scene::intRender::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "render" );
-	_Meta->registerConstructor(intVisual_scene::intEvaluate_scene::intRender::create);
+	_Meta->registerClass(intVisual_scene::intEvaluate_scene::intRender::create, &_Meta);
 
 	domVisual_scene::domEvaluate_scene::domRender::_Meta->setMetaIntegration(_Meta);
 
@@ -110,7 +110,7 @@ intVisual_scene::intEvaluate_scene::intRender::intLayer::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "layer" );
-	_Meta->registerConstructor(intVisual_scene::intEvaluate_scene::intRender::intLayer::create);
+	_Meta->registerClass(intVisual_scene::intEvaluate_scene::intRender::intLayer::create, &_Meta);
 
 	domVisual_scene::domEvaluate_scene::domRender::domLayer::_Meta->setMetaIntegration(_Meta);
 

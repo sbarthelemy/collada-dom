@@ -36,7 +36,7 @@ intTristrips::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "tristrips" );
-	_Meta->registerConstructor(intTristrips::create);
+	_Meta->registerClass(intTristrips::create, &_Meta);
 
 	domTristrips::_Meta->setMetaIntegration(_Meta);
 
@@ -60,7 +60,7 @@ intTristrips::intP::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "p" );
-	_Meta->registerConstructor(intTristrips::intP::create);
+	_Meta->registerClass(intTristrips::intP::create, &_Meta);
 
 	domTristrips::domP::_Meta->setMetaIntegration(_Meta);
 

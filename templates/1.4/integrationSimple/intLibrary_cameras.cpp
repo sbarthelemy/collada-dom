@@ -35,7 +35,7 @@ intLibrary_cameras::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "library_cameras" );
-	_Meta->registerConstructor(intLibrary_cameras::create);
+	_Meta->registerClass(intLibrary_cameras::create, &_Meta);
 
 	domLibrary_cameras::_Meta->setMetaIntegration(_Meta);
 

@@ -51,7 +51,7 @@ public:
 		 * Sets the ref attribute.
 		 * @param atRef The new value for the ref attribute.
 		 */
-		void setRef( const xsIDREF &atRef ) { attrRef.setID( atRef.getID() );	
+		void setRef( const xsIDREF &atRef ) { attrRef = atRef;	
 	 _validAttributeArray[0] = true; }
 
 	protected:
@@ -125,7 +125,7 @@ public:
 		 * Sets the ref attribute.
 		 * @param atRef The new value for the ref attribute.
 		 */
-		void setRef( const xsIDREF &atRef ) { attrRef.setID( atRef.getID() );	
+		void setRef( const xsIDREF &atRef ) { attrRef = atRef;	
 	 _validAttributeArray[0] = true; }
 
 	protected:

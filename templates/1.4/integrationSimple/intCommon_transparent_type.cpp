@@ -35,7 +35,7 @@ intCommon_transparent_type::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "common_transparent_type" );
-	_Meta->registerConstructor(intCommon_transparent_type::create);
+	_Meta->registerClass(intCommon_transparent_type::create, &_Meta);
 
 	domCommon_transparent_type::_Meta->setMetaIntegration(_Meta);
 

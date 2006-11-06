@@ -35,7 +35,7 @@ intScale::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "scale" );
-	_Meta->registerConstructor(intScale::create);
+	_Meta->registerClass(intScale::create, &_Meta);
 
 	domScale::_Meta->setMetaIntegration(_Meta);
 

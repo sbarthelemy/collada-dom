@@ -36,7 +36,7 @@ intFx_surface_init_planar_common::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fx_surface_init_planar_common" );
-	_Meta->registerConstructor(intFx_surface_init_planar_common::create);
+	_Meta->registerClass(intFx_surface_init_planar_common::create, &_Meta);
 
 	domFx_surface_init_planar_common::_Meta->setMetaIntegration(_Meta);
 
@@ -60,7 +60,7 @@ intFx_surface_init_planar_common::intAll::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "all" );
-	_Meta->registerConstructor(intFx_surface_init_planar_common::intAll::create);
+	_Meta->registerClass(intFx_surface_init_planar_common::intAll::create, &_Meta);
 
 	domFx_surface_init_planar_common::domAll::_Meta->setMetaIntegration(_Meta);
 

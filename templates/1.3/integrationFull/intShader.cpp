@@ -36,7 +36,7 @@ intShader::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "shader" );
-	_Meta->registerConstructor(intShader::create);
+	_Meta->registerClass(intShader::create, &_Meta);
 
 	domShader::_Meta->setMetaIntegration(_Meta);
 
@@ -60,7 +60,7 @@ intShader::intTechnique::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "technique" );
-	_Meta->registerConstructor(intShader::intTechnique::create);
+	_Meta->registerClass(intShader::intTechnique::create, &_Meta);
 
 	domShader::domTechnique::_Meta->setMetaIntegration(_Meta);
 

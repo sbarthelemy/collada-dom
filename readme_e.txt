@@ -10,14 +10,14 @@
  License.
 
 *********************
-* COLLADA DOM 
-* COLLADA schema version: 1.4 and 1.3.1
+* COLLADA 1.4.1 DOM 1.2
+* COLLADA schema version: 1.4.1 and 1.3.1
 *********************
 
 Programs Structure:
 
 root:
-  visual studio 2003 solution, makefiles, this readme.txt, relnotes_e.txt, and license files.
+  makefiles, this readme.txt, relnotes_e.txt, and license files.
 
 /build:
   makefile definitions
@@ -50,23 +50,9 @@ root:
      contains an example of integration library which implements the 
      intGeometry class, used by COLLADA viewer sample
    
-   /conditioners/Animation:
-     conatins an example conditioner that samples animation function curves at regular intervals
-
-   /conditioners/Common:
-     common code used by all the sample conditions
-
-   /conditioners/DeIndexer:
-     conatins an example condition that deindexes COLLADA mesh data     
-
-   /conditioners/FileName:
-     conatins an example condition that converts all image filenames to relative paths     
-
-   /conditioners/Optimizer:
-     conatins an example condition that optimizes COLLADA mesh data     
-
-   /conditioners/Triangulation:
-     conatins an example condition that triangulates COLLADA mesh data     
+   /export:
+     conatins an example that illustrates how to create a document from scratch.
+     This example creates a simple textured cube.
 
 /src:
 
@@ -91,13 +77,13 @@ root:
      concepts.
 
       /LIBXMLPlugin:
-        example of an XML IO backend, using the LIBXML2 library
+        default XML IO backend, using the LIBXML2 library
 
       /STLDatabase:
-        example of COLLADA Runtime Database derived from daeDatabse
+        default COLLADA Runtime Database derived from daeDatabse
 
-      /XMLPlugin:
-        example of an XML DB backend, using a stand-alone XML parser
+	/stdErrPlugin:
+        default Error plugin which prints messages to stdout
 
 
 *********************

@@ -36,7 +36,7 @@ intSphere::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "sphere" );
-	_Meta->registerConstructor(intSphere::create);
+	_Meta->registerClass(intSphere::create, &_Meta);
 
 	domSphere::_Meta->setMetaIntegration(_Meta);
 
@@ -60,7 +60,7 @@ intSphere::intRadius::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "radius" );
-	_Meta->registerConstructor(intSphere::intRadius::create);
+	_Meta->registerClass(intSphere::intRadius::create, &_Meta);
 
 	domSphere::domRadius::_Meta->setMetaIntegration(_Meta);
 

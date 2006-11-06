@@ -38,7 +38,7 @@ intCamera::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "camera" );
-	_Meta->registerConstructor(intCamera::create);
+	_Meta->registerClass(intCamera::create, &_Meta);
 
 	domCamera::_Meta->setMetaIntegration(_Meta);
 
@@ -62,7 +62,7 @@ intCamera::intTechnique::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "technique" );
-	_Meta->registerConstructor(intCamera::intTechnique::create);
+	_Meta->registerClass(intCamera::intTechnique::create, &_Meta);
 
 	domCamera::domTechnique::_Meta->setMetaIntegration(_Meta);
 
@@ -86,7 +86,7 @@ intCamera::intTechnique::intOptics::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "optics" );
-	_Meta->registerConstructor(intCamera::intTechnique::intOptics::create);
+	_Meta->registerClass(intCamera::intTechnique::intOptics::create, &_Meta);
 
 	domCamera::domTechnique::domOptics::_Meta->setMetaIntegration(_Meta);
 
@@ -110,7 +110,7 @@ intCamera::intTechnique::intImager::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "imager" );
-	_Meta->registerConstructor(intCamera::intTechnique::intImager::create);
+	_Meta->registerClass(intCamera::intTechnique::intImager::create, &_Meta);
 
 	domCamera::domTechnique::domImager::_Meta->setMetaIntegration(_Meta);
 

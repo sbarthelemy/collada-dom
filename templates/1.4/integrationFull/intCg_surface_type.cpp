@@ -37,7 +37,7 @@ intCg_surface_type::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "cg_surface_type" );
-	_Meta->registerConstructor(intCg_surface_type::create);
+	_Meta->registerClass(intCg_surface_type::create, &_Meta);
 
 	domCg_surface_type::_Meta->setMetaIntegration(_Meta);
 
@@ -61,7 +61,7 @@ intCg_surface_type::intGenerator::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "generator" );
-	_Meta->registerConstructor(intCg_surface_type::intGenerator::create);
+	_Meta->registerClass(intCg_surface_type::intGenerator::create, &_Meta);
 
 	domCg_surface_type::domGenerator::_Meta->setMetaIntegration(_Meta);
 
@@ -85,7 +85,7 @@ intCg_surface_type::intGenerator::intName::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "name" );
-	_Meta->registerConstructor(intCg_surface_type::intGenerator::intName::create);
+	_Meta->registerClass(intCg_surface_type::intGenerator::intName::create, &_Meta);
 
 	domCg_surface_type::domGenerator::domName::_Meta->setMetaIntegration(_Meta);
 

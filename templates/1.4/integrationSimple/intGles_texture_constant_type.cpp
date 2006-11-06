@@ -35,7 +35,7 @@ intGles_texture_constant_type::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "gles_texture_constant_type" );
-	_Meta->registerConstructor(intGles_texture_constant_type::create);
+	_Meta->registerClass(intGles_texture_constant_type::create, &_Meta);
 
 	domGles_texture_constant_type::_Meta->setMetaIntegration(_Meta);
 

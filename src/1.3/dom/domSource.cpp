@@ -35,7 +35,7 @@ domSource::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "source" );
-	_Meta->registerConstructor(domSource::create);
+	_Meta->registerClass(domSource::create, &_Meta);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
@@ -134,7 +134,7 @@ domSource::domTechnique::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "technique" );
-	_Meta->registerConstructor(domSource::domTechnique::create);
+	_Meta->registerClass(domSource::domTechnique::create, &_Meta);
 
 	_Meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;

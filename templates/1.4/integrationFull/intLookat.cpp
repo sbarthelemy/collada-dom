@@ -35,7 +35,7 @@ intLookat::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "lookat" );
-	_Meta->registerConstructor(intLookat::create);
+	_Meta->registerClass(intLookat::create, &_Meta);
 
 	domLookat::_Meta->setMetaIntegration(_Meta);
 

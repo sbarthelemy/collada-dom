@@ -35,7 +35,7 @@ domLight::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "light" );
-	_Meta->registerConstructor(domLight::create);
+	_Meta->registerClass(domLight::create, &_Meta);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;

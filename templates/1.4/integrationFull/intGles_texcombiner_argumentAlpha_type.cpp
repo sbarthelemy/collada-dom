@@ -35,7 +35,7 @@ intGles_texcombiner_argumentAlpha_type::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "gles_texcombiner_argumentAlpha_type" );
-	_Meta->registerConstructor(intGles_texcombiner_argumentAlpha_type::create);
+	_Meta->registerClass(intGles_texcombiner_argumentAlpha_type::create, &_Meta);
 
 	domGles_texcombiner_argumentAlpha_type::_Meta->setMetaIntegration(_Meta);
 

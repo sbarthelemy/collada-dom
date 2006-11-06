@@ -35,7 +35,7 @@ intEffect::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "effect" );
-	_Meta->registerConstructor(intEffect::create);
+	_Meta->registerClass(intEffect::create, &_Meta);
 
 	domEffect::_Meta->setMetaIntegration(_Meta);
 

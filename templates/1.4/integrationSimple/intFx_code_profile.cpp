@@ -35,7 +35,7 @@ intFx_code_profile::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fx_code_profile" );
-	_Meta->registerConstructor(intFx_code_profile::create);
+	_Meta->registerClass(intFx_code_profile::create, &_Meta);
 
 	domFx_code_profile::_Meta->setMetaIntegration(_Meta);
 

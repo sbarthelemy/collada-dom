@@ -36,7 +36,7 @@ intBox::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "box" );
-	_Meta->registerConstructor(intBox::create);
+	_Meta->registerClass(intBox::create, &_Meta);
 
 	domBox::_Meta->setMetaIntegration(_Meta);
 
@@ -60,7 +60,7 @@ intBox::intHalf_extents::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "half_extents" );
-	_Meta->registerConstructor(intBox::intHalf_extents::create);
+	_Meta->registerClass(intBox::intHalf_extents::create, &_Meta);
 
 	domBox::domHalf_extents::_Meta->setMetaIntegration(_Meta);
 

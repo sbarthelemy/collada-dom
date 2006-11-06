@@ -35,7 +35,7 @@ intCode::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "code" );
-	_Meta->registerConstructor(intCode::create);
+	_Meta->registerClass(intCode::create, &_Meta);
 
 	domCode::_Meta->setMetaIntegration(_Meta);
 

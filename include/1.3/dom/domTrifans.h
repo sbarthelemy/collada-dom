@@ -35,6 +35,8 @@
 class domTrifans : public daeElement
 {
 public:
+	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::TRIFANS; }
+public:
 	class domP;
 
 	typedef daeSmartRef<domP> domPRef;
@@ -56,6 +58,8 @@ public:
  */
 	class domP : public daeElement
 	{
+	public:
+		COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::P; }
 
 	protected:  // Value
 		/**
@@ -104,19 +108,19 @@ public:
 		 * @param bytes The size allocated for this instance.
 		 * @return a daeElementRef referencing an instance of this object.
 		 */
-		static daeElementRef create(daeInt bytes);
+		static DLLSPEC daeElementRef create(daeInt bytes);
 		/**
 		 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 		 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 		 * @return A daeMetaElement describing this COLLADA element.
 		 */
-		static daeMetaElement* registerElement();
+		static DLLSPEC daeMetaElement* registerElement();
 
 	public: // STATIC MEMBERS
 		/**
 		 * The daeMetaElement that describes this element in the meta object reflection framework.
 		 */
-		static daeMetaElement* _Meta;
+		static DLLSPEC daeMetaElement* _Meta;
 	};
 
 
@@ -186,7 +190,7 @@ public:	//Accessors and Mutators
 	 * Sets the material attribute.
 	 * @param atMaterial The new value for the material attribute.
 	 */
-	void setMaterial( const xsAnyURI &atMaterial ) { attrMaterial.setURI( atMaterial.getURI() );
+	void setMaterial( const xsAnyURI &atMaterial ) { attrMaterial = atMaterial;
 	 _validAttributeArray[1] = true; }
 
 	/**
@@ -243,19 +247,19 @@ public: // STATIC METHODS
 	 * @param bytes The size allocated for this instance.
 	 * @return a daeElementRef referencing an instance of this object.
 	 */
-	static daeElementRef create(daeInt bytes);
+	static DLLSPEC daeElementRef create(daeInt bytes);
 	/**
 	 * Creates a daeMetaElement object that describes this element in the meta object reflection framework.
 	 * If a daeMetaElement already exists it will return that instead of creating a new one. 
 	 * @return A daeMetaElement describing this COLLADA element.
 	 */
-	static daeMetaElement* registerElement();
+	static DLLSPEC daeMetaElement* registerElement();
 
 public: // STATIC MEMBERS
 	/**
 	 * The daeMetaElement that describes this element in the meta object reflection framework.
 	 */
-	static daeMetaElement* _Meta;
+	static DLLSPEC daeMetaElement* _Meta;
 };
 
 

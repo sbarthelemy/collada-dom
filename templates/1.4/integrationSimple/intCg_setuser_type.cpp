@@ -35,7 +35,7 @@ intCg_setuser_type::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "cg_setuser_type" );
-	_Meta->registerConstructor(intCg_setuser_type::create);
+	_Meta->registerClass(intCg_setuser_type::create, &_Meta);
 
 	domCg_setuser_type::_Meta->setMetaIntegration(_Meta);
 

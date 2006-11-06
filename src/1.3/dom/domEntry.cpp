@@ -35,7 +35,7 @@ domEntry::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "entry" );
-	_Meta->registerConstructor(domEntry::create);
+	_Meta->registerClass(domEntry::create, &_Meta);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
@@ -95,7 +95,7 @@ domEntry::domParam::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "param" );
-	_Meta->registerConstructor(domEntry::domParam::create);
+	_Meta->registerClass(domEntry::domParam::create, &_Meta);
 
 	_Meta->setIsInnerClass( true );
 	//	Add attribute: _value

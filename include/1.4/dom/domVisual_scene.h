@@ -168,7 +168,7 @@ public:
 			 * Sets the camera_node attribute.
 			 * @param atCamera_node The new value for the camera_node attribute.
 			 */
-			void setCamera_node( const xsAnyURI &atCamera_node ) { attrCamera_node.setURI( atCamera_node.getURI() );		
+			void setCamera_node( const xsAnyURI &atCamera_node ) { attrCamera_node = atCamera_node;		
 	 _validAttributeArray[0] = true; }
 
 			/**

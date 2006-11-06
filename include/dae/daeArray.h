@@ -328,6 +328,305 @@ public:
 
 		return *this;
 	}
+
+	//some helpers
+	/**
+	 * Sets the array to the contain the two values specified.
+	 * @param one The first value.
+	 * @param two The second value.
+	 */
+	void set2( const T &one, const T &two )
+	{
+		setCount( 2 );
+		set( 0, one );
+		set( 1, two );
+	}
+	/**
+	 * Sets the array to the contain the three values specified.
+	 * @param one The first value.
+	 * @param two The second value.
+	 * @param three The third value.
+	 */
+	void set3( const T &one, const T &two, const T &three )
+	{
+		setCount( 3 );
+		set( 0, one );
+		set( 1, two );
+		set( 2, three );
+	}
+	/**
+	 * Sets the array to the contain the four values specified.
+	 * @param one The first value.
+	 * @param two The second value.
+	 * @param three The third value.
+	 * @param four The fourth value.
+	 */
+	void set4( const T &one, const T &two, const T &three, const T &four )
+	{
+		setCount( 4 );
+		set( 0, one );
+		set( 1, two );
+		set( 2, three );
+		set( 3, four );
+	}
+
+	/**
+	 * Sets the values in the array at the specified location to the contain the two 
+	 * values specified. This function will grow the array if needed.
+	 * @param index The position in the array to start setting.
+	 * @param one The first value.
+	 * @param two The second value.
+	 */
+	void set2at( size_t index, const T &one, const T &two )
+	{
+		set( index, one );
+		set( index+1, two );
+	}
+	/**
+	 * Sets the values in the array at the specified location to the contain the three 
+	 * values specified. This function will grow the array if needed.
+	 * @param index The position in the array to start setting.
+	 * @param one The first value.
+	 * @param two The second value.
+	 * @param three The third value.
+	 */
+	void set3at( size_t index, const T &one, const T &two, const T &three )
+	{
+		set( index, one );
+		set( index+1, two );
+		set( index+2, three );
+	}
+	/**
+	 * Sets the values in the array at the specified location to the contain the four 
+	 * values specified. This function will grow the array if needed.
+	 * @param index The position in the array to start setting.
+	 * @param one The first value.
+	 * @param two The second value.
+	 * @param three The third value.
+	 * @param four The fourth value.
+	 */
+	void set4at( size_t index, const T &one, const T &two, const T &three, const T &four )
+	{
+		set( index, one );
+		set( index+1, two );
+		set( index+2, three );
+		set( index+3, four );
+	}
+
+	/**
+	 * Appends two values to the array.
+	 * @param one The first value.
+	 * @param two The second value.
+	 */
+	void append2( const T &one, const T &two )
+	{
+		append( one );
+		append( two );
+	}
+	/**
+	 * Appends three values to the array.
+	 * @param one The first value.
+	 * @param two The second value.
+	 * @param three The third value.
+	 */
+	void append3( const T &one, const T &two, const T &three )
+	{
+		append( one );
+		append( two );
+		append( three );
+	}
+	/**
+	 * Appends four values to the array.
+	 * @param one The first value.
+	 * @param two The second value.
+	 * @param three The third value.
+	 * @param four The fourth value.
+	 */
+	void append4( const T &one, const T &two, const T &three, const T &four )
+	{
+		append( one );
+		append( two );
+		append( three );
+		append( four );
+	}
+
+	/**
+	 * Inserts two values into the array at the specified location.
+	 * @param index The position in the array to start inserting.
+	 * @param one The first value.
+	 * @param two The second value.
+	 */
+	void insert2at( size_t index, const T &one, const T &two )
+	{
+		if ( index > _count )
+			setCount( index +2 );
+		else
+			setCount( _count +2 );
+
+		for (size_t i = _count; i > index+2; i-- ) 
+		{
+			T tmp = ((T*)_data)[i-3];
+			set( i-1, tmp );
+		}
+		set( index, one );
+		set( index+1, two );
+	}
+	/**
+	 * Inserts three values into the array at the specified location.
+	 * @param index The position in the array to start inserting.
+	 * @param one The first value.
+	 * @param two The second value.
+	 * @param three The third value.
+	 */
+	void insert3at( size_t index, const T &one, const T &two, const T &three )
+	{
+		if ( index > _count )
+			setCount( index +3 );
+		else
+			setCount( _count +3 );
+
+		for (size_t i = _count; i > index+3; i-- ) 
+		{
+			T tmp = ((T*)_data)[i-4];
+			set( i-1, tmp );
+		}
+		set( index, one );
+		set( index+1, two );
+		set( index+2, three );
+	}
+	/**
+	 * Inserts four values into the array at the specified location.
+	 * @param index The position in the array to start inserting.
+	 * @param one The first value.
+	 * @param two The second value.
+	 * @param three The third value.
+	 * @param four The fourth value.
+	 */
+	void insert4at( size_t index, const T &one, const T &two, const T &three, const T &four )
+	{
+		if ( index > _count )
+			setCount( index +4 );
+		else
+			setCount( _count +4 );
+
+		for (size_t i = _count; i > index+4; i-- ) 
+		{
+			T tmp = ((T*)_data)[i-5];
+			set( i-1, tmp );
+		}
+		set( index, one );
+		set( index+1, two );
+		set( index+2, three );
+		set( index+4, four );
+	}
+
+	/**
+	 * Gets two values from the array at the specified location.
+	 * @param index The position in the array to start getting.
+	 * @param one Variable to store the first value.
+	 * @param two Variable to store the second value.
+	 * @return Returns The number of elements retrieved.
+	 */
+	daeInt get2at( size_t index, T &one, T &two )
+	{
+		daeInt retVal = 0;
+		if ( index < _count )
+		{
+			one = get(index);
+			retVal++;
+		}
+		if ( index+1 < _count )
+		{
+			two = get(index+1);
+			retVal++;
+		}
+		return retVal;
+	} 
+	/**
+	 * Gets three values from the array at the specified location.
+	 * @param index The position in the array to start getting.
+	 * @param one Variable to store the first value.
+	 * @param two Variable to store the second value.
+	 * @param three Variable to store the third value.
+	 * @return Returns The number of elements retrieved.
+	 */
+	daeInt get3at( size_t index, T &one, T &two, T &three )
+	{
+		daeInt retVal = 0;
+		if ( index < _count )
+		{
+			one = get(index);
+			retVal++;
+		}
+		if ( index+1 < _count )
+		{
+			two = get(index+1);
+			retVal++;
+		}
+		if ( index+2 < _count )
+		{
+			two = get(index+2);
+			retVal++;
+		}
+		return retVal;
+	}
+	/**
+	 * Gets four values from the array at the specified location.
+	 * @param index The position in the array to start getting.
+	 * @param one Variable to store the first value.
+	 * @param two Variable to store the second value.
+	 * @param three Variable to store the third value.
+	 * @param four Variable to store the fourth value.
+	 * @return Returns The number of elements retrieved.
+	 */
+	daeInt get4at( size_t index, T &one, T &two, T &three, T &four )
+	{
+		daeInt retVal = 0;
+		if ( index < _count )
+		{
+			one = get(index);
+			retVal++;
+		}
+		if ( index+1 < _count )
+		{
+			two = get(index+1);
+			retVal++;
+		}
+		if ( index+2 < _count )
+		{
+			two = get(index+2);
+			retVal++;
+		}
+		if ( index+3 < _count )
+		{
+			two = get(index+3);
+			retVal++;
+		}
+		return retVal;
+	}
+
+	/**
+	 * Appends a number of elements to this array from a C native array.
+	 * @param num The number of elements to append.
+	 * @param array The C native array that contains the values to append.
+	 */
+	void appendArray( size_t num, T *array )
+	{
+		if ( array == NULL )
+			return;
+
+		for ( size_t i = 0; i < num; i++ )
+			append( array[i] );
+	}
+	/**
+	 * Appends a number of elements to this array from another daeTArray.
+	 * @param array The daeTArray that contains the values to append.
+	 */
+	void appendArray( const daeTArray<T> &array ){
+		size_t num = array.getCount();
+		for ( size_t i = 0; i < num; i++ )
+			append( array[i] );
+	}
 };
 
 

@@ -35,7 +35,7 @@ intAnimation_clip::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "animation_clip" );
-	_Meta->registerConstructor(intAnimation_clip::create);
+	_Meta->registerClass(intAnimation_clip::create, &_Meta);
 
 	domAnimation_clip::_Meta->setMetaIntegration(_Meta);
 

@@ -251,7 +251,7 @@ daeElement::setAttribute(daeString attrName, daeString attrValue)
 			if (metaAttrs[i]->getType() != NULL)
 			{
 				metaAttrs[i]->set(this,attrValue);
-				_validAttributeArray[i] = true;
+				_validAttributeArray.set(i, true);
 			}
 			return true;
 		}

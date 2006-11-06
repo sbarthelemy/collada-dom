@@ -358,7 +358,7 @@ public:
 			 * Sets the _value of this element.
 			 * @param val The new value for this element.
 			 */
-			void setValue( const xsAnyURI &val ) { _value.setURI( val.getURI() ); }
+			void setValue( const xsAnyURI &val ) { _value = val; }
 
 		protected:
 			/**

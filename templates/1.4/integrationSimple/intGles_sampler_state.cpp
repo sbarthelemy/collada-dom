@@ -35,7 +35,7 @@ intGles_sampler_state::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "gles_sampler_state" );
-	_Meta->registerConstructor(intGles_sampler_state::create);
+	_Meta->registerClass(intGles_sampler_state::create, &_Meta);
 
 	domGles_sampler_state::_Meta->setMetaIntegration(_Meta);
 

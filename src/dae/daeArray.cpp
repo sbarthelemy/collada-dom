@@ -82,3 +82,4 @@ daeArray::grow(size_t sz)
 	_data = newData;
 	_capacity = newCapacity;
 }
+

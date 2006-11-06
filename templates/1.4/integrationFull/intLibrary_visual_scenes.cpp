@@ -35,7 +35,7 @@ intLibrary_visual_scenes::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "library_visual_scenes" );
-	_Meta->registerConstructor(intLibrary_visual_scenes::create);
+	_Meta->registerClass(intLibrary_visual_scenes::create, &_Meta);
 
 	domLibrary_visual_scenes::_Meta->setMetaIntegration(_Meta);
 

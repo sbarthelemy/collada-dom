@@ -35,7 +35,7 @@ intCg_newarray_type::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "cg_newarray_type" );
-	_Meta->registerConstructor(intCg_newarray_type::create);
+	_Meta->registerClass(intCg_newarray_type::create, &_Meta);
 
 	domCg_newarray_type::_Meta->setMetaIntegration(_Meta);
 

@@ -36,7 +36,7 @@ intCOLLADA::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "COLLADA" );
-	_Meta->registerConstructor(intCOLLADA::create);
+	_Meta->registerClass(intCOLLADA::create, &_Meta);
 
 	domCOLLADA::_Meta->setMetaIntegration(_Meta);
 
@@ -60,7 +60,7 @@ intCOLLADA::intScene::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "scene" );
-	_Meta->registerConstructor(intCOLLADA::intScene::create);
+	_Meta->registerClass(intCOLLADA::intScene::create, &_Meta);
 
 	domCOLLADA::domScene::_Meta->setMetaIntegration(_Meta);
 

@@ -37,7 +37,7 @@ intCg_newparam::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "cg_newparam" );
-	_Meta->registerConstructor(intCg_newparam::create);
+	_Meta->registerClass(intCg_newparam::create, &_Meta);
 
 	domCg_newparam::_Meta->setMetaIntegration(_Meta);
 
@@ -61,7 +61,7 @@ intCg_newparam::intSemantic::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "semantic" );
-	_Meta->registerConstructor(intCg_newparam::intSemantic::create);
+	_Meta->registerClass(intCg_newparam::intSemantic::create, &_Meta);
 
 	domCg_newparam::domSemantic::_Meta->setMetaIntegration(_Meta);
 
@@ -85,7 +85,7 @@ intCg_newparam::intModifier::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "modifier" );
-	_Meta->registerConstructor(intCg_newparam::intModifier::create);
+	_Meta->registerClass(intCg_newparam::intModifier::create, &_Meta);
 
 	domCg_newparam::domModifier::_Meta->setMetaIntegration(_Meta);
 

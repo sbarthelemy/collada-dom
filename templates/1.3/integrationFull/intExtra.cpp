@@ -36,7 +36,7 @@ intExtra::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "extra" );
-	_Meta->registerConstructor(intExtra::create);
+	_Meta->registerClass(intExtra::create, &_Meta);
 
 	domExtra::_Meta->setMetaIntegration(_Meta);
 
@@ -60,7 +60,7 @@ intExtra::intTechnique::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "technique" );
-	_Meta->registerConstructor(intExtra::intTechnique::create);
+	_Meta->registerClass(intExtra::intTechnique::create, &_Meta);
 
 	domExtra::domTechnique::_Meta->setMetaIntegration(_Meta);
 

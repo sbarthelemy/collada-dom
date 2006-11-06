@@ -35,7 +35,7 @@ intSpline::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "spline" );
-	_Meta->registerConstructor(intSpline::create);
+	_Meta->registerClass(intSpline::create, &_Meta);
 
 	domSpline::_Meta->setMetaIntegration(_Meta);
 

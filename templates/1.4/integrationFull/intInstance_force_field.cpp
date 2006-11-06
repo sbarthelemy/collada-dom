@@ -35,7 +35,7 @@ intInstance_force_field::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "instance_force_field" );
-	_Meta->registerConstructor(intInstance_force_field::create);
+	_Meta->registerClass(intInstance_force_field::create, &_Meta);
 
 	domInstance_force_field::_Meta->setMetaIntegration(_Meta);
 

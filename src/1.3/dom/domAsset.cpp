@@ -35,7 +35,7 @@ domAsset::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "asset" );
-	_Meta->registerConstructor(domAsset::create);
+	_Meta->registerClass(domAsset::create, &_Meta);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
@@ -148,7 +148,7 @@ domAsset::domAuthor::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "author" );
-	_Meta->registerConstructor(domAsset::domAuthor::create);
+	_Meta->registerClass(domAsset::domAuthor::create, &_Meta);
 
 	_Meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -183,7 +183,7 @@ domAsset::domAuthoring_tool::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "authoring_tool" );
-	_Meta->registerConstructor(domAsset::domAuthoring_tool::create);
+	_Meta->registerClass(domAsset::domAuthoring_tool::create, &_Meta);
 
 	_Meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -218,7 +218,7 @@ domAsset::domCreated::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "created" );
-	_Meta->registerConstructor(domAsset::domCreated::create);
+	_Meta->registerClass(domAsset::domCreated::create, &_Meta);
 
 	_Meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -253,7 +253,7 @@ domAsset::domModified::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "modified" );
-	_Meta->registerConstructor(domAsset::domModified::create);
+	_Meta->registerClass(domAsset::domModified::create, &_Meta);
 
 	_Meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -288,7 +288,7 @@ domAsset::domRevision::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "revision" );
-	_Meta->registerConstructor(domAsset::domRevision::create);
+	_Meta->registerClass(domAsset::domRevision::create, &_Meta);
 
 	_Meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -324,7 +324,7 @@ domAsset::domSource_data::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "source_data" );
-	_Meta->registerConstructor(domAsset::domSource_data::create);
+	_Meta->registerClass(domAsset::domSource_data::create, &_Meta);
 
 	_Meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -359,7 +359,7 @@ domAsset::domCopyright::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "copyright" );
-	_Meta->registerConstructor(domAsset::domCopyright::create);
+	_Meta->registerClass(domAsset::domCopyright::create, &_Meta);
 
 	_Meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -394,7 +394,7 @@ domAsset::domTitle::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "title" );
-	_Meta->registerConstructor(domAsset::domTitle::create);
+	_Meta->registerClass(domAsset::domTitle::create, &_Meta);
 
 	_Meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -429,7 +429,7 @@ domAsset::domSubject::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "subject" );
-	_Meta->registerConstructor(domAsset::domSubject::create);
+	_Meta->registerClass(domAsset::domSubject::create, &_Meta);
 
 	_Meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -464,7 +464,7 @@ domAsset::domKeywords::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "keywords" );
-	_Meta->registerConstructor(domAsset::domKeywords::create);
+	_Meta->registerClass(domAsset::domKeywords::create, &_Meta);
 
 	_Meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -499,7 +499,7 @@ domAsset::domComments::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "comments" );
-	_Meta->registerConstructor(domAsset::domComments::create);
+	_Meta->registerClass(domAsset::domComments::create, &_Meta);
 
 	_Meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -534,7 +534,7 @@ domAsset::domUp_axis::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "up_axis" );
-	_Meta->registerConstructor(domAsset::domUp_axis::create);
+	_Meta->registerClass(domAsset::domUp_axis::create, &_Meta);
 
 	_Meta->setIsInnerClass( true );
 	//	Add attribute: _value
@@ -569,7 +569,7 @@ domAsset::domUnit::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "unit" );
-	_Meta->registerConstructor(domAsset::domUnit::create);
+	_Meta->registerClass(domAsset::domUnit::create, &_Meta);
 
 	_Meta->setIsInnerClass( true );
 

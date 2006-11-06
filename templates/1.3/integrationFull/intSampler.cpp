@@ -36,7 +36,7 @@ intSampler::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "sampler" );
-	_Meta->registerConstructor(intSampler::create);
+	_Meta->registerClass(intSampler::create, &_Meta);
 
 	domSampler::_Meta->setMetaIntegration(_Meta);
 
@@ -60,7 +60,7 @@ intSampler::intInput::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "input" );
-	_Meta->registerConstructor(intSampler::intInput::create);
+	_Meta->registerClass(intSampler::intInput::create, &_Meta);
 
 	domSampler::domInput::_Meta->setMetaIntegration(_Meta);
 

@@ -35,7 +35,7 @@ intLibrary_effects::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "library_effects" );
-	_Meta->registerConstructor(intLibrary_effects::create);
+	_Meta->registerClass(intLibrary_effects::create, &_Meta);
 
 	domLibrary_effects::_Meta->setMetaIntegration(_Meta);
 

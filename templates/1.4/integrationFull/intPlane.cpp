@@ -36,7 +36,7 @@ intPlane::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "plane" );
-	_Meta->registerConstructor(intPlane::create);
+	_Meta->registerClass(intPlane::create, &_Meta);
 
 	domPlane::_Meta->setMetaIntegration(_Meta);
 
@@ -60,7 +60,7 @@ intPlane::intEquation::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "equation" );
-	_Meta->registerConstructor(intPlane::intEquation::create);
+	_Meta->registerClass(intPlane::intEquation::create, &_Meta);
 
 	domPlane::domEquation::_Meta->setMetaIntegration(_Meta);
 

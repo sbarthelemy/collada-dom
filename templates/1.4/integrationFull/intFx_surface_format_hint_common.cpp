@@ -39,7 +39,7 @@ intFx_surface_format_hint_common::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fx_surface_format_hint_common" );
-	_Meta->registerConstructor(intFx_surface_format_hint_common::create);
+	_Meta->registerClass(intFx_surface_format_hint_common::create, &_Meta);
 
 	domFx_surface_format_hint_common::_Meta->setMetaIntegration(_Meta);
 
@@ -63,7 +63,7 @@ intFx_surface_format_hint_common::intChannels::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "channels" );
-	_Meta->registerConstructor(intFx_surface_format_hint_common::intChannels::create);
+	_Meta->registerClass(intFx_surface_format_hint_common::intChannels::create, &_Meta);
 
 	domFx_surface_format_hint_common::domChannels::_Meta->setMetaIntegration(_Meta);
 
@@ -87,7 +87,7 @@ intFx_surface_format_hint_common::intRange::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "range" );
-	_Meta->registerConstructor(intFx_surface_format_hint_common::intRange::create);
+	_Meta->registerClass(intFx_surface_format_hint_common::intRange::create, &_Meta);
 
 	domFx_surface_format_hint_common::domRange::_Meta->setMetaIntegration(_Meta);
 
@@ -111,7 +111,7 @@ intFx_surface_format_hint_common::intPrecision::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "precision" );
-	_Meta->registerConstructor(intFx_surface_format_hint_common::intPrecision::create);
+	_Meta->registerClass(intFx_surface_format_hint_common::intPrecision::create, &_Meta);
 
 	domFx_surface_format_hint_common::domPrecision::_Meta->setMetaIntegration(_Meta);
 
@@ -135,7 +135,7 @@ intFx_surface_format_hint_common::intOption::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "option" );
-	_Meta->registerConstructor(intFx_surface_format_hint_common::intOption::create);
+	_Meta->registerClass(intFx_surface_format_hint_common::intOption::create, &_Meta);
 
 	domFx_surface_format_hint_common::domOption::_Meta->setMetaIntegration(_Meta);
 

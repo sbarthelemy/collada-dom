@@ -35,7 +35,7 @@ intLibrary_geometries::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "library_geometries" );
-	_Meta->registerConstructor(intLibrary_geometries::create);
+	_Meta->registerClass(intLibrary_geometries::create, &_Meta);
 
 	domLibrary_geometries::_Meta->setMetaIntegration(_Meta);
 

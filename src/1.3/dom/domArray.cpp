@@ -35,7 +35,7 @@ domArray::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "array" );
-	_Meta->registerConstructor(domArray::create);
+	_Meta->registerClass(domArray::create, &_Meta);
 
 	//	Add attribute: _value
  	{

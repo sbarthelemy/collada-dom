@@ -37,7 +37,7 @@ intCommon_float_or_param_type::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "common_float_or_param_type" );
-	_Meta->registerConstructor(intCommon_float_or_param_type::create);
+	_Meta->registerClass(intCommon_float_or_param_type::create, &_Meta);
 
 	domCommon_float_or_param_type::_Meta->setMetaIntegration(_Meta);
 
@@ -61,7 +61,7 @@ intCommon_float_or_param_type::intFloat::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float" );
-	_Meta->registerConstructor(intCommon_float_or_param_type::intFloat::create);
+	_Meta->registerClass(intCommon_float_or_param_type::intFloat::create, &_Meta);
 
 	domCommon_float_or_param_type::domFloat::_Meta->setMetaIntegration(_Meta);
 
@@ -85,7 +85,7 @@ intCommon_float_or_param_type::intParam::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "param" );
-	_Meta->registerConstructor(intCommon_float_or_param_type::intParam::create);
+	_Meta->registerClass(intCommon_float_or_param_type::intParam::create, &_Meta);
 
 	domCommon_float_or_param_type::domParam::_Meta->setMetaIntegration(_Meta);
 

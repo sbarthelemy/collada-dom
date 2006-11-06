@@ -35,7 +35,7 @@ intImage::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "image" );
-	_Meta->registerConstructor(intImage::create);
+	_Meta->registerClass(intImage::create, &_Meta);
 
 	domImage::_Meta->setMetaIntegration(_Meta);
 

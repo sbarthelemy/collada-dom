@@ -84,7 +84,7 @@ public:	//Accessors and Mutators
 	 * Sets the convex_hull_of attribute.
 	 * @param atConvex_hull_of The new value for the convex_hull_of attribute.
 	 */
-	void setConvex_hull_of( const xsAnyURI &atConvex_hull_of ) { attrConvex_hull_of.setURI( atConvex_hull_of.getURI() );
+	void setConvex_hull_of( const xsAnyURI &atConvex_hull_of ) { attrConvex_hull_of = atConvex_hull_of;
 	 _validAttributeArray[0] = true; }
 
 	/**

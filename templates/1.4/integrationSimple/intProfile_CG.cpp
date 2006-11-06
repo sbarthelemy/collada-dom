@@ -35,7 +35,7 @@ intProfile_CG::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "profile_CG" );
-	_Meta->registerConstructor(intProfile_CG::create);
+	_Meta->registerClass(intProfile_CG::create, &_Meta);
 
 	domProfile_CG::_Meta->setMetaIntegration(_Meta);
 

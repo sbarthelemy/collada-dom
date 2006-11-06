@@ -36,7 +36,7 @@ domInput::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "input" );
-	_Meta->registerConstructor(domInput::create);
+	_Meta->registerClass(domInput::create, &_Meta);
 
 
 	//	Add attribute: idx

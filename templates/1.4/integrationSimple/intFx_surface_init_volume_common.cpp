@@ -35,7 +35,7 @@ intFx_surface_init_volume_common::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fx_surface_init_volume_common" );
-	_Meta->registerConstructor(intFx_surface_init_volume_common::create);
+	_Meta->registerClass(intFx_surface_init_volume_common::create, &_Meta);
 
 	domFx_surface_init_volume_common::_Meta->setMetaIntegration(_Meta);
 

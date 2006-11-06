@@ -286,7 +286,7 @@ public:	//Accessors and Mutators
 	 * Sets the target attribute.
 	 * @param atTarget The new value for the target attribute.
 	 */
-	void setTarget( const xsAnyURI &atTarget ) { attrTarget.setURI( atTarget.getURI() );
+	void setTarget( const xsAnyURI &atTarget ) { attrTarget = atTarget;
 	 _validAttributeArray[1] = true; }
 
 	/**

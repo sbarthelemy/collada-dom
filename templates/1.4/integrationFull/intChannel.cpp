@@ -35,7 +35,7 @@ intChannel::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "channel" );
-	_Meta->registerConstructor(intChannel::create);
+	_Meta->registerClass(intChannel::create, &_Meta);
 
 	domChannel::_Meta->setMetaIntegration(_Meta);
 

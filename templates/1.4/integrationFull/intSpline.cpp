@@ -36,7 +36,7 @@ intSpline::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "spline" );
-	_Meta->registerConstructor(intSpline::create);
+	_Meta->registerClass(intSpline::create, &_Meta);
 
 	domSpline::_Meta->setMetaIntegration(_Meta);
 
@@ -60,7 +60,7 @@ intSpline::intControl_vertices::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "control_vertices" );
-	_Meta->registerConstructor(intSpline::intControl_vertices::create);
+	_Meta->registerClass(intSpline::intControl_vertices::create, &_Meta);
 
 	domSpline::domControl_vertices::_Meta->setMetaIntegration(_Meta);
 

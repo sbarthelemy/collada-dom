@@ -40,7 +40,7 @@ intFx_samplerDEPTH_common::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fx_samplerDEPTH_common" );
-	_Meta->registerConstructor(intFx_samplerDEPTH_common::create);
+	_Meta->registerClass(intFx_samplerDEPTH_common::create, &_Meta);
 
 	domFx_samplerDEPTH_common::_Meta->setMetaIntegration(_Meta);
 
@@ -64,7 +64,7 @@ intFx_samplerDEPTH_common::intSource::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "source" );
-	_Meta->registerConstructor(intFx_samplerDEPTH_common::intSource::create);
+	_Meta->registerClass(intFx_samplerDEPTH_common::intSource::create, &_Meta);
 
 	domFx_samplerDEPTH_common::domSource::_Meta->setMetaIntegration(_Meta);
 
@@ -88,7 +88,7 @@ intFx_samplerDEPTH_common::intWrap_s::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "wrap_s" );
-	_Meta->registerConstructor(intFx_samplerDEPTH_common::intWrap_s::create);
+	_Meta->registerClass(intFx_samplerDEPTH_common::intWrap_s::create, &_Meta);
 
 	domFx_samplerDEPTH_common::domWrap_s::_Meta->setMetaIntegration(_Meta);
 
@@ -112,7 +112,7 @@ intFx_samplerDEPTH_common::intWrap_t::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "wrap_t" );
-	_Meta->registerConstructor(intFx_samplerDEPTH_common::intWrap_t::create);
+	_Meta->registerClass(intFx_samplerDEPTH_common::intWrap_t::create, &_Meta);
 
 	domFx_samplerDEPTH_common::domWrap_t::_Meta->setMetaIntegration(_Meta);
 
@@ -136,7 +136,7 @@ intFx_samplerDEPTH_common::intMinfilter::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "minfilter" );
-	_Meta->registerConstructor(intFx_samplerDEPTH_common::intMinfilter::create);
+	_Meta->registerClass(intFx_samplerDEPTH_common::intMinfilter::create, &_Meta);
 
 	domFx_samplerDEPTH_common::domMinfilter::_Meta->setMetaIntegration(_Meta);
 
@@ -160,7 +160,7 @@ intFx_samplerDEPTH_common::intMagfilter::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "magfilter" );
-	_Meta->registerConstructor(intFx_samplerDEPTH_common::intMagfilter::create);
+	_Meta->registerClass(intFx_samplerDEPTH_common::intMagfilter::create, &_Meta);
 
 	domFx_samplerDEPTH_common::domMagfilter::_Meta->setMetaIntegration(_Meta);
 

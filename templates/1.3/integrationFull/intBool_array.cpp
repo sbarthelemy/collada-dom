@@ -35,7 +35,7 @@ intBool_array::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "bool_array" );
-	_Meta->registerConstructor(intBool_array::create);
+	_Meta->registerClass(intBool_array::create, &_Meta);
 
 	domBool_array::_Meta->setMetaIntegration(_Meta);
 

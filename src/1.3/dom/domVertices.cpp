@@ -35,7 +35,7 @@ domVertices::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "vertices" );
-	_Meta->registerConstructor(domVertices::create);
+	_Meta->registerClass(domVertices::create, &_Meta);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
@@ -106,7 +106,7 @@ domVertices::domInput::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "input" );
-	_Meta->registerConstructor(domVertices::domInput::create);
+	_Meta->registerClass(domVertices::domInput::create, &_Meta);
 
 	_Meta->setIsInnerClass( true );
 

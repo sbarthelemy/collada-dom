@@ -35,7 +35,7 @@ intIDREF_array::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "IDREF_array" );
-	_Meta->registerConstructor(intIDREF_array::create);
+	_Meta->registerClass(intIDREF_array::create, &_Meta);
 
 	domIDREF_array::_Meta->setMetaIntegration(_Meta);
 

@@ -51,7 +51,7 @@ intFx_annotate_type_common::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fx_annotate_type_common" );
-	_Meta->registerConstructor(intFx_annotate_type_common::create);
+	_Meta->registerClass(intFx_annotate_type_common::create, &_Meta);
 
 	domFx_annotate_type_common::_Meta->setMetaIntegration(_Meta);
 
@@ -75,7 +75,7 @@ intFx_annotate_type_common::intBool::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "bool" );
-	_Meta->registerConstructor(intFx_annotate_type_common::intBool::create);
+	_Meta->registerClass(intFx_annotate_type_common::intBool::create, &_Meta);
 
 	domFx_annotate_type_common::domBool::_Meta->setMetaIntegration(_Meta);
 
@@ -99,7 +99,7 @@ intFx_annotate_type_common::intBool2::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "bool2" );
-	_Meta->registerConstructor(intFx_annotate_type_common::intBool2::create);
+	_Meta->registerClass(intFx_annotate_type_common::intBool2::create, &_Meta);
 
 	domFx_annotate_type_common::domBool2::_Meta->setMetaIntegration(_Meta);
 
@@ -123,7 +123,7 @@ intFx_annotate_type_common::intBool3::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "bool3" );
-	_Meta->registerConstructor(intFx_annotate_type_common::intBool3::create);
+	_Meta->registerClass(intFx_annotate_type_common::intBool3::create, &_Meta);
 
 	domFx_annotate_type_common::domBool3::_Meta->setMetaIntegration(_Meta);
 
@@ -147,7 +147,7 @@ intFx_annotate_type_common::intBool4::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "bool4" );
-	_Meta->registerConstructor(intFx_annotate_type_common::intBool4::create);
+	_Meta->registerClass(intFx_annotate_type_common::intBool4::create, &_Meta);
 
 	domFx_annotate_type_common::domBool4::_Meta->setMetaIntegration(_Meta);
 
@@ -171,7 +171,7 @@ intFx_annotate_type_common::intInt::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "int" );
-	_Meta->registerConstructor(intFx_annotate_type_common::intInt::create);
+	_Meta->registerClass(intFx_annotate_type_common::intInt::create, &_Meta);
 
 	domFx_annotate_type_common::domInt::_Meta->setMetaIntegration(_Meta);
 
@@ -195,7 +195,7 @@ intFx_annotate_type_common::intInt2::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "int2" );
-	_Meta->registerConstructor(intFx_annotate_type_common::intInt2::create);
+	_Meta->registerClass(intFx_annotate_type_common::intInt2::create, &_Meta);
 
 	domFx_annotate_type_common::domInt2::_Meta->setMetaIntegration(_Meta);
 
@@ -219,7 +219,7 @@ intFx_annotate_type_common::intInt3::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "int3" );
-	_Meta->registerConstructor(intFx_annotate_type_common::intInt3::create);
+	_Meta->registerClass(intFx_annotate_type_common::intInt3::create, &_Meta);
 
 	domFx_annotate_type_common::domInt3::_Meta->setMetaIntegration(_Meta);
 
@@ -243,7 +243,7 @@ intFx_annotate_type_common::intInt4::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "int4" );
-	_Meta->registerConstructor(intFx_annotate_type_common::intInt4::create);
+	_Meta->registerClass(intFx_annotate_type_common::intInt4::create, &_Meta);
 
 	domFx_annotate_type_common::domInt4::_Meta->setMetaIntegration(_Meta);
 
@@ -267,7 +267,7 @@ intFx_annotate_type_common::intFloat::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float" );
-	_Meta->registerConstructor(intFx_annotate_type_common::intFloat::create);
+	_Meta->registerClass(intFx_annotate_type_common::intFloat::create, &_Meta);
 
 	domFx_annotate_type_common::domFloat::_Meta->setMetaIntegration(_Meta);
 
@@ -291,7 +291,7 @@ intFx_annotate_type_common::intFloat2::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float2" );
-	_Meta->registerConstructor(intFx_annotate_type_common::intFloat2::create);
+	_Meta->registerClass(intFx_annotate_type_common::intFloat2::create, &_Meta);
 
 	domFx_annotate_type_common::domFloat2::_Meta->setMetaIntegration(_Meta);
 
@@ -315,7 +315,7 @@ intFx_annotate_type_common::intFloat3::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float3" );
-	_Meta->registerConstructor(intFx_annotate_type_common::intFloat3::create);
+	_Meta->registerClass(intFx_annotate_type_common::intFloat3::create, &_Meta);
 
 	domFx_annotate_type_common::domFloat3::_Meta->setMetaIntegration(_Meta);
 
@@ -339,7 +339,7 @@ intFx_annotate_type_common::intFloat4::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float4" );
-	_Meta->registerConstructor(intFx_annotate_type_common::intFloat4::create);
+	_Meta->registerClass(intFx_annotate_type_common::intFloat4::create, &_Meta);
 
 	domFx_annotate_type_common::domFloat4::_Meta->setMetaIntegration(_Meta);
 
@@ -363,7 +363,7 @@ intFx_annotate_type_common::intFloat2x2::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float2x2" );
-	_Meta->registerConstructor(intFx_annotate_type_common::intFloat2x2::create);
+	_Meta->registerClass(intFx_annotate_type_common::intFloat2x2::create, &_Meta);
 
 	domFx_annotate_type_common::domFloat2x2::_Meta->setMetaIntegration(_Meta);
 
@@ -387,7 +387,7 @@ intFx_annotate_type_common::intFloat3x3::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float3x3" );
-	_Meta->registerConstructor(intFx_annotate_type_common::intFloat3x3::create);
+	_Meta->registerClass(intFx_annotate_type_common::intFloat3x3::create, &_Meta);
 
 	domFx_annotate_type_common::domFloat3x3::_Meta->setMetaIntegration(_Meta);
 
@@ -411,7 +411,7 @@ intFx_annotate_type_common::intFloat4x4::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float4x4" );
-	_Meta->registerConstructor(intFx_annotate_type_common::intFloat4x4::create);
+	_Meta->registerClass(intFx_annotate_type_common::intFloat4x4::create, &_Meta);
 
 	domFx_annotate_type_common::domFloat4x4::_Meta->setMetaIntegration(_Meta);
 
@@ -435,7 +435,7 @@ intFx_annotate_type_common::intString::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "string" );
-	_Meta->registerConstructor(intFx_annotate_type_common::intString::create);
+	_Meta->registerClass(intFx_annotate_type_common::intString::create, &_Meta);
 
 	domFx_annotate_type_common::domString::_Meta->setMetaIntegration(_Meta);
 

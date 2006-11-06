@@ -35,7 +35,7 @@ intProfile_GLES::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "profile_GLES" );
-	_Meta->registerConstructor(intProfile_GLES::create);
+	_Meta->registerClass(intProfile_GLES::create, &_Meta);
 
 	domProfile_GLES::_Meta->setMetaIntegration(_Meta);
 

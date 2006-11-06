@@ -35,7 +35,7 @@ intInstance_camera::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "instance_camera" );
-	_Meta->registerConstructor(intInstance_camera::create);
+	_Meta->registerClass(intInstance_camera::create, &_Meta);
 
 	domInstance_camera::_Meta->setMetaIntegration(_Meta);
 

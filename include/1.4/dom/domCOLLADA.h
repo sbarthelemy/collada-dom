@@ -278,7 +278,7 @@ public:	//Accessors and Mutators
 	 * Sets the xmlns attribute.
 	 * @param xmlns The new value for the xmlns attribute.
 	 */
-	void setXmlns( const xsAnyURI &xmlns ) { attrXmlns.setURI( xmlns.getURI() );
+	void setXmlns( const xsAnyURI &xmlns ) { attrXmlns = xmlns;
 	 _validAttributeArray[0] = true; }
 
 	/**
@@ -307,7 +307,7 @@ public:	//Accessors and Mutators
 	 * Sets the xml_base attribute.
 	 * @param atXml_base The new value for the xml_base attribute.
 	 */
-	void setXml_base( const xsAnyURI &atXml_base ) { attrXml_base.setURI( atXml_base.getURI() );
+	void setXml_base( const xsAnyURI &atXml_base ) { attrXml_base = atXml_base;
 	 _validAttributeArray[2] = true; }
 
 	/**

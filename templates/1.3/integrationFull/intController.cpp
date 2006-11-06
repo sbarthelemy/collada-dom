@@ -35,7 +35,7 @@ intController::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "controller" );
-	_Meta->registerConstructor(intController::create);
+	_Meta->registerClass(intController::create, &_Meta);
 
 	domController::_Meta->setMetaIntegration(_Meta);
 

@@ -40,7 +40,7 @@ intCommon_newparam_type::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "common_newparam_type" );
-	_Meta->registerConstructor(intCommon_newparam_type::create);
+	_Meta->registerClass(intCommon_newparam_type::create, &_Meta);
 
 	domCommon_newparam_type::_Meta->setMetaIntegration(_Meta);
 
@@ -64,7 +64,7 @@ intCommon_newparam_type::intSemantic::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "semantic" );
-	_Meta->registerConstructor(intCommon_newparam_type::intSemantic::create);
+	_Meta->registerClass(intCommon_newparam_type::intSemantic::create, &_Meta);
 
 	domCommon_newparam_type::domSemantic::_Meta->setMetaIntegration(_Meta);
 
@@ -88,7 +88,7 @@ intCommon_newparam_type::intFloat::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float" );
-	_Meta->registerConstructor(intCommon_newparam_type::intFloat::create);
+	_Meta->registerClass(intCommon_newparam_type::intFloat::create, &_Meta);
 
 	domCommon_newparam_type::domFloat::_Meta->setMetaIntegration(_Meta);
 
@@ -112,7 +112,7 @@ intCommon_newparam_type::intFloat2::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float2" );
-	_Meta->registerConstructor(intCommon_newparam_type::intFloat2::create);
+	_Meta->registerClass(intCommon_newparam_type::intFloat2::create, &_Meta);
 
 	domCommon_newparam_type::domFloat2::_Meta->setMetaIntegration(_Meta);
 
@@ -136,7 +136,7 @@ intCommon_newparam_type::intFloat3::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float3" );
-	_Meta->registerConstructor(intCommon_newparam_type::intFloat3::create);
+	_Meta->registerClass(intCommon_newparam_type::intFloat3::create, &_Meta);
 
 	domCommon_newparam_type::domFloat3::_Meta->setMetaIntegration(_Meta);
 
@@ -160,7 +160,7 @@ intCommon_newparam_type::intFloat4::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float4" );
-	_Meta->registerConstructor(intCommon_newparam_type::intFloat4::create);
+	_Meta->registerClass(intCommon_newparam_type::intFloat4::create, &_Meta);
 
 	domCommon_newparam_type::domFloat4::_Meta->setMetaIntegration(_Meta);
 

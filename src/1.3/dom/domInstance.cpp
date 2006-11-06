@@ -36,7 +36,7 @@ domInstance::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "instance" );
-	_Meta->registerConstructor(domInstance::create);
+	_Meta->registerClass(domInstance::create, &_Meta);
 
 
 	//	Add attribute: url

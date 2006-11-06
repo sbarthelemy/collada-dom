@@ -35,7 +35,7 @@ intProgram::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "program" );
-	_Meta->registerConstructor(intProgram::create);
+	_Meta->registerClass(intProgram::create, &_Meta);
 
 	domProgram::_Meta->setMetaIntegration(_Meta);
 

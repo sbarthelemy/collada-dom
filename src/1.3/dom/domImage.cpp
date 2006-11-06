@@ -36,7 +36,7 @@ domImage::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "image" );
-	_Meta->registerConstructor(domImage::create);
+	_Meta->registerClass(domImage::create, &_Meta);
 
 	//	Add attribute: _value
  	{

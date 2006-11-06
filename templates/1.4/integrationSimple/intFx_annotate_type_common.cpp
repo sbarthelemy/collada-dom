@@ -35,7 +35,7 @@ intFx_annotate_type_common::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fx_annotate_type_common" );
-	_Meta->registerConstructor(intFx_annotate_type_common::create);
+	_Meta->registerClass(intFx_annotate_type_common::create, &_Meta);
 
 	domFx_annotate_type_common::_Meta->setMetaIntegration(_Meta);
 

@@ -36,7 +36,7 @@ intCombiner::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "combiner" );
-	_Meta->registerConstructor(intCombiner::create);
+	_Meta->registerClass(intCombiner::create, &_Meta);
 
 	domCombiner::_Meta->setMetaIntegration(_Meta);
 
@@ -60,7 +60,7 @@ intCombiner::intV::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "v" );
-	_Meta->registerConstructor(intCombiner::intV::create);
+	_Meta->registerClass(intCombiner::intV::create, &_Meta);
 
 	domCombiner::domV::_Meta->setMetaIntegration(_Meta);
 

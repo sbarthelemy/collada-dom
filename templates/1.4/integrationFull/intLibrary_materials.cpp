@@ -35,7 +35,7 @@ intLibrary_materials::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "library_materials" );
-	_Meta->registerConstructor(intLibrary_materials::create);
+	_Meta->registerClass(intLibrary_materials::create, &_Meta);
 
 	domLibrary_materials::_Meta->setMetaIntegration(_Meta);
 

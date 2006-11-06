@@ -36,7 +36,7 @@ domCode::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "code" );
-	_Meta->registerConstructor(domCode::create);
+	_Meta->registerClass(domCode::create, &_Meta);
 
 	//	Add attribute: _value
  	{

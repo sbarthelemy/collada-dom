@@ -35,7 +35,7 @@ intSphere::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "sphere" );
-	_Meta->registerConstructor(intSphere::create);
+	_Meta->registerClass(intSphere::create, &_Meta);
 
 	domSphere::_Meta->setMetaIntegration(_Meta);
 

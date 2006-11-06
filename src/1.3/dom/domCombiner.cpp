@@ -35,7 +35,7 @@ domCombiner::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "combiner" );
-	_Meta->registerConstructor(domCombiner::create);
+	_Meta->registerClass(domCombiner::create, &_Meta);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
@@ -90,7 +90,7 @@ domCombiner::domV::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "v" );
-	_Meta->registerConstructor(domCombiner::domV::create);
+	_Meta->registerClass(domCombiner::domV::create, &_Meta);
 
 	_Meta->setIsInnerClass( true );
 	//	Add attribute: _value

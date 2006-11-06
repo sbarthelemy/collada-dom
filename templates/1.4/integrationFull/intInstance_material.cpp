@@ -37,7 +37,7 @@ intInstance_material::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "instance_material" );
-	_Meta->registerConstructor(intInstance_material::create);
+	_Meta->registerClass(intInstance_material::create, &_Meta);
 
 	domInstance_material::_Meta->setMetaIntegration(_Meta);
 
@@ -61,7 +61,7 @@ intInstance_material::intBind::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "bind" );
-	_Meta->registerConstructor(intInstance_material::intBind::create);
+	_Meta->registerClass(intInstance_material::intBind::create, &_Meta);
 
 	domInstance_material::domBind::_Meta->setMetaIntegration(_Meta);
 
@@ -85,7 +85,7 @@ intInstance_material::intBind_vertex_input::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "bind_vertex_input" );
-	_Meta->registerConstructor(intInstance_material::intBind_vertex_input::create);
+	_Meta->registerClass(intInstance_material::intBind_vertex_input::create, &_Meta);
 
 	domInstance_material::domBind_vertex_input::_Meta->setMetaIntegration(_Meta);
 

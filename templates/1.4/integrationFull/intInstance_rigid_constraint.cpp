@@ -35,7 +35,7 @@ intInstance_rigid_constraint::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "instance_rigid_constraint" );
-	_Meta->registerConstructor(intInstance_rigid_constraint::create);
+	_Meta->registerClass(intInstance_rigid_constraint::create, &_Meta);
 
 	domInstance_rigid_constraint::_Meta->setMetaIntegration(_Meta);
 

@@ -35,7 +35,7 @@ intMaterial::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "material" );
-	_Meta->registerConstructor(intMaterial::create);
+	_Meta->registerClass(intMaterial::create, &_Meta);
 
 	domMaterial::_Meta->setMetaIntegration(_Meta);
 

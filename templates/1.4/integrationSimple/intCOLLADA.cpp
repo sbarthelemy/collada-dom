@@ -35,7 +35,7 @@ intCOLLADA::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "COLLADA" );
-	_Meta->registerConstructor(intCOLLADA::create);
+	_Meta->registerClass(intCOLLADA::create, &_Meta);
 
 	domCOLLADA::_Meta->setMetaIntegration(_Meta);
 

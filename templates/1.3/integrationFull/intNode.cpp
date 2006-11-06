@@ -35,7 +35,7 @@ intNode::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "node" );
-	_Meta->registerConstructor(intNode::create);
+	_Meta->registerClass(intNode::create, &_Meta);
 
 	domNode::_Meta->setMetaIntegration(_Meta);
 

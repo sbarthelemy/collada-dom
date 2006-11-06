@@ -35,7 +35,7 @@ intGl_samplerRECT::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "gl_samplerRECT" );
-	_Meta->registerConstructor(intGl_samplerRECT::create);
+	_Meta->registerClass(intGl_samplerRECT::create, &_Meta);
 
 	domGl_samplerRECT::_Meta->setMetaIntegration(_Meta);
 

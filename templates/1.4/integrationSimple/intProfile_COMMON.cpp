@@ -35,7 +35,7 @@ intProfile_COMMON::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "profile_COMMON" );
-	_Meta->registerConstructor(intProfile_COMMON::create);
+	_Meta->registerClass(intProfile_COMMON::create, &_Meta);
 
 	domProfile_COMMON::_Meta->setMetaIntegration(_Meta);
 

@@ -35,7 +35,7 @@ intFx_samplerCUBE_common::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fx_samplerCUBE_common" );
-	_Meta->registerConstructor(intFx_samplerCUBE_common::create);
+	_Meta->registerClass(intFx_samplerCUBE_common::create, &_Meta);
 
 	domFx_samplerCUBE_common::_Meta->setMetaIntegration(_Meta);
 

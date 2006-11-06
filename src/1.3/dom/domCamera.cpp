@@ -35,7 +35,7 @@ domCamera::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "camera" );
-	_Meta->registerConstructor(domCamera::create);
+	_Meta->registerClass(domCamera::create, &_Meta);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
@@ -94,7 +94,7 @@ domCamera::domTechnique::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "technique" );
-	_Meta->registerConstructor(domCamera::domTechnique::create);
+	_Meta->registerClass(domCamera::domTechnique::create, &_Meta);
 
 	_Meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
@@ -156,7 +156,7 @@ domCamera::domTechnique::domOptics::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "optics" );
-	_Meta->registerConstructor(domCamera::domTechnique::domOptics::create);
+	_Meta->registerClass(domCamera::domTechnique::domOptics::create, &_Meta);
 
 	_Meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
@@ -194,7 +194,7 @@ domCamera::domTechnique::domImager::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "imager" );
-	_Meta->registerConstructor(domCamera::domTechnique::domImager::create);
+	_Meta->registerClass(domCamera::domTechnique::domImager::create, &_Meta);
 
 	_Meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;

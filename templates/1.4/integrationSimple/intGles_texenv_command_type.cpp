@@ -35,7 +35,7 @@ intGles_texenv_command_type::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "gles_texenv_command_type" );
-	_Meta->registerConstructor(intGles_texenv_command_type::create);
+	_Meta->registerClass(intGles_texenv_command_type::create, &_Meta);
 
 	domGles_texenv_command_type::_Meta->setMetaIntegration(_Meta);
 

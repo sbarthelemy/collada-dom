@@ -35,7 +35,7 @@ intMorph::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "morph" );
-	_Meta->registerConstructor(intMorph::create);
+	_Meta->registerClass(intMorph::create, &_Meta);
 
 	domMorph::_Meta->setMetaIntegration(_Meta);
 

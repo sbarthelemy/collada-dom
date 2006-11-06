@@ -35,7 +35,7 @@ intCommon_float_or_param_type::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "common_float_or_param_type" );
-	_Meta->registerConstructor(intCommon_float_or_param_type::create);
+	_Meta->registerClass(intCommon_float_or_param_type::create, &_Meta);
 
 	domCommon_float_or_param_type::_Meta->setMetaIntegration(_Meta);
 

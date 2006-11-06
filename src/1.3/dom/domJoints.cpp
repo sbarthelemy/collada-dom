@@ -35,7 +35,7 @@ domJoints::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "joints" );
-	_Meta->registerConstructor(domJoints::create);
+	_Meta->registerClass(domJoints::create, &_Meta);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
@@ -106,7 +106,7 @@ domJoints::domInput::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "input" );
-	_Meta->registerConstructor(domJoints::domInput::create);
+	_Meta->registerClass(domJoints::domInput::create, &_Meta);
 
 	_Meta->setIsInnerClass( true );
 

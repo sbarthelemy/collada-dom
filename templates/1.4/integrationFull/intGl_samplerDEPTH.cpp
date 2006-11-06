@@ -35,7 +35,7 @@ intGl_samplerDEPTH::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "gl_samplerDEPTH" );
-	_Meta->registerConstructor(intGl_samplerDEPTH::create);
+	_Meta->registerClass(intGl_samplerDEPTH::create, &_Meta);
 
 	domGl_samplerDEPTH::_Meta->setMetaIntegration(_Meta);
 

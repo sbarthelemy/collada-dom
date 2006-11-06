@@ -35,7 +35,7 @@ intGlsl_surface_type::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "glsl_surface_type" );
-	_Meta->registerConstructor(intGlsl_surface_type::create);
+	_Meta->registerClass(intGlsl_surface_type::create, &_Meta);
 
 	domGlsl_surface_type::_Meta->setMetaIntegration(_Meta);
 

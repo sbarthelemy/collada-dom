@@ -35,7 +35,7 @@ intProfile_GLSL::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "profile_GLSL" );
-	_Meta->registerConstructor(intProfile_GLSL::create);
+	_Meta->registerClass(intProfile_GLSL::create, &_Meta);
 
 	domProfile_GLSL::_Meta->setMetaIntegration(_Meta);
 

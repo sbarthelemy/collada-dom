@@ -35,7 +35,7 @@ domSampler::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "sampler" );
-	_Meta->registerConstructor(domSampler::create);
+	_Meta->registerClass(domSampler::create, &_Meta);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
@@ -95,7 +95,7 @@ domSampler::domInput::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "input" );
-	_Meta->registerConstructor(domSampler::domInput::create);
+	_Meta->registerClass(domSampler::domInput::create, &_Meta);
 
 	_Meta->setIsInnerClass( true );
 

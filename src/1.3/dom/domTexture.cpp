@@ -35,7 +35,7 @@ domTexture::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "texture" );
-	_Meta->registerConstructor(domTexture::create);
+	_Meta->registerClass(domTexture::create, &_Meta);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
@@ -106,7 +106,7 @@ domTexture::domTechnique::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "technique" );
-	_Meta->registerConstructor(domTexture::domTechnique::create);
+	_Meta->registerClass(domTexture::domTechnique::create, &_Meta);
 
 	_Meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
@@ -175,7 +175,7 @@ domTexture::domTechnique::domInput::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "input" );
-	_Meta->registerConstructor(domTexture::domTechnique::domInput::create);
+	_Meta->registerClass(domTexture::domTechnique::domInput::create, &_Meta);
 
 	_Meta->setIsInnerClass( true );
 

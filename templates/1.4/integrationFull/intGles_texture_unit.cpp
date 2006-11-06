@@ -38,7 +38,7 @@ intGles_texture_unit::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "gles_texture_unit" );
-	_Meta->registerConstructor(intGles_texture_unit::create);
+	_Meta->registerClass(intGles_texture_unit::create, &_Meta);
 
 	domGles_texture_unit::_Meta->setMetaIntegration(_Meta);
 
@@ -62,7 +62,7 @@ intGles_texture_unit::intSurface::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "surface" );
-	_Meta->registerConstructor(intGles_texture_unit::intSurface::create);
+	_Meta->registerClass(intGles_texture_unit::intSurface::create, &_Meta);
 
 	domGles_texture_unit::domSurface::_Meta->setMetaIntegration(_Meta);
 
@@ -86,7 +86,7 @@ intGles_texture_unit::intSampler_state::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "sampler_state" );
-	_Meta->registerConstructor(intGles_texture_unit::intSampler_state::create);
+	_Meta->registerClass(intGles_texture_unit::intSampler_state::create, &_Meta);
 
 	domGles_texture_unit::domSampler_state::_Meta->setMetaIntegration(_Meta);
 
@@ -110,7 +110,7 @@ intGles_texture_unit::intTexcoord::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "texcoord" );
-	_Meta->registerConstructor(intGles_texture_unit::intTexcoord::create);
+	_Meta->registerClass(intGles_texture_unit::intTexcoord::create, &_Meta);
 
 	domGles_texture_unit::domTexcoord::_Meta->setMetaIntegration(_Meta);
 

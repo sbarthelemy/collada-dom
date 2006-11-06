@@ -142,7 +142,7 @@ intCg_param_type::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "cg_param_type" );
-	_Meta->registerConstructor(intCg_param_type::create);
+	_Meta->registerClass(intCg_param_type::create, &_Meta);
 
 	domCg_param_type::_Meta->setMetaIntegration(_Meta);
 
@@ -166,7 +166,7 @@ intCg_param_type::intBool::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "bool" );
-	_Meta->registerConstructor(intCg_param_type::intBool::create);
+	_Meta->registerClass(intCg_param_type::intBool::create, &_Meta);
 
 	domCg_param_type::domBool::_Meta->setMetaIntegration(_Meta);
 
@@ -190,7 +190,7 @@ intCg_param_type::intBool1::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "bool1" );
-	_Meta->registerConstructor(intCg_param_type::intBool1::create);
+	_Meta->registerClass(intCg_param_type::intBool1::create, &_Meta);
 
 	domCg_param_type::domBool1::_Meta->setMetaIntegration(_Meta);
 
@@ -214,7 +214,7 @@ intCg_param_type::intBool2::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "bool2" );
-	_Meta->registerConstructor(intCg_param_type::intBool2::create);
+	_Meta->registerClass(intCg_param_type::intBool2::create, &_Meta);
 
 	domCg_param_type::domBool2::_Meta->setMetaIntegration(_Meta);
 
@@ -238,7 +238,7 @@ intCg_param_type::intBool3::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "bool3" );
-	_Meta->registerConstructor(intCg_param_type::intBool3::create);
+	_Meta->registerClass(intCg_param_type::intBool3::create, &_Meta);
 
 	domCg_param_type::domBool3::_Meta->setMetaIntegration(_Meta);
 
@@ -262,7 +262,7 @@ intCg_param_type::intBool4::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "bool4" );
-	_Meta->registerConstructor(intCg_param_type::intBool4::create);
+	_Meta->registerClass(intCg_param_type::intBool4::create, &_Meta);
 
 	domCg_param_type::domBool4::_Meta->setMetaIntegration(_Meta);
 
@@ -286,7 +286,7 @@ intCg_param_type::intBool1x1::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "bool1x1" );
-	_Meta->registerConstructor(intCg_param_type::intBool1x1::create);
+	_Meta->registerClass(intCg_param_type::intBool1x1::create, &_Meta);
 
 	domCg_param_type::domBool1x1::_Meta->setMetaIntegration(_Meta);
 
@@ -310,7 +310,7 @@ intCg_param_type::intBool1x2::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "bool1x2" );
-	_Meta->registerConstructor(intCg_param_type::intBool1x2::create);
+	_Meta->registerClass(intCg_param_type::intBool1x2::create, &_Meta);
 
 	domCg_param_type::domBool1x2::_Meta->setMetaIntegration(_Meta);
 
@@ -334,7 +334,7 @@ intCg_param_type::intBool1x3::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "bool1x3" );
-	_Meta->registerConstructor(intCg_param_type::intBool1x3::create);
+	_Meta->registerClass(intCg_param_type::intBool1x3::create, &_Meta);
 
 	domCg_param_type::domBool1x3::_Meta->setMetaIntegration(_Meta);
 
@@ -358,7 +358,7 @@ intCg_param_type::intBool1x4::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "bool1x4" );
-	_Meta->registerConstructor(intCg_param_type::intBool1x4::create);
+	_Meta->registerClass(intCg_param_type::intBool1x4::create, &_Meta);
 
 	domCg_param_type::domBool1x4::_Meta->setMetaIntegration(_Meta);
 
@@ -382,7 +382,7 @@ intCg_param_type::intBool2x1::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "bool2x1" );
-	_Meta->registerConstructor(intCg_param_type::intBool2x1::create);
+	_Meta->registerClass(intCg_param_type::intBool2x1::create, &_Meta);
 
 	domCg_param_type::domBool2x1::_Meta->setMetaIntegration(_Meta);
 
@@ -406,7 +406,7 @@ intCg_param_type::intBool2x2::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "bool2x2" );
-	_Meta->registerConstructor(intCg_param_type::intBool2x2::create);
+	_Meta->registerClass(intCg_param_type::intBool2x2::create, &_Meta);
 
 	domCg_param_type::domBool2x2::_Meta->setMetaIntegration(_Meta);
 
@@ -430,7 +430,7 @@ intCg_param_type::intBool2x3::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "bool2x3" );
-	_Meta->registerConstructor(intCg_param_type::intBool2x3::create);
+	_Meta->registerClass(intCg_param_type::intBool2x3::create, &_Meta);
 
 	domCg_param_type::domBool2x3::_Meta->setMetaIntegration(_Meta);
 
@@ -454,7 +454,7 @@ intCg_param_type::intBool2x4::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "bool2x4" );
-	_Meta->registerConstructor(intCg_param_type::intBool2x4::create);
+	_Meta->registerClass(intCg_param_type::intBool2x4::create, &_Meta);
 
 	domCg_param_type::domBool2x4::_Meta->setMetaIntegration(_Meta);
 
@@ -478,7 +478,7 @@ intCg_param_type::intBool3x1::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "bool3x1" );
-	_Meta->registerConstructor(intCg_param_type::intBool3x1::create);
+	_Meta->registerClass(intCg_param_type::intBool3x1::create, &_Meta);
 
 	domCg_param_type::domBool3x1::_Meta->setMetaIntegration(_Meta);
 
@@ -502,7 +502,7 @@ intCg_param_type::intBool3x2::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "bool3x2" );
-	_Meta->registerConstructor(intCg_param_type::intBool3x2::create);
+	_Meta->registerClass(intCg_param_type::intBool3x2::create, &_Meta);
 
 	domCg_param_type::domBool3x2::_Meta->setMetaIntegration(_Meta);
 
@@ -526,7 +526,7 @@ intCg_param_type::intBool3x3::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "bool3x3" );
-	_Meta->registerConstructor(intCg_param_type::intBool3x3::create);
+	_Meta->registerClass(intCg_param_type::intBool3x3::create, &_Meta);
 
 	domCg_param_type::domBool3x3::_Meta->setMetaIntegration(_Meta);
 
@@ -550,7 +550,7 @@ intCg_param_type::intBool3x4::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "bool3x4" );
-	_Meta->registerConstructor(intCg_param_type::intBool3x4::create);
+	_Meta->registerClass(intCg_param_type::intBool3x4::create, &_Meta);
 
 	domCg_param_type::domBool3x4::_Meta->setMetaIntegration(_Meta);
 
@@ -574,7 +574,7 @@ intCg_param_type::intBool4x1::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "bool4x1" );
-	_Meta->registerConstructor(intCg_param_type::intBool4x1::create);
+	_Meta->registerClass(intCg_param_type::intBool4x1::create, &_Meta);
 
 	domCg_param_type::domBool4x1::_Meta->setMetaIntegration(_Meta);
 
@@ -598,7 +598,7 @@ intCg_param_type::intBool4x2::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "bool4x2" );
-	_Meta->registerConstructor(intCg_param_type::intBool4x2::create);
+	_Meta->registerClass(intCg_param_type::intBool4x2::create, &_Meta);
 
 	domCg_param_type::domBool4x2::_Meta->setMetaIntegration(_Meta);
 
@@ -622,7 +622,7 @@ intCg_param_type::intBool4x3::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "bool4x3" );
-	_Meta->registerConstructor(intCg_param_type::intBool4x3::create);
+	_Meta->registerClass(intCg_param_type::intBool4x3::create, &_Meta);
 
 	domCg_param_type::domBool4x3::_Meta->setMetaIntegration(_Meta);
 
@@ -646,7 +646,7 @@ intCg_param_type::intBool4x4::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "bool4x4" );
-	_Meta->registerConstructor(intCg_param_type::intBool4x4::create);
+	_Meta->registerClass(intCg_param_type::intBool4x4::create, &_Meta);
 
 	domCg_param_type::domBool4x4::_Meta->setMetaIntegration(_Meta);
 
@@ -670,7 +670,7 @@ intCg_param_type::intFloat::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float" );
-	_Meta->registerConstructor(intCg_param_type::intFloat::create);
+	_Meta->registerClass(intCg_param_type::intFloat::create, &_Meta);
 
 	domCg_param_type::domFloat::_Meta->setMetaIntegration(_Meta);
 
@@ -694,7 +694,7 @@ intCg_param_type::intFloat1::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float1" );
-	_Meta->registerConstructor(intCg_param_type::intFloat1::create);
+	_Meta->registerClass(intCg_param_type::intFloat1::create, &_Meta);
 
 	domCg_param_type::domFloat1::_Meta->setMetaIntegration(_Meta);
 
@@ -718,7 +718,7 @@ intCg_param_type::intFloat2::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float2" );
-	_Meta->registerConstructor(intCg_param_type::intFloat2::create);
+	_Meta->registerClass(intCg_param_type::intFloat2::create, &_Meta);
 
 	domCg_param_type::domFloat2::_Meta->setMetaIntegration(_Meta);
 
@@ -742,7 +742,7 @@ intCg_param_type::intFloat3::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float3" );
-	_Meta->registerConstructor(intCg_param_type::intFloat3::create);
+	_Meta->registerClass(intCg_param_type::intFloat3::create, &_Meta);
 
 	domCg_param_type::domFloat3::_Meta->setMetaIntegration(_Meta);
 
@@ -766,7 +766,7 @@ intCg_param_type::intFloat4::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float4" );
-	_Meta->registerConstructor(intCg_param_type::intFloat4::create);
+	_Meta->registerClass(intCg_param_type::intFloat4::create, &_Meta);
 
 	domCg_param_type::domFloat4::_Meta->setMetaIntegration(_Meta);
 
@@ -790,7 +790,7 @@ intCg_param_type::intFloat1x1::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float1x1" );
-	_Meta->registerConstructor(intCg_param_type::intFloat1x1::create);
+	_Meta->registerClass(intCg_param_type::intFloat1x1::create, &_Meta);
 
 	domCg_param_type::domFloat1x1::_Meta->setMetaIntegration(_Meta);
 
@@ -814,7 +814,7 @@ intCg_param_type::intFloat1x2::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float1x2" );
-	_Meta->registerConstructor(intCg_param_type::intFloat1x2::create);
+	_Meta->registerClass(intCg_param_type::intFloat1x2::create, &_Meta);
 
 	domCg_param_type::domFloat1x2::_Meta->setMetaIntegration(_Meta);
 
@@ -838,7 +838,7 @@ intCg_param_type::intFloat1x3::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float1x3" );
-	_Meta->registerConstructor(intCg_param_type::intFloat1x3::create);
+	_Meta->registerClass(intCg_param_type::intFloat1x3::create, &_Meta);
 
 	domCg_param_type::domFloat1x3::_Meta->setMetaIntegration(_Meta);
 
@@ -862,7 +862,7 @@ intCg_param_type::intFloat1x4::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float1x4" );
-	_Meta->registerConstructor(intCg_param_type::intFloat1x4::create);
+	_Meta->registerClass(intCg_param_type::intFloat1x4::create, &_Meta);
 
 	domCg_param_type::domFloat1x4::_Meta->setMetaIntegration(_Meta);
 
@@ -886,7 +886,7 @@ intCg_param_type::intFloat2x1::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float2x1" );
-	_Meta->registerConstructor(intCg_param_type::intFloat2x1::create);
+	_Meta->registerClass(intCg_param_type::intFloat2x1::create, &_Meta);
 
 	domCg_param_type::domFloat2x1::_Meta->setMetaIntegration(_Meta);
 
@@ -910,7 +910,7 @@ intCg_param_type::intFloat2x2::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float2x2" );
-	_Meta->registerConstructor(intCg_param_type::intFloat2x2::create);
+	_Meta->registerClass(intCg_param_type::intFloat2x2::create, &_Meta);
 
 	domCg_param_type::domFloat2x2::_Meta->setMetaIntegration(_Meta);
 
@@ -934,7 +934,7 @@ intCg_param_type::intFloat2x3::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float2x3" );
-	_Meta->registerConstructor(intCg_param_type::intFloat2x3::create);
+	_Meta->registerClass(intCg_param_type::intFloat2x3::create, &_Meta);
 
 	domCg_param_type::domFloat2x3::_Meta->setMetaIntegration(_Meta);
 
@@ -958,7 +958,7 @@ intCg_param_type::intFloat2x4::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float2x4" );
-	_Meta->registerConstructor(intCg_param_type::intFloat2x4::create);
+	_Meta->registerClass(intCg_param_type::intFloat2x4::create, &_Meta);
 
 	domCg_param_type::domFloat2x4::_Meta->setMetaIntegration(_Meta);
 
@@ -982,7 +982,7 @@ intCg_param_type::intFloat3x1::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float3x1" );
-	_Meta->registerConstructor(intCg_param_type::intFloat3x1::create);
+	_Meta->registerClass(intCg_param_type::intFloat3x1::create, &_Meta);
 
 	domCg_param_type::domFloat3x1::_Meta->setMetaIntegration(_Meta);
 
@@ -1006,7 +1006,7 @@ intCg_param_type::intFloat3x2::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float3x2" );
-	_Meta->registerConstructor(intCg_param_type::intFloat3x2::create);
+	_Meta->registerClass(intCg_param_type::intFloat3x2::create, &_Meta);
 
 	domCg_param_type::domFloat3x2::_Meta->setMetaIntegration(_Meta);
 
@@ -1030,7 +1030,7 @@ intCg_param_type::intFloat3x3::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float3x3" );
-	_Meta->registerConstructor(intCg_param_type::intFloat3x3::create);
+	_Meta->registerClass(intCg_param_type::intFloat3x3::create, &_Meta);
 
 	domCg_param_type::domFloat3x3::_Meta->setMetaIntegration(_Meta);
 
@@ -1054,7 +1054,7 @@ intCg_param_type::intFloat3x4::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float3x4" );
-	_Meta->registerConstructor(intCg_param_type::intFloat3x4::create);
+	_Meta->registerClass(intCg_param_type::intFloat3x4::create, &_Meta);
 
 	domCg_param_type::domFloat3x4::_Meta->setMetaIntegration(_Meta);
 
@@ -1078,7 +1078,7 @@ intCg_param_type::intFloat4x1::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float4x1" );
-	_Meta->registerConstructor(intCg_param_type::intFloat4x1::create);
+	_Meta->registerClass(intCg_param_type::intFloat4x1::create, &_Meta);
 
 	domCg_param_type::domFloat4x1::_Meta->setMetaIntegration(_Meta);
 
@@ -1102,7 +1102,7 @@ intCg_param_type::intFloat4x2::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float4x2" );
-	_Meta->registerConstructor(intCg_param_type::intFloat4x2::create);
+	_Meta->registerClass(intCg_param_type::intFloat4x2::create, &_Meta);
 
 	domCg_param_type::domFloat4x2::_Meta->setMetaIntegration(_Meta);
 
@@ -1126,7 +1126,7 @@ intCg_param_type::intFloat4x3::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float4x3" );
-	_Meta->registerConstructor(intCg_param_type::intFloat4x3::create);
+	_Meta->registerClass(intCg_param_type::intFloat4x3::create, &_Meta);
 
 	domCg_param_type::domFloat4x3::_Meta->setMetaIntegration(_Meta);
 
@@ -1150,7 +1150,7 @@ intCg_param_type::intFloat4x4::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float4x4" );
-	_Meta->registerConstructor(intCg_param_type::intFloat4x4::create);
+	_Meta->registerClass(intCg_param_type::intFloat4x4::create, &_Meta);
 
 	domCg_param_type::domFloat4x4::_Meta->setMetaIntegration(_Meta);
 
@@ -1174,7 +1174,7 @@ intCg_param_type::intInt::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "int" );
-	_Meta->registerConstructor(intCg_param_type::intInt::create);
+	_Meta->registerClass(intCg_param_type::intInt::create, &_Meta);
 
 	domCg_param_type::domInt::_Meta->setMetaIntegration(_Meta);
 
@@ -1198,7 +1198,7 @@ intCg_param_type::intInt1::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "int1" );
-	_Meta->registerConstructor(intCg_param_type::intInt1::create);
+	_Meta->registerClass(intCg_param_type::intInt1::create, &_Meta);
 
 	domCg_param_type::domInt1::_Meta->setMetaIntegration(_Meta);
 
@@ -1222,7 +1222,7 @@ intCg_param_type::intInt2::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "int2" );
-	_Meta->registerConstructor(intCg_param_type::intInt2::create);
+	_Meta->registerClass(intCg_param_type::intInt2::create, &_Meta);
 
 	domCg_param_type::domInt2::_Meta->setMetaIntegration(_Meta);
 
@@ -1246,7 +1246,7 @@ intCg_param_type::intInt3::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "int3" );
-	_Meta->registerConstructor(intCg_param_type::intInt3::create);
+	_Meta->registerClass(intCg_param_type::intInt3::create, &_Meta);
 
 	domCg_param_type::domInt3::_Meta->setMetaIntegration(_Meta);
 
@@ -1270,7 +1270,7 @@ intCg_param_type::intInt4::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "int4" );
-	_Meta->registerConstructor(intCg_param_type::intInt4::create);
+	_Meta->registerClass(intCg_param_type::intInt4::create, &_Meta);
 
 	domCg_param_type::domInt4::_Meta->setMetaIntegration(_Meta);
 
@@ -1294,7 +1294,7 @@ intCg_param_type::intInt1x1::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "int1x1" );
-	_Meta->registerConstructor(intCg_param_type::intInt1x1::create);
+	_Meta->registerClass(intCg_param_type::intInt1x1::create, &_Meta);
 
 	domCg_param_type::domInt1x1::_Meta->setMetaIntegration(_Meta);
 
@@ -1318,7 +1318,7 @@ intCg_param_type::intInt1x2::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "int1x2" );
-	_Meta->registerConstructor(intCg_param_type::intInt1x2::create);
+	_Meta->registerClass(intCg_param_type::intInt1x2::create, &_Meta);
 
 	domCg_param_type::domInt1x2::_Meta->setMetaIntegration(_Meta);
 
@@ -1342,7 +1342,7 @@ intCg_param_type::intInt1x3::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "int1x3" );
-	_Meta->registerConstructor(intCg_param_type::intInt1x3::create);
+	_Meta->registerClass(intCg_param_type::intInt1x3::create, &_Meta);
 
 	domCg_param_type::domInt1x3::_Meta->setMetaIntegration(_Meta);
 
@@ -1366,7 +1366,7 @@ intCg_param_type::intInt1x4::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "int1x4" );
-	_Meta->registerConstructor(intCg_param_type::intInt1x4::create);
+	_Meta->registerClass(intCg_param_type::intInt1x4::create, &_Meta);
 
 	domCg_param_type::domInt1x4::_Meta->setMetaIntegration(_Meta);
 
@@ -1390,7 +1390,7 @@ intCg_param_type::intInt2x1::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "int2x1" );
-	_Meta->registerConstructor(intCg_param_type::intInt2x1::create);
+	_Meta->registerClass(intCg_param_type::intInt2x1::create, &_Meta);
 
 	domCg_param_type::domInt2x1::_Meta->setMetaIntegration(_Meta);
 
@@ -1414,7 +1414,7 @@ intCg_param_type::intInt2x2::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "int2x2" );
-	_Meta->registerConstructor(intCg_param_type::intInt2x2::create);
+	_Meta->registerClass(intCg_param_type::intInt2x2::create, &_Meta);
 
 	domCg_param_type::domInt2x2::_Meta->setMetaIntegration(_Meta);
 
@@ -1438,7 +1438,7 @@ intCg_param_type::intInt2x3::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "int2x3" );
-	_Meta->registerConstructor(intCg_param_type::intInt2x3::create);
+	_Meta->registerClass(intCg_param_type::intInt2x3::create, &_Meta);
 
 	domCg_param_type::domInt2x3::_Meta->setMetaIntegration(_Meta);
 
@@ -1462,7 +1462,7 @@ intCg_param_type::intInt2x4::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "int2x4" );
-	_Meta->registerConstructor(intCg_param_type::intInt2x4::create);
+	_Meta->registerClass(intCg_param_type::intInt2x4::create, &_Meta);
 
 	domCg_param_type::domInt2x4::_Meta->setMetaIntegration(_Meta);
 
@@ -1486,7 +1486,7 @@ intCg_param_type::intInt3x1::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "int3x1" );
-	_Meta->registerConstructor(intCg_param_type::intInt3x1::create);
+	_Meta->registerClass(intCg_param_type::intInt3x1::create, &_Meta);
 
 	domCg_param_type::domInt3x1::_Meta->setMetaIntegration(_Meta);
 
@@ -1510,7 +1510,7 @@ intCg_param_type::intInt3x2::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "int3x2" );
-	_Meta->registerConstructor(intCg_param_type::intInt3x2::create);
+	_Meta->registerClass(intCg_param_type::intInt3x2::create, &_Meta);
 
 	domCg_param_type::domInt3x2::_Meta->setMetaIntegration(_Meta);
 
@@ -1534,7 +1534,7 @@ intCg_param_type::intInt3x3::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "int3x3" );
-	_Meta->registerConstructor(intCg_param_type::intInt3x3::create);
+	_Meta->registerClass(intCg_param_type::intInt3x3::create, &_Meta);
 
 	domCg_param_type::domInt3x3::_Meta->setMetaIntegration(_Meta);
 
@@ -1558,7 +1558,7 @@ intCg_param_type::intInt3x4::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "int3x4" );
-	_Meta->registerConstructor(intCg_param_type::intInt3x4::create);
+	_Meta->registerClass(intCg_param_type::intInt3x4::create, &_Meta);
 
 	domCg_param_type::domInt3x4::_Meta->setMetaIntegration(_Meta);
 
@@ -1582,7 +1582,7 @@ intCg_param_type::intInt4x1::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "int4x1" );
-	_Meta->registerConstructor(intCg_param_type::intInt4x1::create);
+	_Meta->registerClass(intCg_param_type::intInt4x1::create, &_Meta);
 
 	domCg_param_type::domInt4x1::_Meta->setMetaIntegration(_Meta);
 
@@ -1606,7 +1606,7 @@ intCg_param_type::intInt4x2::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "int4x2" );
-	_Meta->registerConstructor(intCg_param_type::intInt4x2::create);
+	_Meta->registerClass(intCg_param_type::intInt4x2::create, &_Meta);
 
 	domCg_param_type::domInt4x2::_Meta->setMetaIntegration(_Meta);
 
@@ -1630,7 +1630,7 @@ intCg_param_type::intInt4x3::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "int4x3" );
-	_Meta->registerConstructor(intCg_param_type::intInt4x3::create);
+	_Meta->registerClass(intCg_param_type::intInt4x3::create, &_Meta);
 
 	domCg_param_type::domInt4x3::_Meta->setMetaIntegration(_Meta);
 
@@ -1654,7 +1654,7 @@ intCg_param_type::intInt4x4::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "int4x4" );
-	_Meta->registerConstructor(intCg_param_type::intInt4x4::create);
+	_Meta->registerClass(intCg_param_type::intInt4x4::create, &_Meta);
 
 	domCg_param_type::domInt4x4::_Meta->setMetaIntegration(_Meta);
 
@@ -1678,7 +1678,7 @@ intCg_param_type::intHalf::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "half" );
-	_Meta->registerConstructor(intCg_param_type::intHalf::create);
+	_Meta->registerClass(intCg_param_type::intHalf::create, &_Meta);
 
 	domCg_param_type::domHalf::_Meta->setMetaIntegration(_Meta);
 
@@ -1702,7 +1702,7 @@ intCg_param_type::intHalf1::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "half1" );
-	_Meta->registerConstructor(intCg_param_type::intHalf1::create);
+	_Meta->registerClass(intCg_param_type::intHalf1::create, &_Meta);
 
 	domCg_param_type::domHalf1::_Meta->setMetaIntegration(_Meta);
 
@@ -1726,7 +1726,7 @@ intCg_param_type::intHalf2::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "half2" );
-	_Meta->registerConstructor(intCg_param_type::intHalf2::create);
+	_Meta->registerClass(intCg_param_type::intHalf2::create, &_Meta);
 
 	domCg_param_type::domHalf2::_Meta->setMetaIntegration(_Meta);
 
@@ -1750,7 +1750,7 @@ intCg_param_type::intHalf3::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "half3" );
-	_Meta->registerConstructor(intCg_param_type::intHalf3::create);
+	_Meta->registerClass(intCg_param_type::intHalf3::create, &_Meta);
 
 	domCg_param_type::domHalf3::_Meta->setMetaIntegration(_Meta);
 
@@ -1774,7 +1774,7 @@ intCg_param_type::intHalf4::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "half4" );
-	_Meta->registerConstructor(intCg_param_type::intHalf4::create);
+	_Meta->registerClass(intCg_param_type::intHalf4::create, &_Meta);
 
 	domCg_param_type::domHalf4::_Meta->setMetaIntegration(_Meta);
 
@@ -1798,7 +1798,7 @@ intCg_param_type::intHalf1x1::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "half1x1" );
-	_Meta->registerConstructor(intCg_param_type::intHalf1x1::create);
+	_Meta->registerClass(intCg_param_type::intHalf1x1::create, &_Meta);
 
 	domCg_param_type::domHalf1x1::_Meta->setMetaIntegration(_Meta);
 
@@ -1822,7 +1822,7 @@ intCg_param_type::intHalf1x2::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "half1x2" );
-	_Meta->registerConstructor(intCg_param_type::intHalf1x2::create);
+	_Meta->registerClass(intCg_param_type::intHalf1x2::create, &_Meta);
 
 	domCg_param_type::domHalf1x2::_Meta->setMetaIntegration(_Meta);
 
@@ -1846,7 +1846,7 @@ intCg_param_type::intHalf1x3::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "half1x3" );
-	_Meta->registerConstructor(intCg_param_type::intHalf1x3::create);
+	_Meta->registerClass(intCg_param_type::intHalf1x3::create, &_Meta);
 
 	domCg_param_type::domHalf1x3::_Meta->setMetaIntegration(_Meta);
 
@@ -1870,7 +1870,7 @@ intCg_param_type::intHalf1x4::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "half1x4" );
-	_Meta->registerConstructor(intCg_param_type::intHalf1x4::create);
+	_Meta->registerClass(intCg_param_type::intHalf1x4::create, &_Meta);
 
 	domCg_param_type::domHalf1x4::_Meta->setMetaIntegration(_Meta);
 
@@ -1894,7 +1894,7 @@ intCg_param_type::intHalf2x1::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "half2x1" );
-	_Meta->registerConstructor(intCg_param_type::intHalf2x1::create);
+	_Meta->registerClass(intCg_param_type::intHalf2x1::create, &_Meta);
 
 	domCg_param_type::domHalf2x1::_Meta->setMetaIntegration(_Meta);
 
@@ -1918,7 +1918,7 @@ intCg_param_type::intHalf2x2::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "half2x2" );
-	_Meta->registerConstructor(intCg_param_type::intHalf2x2::create);
+	_Meta->registerClass(intCg_param_type::intHalf2x2::create, &_Meta);
 
 	domCg_param_type::domHalf2x2::_Meta->setMetaIntegration(_Meta);
 
@@ -1942,7 +1942,7 @@ intCg_param_type::intHalf2x3::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "half2x3" );
-	_Meta->registerConstructor(intCg_param_type::intHalf2x3::create);
+	_Meta->registerClass(intCg_param_type::intHalf2x3::create, &_Meta);
 
 	domCg_param_type::domHalf2x3::_Meta->setMetaIntegration(_Meta);
 
@@ -1966,7 +1966,7 @@ intCg_param_type::intHalf2x4::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "half2x4" );
-	_Meta->registerConstructor(intCg_param_type::intHalf2x4::create);
+	_Meta->registerClass(intCg_param_type::intHalf2x4::create, &_Meta);
 
 	domCg_param_type::domHalf2x4::_Meta->setMetaIntegration(_Meta);
 
@@ -1990,7 +1990,7 @@ intCg_param_type::intHalf3x1::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "half3x1" );
-	_Meta->registerConstructor(intCg_param_type::intHalf3x1::create);
+	_Meta->registerClass(intCg_param_type::intHalf3x1::create, &_Meta);
 
 	domCg_param_type::domHalf3x1::_Meta->setMetaIntegration(_Meta);
 
@@ -2014,7 +2014,7 @@ intCg_param_type::intHalf3x2::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "half3x2" );
-	_Meta->registerConstructor(intCg_param_type::intHalf3x2::create);
+	_Meta->registerClass(intCg_param_type::intHalf3x2::create, &_Meta);
 
 	domCg_param_type::domHalf3x2::_Meta->setMetaIntegration(_Meta);
 
@@ -2038,7 +2038,7 @@ intCg_param_type::intHalf3x3::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "half3x3" );
-	_Meta->registerConstructor(intCg_param_type::intHalf3x3::create);
+	_Meta->registerClass(intCg_param_type::intHalf3x3::create, &_Meta);
 
 	domCg_param_type::domHalf3x3::_Meta->setMetaIntegration(_Meta);
 
@@ -2062,7 +2062,7 @@ intCg_param_type::intHalf3x4::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "half3x4" );
-	_Meta->registerConstructor(intCg_param_type::intHalf3x4::create);
+	_Meta->registerClass(intCg_param_type::intHalf3x4::create, &_Meta);
 
 	domCg_param_type::domHalf3x4::_Meta->setMetaIntegration(_Meta);
 
@@ -2086,7 +2086,7 @@ intCg_param_type::intHalf4x1::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "half4x1" );
-	_Meta->registerConstructor(intCg_param_type::intHalf4x1::create);
+	_Meta->registerClass(intCg_param_type::intHalf4x1::create, &_Meta);
 
 	domCg_param_type::domHalf4x1::_Meta->setMetaIntegration(_Meta);
 
@@ -2110,7 +2110,7 @@ intCg_param_type::intHalf4x2::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "half4x2" );
-	_Meta->registerConstructor(intCg_param_type::intHalf4x2::create);
+	_Meta->registerClass(intCg_param_type::intHalf4x2::create, &_Meta);
 
 	domCg_param_type::domHalf4x2::_Meta->setMetaIntegration(_Meta);
 
@@ -2134,7 +2134,7 @@ intCg_param_type::intHalf4x3::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "half4x3" );
-	_Meta->registerConstructor(intCg_param_type::intHalf4x3::create);
+	_Meta->registerClass(intCg_param_type::intHalf4x3::create, &_Meta);
 
 	domCg_param_type::domHalf4x3::_Meta->setMetaIntegration(_Meta);
 
@@ -2158,7 +2158,7 @@ intCg_param_type::intHalf4x4::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "half4x4" );
-	_Meta->registerConstructor(intCg_param_type::intHalf4x4::create);
+	_Meta->registerClass(intCg_param_type::intHalf4x4::create, &_Meta);
 
 	domCg_param_type::domHalf4x4::_Meta->setMetaIntegration(_Meta);
 
@@ -2182,7 +2182,7 @@ intCg_param_type::intFixed::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fixed" );
-	_Meta->registerConstructor(intCg_param_type::intFixed::create);
+	_Meta->registerClass(intCg_param_type::intFixed::create, &_Meta);
 
 	domCg_param_type::domFixed::_Meta->setMetaIntegration(_Meta);
 
@@ -2206,7 +2206,7 @@ intCg_param_type::intFixed1::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fixed1" );
-	_Meta->registerConstructor(intCg_param_type::intFixed1::create);
+	_Meta->registerClass(intCg_param_type::intFixed1::create, &_Meta);
 
 	domCg_param_type::domFixed1::_Meta->setMetaIntegration(_Meta);
 
@@ -2230,7 +2230,7 @@ intCg_param_type::intFixed2::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fixed2" );
-	_Meta->registerConstructor(intCg_param_type::intFixed2::create);
+	_Meta->registerClass(intCg_param_type::intFixed2::create, &_Meta);
 
 	domCg_param_type::domFixed2::_Meta->setMetaIntegration(_Meta);
 
@@ -2254,7 +2254,7 @@ intCg_param_type::intFixed3::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fixed3" );
-	_Meta->registerConstructor(intCg_param_type::intFixed3::create);
+	_Meta->registerClass(intCg_param_type::intFixed3::create, &_Meta);
 
 	domCg_param_type::domFixed3::_Meta->setMetaIntegration(_Meta);
 
@@ -2278,7 +2278,7 @@ intCg_param_type::intFixed4::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fixed4" );
-	_Meta->registerConstructor(intCg_param_type::intFixed4::create);
+	_Meta->registerClass(intCg_param_type::intFixed4::create, &_Meta);
 
 	domCg_param_type::domFixed4::_Meta->setMetaIntegration(_Meta);
 
@@ -2302,7 +2302,7 @@ intCg_param_type::intFixed1x1::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fixed1x1" );
-	_Meta->registerConstructor(intCg_param_type::intFixed1x1::create);
+	_Meta->registerClass(intCg_param_type::intFixed1x1::create, &_Meta);
 
 	domCg_param_type::domFixed1x1::_Meta->setMetaIntegration(_Meta);
 
@@ -2326,7 +2326,7 @@ intCg_param_type::intFixed1x2::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fixed1x2" );
-	_Meta->registerConstructor(intCg_param_type::intFixed1x2::create);
+	_Meta->registerClass(intCg_param_type::intFixed1x2::create, &_Meta);
 
 	domCg_param_type::domFixed1x2::_Meta->setMetaIntegration(_Meta);
 
@@ -2350,7 +2350,7 @@ intCg_param_type::intFixed1x3::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fixed1x3" );
-	_Meta->registerConstructor(intCg_param_type::intFixed1x3::create);
+	_Meta->registerClass(intCg_param_type::intFixed1x3::create, &_Meta);
 
 	domCg_param_type::domFixed1x3::_Meta->setMetaIntegration(_Meta);
 
@@ -2374,7 +2374,7 @@ intCg_param_type::intFixed1x4::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fixed1x4" );
-	_Meta->registerConstructor(intCg_param_type::intFixed1x4::create);
+	_Meta->registerClass(intCg_param_type::intFixed1x4::create, &_Meta);
 
 	domCg_param_type::domFixed1x4::_Meta->setMetaIntegration(_Meta);
 
@@ -2398,7 +2398,7 @@ intCg_param_type::intFixed2x1::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fixed2x1" );
-	_Meta->registerConstructor(intCg_param_type::intFixed2x1::create);
+	_Meta->registerClass(intCg_param_type::intFixed2x1::create, &_Meta);
 
 	domCg_param_type::domFixed2x1::_Meta->setMetaIntegration(_Meta);
 
@@ -2422,7 +2422,7 @@ intCg_param_type::intFixed2x2::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fixed2x2" );
-	_Meta->registerConstructor(intCg_param_type::intFixed2x2::create);
+	_Meta->registerClass(intCg_param_type::intFixed2x2::create, &_Meta);
 
 	domCg_param_type::domFixed2x2::_Meta->setMetaIntegration(_Meta);
 
@@ -2446,7 +2446,7 @@ intCg_param_type::intFixed2x3::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fixed2x3" );
-	_Meta->registerConstructor(intCg_param_type::intFixed2x3::create);
+	_Meta->registerClass(intCg_param_type::intFixed2x3::create, &_Meta);
 
 	domCg_param_type::domFixed2x3::_Meta->setMetaIntegration(_Meta);
 
@@ -2470,7 +2470,7 @@ intCg_param_type::intFixed2x4::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fixed2x4" );
-	_Meta->registerConstructor(intCg_param_type::intFixed2x4::create);
+	_Meta->registerClass(intCg_param_type::intFixed2x4::create, &_Meta);
 
 	domCg_param_type::domFixed2x4::_Meta->setMetaIntegration(_Meta);
 
@@ -2494,7 +2494,7 @@ intCg_param_type::intFixed3x1::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fixed3x1" );
-	_Meta->registerConstructor(intCg_param_type::intFixed3x1::create);
+	_Meta->registerClass(intCg_param_type::intFixed3x1::create, &_Meta);
 
 	domCg_param_type::domFixed3x1::_Meta->setMetaIntegration(_Meta);
 
@@ -2518,7 +2518,7 @@ intCg_param_type::intFixed3x2::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fixed3x2" );
-	_Meta->registerConstructor(intCg_param_type::intFixed3x2::create);
+	_Meta->registerClass(intCg_param_type::intFixed3x2::create, &_Meta);
 
 	domCg_param_type::domFixed3x2::_Meta->setMetaIntegration(_Meta);
 
@@ -2542,7 +2542,7 @@ intCg_param_type::intFixed3x3::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fixed3x3" );
-	_Meta->registerConstructor(intCg_param_type::intFixed3x3::create);
+	_Meta->registerClass(intCg_param_type::intFixed3x3::create, &_Meta);
 
 	domCg_param_type::domFixed3x3::_Meta->setMetaIntegration(_Meta);
 
@@ -2566,7 +2566,7 @@ intCg_param_type::intFixed3x4::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fixed3x4" );
-	_Meta->registerConstructor(intCg_param_type::intFixed3x4::create);
+	_Meta->registerClass(intCg_param_type::intFixed3x4::create, &_Meta);
 
 	domCg_param_type::domFixed3x4::_Meta->setMetaIntegration(_Meta);
 
@@ -2590,7 +2590,7 @@ intCg_param_type::intFixed4x1::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fixed4x1" );
-	_Meta->registerConstructor(intCg_param_type::intFixed4x1::create);
+	_Meta->registerClass(intCg_param_type::intFixed4x1::create, &_Meta);
 
 	domCg_param_type::domFixed4x1::_Meta->setMetaIntegration(_Meta);
 
@@ -2614,7 +2614,7 @@ intCg_param_type::intFixed4x2::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fixed4x2" );
-	_Meta->registerConstructor(intCg_param_type::intFixed4x2::create);
+	_Meta->registerClass(intCg_param_type::intFixed4x2::create, &_Meta);
 
 	domCg_param_type::domFixed4x2::_Meta->setMetaIntegration(_Meta);
 
@@ -2638,7 +2638,7 @@ intCg_param_type::intFixed4x3::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fixed4x3" );
-	_Meta->registerConstructor(intCg_param_type::intFixed4x3::create);
+	_Meta->registerClass(intCg_param_type::intFixed4x3::create, &_Meta);
 
 	domCg_param_type::domFixed4x3::_Meta->setMetaIntegration(_Meta);
 
@@ -2662,7 +2662,7 @@ intCg_param_type::intFixed4x4::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fixed4x4" );
-	_Meta->registerConstructor(intCg_param_type::intFixed4x4::create);
+	_Meta->registerClass(intCg_param_type::intFixed4x4::create, &_Meta);
 
 	domCg_param_type::domFixed4x4::_Meta->setMetaIntegration(_Meta);
 
@@ -2686,7 +2686,7 @@ intCg_param_type::intString::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "string" );
-	_Meta->registerConstructor(intCg_param_type::intString::create);
+	_Meta->registerClass(intCg_param_type::intString::create, &_Meta);
 
 	domCg_param_type::domString::_Meta->setMetaIntegration(_Meta);
 
@@ -2710,7 +2710,7 @@ intCg_param_type::intEnum::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "enum" );
-	_Meta->registerConstructor(intCg_param_type::intEnum::create);
+	_Meta->registerClass(intCg_param_type::intEnum::create, &_Meta);
 
 	domCg_param_type::domEnum::_Meta->setMetaIntegration(_Meta);
 

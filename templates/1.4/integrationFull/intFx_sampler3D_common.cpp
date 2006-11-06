@@ -45,7 +45,7 @@ intFx_sampler3D_common::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fx_sampler3D_common" );
-	_Meta->registerConstructor(intFx_sampler3D_common::create);
+	_Meta->registerClass(intFx_sampler3D_common::create, &_Meta);
 
 	domFx_sampler3D_common::_Meta->setMetaIntegration(_Meta);
 
@@ -69,7 +69,7 @@ intFx_sampler3D_common::intSource::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "source" );
-	_Meta->registerConstructor(intFx_sampler3D_common::intSource::create);
+	_Meta->registerClass(intFx_sampler3D_common::intSource::create, &_Meta);
 
 	domFx_sampler3D_common::domSource::_Meta->setMetaIntegration(_Meta);
 
@@ -93,7 +93,7 @@ intFx_sampler3D_common::intWrap_s::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "wrap_s" );
-	_Meta->registerConstructor(intFx_sampler3D_common::intWrap_s::create);
+	_Meta->registerClass(intFx_sampler3D_common::intWrap_s::create, &_Meta);
 
 	domFx_sampler3D_common::domWrap_s::_Meta->setMetaIntegration(_Meta);
 
@@ -117,7 +117,7 @@ intFx_sampler3D_common::intWrap_t::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "wrap_t" );
-	_Meta->registerConstructor(intFx_sampler3D_common::intWrap_t::create);
+	_Meta->registerClass(intFx_sampler3D_common::intWrap_t::create, &_Meta);
 
 	domFx_sampler3D_common::domWrap_t::_Meta->setMetaIntegration(_Meta);
 
@@ -141,7 +141,7 @@ intFx_sampler3D_common::intWrap_p::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "wrap_p" );
-	_Meta->registerConstructor(intFx_sampler3D_common::intWrap_p::create);
+	_Meta->registerClass(intFx_sampler3D_common::intWrap_p::create, &_Meta);
 
 	domFx_sampler3D_common::domWrap_p::_Meta->setMetaIntegration(_Meta);
 
@@ -165,7 +165,7 @@ intFx_sampler3D_common::intMinfilter::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "minfilter" );
-	_Meta->registerConstructor(intFx_sampler3D_common::intMinfilter::create);
+	_Meta->registerClass(intFx_sampler3D_common::intMinfilter::create, &_Meta);
 
 	domFx_sampler3D_common::domMinfilter::_Meta->setMetaIntegration(_Meta);
 
@@ -189,7 +189,7 @@ intFx_sampler3D_common::intMagfilter::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "magfilter" );
-	_Meta->registerConstructor(intFx_sampler3D_common::intMagfilter::create);
+	_Meta->registerClass(intFx_sampler3D_common::intMagfilter::create, &_Meta);
 
 	domFx_sampler3D_common::domMagfilter::_Meta->setMetaIntegration(_Meta);
 
@@ -213,7 +213,7 @@ intFx_sampler3D_common::intMipfilter::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "mipfilter" );
-	_Meta->registerConstructor(intFx_sampler3D_common::intMipfilter::create);
+	_Meta->registerClass(intFx_sampler3D_common::intMipfilter::create, &_Meta);
 
 	domFx_sampler3D_common::domMipfilter::_Meta->setMetaIntegration(_Meta);
 
@@ -237,7 +237,7 @@ intFx_sampler3D_common::intBorder_color::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "border_color" );
-	_Meta->registerConstructor(intFx_sampler3D_common::intBorder_color::create);
+	_Meta->registerClass(intFx_sampler3D_common::intBorder_color::create, &_Meta);
 
 	domFx_sampler3D_common::domBorder_color::_Meta->setMetaIntegration(_Meta);
 
@@ -261,7 +261,7 @@ intFx_sampler3D_common::intMipmap_maxlevel::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "mipmap_maxlevel" );
-	_Meta->registerConstructor(intFx_sampler3D_common::intMipmap_maxlevel::create);
+	_Meta->registerClass(intFx_sampler3D_common::intMipmap_maxlevel::create, &_Meta);
 
 	domFx_sampler3D_common::domMipmap_maxlevel::_Meta->setMetaIntegration(_Meta);
 
@@ -285,7 +285,7 @@ intFx_sampler3D_common::intMipmap_bias::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "mipmap_bias" );
-	_Meta->registerConstructor(intFx_sampler3D_common::intMipmap_bias::create);
+	_Meta->registerClass(intFx_sampler3D_common::intMipmap_bias::create, &_Meta);
 
 	domFx_sampler3D_common::domMipmap_bias::_Meta->setMetaIntegration(_Meta);
 

@@ -35,7 +35,7 @@ intFx_newparam_common::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fx_newparam_common" );
-	_Meta->registerConstructor(intFx_newparam_common::create);
+	_Meta->registerClass(intFx_newparam_common::create, &_Meta);
 
 	domFx_newparam_common::_Meta->setMetaIntegration(_Meta);
 

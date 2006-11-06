@@ -35,7 +35,7 @@ intSkin::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "skin" );
-	_Meta->registerConstructor(intSkin::create);
+	_Meta->registerClass(intSkin::create, &_Meta);
 
 	domSkin::_Meta->setMetaIntegration(_Meta);
 

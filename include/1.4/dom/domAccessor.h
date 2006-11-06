@@ -96,7 +96,7 @@ public:	//Accessors and Mutators
 	 * Sets the source attribute.
 	 * @param atSource The new value for the source attribute.
 	 */
-	void setSource( const xsAnyURI &atSource ) { attrSource.setURI( atSource.getURI() );
+	void setSource( const xsAnyURI &atSource ) { attrSource = atSource;
 	 _validAttributeArray[2] = true; }
 
 	/**

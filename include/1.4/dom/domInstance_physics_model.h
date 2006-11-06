@@ -91,7 +91,7 @@ public:	//Accessors and Mutators
 	 * Sets the url attribute.
 	 * @param atUrl The new value for the url attribute.
 	 */
-	void setUrl( const xsAnyURI &atUrl ) { attrUrl.setURI( atUrl.getURI() );
+	void setUrl( const xsAnyURI &atUrl ) { attrUrl = atUrl;
 	 _validAttributeArray[0] = true; }
 
 	/**
@@ -132,7 +132,7 @@ public:	//Accessors and Mutators
 	 * Sets the parent attribute.
 	 * @param atParent The new value for the parent attribute.
 	 */
-	void setParent( const xsAnyURI &atParent ) { attrParent.setURI( atParent.getURI() );
+	void setParent( const xsAnyURI &atParent ) { attrParent = atParent;
 	 _validAttributeArray[3] = true; }
 
 	/**

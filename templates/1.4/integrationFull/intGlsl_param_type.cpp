@@ -51,7 +51,7 @@ intGlsl_param_type::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "glsl_param_type" );
-	_Meta->registerConstructor(intGlsl_param_type::create);
+	_Meta->registerClass(intGlsl_param_type::create, &_Meta);
 
 	domGlsl_param_type::_Meta->setMetaIntegration(_Meta);
 
@@ -75,7 +75,7 @@ intGlsl_param_type::intBool::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "bool" );
-	_Meta->registerConstructor(intGlsl_param_type::intBool::create);
+	_Meta->registerClass(intGlsl_param_type::intBool::create, &_Meta);
 
 	domGlsl_param_type::domBool::_Meta->setMetaIntegration(_Meta);
 
@@ -99,7 +99,7 @@ intGlsl_param_type::intBool2::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "bool2" );
-	_Meta->registerConstructor(intGlsl_param_type::intBool2::create);
+	_Meta->registerClass(intGlsl_param_type::intBool2::create, &_Meta);
 
 	domGlsl_param_type::domBool2::_Meta->setMetaIntegration(_Meta);
 
@@ -123,7 +123,7 @@ intGlsl_param_type::intBool3::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "bool3" );
-	_Meta->registerConstructor(intGlsl_param_type::intBool3::create);
+	_Meta->registerClass(intGlsl_param_type::intBool3::create, &_Meta);
 
 	domGlsl_param_type::domBool3::_Meta->setMetaIntegration(_Meta);
 
@@ -147,7 +147,7 @@ intGlsl_param_type::intBool4::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "bool4" );
-	_Meta->registerConstructor(intGlsl_param_type::intBool4::create);
+	_Meta->registerClass(intGlsl_param_type::intBool4::create, &_Meta);
 
 	domGlsl_param_type::domBool4::_Meta->setMetaIntegration(_Meta);
 
@@ -171,7 +171,7 @@ intGlsl_param_type::intFloat::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float" );
-	_Meta->registerConstructor(intGlsl_param_type::intFloat::create);
+	_Meta->registerClass(intGlsl_param_type::intFloat::create, &_Meta);
 
 	domGlsl_param_type::domFloat::_Meta->setMetaIntegration(_Meta);
 
@@ -195,7 +195,7 @@ intGlsl_param_type::intFloat2::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float2" );
-	_Meta->registerConstructor(intGlsl_param_type::intFloat2::create);
+	_Meta->registerClass(intGlsl_param_type::intFloat2::create, &_Meta);
 
 	domGlsl_param_type::domFloat2::_Meta->setMetaIntegration(_Meta);
 
@@ -219,7 +219,7 @@ intGlsl_param_type::intFloat3::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float3" );
-	_Meta->registerConstructor(intGlsl_param_type::intFloat3::create);
+	_Meta->registerClass(intGlsl_param_type::intFloat3::create, &_Meta);
 
 	domGlsl_param_type::domFloat3::_Meta->setMetaIntegration(_Meta);
 
@@ -243,7 +243,7 @@ intGlsl_param_type::intFloat4::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float4" );
-	_Meta->registerConstructor(intGlsl_param_type::intFloat4::create);
+	_Meta->registerClass(intGlsl_param_type::intFloat4::create, &_Meta);
 
 	domGlsl_param_type::domFloat4::_Meta->setMetaIntegration(_Meta);
 
@@ -267,7 +267,7 @@ intGlsl_param_type::intFloat2x2::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float2x2" );
-	_Meta->registerConstructor(intGlsl_param_type::intFloat2x2::create);
+	_Meta->registerClass(intGlsl_param_type::intFloat2x2::create, &_Meta);
 
 	domGlsl_param_type::domFloat2x2::_Meta->setMetaIntegration(_Meta);
 
@@ -291,7 +291,7 @@ intGlsl_param_type::intFloat3x3::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float3x3" );
-	_Meta->registerConstructor(intGlsl_param_type::intFloat3x3::create);
+	_Meta->registerClass(intGlsl_param_type::intFloat3x3::create, &_Meta);
 
 	domGlsl_param_type::domFloat3x3::_Meta->setMetaIntegration(_Meta);
 
@@ -315,7 +315,7 @@ intGlsl_param_type::intFloat4x4::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "float4x4" );
-	_Meta->registerConstructor(intGlsl_param_type::intFloat4x4::create);
+	_Meta->registerClass(intGlsl_param_type::intFloat4x4::create, &_Meta);
 
 	domGlsl_param_type::domFloat4x4::_Meta->setMetaIntegration(_Meta);
 
@@ -339,7 +339,7 @@ intGlsl_param_type::intInt::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "int" );
-	_Meta->registerConstructor(intGlsl_param_type::intInt::create);
+	_Meta->registerClass(intGlsl_param_type::intInt::create, &_Meta);
 
 	domGlsl_param_type::domInt::_Meta->setMetaIntegration(_Meta);
 
@@ -363,7 +363,7 @@ intGlsl_param_type::intInt2::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "int2" );
-	_Meta->registerConstructor(intGlsl_param_type::intInt2::create);
+	_Meta->registerClass(intGlsl_param_type::intInt2::create, &_Meta);
 
 	domGlsl_param_type::domInt2::_Meta->setMetaIntegration(_Meta);
 
@@ -387,7 +387,7 @@ intGlsl_param_type::intInt3::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "int3" );
-	_Meta->registerConstructor(intGlsl_param_type::intInt3::create);
+	_Meta->registerClass(intGlsl_param_type::intInt3::create, &_Meta);
 
 	domGlsl_param_type::domInt3::_Meta->setMetaIntegration(_Meta);
 
@@ -411,7 +411,7 @@ intGlsl_param_type::intInt4::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "int4" );
-	_Meta->registerConstructor(intGlsl_param_type::intInt4::create);
+	_Meta->registerClass(intGlsl_param_type::intInt4::create, &_Meta);
 
 	domGlsl_param_type::domInt4::_Meta->setMetaIntegration(_Meta);
 
@@ -435,7 +435,7 @@ intGlsl_param_type::intEnum::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "enum" );
-	_Meta->registerConstructor(intGlsl_param_type::intEnum::create);
+	_Meta->registerClass(intGlsl_param_type::intEnum::create, &_Meta);
 
 	domGlsl_param_type::domEnum::_Meta->setMetaIntegration(_Meta);
 

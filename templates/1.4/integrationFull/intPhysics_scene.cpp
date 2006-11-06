@@ -36,7 +36,7 @@ intPhysics_scene::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "physics_scene" );
-	_Meta->registerConstructor(intPhysics_scene::create);
+	_Meta->registerClass(intPhysics_scene::create, &_Meta);
 
 	domPhysics_scene::_Meta->setMetaIntegration(_Meta);
 
@@ -60,7 +60,7 @@ intPhysics_scene::intTechnique_common::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "technique_common" );
-	_Meta->registerConstructor(intPhysics_scene::intTechnique_common::create);
+	_Meta->registerClass(intPhysics_scene::intTechnique_common::create, &_Meta);
 
 	domPhysics_scene::domTechnique_common::_Meta->setMetaIntegration(_Meta);
 

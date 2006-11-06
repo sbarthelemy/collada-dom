@@ -35,7 +35,7 @@ intPolygons::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "polygons" );
-	_Meta->registerConstructor(intPolygons::create);
+	_Meta->registerClass(intPolygons::create, &_Meta);
 
 	domPolygons::_Meta->setMetaIntegration(_Meta);
 

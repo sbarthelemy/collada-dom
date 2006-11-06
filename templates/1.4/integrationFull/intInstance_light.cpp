@@ -35,7 +35,7 @@ intInstance_light::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "instance_light" );
-	_Meta->registerConstructor(intInstance_light::create);
+	_Meta->registerClass(intInstance_light::create, &_Meta);
 
 	domInstance_light::_Meta->setMetaIntegration(_Meta);
 

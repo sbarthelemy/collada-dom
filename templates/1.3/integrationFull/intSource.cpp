@@ -36,7 +36,7 @@ intSource::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "source" );
-	_Meta->registerConstructor(intSource::create);
+	_Meta->registerClass(intSource::create, &_Meta);
 
 	domSource::_Meta->setMetaIntegration(_Meta);
 
@@ -60,7 +60,7 @@ intSource::intTechnique::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "technique" );
-	_Meta->registerConstructor(intSource::intTechnique::create);
+	_Meta->registerClass(intSource::intTechnique::create, &_Meta);
 
 	domSource::domTechnique::_Meta->setMetaIntegration(_Meta);
 

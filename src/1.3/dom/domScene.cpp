@@ -35,7 +35,7 @@ domScene::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "scene" );
-	_Meta->registerConstructor(domScene::create);
+	_Meta->registerClass(domScene::create, &_Meta);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;

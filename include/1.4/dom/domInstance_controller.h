@@ -64,7 +64,7 @@ public:
 		 * Sets the _value of this element.
 		 * @param val The new value for this element.
 		 */
-		void setValue( const xsAnyURI &val ) { _value.setURI( val.getURI() ); }
+		void setValue( const xsAnyURI &val ) { _value = val; }
 
 	protected:
 		/**
@@ -157,7 +157,7 @@ public:	//Accessors and Mutators
 	 * Sets the url attribute.
 	 * @param atUrl The new value for the url attribute.
 	 */
-	void setUrl( const xsAnyURI &atUrl ) { attrUrl.setURI( atUrl.getURI() );
+	void setUrl( const xsAnyURI &atUrl ) { attrUrl = atUrl;
 	 _validAttributeArray[0] = true; }
 
 	/**

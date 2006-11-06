@@ -35,7 +35,7 @@ intGl_pipeline_settings::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "gl_pipeline_settings" );
-	_Meta->registerConstructor(intGl_pipeline_settings::create);
+	_Meta->registerClass(intGl_pipeline_settings::create, &_Meta);
 
 	domGl_pipeline_settings::_Meta->setMetaIntegration(_Meta);
 

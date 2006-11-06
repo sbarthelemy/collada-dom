@@ -37,7 +37,7 @@ intFx_surface_init_common::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fx_surface_init_common" );
-	_Meta->registerConstructor(intFx_surface_init_common::create);
+	_Meta->registerClass(intFx_surface_init_common::create, &_Meta);
 
 	domFx_surface_init_common::_Meta->setMetaIntegration(_Meta);
 
@@ -61,7 +61,7 @@ intFx_surface_init_common::intInit_as_null::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "init_as_null" );
-	_Meta->registerConstructor(intFx_surface_init_common::intInit_as_null::create);
+	_Meta->registerClass(intFx_surface_init_common::intInit_as_null::create, &_Meta);
 
 	domFx_surface_init_common::domInit_as_null::_Meta->setMetaIntegration(_Meta);
 
@@ -85,7 +85,7 @@ intFx_surface_init_common::intInit_as_target::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "init_as_target" );
-	_Meta->registerConstructor(intFx_surface_init_common::intInit_as_target::create);
+	_Meta->registerClass(intFx_surface_init_common::intInit_as_target::create, &_Meta);
 
 	domFx_surface_init_common::domInit_as_target::_Meta->setMetaIntegration(_Meta);
 

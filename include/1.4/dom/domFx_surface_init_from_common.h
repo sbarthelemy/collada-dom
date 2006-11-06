@@ -82,7 +82,7 @@ public:	//Accessors and Mutators
 	 * Sets the _value of this element.
 	 * @param val The new value for this element.
 	 */
-	void setValue( const xsIDREF &val ) { _value.setID( val.getID() ); }
+	void setValue( const xsIDREF &val ) { _value = val; }
 
 protected:
 	/**

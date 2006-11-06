@@ -35,7 +35,7 @@ intArray::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "array" );
-	_Meta->registerConstructor(intArray::create);
+	_Meta->registerClass(intArray::create, &_Meta);
 
 	domArray::_Meta->setMetaIntegration(_Meta);
 

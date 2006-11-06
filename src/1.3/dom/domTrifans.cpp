@@ -36,7 +36,7 @@ domTrifans::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "trifans" );
-	_Meta->registerConstructor(domTrifans::create);
+	_Meta->registerClass(domTrifans::create, &_Meta);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
@@ -108,7 +108,7 @@ domTrifans::domP::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "p" );
-	_Meta->registerConstructor(domTrifans::domP::create);
+	_Meta->registerClass(domTrifans::domP::create, &_Meta);
 
 	_Meta->setIsInnerClass( true );
 	//	Add attribute: _value

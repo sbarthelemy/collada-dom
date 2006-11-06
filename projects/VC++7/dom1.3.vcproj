@@ -34,7 +34,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../lib-dbg/1.3/libcollada_dom_d.lib"/>
+				OutputFile="../../lib-dbg/VC7/1.3/libcollada_dom_d.lib"/>
 			<Tool
 				Name="VCMIDLTool"/>
 			<Tool
@@ -78,7 +78,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../lib/1.3/libcollada_dom.lib"/>
+				OutputFile="../../lib/VC7/1.3/libcollada_dom.lib"/>
 			<Tool
 				Name="VCMIDLTool"/>
 			<Tool

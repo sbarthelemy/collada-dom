@@ -37,7 +37,7 @@ intPolygons::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "polygons" );
-	_Meta->registerConstructor(intPolygons::create);
+	_Meta->registerClass(intPolygons::create, &_Meta);
 
 	domPolygons::_Meta->setMetaIntegration(_Meta);
 
@@ -61,7 +61,7 @@ intPolygons::intPh::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "ph" );
-	_Meta->registerConstructor(intPolygons::intPh::create);
+	_Meta->registerClass(intPolygons::intPh::create, &_Meta);
 
 	domPolygons::domPh::_Meta->setMetaIntegration(_Meta);
 
@@ -85,7 +85,7 @@ intPolygons::intPh::intH::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "h" );
-	_Meta->registerConstructor(intPolygons::intPh::intH::create);
+	_Meta->registerClass(intPolygons::intPh::intH::create, &_Meta);
 
 	domPolygons::domPh::domH::_Meta->setMetaIntegration(_Meta);
 

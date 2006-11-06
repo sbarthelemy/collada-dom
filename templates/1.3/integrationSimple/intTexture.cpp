@@ -35,7 +35,7 @@ intTexture::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "texture" );
-	_Meta->registerConstructor(intTexture::create);
+	_Meta->registerClass(intTexture::create, &_Meta);
 
 	domTexture::_Meta->setMetaIntegration(_Meta);
 

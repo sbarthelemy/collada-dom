@@ -41,7 +41,7 @@ domCOLLADA::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "COLLADA" );
-	_Meta->registerConstructor(domCOLLADA::create);
+	_Meta->registerClass(domCOLLADA::create, &_Meta);
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;

@@ -29,8 +29,10 @@ domCOLLADA::create(daeInt bytes)
 	domCOLLADARef ref = new(bytes) domCOLLADA;
 	ref->attrXmlns.setContainer( (domCOLLADA*)ref );
 	ref->attrXml_base.setContainer( (domCOLLADA*)ref );
+	ref->_meta = _Meta;
 	ref->setAttribute("version", COLLADA_VERSION );
 	ref->setAttribute("xmlns", COLLADA_NAMESPACE );
+	ref->_meta = NULL;
 	return ref;
 }
 

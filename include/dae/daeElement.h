@@ -284,19 +284,19 @@ public:
 	/**
 	 * Creates an element via the element factory system.  This creation
 	 * is based @em only on potential child elements of this element.
-	 * @param className Class name of the subelement to create.
+	 * @param elementName Class name of the subelement to create.
 	 * @return Returns the created @c daeElement, if it was successfully created.
 	 */
-	DLLSPEC daeSmartRef<daeElement> createElement(daeString className);
+	DLLSPEC daeSmartRef<daeElement> createElement(daeString elementName);
 
 	/**
 	 * Creates a subelement via @c createElement() and places it via @c placeElement().
 	 * Automatically adds the new element to the <tt><i> _contents </i></tt> of its parent, if the parent has one.  
 	 * This is the primary method used to construct the COLLADA dom hierarchy.
-	 * @param className - Class name of the subelement to create.
+	 * @param elementName - Class name of the subelement to create.
 	 * @return Returns the created @c daeElement, if it was successfully created.
 	 */
-	DLLSPEC daeElement* createAndPlace(daeString className);
+	DLLSPEC daeElement* createAndPlace(daeString elementName);
 
 	/**
 	 * Create a sub-element via #createElement and place it via #placeElementAt
@@ -304,10 +304,10 @@ public:
 	 * parent, if the parent has one.  
 	 * This is useful when constructing the COLLADA dom hierarchy
 	 * @param index the position in the _contents array the newly created element is to be placed at
-	 * @param className - the className of the sub-element to be created
+	 * @param elementName - the className of the sub-element to be created
 	 * @return the created element if it was in fact successfully created.
 	 */
-	DLLSPEC daeElement* createAndPlaceAt(daeInt index, daeString className);
+	DLLSPEC daeElement* createAndPlaceAt(daeInt index, daeString elementName);
 
 	/**
 	 * Gets the container element for @c this element.

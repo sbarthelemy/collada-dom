@@ -35,7 +35,7 @@ intGl_sampler2D::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "gl_sampler2D" );
-	_Meta->registerConstructor(intGl_sampler2D::create);
+	_Meta->registerClass(intGl_sampler2D::create, &_Meta);
 
 	domGl_sampler2D::_Meta->setMetaIntegration(_Meta);
 

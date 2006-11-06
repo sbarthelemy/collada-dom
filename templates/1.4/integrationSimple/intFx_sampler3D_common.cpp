@@ -35,7 +35,7 @@ intFx_sampler3D_common::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fx_sampler3D_common" );
-	_Meta->registerConstructor(intFx_sampler3D_common::create);
+	_Meta->registerClass(intFx_sampler3D_common::create, &_Meta);
 
 	domFx_sampler3D_common::_Meta->setMetaIntegration(_Meta);
 

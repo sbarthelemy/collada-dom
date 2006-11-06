@@ -35,7 +35,7 @@ intPerspective::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "perspective" );
-	_Meta->registerConstructor(intPerspective::create);
+	_Meta->registerClass(intPerspective::create, &_Meta);
 
 	domPerspective::_Meta->setMetaIntegration(_Meta);
 

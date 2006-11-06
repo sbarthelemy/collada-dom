@@ -38,7 +38,7 @@ intTapered_capsule::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "tapered_capsule" );
-	_Meta->registerConstructor(intTapered_capsule::create);
+	_Meta->registerClass(intTapered_capsule::create, &_Meta);
 
 	domTapered_capsule::_Meta->setMetaIntegration(_Meta);
 
@@ -62,7 +62,7 @@ intTapered_capsule::intHeight::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "height" );
-	_Meta->registerConstructor(intTapered_capsule::intHeight::create);
+	_Meta->registerClass(intTapered_capsule::intHeight::create, &_Meta);
 
 	domTapered_capsule::domHeight::_Meta->setMetaIntegration(_Meta);
 
@@ -86,7 +86,7 @@ intTapered_capsule::intRadius1::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "radius1" );
-	_Meta->registerConstructor(intTapered_capsule::intRadius1::create);
+	_Meta->registerClass(intTapered_capsule::intRadius1::create, &_Meta);
 
 	domTapered_capsule::domRadius1::_Meta->setMetaIntegration(_Meta);
 
@@ -110,7 +110,7 @@ intTapered_capsule::intRadius2::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "radius2" );
-	_Meta->registerConstructor(intTapered_capsule::intRadius2::create);
+	_Meta->registerClass(intTapered_capsule::intRadius2::create, &_Meta);
 
 	domTapered_capsule::domRadius2::_Meta->setMetaIntegration(_Meta);
 

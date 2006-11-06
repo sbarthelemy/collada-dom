@@ -68,7 +68,7 @@ public:	//Accessors and Mutators
 	 * Sets the xmlns attribute.
 	 * @param xmlns The new value for the xmlns attribute.
 	 */
-	void setXmlns( const xsAnyURI &xmlns ) { attrXmlns.setURI( xmlns.getURI() );
+	void setXmlns( const xsAnyURI &xmlns ) { attrXmlns = xmlns;
 	 _validAttributeArray[0] = true; }
 
 	/**

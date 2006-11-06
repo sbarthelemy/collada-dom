@@ -35,7 +35,7 @@ intP::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "p" );
-	_Meta->registerConstructor(intP::create);
+	_Meta->registerClass(intP::create, &_Meta);
 
 	domP::_Meta->setMetaIntegration(_Meta);
 

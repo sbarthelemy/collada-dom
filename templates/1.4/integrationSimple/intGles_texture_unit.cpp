@@ -35,7 +35,7 @@ intGles_texture_unit::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "gles_texture_unit" );
-	_Meta->registerConstructor(intGles_texture_unit::create);
+	_Meta->registerClass(intGles_texture_unit::create, &_Meta);
 
 	domGles_texture_unit::_Meta->setMetaIntegration(_Meta);
 

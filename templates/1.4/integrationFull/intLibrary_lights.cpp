@@ -35,7 +35,7 @@ intLibrary_lights::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "library_lights" );
-	_Meta->registerConstructor(intLibrary_lights::create);
+	_Meta->registerClass(intLibrary_lights::create, &_Meta);
 
 	domLibrary_lights::_Meta->setMetaIntegration(_Meta);
 

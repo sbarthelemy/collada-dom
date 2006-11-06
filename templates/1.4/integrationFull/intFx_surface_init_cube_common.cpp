@@ -39,7 +39,7 @@ intFx_surface_init_cube_common::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fx_surface_init_cube_common" );
-	_Meta->registerConstructor(intFx_surface_init_cube_common::create);
+	_Meta->registerClass(intFx_surface_init_cube_common::create, &_Meta);
 
 	domFx_surface_init_cube_common::_Meta->setMetaIntegration(_Meta);
 
@@ -63,7 +63,7 @@ intFx_surface_init_cube_common::intAll::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "all" );
-	_Meta->registerConstructor(intFx_surface_init_cube_common::intAll::create);
+	_Meta->registerClass(intFx_surface_init_cube_common::intAll::create, &_Meta);
 
 	domFx_surface_init_cube_common::domAll::_Meta->setMetaIntegration(_Meta);
 
@@ -87,7 +87,7 @@ intFx_surface_init_cube_common::intPrimary::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "primary" );
-	_Meta->registerConstructor(intFx_surface_init_cube_common::intPrimary::create);
+	_Meta->registerClass(intFx_surface_init_cube_common::intPrimary::create, &_Meta);
 
 	domFx_surface_init_cube_common::domPrimary::_Meta->setMetaIntegration(_Meta);
 
@@ -111,7 +111,7 @@ intFx_surface_init_cube_common::intPrimary::intOrder::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "order" );
-	_Meta->registerConstructor(intFx_surface_init_cube_common::intPrimary::intOrder::create);
+	_Meta->registerClass(intFx_surface_init_cube_common::intPrimary::intOrder::create, &_Meta);
 
 	domFx_surface_init_cube_common::domPrimary::domOrder::_Meta->setMetaIntegration(_Meta);
 
@@ -135,7 +135,7 @@ intFx_surface_init_cube_common::intFace::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "face" );
-	_Meta->registerConstructor(intFx_surface_init_cube_common::intFace::create);
+	_Meta->registerClass(intFx_surface_init_cube_common::intFace::create, &_Meta);
 
 	domFx_surface_init_cube_common::domFace::_Meta->setMetaIntegration(_Meta);
 

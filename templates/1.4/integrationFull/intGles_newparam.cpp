@@ -37,7 +37,7 @@ intGles_newparam::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "gles_newparam" );
-	_Meta->registerConstructor(intGles_newparam::create);
+	_Meta->registerClass(intGles_newparam::create, &_Meta);
 
 	domGles_newparam::_Meta->setMetaIntegration(_Meta);
 
@@ -61,7 +61,7 @@ intGles_newparam::intSemantic::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "semantic" );
-	_Meta->registerConstructor(intGles_newparam::intSemantic::create);
+	_Meta->registerClass(intGles_newparam::intSemantic::create, &_Meta);
 
 	domGles_newparam::domSemantic::_Meta->setMetaIntegration(_Meta);
 
@@ -85,7 +85,7 @@ intGles_newparam::intModifier::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "modifier" );
-	_Meta->registerConstructor(intGles_newparam::intModifier::create);
+	_Meta->registerClass(intGles_newparam::intModifier::create, &_Meta);
 
 	domGles_newparam::domModifier::_Meta->setMetaIntegration(_Meta);
 

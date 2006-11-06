@@ -35,7 +35,7 @@ intInputGlobal::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "InputGlobal" );
-	_Meta->registerConstructor(intInputGlobal::create);
+	_Meta->registerClass(intInputGlobal::create, &_Meta);
 
 	domInputGlobal::_Meta->setMetaIntegration(_Meta);
 

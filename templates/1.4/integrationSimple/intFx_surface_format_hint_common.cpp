@@ -35,7 +35,7 @@ intFx_surface_format_hint_common::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fx_surface_format_hint_common" );
-	_Meta->registerConstructor(intFx_surface_format_hint_common::create);
+	_Meta->registerClass(intFx_surface_format_hint_common::create, &_Meta);
 
 	domFx_surface_format_hint_common::_Meta->setMetaIntegration(_Meta);
 

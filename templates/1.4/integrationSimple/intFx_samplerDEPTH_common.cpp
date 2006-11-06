@@ -35,7 +35,7 @@ intFx_samplerDEPTH_common::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "fx_samplerDEPTH_common" );
-	_Meta->registerConstructor(intFx_samplerDEPTH_common::create);
+	_Meta->registerClass(intFx_samplerDEPTH_common::create, &_Meta);
 
 	domFx_samplerDEPTH_common::_Meta->setMetaIntegration(_Meta);
 

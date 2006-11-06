@@ -40,13 +40,13 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../include;&quot;../../external-libs/libxml2/win32/include&quot;"
+				AdditionalIncludeDirectories="../../include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
-				ProgramDataBaseFileName="../../lib-dbg/1.3/libcollada_dae_d.pdb"
+				ProgramDataBaseFileName="../../lib-dbg/VC8/1.3/libcollada_dae_d.pdb"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="true"
 				DebugInformationFormat="4"
@@ -62,7 +62,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../lib-dbg/1.3/libcollada_dae_d.lib"
+				OutputFile="../../lib-dbg/VC8/1.3/libcollada_dae_d.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -106,13 +106,13 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../include;&quot;../../external-libs/libxml2/win32/include&quot;"
+				AdditionalIncludeDirectories="../../include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
-				ProgramDataBaseFileName="../../lib-dbg/1.4/libcollada_dae_d.pdb"
+				ProgramDataBaseFileName="../../lib-dbg/VC8/1.4/libcollada_dae_d.pdb"
 				WarningLevel="4"
 				Detect64BitPortabilityProblems="true"
 				DebugInformationFormat="4"
@@ -128,7 +128,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../lib-dbg/1.4/libcollada_dae_d.lib"
+				OutputFile="../../lib-dbg/VC8/1.4/libcollada_dae_d.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -171,11 +171,11 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="../../include;&quot;../../external-libs/libxml2/win32/include&quot;"
+				AdditionalIncludeDirectories="../../include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
-				ProgramDataBaseFileName="../../lib/1.3/libcollada_dae.pdb"
+				ProgramDataBaseFileName="../../lib/VC8/1.3/libcollada_dae.pdb"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="true"
 				DebugInformationFormat="0"
@@ -191,7 +191,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../lib/1.3/libcollada_dae.lib"
+				OutputFile="../../lib/VC8/1.3/libcollada_dae.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -234,11 +234,11 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="../../include;&quot;../../external-libs/libxml2/win32/include&quot;"
+				AdditionalIncludeDirectories="../../include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
-				ProgramDataBaseFileName="../../lib/1.4/libcollada_dae.pdb"
+				ProgramDataBaseFileName="../../lib/VC8/1.4/libcollada_dae.pdb"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="true"
 				DebugInformationFormat="0"
@@ -254,7 +254,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../lib/1.4/libcollada_dae.lib"
+				OutputFile="../../lib/VC8/1.4/libcollada_dae.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -298,13 +298,13 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="2"
-				AdditionalIncludeDirectories="../../include;&quot;../../external-libs/libxml2/win32/include&quot;"
+				AdditionalIncludeDirectories="../../include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
-				ProgramDataBaseFileName="../../lib-dbg/opt1.4/libcollada_dae_d.pdb"
+				ProgramDataBaseFileName="../../lib-dbg/VC8/opt1.4/libcollada_dae_d.pdb"
 				WarningLevel="4"
 				Detect64BitPortabilityProblems="true"
 				DebugInformationFormat="3"
@@ -320,7 +320,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../lib-dbg/opt1.4/libcollada_dae_d.lib"
+				OutputFile="../../lib-dbg/VC8/opt1.4/libcollada_dae_d.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -364,7 +364,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../include;&quot;../../external-libs/libxml2/win32/include&quot;"
+				AdditionalIncludeDirectories="../../include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CRT_SECURE_NO_DEPRECATE;DOM_DYNAMIC;DOM_EXPORT"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -386,14 +386,14 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libcollada_dom_d.lib libcollada_LIBXMLPlugin_d.lib libcollada_stdErrPlugin_d.lib libcollada_STLDatabase_d.lib libxml2_a.lib iconv_a.lib zlib.lib wsock32.lib"
+				AdditionalDependencies="libcollada_dom_d.lib libcollada_LIBXMLPlugin_d.lib libcollada_stdErrPlugin_d.lib libcollada_STLDatabase_d.lib libxml2_a.lib iconv.lib zlib.lib wsock32.lib"
 				OutputFile="..\..\bin-dbg\libcollada141dom12_d.dll"
-				AdditionalLibraryDirectories="..\..\external-libs\libxml2\win32\lib;../../tmp/win32"
+				AdditionalLibraryDirectories="$(COLLADA_EXTERNAL_LIBS_LOCATION)\libxml2\win32\lib;../../tmp/win32"
 				IgnoreDefaultLibraryNames="libc.lib, libcmt.lib, msvcrt.lib, libcd.lib, libcmtd.lib"
 				GenerateDebugInformation="true"
 				OptimizeReferences="1"
 				EnableCOMDATFolding="1"
-				ImportLibrary="..\..\lib-dbg\libcolladadom_d.lib"
+				ImportLibrary="..\..\lib-dbg\libcollada141dom12_d.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -445,7 +445,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="../../include;&quot;../../external-libs/libxml2/win32/include&quot;"
+				AdditionalIncludeDirectories="../../include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CRT_SECURE_NO_DEPRECATE;DOM_DYNAMIC;DOM_EXPORT"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
@@ -465,10 +465,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libcollada_dom.lib libcollada_LIBXMLPlugin.lib libcollada_stdErrPlugin.lib libcollada_STLDatabase.lib libxml2_a.lib iconv_a.lib zlib.lib wsock32.lib"
+				AdditionalDependencies="libcollada_dom.lib libcollada_LIBXMLPlugin.lib libcollada_stdErrPlugin.lib libcollada_STLDatabase.lib libxml2_a.lib iconv.lib zlib.lib wsock32.lib"
 				OutputFile="..\..\bin\libcollada141dom12.dll"
-				AdditionalLibraryDirectories="..\..\external-libs\libxml2\win32\lib;../../tmp/win32"
-				ImportLibrary="..\..\lib\libcolladadom.lib"
+				AdditionalLibraryDirectories="$(COLLADA_EXTERNAL_LIBS_LOCATION)\libxml2\win32\lib;../../tmp/win32"
+				ImportLibrary="..\..\lib\libcollada141dom12.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"

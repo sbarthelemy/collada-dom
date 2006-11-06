@@ -35,7 +35,7 @@ intCg_surface_type::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "cg_surface_type" );
-	_Meta->registerConstructor(intCg_surface_type::create);
+	_Meta->registerClass(intCg_surface_type::create, &_Meta);
 
 	domCg_surface_type::_Meta->setMetaIntegration(_Meta);
 

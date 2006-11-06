@@ -35,7 +35,7 @@ intGl_samplerCUBE::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "gl_samplerCUBE" );
-	_Meta->registerConstructor(intGl_samplerCUBE::create);
+	_Meta->registerClass(intGl_samplerCUBE::create, &_Meta);
 
 	domGl_samplerCUBE::_Meta->setMetaIntegration(_Meta);
 

@@ -35,7 +35,7 @@ intMesh::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "mesh" );
-	_Meta->registerConstructor(intMesh::create);
+	_Meta->registerClass(intMesh::create, &_Meta);
 
 	domMesh::_Meta->setMetaIntegration(_Meta);
 

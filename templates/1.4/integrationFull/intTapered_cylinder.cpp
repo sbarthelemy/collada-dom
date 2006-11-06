@@ -38,7 +38,7 @@ intTapered_cylinder::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "tapered_cylinder" );
-	_Meta->registerConstructor(intTapered_cylinder::create);
+	_Meta->registerClass(intTapered_cylinder::create, &_Meta);
 
 	domTapered_cylinder::_Meta->setMetaIntegration(_Meta);
 
@@ -62,7 +62,7 @@ intTapered_cylinder::intHeight::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "height" );
-	_Meta->registerConstructor(intTapered_cylinder::intHeight::create);
+	_Meta->registerClass(intTapered_cylinder::intHeight::create, &_Meta);
 
 	domTapered_cylinder::domHeight::_Meta->setMetaIntegration(_Meta);
 
@@ -86,7 +86,7 @@ intTapered_cylinder::intRadius1::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "radius1" );
-	_Meta->registerConstructor(intTapered_cylinder::intRadius1::create);
+	_Meta->registerClass(intTapered_cylinder::intRadius1::create, &_Meta);
 
 	domTapered_cylinder::domRadius1::_Meta->setMetaIntegration(_Meta);
 
@@ -110,7 +110,7 @@ intTapered_cylinder::intRadius2::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "radius2" );
-	_Meta->registerConstructor(intTapered_cylinder::intRadius2::create);
+	_Meta->registerClass(intTapered_cylinder::intRadius2::create, &_Meta);
 
 	domTapered_cylinder::domRadius2::_Meta->setMetaIntegration(_Meta);
 

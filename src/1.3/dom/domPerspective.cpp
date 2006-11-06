@@ -35,7 +35,7 @@ domPerspective::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "perspective" );
-	_Meta->registerConstructor(domPerspective::create);
+	_Meta->registerClass(domPerspective::create, &_Meta);
 
 	//	Add attribute: _value
  	{

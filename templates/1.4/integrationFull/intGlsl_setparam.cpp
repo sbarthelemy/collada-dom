@@ -35,7 +35,7 @@ intGlsl_setparam::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "glsl_setparam" );
-	_Meta->registerConstructor(intGlsl_setparam::create);
+	_Meta->registerClass(intGlsl_setparam::create, &_Meta);
 
 	domGlsl_setparam::_Meta->setMetaIntegration(_Meta);
 

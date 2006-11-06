@@ -35,7 +35,7 @@ intTrifans::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "trifans" );
-	_Meta->registerConstructor(intTrifans::create);
+	_Meta->registerClass(intTrifans::create, &_Meta);
 
 	domTrifans::_Meta->setMetaIntegration(_Meta);
 

@@ -35,7 +35,7 @@ intPolylist::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "polylist" );
-	_Meta->registerConstructor(intPolylist::create);
+	_Meta->registerClass(intPolylist::create, &_Meta);
 
 	domPolylist::_Meta->setMetaIntegration(_Meta);
 

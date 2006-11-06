@@ -35,7 +35,7 @@ intGl_hook_abstract::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "gl_hook_abstract" );
-	_Meta->registerConstructor(intGl_hook_abstract::create);
+	_Meta->registerClass(intGl_hook_abstract::create, &_Meta);
 
 	domGl_hook_abstract::_Meta->setMetaIntegration(_Meta);
 

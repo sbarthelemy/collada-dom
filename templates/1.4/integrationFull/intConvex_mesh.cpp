@@ -35,7 +35,7 @@ intConvex_mesh::registerElement()
     
     _Meta = new daeMetaElement;
     _Meta->setName( "convex_mesh" );
-	_Meta->registerConstructor(intConvex_mesh::create);
+	_Meta->registerClass(intConvex_mesh::create, &_Meta);
 
 	domConvex_mesh::_Meta->setMetaIntegration(_Meta);
 
