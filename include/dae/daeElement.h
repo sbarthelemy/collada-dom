@@ -24,7 +24,11 @@
 
 namespace COLLADA_TYPE
 {
+#ifdef _MSC_VER
 	enum TypeEnum;
+#else
+	typedef const int TypeEnum;
+#endif
 };
 
 class daeMetaElement;
@@ -446,5 +450,13 @@ typedef daeSmartRef<const daeElement> daeElementConstRef;
 typedef daeTArray<daeElementRef> daeElementRefArray;
 
 extern daeElementRef DAECreateElement(int nbytes);
+
+template <typename T> 
+inline T *daeSafeCast( daeElement *element ) 
+{ 
+    if ( element && element->getMeta() == T::_Meta ) 
+        return (T *)element; 
+    return NULL; 
+} 
 
 #endif //__DAE_ELEMENT_H__

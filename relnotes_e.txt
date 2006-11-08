@@ -84,6 +84,11 @@ Restriction
   install package installs the default configuration of the libxml2 library which requires iconv.
 
 * [Guideline]
+  A new helper function template <typename T> inline T *daeSafeCast( daeElement *element ) has been added to the
+  COLLADA DOM in file daeElement.h. It is the recomended way to cast from a daeElement* or daeElementRef to a
+  class derived from daeElement. It uses the same syntax as the C++ *_cast functions.
+
+* [Guideline]
   You can now toggle automatic loading of external documents by calling 
   daeURIResolver::setAutoLoadExternalReferences(). 
   You can now get a list of external references contained within a document by calling 
