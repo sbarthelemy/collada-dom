@@ -38,6 +38,18 @@ class daeURI;
 
 template <typename T> class daeSmartRef;
 
+//Contributed by Nus - Wed, 08 Nov 2006
+/**
+ * Initializing resolve array.
+ */
+extern "C" void initializeResolveArray(void);
+
+/**
+ * Terminating resolve array.
+ */
+extern "C" void terminateResolveArray(void);
+//-------------------
+
 /**
  * The @c daeElement class represents an instance of a COLLADA "Element";
  * it is the main base class for the COLLADA Dom.
@@ -95,6 +107,8 @@ public:
 	 */
 	virtual DLLSPEC ~daeElement();
 
+	// sthomas (see https://collada.org/public_forum/viewtopic.php?t=325&)
+	static void releaseElements();
 	/**
 	 * Decrements the reference count and deletes the object if reference count is zero.
 	 * @note Should not be used externally if daeSmartRefs are being used, they call it

@@ -46,6 +46,12 @@ DAE::cleanup()
 		daeMetaElement::releaseMetas();
 		daeAtomicType::uninitializeKnownTypes();
 		topMeta = NULL;
+//Contributed by Nus - Wed, 08 Nov 2006
+		terminateURI();
+		terminateResolveArray();
+		daeStringRef::releaseStringTable();
+		daeIDRefResolver::terminateIDRefSolver();
+//----------------------
 	}
 }
 	
@@ -58,6 +64,11 @@ DAE::DAE() : database(NULL),
 	     defaultPlugin(false),
 	     registerFunc(NULL)
 {
+//Contributed by Nus - Wed, 08 Nov 2006
+	initializeURI();
+	initializeResolveArray();
+	daeIDRefResolver::initializeIDRefSolver();
+//------------------------
 	if ( DAEInstanceCount == 0 ) {
 		topMeta = initializeDomMeta();
 	}

@@ -93,6 +93,13 @@ public:
 	inline bool operator==(const daeStringRef& other) const{
 		//return (other._string == _string); }
 		return (!strcmp(other._string, _string)); }
+
+//Contributed by Nus - Wed, 08 Nov 2006
+	/**
+	 * Release string table...
+	 */
+	static void releaseStringTable(void);
+//--------------------
 };
 
 typedef daeTArray<daeStringRef> daeStringRefArray;

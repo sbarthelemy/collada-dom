@@ -26,25 +26,59 @@ daeString safeCreate(daeString src);
 void safeDelete(daeString src);
 daeString findCharacterReverse(daeString string, daeChar stopChar);
 
+//Contributed by Nus - Wed, 08 Nov 2006
+static daeURIResolverPtrArray *pKR = NULL;
+//---------------------------
+
 daeURIResolverPtrArray &daeURIResolver::_KnownResolvers()
 {
-	static daeURIResolverPtrArray *kr = new daeURIResolverPtrArray();
-	return *kr;
+//Contributed by Nus - Wed, 08 Nov 2006
+  // static daeURIResolverPtrArray *kr = new daeURIResolverPtrArray();
+  // return *kr;
+  return *pKR;
+//--------------------------------
 }
 
-static daeURI ApplicationURI(1);
+//Contributed by Nus - Wed, 08 Nov 2006
+static daeURI* pAppURI = NULL;
+// static daeURI ApplicationURI(1);
+
+extern "C" void initializeURI(void)
+{
+  if(!pAppURI) {
+    pAppURI = new daeURI(1);
+  }
+  if(!pKR) {
+    pKR = new daeURIResolverPtrArray();
+  }
+}
+
+extern "C" void terminateURI(void)
+{
+  delete pAppURI;
+  pAppURI = NULL;
+  delete pKR;
+  pKR = NULL;
+}
+//--------------------------------------
 
 void
 daeURI::setBaseURI(daeURI& uri)
 {
-	ApplicationURI.reset();
-	ApplicationURI.setURI(uri.getURI());
+//Contributed by Nus - Wed, 08 Nov 2006
+	// ApplicationURI.reset();
+	// ApplicationURI.setURI(uri.getURI());
+	pAppURI->reset();
+	pAppURI->setURI(uri.getURI());
+//------------------------
 }
 
 daeURI*
 daeURI::getBaseURI()
 {
-	return &ApplicationURI;
+//Contributed by Nus - Wed, 08 Nov 2006
+	return pAppURI;
+//--------------------------------------
 }
 
 void
@@ -256,6 +290,18 @@ void safeDelete(daeString src)
 void
 daeURI::setURI(daeString _URIString)
 {
+//Contributed by Nus - Wed, 08 Nov 2006
+  // Nus: Checking for existing string.
+  if(originalURIString && _URIString) {
+    if(strcmp(originalURIString, _URIString) == 0)
+      return;
+  }
+  // Nus: If the string exist, delete it first.
+  if(originalURIString) {
+    safeDelete(originalURIString);
+    originalURIString = NULL;
+  }
+//---------------------------
 	originalURIString = safeCreate(_URIString);
 	internalSetURI(_URIString);
 }

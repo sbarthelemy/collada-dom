@@ -554,6 +554,7 @@ domProfile_COMMON::domTechnique::domBlinn::registerElement()
 	return _Meta;
 }
 
+
 daeMetaElement * domProfile_COMMON::_Meta = NULL;
 daeMetaElement * domProfile_COMMON::domTechnique::_Meta = NULL;
 daeMetaElement * domProfile_COMMON::domTechnique::domConstant::_Meta = NULL;

@@ -53,7 +53,7 @@ domGlsl_setarray_type::registerElement()
 	mea->setElementType( domGlsl_setarray_type::registerElement() );
 	cm->appendChild( mea );
 	
-	cm->setMaxOrdinal( 0 );
+	cm->setMaxOrdinal( 3000 );
 	_Meta->setCMRoot( cm );	
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domGlsl_setarray_type,_contents));

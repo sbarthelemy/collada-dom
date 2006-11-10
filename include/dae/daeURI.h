@@ -17,6 +17,18 @@
 #include <dae/daeTypes.h>
 #include <dae/daeElement.h>
 
+//Contributed by Nus - Wed, 08 Nov 2006
+/**
+ * Initializing URI.
+ */
+extern "C" void initializeURI(void);
+
+/**
+ * Terminating URI.
+ */
+extern "C" void terminateURI(void);
+//-------------------------
+
 /**
  * The @c daeURI is a simple class designed to aid in the parsing and resolution
  * of URI references inside COLLADA elements.

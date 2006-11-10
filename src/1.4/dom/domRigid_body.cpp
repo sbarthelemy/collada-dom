@@ -256,7 +256,7 @@ domRigid_body::domTechnique_common::domMass_frame::registerElement()
 	mea->setElementType( domRotate::registerElement() );
 	cm->appendChild( mea );
 	
-	cm->setMaxOrdinal( 0 );
+	cm->setMaxOrdinal( 3000 );
 	_Meta->setCMRoot( cm );	
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domRigid_body::domTechnique_common::domMass_frame,_contents));

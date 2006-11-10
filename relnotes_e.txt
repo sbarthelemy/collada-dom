@@ -11,7 +11,7 @@
 ======================================================================
 COLLADA 1.4.1 DOM 1.2.0
 
-Date: November 2, 2006
+Date: November 7, 2006
 Author: Andrew C. Lorino, Mark C. Barnes
 ======================================================================
 ======================================================================
@@ -72,6 +72,13 @@ Restriction
   to the end of the filename.
 
 * [Guideline]
+  The COLLADA_DOM, as of release 1.2.0, has changed the build output location of win32 static libraries.
+  The DOM now contains project files for both MSVS2003 and MSVS2005. The output for MSVC2003 is lib/vc7
+  and for MSVS2005 is lib/vc8. Be careful if updating from previous DOM versions. If you don't update your
+  project files to use the new location you may inadvertently continue linking against old versions of the 
+  DOM libraries which will cause errors.
+
+* [Guideline]
   The COLLADA DOM DLL dynamically links against the iconv library. Be sure to have the iconv.dll available
   for client applications which may need libxml2 international character set support. The reason for
   this is the viral-like nature of the GPL and LGPL licenses which requiires programs staticly linked
@@ -102,7 +109,6 @@ Restriction
   want to use this functionality create a daeSIDResolver passing in a pointer to the element
   that contains the target string, the target string, and optionally a platform string. A
   NULL platform string will cause the SID resolver to search through the COMMON techniques.
-
 
 * [Guideline]
   A common problem will be that domListOfFloats is actually a daeDoubleArray since COLLADA 

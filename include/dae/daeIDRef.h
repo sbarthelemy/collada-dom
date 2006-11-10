@@ -237,8 +237,20 @@ public:
 	 */
 	virtual DLLSPEC ~daeIDRefResolver();
 	
+//Contributed by Nus - Wed, 08 Nov 2006
+	/**
+	 * Initialize ID reference solver
+	 */
+	static void initializeIDRefSolver(void);
+
+	/**
+	 * Terminate ID reference solver
+	 */
+	static void terminateIDRefSolver(void);
+//-------------------------
+
 protected:
-	static daeIDRefResolverPtrArray _KnownResolvers;
+	static daeIDRefResolverPtrArray* _KnownResolvers;
 	
 public:
 	/**

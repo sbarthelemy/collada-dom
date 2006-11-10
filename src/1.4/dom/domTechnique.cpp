@@ -44,6 +44,10 @@ domTechnique::registerElement()
 	cm = new daeMetaAny( _Meta, cm, 0, 0, -1 );
 
 	cm->setMaxOrdinal( 0 );
+	cm->getParent()->appendChild( cm );
+	cm = cm->getParent();
+	
+	cm->setMaxOrdinal( 0 );
 	_Meta->setCMRoot( cm );	
 	_Meta->setAllowsAny( true );
 	// Ordered list of sub-elements

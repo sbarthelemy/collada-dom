@@ -258,6 +258,15 @@ void daeMetaElement::releaseMetas()
 		*(_classMetaPointers()[i]) = NULL;
 	}
 	_classMetaPointers().clear();
+//Contributed by Nus - Wed, 08 Nov 2006
+  {
+    // Nus: Freeing all memories...
+    daeMetaElementRefArray &meras = _metas();
+    daeTArray< daeMetaElement** > &mes = _classMetaPointers();
+    delete &meras;
+    delete &mes;
+  }
+//-----------------------------
 }
 
 daeBool daeMetaElement::place(daeElement *parent, daeElement *child, daeUInt *ordinal )

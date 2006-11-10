@@ -145,7 +145,7 @@ domRigid_constraint::domRef_attachment::registerElement()
 	mea->setElementType( domExtra::registerElement() );
 	cm->appendChild( mea );
 	
-	cm->setMaxOrdinal( 0 );
+	cm->setMaxOrdinal( 3000 );
 	_Meta->setCMRoot( cm );	
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domRigid_constraint::domRef_attachment,_contents));
@@ -211,7 +211,7 @@ domRigid_constraint::domAttachment::registerElement()
 	mea->setElementType( domExtra::registerElement() );
 	cm->appendChild( mea );
 	
-	cm->setMaxOrdinal( 0 );
+	cm->setMaxOrdinal( 3000 );
 	_Meta->setCMRoot( cm );	
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domRigid_constraint::domAttachment,_contents));

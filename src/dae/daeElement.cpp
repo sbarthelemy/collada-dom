@@ -33,8 +33,33 @@ daeElementRef DAECreateElement(int nbytes)
 	return new(nbytes) daeElement;
 }
 
-static daeElementRefArray resolveArray;
+//Contributed by Nus - Wed, 08 Nov 2006
+// static daeElementRefArray resolveArray;
+static daeElementRefArray* pResolveArray = NULL;
 //static char StaticIndentBuf[] = "";
+
+extern "C" void initializeResolveArray(void)
+{
+  if(!pResolveArray) {
+    pResolveArray = new daeElementRefArray;
+  }
+}
+
+extern "C" void terminateResolveArray(void)
+{
+  if(pResolveArray) {
+    delete pResolveArray;
+    pResolveArray = NULL;
+  }
+}
+//----------------------------------
+
+// sthomas (see https://collada.org/public_forum/viewtopic.php?t=325&)
+void daeElement::releaseElements()
+{
+    // resolveArray.clear();
+    pResolveArray->clear();
+}
 
 daeIntegrationObject*
 daeElement::getIntObject( IntegrationState from_state, IntegrationState to_state )
@@ -331,16 +356,25 @@ daeMemoryRef daeElement::getValuePointer() {
 void
 daeElement::appendResolveElement(daeElement* elem)
 {
-	resolveArray.append(elem);
+//Contributed by Nus - Wed, 08 Nov 2006
+	// resolveArray.append(elem);
+	pResolveArray->append(elem);
+//----------------------
 }
 void
 daeElement::resolveAll()
 {
 	int cnt;
-	while(resolveArray.getCount()) {
-		cnt = (int)resolveArray.getCount();
-		daeElementRef elem = resolveArray[cnt-1];
-		resolveArray.removeIndex(cnt-1);
+//Contributed by Nus - Wed, 08 Nov 2006
+	// while(resolveArray.getCount()) {
+	while(pResolveArray->getCount()) {
+		// cnt = (int)resolveArray.getCount();
+		cnt = (int)pResolveArray->getCount();
+		// daeElementRef elem = resolveArray[cnt-1];
+		daeElementRef elem = (*pResolveArray)[cnt-1];
+		// resolveArray.removeIndex(cnt-1);
+		pResolveArray->removeIndex(cnt-1);
+//--------------------------
 		elem->resolve();
 	}
 	/*size_t cnt = resolveArray.getCount();
@@ -353,7 +387,10 @@ daeElement::resolveAll()
 void
 daeElement::clearResolveArray()
 {
-	resolveArray.clear();
+//Contributed by Nus - Wed, 08 Nov 2006
+	// resolveArray.clear();
+	pResolveArray->clear();
+//------------------------
 }
 
 void

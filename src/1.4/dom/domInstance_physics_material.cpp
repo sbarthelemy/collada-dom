@@ -47,6 +47,8 @@ domInstance_physics_material::registerElement()
 	mea->setElementType( domExtra::registerElement() );
 	cm->appendChild( mea );
 	
+	cm->setMaxOrdinal( 0 );
+	_Meta->setCMRoot( cm );	
 
 	//	Add attribute: url
  	{

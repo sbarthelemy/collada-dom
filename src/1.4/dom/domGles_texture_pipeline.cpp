@@ -59,7 +59,7 @@ domGles_texture_pipeline::registerElement()
 	mea->setElementType( domExtra::registerElement() );
 	cm->appendChild( mea );
 	
-	cm->setMaxOrdinal( 0 );
+	cm->setMaxOrdinal( 3000 );
 	_Meta->setCMRoot( cm );	
 	// Ordered list of sub-elements
     _Meta->addContents(daeOffsetOf(domGles_texture_pipeline,_contents));

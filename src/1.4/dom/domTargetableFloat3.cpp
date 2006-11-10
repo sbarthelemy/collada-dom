@@ -65,6 +65,7 @@ domTargetableFloat3::registerElement()
 	return _Meta;
 }
 
+
 daeMetaElement * domTargetableFloat3::_Meta = NULL;
 
 
