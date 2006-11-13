@@ -11,7 +11,7 @@
 ======================================================================
 COLLADA 1.4.1 DOM 1.2.0
 
-Date: November 7, 2006
+Date: November 10, 2006
 Author: Andrew C. Lorino, Mark C. Barnes
 ======================================================================
 ======================================================================
@@ -142,6 +142,10 @@ fix up most of the memory leak issues and a few other issues.
 Changes (for developer)
 ======================================================================
 * Fixed in COLLADA 1.4.1 DOM 1.2.0
+- 1593134 	daeElement::clone doesn't work perfectly
+- 1591999  	vc7 project files debug files wrong place
+- 1590438 	daeLIBXMLPlugin::startParse crashes if xmlns missing
+- 1590414 	domCOLLADA object not properly intialised
 - 1584357 	uninitializeKnownTypes() does not check _TypesInitialized
 - 1583559 	Dangling Meta pointers
 - 1573541 	Calling DAE::cleanup() without running any DAE init crashes

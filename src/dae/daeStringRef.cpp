@@ -39,14 +39,14 @@ void daeStringRef::releaseStringTable(void)
 
 daeStringRef::daeStringRef(daeString string)
 {
-	static daeStringTable &st = _stringTable();
+	daeStringTable &st = _stringTable();
 	_string = st.allocString(string);
 }
 
 const daeStringRef&
 daeStringRef::set(daeString string)
 {
-	static daeStringTable &st = _stringTable();
+	daeStringTable &st = _stringTable();
 	_string = st.allocString(string);
 	return *this;
 }

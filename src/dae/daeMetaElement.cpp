@@ -18,6 +18,9 @@
 #include <dae/daeMetaCMPolicy.h>
 #include <dae/daeMetaElementAttribute.h>
 
+static daeMetaElementRefArray *mera = NULL;
+static daeTArray< daeMetaElement** > *mes = NULL;
+
 daeElementRef
 daeMetaElement::create() 
 {
@@ -258,15 +261,16 @@ void daeMetaElement::releaseMetas()
 		*(_classMetaPointers()[i]) = NULL;
 	}
 	_classMetaPointers().clear();
-//Contributed by Nus - Wed, 08 Nov 2006
-  {
-    // Nus: Freeing all memories...
-    daeMetaElementRefArray &meras = _metas();
-    daeTArray< daeMetaElement** > &mes = _classMetaPointers();
-    delete &meras;
-    delete &mes;
-  }
-//-----------------------------
+	if (mera)
+	{
+		delete mera;
+		mera = NULL;
+	}
+	if (mes)
+	{
+		delete mes;
+		mes = NULL;
+	}
 }
 
 daeBool daeMetaElement::place(daeElement *parent, daeElement *child, daeUInt *ordinal )
@@ -500,13 +504,19 @@ void daeMetaElement::getChildren( daeElement* parent, daeElementRefArray &array 
 
 daeMetaElementRefArray &daeMetaElement::_metas()
 {
-	static daeMetaElementRefArray *mera = new daeMetaElementRefArray();
+	if (!mera)
+	{
+		mera = new daeMetaElementRefArray();
+	}
 	return *mera;
 }
 
 daeTArray< daeMetaElement** > &daeMetaElement::_classMetaPointers()
 {
-	static daeTArray< daeMetaElement** > *mes = new daeTArray< daeMetaElement** >();
+	if (!mes)
+	{
+		mes = new daeTArray< daeMetaElement** >();
+	}
 	return *mes;
 }
 

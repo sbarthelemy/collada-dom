@@ -1,0 +1,54 @@
+<project name="COLLADA_DOM" basedir="./">
+  <target name="BuildVC7" depends="Win32VC7_debug,Win32VC7_release" />
+  <target name="BuildVC8" depends="Win32VC8_debug,Win32VC8_release,Win32VC8_Opt1_4,Win32VC8_debugDLL,Win32VC8_releaseDLL" />
+  <target name="CleanAll" depends="Win32VC8_debug_clean,Win32VC8_release_clean" />
+
+  <target name="Win32VC7_debug">
+    <exec executable="make" failonerror="true">
+      <arg line="COLLADA_DOM_PLATFORM=WIN32 BUILD=debug CC=VC7 -i"/>
+    </exec>
+  </target>
+  <target name="Win32VC7_release">
+    <exec executable="make" failonerror="true">
+      <arg line="COLLADA_DOM_PLATFORM=WIN32 BUILD=release CC=VC7 -i"/>
+    </exec>
+  </target>
+
+  <target name="Win32VC8_Opt1_4">
+    <exec executable="make" failonerror="true">
+      <arg line="COLLADA_DOM_PLATFORM=WIN32 CC=VC8 PROJECT_CONFIG=Opt1.4 -i"/>
+    </exec>
+  </target>
+  <target name="Win32VC8_debug">
+    <exec executable="make" failonerror="true">
+      <arg line="COLLADA_DOM_PLATFORM=WIN32 BUILD=debug CC=VC8 -i"/>
+    </exec>
+  </target>
+  <target name="Win32VC8_release">
+    <exec executable="make" failonerror="true">
+      <arg line="COLLADA_DOM_PLATFORM=WIN32 BUILD=release CC=VC8 -i"/>
+    </exec>
+  </target>
+  <target name="Win32VC8_debugDLL">
+    <exec executable="make" failonerror="true">
+      <arg line="COLLADA_DOM_PLATFORM=WIN32 BUILD=debug CC=VC8 PROJECT_CONFIG=\'debug\ DLL\' -i"/>
+    </exec>
+  </target>
+  <target name="Win32VC8_releaseDLL">
+    <exec executable="make" failonerror="true">
+      <arg line="COLLADA_DOM_PLATFORM=WIN32 BUILD=release CC=VC8 PROJECT_CONFIG=\'release\ DLL\' -i"/>
+    </exec>
+  </target>
+  
+  <target name="Win32VC8_debug_clean">
+    <exec executable="make" failonerror="true">
+      <arg line="COLLADA_DOM_PLATFORM=WIN32 BUILD=debug CC=VC8 clean -i"/>
+    </exec>
+  </target>
+  <target name="Win32VC8_release_clean">
+    <exec executable="make" failonerror="true">
+      <arg line="COLLADA_DOM_PLATFORM=WIN32 BUILD=release CC=VC8 clean -i"/>
+    </exec>
+  </target>
+
+</project>
