@@ -11,7 +11,7 @@
 Name "COLLADA DOM FX RT Install"
 Caption "COLLADA DOM FX RT Install"
 ;Icon "${EXEDIR}\icons\collada.ico"
-OutFile "Collada_DOM_FX_RT_2.0.0.exe"
+OutFile "../Collada_DOM_FX_RT_1.2.0.exe"
 
 Var PROGRAM_NAME
 SetCompressor /SOLID lzma
@@ -32,10 +32,11 @@ LicenseData "scea-shared-source-lic1.0.txt"
   !insertmacro MUI_PAGE_DIRECTORY
   !insertmacro MUI_PAGE_INSTFILES
   # These indented statements modify settings for MUI_PAGE_FINISH
-    !define MUI_FINISHPAGE_NOAUTOCLOSE
-    !define MUI_FINISHPAGE_SHOWREADME_CHECKED
-    !define MUI_FINISHPAGE_SHOWREADME $INSTDIR\readme_e.txt
-  !insertmacro MUI_PAGE_FINISH
+  #  !define MUI_FINISHPAGE_NOAUTOCLOSE
+  #  !define MUI_FINISHPAGE_SHOWREADME_CHECKED
+  #  !define MUI_FINISHPAGE_SHOWREADME_FUNCTION "LaunchReadme"
+  #  !define MUI_FINISHPAGE_SHOWREADME $INSTDIR\readme_e.txt
+  #!insertmacro MUI_PAGE_FINISH
 
 ;Languages
 !insertmacro MUI_LANGUAGE "English"
@@ -65,7 +66,7 @@ Section "" ; empty string makes it hidden, so would starting with -
  
 SectionEnd
 
-Section "Binary" Sec1
+Section "Binaries" Sec1
     SetOutPath $INSTDIR\bin 
 	File /nonfatal /r bin\*.*  
     SetOutPath $INSTDIR\bin-dbg
@@ -74,24 +75,29 @@ Section "Binary" Sec1
 	File /nonfatal /r lib\*.*  
     SetOutPath $INSTDIR\lib-dbg
 	File /nonfatal /r lib-dbg\*.*  
+    SetOutPath $INSTDIR\include
+	File /nonfatal /r include\*.*  
 
-    SetOutPath $INSTDIR\..\COLLADA_FX\bin 
-	File /nonfatal /r ..\COLLADA_FX\bin\*.*  
-    SetOutPath $INSTDIR\..\COLLADA_FX\bin-dbg
-	File /nonfatal /r ..\COLLADA_FX\bin-dbg\*.*  
     SetOutPath $INSTDIR\..\COLLADA_FX\lib 
 	File /nonfatal /r ..\COLLADA_FX\lib\*.*  
     SetOutPath $INSTDIR\..\COLLADA_FX\lib-dbg
 	File /nonfatal /r ..\COLLADA_FX\lib-dbg\*.*  
+    SetOutPath $INSTDIR\..\COLLADA_FX\include
+	File /nonfatal /r ..\COLLADA_FX\include\*.*  
 	
     SetOutPath $INSTDIR\..\COLLADA_RT\bin 
 	File /nonfatal /r ..\COLLADA_RT\bin\*.*  
-    SetOutPath $INSTDIR\..\COLLADA_RT\bin-dbg
-	File /nonfatal /r ..\COLLADA_RT\bin-dbg\*.*  
     SetOutPath $INSTDIR\..\COLLADA_RT\lib 
 	File /nonfatal /r ..\COLLADA_RT\lib\*.*  
     SetOutPath $INSTDIR\..\COLLADA_RT\lib-dbg
 	File /nonfatal /r ..\COLLADA_RT\lib-dbg\*.*   
+    SetOutPath $INSTDIR\..\COLLADA_RT\include
+	File /nonfatal /r ..\COLLADA_RT\include\*.*  
+
+    SetOutPath $INSTDIR\..\external-libs\libxml2
+	File /nonfatal /r ..\external-libs\libxml2\*.*  
+    SetOutPath $INSTDIR\..\external-libs\devil
+	File /nonfatal /r ..\external-libs\devil\*.*  
 
 SectionEnd
 
@@ -104,31 +110,33 @@ Section "Everthing" Sec2
 
 	SetOutPath $INSTDIR\..\COLLADA_RT
 	File /r /x *.ncb /x *.suo /x *.user /x *.svn-base /x all-wcprops /x entries /x format .\..\COLLADA_RT\*.*
+
+    SetOutPath $INSTDIR\..\external-libs\libxml2
+	File /nonfatal /r ..\external-libs\libxml2\*.*  
+    SetOutPath $INSTDIR\..\external-libs\devil
+	File /nonfatal /r ..\external-libs\devil\*.*  
+
 SectionEnd
 
 Section "Environment Variables" Sec5
-  Push COLLADA_LOCATION
-  Push $InstallDir
-  Call WriteEnvStr
- 
   Push "COLLADA_DOM_LOCATION"
-  Push "%COLLADA_LOCATION%/../COLLADA_DOM"
+  Push "$INSTDIR"
   Call WriteEnvStr
 
   Push "COLLADA_FX_LOCATION"
-  Push "%COLLADA_LOCATION%/../COLLADA_FX"
+  Push "$INSTDIR/../COLLADA_FX"
   Call WriteEnvStr
 
   Push "COLLADA_RT_LOCATION"
-  Push "%COLLADA_LOCATION%/../COLLADA_RT"
+  Push "$INSTDIR/../COLLADA_RT"
   Call WriteEnvStr
   
   Push "COLLADA_EXTERNAL_LIBS_LOCATION"
-  Push "%COLLADA_LOCATION%/../external-libs"
+  Push "$INSTDIR/../external-libs"
   Call WriteEnvStr
  
   Push "PATH"
-  Push "%COLLADA_DOM_LOCATION%/bin;%COLLADA_RT_LOCATION%/bin"
+  Push "$INSTDIR/../COLLADA_RT/bin"
   Call AddToEnvVar
 
 SectionEnd
@@ -153,28 +161,42 @@ Section "Uninstall"
   DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\COLLADA_DOM"
   DeleteRegKey HKLM Software\COLLADA_DOM
 
-  Push COLLADA_LOCATION
-  Push $InstallDir
-  Call un.RemoveFromEnvVar
- 
+  Push "$INSTDIR"
+  Push ""
+  Call un.RmDirsButOne
+  Delete "$INSTDIR\*.*"
+  RMDir "$INSTDIR"
+
+  Push "$INSTDIR\..\COLLADA_FX"
+  Push ""
+  Call un.RmDirsButOne
+  Delete "$INSTDIR\..\COLLADA_FX\*.*"
+  RMDir "$INSTDIR\..\COLLADA_FX"
+
+  Push "$INSTDIR\..\COLLADA_RT"
+  Push ""
+  Call un.RmDirsButOne
+  Delete "$INSTDIR\..\COLLADA_RT\*.*"
+  RMDir "$INSTDIR\..\COLLADA_RT"
+  
   Push "COLLADA_DOM_LOCATION"
-  Push "%COLLADA_LOCATION%/../COLLADA_DOM"
+  Push "$INSTDIR"
   Call un.RemoveFromEnvVar
 
   Push "COLLADA_FX_LOCATION"
-  Push "%COLLADA_LOCATION%/../COLLADA_FX"
+  Push "$INSTDIR/../COLLADA_FX"
   Call un.RemoveFromEnvVar
 
   Push "COLLADA_RT_LOCATION"
-  Push "%COLLADA_LOCATION%/../COLLADA_RT"
+  Push "$INSTDIR/../COLLADA_RT"
   Call un.RemoveFromEnvVar
 
   Push "COLLADA_EXTERNAL_LIBS_LOCATION"
-  Push "%COLLADA_LOCATION%/../external-libs"
+  Push "$INSTDIR/../external-libs"
   Call un.RemoveFromEnvVar
  
   Push "PATH"
-  Push "%COLLADA_DOM_LOCATION%/bin;%COLLADA_RT_LOCATION%/bin"
+  Push "$INSTDIR/../COLLADA_RT/bin"
   Call un.RemoveFromEnvVar
   
 SectionEnd
@@ -279,4 +301,6 @@ DetectMSVSEnd:
   Pop $1
 FunctionEnd
 
-
+Function LaunchReadme
+  ExecShell "" "$\"$PROGRAMFILES\Windows NT\Accessories\wordpad.exe$\" $INSTDIR\readme_e.txt"
+FunctionEnd
