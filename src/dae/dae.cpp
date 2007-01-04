@@ -17,6 +17,7 @@
 #include <dae/daeMetaElement.h>
 #include <modules/daeSTLDatabase.h>
 #include <dae/daeErrorHandler.h>
+#include <dae/daeRawResolver.h>
 
 #ifndef NO_DEFAULT_PLUGIN
 #ifndef DEFAULT_BXCEPLUGIN
@@ -73,6 +74,8 @@ DAE::DAE() : database(NULL),
 		topMeta = initializeDomMeta();
 	}
 	DAEInstanceCount++;
+	rawResolver = new daeRawResolver();
+	idResolver = new daeDefaultIDRefResolver();
 }
 
 DAE::~DAE()
@@ -82,8 +85,9 @@ DAE::~DAE()
 	if (defaultPlugin) {
 		delete plugin;
 		delete resolver;
-		delete idResolver;
 	}
+	delete rawResolver;
+	delete idResolver;
 	daeElement::clearResolveArray();
 	--DAEInstanceCount;
 	if ( DAEInstanceCount <= 0 )
@@ -103,7 +107,10 @@ daeInt DAE::setDatabase(daeDatabase* _database)
 	if (defaultDatabase)
 		delete database;
 	if (_database)
+	{
+		defaultDatabase = false;
 		database = _database;
+	}
 	else
 	{
 		//create default database
@@ -113,6 +120,7 @@ daeInt DAE::setDatabase(daeDatabase* _database)
 	// !!!GAC Not sure what good the error return is, current implementations never fail, what would we do if they did?
 	int res = database->setMeta(topMeta);
 	(void)res;
+	((daeDefaultIDRefResolver*)idResolver)->setDatabase( database );
 	return DAE_OK;
 }
 
@@ -124,10 +132,16 @@ daeIOPlugin* DAE::getIOPlugin()
 
 daeInt DAE::setIOPlugin(daeIOPlugin* _plugin)
 {
-	if (defaultPlugin)
+	if (defaultPlugin) 
+	{
 		delete plugin;
+		delete resolver;
+	}
 	if (_plugin)
+	{
+		defaultPlugin = false;
 		plugin = _plugin;
+	}
 	else
 	{
 		//create default plugin
@@ -146,9 +160,6 @@ daeInt DAE::setIOPlugin(daeIOPlugin* _plugin)
 		plugin = NULL;
 		return DAE_ERR_BACKEND_IO;
 #endif
-
-		// Setup the IDRef resolver
-		idResolver = new daeDefaultIDRefResolver(database);
 	}
 	int res = plugin->setMeta(topMeta);
 	if (res != DAE_OK)
@@ -304,7 +315,7 @@ daeInt DAE::saveAs(daeString name, daeUInt documentIndex, daeBool replace)
 
 	daeDocument *document = database->getDocument(documentIndex);
 	
-	daeURI tempURI(name);
+	daeURI tempURI(name, true);
 	return plugin->write(&tempURI, document, replace);
 }
 daeInt DAE::unload(daeString name)

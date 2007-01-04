@@ -141,12 +141,14 @@ Section "Environment Variables" Sec5
 
 SectionEnd
 
-LangString DESC_Section1 ${LANG_ENGLISH} "Binaries for Collada DOM/FX/RT for Microsoft Visual C++ 7.1"
-LangString DESC_Section2 ${LANG_ENGLISH} "Binaries and Source for Collada DOM/FX/RT for Microsoft Visual C++ 8.0"
+LangString DESC_Section1 ${LANG_ENGLISH} "Binaries for Collada DOM/FX/RT"
+LangString DESC_Section2 ${LANG_ENGLISH} "Binaries and Source for Collada DOM/FX/RT"
+LangString DESC_Section5 ${LANG_ENGLISH} "Set Environment Variables for building Collada DOM/FX/RT"
 
 !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
   !insertmacro MUI_DESCRIPTION_TEXT ${Sec1} $(DESC_Section1)
   !insertmacro MUI_DESCRIPTION_TEXT ${Sec2} $(DESC_Section2)
+  !insertmacro MUI_DESCRIPTION_TEXT ${Sec5} $(DESC_Section5)
 !insertmacro MUI_FUNCTION_DESCRIPTION_END
 
 ;--------------------------------
@@ -214,7 +216,7 @@ Function .onInit
   StrCmp $R0 "" done
  
   MessageBox MB_OKCANCEL|MB_ICONEXCLAMATION \
-  "Refinery is already installed. $\n$\nClick `OK` to remove the \
+  "COLLADA DOM/FX/RT is already installed. $\n$\nClick `OK` to remove the \
   previous version or `Cancel` to cancel this upgrade." \
   IDOK uninst
   Abort

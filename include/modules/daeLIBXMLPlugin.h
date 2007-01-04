@@ -16,10 +16,10 @@
 
 #include <vector>
 #include <dae/daeElement.h>
+#include <dae/daeURI.h>
 #include <dae/daeMetaAttribute.h>
 #include <dae/daeIOPlugin.h>
 
-class daeElement;
 class daeIntegrationObject;
 class daeMetaElement;
 class daeDocument;
@@ -65,10 +65,35 @@ public:
 		daeInt* lineNumber,
 		daeInt* totalBytes,
 		daeBool reset = false );
+
+	/**
+	 * setOption allows you to set options for this IOPlugin. Which options a plugin supports is
+	 * dependent on the plugin itself. There is currently no list of options that plugins are
+	 * suggested to implement. daeLibXML2Plugin supports only one option, "saveRawBinary". Set to 
+	 * "true" to save float_array data as a .raw binary file. The daeRawResolver will convert the 
+	 * data back into COLLADA domFloat_array elements upon load.
+	 * @param option The option to set.
+	 * @param value The value to set the option.
+	 * @return Returns DAE_OK upon success.
+	 */
+	virtual DLLSPEC daeInt setOption( daeString option, daeString value );
+
+	/**
+	 * getOption retrieves the value of an option from this IOPlugin. Which options a plugin supports is
+	 * dependent on the plugin itself.
+	 * @param option The option to get.
+	 * @return Returns the string value of the option or NULL if option is not valid.
+	 */
+	virtual DLLSPEC daeString getOption( daeString option );
 	
 private:
 //	xmlTextReaderPtr reader;
 	_xmlTextWriter *writer;
+
+	FILE *rawFile;
+	unsigned long rawFloatCount;
+	daeURI rawRelPath;
+	bool saveRawFile;
 
 	typedef struct
 	{
@@ -84,6 +109,8 @@ private:
 
 	void writeElement( daeElement* element ); 
 	void writeAttribute( daeMetaAttribute* attr, daeElement* element, daeInt attrNum = -1 );
+
+	void writeRawSource( daeElement* src );
 
 	void readAttributes( daeElement *element, _xmlTextReader *reader );
 	void readValue( daeElement *element, _xmlTextReader *reader );

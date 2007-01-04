@@ -214,9 +214,9 @@ daeIDRefResolver::~daeIDRefResolver()
 
 
 
-daeDefaultIDRefResolver::daeDefaultIDRefResolver(daeDatabase* database)
+daeDefaultIDRefResolver::daeDefaultIDRefResolver()
 {
-	_database = database;
+	_database = NULL;
 }
 
 daeDefaultIDRefResolver::~daeDefaultIDRefResolver()

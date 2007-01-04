@@ -304,12 +304,14 @@ public:
 	 * Constructor
 	 * @param database @c daeDatabase for this implementation.
 	 */
-	DLLSPEC daeDefaultIDRefResolver(daeDatabase* database);
+	DLLSPEC daeDefaultIDRefResolver();
 
 	/**
 	 * Destructor
 	 */
 	DLLSPEC ~daeDefaultIDRefResolver();
+
+	void setDatabase( daeDatabase *db ) { _database = db; }
 
 protected:
 	daeDatabase* _database;

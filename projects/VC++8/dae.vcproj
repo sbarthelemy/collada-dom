@@ -577,6 +577,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\dae\daeRawResolver.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\dae\daeSIDResolver.cpp"
 				>
 			</File>
@@ -704,6 +708,10 @@
 			</File>
 			<File
 				RelativePath="..\..\include\dae\daeMetaSequence.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\dae\daeRawResolver.h"
 				>
 			</File>
 			<File

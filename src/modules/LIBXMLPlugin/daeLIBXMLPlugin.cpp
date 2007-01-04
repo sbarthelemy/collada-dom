@@ -29,6 +29,9 @@
 daeLIBXMLPlugin::daeLIBXMLPlugin():topMeta(NULL),database(NULL)
 {
 	 xmlInitParser();
+	 rawFile = NULL;
+	 rawFloatCount = 0;
+	 saveRawFile = false;
 }
 
 daeLIBXMLPlugin::~daeLIBXMLPlugin()
@@ -45,6 +48,36 @@ daeInt daeLIBXMLPlugin::setMeta(daeMetaElement *_topMeta)
 void daeLIBXMLPlugin::setDatabase(daeDatabase* _database)
 {
 	database = _database;
+}
+
+daeInt daeLIBXMLPlugin::setOption( daeString option, daeString value )
+{
+	if ( strcmp( option, "saveRawBinary" ) == 0 )
+	{
+		if ( stricmp( value, "true" ) == 0 )
+		{
+			saveRawFile = true;
+		}
+		else
+		{
+			saveRawFile = false;
+		}
+		return DAE_OK;
+	}
+	return DAE_ERR_INVALID_CALL;
+}
+
+daeString daeLIBXMLPlugin::getOption( daeString option )
+{
+	if ( strcmp( option, "saveRawBinary" ) == 0 )
+	{
+		if ( saveRawFile )
+		{
+			return "true";
+		}
+		return "false";
+	}
+	return NULL;
 }
 
 void daeLIBXMLPlugin::getProgress(daeInt* bytesParsed,
@@ -591,18 +624,46 @@ daeInt daeLIBXMLPlugin::write(daeURI *name, daeDocument *document, daeBool repla
 		daeErrorHandler::get()->handleError( "can't get path in write\n" );
 		return DAE_ERR_BACKEND_IO;
 	}
-
 	// If replace=false, don't replace existing files
 	if(!replace)
 	{
 		// Using "stat" would be better, but it's not available on all platforms
-		FILE *tempfd = fopen(finalname,"r");
+		FILE *tempfd = fopen(finalname+1,"r");
 		if(tempfd != NULL)
 		{
 			// File exists, return error
 			fclose(tempfd);
 			return DAE_ERR_BACKEND_FILE_EXISTS;
 		}
+		fclose(tempfd);
+	}
+	if ( saveRawFile )
+	{
+		daeFixedName rawFilename;
+		strcpy( rawFilename, finalname+1);
+		strcat( rawFilename, ".raw" );
+		if ( !replace )
+		{
+			rawFile = fopen(rawFilename, "rb" );
+			if ( rawFile != NULL )
+			{
+				fclose(rawFile);
+				return DAE_ERR_BACKEND_FILE_EXISTS;
+			}
+			fclose(rawFile);
+		}
+		rawFile = fopen(rawFilename, "wb");
+		if ( rawFile == NULL )
+		{
+			return DAE_ERR_BACKEND_IO;
+		}
+		daeFixedName rawURIStr;
+		strcpy( rawURIStr, "/" );
+		strcat( rawURIStr, rawFilename );
+		rawRelPath.setURI( rawURIStr );
+		//rawRelPath.setURI( rawFilename );
+		rawRelPath.validate();
+		rawRelPath.makeRelativeTo( name );
 	}
 
 	// Open the file we will write to
@@ -623,6 +684,12 @@ daeInt daeLIBXMLPlugin::write(daeURI *name, daeDocument *document, daeBool repla
 	xmlTextWriterEndDocument( writer );
 	xmlTextWriterFlush( writer );
 	xmlFreeTextWriter( writer );
+
+	if ( saveRawFile && rawFile != NULL )
+	{
+		fclose( rawFile );
+	}
+
 	return DAE_OK;
 }
 
@@ -636,6 +703,35 @@ void daeLIBXMLPlugin::writeElement( daeElement* element )
 		_intObject->toCOLLADAChecked();
 		_intObject->toCOLLADAPostProcessChecked();
 	}
+
+	//intercept <source> elements for special handling
+	if ( saveRawFile )
+	{
+		if ( strcmp( element->getTypeName(), "source" ) == 0 )
+		{
+			daeElementRefArray children;
+			element->getChildren( children );
+			bool validArray = false, teqCommon = false;
+			for ( unsigned int i = 0; i < children.getCount(); i++ )
+			{
+				if ( strcmp( children[i]->getTypeName(), "float_array" ) == 0 || 
+					 strcmp( children[i]->getTypeName(), "int_array" ) == 0 )
+				{
+					validArray = true;
+				}
+				else if ( strcmp( children[i]->getTypeName(), "technique_common" ) == 0 )
+				{
+					teqCommon = true;
+				}
+			}
+			if ( validArray && teqCommon )
+			{
+				writeRawSource( element );
+				return;
+			}
+		}
+	}
+
 	if (!_meta->getIsTransparent() ) {
 		if ( element->getElementName() ) {
 			xmlTextWriterStartElement(writer, (xmlChar*)element->getElementName());
@@ -690,135 +786,6 @@ void daeLIBXMLPlugin::writeElement( daeElement* element )
 }
 
 #define TYPE_BUFFER_SIZE 1024*1024
-
-/*void daeLIBXMLPlugin::writeAttribute( daeMetaAttribute* attr, daeElement* element, daeInt attrNum )
-{
-	static daeChar atomicTypeBuf[TYPE_BUFFER_SIZE];
-	
-	if (element == NULL)
-		return;
-	if ( attr->getCount(element) == 0 ) {
-		//we don't have a value if its required print it empty else just skip
-		if ( attr->getIsRequired() ) {
-			xmlTextWriterStartAttribute( writer, (xmlChar*)(daeString)attr->getName() );
-			xmlTextWriterEndAttribute( writer );
-		}
-		return;
-	}
-	else if ( attr->getCount(element) == 1 ) { 
-		//single value or an array of a single value
-		char* elemMem = attr->get(element, 0);
-
-		// !!!GAC recoded the suppression logic so you could enable suppressions individually
-		if(!attr->getIsRequired())
-		{
-			// This attribute was not required and might get suppressed
-			int typeSize = attr->getType()->getSize();
-			if(attr->getDefault() != NULL)
-			{
-				#if 1
-				// The attribute has a default, convert the default to binary and suppress 
-				// output of the attribute if the value matches the default.
-				// DISABLE THIS CODE IF YOU WANT DEFAULT VALUES TO ALWAYS EXPORT
-				if(typeSize >= TYPE_BUFFER_SIZE)
-				{
-					char msg[512];
-					sprintf(msg,
-							"daeMetaAttribute::print() - buffer too small for default value of %s in %s\n",
-							(daeString)attr->getName(),(daeString)attr->getContainer()->getName());
-					daeErrorHandler::get()->handleError( msg );
-					return;
-				}
-				attr->getType()->stringToMemory((daeChar*)attr->getDefault(),atomicTypeBuf);
-				if(memcmp(atomicTypeBuf,elemMem,typeSize) == 0)
-					return;
-				#endif
-			}
-			else
-			{
-				#if 0
-				// The attribute does not have a default, suppress it if its value is all zeros (binary)
-				// DISABLE THIS CODE IF YOU WANT OPTIONAL ATTRIBUTES THAT HAVE A VALUE OF ZERO TO EXPORT
-				// Disabling this code may cause some unused attributes to be exported if _isValid is not
-				// enabled and properly used.
-				int i;
-				for(i=0; i<typeSize;i++)
-				{
-					if(elemMem[i] != 0)
-						break;
-				}
-				if(i == typeSize && attr->getContainer()->getValueAttribute() != attr && 
-					attr->getType()->getTypeEnum() != daeAtomicType::BoolType &&
-					attr->getType()->getTypeEnum() != daeAtomicType::EnumType )
-					return;
-				#endif
-				if ( attrNum != -1 && !element->isAttributeSet( attr->getName() ) ) {
-					return;
-				}
-			}
-		}
-
-		// Convert the attribute to a string
-
-		if (attr->getType()->memoryToString(elemMem, atomicTypeBuf,	TYPE_BUFFER_SIZE)== false) {
-			char msg[512];
-			sprintf(msg,
-					"daeMetaAttribute::print() - buffer too small for %s in %s\n",
-					(daeString)attr->getName(),(daeString)attr->getContainer()->getName());
-			daeErrorHandler::get()->handleError( msg );
-		}
-					
-		// Suppress attributes that convert to an empty string.
-
-		if (strlen(atomicTypeBuf) == 0)
-			return;
-
-		// Is this a value attribute or something else?
-
-		if (attr->getContainer()->getValueAttribute() == attr)
-		{
-			// Always export value attributes
-			xmlTextWriterWriteString( writer, (xmlChar*)atomicTypeBuf);
-		}
-		else
-		{
-			// Suppress attributes not marked as containing valid values
-			// DO NOT TURN THIS ON TILL ALL USER CODE HAS BEEN CHANGED TO SET _isValid OR
-			// ATTRIBUTES THAT WERE CREATED/SET BY USER CODE MAY NOT EXPORT.
-			#if 0
-			// NOTE: even if a value is marked REQUIRED by the schema, if _isValid isn't true it means
-			// the value in this parameter was never set and may be garbage, so we suppress it even though it is required.
-			// To change this add && !_isRequired to the expression below.
-			if(!attr->getIsValid() )
-				return;
-			#endif
-			// Export the attribute name and value
-			xmlTextWriterWriteAttribute( writer, (xmlChar*)(daeString)attr->getName(), (xmlChar*)atomicTypeBuf);
-		}
-	}
-	else {
-		if (attr->getContainer()->getValueAttribute() != attr)
-		{
-			xmlTextWriterStartAttribute( writer, (xmlChar*)(daeString)attr->getName() );
-		}
-		for( int i = 0; i < attr->getCount(element); i++ ) {
-			char* elemMem = attr->get(element, i);
-			if (attr->getType()->memoryToString(elemMem, atomicTypeBuf,	TYPE_BUFFER_SIZE)== false) 
-			{
-				char msg[512];
-				sprintf(msg,
-						"daeMetaArrayAttribute::print() - buffer too small for %s in %s\n",
-						(daeString)attr->getName(),(daeString)attr->getContainer()->getName());
-				daeErrorHandler::get()->handleError( msg );
-			}
-			xmlTextWriterWriteFormatString( writer, "%s ", (xmlChar*)atomicTypeBuf );
-		}
-		if (attr->getContainer()->getValueAttribute() != attr)
-		{
-			xmlTextWriterEndAttribute( writer );
-		}
-	}
-}*/
 
 void daeLIBXMLPlugin::writeAttribute( daeMetaAttribute* attr, daeElement* element, daeInt attrNum )
 {
@@ -915,3 +882,74 @@ void daeLIBXMLPlugin::writeAttribute( daeMetaAttribute* attr, daeElement* elemen
 	}
 }
 
+void daeLIBXMLPlugin::writeRawSource( daeElement *src )
+{
+	daeElementRef newSrc = src->clone();
+	daeElementRef array = NULL;
+	daeElement *accessor = NULL;
+	daeElementRefArray children;
+	newSrc->getChildren( children );
+	bool isInt = false;
+	for ( int i = 0; i < (int)children.getCount(); i++ )
+	{
+		if ( strcmp( children[i]->getTypeName(), "float_array" ) == 0 )
+		{
+			array = children[i];
+			newSrc->removeChildElement( array );
+		}
+		else if ( strcmp( children[i]->getTypeName(), "int_array" ) == 0 )
+		{
+			array = children[i];
+			isInt = true;
+			newSrc->removeChildElement( array );
+		}
+		else if ( strcmp( children[i]->getTypeName(), "technique_common" ) == 0 )
+		{
+			children[i]->getChildren( children );			
+		}
+		else if ( strcmp( children[i]->getTypeName(), "accessor" ) == 0 )
+		{
+			accessor = children[i];
+		}
+	}
+
+	daeULong *origOffsetPtr = (daeULong*)accessor->getAttributeValue( "offset" );
+	daeULong origOffset = origOffsetPtr != NULL ? *origOffsetPtr : 0;
+
+	daeULong *countPtr = (daeULong*)array->getAttributeValue( "count" );
+	daeULong count = countPtr != NULL ? *countPtr : 0;
+
+	daeULong *stridePtr = (daeULong*)accessor->getAttributeValue( "stride" );
+	daeULong stride = stridePtr != NULL ? *stridePtr : 1;
+
+	children.clear();
+	accessor->getChildren( children );
+	if ( children.getCount() > stride ) {
+		*stridePtr = children.getCount();
+	}
+
+	*origOffsetPtr = rawFloatCount;
+	accessor->setAttribute( "source", rawRelPath.getOriginalURI() );
+
+	daeArray *valArray = (daeArray*)array->getValuePointer();
+
+	if ( isInt )
+	{
+		for( daeULong i = origOffset; i < count-origOffset; i++ )
+		{
+			daeInt tmp = (daeInt)*(daeLong*)(valArray->getRawData() + i*sizeof(daeLong));
+			rawFloatCount += (unsigned long)fwrite( &tmp, sizeof(daeInt), 1, rawFile );
+		}
+	}
+	else
+	{
+		for( daeULong i = origOffset; i < count-origOffset; i++ )
+		{
+			daeFloat tmp = (daeFloat)*(daeDouble*)(valArray->getRawData() + i*sizeof(daeDouble));
+			rawFloatCount += (unsigned long)fwrite( &tmp, sizeof(daeFloat), 1, rawFile );
+		}
+		//rawFloatCount += (unsigned long)fwrite( valArray->getRawData() + origOffset*sizeof(daeDouble), sizeof(daeDouble), (size_t)(count-origOffset), rawFile );
+	}
+
+	writeElement( newSrc );
+}

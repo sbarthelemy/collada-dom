@@ -107,6 +107,24 @@ public:
 							 daeInt* totalBytes,
 							 daeBool reset = false ) = 0;
 	//@}
+
+	/**
+	 * setOption allows you to set options for this IOPlugin. Which options a plugin supports is
+	 * dependent on the plugin itself. There is currently no list of options that plugins are
+	 * suggested to implement.
+	 * @param option The option to set.
+	 * @param value The value to set the option.
+	 * @return Returns DAE_OK upon success.
+	 */
+	virtual DLLSPEC daeInt setOption( daeString option, daeString value ) = 0;
+
+	/**
+	 * getOption retrieves the value of an option from this IOPlugin. Which options a plugin supports is
+	 * dependent on the plugin itself.
+	 * @param option The option to get.
+	 * @return Returns the string value of the option or NULL if option is not valid.
+	 */
+	virtual DLLSPEC daeString getOption( daeString option ) = 0;
 };
 
 #endif // __DAE_IOPLUGIN__

@@ -94,6 +94,7 @@ private:
 	daeDatabase *database;
 	daeIOPlugin *plugin;
 	daeURIResolver* resolver;
+	daeURIResolver* rawResolver;
 	daeIDRefResolver* idResolver;
 	bool defaultDatabase;
 	bool defaultPlugin;
