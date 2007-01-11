@@ -67,6 +67,10 @@ daeRawResolver::resolveElement(daeURI& uri, daeString typeNameHint)
 	{
 		uri.validate();
 	}
+	if ( uri.getFile() == NULL )
+	{
+		return false;
+	}
 
 	daeFixedName finalname;
 	if (!uri.getPath(finalname,sizeof(finalname)))

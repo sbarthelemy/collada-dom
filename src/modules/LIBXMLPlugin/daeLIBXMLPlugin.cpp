@@ -479,7 +479,8 @@ daeLIBXMLPlugin::nextElement(daeMetaElement* thisMetaElement, xmlTextReaderPtr r
 	}
 
 	// Create the element that we found
-	daeElementRef element = thisMetaElement->create((const daeString)xmlTextReaderConstName(reader));
+	const daeString elName = (const daeString)xmlTextReaderConstName(reader); //helps with debugging
+	daeElementRef element = thisMetaElement->create(elName);
 	if(!element)
 	{
 		const xmlChar * mine =xmlTextReaderConstName(reader);

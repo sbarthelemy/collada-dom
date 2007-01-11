@@ -37,7 +37,15 @@ daeElement *daeMetaGroup::placeElement( daeElement *parent, daeElement *child, d
 		return false;
 	}
 	daeElementRef el;
-#if 0
+
+	//check if the element trying to be placed is a group element. If so Just add it don't create a new one.
+	if ( strcmp( nm, _elementContainer->getName() ) == 0 ) {
+		if ( _elementContainer->placeElement(parent, child, ordinal, offset ) != NULL ) {
+			return child;
+		}
+	}
+
+#if 1
 	daeInt elCnt = _elementContainer->getCount(parent);
 	//check existing groups
       //This doesn't work properly. Because the choice can't check if you make two decisions you cannot fail
@@ -52,49 +60,43 @@ daeElement *daeMetaGroup::placeElement( daeElement *parent, daeElement *child, d
 			continue;
 		}
 		if ( before != NULL ) {
-			if ( _elementContainer->_elementType->placeBefore( before, el, child, &ordinal ) ) {
+			if ( _elementContainer->_elementType->placeBefore( before, el, child, &ordinal ) != NULL ) {
 				ordinal = ordinal + _ordinalOffset;
-				return true;
+				return el;
 			}
 		}
 		else if ( after != NULL ) {
-			if ( _elementContainer->_elementType->placeAfter( after, el, child, &ordinal ) ) {
+			if ( _elementContainer->_elementType->placeAfter( after, el, child, &ordinal ) != NULL ) {
 				ordinal = ordinal + _ordinalOffset;
-				return true;
+				return el;
 			}
 		}
 		else {
-			if ( _elementContainer->_elementType->place( el, child, &ordinal ) ) {
+			if ( _elementContainer->_elementType->place( el, child, &ordinal ) != NULL ) {
 				ordinal = ordinal + _ordinalOffset;
-				return true;
+				return el;
 			}
 		}
 	}
 #endif
-	//check if the element trying to be placed is a group element. If so Just add it don't create a new one.
-	if ( strcmp( nm, _elementContainer->getName() ) == 0 ) {
-		if ( _elementContainer->placeElement(parent, child, ordinal, offset ) != NULL ) {
-			return child;
-		}
-	}
 	//if you couldn't place in existing groups make a new one if you can
 	el = _elementContainer->placeElement(parent, _elementContainer->_elementType->create(), ordinal, offset );
 	if ( el != NULL ) {
 		//el = *(daeElementRef*)_elementContainer->get(parent, elCnt );
 		if ( before != NULL ) {
-			if ( _elementContainer->_elementType->placeBefore( before, el, child, &ordinal ) ) {
+			if ( _elementContainer->_elementType->placeBefore( before, el, child, &ordinal ) != NULL ) {
 				ordinal = ordinal + _ordinalOffset;
 				return el;
 			}
 		}
 		else if ( after != NULL ) {
-			if ( _elementContainer->_elementType->placeAfter( after, el, child, &ordinal ) ) {
+			if ( _elementContainer->_elementType->placeAfter( after, el, child, &ordinal ) != NULL ) {
 				ordinal = ordinal + _ordinalOffset;
 				return el;
 			}
 		}
 		else {
-			if ( _elementContainer->_elementType->place( el, child, &ordinal ) ) {
+			if ( _elementContainer->_elementType->place( el, child, &ordinal ) != NULL ) {
 				ordinal = ordinal + _ordinalOffset;
 				return el;
 			}
@@ -115,7 +117,13 @@ daeBool daeMetaGroup::removeElement( daeElement *parent, daeElement *child ) {
 			continue;
 		}
 		if ( el->removeChildElement( child ) ) {
-			_elementContainer->removeChildElement( el );
+			//check if there are any more children in this group. If not remove the group container element too.
+			daeElementRefArray array;
+			getChildren( parent, array );
+			if ( array.getCount() == 0 )
+			{
+				_elementContainer->removeElement( parent, el );
+			}
 			return true;
 		}
 	}

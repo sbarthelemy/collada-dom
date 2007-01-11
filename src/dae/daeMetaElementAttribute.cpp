@@ -124,6 +124,11 @@ daeMetaElementAttribute::placeElement(daeElement* parent, daeElement* child, dae
 	}
 	daeElementRef* er = (daeElementRef*)getWritableMemory(parent);
 	
+	if ( *er != NULL )
+	{
+		return NULL;
+	}
+
 	daeElement::removeFromParent( child );
 	child->setParentElement( parent );
 

@@ -407,7 +407,10 @@ daeURI::internalSetURI(daeString _URIString)
 	if (fname == NULL)
 	{
 		// No / found, so the whole thing is the file name and there is no path
-		fname = curSrc;
+		if ( protocol == NULL )
+		{
+			fname = curSrc;
+		}
 		dir = NULL;
 	}
 	else 
@@ -696,7 +699,7 @@ daeURI::validate(daeURI* baseURI)
 	uriString = newURI;
 	state = uri_pending;
 
-	if ( container != NULL && container->getDocumentURI() != NULL ) {
+	if ( container != NULL && container->getDocumentURI() != NULL && filepath != NULL && file != NULL ) {
 	    daeString fp = container->getDocumentURI()->getFilepath();
 	    daeString f = container->getDocumentURI()->getFile();
 		if ( strcmp( fp, filepath ) != 0 || strcmp( f, file ) != 0 ) {

@@ -46,7 +46,12 @@ daeElement *daeMetaChoice::placeElement( daeElement *parent, daeElement *child, 
 		}
 		if ( retVal != NULL ) break;
 	}
-	/*if ( retVal && _maxOccurs != -1 ) {
+#if 0 
+	//This choice correctness check will not work because the DOM will register a child present when it can be in two 
+	//choices even if it was correctly added to just the first one. It doesn't know the difference because even though
+	//the two choices have different content models, the element stores both choice paths in the same memory, so when
+	//you check for a child you get it on both paths.
+	if ( retVal && _maxOccurs != -1 ) {
 		//check if the place was valid - only if we aren't unbounded. unbounded is always valid
 		daeInt cnt = 0;
 		daeElementRefArray array;
@@ -59,13 +64,13 @@ daeElement *daeMetaChoice::placeElement( daeElement *parent, daeElement *child, 
 				if ( cnt > _maxOccurs ) {
 					//picked too many choices - remove element and return false
 					removeElement( parent, child );
-					return false;
+					return NULL;
 				}
 				arrayCnt = array.getCount();
 			}
 		}
-
-	}*/
+	}
+#endif
 	return retVal;
 }
 

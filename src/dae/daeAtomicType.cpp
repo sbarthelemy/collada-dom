@@ -666,7 +666,7 @@ daeResolverType::stringToMemory(daeChar* src, daeChar* dstMemory)
 		} else if (*s == ' ') {
 			char err[512];
 			memset( err, 0, 512 );
-			sprintf(err,"uri contains white space, dom will convert them to %20 in output files!\n  uri=%s", src);
+			sprintf(err,"uri contains white space, dom will convert them to %%20 in output files!\n  uri=%s", src);
 			daeErrorHandler::get()->handleWarning( err );
 		}
 		*t=*s;

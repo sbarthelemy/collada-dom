@@ -69,8 +69,8 @@ protected:
 	daeBool								_allowsAny;
 	daeBool								_innerClass;
 	
-	static daeTArray<daeSmartRef<daeMetaElement> >		&_metas();
-	static daeTArray< daeMetaElement** >				&_classMetaPointers();
+	DLLSPEC static daeTArray<daeSmartRef<daeMetaElement> >		&_metas();
+	DLLSPEC static daeTArray< daeMetaElement** >				&_classMetaPointers();
 
     daeMetaCMPolicy *					_contentModel;	
 

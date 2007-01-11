@@ -26,6 +26,7 @@ void
 daeElement::release() const
 {
 	if (--_refCount <= 0)
+
 		delete this;
 }
 daeElementRef DAECreateElement(int nbytes)
