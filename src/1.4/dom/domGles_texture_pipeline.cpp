@@ -39,7 +39,7 @@ domGles_texture_pipeline::registerElement()
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
-	cm = new daeMetaChoice( _Meta, cm, 0, 1, -1 );
+	cm = new daeMetaChoice( _Meta, cm, 0, 0, 1, -1 );
 
 	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "texcombiner" );
@@ -65,7 +65,7 @@ domGles_texture_pipeline::registerElement()
     _Meta->addContents(daeOffsetOf(domGles_texture_pipeline,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domGles_texture_pipeline,_contentsOrder));
 
-
+    _Meta->addCMDataArray(daeOffsetOf(domGles_texture_pipeline,_CMData), 1);
 	//	Add attribute: sid
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;

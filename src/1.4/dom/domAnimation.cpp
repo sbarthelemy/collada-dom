@@ -47,7 +47,7 @@ domAnimation::registerElement()
 	mea->setElementType( domAsset::registerElement() );
 	cm->appendChild( mea );
 	
-	cm = new daeMetaChoice( _Meta, cm, 1, 1, 1 );
+	cm = new daeMetaChoice( _Meta, cm, 0, 1, 1, 1 );
 
 	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
 
@@ -57,7 +57,7 @@ domAnimation::registerElement()
 	mea->setElementType( domSource::registerElement() );
 	cm->appendChild( mea );
 	
-	cm = new daeMetaChoice( _Meta, cm, 1, 1, 1 );
+	cm = new daeMetaChoice( _Meta, cm, 1, 1, 1, 1 );
 
 	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
 
@@ -143,7 +143,7 @@ domAnimation::registerElement()
     _Meta->addContents(daeOffsetOf(domAnimation,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domAnimation,_contentsOrder));
 
-
+    _Meta->addCMDataArray(daeOffsetOf(domAnimation,_CMData), 2);
 	//	Add attribute: id
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;

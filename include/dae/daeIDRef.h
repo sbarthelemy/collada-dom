@@ -108,9 +108,9 @@ public:
 	inline daeElement* getContainer() const {return(container);};
 	/**
 	 * Sets the pointer to the @c daeElement that contains this URI.
-	 * @param element Pointer to the containing @c daeElmement.
+	 * @param cont Pointer to the containing @c daeElmement.
 	 */
-	inline void setContainer(daeElement* element){container=element;};
+	inline void setContainer(daeElement* cont){container=cont;};
 
 public:
 	/**

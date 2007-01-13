@@ -39,7 +39,7 @@ domGlsl_newarray_type::registerElement()
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
-	cm = new daeMetaChoice( _Meta, cm, 0, 0, -1 );
+	cm = new daeMetaChoice( _Meta, cm, 0, 0, 0, -1 );
 
 	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "glsl_param_type" );
@@ -59,7 +59,7 @@ domGlsl_newarray_type::registerElement()
     _Meta->addContents(daeOffsetOf(domGlsl_newarray_type,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domGlsl_newarray_type,_contentsOrder));
 
-
+    _Meta->addCMDataArray(daeOffsetOf(domGlsl_newarray_type,_CMData), 1);
 	//	Add attribute: length
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;

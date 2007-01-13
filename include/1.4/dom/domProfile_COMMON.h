@@ -498,6 +498,11 @@ public:
 		 */
 		daeUIntArray       _contentsOrder;
 
+		/**
+		 * Used to store information needed for some content model objects.
+		 */
+		daeTArray< daeCharArray * > _CMData;
+
 
 	public:	//Accessors and Mutators
 		/**
@@ -659,6 +664,11 @@ protected:  // Elements
 	 * Used to preserve order in elements that have a complex content model.
 	 */
 	daeUIntArray       _contentsOrder;
+
+	/**
+	 * Used to store information needed for some content model objects.
+	 */
+	daeTArray< daeCharArray * > _CMData;
 
 
 public:	//Accessors and Mutators

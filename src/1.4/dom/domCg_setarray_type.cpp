@@ -39,7 +39,7 @@ domCg_setarray_type::registerElement()
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
-	cm = new daeMetaChoice( _Meta, cm, 0, 0, -1 );
+	cm = new daeMetaChoice( _Meta, cm, 0, 0, 0, -1 );
 
 	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "cg_param_type" );
@@ -65,7 +65,7 @@ domCg_setarray_type::registerElement()
     _Meta->addContents(daeOffsetOf(domCg_setarray_type,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domCg_setarray_type,_contentsOrder));
 
-
+    _Meta->addCMDataArray(daeOffsetOf(domCg_setarray_type,_CMData), 1);
 	//	Add attribute: length
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;

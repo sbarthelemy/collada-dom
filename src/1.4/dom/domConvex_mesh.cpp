@@ -54,7 +54,7 @@ domConvex_mesh::registerElement()
 	mea->setElementType( domVertices::registerElement() );
 	cm->appendChild( mea );
 	
-	cm = new daeMetaChoice( _Meta, cm, 2, 0, -1 );
+	cm = new daeMetaChoice( _Meta, cm, 0, 2, 0, -1 );
 
 	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "lines" );
@@ -114,7 +114,7 @@ domConvex_mesh::registerElement()
     _Meta->addContents(daeOffsetOf(domConvex_mesh,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domConvex_mesh,_contentsOrder));
 
-
+    _Meta->addCMDataArray(daeOffsetOf(domConvex_mesh,_CMData), 1);
 	//	Add attribute: convex_hull_of
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;

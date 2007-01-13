@@ -39,7 +39,7 @@ domFx_surface_init_planar_common::registerElement()
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
-	cm = new daeMetaChoice( _Meta, cm, 0, 1, 1 );
+	cm = new daeMetaChoice( _Meta, cm, 0, 0, 1, 1 );
 
 	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "all" );

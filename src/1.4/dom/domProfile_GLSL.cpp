@@ -47,7 +47,7 @@ domProfile_GLSL::registerElement()
 	mea->setElementType( domAsset::registerElement() );
 	cm->appendChild( mea );
 	
-	cm = new daeMetaChoice( _Meta, cm, 1, 0, -1 );
+	cm = new daeMetaChoice( _Meta, cm, 0, 1, 0, -1 );
 
 	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "code" );
@@ -65,7 +65,7 @@ domProfile_GLSL::registerElement()
 	cm->getParent()->appendChild( cm );
 	cm = cm->getParent();
 	
-	cm = new daeMetaChoice( _Meta, cm, 3002, 0, -1 );
+	cm = new daeMetaChoice( _Meta, cm, 1, 3002, 0, -1 );
 
 	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "image" );
@@ -101,7 +101,7 @@ domProfile_GLSL::registerElement()
     _Meta->addContents(daeOffsetOf(domProfile_GLSL,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domProfile_GLSL,_contentsOrder));
 
-
+    _Meta->addCMDataArray(daeOffsetOf(domProfile_GLSL,_CMData), 2);
 	//	Add attribute: id
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
@@ -149,7 +149,7 @@ domProfile_GLSL::domTechnique::registerElement()
 	mea->setElementType( domFx_annotate_common::registerElement() );
 	cm->appendChild( mea );
 	
-	cm = new daeMetaChoice( _Meta, cm, 1, 0, -1 );
+	cm = new daeMetaChoice( _Meta, cm, 0, 1, 0, -1 );
 
 	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "code" );
@@ -167,7 +167,7 @@ domProfile_GLSL::domTechnique::registerElement()
 	cm->getParent()->appendChild( cm );
 	cm = cm->getParent();
 	
-	cm = new daeMetaChoice( _Meta, cm, 3002, 0, -1 );
+	cm = new daeMetaChoice( _Meta, cm, 1, 3002, 0, -1 );
 
 	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "image" );
@@ -209,7 +209,7 @@ domProfile_GLSL::domTechnique::registerElement()
     _Meta->addContents(daeOffsetOf(domProfile_GLSL::domTechnique,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domProfile_GLSL::domTechnique,_contentsOrder));
 
-
+    _Meta->addCMDataArray(daeOffsetOf(domProfile_GLSL::domTechnique,_CMData), 2);
 	//	Add attribute: id
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
@@ -310,7 +310,7 @@ domProfile_GLSL::domTechnique::domPass::registerElement()
 	mea->setElementType( domProfile_GLSL::domTechnique::domPass::domDraw::registerElement() );
 	cm->appendChild( mea );
 	
-	cm = new daeMetaChoice( _Meta, cm, 8, 1, -1 );
+	cm = new daeMetaChoice( _Meta, cm, 0, 8, 1, -1 );
 
 	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "gl_pipeline_settings" );
@@ -340,7 +340,7 @@ domProfile_GLSL::domTechnique::domPass::registerElement()
     _Meta->addContents(daeOffsetOf(domProfile_GLSL::domTechnique::domPass,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domProfile_GLSL::domTechnique::domPass,_contentsOrder));
 
-
+    _Meta->addCMDataArray(daeOffsetOf(domProfile_GLSL::domTechnique::domPass,_CMData), 1);
 	//	Add attribute: sid
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
@@ -611,7 +611,7 @@ domProfile_GLSL::domTechnique::domPass::domShader::domBind::registerElement()
 	_Meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
-	cm = new daeMetaChoice( _Meta, cm, 0, 1, 1 );
+	cm = new daeMetaChoice( _Meta, cm, 0, 0, 1, 1 );
 
 	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "glsl_param_type" );
@@ -631,7 +631,7 @@ domProfile_GLSL::domTechnique::domPass::domShader::domBind::registerElement()
     _Meta->addContents(daeOffsetOf(domProfile_GLSL::domTechnique::domPass::domShader::domBind,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domProfile_GLSL::domTechnique::domPass::domShader::domBind,_contentsOrder));
 
-
+    _Meta->addCMDataArray(daeOffsetOf(domProfile_GLSL::domTechnique::domPass::domShader::domBind,_CMData), 1);
 	//	Add attribute: symbol
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;

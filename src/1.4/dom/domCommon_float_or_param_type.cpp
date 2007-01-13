@@ -39,7 +39,7 @@ domCommon_float_or_param_type::registerElement()
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
-	cm = new daeMetaChoice( _Meta, cm, 0, 1, 1 );
+	cm = new daeMetaChoice( _Meta, cm, 0, 0, 1, 1 );
 
 	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "float" );
@@ -59,7 +59,7 @@ domCommon_float_or_param_type::registerElement()
     _Meta->addContents(daeOffsetOf(domCommon_float_or_param_type,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domCommon_float_or_param_type,_contentsOrder));
 
-	
+    _Meta->addCMDataArray(daeOffsetOf(domCommon_float_or_param_type,_CMData), 1);	
 	
 	_Meta->setElementSize(sizeof(domCommon_float_or_param_type));
 	_Meta->validate();

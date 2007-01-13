@@ -59,7 +59,7 @@ domFx_surface_common::registerElement()
 	mea->setElementType( domFx_surface_format_hint_common::registerElement() );
 	cm->appendChild( mea );
 	
-	cm = new daeMetaChoice( _Meta, cm, 3, 0, 1 );
+	cm = new daeMetaChoice( _Meta, cm, 0, 3, 0, 1 );
 
 	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "size" );
@@ -101,7 +101,7 @@ domFx_surface_common::registerElement()
     _Meta->addContents(daeOffsetOf(domFx_surface_common,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domFx_surface_common,_contentsOrder));
 
-
+    _Meta->addCMDataArray(daeOffsetOf(domFx_surface_common,_CMData), 1);
 	//	Add attribute: type
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;

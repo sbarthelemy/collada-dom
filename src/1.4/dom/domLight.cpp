@@ -117,7 +117,7 @@ domLight::domTechnique_common::registerElement()
 	_Meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
-	cm = new daeMetaChoice( _Meta, cm, 0, 1, 1 );
+	cm = new daeMetaChoice( _Meta, cm, 0, 0, 1, 1 );
 
 	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "ambient" );
@@ -149,7 +149,7 @@ domLight::domTechnique_common::registerElement()
     _Meta->addContents(daeOffsetOf(domLight::domTechnique_common,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domLight::domTechnique_common,_contentsOrder));
 
-	
+    _Meta->addCMDataArray(daeOffsetOf(domLight::domTechnique_common,_CMData), 1);	
 	
 	_Meta->setElementSize(sizeof(domLight::domTechnique_common));
 	_Meta->validate();

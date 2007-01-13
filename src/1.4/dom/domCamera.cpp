@@ -167,7 +167,7 @@ domCamera::domOptics::domTechnique_common::registerElement()
 	_Meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
-	cm = new daeMetaChoice( _Meta, cm, 0, 1, 1 );
+	cm = new daeMetaChoice( _Meta, cm, 0, 0, 1, 1 );
 
 	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "orthographic" );
@@ -187,7 +187,7 @@ domCamera::domOptics::domTechnique_common::registerElement()
     _Meta->addContents(daeOffsetOf(domCamera::domOptics::domTechnique_common,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domCamera::domOptics::domTechnique_common,_contentsOrder));
 
-	
+    _Meta->addCMDataArray(daeOffsetOf(domCamera::domOptics::domTechnique_common,_CMData), 1);
 	
 	_Meta->setElementSize(sizeof(domCamera::domOptics::domTechnique_common));
 	_Meta->validate();
@@ -217,7 +217,7 @@ domCamera::domOptics::domTechnique_common::domOrthographic::registerElement()
 	daeMetaElementAttribute *mea = NULL;
 	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
 
-	cm = new daeMetaChoice( _Meta, cm, 0, 1, 1 );
+	cm = new daeMetaChoice( _Meta, cm, 0, 0, 1, 1 );
 
 	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
 
@@ -227,7 +227,7 @@ domCamera::domOptics::domTechnique_common::domOrthographic::registerElement()
 	mea->setElementType( domTargetableFloat::registerElement() );
 	cm->appendChild( mea );
 	
-	cm = new daeMetaChoice( _Meta, cm, 1, 0, 1 );
+	cm = new daeMetaChoice( _Meta, cm, 1, 1, 0, 1 );
 
 	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "ymag" );
@@ -289,7 +289,7 @@ domCamera::domOptics::domTechnique_common::domOrthographic::registerElement()
     _Meta->addContents(daeOffsetOf(domCamera::domOptics::domTechnique_common::domOrthographic,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domCamera::domOptics::domTechnique_common::domOrthographic,_contentsOrder));
 
-	
+    _Meta->addCMDataArray(daeOffsetOf(domCamera::domOptics::domTechnique_common::domOrthographic,_CMData), 2);
 	
 	_Meta->setElementSize(sizeof(domCamera::domOptics::domTechnique_common::domOrthographic));
 	_Meta->validate();
@@ -319,7 +319,7 @@ domCamera::domOptics::domTechnique_common::domPerspective::registerElement()
 	daeMetaElementAttribute *mea = NULL;
 	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
 
-	cm = new daeMetaChoice( _Meta, cm, 0, 1, 1 );
+	cm = new daeMetaChoice( _Meta, cm, 0, 0, 1, 1 );
 
 	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
 
@@ -329,7 +329,7 @@ domCamera::domOptics::domTechnique_common::domPerspective::registerElement()
 	mea->setElementType( domTargetableFloat::registerElement() );
 	cm->appendChild( mea );
 	
-	cm = new daeMetaChoice( _Meta, cm, 1, 0, 1 );
+	cm = new daeMetaChoice( _Meta, cm, 1, 1, 0, 1 );
 
 	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "yfov" );
@@ -351,7 +351,7 @@ domCamera::domOptics::domTechnique_common::domPerspective::registerElement()
 	cm->getParent()->appendChild( cm );
 	cm = cm->getParent();
 	
-	cm = new daeMetaSequence( _Meta, cm, 2, 1, 1 );
+	cm = new daeMetaSequence( _Meta, cm, 0, 1, 1 );
 
 	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "yfov" );
@@ -391,7 +391,7 @@ domCamera::domOptics::domTechnique_common::domPerspective::registerElement()
     _Meta->addContents(daeOffsetOf(domCamera::domOptics::domTechnique_common::domPerspective,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domCamera::domOptics::domTechnique_common::domPerspective,_contentsOrder));
 
-	
+    _Meta->addCMDataArray(daeOffsetOf(domCamera::domOptics::domTechnique_common::domPerspective,_CMData), 2);
 	
 	_Meta->setElementSize(sizeof(domCamera::domOptics::domTechnique_common::domPerspective));
 	_Meta->validate();

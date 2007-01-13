@@ -138,7 +138,7 @@ domRigid_body::domTechnique_common::registerElement()
 	mea->setElementType( domTargetableFloat3::registerElement() );
 	cm->appendChild( mea );
 	
-	cm = new daeMetaChoice( _Meta, cm, 4, 0, 1 );
+	cm = new daeMetaChoice( _Meta, cm, 0, 4, 0, 1 );
 
 	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "instance_physics_material" );
@@ -168,7 +168,7 @@ domRigid_body::domTechnique_common::registerElement()
     _Meta->addContents(daeOffsetOf(domRigid_body::domTechnique_common,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domRigid_body::domTechnique_common,_contentsOrder));
 
-	
+    _Meta->addCMDataArray(daeOffsetOf(domRigid_body::domTechnique_common,_CMData), 1);	
 	
 	_Meta->setElementSize(sizeof(domRigid_body::domTechnique_common));
 	_Meta->validate();
@@ -242,7 +242,7 @@ domRigid_body::domTechnique_common::domMass_frame::registerElement()
 	_Meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
-	cm = new daeMetaChoice( _Meta, cm, 0, 1, -1 );
+	cm = new daeMetaChoice( _Meta, cm, 0, 0, 1, -1 );
 
 	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "translate" );
@@ -262,7 +262,7 @@ domRigid_body::domTechnique_common::domMass_frame::registerElement()
     _Meta->addContents(daeOffsetOf(domRigid_body::domTechnique_common::domMass_frame,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domRigid_body::domTechnique_common::domMass_frame,_contentsOrder));
 
-	
+    _Meta->addCMDataArray(daeOffsetOf(domRigid_body::domTechnique_common::domMass_frame,_CMData), 1);	
 	
 	_Meta->setElementSize(sizeof(domRigid_body::domTechnique_common::domMass_frame));
 	_Meta->validate();
@@ -310,7 +310,7 @@ domRigid_body::domTechnique_common::domShape::registerElement()
 	mea->setElementType( domTargetableFloat::registerElement() );
 	cm->appendChild( mea );
 	
-	cm = new daeMetaChoice( _Meta, cm, 3, 0, 1 );
+	cm = new daeMetaChoice( _Meta, cm, 0, 3, 0, 1 );
 
 	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "instance_physics_material" );
@@ -328,7 +328,7 @@ domRigid_body::domTechnique_common::domShape::registerElement()
 	cm->getParent()->appendChild( cm );
 	cm = cm->getParent();
 	
-	cm = new daeMetaChoice( _Meta, cm, 4, 1, 1 );
+	cm = new daeMetaChoice( _Meta, cm, 1, 4, 1, 1 );
 
 	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "instance_geometry" );
@@ -382,7 +382,7 @@ domRigid_body::domTechnique_common::domShape::registerElement()
 	cm->getParent()->appendChild( cm );
 	cm = cm->getParent();
 	
-	cm = new daeMetaChoice( _Meta, cm, 5, 0, -1 );
+	cm = new daeMetaChoice( _Meta, cm, 2, 5, 0, -1 );
 
 	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "translate" );
@@ -412,7 +412,7 @@ domRigid_body::domTechnique_common::domShape::registerElement()
     _Meta->addContents(daeOffsetOf(domRigid_body::domTechnique_common::domShape,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domRigid_body::domTechnique_common::domShape,_contentsOrder));
 
-	
+    _Meta->addCMDataArray(daeOffsetOf(domRigid_body::domTechnique_common::domShape,_CMData), 3);	
 	
 	_Meta->setElementSize(sizeof(domRigid_body::domTechnique_common::domShape));
 	_Meta->validate();

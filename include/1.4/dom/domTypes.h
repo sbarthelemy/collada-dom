@@ -17,7 +17,7 @@
 #include <dae/daeDomTypes.h>
 
 // Register all types
-extern void registerDomTypes();
+//extern void registerDomTypes();
 
 typedef xsBoolean		domBool;
 typedef xsDateTime		domDateTime;

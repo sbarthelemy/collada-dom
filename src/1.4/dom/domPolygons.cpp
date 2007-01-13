@@ -47,7 +47,7 @@ domPolygons::registerElement()
 	mea->setElementType( domInputLocalOffset::registerElement() );
 	cm->appendChild( mea );
 	
-	cm = new daeMetaChoice( _Meta, cm, 1, 0, -1 );
+	cm = new daeMetaChoice( _Meta, cm, 0, 1, 0, -1 );
 
 	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "p" );
@@ -77,7 +77,7 @@ domPolygons::registerElement()
     _Meta->addContents(daeOffsetOf(domPolygons,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domPolygons,_contentsOrder));
 
-
+    _Meta->addCMDataArray(daeOffsetOf(domPolygons,_CMData), 1);
 	//	Add attribute: name
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;

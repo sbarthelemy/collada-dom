@@ -47,7 +47,7 @@ domProfile_COMMON::registerElement()
 	mea->setElementType( domAsset::registerElement() );
 	cm->appendChild( mea );
 	
-	cm = new daeMetaChoice( _Meta, cm, 1, 0, -1 );
+	cm = new daeMetaChoice( _Meta, cm, 0, 1, 0, -1 );
 
 	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "image" );
@@ -83,7 +83,7 @@ domProfile_COMMON::registerElement()
     _Meta->addContents(daeOffsetOf(domProfile_COMMON,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domProfile_COMMON,_contentsOrder));
 
-
+    _Meta->addCMDataArray(daeOffsetOf(domProfile_COMMON,_CMData), 1);
 	//	Add attribute: id
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
@@ -131,7 +131,7 @@ domProfile_COMMON::domTechnique::registerElement()
 	mea->setElementType( domAsset::registerElement() );
 	cm->appendChild( mea );
 	
-	cm = new daeMetaChoice( _Meta, cm, 1, 0, -1 );
+	cm = new daeMetaChoice( _Meta, cm, 0, 1, 0, -1 );
 
 	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "image" );
@@ -149,7 +149,7 @@ domProfile_COMMON::domTechnique::registerElement()
 	cm->getParent()->appendChild( cm );
 	cm = cm->getParent();
 	
-	cm = new daeMetaChoice( _Meta, cm, 3002, 1, 1 );
+	cm = new daeMetaChoice( _Meta, cm, 1, 3002, 1, 1 );
 
 	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "constant" );
@@ -191,7 +191,7 @@ domProfile_COMMON::domTechnique::registerElement()
     _Meta->addContents(daeOffsetOf(domProfile_COMMON::domTechnique,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domProfile_COMMON::domTechnique,_contentsOrder));
 
-
+    _Meta->addCMDataArray(daeOffsetOf(domProfile_COMMON::domTechnique,_CMData), 2);
 	//	Add attribute: id
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;

@@ -39,9 +39,9 @@ domCg_setuser_type::registerElement()
 
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
-	cm = new daeMetaChoice( _Meta, cm, 0, 0, 1 );
+	cm = new daeMetaChoice( _Meta, cm, 0, 0, 0, 1 );
 
-	cm = new daeMetaChoice( _Meta, cm, 0, 1, -1 );
+	cm = new daeMetaChoice( _Meta, cm, 1, 0, 1, -1 );
 
 	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "cg_param_type" );
@@ -83,7 +83,7 @@ domCg_setuser_type::registerElement()
     _Meta->addContents(daeOffsetOf(domCg_setuser_type,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domCg_setuser_type,_contentsOrder));
 
-
+    _Meta->addCMDataArray(daeOffsetOf(domCg_setuser_type,_CMData), 2);
 	//	Add attribute: name
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;

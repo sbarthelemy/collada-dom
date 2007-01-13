@@ -73,6 +73,8 @@ protected:
 	DLLSPEC static daeTArray< daeMetaElement** >				&_classMetaPointers();
 
     daeMetaCMPolicy *					_contentModel;	
+	daeMetaArrayAttribute*				_metaCMData;
+	daeUInt								_numMetaChoices;
 
 public:
 	/**
@@ -252,6 +254,15 @@ public:
 	 * @param offset Byte offset for the contents order array in the C++ element class.
 	 */
 	DLLSPEC void addContentsOrder( daeInt offset );
+	/**
+	 * Registers with the reflective object system that the dom class described by this @c daeMetaElement
+	 * contains at least one choice group in the content model for this element. This method is @em only 
+	 * for @c daeMetaElement contstuction, and should only be called by the system as it sets up the 
+	 * Reflective Object System.
+	 * @param offset Byte offset for the contents field in the C++ element class.
+	 * @param numChoices The number of choice content model blocks there are for this element type.
+	 */
+	DLLSPEC void addCMDataArray( daeInt offset, daeUInt numChoices );
 
 	/**
 	 * Gets the attribute associated with the contents meta information.
@@ -259,6 +270,17 @@ public:
 	 * @return Returns the @c daeMetaElementArrayAttribute.
 	 */
 	daeMetaElementArrayAttribute* getContents() { return _metaContents; }
+	/**
+	 * Gets the attribute associated with the CMData array meta information.
+	 * @see @c addCMDataArray()
+	 * @return Returns the @c daeMetaArrayAttribute for the CMData of an element.
+	 */
+	daeMetaArrayAttribute* getMetaCMData() { return _metaCMData; }
+	/**
+	 * Gets the number of choice content model blocks there are for this element type.
+	 * @return Returns the number of daeMetaChoice's there are in the content model.
+	 */
+	daeUInt getNumChoices() const { return _numMetaChoices; }
 
 	/**
 	 * Appends a @c daeMetaAttribute that represents a field corresponding to an

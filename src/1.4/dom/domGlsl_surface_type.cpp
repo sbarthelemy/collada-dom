@@ -61,7 +61,7 @@ domGlsl_surface_type::registerElement()
 	mea->setElementType( domFx_surface_format_hint_common::registerElement() );
 	cm->appendChild( mea );
 	
-	cm = new daeMetaChoice( _Meta, cm, 3, 0, 1 );
+	cm = new daeMetaChoice( _Meta, cm, 0, 3, 0, 1 );
 
 	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "size" );
@@ -167,7 +167,7 @@ domGlsl_surface_type::domGenerator::registerElement()
 	mea->setElementType( domFx_annotate_common::registerElement() );
 	cm->appendChild( mea );
 	
-	cm = new daeMetaChoice( _Meta, cm, 1, 1, -1 );
+	cm = new daeMetaChoice( _Meta, cm, 0, 1, 1, -1 );
 
 	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "code" );
@@ -203,7 +203,7 @@ domGlsl_surface_type::domGenerator::registerElement()
     _Meta->addContents(daeOffsetOf(domGlsl_surface_type::domGenerator,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domGlsl_surface_type::domGenerator,_contentsOrder));
 
-	
+    _Meta->addCMDataArray(daeOffsetOf(domGlsl_surface_type::domGenerator,_CMData), 1);	
 	
 	_Meta->setElementSize(sizeof(domGlsl_surface_type::domGenerator));
 	_Meta->validate();

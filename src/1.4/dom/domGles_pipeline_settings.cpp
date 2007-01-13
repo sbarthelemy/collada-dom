@@ -40,7 +40,7 @@ domGles_pipeline_settings::registerElement()
 	_Meta->setIsTransparent( true );
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
-	cm = new daeMetaChoice( _Meta, cm, 0, 1, 1 );
+	cm = new daeMetaChoice( _Meta, cm, 0, 0, 1, 1 );
 
 	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "alpha_func" );
@@ -486,7 +486,7 @@ domGles_pipeline_settings::registerElement()
     _Meta->addContents(daeOffsetOf(domGles_pipeline_settings,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domGles_pipeline_settings,_contentsOrder));
 
-	
+    _Meta->addCMDataArray(daeOffsetOf(domGles_pipeline_settings,_CMData), 1);	
 	
 	_Meta->setElementSize(sizeof(domGles_pipeline_settings));
 	_Meta->validate();

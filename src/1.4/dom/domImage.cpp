@@ -47,7 +47,7 @@ domImage::registerElement()
 	mea->setElementType( domAsset::registerElement() );
 	cm->appendChild( mea );
 	
-	cm = new daeMetaChoice( _Meta, cm, 1, 1, 1 );
+	cm = new daeMetaChoice( _Meta, cm, 0, 1, 1, 1 );
 
 	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "data" );
@@ -77,7 +77,7 @@ domImage::registerElement()
     _Meta->addContents(daeOffsetOf(domImage,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domImage,_contentsOrder));
 
-
+    _Meta->addCMDataArray(daeOffsetOf(domImage,_CMData), 1);
 	//	Add attribute: id
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;

@@ -40,7 +40,7 @@ domFx_surface_init_common::registerElement()
 	_Meta->setIsTransparent( true );
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
-	cm = new daeMetaChoice( _Meta, cm, 0, 1, 1 );
+	cm = new daeMetaChoice( _Meta, cm, 0, 0, 1, 1 );
 
 	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "init_as_null" );
@@ -84,7 +84,7 @@ domFx_surface_init_common::registerElement()
     _Meta->addContents(daeOffsetOf(domFx_surface_init_common,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domFx_surface_init_common,_contentsOrder));
 
-	
+    _Meta->addCMDataArray(daeOffsetOf(domFx_surface_init_common,_CMData), 1);	
 	
 	_Meta->setElementSize(sizeof(domFx_surface_init_common));
 	_Meta->validate();

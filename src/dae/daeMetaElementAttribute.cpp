@@ -219,7 +219,7 @@ daeMetaElement *daeMetaElementAttribute::findChild( daeString elementName ) {
 void daeMetaElementAttribute::getChildren( daeElement *parent, daeElementRefArray &array ) {
 	daeElementRef* er = (daeElementRef*)getWritableMemory(parent);
 	if ( *er != NULL ) {
-		array.append( *er );
+		array.appendUnique( *er );
 	}
 }
 
@@ -227,6 +227,6 @@ void daeMetaElementArrayAttribute::getChildren( daeElement *parent, daeElementRe
 	daeElementRefArray* era = (daeElementRefArray*)getWritableMemory(parent);
 	size_t cnt = era->getCount();
 	for ( size_t x = 0; x < cnt; x++ ) {
-		array.append( era->get(x) );
+		array.appendUnique( era->get(x) );
 	}
 }

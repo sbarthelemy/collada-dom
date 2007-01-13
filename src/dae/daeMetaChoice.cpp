@@ -12,9 +12,10 @@
  */
 
 #include <dae/daeMetaChoice.h>
+#include <dae/daeMetaElement.h>
 
-daeMetaChoice::daeMetaChoice( daeMetaElement *container, daeMetaCMPolicy *parent, daeUInt ordinal,
-												 daeInt minO, daeInt maxO) : daeMetaCMPolicy( container, parent, ordinal, minO, maxO )
+daeMetaChoice::daeMetaChoice( daeMetaElement *container, daeMetaCMPolicy *parent, daeUInt choiceNum, daeUInt ordinal,
+												 daeInt minO, daeInt maxO) : daeMetaCMPolicy( container, parent, ordinal, minO, maxO ), _choiceNum(choiceNum)
 {}
 
 daeMetaChoice::~daeMetaChoice()
@@ -36,41 +37,96 @@ daeElement *daeMetaChoice::placeElement( daeElement *parent, daeElement *child, 
 	daeElement *retVal = NULL;
 	size_t cnt = _children.getCount();
 
-	for ( daeInt i = 0; ( i < _maxOccurs || _maxOccurs == -1 ); i++ ) {
-		for ( size_t x = 0; x < cnt; x++ ) {
-			if ( _children[x]->placeElement( parent, child, ordinal, i, before, after ) != NULL ) {
+	daeTArray< daeCharArray *> *CMData = (daeTArray< daeCharArray *>*)_container->getMetaCMData()->getWritableMemory(parent);
+	daeCharArray *myData = CMData->get( _choiceNum );
+
+	for ( daeInt i = 0; ( i < _maxOccurs || _maxOccurs == -1 ); i++ ) 
+	{
+		if ( (daeInt)myData->getCount() > i && myData->get(i) != -1 ) //choice has already been made
+		{
+			if ( _children[ myData->get(i) ]->placeElement( parent, child, ordinal, i, before, after ) != NULL ) 
+			{
 				retVal = child;
 				ordinal = ordinal  + _ordinalOffset;
 				break;
 			}
+			//else //try to see if everything can be in a different choice
+			//{
+			//	daeElementRefArray childsInChoice;
+			//	_children[ myData->get(i) ]->getChildren( parent, childsInChoice );
+			//	for ( size_t x = myData->get(i) +1; x < cnt; x++ )
+			//	{
+			//		daeElementRefArray childsInNext;
+			//		_children[ x ]->getChildren( parent, childsInNext ); //If you get children in another choice then
+			//		//both choices can have the same type of children.
+			//		if ( childsInNext.getCount() == childsInChoice.getCount() ) 
+			//		{
+			//			//if there are the same ammount of children then all present children can belong to both
+			//			//choices. Try to place the new child in this next choice.
+			//			if ( _children[x]->placeElement( parent, child, ordinal, i, before, after ) != NULL ) 
+			//			{
+			//				retVal = child;
+			//				ordinal = ordinal  + _ordinalOffset;
+
+			//				myData->set( i, (daeChar)x ); //change the choice to this new one
+			//				break;
+			//			}
+			//		}
+			//	}
+			//	if ( retVal != NULL ) break;
+			//}
 		}
-		if ( retVal != NULL ) break;
-	}
-#if 0 
-	//This choice correctness check will not work because the DOM will register a child present when it can be in two 
-	//choices even if it was correctly added to just the first one. It doesn't know the difference because even though
-	//the two choices have different content models, the element stores both choice paths in the same memory, so when
-	//you check for a child you get it on both paths.
-	if ( retVal && _maxOccurs != -1 ) {
-		//check if the place was valid - only if we aren't unbounded. unbounded is always valid
-		daeInt cnt = 0;
-		daeElementRefArray array;
-		size_t arrayCnt = 0; //saves us from having to clear the array every child
-		for ( size_t x = 0; x < _children.getCount(); x++ ) {
-			_children[x]->getChildren( parent, array );
-			if ( array.getCount() != arrayCnt ) {
-				//this part of the content model has children.
-				cnt++;
-				if ( cnt > _maxOccurs ) {
-					//picked too many choices - remove element and return false
-					removeElement( parent, child );
-					return NULL;
+		else //no choice has been made yet
+		{
+			for ( size_t x = 0; x < cnt; x++ ) 
+			{
+				if ( _children[x]->placeElement( parent, child, ordinal, i, before, after ) != NULL ) 
+				{
+					retVal = child;
+					ordinal = ordinal  + _ordinalOffset;
+
+					myData->append( (daeChar)x ); //you always place in the next available choice up to maxOccurs
+					break;
 				}
-				arrayCnt = array.getCount();
 			}
+			if ( retVal != NULL ) break;
 		}
 	}
-#endif
+	if ( retVal == NULL )
+	{
+		daeString nm = child->getElementName();
+		if ( nm == NULL ) {
+			nm = child->getTypeName();
+		}
+		if ( findChild( nm ) == NULL ) {
+			return NULL;
+		}
+		for ( daeInt i = 0; ( i < _maxOccurs || _maxOccurs == -1 ); i++ ) 
+		{
+			daeElementRefArray childsInChoice;
+			_children[ myData->get(i) ]->getChildren( parent, childsInChoice );
+			for ( size_t x = myData->get(i) +1; x < cnt; x++ )
+			{
+				daeElementRefArray childsInNext;
+				_children[ x ]->getChildren( parent, childsInNext ); //If you get children in another choice then
+				//both choices can have the same type of children.
+				if ( childsInNext.getCount() == childsInChoice.getCount() ) 
+				{
+					//if there are the same ammount of children then all present children can belong to both
+					//choices. Try to place the new child in this next choice.
+					if ( _children[x]->placeElement( parent, child, ordinal, i, before, after ) != NULL ) 
+					{
+						retVal = child;
+						ordinal = ordinal  + _ordinalOffset;
+
+						myData->set( i, (daeChar)x ); //change the choice to this new one
+						break;
+					}
+				}
+			}
+			if ( retVal != NULL ) break;
+		}
+	}
 	return retVal;
 }
 
@@ -97,8 +153,9 @@ daeMetaElement * daeMetaChoice::findChild( daeString elementName ) {
 }
 
 void daeMetaChoice::getChildren( daeElement *parent, daeElementRefArray &array ) {
-	(void)parent;
-	(void)array;
-	//this is taken care of by the _contents in metaElement
+	size_t cnt = _children.getCount();
+	for ( size_t x = 0; x < cnt; x++ ) {
+		_children[x]->getChildren( parent, array );
+	}
 }
 

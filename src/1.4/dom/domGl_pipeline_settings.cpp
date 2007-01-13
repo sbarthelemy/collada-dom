@@ -40,7 +40,7 @@ domGl_pipeline_settings::registerElement()
 	_Meta->setIsTransparent( true );
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
-	cm = new daeMetaChoice( _Meta, cm, 0, 1, 1 );
+	cm = new daeMetaChoice( _Meta, cm, 0, 0, 1, 1 );
 
 	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "alpha_func" );
@@ -702,7 +702,7 @@ domGl_pipeline_settings::registerElement()
     _Meta->addContents(daeOffsetOf(domGl_pipeline_settings,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domGl_pipeline_settings,_contentsOrder));
 
-	
+    _Meta->addCMDataArray(daeOffsetOf(domGl_pipeline_settings,_CMData), 1);	
 	
 	_Meta->setElementSize(sizeof(domGl_pipeline_settings));
 	_Meta->validate();
@@ -3944,7 +3944,7 @@ domGl_pipeline_settings::domTexture1D::registerElement()
 	_Meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
-	cm = new daeMetaChoice( _Meta, cm, 0, 1, 1 );
+	cm = new daeMetaChoice( _Meta, cm, 0, 0, 1, 1 );
 
 	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "value" );
@@ -3964,7 +3964,7 @@ domGl_pipeline_settings::domTexture1D::registerElement()
     _Meta->addContents(daeOffsetOf(domGl_pipeline_settings::domTexture1D,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domGl_pipeline_settings::domTexture1D,_contentsOrder));
 
-
+    _Meta->addCMDataArray(daeOffsetOf(domGl_pipeline_settings::domTexture1D,_CMData), 1);
 	//	Add attribute: index
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
@@ -4039,7 +4039,7 @@ domGl_pipeline_settings::domTexture2D::registerElement()
 	_Meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
-	cm = new daeMetaChoice( _Meta, cm, 0, 1, 1 );
+	cm = new daeMetaChoice( _Meta, cm, 0, 0, 1, 1 );
 
 	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "value" );
@@ -4059,7 +4059,7 @@ domGl_pipeline_settings::domTexture2D::registerElement()
     _Meta->addContents(daeOffsetOf(domGl_pipeline_settings::domTexture2D,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domGl_pipeline_settings::domTexture2D,_contentsOrder));
 
-
+    _Meta->addCMDataArray(daeOffsetOf(domGl_pipeline_settings::domTexture2D,_CMData), 1);
 	//	Add attribute: index
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
@@ -4134,7 +4134,7 @@ domGl_pipeline_settings::domTexture3D::registerElement()
 	_Meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
-	cm = new daeMetaChoice( _Meta, cm, 0, 1, 1 );
+	cm = new daeMetaChoice( _Meta, cm, 0, 0, 1, 1 );
 
 	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "value" );
@@ -4154,7 +4154,7 @@ domGl_pipeline_settings::domTexture3D::registerElement()
     _Meta->addContents(daeOffsetOf(domGl_pipeline_settings::domTexture3D,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domGl_pipeline_settings::domTexture3D,_contentsOrder));
 
-
+    _Meta->addCMDataArray(daeOffsetOf(domGl_pipeline_settings::domTexture3D,_CMData), 1);
 	//	Add attribute: index
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
@@ -4229,7 +4229,7 @@ domGl_pipeline_settings::domTextureCUBE::registerElement()
 	_Meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
-	cm = new daeMetaChoice( _Meta, cm, 0, 1, 1 );
+	cm = new daeMetaChoice( _Meta, cm, 0, 0, 1, 1 );
 
 	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "value" );
@@ -4249,7 +4249,7 @@ domGl_pipeline_settings::domTextureCUBE::registerElement()
     _Meta->addContents(daeOffsetOf(domGl_pipeline_settings::domTextureCUBE,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domGl_pipeline_settings::domTextureCUBE,_contentsOrder));
 
-
+    _Meta->addCMDataArray(daeOffsetOf(domGl_pipeline_settings::domTextureCUBE,_CMData), 1);
 	//	Add attribute: index
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
@@ -4324,7 +4324,7 @@ domGl_pipeline_settings::domTextureRECT::registerElement()
 	_Meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
-	cm = new daeMetaChoice( _Meta, cm, 0, 1, 1 );
+	cm = new daeMetaChoice( _Meta, cm, 0, 0, 1, 1 );
 
 	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "value" );
@@ -4344,7 +4344,7 @@ domGl_pipeline_settings::domTextureRECT::registerElement()
     _Meta->addContents(daeOffsetOf(domGl_pipeline_settings::domTextureRECT,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domGl_pipeline_settings::domTextureRECT,_contentsOrder));
 
-
+    _Meta->addCMDataArray(daeOffsetOf(domGl_pipeline_settings::domTextureRECT,_CMData), 1);
 	//	Add attribute: index
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
@@ -4419,7 +4419,7 @@ domGl_pipeline_settings::domTextureDEPTH::registerElement()
 	_Meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
-	cm = new daeMetaChoice( _Meta, cm, 0, 1, 1 );
+	cm = new daeMetaChoice( _Meta, cm, 0, 0, 1, 1 );
 
 	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "value" );
@@ -4439,7 +4439,7 @@ domGl_pipeline_settings::domTextureDEPTH::registerElement()
     _Meta->addContents(daeOffsetOf(domGl_pipeline_settings::domTextureDEPTH,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domGl_pipeline_settings::domTextureDEPTH,_contentsOrder));
 
-
+    _Meta->addCMDataArray(daeOffsetOf(domGl_pipeline_settings::domTextureDEPTH,_CMData), 1);
 	//	Add attribute: index
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;

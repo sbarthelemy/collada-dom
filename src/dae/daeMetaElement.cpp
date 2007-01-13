@@ -114,6 +114,8 @@ daeMetaElement::daeMetaElement()
 	_metas().append(this);
 
 	_contentModel = NULL;
+	_metaCMData = NULL;
+	_numMetaChoices = 0;
 }
 
 daeMetaElement::~daeMetaElement()
@@ -124,6 +126,8 @@ daeMetaElement::~daeMetaElement()
         delete _contentModel;
     if (_metaContentsOrder) // sthomas
         delete _metaContentsOrder;
+	if (_metaCMData)
+		delete _metaCMData;
 }
 
 void daeMetaElement::setCMRoot( daeMetaCMPolicy *cm )
@@ -157,6 +161,22 @@ daeMetaElement::addContentsOrder(daeInt offset)
         delete _metaContentsOrder;
 
 	_metaContentsOrder = meaa;
+}
+
+void daeMetaElement::addCMDataArray(daeInt offset, daeUInt numChoices)
+{
+	daeMetaArrayAttribute* meaa = new daeMetaArrayAttribute();
+	meaa->setType(daeAtomicType::get("int"));
+	meaa->setName("CMData");
+	meaa->setOffset(offset);
+	meaa->setContainer( this);
+
+    if (_metaCMData)
+        delete _metaCMData;
+
+	_metaCMData = meaa;
+
+	_numMetaChoices = numChoices;
 }
 
 

@@ -47,7 +47,7 @@ domProfile_GLES::registerElement()
 	mea->setElementType( domAsset::registerElement() );
 	cm->appendChild( mea );
 	
-	cm = new daeMetaChoice( _Meta, cm, 1, 0, -1 );
+	cm = new daeMetaChoice( _Meta, cm, 0, 1, 0, -1 );
 
 	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "image" );
@@ -83,7 +83,7 @@ domProfile_GLES::registerElement()
     _Meta->addContents(daeOffsetOf(domProfile_GLES,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domProfile_GLES,_contentsOrder));
 
-
+    _Meta->addCMDataArray(daeOffsetOf(domProfile_GLES,_CMData), 1);
 	//	Add attribute: id
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
@@ -150,7 +150,7 @@ domProfile_GLES::domTechnique::registerElement()
 	mea->setElementType( domFx_annotate_common::registerElement() );
 	cm->appendChild( mea );
 	
-	cm = new daeMetaChoice( _Meta, cm, 2, 0, -1 );
+	cm = new daeMetaChoice( _Meta, cm, 0, 2, 0, -1 );
 
 	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "image" );
@@ -192,7 +192,7 @@ domProfile_GLES::domTechnique::registerElement()
     _Meta->addContents(daeOffsetOf(domProfile_GLES::domTechnique,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domProfile_GLES::domTechnique,_contentsOrder));
 
-
+    _Meta->addCMDataArray(daeOffsetOf(domProfile_GLES::domTechnique,_CMData), 1);
 	//	Add attribute: id
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
@@ -349,7 +349,7 @@ domProfile_GLES::domTechnique::domPass::registerElement()
 	mea->setElementType( domProfile_GLES::domTechnique::domPass::domDraw::registerElement() );
 	cm->appendChild( mea );
 	
-	cm = new daeMetaChoice( _Meta, cm, 8, 0, -1 );
+	cm = new daeMetaChoice( _Meta, cm, 0, 8, 0, -1 );
 
 	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "gles_pipeline_settings" );
@@ -373,7 +373,7 @@ domProfile_GLES::domTechnique::domPass::registerElement()
     _Meta->addContents(daeOffsetOf(domProfile_GLES::domTechnique::domPass,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domProfile_GLES::domTechnique::domPass,_contentsOrder));
 
-
+    _Meta->addCMDataArray(daeOffsetOf(domProfile_GLES::domTechnique::domPass,_CMData), 1);
 	//	Add attribute: sid
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;

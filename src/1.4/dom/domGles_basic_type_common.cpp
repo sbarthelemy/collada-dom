@@ -40,7 +40,7 @@ domGles_basic_type_common::registerElement()
 	_Meta->setIsTransparent( true );
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
-	cm = new daeMetaChoice( _Meta, cm, 0, 1, 1 );
+	cm = new daeMetaChoice( _Meta, cm, 0, 0, 1, 1 );
 
 	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "bool" );
@@ -246,7 +246,7 @@ domGles_basic_type_common::registerElement()
     _Meta->addContents(daeOffsetOf(domGles_basic_type_common,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domGles_basic_type_common,_contentsOrder));
 
-	
+    _Meta->addCMDataArray(daeOffsetOf(domGles_basic_type_common,_CMData), 1);	
 	
 	_Meta->setElementSize(sizeof(domGles_basic_type_common));
 	_Meta->validate();

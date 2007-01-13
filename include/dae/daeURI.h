@@ -260,9 +260,9 @@ public:
 
 	/**
 	 * Sets the pointer to the @c daeElement that contains this URI.
-	 * @param element Pointer to the containing @c daeElmement.
+	 * @param cont Pointer to the containing @c daeElmement.
 	 */
-	inline void setContainer(daeElement* element){container=element;};
+	inline void setContainer(daeElement* cont){container=cont;};
 
 	/**
 	 * Copies parameter <tt><i>uri</i></tt> into data member <tt><i>uriString,</i></tt> and then decomposes each of

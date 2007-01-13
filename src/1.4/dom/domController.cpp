@@ -47,7 +47,7 @@ domController::registerElement()
 	mea->setElementType( domAsset::registerElement() );
 	cm->appendChild( mea );
 	
-	cm = new daeMetaChoice( _Meta, cm, 1, 1, 1 );
+	cm = new daeMetaChoice( _Meta, cm, 0, 1, 1, 1 );
 
 	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "skin" );
@@ -77,7 +77,7 @@ domController::registerElement()
     _Meta->addContents(daeOffsetOf(domController,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domController,_contentsOrder));
 
-
+    _Meta->addCMDataArray(daeOffsetOf(domController,_CMData), 1);
 	//	Add attribute: id
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;

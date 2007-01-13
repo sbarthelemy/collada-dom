@@ -47,7 +47,7 @@ domGlsl_setparam::registerElement()
 	mea->setElementType( domFx_annotate_common::registerElement() );
 	cm->appendChild( mea );
 	
-	cm = new daeMetaChoice( _Meta, cm, 1, 1, 1 );
+	cm = new daeMetaChoice( _Meta, cm, 0, 1, 1, 1 );
 
 	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "glsl_param_type" );
@@ -71,7 +71,7 @@ domGlsl_setparam::registerElement()
     _Meta->addContents(daeOffsetOf(domGlsl_setparam,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domGlsl_setparam,_contentsOrder));
 
-
+    _Meta->addCMDataArray(daeOffsetOf(domGlsl_setparam,_CMData), 1);
 	//	Add attribute: ref
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;

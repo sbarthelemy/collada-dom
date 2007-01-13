@@ -47,7 +47,7 @@ domCommon_newparam_type::registerElement()
 	mea->setElementType( domCommon_newparam_type::domSemantic::registerElement() );
 	cm->appendChild( mea );
 	
-	cm = new daeMetaChoice( _Meta, cm, 1, 1, 1 );
+	cm = new daeMetaChoice( _Meta, cm, 0, 1, 1, 1 );
 
 	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "float" );
@@ -95,7 +95,7 @@ domCommon_newparam_type::registerElement()
     _Meta->addContents(daeOffsetOf(domCommon_newparam_type,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domCommon_newparam_type,_contentsOrder));
 
-
+    _Meta->addCMDataArray(daeOffsetOf(domCommon_newparam_type,_CMData), 1);
 	//	Add attribute: sid
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;

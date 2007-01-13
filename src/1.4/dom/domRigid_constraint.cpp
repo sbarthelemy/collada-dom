@@ -125,7 +125,7 @@ domRigid_constraint::domRef_attachment::registerElement()
 	_Meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
-	cm = new daeMetaChoice( _Meta, cm, 0, 0, -1 );
+	cm = new daeMetaChoice( _Meta, cm, 0, 0, 0, -1 );
 
 	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "translate" );
@@ -151,7 +151,7 @@ domRigid_constraint::domRef_attachment::registerElement()
     _Meta->addContents(daeOffsetOf(domRigid_constraint::domRef_attachment,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domRigid_constraint::domRef_attachment,_contentsOrder));
 
-
+    _Meta->addCMDataArray(daeOffsetOf(domRigid_constraint::domRef_attachment,_CMData), 1);
 	//	Add attribute: rigid_body
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
@@ -191,7 +191,7 @@ domRigid_constraint::domAttachment::registerElement()
 	_Meta->setIsInnerClass( true );
 	daeMetaCMPolicy *cm = NULL;
 	daeMetaElementAttribute *mea = NULL;
-	cm = new daeMetaChoice( _Meta, cm, 0, 0, -1 );
+	cm = new daeMetaChoice( _Meta, cm, 0, 0, 0, -1 );
 
 	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "translate" );
@@ -217,7 +217,7 @@ domRigid_constraint::domAttachment::registerElement()
     _Meta->addContents(daeOffsetOf(domRigid_constraint::domAttachment,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domRigid_constraint::domAttachment,_contentsOrder));
 
-
+    _Meta->addCMDataArray(daeOffsetOf(domRigid_constraint::domAttachment,_CMData), 1);
 	//	Add attribute: rigid_body
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;

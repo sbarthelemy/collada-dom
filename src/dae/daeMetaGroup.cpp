@@ -140,7 +140,12 @@ daeMetaElement * daeMetaGroup::findChild( daeString elementName ) {
 void daeMetaGroup::getChildren( daeElement *parent, daeElementRefArray &array ) {
 	size_t cnt = _elementContainer->getCount( parent );
 	for ( size_t x = 0; x < cnt; x++ ) {
-		(*((daeElementRef*)_elementContainer->get(parent, (daeInt)x )))->getChildren(array);
+		(*((daeElementRef*)_elementContainer->get(parent, (daeInt)x )))->getChildren( array );
+		/*daeElementRef el = (*((daeElementRef*)_elementContainer->get(parent, (daeInt)x )));
+		size_t cnt2 = _children.getCount();
+		for ( size_t i = 0; i < cnt2; i++ ) {
+			_children[i]->getChildren( el, array );
+		}*/
 	}
 	//_elementContainer->_elementType->getChildren( parent, array );
 }

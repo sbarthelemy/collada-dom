@@ -438,6 +438,17 @@ daeElement::setup(daeMetaElement* meta)
 //		}
 	}
 
+	//set up the _CMData array if there is one
+	if ( _meta->getMetaCMData() != NULL )
+	{
+		daeTArray< daeCharArray *> *CMData = (daeTArray< daeCharArray *>*)_meta->getMetaCMData()->getWritableMemory(this);
+		CMData->setCount( _meta->getNumChoices() );
+		for ( unsigned int i = 0; i < _meta->getNumChoices(); i++ )
+		{
+			CMData->set( i, new daeCharArray() );
+		}
+	}
+
 #if 0	
 	// Setup resolvers to know their containers and thus their file context
 	daeMetaAttributePtrArray& resolvers = meta->getMetaResolvers();
@@ -465,6 +476,15 @@ daeElement::~daeElement()
 	if (_elementName) {
 		delete[] _elementName;
 		_elementName = NULL;
+	}
+
+	if ( _meta != NULL && _meta->getMetaCMData() != NULL )
+	{
+		daeTArray< daeCharArray *> *CMData = (daeTArray< daeCharArray *>*)_meta->getMetaCMData()->getWritableMemory(this);
+		for ( unsigned int i = 0; i < CMData->getCount(); i++ )
+		{
+			delete CMData->get(i);
+		}
 	}
 }
 

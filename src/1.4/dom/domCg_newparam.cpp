@@ -59,7 +59,7 @@ domCg_newparam::registerElement()
 	mea->setElementType( domCg_newparam::domModifier::registerElement() );
 	cm->appendChild( mea );
 	
-	cm = new daeMetaChoice( _Meta, cm, 3, 1, 1 );
+	cm = new daeMetaChoice( _Meta, cm, 0, 3, 1, 1 );
 
 	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "cg_param_type" );
@@ -89,7 +89,7 @@ domCg_newparam::registerElement()
     _Meta->addContents(daeOffsetOf(domCg_newparam,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domCg_newparam,_contentsOrder));
 
-
+    _Meta->addCMDataArray(daeOffsetOf(domCg_newparam,_CMData), 1);
 	//	Add attribute: sid
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;

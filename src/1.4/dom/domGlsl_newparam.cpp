@@ -59,7 +59,7 @@ domGlsl_newparam::registerElement()
 	mea->setElementType( domGlsl_newparam::domModifier::registerElement() );
 	cm->appendChild( mea );
 	
-	cm = new daeMetaChoice( _Meta, cm, 3, 1, 1 );
+	cm = new daeMetaChoice( _Meta, cm, 0, 3, 1, 1 );
 
 	mea = new daeMetaElementAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "glsl_param_type" );
@@ -83,7 +83,7 @@ domGlsl_newparam::registerElement()
     _Meta->addContents(daeOffsetOf(domGlsl_newparam,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domGlsl_newparam,_contentsOrder));
 
-
+    _Meta->addCMDataArray(daeOffsetOf(domGlsl_newparam,_CMData), 1);
 	//	Add attribute: sid
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;

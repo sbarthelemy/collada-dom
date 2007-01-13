@@ -56,7 +56,7 @@ domCOLLADA::registerElement()
 	mea->setElementType( domAsset::registerElement() );
 	cm->appendChild( mea );
 	
-	cm = new daeMetaChoice( _Meta, cm, 1, 0, -1 );
+	cm = new daeMetaChoice( _Meta, cm, 0, 1, 0, -1 );
 
 	mea = new daeMetaElementArrayAttribute( _Meta, cm, 0, 1, 1 );
 	mea->setName( "library_animations" );
@@ -170,7 +170,7 @@ domCOLLADA::registerElement()
     _Meta->addContents(daeOffsetOf(domCOLLADA,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domCOLLADA,_contentsOrder));
 
-    //	Add attribute: xmlns
+    _Meta->addCMDataArray(daeOffsetOf(domCOLLADA,_CMData), 1);    //	Add attribute: xmlns
     {
 		daeMetaAttribute* ma = new daeMetaAttribute;
 		ma->setName( "xmlns" );
