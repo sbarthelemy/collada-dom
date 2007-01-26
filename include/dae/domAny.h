@@ -87,6 +87,12 @@ public:
 	 */
 	void setValue( daeString val ) { *(daeStringRef*)&_value = val; }
 
+	/**
+	 * Gets the element type.
+	 * @return Returns the COLLADA_TYPE::TypeEnum value corresponding to this element's type.
+	 */
+	virtual COLLADA_TYPE::TypeEnum getElementType() const { return (COLLADA_TYPE::TypeEnum)1; }
+
 protected:
 	/**
 	 * Constructor

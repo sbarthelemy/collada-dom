@@ -72,7 +72,6 @@ domCommon_transparent_type::registerElement()
     _Meta->addContentsOrder(daeOffsetOf(domCommon_transparent_type,_contentsOrder));
 
 	_Meta->addCMDataArray(daeOffsetOf(domCommon_transparent_type,_CMData), 1);
-
 	//	Add attribute: opaque
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;

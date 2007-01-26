@@ -42,7 +42,7 @@ daeMetaElement::create(daeString s)
 		//looking for this meta
 		me = this;
 	}
-	else {
+	else if ( _contentModel != NULL ) {
 		me = _contentModel->findChild(s);
 	}
 	if (me != NULL) {

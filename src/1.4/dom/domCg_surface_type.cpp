@@ -119,7 +119,7 @@ domCg_surface_type::registerElement()
     _Meta->addContents(daeOffsetOf(domCg_surface_type,_contents));
     _Meta->addContentsOrder(daeOffsetOf(domCg_surface_type,_contentsOrder));
 
-
+    _Meta->addCMDataArray(daeOffsetOf(domCg_surface_type,_CMData), 1);
 	//	Add attribute: type
  	{
 		daeMetaAttribute *ma = new daeMetaAttribute;
