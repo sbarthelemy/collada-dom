@@ -13,6 +13,7 @@
 #ifndef __domAccessor_h__
 #define __domAccessor_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -67,8 +68,7 @@ public:	//Accessors and Mutators
 	 * Sets the count attribute.
 	 * @param atCount The new value for the count attribute.
 	 */
-	void setCount( domUint atCount ) { attrCount = atCount;
-	 _validAttributeArray[0] = true; }
+	void setCount( domUint atCount ) { attrCount = atCount; _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the offset attribute.
@@ -79,8 +79,7 @@ public:	//Accessors and Mutators
 	 * Sets the offset attribute.
 	 * @param atOffset The new value for the offset attribute.
 	 */
-	void setOffset( domUint atOffset ) { attrOffset = atOffset;
-	 _validAttributeArray[1] = true; }
+	void setOffset( domUint atOffset ) { attrOffset = atOffset; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the source attribute.
@@ -96,8 +95,7 @@ public:	//Accessors and Mutators
 	 * Sets the source attribute.
 	 * @param atSource The new value for the source attribute.
 	 */
-	void setSource( const xsAnyURI &atSource ) { attrSource = atSource;
-	 _validAttributeArray[2] = true; }
+	void setSource( const xsAnyURI &atSource ) { attrSource = atSource; _validAttributeArray[2] = true; }
 
 	/**
 	 * Gets the stride attribute.
@@ -108,8 +106,7 @@ public:	//Accessors and Mutators
 	 * Sets the stride attribute.
 	 * @param atStride The new value for the stride attribute.
 	 */
-	void setStride( domUint atStride ) { attrStride = atStride;
-	 _validAttributeArray[3] = true; }
+	void setStride( domUint atStride ) { attrStride = atStride; _validAttributeArray[3] = true; }
 
 	/**
 	 * Gets the param element array.

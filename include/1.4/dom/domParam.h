@@ -13,6 +13,7 @@
 #ifndef __domParam_h__
 #define __domParam_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -63,8 +64,7 @@ public:	//Accessors and Mutators
 	 * Sets the name attribute.
 	 * @param atName The new value for the name attribute.
 	 */
-	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName;
-	 _validAttributeArray[0] = true; }
+	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName; _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the sid attribute.
@@ -75,8 +75,7 @@ public:	//Accessors and Mutators
 	 * Sets the sid attribute.
 	 * @param atSid The new value for the sid attribute.
 	 */
-	void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid;
-	 _validAttributeArray[1] = true; }
+	void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the semantic attribute.
@@ -87,8 +86,7 @@ public:	//Accessors and Mutators
 	 * Sets the semantic attribute.
 	 * @param atSemantic The new value for the semantic attribute.
 	 */
-	void setSemantic( xsNMTOKEN atSemantic ) { *(daeStringRef*)&attrSemantic = atSemantic;
-	 _validAttributeArray[2] = true; }
+	void setSemantic( xsNMTOKEN atSemantic ) { *(daeStringRef*)&attrSemantic = atSemantic; _validAttributeArray[2] = true; }
 
 	/**
 	 * Gets the type attribute.
@@ -99,8 +97,7 @@ public:	//Accessors and Mutators
 	 * Sets the type attribute.
 	 * @param atType The new value for the type attribute.
 	 */
-	void setType( xsNMTOKEN atType ) { *(daeStringRef*)&attrType = atType;
-	 _validAttributeArray[3] = true; }
+	void setType( xsNMTOKEN atType ) { *(daeStringRef*)&attrType = atType; _validAttributeArray[3] = true; }
 
 	/**
 	 * Gets the value of this element.

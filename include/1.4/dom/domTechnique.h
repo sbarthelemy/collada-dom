@@ -13,6 +13,7 @@
 #ifndef __domTechnique_h__
 #define __domTechnique_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -80,8 +81,7 @@ public:	//Accessors and Mutators
 	 * Sets the profile attribute.
 	 * @param atProfile The new value for the profile attribute.
 	 */
-	void setProfile( xsNMTOKEN atProfile ) { *(daeStringRef*)&attrProfile = atProfile;
-	 _validAttributeArray[1] = true; }
+	void setProfile( xsNMTOKEN atProfile ) { *(daeStringRef*)&attrProfile = atProfile; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the _contents array.

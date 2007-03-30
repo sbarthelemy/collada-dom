@@ -13,6 +13,7 @@
 #ifndef __domChannel_h__
 #define __domChannel_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -54,8 +55,7 @@ public:	//Accessors and Mutators
 	 * Sets the source attribute.
 	 * @param atSource The new value for the source attribute.
 	 */
-	void setSource( const domURIFragmentType &atSource ) { attrSource = atSource;
-	 _validAttributeArray[0] = true; }
+	void setSource( const domURIFragmentType &atSource ) { attrSource = atSource; _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the target attribute.
@@ -66,8 +66,7 @@ public:	//Accessors and Mutators
 	 * Sets the target attribute.
 	 * @param atTarget The new value for the target attribute.
 	 */
-	void setTarget( xsToken atTarget ) { *(daeStringRef*)&attrTarget = atTarget;
-	 _validAttributeArray[1] = true; }
+	void setTarget( xsToken atTarget ) { *(daeStringRef*)&attrTarget = atTarget; _validAttributeArray[1] = true; }
 
 protected:
 	/**

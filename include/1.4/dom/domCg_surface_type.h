@@ -13,6 +13,7 @@
 #ifndef __domCg_surface_type_h__
 #define __domCg_surface_type_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -73,8 +74,7 @@ public:
 			 * Sets the source attribute.
 			 * @param atSource The new value for the source attribute.
 			 */
-			void setSource( xsNCName atSource ) { *(daeStringRef*)&attrSource = atSource;		
-	 _validAttributeArray[0] = true; }
+			void setSource( xsNCName atSource ) { *(daeStringRef*)&attrSource = atSource; _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the value of this element.

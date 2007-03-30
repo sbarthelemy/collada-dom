@@ -13,6 +13,7 @@
 #ifndef __domGlsl_newarray_type_h__
 #define __domGlsl_newarray_type_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -133,8 +134,7 @@ public:	//Accessors and Mutators
 	 * Sets the length attribute.
 	 * @param atLength The new value for the length attribute.
 	 */
-	void setLength( xsPositiveInteger atLength ) { attrLength = atLength;
-	 _validAttributeArray[0] = true; }
+	void setLength( xsPositiveInteger atLength ) { attrLength = atLength; _validAttributeArray[0] = true; }
 
 protected:
 	/**

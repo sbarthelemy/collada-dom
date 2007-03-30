@@ -13,6 +13,7 @@
 #ifndef __domPhysics_material_h__
 #define __domPhysics_material_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -159,8 +160,9 @@ public:	//Accessors and Mutators
 	 * Sets the id attribute.
 	 * @param atId The new value for the id attribute.
 	 */
-	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId;
-	 _validAttributeArray[0] = true; }
+	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId; _validAttributeArray[0] = true; 
+		if( _document != NULL ) _document->changeElementID( this, attrId );
+	}
 
 	/**
 	 * Gets the name attribute.
@@ -171,8 +173,7 @@ public:	//Accessors and Mutators
 	 * Sets the name attribute.
 	 * @param atName The new value for the name attribute.
 	 */
-	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName;
-	 _validAttributeArray[1] = true; }
+	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the asset element.

@@ -13,6 +13,7 @@
 #ifndef __domGlsl_newparam_h__
 #define __domGlsl_newparam_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -272,8 +273,7 @@ public:	//Accessors and Mutators
 	 * Sets the sid attribute.
 	 * @param atSid The new value for the sid attribute.
 	 */
-	void setSid( domGlsl_identifier atSid ) { attrSid = atSid;
-	 _validAttributeArray[0] = true; }
+	void setSid( domGlsl_identifier atSid ) { attrSid = atSid; _validAttributeArray[0] = true; }
 
 protected:
 	/**

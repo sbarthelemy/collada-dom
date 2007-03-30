@@ -13,6 +13,7 @@
 #ifndef __domFx_surface_init_from_common_h__
 #define __domFx_surface_init_from_common_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -121,8 +122,7 @@ public:	//Accessors and Mutators
 	 * Sets the mip attribute.
 	 * @param atMip The new value for the mip attribute.
 	 */
-	void setMip( xsUnsignedInt atMip ) { attrMip = atMip;
-	 _validAttributeArray[0] = true; }
+	void setMip( xsUnsignedInt atMip ) { attrMip = atMip; _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the slice attribute.
@@ -133,8 +133,7 @@ public:	//Accessors and Mutators
 	 * Sets the slice attribute.
 	 * @param atSlice The new value for the slice attribute.
 	 */
-	void setSlice( xsUnsignedInt atSlice ) { attrSlice = atSlice;
-	 _validAttributeArray[1] = true; }
+	void setSlice( xsUnsignedInt atSlice ) { attrSlice = atSlice; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the face attribute.
@@ -145,8 +144,7 @@ public:	//Accessors and Mutators
 	 * Sets the face attribute.
 	 * @param atFace The new value for the face attribute.
 	 */
-	void setFace( domFx_surface_face_enum atFace ) { attrFace = atFace;
-	 _validAttributeArray[2] = true; }
+	void setFace( domFx_surface_face_enum atFace ) { attrFace = atFace; _validAttributeArray[2] = true; }
 
 protected:
 	/**

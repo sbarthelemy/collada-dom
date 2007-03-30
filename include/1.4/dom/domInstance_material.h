@@ -13,6 +13,7 @@
 #ifndef __domInstance_material_h__
 #define __domInstance_material_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -62,8 +63,7 @@ public:
 		 * Sets the semantic attribute.
 		 * @param atSemantic The new value for the semantic attribute.
 		 */
-		void setSemantic( xsNCName atSemantic ) { *(daeStringRef*)&attrSemantic = atSemantic;	
-	 _validAttributeArray[0] = true; }
+		void setSemantic( xsNCName atSemantic ) { *(daeStringRef*)&attrSemantic = atSemantic; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the target attribute.
@@ -74,8 +74,7 @@ public:
 		 * Sets the target attribute.
 		 * @param atTarget The new value for the target attribute.
 		 */
-		void setTarget( xsToken atTarget ) { *(daeStringRef*)&attrTarget = atTarget;	
-	 _validAttributeArray[1] = true; }
+		void setTarget( xsToken atTarget ) { *(daeStringRef*)&attrTarget = atTarget; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -154,8 +153,7 @@ public:
 		 * Sets the semantic attribute.
 		 * @param atSemantic The new value for the semantic attribute.
 		 */
-		void setSemantic( xsNCName atSemantic ) { *(daeStringRef*)&attrSemantic = atSemantic;	
-	 _validAttributeArray[0] = true; }
+		void setSemantic( xsNCName atSemantic ) { *(daeStringRef*)&attrSemantic = atSemantic; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the input_semantic attribute.
@@ -166,8 +164,7 @@ public:
 		 * Sets the input_semantic attribute.
 		 * @param atInput_semantic The new value for the input_semantic attribute.
 		 */
-		void setInput_semantic( xsNCName atInput_semantic ) { *(daeStringRef*)&attrInput_semantic = atInput_semantic;	
-	 _validAttributeArray[1] = true; }
+		void setInput_semantic( xsNCName atInput_semantic ) { *(daeStringRef*)&attrInput_semantic = atInput_semantic; _validAttributeArray[1] = true; }
 
 		/**
 		 * Gets the input_set attribute.
@@ -178,8 +175,7 @@ public:
 		 * Sets the input_set attribute.
 		 * @param atInput_set The new value for the input_set attribute.
 		 */
-		void setInput_set( domUint atInput_set ) { attrInput_set = atInput_set;	
-	 _validAttributeArray[2] = true; }
+		void setInput_set( domUint atInput_set ) { attrInput_set = atInput_set; _validAttributeArray[2] = true; }
 
 	protected:
 		/**
@@ -269,8 +265,7 @@ public:	//Accessors and Mutators
 	 * Sets the symbol attribute.
 	 * @param atSymbol The new value for the symbol attribute.
 	 */
-	void setSymbol( xsNCName atSymbol ) { *(daeStringRef*)&attrSymbol = atSymbol;
-	 _validAttributeArray[0] = true; }
+	void setSymbol( xsNCName atSymbol ) { *(daeStringRef*)&attrSymbol = atSymbol; _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the target attribute.
@@ -286,8 +281,7 @@ public:	//Accessors and Mutators
 	 * Sets the target attribute.
 	 * @param atTarget The new value for the target attribute.
 	 */
-	void setTarget( const xsAnyURI &atTarget ) { attrTarget = atTarget;
-	 _validAttributeArray[1] = true; }
+	void setTarget( const xsAnyURI &atTarget ) { attrTarget = atTarget; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the sid attribute.
@@ -298,8 +292,7 @@ public:	//Accessors and Mutators
 	 * Sets the sid attribute.
 	 * @param atSid The new value for the sid attribute.
 	 */
-	void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid;
-	 _validAttributeArray[2] = true; }
+	void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid; _validAttributeArray[2] = true; }
 
 	/**
 	 * Gets the name attribute.
@@ -310,8 +303,7 @@ public:	//Accessors and Mutators
 	 * Sets the name attribute.
 	 * @param atName The new value for the name attribute.
 	 */
-	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName;
-	 _validAttributeArray[3] = true; }
+	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName; _validAttributeArray[3] = true; }
 
 	/**
 	 * Gets the bind element array.

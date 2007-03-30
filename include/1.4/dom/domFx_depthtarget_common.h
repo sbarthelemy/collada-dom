@@ -13,6 +13,7 @@
 #ifndef __domFx_depthtarget_common_h__
 #define __domFx_depthtarget_common_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -124,8 +125,7 @@ public:	//Accessors and Mutators
 	 * Sets the index attribute.
 	 * @param atIndex The new value for the index attribute.
 	 */
-	void setIndex( xsNonNegativeInteger atIndex ) { attrIndex = atIndex;
-	 _validAttributeArray[0] = true; }
+	void setIndex( xsNonNegativeInteger atIndex ) { attrIndex = atIndex; _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the face attribute.
@@ -136,8 +136,7 @@ public:	//Accessors and Mutators
 	 * Sets the face attribute.
 	 * @param atFace The new value for the face attribute.
 	 */
-	void setFace( domFx_surface_face_enum atFace ) { attrFace = atFace;
-	 _validAttributeArray[1] = true; }
+	void setFace( domFx_surface_face_enum atFace ) { attrFace = atFace; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the mip attribute.
@@ -148,8 +147,7 @@ public:	//Accessors and Mutators
 	 * Sets the mip attribute.
 	 * @param atMip The new value for the mip attribute.
 	 */
-	void setMip( xsNonNegativeInteger atMip ) { attrMip = atMip;
-	 _validAttributeArray[2] = true; }
+	void setMip( xsNonNegativeInteger atMip ) { attrMip = atMip; _validAttributeArray[2] = true; }
 
 	/**
 	 * Gets the slice attribute.
@@ -160,8 +158,7 @@ public:	//Accessors and Mutators
 	 * Sets the slice attribute.
 	 * @param atSlice The new value for the slice attribute.
 	 */
-	void setSlice( xsNonNegativeInteger atSlice ) { attrSlice = atSlice;
-	 _validAttributeArray[3] = true; }
+	void setSlice( xsNonNegativeInteger atSlice ) { attrSlice = atSlice; _validAttributeArray[3] = true; }
 
 protected:
 	/**

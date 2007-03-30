@@ -13,6 +13,7 @@
 #ifndef __domProfile_COMMON_h__
 #define __domProfile_COMMON_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -514,8 +515,9 @@ public:
 		 * Sets the id attribute.
 		 * @param atId The new value for the id attribute.
 		 */
-		void setId( xsID atId ) { *(daeStringRef*)&attrId = atId;	
-	 _validAttributeArray[0] = true; }
+		void setId( xsID atId ) { *(daeStringRef*)&attrId = atId; _validAttributeArray[0] = true; 
+			if( _document != NULL ) _document->changeElementID( this, attrId );
+		}
 
 		/**
 		 * Gets the sid attribute.
@@ -526,8 +528,7 @@ public:
 		 * Sets the sid attribute.
 		 * @param atSid The new value for the sid attribute.
 		 */
-		void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid;	
-	 _validAttributeArray[1] = true; }
+		void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid; _validAttributeArray[1] = true; }
 
 		/**
 		 * Gets the asset element.
@@ -681,8 +682,9 @@ public:	//Accessors and Mutators
 	 * Sets the id attribute.
 	 * @param atId The new value for the id attribute.
 	 */
-	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId;
-	 _validAttributeArray[0] = true; }
+	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId; _validAttributeArray[0] = true; 
+		if( _document != NULL ) _document->changeElementID( this, attrId );
+	}
 
 	/**
 	 * Gets the asset element.

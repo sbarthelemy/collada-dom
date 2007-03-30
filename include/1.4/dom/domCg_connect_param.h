@@ -13,6 +13,7 @@
 #ifndef __domCg_connect_param_h__
 #define __domCg_connect_param_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -75,8 +76,7 @@ public:	//Accessors and Mutators
 	 * Sets the ref attribute.
 	 * @param atRef The new value for the ref attribute.
 	 */
-	void setRef( domCg_identifier atRef ) { attrRef = atRef;
-	 _validAttributeArray[0] = true; }
+	void setRef( domCg_identifier atRef ) { attrRef = atRef; _validAttributeArray[0] = true; }
 
 protected:
 	/**

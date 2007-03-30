@@ -13,6 +13,7 @@
 #ifndef __domConvex_mesh_h__
 #define __domConvex_mesh_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -89,8 +90,7 @@ public:	//Accessors and Mutators
 	 * Sets the convex_hull_of attribute.
 	 * @param atConvex_hull_of The new value for the convex_hull_of attribute.
 	 */
-	void setConvex_hull_of( const xsAnyURI &atConvex_hull_of ) { attrConvex_hull_of = atConvex_hull_of;
-	 _validAttributeArray[0] = true; }
+	void setConvex_hull_of( const xsAnyURI &atConvex_hull_of ) { attrConvex_hull_of = atConvex_hull_of; _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the source element array.

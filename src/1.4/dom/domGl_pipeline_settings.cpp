@@ -3315,7 +3315,7 @@ domGl_pipeline_settings::domLight_ambient::registerElement()
 
 	//	Add attribute: value
  	{
-		daeMetaAttribute *ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "value" );
 		ma->setType( daeAtomicType::get("Float4"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domLight_ambient , attrValue ));
@@ -3378,7 +3378,7 @@ domGl_pipeline_settings::domLight_diffuse::registerElement()
 
 	//	Add attribute: value
  	{
-		daeMetaAttribute *ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "value" );
 		ma->setType( daeAtomicType::get("Float4"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domLight_diffuse , attrValue ));
@@ -3441,7 +3441,7 @@ domGl_pipeline_settings::domLight_specular::registerElement()
 
 	//	Add attribute: value
  	{
-		daeMetaAttribute *ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "value" );
 		ma->setType( daeAtomicType::get("Float4"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domLight_specular , attrValue ));
@@ -3504,7 +3504,7 @@ domGl_pipeline_settings::domLight_position::registerElement()
 
 	//	Add attribute: value
  	{
-		daeMetaAttribute *ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "value" );
 		ma->setType( daeAtomicType::get("Float4"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domLight_position , attrValue ));
@@ -3819,7 +3819,7 @@ domGl_pipeline_settings::domLight_spot_direction::registerElement()
 
 	//	Add attribute: value
  	{
-		daeMetaAttribute *ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "value" );
 		ma->setType( daeAtomicType::get("Float3"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domLight_spot_direction , attrValue ));
@@ -4887,7 +4887,7 @@ domGl_pipeline_settings::domTexture_env_color::registerElement()
 
 	//	Add attribute: value
  	{
-		daeMetaAttribute *ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "value" );
 		ma->setType( daeAtomicType::get("Float4"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domTexture_env_color , attrValue ));
@@ -5009,7 +5009,7 @@ domGl_pipeline_settings::domClip_plane::registerElement()
 
 	//	Add attribute: value
  	{
-		daeMetaAttribute *ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "value" );
 		ma->setType( daeAtomicType::get("Float4"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domClip_plane , attrValue ));
@@ -5133,7 +5133,7 @@ domGl_pipeline_settings::domBlend_color::registerElement()
 
 	//	Add attribute: value
  	{
-		daeMetaAttribute *ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "value" );
 		ma->setType( daeAtomicType::get("Float4"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domBlend_color , attrValue ));
@@ -5184,7 +5184,7 @@ domGl_pipeline_settings::domClear_color::registerElement()
 
 	//	Add attribute: value
  	{
-		daeMetaAttribute *ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "value" );
 		ma->setType( daeAtomicType::get("Float4"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domClear_color , attrValue ));
@@ -5337,7 +5337,7 @@ domGl_pipeline_settings::domColor_mask::registerElement()
 
 	//	Add attribute: value
  	{
-		daeMetaAttribute *ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "value" );
 		ma->setType( daeAtomicType::get("Bool4"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domColor_mask , attrValue ));
@@ -5388,7 +5388,7 @@ domGl_pipeline_settings::domDepth_bounds::registerElement()
 
 	//	Add attribute: value
  	{
-		daeMetaAttribute *ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "value" );
 		ma->setType( daeAtomicType::get("Float2"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domDepth_bounds , attrValue ));
@@ -5489,7 +5489,7 @@ domGl_pipeline_settings::domDepth_range::registerElement()
 
 	//	Add attribute: value
  	{
-		daeMetaAttribute *ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "value" );
 		ma->setType( daeAtomicType::get("Float2"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domDepth_range , attrValue ));
@@ -5693,7 +5693,7 @@ domGl_pipeline_settings::domFog_color::registerElement()
 
 	//	Add attribute: value
  	{
-		daeMetaAttribute *ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "value" );
 		ma->setType( daeAtomicType::get("Float4"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domFog_color , attrValue ));
@@ -5744,7 +5744,7 @@ domGl_pipeline_settings::domLight_model_ambient::registerElement()
 
 	//	Add attribute: value
  	{
-		daeMetaAttribute *ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "value" );
 		ma->setType( daeAtomicType::get("Float4"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domLight_model_ambient , attrValue ));
@@ -5846,7 +5846,7 @@ domGl_pipeline_settings::domLine_stipple::registerElement()
 
 	//	Add attribute: value
  	{
-		daeMetaAttribute *ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "value" );
 		ma->setType( daeAtomicType::get("Int2"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domLine_stipple , attrValue ));
@@ -5948,7 +5948,7 @@ domGl_pipeline_settings::domMaterial_ambient::registerElement()
 
 	//	Add attribute: value
  	{
-		daeMetaAttribute *ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "value" );
 		ma->setType( daeAtomicType::get("Float4"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domMaterial_ambient , attrValue ));
@@ -5999,7 +5999,7 @@ domGl_pipeline_settings::domMaterial_diffuse::registerElement()
 
 	//	Add attribute: value
  	{
-		daeMetaAttribute *ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "value" );
 		ma->setType( daeAtomicType::get("Float4"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domMaterial_diffuse , attrValue ));
@@ -6050,7 +6050,7 @@ domGl_pipeline_settings::domMaterial_emission::registerElement()
 
 	//	Add attribute: value
  	{
-		daeMetaAttribute *ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "value" );
 		ma->setType( daeAtomicType::get("Float4"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domMaterial_emission , attrValue ));
@@ -6152,7 +6152,7 @@ domGl_pipeline_settings::domMaterial_specular::registerElement()
 
 	//	Add attribute: value
  	{
-		daeMetaAttribute *ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "value" );
 		ma->setType( daeAtomicType::get("Float4"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domMaterial_specular , attrValue ));
@@ -6203,7 +6203,7 @@ domGl_pipeline_settings::domModel_view_matrix::registerElement()
 
 	//	Add attribute: value
  	{
-		daeMetaAttribute *ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "value" );
 		ma->setType( daeAtomicType::get("Float4x4"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domModel_view_matrix , attrValue ));
@@ -6254,7 +6254,7 @@ domGl_pipeline_settings::domPoint_distance_attenuation::registerElement()
 
 	//	Add attribute: value
  	{
-		daeMetaAttribute *ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "value" );
 		ma->setType( daeAtomicType::get("Float3"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domPoint_distance_attenuation , attrValue ));
@@ -6509,7 +6509,7 @@ domGl_pipeline_settings::domPolygon_offset::registerElement()
 
 	//	Add attribute: value
  	{
-		daeMetaAttribute *ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "value" );
 		ma->setType( daeAtomicType::get("Float2"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domPolygon_offset , attrValue ));
@@ -6560,7 +6560,7 @@ domGl_pipeline_settings::domProjection_matrix::registerElement()
 
 	//	Add attribute: value
  	{
-		daeMetaAttribute *ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "value" );
 		ma->setType( daeAtomicType::get("Float4x4"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domProjection_matrix , attrValue ));
@@ -6611,7 +6611,7 @@ domGl_pipeline_settings::domScissor::registerElement()
 
 	//	Add attribute: value
  	{
-		daeMetaAttribute *ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "value" );
 		ma->setType( daeAtomicType::get("Int4"));
 		ma->setOffset( daeOffsetOf( domGl_pipeline_settings::domScissor , attrValue ));

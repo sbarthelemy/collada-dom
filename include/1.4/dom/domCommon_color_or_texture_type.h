@@ -13,6 +13,7 @@
 #ifndef __domCommon_color_or_texture_type_h__
 #define __domCommon_color_or_texture_type_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -49,8 +50,7 @@ public:
 		 * Sets the sid attribute.
 		 * @param atSid The new value for the sid attribute.
 		 */
-		void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid;	
-	 _validAttributeArray[0] = true; }
+		void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the _value array.
@@ -130,8 +130,7 @@ public:
 		 * Sets the ref attribute.
 		 * @param atRef The new value for the ref attribute.
 		 */
-		void setRef( xsNCName atRef ) { *(daeStringRef*)&attrRef = atRef;	
-	 _validAttributeArray[0] = true; }
+		void setRef( xsNCName atRef ) { *(daeStringRef*)&attrRef = atRef; _validAttributeArray[0] = true; }
 
 	protected:
 		/**
@@ -198,8 +197,7 @@ public:
 		 * Sets the texture attribute.
 		 * @param atTexture The new value for the texture attribute.
 		 */
-		void setTexture( xsNCName atTexture ) { *(daeStringRef*)&attrTexture = atTexture;	
-	 _validAttributeArray[0] = true; }
+		void setTexture( xsNCName atTexture ) { *(daeStringRef*)&attrTexture = atTexture; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the texcoord attribute.
@@ -210,8 +208,7 @@ public:
 		 * Sets the texcoord attribute.
 		 * @param atTexcoord The new value for the texcoord attribute.
 		 */
-		void setTexcoord( xsNCName atTexcoord ) { *(daeStringRef*)&attrTexcoord = atTexcoord;	
-	 _validAttributeArray[1] = true; }
+		void setTexcoord( xsNCName atTexcoord ) { *(daeStringRef*)&attrTexcoord = atTexcoord; _validAttributeArray[1] = true; }
 
 		/**
 		 * Gets the extra element.

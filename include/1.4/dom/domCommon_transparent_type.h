@@ -13,6 +13,7 @@
 #ifndef __domCommon_transparent_type_h__
 #define __domCommon_transparent_type_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -39,8 +40,7 @@ public:	//Accessors and Mutators
 	 * Sets the opaque attribute.
 	 * @param atOpaque The new value for the opaque attribute.
 	 */
-	void setOpaque( domFx_opaque_enum atOpaque ) { attrOpaque = atOpaque;
-	 _validAttributeArray[0] = true; }
+	void setOpaque( domFx_opaque_enum atOpaque ) { attrOpaque = atOpaque; _validAttributeArray[0] = true; }
 
 protected:
 	/**

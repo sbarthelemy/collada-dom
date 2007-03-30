@@ -13,6 +13,7 @@
 #ifndef __domInt_array_h__
 #define __domInt_array_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -69,8 +70,9 @@ public:	//Accessors and Mutators
 	 * Sets the id attribute.
 	 * @param atId The new value for the id attribute.
 	 */
-	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId;
-	 _validAttributeArray[0] = true; }
+	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId; _validAttributeArray[0] = true; 
+		if( _document != NULL ) _document->changeElementID( this, attrId );
+	}
 
 	/**
 	 * Gets the name attribute.
@@ -81,8 +83,7 @@ public:	//Accessors and Mutators
 	 * Sets the name attribute.
 	 * @param atName The new value for the name attribute.
 	 */
-	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName;
-	 _validAttributeArray[1] = true; }
+	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the count attribute.
@@ -93,8 +94,7 @@ public:	//Accessors and Mutators
 	 * Sets the count attribute.
 	 * @param atCount The new value for the count attribute.
 	 */
-	void setCount( domUint atCount ) { attrCount = atCount;
-	 _validAttributeArray[2] = true; }
+	void setCount( domUint atCount ) { attrCount = atCount; _validAttributeArray[2] = true; }
 
 	/**
 	 * Gets the minInclusive attribute.
@@ -105,8 +105,7 @@ public:	//Accessors and Mutators
 	 * Sets the minInclusive attribute.
 	 * @param atMinInclusive The new value for the minInclusive attribute.
 	 */
-	void setMinInclusive( xsInteger atMinInclusive ) { attrMinInclusive = atMinInclusive;
-	 _validAttributeArray[3] = true; }
+	void setMinInclusive( xsInteger atMinInclusive ) { attrMinInclusive = atMinInclusive; _validAttributeArray[3] = true; }
 
 	/**
 	 * Gets the maxInclusive attribute.
@@ -117,8 +116,7 @@ public:	//Accessors and Mutators
 	 * Sets the maxInclusive attribute.
 	 * @param atMaxInclusive The new value for the maxInclusive attribute.
 	 */
-	void setMaxInclusive( xsInteger atMaxInclusive ) { attrMaxInclusive = atMaxInclusive;
-	 _validAttributeArray[4] = true; }
+	void setMaxInclusive( xsInteger atMaxInclusive ) { attrMaxInclusive = atMaxInclusive; _validAttributeArray[4] = true; }
 
 	/**
 	 * Gets the _value array.

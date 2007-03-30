@@ -140,10 +140,20 @@ public:
 	* @param document Document in which the @c daeElement lives.
 	* @param element Element to remove.
 	* @return Returns @c DAE_OK if element successfully removed, otherwise returns a negative value as defined in daeError.h.
-	* @note This function is not implemented in the reference STL implementation.
 	*/
 	virtual DLLSPEC daeInt removeElement(daeDocument* document,
 	                           daeElement* element) = 0;
+	/**
+	 * Updates the database to reflect a change to the ID of a @c daeElement.
+	 * @param element @c daeElement whose ID is going to change.
+	 * @param newID The ID that will be assigned to the element.
+	 * @return Returns @c DAE_OK if the database was successfully updated, otherwise returns a negative value as defined in daeError.h.
+	 * @note The database doesn't actually change the ID of the element, it
+	 * merely updates its internal structures to reflect the change. It's
+	 * expected that the ID will be assigned to the element by someone else.
+	 */
+	virtual DLLSPEC daeInt changeElementID(daeElement* element,
+                                               daeString newID) = 0;
 	/**
 	* Unloads all of the documents of the runtime database.
 	* This function frees all the @c dom* objects and integration objects created so far,
@@ -151,14 +161,6 @@ public:
 	* @return Returns @c DAE_OK if all documents successfully unloaded, otherwise returns a negative value as defined in daeError.h.
 	*/
 	virtual DLLSPEC daeInt clear() = 0;
-	/**
-	* Optimizes the database.
-	* This function takes time; it is called by the interface at the end of a load operation.
-	* Some databases cannot be queried when items are being inserted; for instance, they may
-	* need to be sorted. All database search functions call @c validate(); you should not need to 
-	* call this function directly.
-	*/
-	virtual DLLSPEC void validate() = 0;
 	//@}
 
 	/** @name Queries */

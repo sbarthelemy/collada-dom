@@ -13,6 +13,7 @@
 #ifndef __domSphere_h__
 #define __domSphere_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 

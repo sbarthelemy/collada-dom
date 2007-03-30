@@ -13,6 +13,7 @@
 #ifndef __domGles_texcombiner_argumentRGB_type_h__
 #define __domGles_texcombiner_argumentRGB_type_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -57,7 +58,7 @@ public:	//Accessors and Mutators
 	 * Sets the unit attribute.
 	 * @param atUnit The new value for the unit attribute.
 	 */
-	void setUnit( xsNCName atUnit ) { *(daeStringRef*)&attrUnit = atUnit; }
+	void setUnit( xsNCName atUnit ) { *(daeStringRef*)&attrUnit = atUnit;}
 
 protected:
 	/**
@@ -96,8 +97,7 @@ public:	//Accessors and Mutators
 	 * Sets the source attribute.
 	 * @param atSource The new value for the source attribute.
 	 */
-	void setSource( domGles_texcombiner_source_enums atSource ) { attrSource = atSource;
-	 _validAttributeArray[0] = true; }
+	void setSource( domGles_texcombiner_source_enums atSource ) { attrSource = atSource; _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the operand attribute.
@@ -108,8 +108,7 @@ public:	//Accessors and Mutators
 	 * Sets the operand attribute.
 	 * @param atOperand The new value for the operand attribute.
 	 */
-	void setOperand( domGles_texcombiner_operandRGB_enums atOperand ) { attrOperand = atOperand;
-	 _validAttributeArray[1] = true; }
+	void setOperand( domGles_texcombiner_operandRGB_enums atOperand ) { attrOperand = atOperand; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the unit attribute.
@@ -120,8 +119,7 @@ public:	//Accessors and Mutators
 	 * Sets the unit attribute.
 	 * @param atUnit The new value for the unit attribute.
 	 */
-	void setUnit( xsNCName atUnit ) { *(daeStringRef*)&attrUnit = atUnit;
-	 _validAttributeArray[2] = true; }
+	void setUnit( xsNCName atUnit ) { *(daeStringRef*)&attrUnit = atUnit; _validAttributeArray[2] = true; }
 
 protected:
 	/**

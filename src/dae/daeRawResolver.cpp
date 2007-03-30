@@ -84,6 +84,7 @@ daeRawResolver::resolveElement(daeURI& uri, daeString typeNameHint)
 		uri.setState(daeURI::uri_failed_file_not_found);
 		return false;
 	}
+	long byteOffset = atoi( uri.getID() ); //get the fragment
 
 	daeElement *src;
 	daeElement *array;
@@ -108,10 +109,7 @@ daeRawResolver::resolveElement(daeURI& uri, daeString typeNameHint)
 	{
 		array = src->createAndPlace( "float_array" );
 	}
-
-	daeULong *offsetPtr = (daeULong*)accessor->getAttributeValue( "offset" );
-	daeULong offset = offsetPtr != NULL ? *offsetPtr : 0;
-
+	
 	daeULong *countPtr = (daeULong*)accessor->getAttributeValue( "count" );
 	daeULong count = countPtr != NULL ? *countPtr : 0;
 
@@ -119,7 +117,6 @@ daeRawResolver::resolveElement(daeURI& uri, daeString typeNameHint)
 	daeULong stride = stridePtr != NULL ? *stridePtr : 1;
 
 	*(daeULong*)(array->getAttributeValue("count")) = count*stride;
-	*offsetPtr = 0;
 	daeFixedName arrayName;
 	strcpy( arrayName, src->getID() );
 	strcat( arrayName, "-array" );
@@ -128,27 +125,24 @@ daeRawResolver::resolveElement(daeURI& uri, daeString typeNameHint)
 	daeArray *valArray = (daeArray*)array->getValuePointer();
 	valArray->setRawCount( (size_t)(count*stride) );
 
+	fseek( rawFile, byteOffset, SEEK_SET );
 	if ( hasInts )
 	{
-		fseek( rawFile, (long)(offset*sizeof(daeInt)), SEEK_SET );
 		daeInt val;
 		for ( unsigned int i = 0; i < count*stride; i++ )
 		{
 			fread( &val, sizeof(daeInt), 1, rawFile );
 			*(daeLong*)(valArray->getRawData()+i*sizeof(daeLong)) = (daeLong)val;
 		}
-		//fread( valArray->getRawData(), sizeof(daeLong), (size_t)(count*stride), rawFile );
 	}
 	else
 	{
-		fseek( rawFile, (long)(offset*sizeof(daeFloat)), SEEK_SET );
 		daeFloat val;
 		for ( unsigned int i = 0; i < count*stride; i++ )
 		{
 			fread( &val, sizeof(daeFloat), 1, rawFile );
 			*(daeDouble*)(valArray->getRawData()+i*sizeof(daeDouble)) = (daeDouble)val;
 		}
-		//fread( valArray->getRawData(), sizeof(daeDouble), (size_t)(count*stride), rawFile );
 	}
 
 	fclose(rawFile);

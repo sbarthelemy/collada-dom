@@ -40,7 +40,7 @@ domGles_texture_constant_type::registerElement()
 
 	//	Add attribute: value
  	{
-		daeMetaAttribute *ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "value" );
 		ma->setType( daeAtomicType::get("Float4"));
 		ma->setOffset( daeOffsetOf( domGles_texture_constant_type , attrValue ));

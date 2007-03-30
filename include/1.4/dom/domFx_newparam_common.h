@@ -13,6 +13,7 @@
 #ifndef __domFx_newparam_common_h__
 #define __domFx_newparam_common_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -203,7 +204,7 @@ public:	//Accessors and Mutators
 	 * Sets the sid attribute.
 	 * @param atSid The new value for the sid attribute.
 	 */
-	void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid; }
+	void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid;}
 
 	/**
 	 * Gets the annotate element array.
@@ -267,8 +268,7 @@ public:	//Accessors and Mutators
 	 * Sets the sid attribute.
 	 * @param atSid The new value for the sid attribute.
 	 */
-	void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid;
-	 _validAttributeArray[0] = true; }
+	void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid; _validAttributeArray[0] = true; }
 
 protected:
 	/**

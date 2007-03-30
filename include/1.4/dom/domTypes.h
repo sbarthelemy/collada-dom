@@ -16,9 +16,6 @@
 
 #include <dae/daeDomTypes.h>
 
-// Register all types
-//extern void registerDomTypes();
-
 typedef xsBoolean		domBool;
 typedef xsDateTime		domDateTime;
 typedef xsDouble		domFloat;

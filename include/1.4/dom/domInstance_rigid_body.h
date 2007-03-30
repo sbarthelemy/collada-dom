@@ -13,6 +13,7 @@
 #ifndef __domInstance_rigid_body_h__
 #define __domInstance_rigid_body_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -239,8 +240,7 @@ public:
 			 * Sets the sid attribute.
 			 * @param atSid The new value for the sid attribute.
 			 */
-			void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid;		
-	 _validAttributeArray[0] = true; }
+			void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid; _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the value of this element.
@@ -434,8 +434,7 @@ public:
 				 * Sets the sid attribute.
 				 * @param atSid The new value for the sid attribute.
 				 */
-				void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid;			
-	 _validAttributeArray[0] = true; }
+				void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid; _validAttributeArray[0] = true; }
 
 				/**
 				 * Gets the value of this element.
@@ -857,8 +856,7 @@ public:	//Accessors and Mutators
 	 * Sets the body attribute.
 	 * @param atBody The new value for the body attribute.
 	 */
-	void setBody( xsNCName atBody ) { *(daeStringRef*)&attrBody = atBody;
-	 _validAttributeArray[0] = true; }
+	void setBody( xsNCName atBody ) { *(daeStringRef*)&attrBody = atBody; _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the sid attribute.
@@ -869,8 +867,7 @@ public:	//Accessors and Mutators
 	 * Sets the sid attribute.
 	 * @param atSid The new value for the sid attribute.
 	 */
-	void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid;
-	 _validAttributeArray[1] = true; }
+	void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the name attribute.
@@ -881,8 +878,7 @@ public:	//Accessors and Mutators
 	 * Sets the name attribute.
 	 * @param atName The new value for the name attribute.
 	 */
-	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName;
-	 _validAttributeArray[2] = true; }
+	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName; _validAttributeArray[2] = true; }
 
 	/**
 	 * Gets the target attribute.
@@ -898,8 +894,7 @@ public:	//Accessors and Mutators
 	 * Sets the target attribute.
 	 * @param atTarget The new value for the target attribute.
 	 */
-	void setTarget( const xsAnyURI &atTarget ) { attrTarget = atTarget;
-	 _validAttributeArray[3] = true; }
+	void setTarget( const xsAnyURI &atTarget ) { attrTarget = atTarget; _validAttributeArray[3] = true; }
 
 	/**
 	 * Gets the technique_common element.

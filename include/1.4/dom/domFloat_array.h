@@ -13,6 +13,7 @@
 #ifndef __domFloat_array_h__
 #define __domFloat_array_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -70,8 +71,9 @@ public:	//Accessors and Mutators
 	 * Sets the id attribute.
 	 * @param atId The new value for the id attribute.
 	 */
-	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId;
-	 _validAttributeArray[0] = true; }
+	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId; _validAttributeArray[0] = true; 
+		if( _document != NULL ) _document->changeElementID( this, attrId );
+	}
 
 	/**
 	 * Gets the name attribute.
@@ -82,8 +84,7 @@ public:	//Accessors and Mutators
 	 * Sets the name attribute.
 	 * @param atName The new value for the name attribute.
 	 */
-	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName;
-	 _validAttributeArray[1] = true; }
+	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the count attribute.
@@ -94,8 +95,7 @@ public:	//Accessors and Mutators
 	 * Sets the count attribute.
 	 * @param atCount The new value for the count attribute.
 	 */
-	void setCount( domUint atCount ) { attrCount = atCount;
-	 _validAttributeArray[2] = true; }
+	void setCount( domUint atCount ) { attrCount = atCount; _validAttributeArray[2] = true; }
 
 	/**
 	 * Gets the digits attribute.
@@ -106,8 +106,7 @@ public:	//Accessors and Mutators
 	 * Sets the digits attribute.
 	 * @param atDigits The new value for the digits attribute.
 	 */
-	void setDigits( xsShort atDigits ) { attrDigits = atDigits;
-	 _validAttributeArray[3] = true; }
+	void setDigits( xsShort atDigits ) { attrDigits = atDigits; _validAttributeArray[3] = true; }
 
 	/**
 	 * Gets the magnitude attribute.
@@ -118,8 +117,7 @@ public:	//Accessors and Mutators
 	 * Sets the magnitude attribute.
 	 * @param atMagnitude The new value for the magnitude attribute.
 	 */
-	void setMagnitude( xsShort atMagnitude ) { attrMagnitude = atMagnitude;
-	 _validAttributeArray[4] = true; }
+	void setMagnitude( xsShort atMagnitude ) { attrMagnitude = atMagnitude; _validAttributeArray[4] = true; }
 
 	/**
 	 * Gets the _value array.

@@ -66,13 +66,11 @@ public:
 	 * Macro that defines new and delete overrides for this class
 	 */
 	DAE_ALLOC;
-private:
+protected:
 	mutable daeInt			_refCount;
 	daeIntegrationObject*	_intObject;
 	daeElement*				_parent;
 	daeDocument*			_document;
-	
-protected:
 	daeMetaElement*			_meta;
 	daeString				_elementName;
 	daeBoolArray			_validAttributeArray;
@@ -92,6 +90,9 @@ public:
 protected:
 	daeElement( const daeElement &cpy ) { (void)cpy; };
 	virtual daeElement &operator=( const daeElement &cpy ) { (void)cpy; return *this; }
+
+	// This function is called internally.
+	DLLSPEC void setDocument( daeDocument* c, bool notifyDocument );
 
 public:
 	/**
@@ -287,7 +288,7 @@ public:
 	 * Sets the database document associated with this element.
 	 * @param c The daeDocument to associate with this element.
 	 */
-	DLLSPEC void setDocument(daeDocument* c );
+	DLLSPEC void setDocument(daeDocument* c) { setDocument( c, true ); }
 	/**
 	 * Deprecated.
 	 */

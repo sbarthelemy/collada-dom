@@ -13,6 +13,7 @@
 #ifndef __domMesh_h__
 #define __domMesh_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 

@@ -13,6 +13,7 @@
 #ifndef __domMorph_h__
 #define __domMorph_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -153,8 +154,7 @@ public:	//Accessors and Mutators
 	 * Sets the method attribute.
 	 * @param atMethod The new value for the method attribute.
 	 */
-	void setMethod( domMorphMethodType atMethod ) { attrMethod = atMethod;
-	 _validAttributeArray[0] = true; }
+	void setMethod( domMorphMethodType atMethod ) { attrMethod = atMethod; _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the source attribute.
@@ -170,8 +170,7 @@ public:	//Accessors and Mutators
 	 * Sets the source attribute.
 	 * @param atSource The new value for the source attribute.
 	 */
-	void setSource( const xsAnyURI &atSource ) { attrSource = atSource;
-	 _validAttributeArray[1] = true; }
+	void setSource( const xsAnyURI &atSource ) { attrSource = atSource; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the source element array.

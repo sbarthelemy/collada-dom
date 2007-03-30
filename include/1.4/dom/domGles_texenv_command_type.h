@@ -13,6 +13,7 @@
 #ifndef __domGles_texenv_command_type_h__
 #define __domGles_texenv_command_type_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -48,7 +49,7 @@ public:	//Accessors and Mutators
 	 * Sets the unit attribute.
 	 * @param atUnit The new value for the unit attribute.
 	 */
-	void setUnit( xsNCName atUnit ) { *(daeStringRef*)&attrUnit = atUnit; }
+	void setUnit( xsNCName atUnit ) { *(daeStringRef*)&attrUnit = atUnit;}
 
 	/**
 	 * Gets the constant element.
@@ -92,8 +93,7 @@ public:	//Accessors and Mutators
 	 * Sets the operator attribute.
 	 * @param atOperator The new value for the operator attribute.
 	 */
-	void setOperator( domGles_texenv_mode_enums atOperator ) { attrOperator = atOperator;
-	 _validAttributeArray[0] = true; }
+	void setOperator( domGles_texenv_mode_enums atOperator ) { attrOperator = atOperator; _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the unit attribute.
@@ -104,8 +104,7 @@ public:	//Accessors and Mutators
 	 * Sets the unit attribute.
 	 * @param atUnit The new value for the unit attribute.
 	 */
-	void setUnit( xsNCName atUnit ) { *(daeStringRef*)&attrUnit = atUnit;
-	 _validAttributeArray[1] = true; }
+	void setUnit( xsNCName atUnit ) { *(daeStringRef*)&attrUnit = atUnit; _validAttributeArray[1] = true; }
 
 protected:
 	/**

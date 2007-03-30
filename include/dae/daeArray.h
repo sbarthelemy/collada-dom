@@ -565,7 +565,7 @@ public:
 		}
 		if ( index+2 < _count )
 		{
-			two = get(index+2);
+			three = get(index+2);
 			retVal++;
 		}
 		return retVal;
@@ -594,12 +594,12 @@ public:
 		}
 		if ( index+2 < _count )
 		{
-			two = get(index+2);
+			three = get(index+2);
 			retVal++;
 		}
 		if ( index+3 < _count )
 		{
-			two = get(index+3);
+			four = get(index+3);
 			retVal++;
 		}
 		return retVal;

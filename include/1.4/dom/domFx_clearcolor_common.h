@@ -13,6 +13,7 @@
 #ifndef __domFx_clearcolor_common_h__
 #define __domFx_clearcolor_common_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -93,8 +94,7 @@ public:	//Accessors and Mutators
 	 * Sets the index attribute.
 	 * @param atIndex The new value for the index attribute.
 	 */
-	void setIndex( xsNonNegativeInteger atIndex ) { attrIndex = atIndex;
-	 _validAttributeArray[0] = true; }
+	void setIndex( xsNonNegativeInteger atIndex ) { attrIndex = atIndex; _validAttributeArray[0] = true; }
 
 protected:
 	/**

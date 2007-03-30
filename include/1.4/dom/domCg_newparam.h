@@ -13,6 +13,7 @@
 #ifndef __domCg_newparam_h__
 #define __domCg_newparam_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -301,8 +302,7 @@ public:	//Accessors and Mutators
 	 * Sets the sid attribute.
 	 * @param atSid The new value for the sid attribute.
 	 */
-	void setSid( domCg_identifier atSid ) { attrSid = atSid;
-	 _validAttributeArray[0] = true; }
+	void setSid( domCg_identifier atSid ) { attrSid = atSid; _validAttributeArray[0] = true; }
 
 protected:
 	/**

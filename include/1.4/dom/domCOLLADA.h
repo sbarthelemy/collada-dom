@@ -13,6 +13,7 @@
 #ifndef __domCOLLADA_h__
 #define __domCOLLADA_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -295,8 +296,7 @@ public:	//Accessors and Mutators
 	 * Sets the version attribute.
 	 * @param atVersion The new value for the version attribute.
 	 */
-	void setVersion( domVersionType atVersion ) { attrVersion = atVersion;
-	 _validAttributeArray[1] = true; }
+	void setVersion( domVersionType atVersion ) { attrVersion = atVersion; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the xml_base attribute.
@@ -312,8 +312,7 @@ public:	//Accessors and Mutators
 	 * Sets the xml_base attribute.
 	 * @param atXml_base The new value for the xml_base attribute.
 	 */
-	void setXml_base( const xsAnyURI &atXml_base ) { attrXml_base = atXml_base;
-	 _validAttributeArray[2] = true; }
+	void setXml_base( const xsAnyURI &atXml_base ) { attrXml_base = atXml_base; _validAttributeArray[2] = true; }
 
 	/**
 	 * Gets the asset element.

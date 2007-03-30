@@ -13,6 +13,7 @@
 #ifndef __domProfile_GLSL_h__
 #define __domProfile_GLSL_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -323,8 +324,7 @@ public:
 					 * Sets the source attribute.
 					 * @param atSource The new value for the source attribute.
 					 */
-					void setSource( xsNCName atSource ) { *(daeStringRef*)&attrSource = atSource;				
-	 _validAttributeArray[0] = true; }
+					void setSource( xsNCName atSource ) { *(daeStringRef*)&attrSource = atSource; _validAttributeArray[0] = true; }
 
 					/**
 					 * Gets the value of this element.
@@ -412,8 +412,7 @@ public:
 						 * Sets the ref attribute.
 						 * @param atRef The new value for the ref attribute.
 						 */
-						void setRef( xsString atRef ) { *(daeStringRef*)&attrRef = atRef;					
-	 _validAttributeArray[0] = true; }
+						void setRef( xsString atRef ) { *(daeStringRef*)&attrRef = atRef; _validAttributeArray[0] = true; }
 
 					protected:
 						/**
@@ -490,8 +489,7 @@ public:
 					 * Sets the symbol attribute.
 					 * @param atSymbol The new value for the symbol attribute.
 					 */
-					void setSymbol( xsNCName atSymbol ) { *(daeStringRef*)&attrSymbol = atSymbol;				
-	 _validAttributeArray[0] = true; }
+					void setSymbol( xsNCName atSymbol ) { *(daeStringRef*)&attrSymbol = atSymbol; _validAttributeArray[0] = true; }
 
 					/**
 					 * Gets the glsl_param_type element.
@@ -592,8 +590,7 @@ public:
 				 * Sets the stage attribute.
 				 * @param atStage The new value for the stage attribute.
 				 */
-				void setStage( domGlsl_pipeline_stage atStage ) { attrStage = atStage;			
-	 _validAttributeArray[0] = true; }
+				void setStage( domGlsl_pipeline_stage atStage ) { attrStage = atStage; _validAttributeArray[0] = true; }
 
 				/**
 				 * Gets the annotate element array.
@@ -719,8 +716,7 @@ public:
 			 * Sets the sid attribute.
 			 * @param atSid The new value for the sid attribute.
 			 */
-			void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid;		
-	 _validAttributeArray[0] = true; }
+			void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid; _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the annotate element array.
@@ -930,8 +926,9 @@ public:
 		 * Sets the id attribute.
 		 * @param atId The new value for the id attribute.
 		 */
-		void setId( xsID atId ) { *(daeStringRef*)&attrId = atId;	
-	 _validAttributeArray[0] = true; }
+		void setId( xsID atId ) { *(daeStringRef*)&attrId = atId; _validAttributeArray[0] = true; 
+			if( _document != NULL ) _document->changeElementID( this, attrId );
+		}
 
 		/**
 		 * Gets the sid attribute.
@@ -942,8 +939,7 @@ public:
 		 * Sets the sid attribute.
 		 * @param atSid The new value for the sid attribute.
 		 */
-		void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid;	
-	 _validAttributeArray[1] = true; }
+		void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid; _validAttributeArray[1] = true; }
 
 		/**
 		 * Gets the annotate element array.
@@ -1121,8 +1117,9 @@ public:	//Accessors and Mutators
 	 * Sets the id attribute.
 	 * @param atId The new value for the id attribute.
 	 */
-	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId;
-	 _validAttributeArray[0] = true; }
+	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId; _validAttributeArray[0] = true; 
+		if( _document != NULL ) _document->changeElementID( this, attrId );
+	}
 
 	/**
 	 * Gets the asset element.

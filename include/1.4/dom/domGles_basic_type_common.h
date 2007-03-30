@@ -13,6 +13,7 @@
 #ifndef __domGles_basic_type_common_h__
 #define __domGles_basic_type_common_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 

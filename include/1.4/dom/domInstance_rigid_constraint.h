@@ -13,6 +13,7 @@
 #ifndef __domInstance_rigid_constraint_h__
 #define __domInstance_rigid_constraint_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -58,8 +59,7 @@ public:	//Accessors and Mutators
 	 * Sets the constraint attribute.
 	 * @param atConstraint The new value for the constraint attribute.
 	 */
-	void setConstraint( xsNCName atConstraint ) { *(daeStringRef*)&attrConstraint = atConstraint;
-	 _validAttributeArray[0] = true; }
+	void setConstraint( xsNCName atConstraint ) { *(daeStringRef*)&attrConstraint = atConstraint; _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the sid attribute.
@@ -70,8 +70,7 @@ public:	//Accessors and Mutators
 	 * Sets the sid attribute.
 	 * @param atSid The new value for the sid attribute.
 	 */
-	void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid;
-	 _validAttributeArray[1] = true; }
+	void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the name attribute.
@@ -82,8 +81,7 @@ public:	//Accessors and Mutators
 	 * Sets the name attribute.
 	 * @param atName The new value for the name attribute.
 	 */
-	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName;
-	 _validAttributeArray[2] = true; }
+	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName; _validAttributeArray[2] = true; }
 
 	/**
 	 * Gets the extra element array.

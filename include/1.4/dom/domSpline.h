@@ -13,6 +13,7 @@
 #ifndef __domSpline_h__
 #define __domSpline_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -143,8 +144,7 @@ public:	//Accessors and Mutators
 	 * Sets the closed attribute.
 	 * @param atClosed The new value for the closed attribute.
 	 */
-	void setClosed( domBool atClosed ) { attrClosed = atClosed;
-	 _validAttributeArray[0] = true; }
+	void setClosed( domBool atClosed ) { attrClosed = atClosed; _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the source element array.

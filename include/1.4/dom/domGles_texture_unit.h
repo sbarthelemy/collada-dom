@@ -13,6 +13,7 @@
 #ifndef __domGles_texture_unit_h__
 #define __domGles_texture_unit_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -178,8 +179,7 @@ public:
 		 * Sets the semantic attribute.
 		 * @param atSemantic The new value for the semantic attribute.
 		 */
-		void setSemantic( xsNCName atSemantic ) { *(daeStringRef*)&attrSemantic = atSemantic;	
-	 _validAttributeArray[0] = true; }
+		void setSemantic( xsNCName atSemantic ) { *(daeStringRef*)&attrSemantic = atSemantic; _validAttributeArray[0] = true; }
 
 	protected:
 		/**
@@ -245,7 +245,7 @@ public:	//Accessors and Mutators
 	 * Sets the sid attribute.
 	 * @param atSid The new value for the sid attribute.
 	 */
-	void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid; }
+	void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid;}
 
 	/**
 	 * Gets the surface element.
@@ -309,8 +309,7 @@ public:	//Accessors and Mutators
 	 * Sets the sid attribute.
 	 * @param atSid The new value for the sid attribute.
 	 */
-	void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid;
-	 _validAttributeArray[0] = true; }
+	void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid; _validAttributeArray[0] = true; }
 
 protected:
 	/**

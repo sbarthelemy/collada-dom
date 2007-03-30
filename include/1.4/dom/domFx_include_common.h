@@ -13,6 +13,7 @@
 #ifndef __domFx_include_common_h__
 #define __domFx_include_common_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -49,7 +50,7 @@ public:	//Accessors and Mutators
 	 * Sets the sid attribute.
 	 * @param atSid The new value for the sid attribute.
 	 */
-	void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid; }
+	void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid;}
 
 	/**
 	 * Gets the url attribute.
@@ -104,8 +105,7 @@ public:	//Accessors and Mutators
 	 * Sets the sid attribute.
 	 * @param atSid The new value for the sid attribute.
 	 */
-	void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid;
-	 _validAttributeArray[0] = true; }
+	void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid; _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the url attribute.
@@ -121,8 +121,7 @@ public:	//Accessors and Mutators
 	 * Sets the url attribute.
 	 * @param atUrl The new value for the url attribute.
 	 */
-	void setUrl( const xsAnyURI &atUrl ) { attrUrl = atUrl;
-	 _validAttributeArray[1] = true; }
+	void setUrl( const xsAnyURI &atUrl ) { attrUrl = atUrl; _validAttributeArray[1] = true; }
 
 protected:
 	/**

@@ -13,6 +13,7 @@
 #ifndef __domGles_texcombiner_commandRGB_type_h__
 #define __domGles_texcombiner_commandRGB_type_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -101,8 +102,7 @@ public:	//Accessors and Mutators
 	 * Sets the operator attribute.
 	 * @param atOperator The new value for the operator attribute.
 	 */
-	void setOperator( domGles_texcombiner_operatorRGB_enums atOperator ) { attrOperator = atOperator;
-	 _validAttributeArray[0] = true; }
+	void setOperator( domGles_texcombiner_operatorRGB_enums atOperator ) { attrOperator = atOperator; _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the scale attribute.
@@ -113,8 +113,7 @@ public:	//Accessors and Mutators
 	 * Sets the scale attribute.
 	 * @param atScale The new value for the scale attribute.
 	 */
-	void setScale( xsFloat atScale ) { attrScale = atScale;
-	 _validAttributeArray[1] = true; }
+	void setScale( xsFloat atScale ) { attrScale = atScale; _validAttributeArray[1] = true; }
 
 protected:
 	/**

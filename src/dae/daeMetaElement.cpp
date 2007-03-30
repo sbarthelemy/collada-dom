@@ -303,10 +303,7 @@ daeBool daeMetaElement::place(daeElement *parent, daeElement *child, daeUInt *or
 	if ( retVal != NULL ) {
 		//update document pointer
 		child->setDocument( parent->getDocument() );
-		if ( parent->getDocument() ) {
-			parent->getDocument()->insertElement( retVal );
-			parent->getDocument()->setModified(true);
-		}
+		retVal->setDocument( parent->getDocument() );
 		//add to _contents array
 		if (_metaContents != NULL) {
 			daeElementRefArray* contents =
@@ -374,10 +371,7 @@ daeBool daeMetaElement::placeAt( daeInt index, daeElement *parent, daeElement *c
 	if ( retVal != NULL ) {
 		//update document pointer
 		child->setDocument( parent->getDocument() );
-		if ( parent->getDocument() ) {
-			parent->getDocument()->insertElement( retVal );
-			parent->getDocument()->setModified(true);
-		}
+		retVal->setDocument( parent->getDocument() );
 	}
 	return retVal!=NULL;
 }
@@ -424,10 +418,7 @@ daeBool daeMetaElement::placeBefore( daeElement *marker, daeElement *parent, dae
 	if ( retVal != NULL ) {
 		//update document pointer
 		child->setDocument( parent->getDocument() );
-		if ( parent->getDocument() ) {
-			parent->getDocument()->insertElement( retVal );
-			parent->getDocument()->setModified(true);
-		}
+		retVal->setDocument( parent->getDocument() );
 	}
 	return retVal!=NULL;
 }
@@ -472,10 +463,7 @@ daeBool daeMetaElement::placeAfter( daeElement *marker, daeElement *parent, daeE
 	if ( retVal != NULL ) {
 		//update document pointer
 		child->setDocument( parent->getDocument() );
-		if ( parent->getDocument() ) {
-			parent->getDocument()->insertElement( retVal );
-			parent->getDocument()->setModified(true);
-		}
+		retVal->setDocument( parent->getDocument() );
 	}
 	return retVal!=NULL;
 }
@@ -499,8 +487,11 @@ daeBool daeMetaElement::remove(daeElement *parent, daeElement *child)
 		}
 		if ( child->getDocument() ) {
 			child->getDocument()->removeElement( child );
-			child->getDocument()->setModified(true);
 		}
+
+		// Clear the child's parent pointer
+		child->setParentElement( NULL );
+
 		return true;
 	}
 	return false;

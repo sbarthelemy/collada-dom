@@ -13,6 +13,7 @@
 #ifndef __domInputLocalOffset_h__
 #define __domInputLocalOffset_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -69,7 +70,7 @@ public:	//Accessors and Mutators
 	 * Sets the semantic attribute.
 	 * @param atSemantic The new value for the semantic attribute.
 	 */
-	void setSemantic( xsNMTOKEN atSemantic ) { *(daeStringRef*)&attrSemantic = atSemantic; }
+	void setSemantic( xsNMTOKEN atSemantic ) { *(daeStringRef*)&attrSemantic = atSemantic;}
 
 	/**
 	 * Gets the source attribute.
@@ -135,8 +136,7 @@ public:	//Accessors and Mutators
 	 * Sets the offset attribute.
 	 * @param atOffset The new value for the offset attribute.
 	 */
-	void setOffset( domUint atOffset ) { attrOffset = atOffset;
-	 _validAttributeArray[0] = true; }
+	void setOffset( domUint atOffset ) { attrOffset = atOffset; _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the semantic attribute.
@@ -147,8 +147,7 @@ public:	//Accessors and Mutators
 	 * Sets the semantic attribute.
 	 * @param atSemantic The new value for the semantic attribute.
 	 */
-	void setSemantic( xsNMTOKEN atSemantic ) { *(daeStringRef*)&attrSemantic = atSemantic;
-	 _validAttributeArray[1] = true; }
+	void setSemantic( xsNMTOKEN atSemantic ) { *(daeStringRef*)&attrSemantic = atSemantic; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the source attribute.
@@ -164,8 +163,7 @@ public:	//Accessors and Mutators
 	 * Sets the source attribute.
 	 * @param atSource The new value for the source attribute.
 	 */
-	void setSource( const domURIFragmentType &atSource ) { attrSource = atSource;
-	 _validAttributeArray[2] = true; }
+	void setSource( const domURIFragmentType &atSource ) { attrSource = atSource; _validAttributeArray[2] = true; }
 
 	/**
 	 * Gets the set attribute.
@@ -176,8 +174,7 @@ public:	//Accessors and Mutators
 	 * Sets the set attribute.
 	 * @param atSet The new value for the set attribute.
 	 */
-	void setSet( domUint atSet ) { attrSet = atSet;
-	 _validAttributeArray[3] = true; }
+	void setSet( domUint atSet ) { attrSet = atSet; _validAttributeArray[3] = true; }
 
 protected:
 	/**

@@ -13,6 +13,7 @@
 #ifndef __domRigid_body_h__
 #define __domRigid_body_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -94,8 +95,7 @@ public:
 			 * Sets the sid attribute.
 			 * @param atSid The new value for the sid attribute.
 			 */
-			void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid;		
-	 _validAttributeArray[0] = true; }
+			void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid; _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the value of this element.
@@ -301,8 +301,7 @@ public:
 				 * Sets the sid attribute.
 				 * @param atSid The new value for the sid attribute.
 				 */
-				void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid;			
-	 _validAttributeArray[0] = true; }
+				void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid; _validAttributeArray[0] = true; }
 
 				/**
 				 * Gets the value of this element.
@@ -764,8 +763,7 @@ public:	//Accessors and Mutators
 	 * Sets the sid attribute.
 	 * @param atSid The new value for the sid attribute.
 	 */
-	void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid;
-	 _validAttributeArray[0] = true; }
+	void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid; _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the name attribute.
@@ -776,8 +774,7 @@ public:	//Accessors and Mutators
 	 * Sets the name attribute.
 	 * @param atName The new value for the name attribute.
 	 */
-	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName;
-	 _validAttributeArray[1] = true; }
+	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the technique_common element.

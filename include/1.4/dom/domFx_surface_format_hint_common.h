@@ -13,6 +13,7 @@
 #ifndef __domFx_surface_format_hint_common_h__
 #define __domFx_surface_format_hint_common_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 

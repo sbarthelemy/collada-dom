@@ -13,6 +13,7 @@
 #ifndef __domBind_material_h__
 #define __domBind_material_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 

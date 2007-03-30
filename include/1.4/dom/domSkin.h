@@ -13,6 +13,7 @@
 #ifndef __domSkin_h__
 #define __domSkin_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -402,8 +403,7 @@ public:
 		 * Sets the count attribute.
 		 * @param atCount The new value for the count attribute.
 		 */
-		void setCount( domUint atCount ) { attrCount = atCount;	
-	 _validAttributeArray[0] = true; }
+		void setCount( domUint atCount ) { attrCount = atCount; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the input element array.
@@ -526,8 +526,7 @@ public:	//Accessors and Mutators
 	 * Sets the source attribute.
 	 * @param atSource The new value for the source attribute.
 	 */
-	void setSource( const xsAnyURI &atSource ) { attrSource = atSource;
-	 _validAttributeArray[0] = true; }
+	void setSource( const xsAnyURI &atSource ) { attrSource = atSource; _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the bind_shape_matrix element.

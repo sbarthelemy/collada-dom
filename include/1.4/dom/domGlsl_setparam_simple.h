@@ -13,6 +13,7 @@
 #ifndef __domGlsl_setparam_simple_h__
 #define __domGlsl_setparam_simple_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -92,8 +93,7 @@ public:	//Accessors and Mutators
 	 * Sets the ref attribute.
 	 * @param atRef The new value for the ref attribute.
 	 */
-	void setRef( domGlsl_identifier atRef ) { attrRef = atRef;
-	 _validAttributeArray[0] = true; }
+	void setRef( domGlsl_identifier atRef ) { attrRef = atRef; _validAttributeArray[0] = true; }
 
 protected:
 	/**

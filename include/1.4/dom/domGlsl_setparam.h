@@ -13,6 +13,7 @@
 #ifndef __domGlsl_setparam_h__
 #define __domGlsl_setparam_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -66,7 +67,7 @@ public:	//Accessors and Mutators
 	 * Sets the program attribute.
 	 * @param atProgram The new value for the program attribute.
 	 */
-	void setProgram( xsNCName atProgram ) { *(daeStringRef*)&attrProgram = atProgram; }
+	void setProgram( xsNCName atProgram ) { *(daeStringRef*)&attrProgram = atProgram;}
 
 	/**
 	 * Gets the annotate element array.
@@ -136,8 +137,7 @@ public:	//Accessors and Mutators
 	 * Sets the ref attribute.
 	 * @param atRef The new value for the ref attribute.
 	 */
-	void setRef( domGlsl_identifier atRef ) { attrRef = atRef;
-	 _validAttributeArray[0] = true; }
+	void setRef( domGlsl_identifier atRef ) { attrRef = atRef; _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the program attribute.
@@ -148,8 +148,7 @@ public:	//Accessors and Mutators
 	 * Sets the program attribute.
 	 * @param atProgram The new value for the program attribute.
 	 */
-	void setProgram( xsNCName atProgram ) { *(daeStringRef*)&attrProgram = atProgram;
-	 _validAttributeArray[1] = true; }
+	void setProgram( xsNCName atProgram ) { *(daeStringRef*)&attrProgram = atProgram; _validAttributeArray[1] = true; }
 
 protected:
 	/**

@@ -13,6 +13,7 @@
 #ifndef __domCg_samplerRECT_h__
 #define __domCg_samplerRECT_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 

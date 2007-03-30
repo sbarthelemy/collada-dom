@@ -13,6 +13,7 @@
 #ifndef __domFx_surface_common_h__
 #define __domFx_surface_common_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -597,8 +598,7 @@ public:	//Accessors and Mutators
 	 * Sets the type attribute.
 	 * @param atType The new value for the type attribute.
 	 */
-	void setType( domFx_surface_type_enum atType ) { attrType = atType;
-	 _validAttributeArray[0] = true; }
+	void setType( domFx_surface_type_enum atType ) { attrType = atType; _validAttributeArray[0] = true; }
 
 protected:
 	/**

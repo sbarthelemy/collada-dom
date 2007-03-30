@@ -13,6 +13,7 @@
 #ifndef __domTapered_cylinder_h__
 #define __domTapered_cylinder_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 

@@ -368,7 +368,7 @@ public:
 	* @param size The size of the buffer.
 	* @return Returns true for success, false if the path exceeded the size of the user provided buffer.
 	*/
-	DLLSPEC daeBool getPath(daeChar *dest, daeInt size);
+	DLLSPEC daeBool getPath(daeChar *dest, daeInt size) const;
 
 public:
 	/**

@@ -12,40 +12,35 @@
  */
 
 #include <dae/daeDocument.h>
+#include <dae/daeDatabase.h>
 
-// sthomas
-daeDocument::~daeDocument()
-{
+
+daeDocument::daeDocument(daeDatabase* database)
+: database(database) {
+}
+
+daeDocument::~daeDocument() {
     for( unsigned int i = 0; i < externalURIs.getCount(); i++ ) {
         delete externalURIs[i];
     }
 }
 
 void daeDocument::insertElement( daeElementRef element ) {
-	daeElement *parent = element->getParentElement();
-	size_t idx;
-	while ( parent != NULL ) {
-		if ( insertedElements.find( parent, idx ) == DAE_OK ) {
-			//found an ancestor in the list.. this child will already be added to the database
-			return;
+	if (database) {
+		database->insertElement( this, element.cast() );
 		}
-		parent = parent->getParentElement();
-	}
-	//if no ancestors are scheduled to be added then we can add element.
-	insertedElements.append( element );
 }
 
 void daeDocument::removeElement( daeElementRef element ) {
-	daeElement *parent = element->getParentElement();
-	size_t idx;
-	while ( parent != NULL ) {
-		if ( removedElements.find( parent, idx ) == DAE_OK ) {
-			//found an ancestor in the list.. this child will already be added to the database
-			return;
+	if (database) {
+		database->removeElement( this, element.cast() );
 		}
-		parent = parent->getParentElement();
+}
+
+void daeDocument::changeElementID( daeElementRef element, daeString newID ) {
+	if (database) {
+		database->changeElementID( element.cast(), newID );
 	}
-	removedElements.append( element );
 }
 
 void daeDocument::addExternalReference( daeURI &uri ) {

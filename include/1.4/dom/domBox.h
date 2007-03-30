@@ -13,6 +13,7 @@
 #ifndef __domBox_h__
 #define __domBox_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 

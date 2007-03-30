@@ -14,10 +14,14 @@
 #include <dae/daeMetaAttribute.h>
 #include <dae/daeMetaElement.h>
 #include <dae/daeErrorHandler.h>
+#include <dae/daeDocument.h>
 
 void
 daeMetaAttribute::set(daeElement* e, daeString s)
 {
+	if (!strcmp(_name, "id") && e->getDocument()) {
+		e->getDocument()->changeElementID(e, s);
+	}
 	_type->stringToMemory((char*)s, getWritableMemory(e));
 }
 

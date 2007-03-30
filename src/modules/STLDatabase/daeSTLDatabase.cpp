@@ -41,14 +41,12 @@ daeSTLDatabase::isDocumentLoaded(daeString name)
 // Element Types of all Elements
 daeUInt daeSTLDatabase::getTypeCount()
 {
-	validate();
 	return (daeUInt)elements.size();
 }
 
 
 daeString daeSTLDatabase::getTypeName(daeUInt index)
 {
-	validate();
 	daeUInt count = 0;
 	
 	std::map<std::string, std::vector< daeElement* > >::iterator iter = elements.begin();
@@ -82,7 +80,7 @@ daeInt daeSTLDatabase::createDocument(const char *name, daeElement* dom, daeDocu
 	}
 	
 	// Make a new document
-	daeDocument *newDocument = new daeDocument;
+	daeDocument *newDocument = new daeDocument(this);
 	// Create a Reference on the domCOLLADA passed into us
 	newDocument->setDomRoot(dom);
 	// Set the domCollada's document to this one
@@ -91,7 +89,6 @@ daeInt daeSTLDatabase::createDocument(const char *name, daeElement* dom, daeDocu
 	newDocument->getDocumentURI()->setURI(name);
 	newDocument->getDocumentURI()->validate();
 	//insertElement( newDocument, dom );
-	newDocument->setModified(true);
 	// Push the connection into the database
 	documents.push_back(newDocument);
 	
@@ -123,7 +120,7 @@ daeInt daeSTLDatabase::createDocument(const char *name, daeDocument** document)
 		return DAE_ERR_COLLECTION_ALREADY_EXISTS;
 	}
 	// Make the new document
-	daeDocument *newDocument = new daeDocument;
+	daeDocument *newDocument = new daeDocument(this);
 	// Make a domCOLLADA to be the root of this new document (this makes a reference so the domCOLLADA won't delete itself
 	daeElementRef myCOLLADA = topMeta->create();
 	// Set the domCollada's document to this one
@@ -133,7 +130,6 @@ daeInt daeSTLDatabase::createDocument(const char *name, daeDocument** document)
 	newDocument->getDocumentURI()->setURI(name);
 	newDocument->getDocumentURI()->validate();
 
-	newDocument->setModified(true);
 	// Add this document to the list.
 	documents.push_back(newDocument);
 	// If the user gave us a place to put the document, send it back to them.
@@ -145,6 +141,7 @@ daeInt daeSTLDatabase::createDocument(const char *name, daeDocument** document)
 
 daeInt daeSTLDatabase::insertDocument( daeDocument *c ) {
 	documents.push_back(c);
+	c->setDatabase(this);
 	insertElement( c, c->getDomRoot() );
 	return DAE_OK;
 }
@@ -291,6 +288,33 @@ daeInt daeSTLDatabase::removeChildren( daeDocument *c, daeElement *element )
 	return DAE_OK;
 }
 
+daeInt daeSTLDatabase::changeElementID( daeElement* element, daeString newID )
+{
+	if ( !element ) {
+		return DAE_ERR_INVALID_CALL;
+	}
+
+	// Remove the current entry in the ID map if the element has an ID
+	if ( element->getID() != NULL ) {
+		std::pair< std::multimap<std::string, daeElement* >::iterator, std::multimap<std::string, daeElement* >::iterator> range;
+		range = elementsIDMap.equal_range( std::string( element->getID() ) );
+		std::multimap<std::string, daeElement* >::iterator iter = range.first;
+		while( iter != range.second ) {
+			if ( (*iter).second == element ) {
+				elementsIDMap.erase( iter );
+				break;
+			}
+			++iter;
+		}
+	}
+
+	// Add an entry to the ID map if the element will have an ID
+	if ( newID != NULL ) {
+		elementsIDMap.insert( std::make_pair( std::string( newID ), element ) );
+	}
+
+	return DAE_OK;
+}
 
 daeInt daeSTLDatabase::clear()
 {
@@ -305,8 +329,6 @@ daeInt daeSTLDatabase::clear()
 
 daeUInt daeSTLDatabase::getElementCount(daeString name,daeString type,daeString file)
 {	
-	validate(); 
-	
 	// If none of the search keys was specified, return the total element count in the database
 	if ( !name && !type && !file ) 
 	{
@@ -424,9 +446,6 @@ daeUInt daeSTLDatabase::getElementCount(daeString name,daeString type,daeString 
 
 daeInt daeSTLDatabase::getElement(daeElement** pElement,daeInt index,daeString name,daeString type,daeString file)
 {	
-	// this sorts the vector if necessary
-	validate(); 
-	
 	// If the index is out of range, there can be no match
 	if ( index < 0 ) 
 	{
@@ -595,24 +614,3 @@ daeInt daeSTLDatabase::queryElement(daeElement** pElement, daeString genericQuer
 	(void)genericQuery; 
 	return DAE_ERR_NOT_IMPLEMENTED;
 }
-
-void daeSTLDatabase::validate()
-{
-	for( unsigned int i = 0; i < documents.size(); i++ ) {
-		if (documents[i]->getModified() ) {
-			daeDocument *tmp = documents[i];
-			const daeElementRefArray &rea = tmp->getRemovedArray();
-			for ( unsigned int x = 0; x < rea.getCount(); x++ ) {
-				removeElement( tmp, rea[x] );
-			}
-
-			const daeElementRefArray &iea = tmp->getInsertedArray();
-			for ( unsigned int x = 0; x < iea.getCount(); x++ ) {
-				insertElement( tmp, iea[x] );
-			}
-			
-			tmp->setModified(false);
-		}
-	}
-}
-

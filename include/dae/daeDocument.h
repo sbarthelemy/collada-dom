@@ -19,13 +19,20 @@
 #include <dae/daeURI.h>
 #include <dae/daeStringRef.h>
 
+class daeDatabase;
+
 /**
  * The @c daeDocument class implements a COLLADA runtime database entry.
  */
 class daeDocument
 {
 public:
-    // sthomas
+	/**
+	 * Constructor
+	 * @param database The database that owns this document. 
+	 */
+	DLLSPEC daeDocument(daeDatabase* database = NULL);
+
     /**
     * Destructor
     */
@@ -63,15 +70,15 @@ public:
 	const daeURI* getDocumentURI() const {return (&uri);}
 
 	/**
-	 * Accessor to get if this document has been modified since the last time the database was validated.
-	 * @return Returns true if the document was modified, false otherwise.
+	 * Accessor to get the database that owns this document.
+	 * @return Returns the database that owns this document.
 	 */
-	daeBool getModified() const {return modified;}
+	daeDatabase* getDatabase() {return database;}
 	/**
-	 * Sets if this document has been modified since the last time the database was validated.
-	 * @param A boolean value specifying if the document was modified.
+	 * Sets the database that owns this document.
+	 * @param database_ The database that is taking ownership of this document.
 	 */
-	void setModified( daeBool mod ) { if (!mod) { insertedElements.clear(); removedElements.clear(); } modified = mod;}
+	void setDatabase(daeDatabase* database_) {database = database_;}
 
 	/**
 	 * This function is used to track how a document gets modified. It gets called internally.
@@ -87,17 +94,15 @@ public:
 	 * Calling this function from the client application may result in unexpected behavior.
 	 */
 	DLLSPEC void removeElement( daeElementRef element );
+	/**
+	 * This function is used to track how a document gets modified. It gets called internally.
+	 * @param element The element that was removed from this document.
+	 * @param newID The ID that is going to be assigned to the element.
+	 * @note This function is called internally and not meant to be called by the client application.
+	 * Calling this function from the client application may result in unexpected behavior.
+	 */
+	DLLSPEC void changeElementID( daeElementRef element, daeString newID );
 
-	/**
-	 * This function is used to track how a document gets modified. It gets called internally.
-	 * @return Returns an array of elements that have been added since the last database update.
-	 */
-	const daeElementRefArray &getInsertedArray() const { return insertedElements; }
-	/**
-	 * This function is used to track how a document gets modified. It gets called internally.
-	 * @return Returns an array of elements that have been removed since the last database update.
-	 */
-	const daeElementRefArray &getRemovedArray() const { return removedElements; }
 	/**
 	 * Adds a URI to the list of external references in this document.
 	 * @param uri The URI that is the external reference.
@@ -140,12 +145,10 @@ private:
 	daeURI uri;
 
 	/**
-	 * A flag that indicates if this document has been modified.
+	 * The database that owns this document. The database is notified by the document when
+	 * elements are inserted, removed, or have their ID changed.
 	 */
-	daeBool modified;
-
-	daeElementRefArray insertedElements;
-	daeElementRefArray removedElements;
+	daeDatabase* database;
 
 	daeStringRefArray referencedDocuments;
 	daeTArray< daeTArray<daeURI*>* > externalURIs;

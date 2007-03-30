@@ -64,8 +64,8 @@ public:
 	// Elements 
 	virtual DLLSPEC daeInt			insertElement(daeDocument* document, daeElement* element);
 	virtual DLLSPEC daeInt			removeElement(daeDocument* document, daeElement* element); 
+	virtual DLLSPEC daeInt			changeElementID(daeElement* element, daeString newID);
 	virtual DLLSPEC daeInt			clear();
-	virtual DLLSPEC void				validate();
 	virtual DLLSPEC daeUInt			getElementCount(daeString name = NULL,
 														  daeString type = NULL,
 														  daeString file = NULL);

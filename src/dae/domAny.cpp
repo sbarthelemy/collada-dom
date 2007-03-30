@@ -81,7 +81,7 @@ daeBool domAny::setAttribute(daeString attrName, daeString attrValue) {
 	int n = (int)metaAttrs.getCount();
 	int i;
 	for(i=0;i<n;i++) {
-		fflush(stdout);
+		//fflush(stdout);
 		if ((metaAttrs[i]->getName() != NULL) && (strcmp(metaAttrs[i]->getName(),attrName)==0)) {
 			if (metaAttrs[i]->getType() != NULL) {
 				metaAttrs[i]->set(this,attrValue);
@@ -95,6 +95,7 @@ daeBool domAny::setAttribute(daeString attrName, daeString attrValue) {
 		daeErrorHandler::get()->handleWarning( "domAny::setAttribute() - too many attributes on this domAny.  The maximum number of attributes allowed is MAX_ATTRIBUTES" );
 		return false;
 	}
+	attrs[n] = 0;
 	daeMetaAttribute *ma = new daeMetaAttribute;
 	ma->setName( attrName );
 	ma->setType( daeAtomicType::get("xsString"));

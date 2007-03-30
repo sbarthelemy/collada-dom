@@ -13,6 +13,7 @@
 #ifndef __domGl_sampler3D_h__
 #define __domGl_sampler3D_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 

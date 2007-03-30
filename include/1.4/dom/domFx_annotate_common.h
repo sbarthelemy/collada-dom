@@ -13,6 +13,7 @@
 #ifndef __domFx_annotate_common_h__
 #define __domFx_annotate_common_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -36,7 +37,7 @@ public:	//Accessors and Mutators
 	 * Sets the name attribute.
 	 * @param atName The new value for the name attribute.
 	 */
-	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName; }
+	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName;}
 
 	/**
 	 * Gets the fx_annotate_type_common element.
@@ -80,8 +81,7 @@ public:	//Accessors and Mutators
 	 * Sets the name attribute.
 	 * @param atName The new value for the name attribute.
 	 */
-	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName;
-	 _validAttributeArray[0] = true; }
+	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName; _validAttributeArray[0] = true; }
 
 protected:
 	/**

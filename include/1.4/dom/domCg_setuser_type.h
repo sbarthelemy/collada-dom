@@ -13,6 +13,7 @@
 #ifndef __domCg_setuser_type_h__
 #define __domCg_setuser_type_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -80,7 +81,7 @@ public:	//Accessors and Mutators
 	 * Sets the source attribute.
 	 * @param atSource The new value for the source attribute.
 	 */
-	void setSource( xsNCName atSource ) { *(daeStringRef*)&attrSource = atSource; }
+	void setSource( xsNCName atSource ) { *(daeStringRef*)&attrSource = atSource;}
 
 	/**
 	 * Gets the cg_param_type element array.
@@ -180,8 +181,7 @@ public:	//Accessors and Mutators
 	 * Sets the name attribute.
 	 * @param atName The new value for the name attribute.
 	 */
-	void setName( domCg_identifier atName ) { attrName = atName;
-	 _validAttributeArray[0] = true; }
+	void setName( domCg_identifier atName ) { attrName = atName; _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the source attribute.
@@ -192,8 +192,7 @@ public:	//Accessors and Mutators
 	 * Sets the source attribute.
 	 * @param atSource The new value for the source attribute.
 	 */
-	void setSource( xsNCName atSource ) { *(daeStringRef*)&attrSource = atSource;
-	 _validAttributeArray[1] = true; }
+	void setSource( xsNCName atSource ) { *(daeStringRef*)&attrSource = atSource; _validAttributeArray[1] = true; }
 
 protected:
 	/**

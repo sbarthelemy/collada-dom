@@ -13,6 +13,7 @@
 #ifndef __domProfile_GLES_h__
 #define __domProfile_GLES_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -73,8 +74,7 @@ public:
 			 * Sets the ref attribute.
 			 * @param atRef The new value for the ref attribute.
 			 */
-			void setRef( xsNCName atRef ) { *(daeStringRef*)&attrRef = atRef;		
-	 _validAttributeArray[0] = true; }
+			void setRef( xsNCName atRef ) { *(daeStringRef*)&attrRef = atRef; _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the annotate element array.
@@ -663,8 +663,7 @@ public:
 			 * Sets the sid attribute.
 			 * @param atSid The new value for the sid attribute.
 			 */
-			void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid;		
-	 _validAttributeArray[0] = true; }
+			void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid; _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the annotate element array.
@@ -828,8 +827,9 @@ public:
 		 * Sets the id attribute.
 		 * @param atId The new value for the id attribute.
 		 */
-		void setId( xsID atId ) { *(daeStringRef*)&attrId = atId;	
-	 _validAttributeArray[0] = true; }
+		void setId( xsID atId ) { *(daeStringRef*)&attrId = atId; _validAttributeArray[0] = true; 
+			if( _document != NULL ) _document->changeElementID( this, attrId );
+		}
 
 		/**
 		 * Gets the sid attribute.
@@ -840,8 +840,7 @@ public:
 		 * Sets the sid attribute.
 		 * @param atSid The new value for the sid attribute.
 		 */
-		void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid;	
-	 _validAttributeArray[1] = true; }
+		void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid; _validAttributeArray[1] = true; }
 
 		/**
 		 * Gets the asset element.
@@ -1007,8 +1006,9 @@ public:	//Accessors and Mutators
 	 * Sets the id attribute.
 	 * @param atId The new value for the id attribute.
 	 */
-	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId;
-	 _validAttributeArray[0] = true; }
+	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId; _validAttributeArray[0] = true; 
+		if( _document != NULL ) _document->changeElementID( this, attrId );
+	}
 
 	/**
 	 * Gets the platform attribute.
@@ -1019,8 +1019,7 @@ public:	//Accessors and Mutators
 	 * Sets the platform attribute.
 	 * @param atPlatform The new value for the platform attribute.
 	 */
-	void setPlatform( xsNCName atPlatform ) { *(daeStringRef*)&attrPlatform = atPlatform;
-	 _validAttributeArray[1] = true; }
+	void setPlatform( xsNCName atPlatform ) { *(daeStringRef*)&attrPlatform = atPlatform; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the asset element.

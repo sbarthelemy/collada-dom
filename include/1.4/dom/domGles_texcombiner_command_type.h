@@ -13,6 +13,7 @@
 #ifndef __domGles_texcombiner_command_type_h__
 #define __domGles_texcombiner_command_type_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 

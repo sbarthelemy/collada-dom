@@ -91,7 +91,7 @@ private:
 	_xmlTextWriter *writer;
 
 	FILE *rawFile;
-	unsigned long rawFloatCount;
+	unsigned long rawByteCount;
 	daeURI rawRelPath;
 	bool saveRawFile;
 

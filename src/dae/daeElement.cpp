@@ -223,26 +223,20 @@ daeElement::removeChildElement(daeElement* element)
 	if(element->_parent != this)
 		return false;
 
-	// Clear the element's parent pointer, if the element has references outside
-	// 'this' it won't go away, so we want to make sure it's parent is valid
-	if ( _meta->remove( this, element ) ) {
-		element->_parent = NULL;
-		return true;
-	}
-	return false;
+	return _meta->remove( this, element );
 }
 
 // !!!ACL Added to fix mantis issue 0000416
-void daeElement::setDocument( daeDocument *c ) {
+void daeElement::setDocument( daeDocument *c, bool notifyDocument ) {
 	if( _document == c ) {
 		return;
 	}
-	if (_document != NULL )
+	if ( _document != NULL && notifyDocument )
 	{
 		_document->removeElement(this);
 	}
 	_document = c;
-	if ( _document != NULL )
+	if ( _document != NULL && notifyDocument )
 	{
 		_document->insertElement(this);
 	}
@@ -250,7 +244,10 @@ void daeElement::setDocument( daeDocument *c ) {
 	daeElementRefArray ea;
 	getChildren( ea );
 	for ( size_t x = 0; x < ea.getCount(); x++ ) {
-		ea[x]->setDocument( c );
+		// Since inserting and removing elements works recursively in the database,
+		// we don't need to notify it about inserts/removals as we process the
+		// children of this element.
+		ea[x]->setDocument( c, false );
 	}
 }
 

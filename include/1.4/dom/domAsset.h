@@ -13,6 +13,7 @@
 #ifndef __domAsset_h__
 #define __domAsset_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -958,8 +959,7 @@ public:
 		 * Sets the meter attribute.
 		 * @param atMeter The new value for the meter attribute.
 		 */
-		void setMeter( domFloat atMeter ) { attrMeter = atMeter;	
-	 _validAttributeArray[0] = true; }
+		void setMeter( domFloat atMeter ) { attrMeter = atMeter; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the name attribute.
@@ -970,8 +970,7 @@ public:
 		 * Sets the name attribute.
 		 * @param atName The new value for the name attribute.
 		 */
-		void setName( xsNMTOKEN atName ) { *(daeStringRef*)&attrName = atName;	
-	 _validAttributeArray[1] = true; }
+		void setName( xsNMTOKEN atName ) { *(daeStringRef*)&attrName = atName; _validAttributeArray[1] = true; }
 
 	protected:
 		/**

@@ -13,6 +13,7 @@
 #ifndef __domImage_h__
 #define __domImage_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -261,8 +262,9 @@ public:	//Accessors and Mutators
 	 * Sets the id attribute.
 	 * @param atId The new value for the id attribute.
 	 */
-	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId;
-	 _validAttributeArray[0] = true; }
+	void setId( xsID atId ) { *(daeStringRef*)&attrId = atId; _validAttributeArray[0] = true; 
+		if( _document != NULL ) _document->changeElementID( this, attrId );
+	}
 
 	/**
 	 * Gets the name attribute.
@@ -273,8 +275,7 @@ public:	//Accessors and Mutators
 	 * Sets the name attribute.
 	 * @param atName The new value for the name attribute.
 	 */
-	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName;
-	 _validAttributeArray[1] = true; }
+	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the format attribute.
@@ -285,8 +286,7 @@ public:	//Accessors and Mutators
 	 * Sets the format attribute.
 	 * @param atFormat The new value for the format attribute.
 	 */
-	void setFormat( xsToken atFormat ) { *(daeStringRef*)&attrFormat = atFormat;
-	 _validAttributeArray[2] = true; }
+	void setFormat( xsToken atFormat ) { *(daeStringRef*)&attrFormat = atFormat; _validAttributeArray[2] = true; }
 
 	/**
 	 * Gets the height attribute.
@@ -297,8 +297,7 @@ public:	//Accessors and Mutators
 	 * Sets the height attribute.
 	 * @param atHeight The new value for the height attribute.
 	 */
-	void setHeight( domUint atHeight ) { attrHeight = atHeight;
-	 _validAttributeArray[3] = true; }
+	void setHeight( domUint atHeight ) { attrHeight = atHeight; _validAttributeArray[3] = true; }
 
 	/**
 	 * Gets the width attribute.
@@ -309,8 +308,7 @@ public:	//Accessors and Mutators
 	 * Sets the width attribute.
 	 * @param atWidth The new value for the width attribute.
 	 */
-	void setWidth( domUint atWidth ) { attrWidth = atWidth;
-	 _validAttributeArray[4] = true; }
+	void setWidth( domUint atWidth ) { attrWidth = atWidth; _validAttributeArray[4] = true; }
 
 	/**
 	 * Gets the depth attribute.
@@ -321,8 +319,7 @@ public:	//Accessors and Mutators
 	 * Sets the depth attribute.
 	 * @param atDepth The new value for the depth attribute.
 	 */
-	void setDepth( domUint atDepth ) { attrDepth = atDepth;
-	 _validAttributeArray[5] = true; }
+	void setDepth( domUint atDepth ) { attrDepth = atDepth; _validAttributeArray[5] = true; }
 
 	/**
 	 * Gets the asset element.

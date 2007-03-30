@@ -13,6 +13,7 @@
 #ifndef __domScale_h__
 #define __domScale_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -26,6 +27,17 @@ class domScale : public daeElement, public domTargetableFloat3_complexType
 {
 public:
 	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SCALE; }
+
+	/**
+	 * Gets the sid attribute.
+	 * @return Returns a xsNCName of the sid attribute.
+	 */
+	xsNCName getSid() const { return attrSid; }
+	/**
+	 * Sets the sid attribute.
+	 * @param atSid The new value for the sid attribute.
+	 */
+	void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid; _validAttributeArray[0] = true; }
 
 protected:
 	/**

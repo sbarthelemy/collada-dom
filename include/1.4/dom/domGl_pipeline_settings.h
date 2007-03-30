@@ -13,6 +13,7 @@
 #ifndef __domGl_pipeline_settings_h__
 #define __domGl_pipeline_settings_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -66,8 +67,7 @@ public:
 			 * Sets the value attribute.
 			 * @param atValue The new value for the value attribute.
 			 */
-			void setValue( domGl_func_type atValue ) { attrValue = atValue;		
-	 _validAttributeArray[0] = true; }
+			void setValue( domGl_func_type atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the param attribute.
@@ -78,8 +78,7 @@ public:
 			 * Sets the param attribute.
 			 * @param atParam The new value for the param attribute.
 			 */
-			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;		
-	 _validAttributeArray[1] = true; }
+			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 		protected:
 			/**
@@ -144,8 +143,7 @@ public:
 			 * Sets the value attribute.
 			 * @param atValue The new value for the value attribute.
 			 */
-			void setValue( domGl_alpha_value_type atValue ) { attrValue = atValue;		
-	 _validAttributeArray[0] = true; }
+			void setValue( domGl_alpha_value_type atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the param attribute.
@@ -156,8 +154,7 @@ public:
 			 * Sets the param attribute.
 			 * @param atParam The new value for the param attribute.
 			 */
-			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;		
-	 _validAttributeArray[1] = true; }
+			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 		protected:
 			/**
@@ -288,8 +285,7 @@ public:
 			 * Sets the value attribute.
 			 * @param atValue The new value for the value attribute.
 			 */
-			void setValue( domGl_blend_type atValue ) { attrValue = atValue;		
-	 _validAttributeArray[0] = true; }
+			void setValue( domGl_blend_type atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the param attribute.
@@ -300,8 +296,7 @@ public:
 			 * Sets the param attribute.
 			 * @param atParam The new value for the param attribute.
 			 */
-			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;		
-	 _validAttributeArray[1] = true; }
+			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 		protected:
 			/**
@@ -366,8 +361,7 @@ public:
 			 * Sets the value attribute.
 			 * @param atValue The new value for the value attribute.
 			 */
-			void setValue( domGl_blend_type atValue ) { attrValue = atValue;		
-	 _validAttributeArray[0] = true; }
+			void setValue( domGl_blend_type atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the param attribute.
@@ -378,8 +372,7 @@ public:
 			 * Sets the param attribute.
 			 * @param atParam The new value for the param attribute.
 			 */
-			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;		
-	 _validAttributeArray[1] = true; }
+			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 		protected:
 			/**
@@ -510,8 +503,7 @@ public:
 			 * Sets the value attribute.
 			 * @param atValue The new value for the value attribute.
 			 */
-			void setValue( domGl_blend_type atValue ) { attrValue = atValue;		
-	 _validAttributeArray[0] = true; }
+			void setValue( domGl_blend_type atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the param attribute.
@@ -522,8 +514,7 @@ public:
 			 * Sets the param attribute.
 			 * @param atParam The new value for the param attribute.
 			 */
-			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;		
-	 _validAttributeArray[1] = true; }
+			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 		protected:
 			/**
@@ -588,8 +579,7 @@ public:
 			 * Sets the value attribute.
 			 * @param atValue The new value for the value attribute.
 			 */
-			void setValue( domGl_blend_type atValue ) { attrValue = atValue;		
-	 _validAttributeArray[0] = true; }
+			void setValue( domGl_blend_type atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the param attribute.
@@ -600,8 +590,7 @@ public:
 			 * Sets the param attribute.
 			 * @param atParam The new value for the param attribute.
 			 */
-			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;		
-	 _validAttributeArray[1] = true; }
+			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 		protected:
 			/**
@@ -666,8 +655,7 @@ public:
 			 * Sets the value attribute.
 			 * @param atValue The new value for the value attribute.
 			 */
-			void setValue( domGl_blend_type atValue ) { attrValue = atValue;		
-	 _validAttributeArray[0] = true; }
+			void setValue( domGl_blend_type atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the param attribute.
@@ -678,8 +666,7 @@ public:
 			 * Sets the param attribute.
 			 * @param atParam The new value for the param attribute.
 			 */
-			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;		
-	 _validAttributeArray[1] = true; }
+			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 		protected:
 			/**
@@ -744,8 +731,7 @@ public:
 			 * Sets the value attribute.
 			 * @param atValue The new value for the value attribute.
 			 */
-			void setValue( domGl_blend_type atValue ) { attrValue = atValue;		
-	 _validAttributeArray[0] = true; }
+			void setValue( domGl_blend_type atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the param attribute.
@@ -756,8 +742,7 @@ public:
 			 * Sets the param attribute.
 			 * @param atParam The new value for the param attribute.
 			 */
-			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;		
-	 _validAttributeArray[1] = true; }
+			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 		protected:
 			/**
@@ -890,8 +875,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domGl_blend_equation_type atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domGl_blend_equation_type atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -902,8 +886,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -978,8 +961,7 @@ public:
 			 * Sets the value attribute.
 			 * @param atValue The new value for the value attribute.
 			 */
-			void setValue( domGl_blend_equation_type atValue ) { attrValue = atValue;		
-	 _validAttributeArray[0] = true; }
+			void setValue( domGl_blend_equation_type atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the param attribute.
@@ -990,8 +972,7 @@ public:
 			 * Sets the param attribute.
 			 * @param atParam The new value for the param attribute.
 			 */
-			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;		
-	 _validAttributeArray[1] = true; }
+			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 		protected:
 			/**
@@ -1056,8 +1037,7 @@ public:
 			 * Sets the value attribute.
 			 * @param atValue The new value for the value attribute.
 			 */
-			void setValue( domGl_blend_equation_type atValue ) { attrValue = atValue;		
-	 _validAttributeArray[0] = true; }
+			void setValue( domGl_blend_equation_type atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the param attribute.
@@ -1068,8 +1048,7 @@ public:
 			 * Sets the param attribute.
 			 * @param atParam The new value for the param attribute.
 			 */
-			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;		
-	 _validAttributeArray[1] = true; }
+			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 		protected:
 			/**
@@ -1200,8 +1179,7 @@ public:
 			 * Sets the value attribute.
 			 * @param atValue The new value for the value attribute.
 			 */
-			void setValue( domGl_face_type atValue ) { attrValue = atValue;		
-	 _validAttributeArray[0] = true; }
+			void setValue( domGl_face_type atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the param attribute.
@@ -1212,8 +1190,7 @@ public:
 			 * Sets the param attribute.
 			 * @param atParam The new value for the param attribute.
 			 */
-			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;		
-	 _validAttributeArray[1] = true; }
+			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 		protected:
 			/**
@@ -1278,8 +1255,7 @@ public:
 			 * Sets the value attribute.
 			 * @param atValue The new value for the value attribute.
 			 */
-			void setValue( domGl_material_type atValue ) { attrValue = atValue;		
-	 _validAttributeArray[0] = true; }
+			void setValue( domGl_material_type atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the param attribute.
@@ -1290,8 +1266,7 @@ public:
 			 * Sets the param attribute.
 			 * @param atParam The new value for the param attribute.
 			 */
-			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;		
-	 _validAttributeArray[1] = true; }
+			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 		protected:
 			/**
@@ -1412,8 +1387,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domGl_face_type atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domGl_face_type atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -1424,8 +1398,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -1490,8 +1463,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domGl_func_type atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domGl_func_type atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -1502,8 +1474,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -1568,8 +1539,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domGl_fog_type atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domGl_fog_type atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -1580,8 +1550,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -1646,8 +1615,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domGl_fog_coord_src_type atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domGl_fog_coord_src_type atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -1658,8 +1626,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -1724,8 +1691,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domGl_front_face_type atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domGl_front_face_type atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -1736,8 +1702,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -1802,8 +1767,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domGl_light_model_color_control_type atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domGl_light_model_color_control_type atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -1814,8 +1778,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -1880,8 +1843,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domGl_logic_op_type atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domGl_logic_op_type atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -1892,8 +1854,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -1968,8 +1929,7 @@ public:
 			 * Sets the value attribute.
 			 * @param atValue The new value for the value attribute.
 			 */
-			void setValue( domGl_face_type atValue ) { attrValue = atValue;		
-	 _validAttributeArray[0] = true; }
+			void setValue( domGl_face_type atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the param attribute.
@@ -1980,8 +1940,7 @@ public:
 			 * Sets the param attribute.
 			 * @param atParam The new value for the param attribute.
 			 */
-			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;		
-	 _validAttributeArray[1] = true; }
+			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 		protected:
 			/**
@@ -2046,8 +2005,7 @@ public:
 			 * Sets the value attribute.
 			 * @param atValue The new value for the value attribute.
 			 */
-			void setValue( domGl_polygon_mode_type atValue ) { attrValue = atValue;		
-	 _validAttributeArray[0] = true; }
+			void setValue( domGl_polygon_mode_type atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the param attribute.
@@ -2058,8 +2016,7 @@ public:
 			 * Sets the param attribute.
 			 * @param atParam The new value for the param attribute.
 			 */
-			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;		
-	 _validAttributeArray[1] = true; }
+			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 		protected:
 			/**
@@ -2180,8 +2137,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domGl_shade_model_type atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domGl_shade_model_type atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -2192,8 +2148,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -2268,8 +2223,7 @@ public:
 			 * Sets the value attribute.
 			 * @param atValue The new value for the value attribute.
 			 */
-			void setValue( domGl_func_type atValue ) { attrValue = atValue;		
-	 _validAttributeArray[0] = true; }
+			void setValue( domGl_func_type atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the param attribute.
@@ -2280,8 +2234,7 @@ public:
 			 * Sets the param attribute.
 			 * @param atParam The new value for the param attribute.
 			 */
-			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;		
-	 _validAttributeArray[1] = true; }
+			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 		protected:
 			/**
@@ -2346,8 +2299,7 @@ public:
 			 * Sets the value attribute.
 			 * @param atValue The new value for the value attribute.
 			 */
-			void setValue( xsUnsignedByte atValue ) { attrValue = atValue;		
-	 _validAttributeArray[0] = true; }
+			void setValue( xsUnsignedByte atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the param attribute.
@@ -2358,8 +2310,7 @@ public:
 			 * Sets the param attribute.
 			 * @param atParam The new value for the param attribute.
 			 */
-			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;		
-	 _validAttributeArray[1] = true; }
+			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 		protected:
 			/**
@@ -2424,8 +2375,7 @@ public:
 			 * Sets the value attribute.
 			 * @param atValue The new value for the value attribute.
 			 */
-			void setValue( xsUnsignedByte atValue ) { attrValue = atValue;		
-	 _validAttributeArray[0] = true; }
+			void setValue( xsUnsignedByte atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the param attribute.
@@ -2436,8 +2386,7 @@ public:
 			 * Sets the param attribute.
 			 * @param atParam The new value for the param attribute.
 			 */
-			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;		
-	 _validAttributeArray[1] = true; }
+			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 		protected:
 			/**
@@ -2574,8 +2523,7 @@ public:
 			 * Sets the value attribute.
 			 * @param atValue The new value for the value attribute.
 			 */
-			void setValue( domGl_stencil_op_type atValue ) { attrValue = atValue;		
-	 _validAttributeArray[0] = true; }
+			void setValue( domGl_stencil_op_type atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the param attribute.
@@ -2586,8 +2534,7 @@ public:
 			 * Sets the param attribute.
 			 * @param atParam The new value for the param attribute.
 			 */
-			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;		
-	 _validAttributeArray[1] = true; }
+			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 		protected:
 			/**
@@ -2652,8 +2599,7 @@ public:
 			 * Sets the value attribute.
 			 * @param atValue The new value for the value attribute.
 			 */
-			void setValue( domGl_stencil_op_type atValue ) { attrValue = atValue;		
-	 _validAttributeArray[0] = true; }
+			void setValue( domGl_stencil_op_type atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the param attribute.
@@ -2664,8 +2610,7 @@ public:
 			 * Sets the param attribute.
 			 * @param atParam The new value for the param attribute.
 			 */
-			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;		
-	 _validAttributeArray[1] = true; }
+			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 		protected:
 			/**
@@ -2730,8 +2675,7 @@ public:
 			 * Sets the value attribute.
 			 * @param atValue The new value for the value attribute.
 			 */
-			void setValue( domGl_stencil_op_type atValue ) { attrValue = atValue;		
-	 _validAttributeArray[0] = true; }
+			void setValue( domGl_stencil_op_type atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the param attribute.
@@ -2742,8 +2686,7 @@ public:
 			 * Sets the param attribute.
 			 * @param atParam The new value for the param attribute.
 			 */
-			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;		
-	 _validAttributeArray[1] = true; }
+			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 		protected:
 			/**
@@ -2880,8 +2823,7 @@ public:
 			 * Sets the value attribute.
 			 * @param atValue The new value for the value attribute.
 			 */
-			void setValue( domGl_func_type atValue ) { attrValue = atValue;		
-	 _validAttributeArray[0] = true; }
+			void setValue( domGl_func_type atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the param attribute.
@@ -2892,8 +2834,7 @@ public:
 			 * Sets the param attribute.
 			 * @param atParam The new value for the param attribute.
 			 */
-			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;		
-	 _validAttributeArray[1] = true; }
+			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 		protected:
 			/**
@@ -2958,8 +2899,7 @@ public:
 			 * Sets the value attribute.
 			 * @param atValue The new value for the value attribute.
 			 */
-			void setValue( domGl_func_type atValue ) { attrValue = atValue;		
-	 _validAttributeArray[0] = true; }
+			void setValue( domGl_func_type atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the param attribute.
@@ -2970,8 +2910,7 @@ public:
 			 * Sets the param attribute.
 			 * @param atParam The new value for the param attribute.
 			 */
-			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;		
-	 _validAttributeArray[1] = true; }
+			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 		protected:
 			/**
@@ -3036,8 +2975,7 @@ public:
 			 * Sets the value attribute.
 			 * @param atValue The new value for the value attribute.
 			 */
-			void setValue( xsUnsignedByte atValue ) { attrValue = atValue;		
-	 _validAttributeArray[0] = true; }
+			void setValue( xsUnsignedByte atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the param attribute.
@@ -3048,8 +2986,7 @@ public:
 			 * Sets the param attribute.
 			 * @param atParam The new value for the param attribute.
 			 */
-			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;		
-	 _validAttributeArray[1] = true; }
+			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 		protected:
 			/**
@@ -3114,8 +3051,7 @@ public:
 			 * Sets the value attribute.
 			 * @param atValue The new value for the value attribute.
 			 */
-			void setValue( xsUnsignedByte atValue ) { attrValue = atValue;		
-	 _validAttributeArray[0] = true; }
+			void setValue( xsUnsignedByte atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the param attribute.
@@ -3126,8 +3062,7 @@ public:
 			 * Sets the param attribute.
 			 * @param atParam The new value for the param attribute.
 			 */
-			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;		
-	 _validAttributeArray[1] = true; }
+			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 		protected:
 			/**
@@ -3270,8 +3205,7 @@ public:
 			 * Sets the value attribute.
 			 * @param atValue The new value for the value attribute.
 			 */
-			void setValue( domGl_face_type atValue ) { attrValue = atValue;		
-	 _validAttributeArray[0] = true; }
+			void setValue( domGl_face_type atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the param attribute.
@@ -3282,8 +3216,7 @@ public:
 			 * Sets the param attribute.
 			 * @param atParam The new value for the param attribute.
 			 */
-			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;		
-	 _validAttributeArray[1] = true; }
+			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 		protected:
 			/**
@@ -3348,8 +3281,7 @@ public:
 			 * Sets the value attribute.
 			 * @param atValue The new value for the value attribute.
 			 */
-			void setValue( domGl_stencil_op_type atValue ) { attrValue = atValue;		
-	 _validAttributeArray[0] = true; }
+			void setValue( domGl_stencil_op_type atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the param attribute.
@@ -3360,8 +3292,7 @@ public:
 			 * Sets the param attribute.
 			 * @param atParam The new value for the param attribute.
 			 */
-			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;		
-	 _validAttributeArray[1] = true; }
+			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 		protected:
 			/**
@@ -3426,8 +3357,7 @@ public:
 			 * Sets the value attribute.
 			 * @param atValue The new value for the value attribute.
 			 */
-			void setValue( domGl_stencil_op_type atValue ) { attrValue = atValue;		
-	 _validAttributeArray[0] = true; }
+			void setValue( domGl_stencil_op_type atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the param attribute.
@@ -3438,8 +3368,7 @@ public:
 			 * Sets the param attribute.
 			 * @param atParam The new value for the param attribute.
 			 */
-			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;		
-	 _validAttributeArray[1] = true; }
+			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 		protected:
 			/**
@@ -3504,8 +3433,7 @@ public:
 			 * Sets the value attribute.
 			 * @param atValue The new value for the value attribute.
 			 */
-			void setValue( domGl_stencil_op_type atValue ) { attrValue = atValue;		
-	 _validAttributeArray[0] = true; }
+			void setValue( domGl_stencil_op_type atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the param attribute.
@@ -3516,8 +3444,7 @@ public:
 			 * Sets the param attribute.
 			 * @param atParam The new value for the param attribute.
 			 */
-			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;		
-	 _validAttributeArray[1] = true; }
+			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 		protected:
 			/**
@@ -3660,8 +3587,7 @@ public:
 			 * Sets the value attribute.
 			 * @param atValue The new value for the value attribute.
 			 */
-			void setValue( domGl_face_type atValue ) { attrValue = atValue;		
-	 _validAttributeArray[0] = true; }
+			void setValue( domGl_face_type atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the param attribute.
@@ -3672,8 +3598,7 @@ public:
 			 * Sets the param attribute.
 			 * @param atParam The new value for the param attribute.
 			 */
-			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;		
-	 _validAttributeArray[1] = true; }
+			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 		protected:
 			/**
@@ -3738,8 +3663,7 @@ public:
 			 * Sets the value attribute.
 			 * @param atValue The new value for the value attribute.
 			 */
-			void setValue( xsUnsignedByte atValue ) { attrValue = atValue;		
-	 _validAttributeArray[0] = true; }
+			void setValue( xsUnsignedByte atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 			/**
 			 * Gets the param attribute.
@@ -3750,8 +3674,7 @@ public:
 			 * Sets the param attribute.
 			 * @param atParam The new value for the param attribute.
 			 */
-			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;		
-	 _validAttributeArray[1] = true; }
+			void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 		protected:
 			/**
@@ -3873,8 +3796,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domBool atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -3885,8 +3807,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 		/**
 		 * Gets the index attribute.
@@ -3897,8 +3818,7 @@ public:
 		 * Sets the index attribute.
 		 * @param atIndex The new value for the index attribute.
 		 */
-		void setIndex( domGL_MAX_LIGHTS_index atIndex ) { attrIndex = atIndex;	
-	 _validAttributeArray[2] = true; }
+		void setIndex( domGL_MAX_LIGHTS_index atIndex ) { attrIndex = atIndex; _validAttributeArray[2] = true; }
 
 	protected:
 		/**
@@ -3969,8 +3889,7 @@ public:
 		 * Sets the value array attribute.
 		 * @param atValue The new value for the value array attribute.
 		 */
-		void setValue( const domFloat4 &atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( const domFloat4 &atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -3981,8 +3900,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 		/**
 		 * Gets the index attribute.
@@ -3993,8 +3911,7 @@ public:
 		 * Sets the index attribute.
 		 * @param atIndex The new value for the index attribute.
 		 */
-		void setIndex( domGL_MAX_LIGHTS_index atIndex ) { attrIndex = atIndex;	
-	 _validAttributeArray[2] = true; }
+		void setIndex( domGL_MAX_LIGHTS_index atIndex ) { attrIndex = atIndex; _validAttributeArray[2] = true; }
 
 	protected:
 		/**
@@ -4065,8 +3982,7 @@ public:
 		 * Sets the value array attribute.
 		 * @param atValue The new value for the value array attribute.
 		 */
-		void setValue( const domFloat4 &atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( const domFloat4 &atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -4077,8 +3993,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 		/**
 		 * Gets the index attribute.
@@ -4089,8 +4004,7 @@ public:
 		 * Sets the index attribute.
 		 * @param atIndex The new value for the index attribute.
 		 */
-		void setIndex( domGL_MAX_LIGHTS_index atIndex ) { attrIndex = atIndex;	
-	 _validAttributeArray[2] = true; }
+		void setIndex( domGL_MAX_LIGHTS_index atIndex ) { attrIndex = atIndex; _validAttributeArray[2] = true; }
 
 	protected:
 		/**
@@ -4161,8 +4075,7 @@ public:
 		 * Sets the value array attribute.
 		 * @param atValue The new value for the value array attribute.
 		 */
-		void setValue( const domFloat4 &atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( const domFloat4 &atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -4173,8 +4086,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 		/**
 		 * Gets the index attribute.
@@ -4185,8 +4097,7 @@ public:
 		 * Sets the index attribute.
 		 * @param atIndex The new value for the index attribute.
 		 */
-		void setIndex( domGL_MAX_LIGHTS_index atIndex ) { attrIndex = atIndex;	
-	 _validAttributeArray[2] = true; }
+		void setIndex( domGL_MAX_LIGHTS_index atIndex ) { attrIndex = atIndex; _validAttributeArray[2] = true; }
 
 	protected:
 		/**
@@ -4257,8 +4168,7 @@ public:
 		 * Sets the value array attribute.
 		 * @param atValue The new value for the value array attribute.
 		 */
-		void setValue( const domFloat4 &atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( const domFloat4 &atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -4269,8 +4179,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 		/**
 		 * Gets the index attribute.
@@ -4281,8 +4190,7 @@ public:
 		 * Sets the index attribute.
 		 * @param atIndex The new value for the index attribute.
 		 */
-		void setIndex( domGL_MAX_LIGHTS_index atIndex ) { attrIndex = atIndex;	
-	 _validAttributeArray[2] = true; }
+		void setIndex( domGL_MAX_LIGHTS_index atIndex ) { attrIndex = atIndex; _validAttributeArray[2] = true; }
 
 	protected:
 		/**
@@ -4348,8 +4256,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domFloat atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domFloat atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -4360,8 +4267,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 		/**
 		 * Gets the index attribute.
@@ -4372,8 +4278,7 @@ public:
 		 * Sets the index attribute.
 		 * @param atIndex The new value for the index attribute.
 		 */
-		void setIndex( domGL_MAX_LIGHTS_index atIndex ) { attrIndex = atIndex;	
-	 _validAttributeArray[2] = true; }
+		void setIndex( domGL_MAX_LIGHTS_index atIndex ) { attrIndex = atIndex; _validAttributeArray[2] = true; }
 
 	protected:
 		/**
@@ -4439,8 +4344,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domFloat atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domFloat atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -4451,8 +4355,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 		/**
 		 * Gets the index attribute.
@@ -4463,8 +4366,7 @@ public:
 		 * Sets the index attribute.
 		 * @param atIndex The new value for the index attribute.
 		 */
-		void setIndex( domGL_MAX_LIGHTS_index atIndex ) { attrIndex = atIndex;	
-	 _validAttributeArray[2] = true; }
+		void setIndex( domGL_MAX_LIGHTS_index atIndex ) { attrIndex = atIndex; _validAttributeArray[2] = true; }
 
 	protected:
 		/**
@@ -4530,8 +4432,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domFloat atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domFloat atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -4542,8 +4443,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 		/**
 		 * Gets the index attribute.
@@ -4554,8 +4454,7 @@ public:
 		 * Sets the index attribute.
 		 * @param atIndex The new value for the index attribute.
 		 */
-		void setIndex( domGL_MAX_LIGHTS_index atIndex ) { attrIndex = atIndex;	
-	 _validAttributeArray[2] = true; }
+		void setIndex( domGL_MAX_LIGHTS_index atIndex ) { attrIndex = atIndex; _validAttributeArray[2] = true; }
 
 	protected:
 		/**
@@ -4621,8 +4520,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domFloat atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domFloat atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -4633,8 +4531,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 		/**
 		 * Gets the index attribute.
@@ -4645,8 +4542,7 @@ public:
 		 * Sets the index attribute.
 		 * @param atIndex The new value for the index attribute.
 		 */
-		void setIndex( domGL_MAX_LIGHTS_index atIndex ) { attrIndex = atIndex;	
-	 _validAttributeArray[2] = true; }
+		void setIndex( domGL_MAX_LIGHTS_index atIndex ) { attrIndex = atIndex; _validAttributeArray[2] = true; }
 
 	protected:
 		/**
@@ -4717,8 +4613,7 @@ public:
 		 * Sets the value array attribute.
 		 * @param atValue The new value for the value array attribute.
 		 */
-		void setValue( const domFloat3 &atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( const domFloat3 &atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -4729,8 +4624,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 		/**
 		 * Gets the index attribute.
@@ -4741,8 +4635,7 @@ public:
 		 * Sets the index attribute.
 		 * @param atIndex The new value for the index attribute.
 		 */
-		void setIndex( domGL_MAX_LIGHTS_index atIndex ) { attrIndex = atIndex;	
-	 _validAttributeArray[2] = true; }
+		void setIndex( domGL_MAX_LIGHTS_index atIndex ) { attrIndex = atIndex; _validAttributeArray[2] = true; }
 
 	protected:
 		/**
@@ -4808,8 +4701,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domFloat atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domFloat atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -4820,8 +4712,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 		/**
 		 * Gets the index attribute.
@@ -4832,8 +4723,7 @@ public:
 		 * Sets the index attribute.
 		 * @param atIndex The new value for the index attribute.
 		 */
-		void setIndex( domGL_MAX_LIGHTS_index atIndex ) { attrIndex = atIndex;	
-	 _validAttributeArray[2] = true; }
+		void setIndex( domGL_MAX_LIGHTS_index atIndex ) { attrIndex = atIndex; _validAttributeArray[2] = true; }
 
 	protected:
 		/**
@@ -4983,8 +4873,7 @@ public:
 		 * Sets the index attribute.
 		 * @param atIndex The new value for the index attribute.
 		 */
-		void setIndex( domGL_MAX_TEXTURE_IMAGE_UNITS_index atIndex ) { attrIndex = atIndex;	
-	 _validAttributeArray[0] = true; }
+		void setIndex( domGL_MAX_TEXTURE_IMAGE_UNITS_index atIndex ) { attrIndex = atIndex; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the value element.
@@ -5155,8 +5044,7 @@ public:
 		 * Sets the index attribute.
 		 * @param atIndex The new value for the index attribute.
 		 */
-		void setIndex( domGL_MAX_TEXTURE_IMAGE_UNITS_index atIndex ) { attrIndex = atIndex;	
-	 _validAttributeArray[0] = true; }
+		void setIndex( domGL_MAX_TEXTURE_IMAGE_UNITS_index atIndex ) { attrIndex = atIndex; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the value element.
@@ -5327,8 +5215,7 @@ public:
 		 * Sets the index attribute.
 		 * @param atIndex The new value for the index attribute.
 		 */
-		void setIndex( domGL_MAX_TEXTURE_IMAGE_UNITS_index atIndex ) { attrIndex = atIndex;	
-	 _validAttributeArray[0] = true; }
+		void setIndex( domGL_MAX_TEXTURE_IMAGE_UNITS_index atIndex ) { attrIndex = atIndex; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the value element.
@@ -5499,8 +5386,7 @@ public:
 		 * Sets the index attribute.
 		 * @param atIndex The new value for the index attribute.
 		 */
-		void setIndex( domGL_MAX_TEXTURE_IMAGE_UNITS_index atIndex ) { attrIndex = atIndex;	
-	 _validAttributeArray[0] = true; }
+		void setIndex( domGL_MAX_TEXTURE_IMAGE_UNITS_index atIndex ) { attrIndex = atIndex; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the value element.
@@ -5671,8 +5557,7 @@ public:
 		 * Sets the index attribute.
 		 * @param atIndex The new value for the index attribute.
 		 */
-		void setIndex( domGL_MAX_TEXTURE_IMAGE_UNITS_index atIndex ) { attrIndex = atIndex;	
-	 _validAttributeArray[0] = true; }
+		void setIndex( domGL_MAX_TEXTURE_IMAGE_UNITS_index atIndex ) { attrIndex = atIndex; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the value element.
@@ -5843,8 +5728,7 @@ public:
 		 * Sets the index attribute.
 		 * @param atIndex The new value for the index attribute.
 		 */
-		void setIndex( domGL_MAX_TEXTURE_IMAGE_UNITS_index atIndex ) { attrIndex = atIndex;	
-	 _validAttributeArray[0] = true; }
+		void setIndex( domGL_MAX_TEXTURE_IMAGE_UNITS_index atIndex ) { attrIndex = atIndex; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the value element.
@@ -5931,8 +5815,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domBool atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -5943,8 +5826,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 		/**
 		 * Gets the index attribute.
@@ -5955,8 +5837,7 @@ public:
 		 * Sets the index attribute.
 		 * @param atIndex The new value for the index attribute.
 		 */
-		void setIndex( domGL_MAX_TEXTURE_IMAGE_UNITS_index atIndex ) { attrIndex = atIndex;	
-	 _validAttributeArray[2] = true; }
+		void setIndex( domGL_MAX_TEXTURE_IMAGE_UNITS_index atIndex ) { attrIndex = atIndex; _validAttributeArray[2] = true; }
 
 	protected:
 		/**
@@ -6022,8 +5903,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domBool atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -6034,8 +5914,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 		/**
 		 * Gets the index attribute.
@@ -6046,8 +5925,7 @@ public:
 		 * Sets the index attribute.
 		 * @param atIndex The new value for the index attribute.
 		 */
-		void setIndex( domGL_MAX_TEXTURE_IMAGE_UNITS_index atIndex ) { attrIndex = atIndex;	
-	 _validAttributeArray[2] = true; }
+		void setIndex( domGL_MAX_TEXTURE_IMAGE_UNITS_index atIndex ) { attrIndex = atIndex; _validAttributeArray[2] = true; }
 
 	protected:
 		/**
@@ -6113,8 +5991,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domBool atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -6125,8 +6002,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 		/**
 		 * Gets the index attribute.
@@ -6137,8 +6013,7 @@ public:
 		 * Sets the index attribute.
 		 * @param atIndex The new value for the index attribute.
 		 */
-		void setIndex( domGL_MAX_TEXTURE_IMAGE_UNITS_index atIndex ) { attrIndex = atIndex;	
-	 _validAttributeArray[2] = true; }
+		void setIndex( domGL_MAX_TEXTURE_IMAGE_UNITS_index atIndex ) { attrIndex = atIndex; _validAttributeArray[2] = true; }
 
 	protected:
 		/**
@@ -6204,8 +6079,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domBool atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -6216,8 +6090,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 		/**
 		 * Gets the index attribute.
@@ -6228,8 +6101,7 @@ public:
 		 * Sets the index attribute.
 		 * @param atIndex The new value for the index attribute.
 		 */
-		void setIndex( domGL_MAX_TEXTURE_IMAGE_UNITS_index atIndex ) { attrIndex = atIndex;	
-	 _validAttributeArray[2] = true; }
+		void setIndex( domGL_MAX_TEXTURE_IMAGE_UNITS_index atIndex ) { attrIndex = atIndex; _validAttributeArray[2] = true; }
 
 	protected:
 		/**
@@ -6295,8 +6167,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domBool atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -6307,8 +6178,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 		/**
 		 * Gets the index attribute.
@@ -6319,8 +6189,7 @@ public:
 		 * Sets the index attribute.
 		 * @param atIndex The new value for the index attribute.
 		 */
-		void setIndex( domGL_MAX_TEXTURE_IMAGE_UNITS_index atIndex ) { attrIndex = atIndex;	
-	 _validAttributeArray[2] = true; }
+		void setIndex( domGL_MAX_TEXTURE_IMAGE_UNITS_index atIndex ) { attrIndex = atIndex; _validAttributeArray[2] = true; }
 
 	protected:
 		/**
@@ -6386,8 +6255,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domBool atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -6398,8 +6266,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 		/**
 		 * Gets the index attribute.
@@ -6410,8 +6277,7 @@ public:
 		 * Sets the index attribute.
 		 * @param atIndex The new value for the index attribute.
 		 */
-		void setIndex( domGL_MAX_TEXTURE_IMAGE_UNITS_index atIndex ) { attrIndex = atIndex;	
-	 _validAttributeArray[2] = true; }
+		void setIndex( domGL_MAX_TEXTURE_IMAGE_UNITS_index atIndex ) { attrIndex = atIndex; _validAttributeArray[2] = true; }
 
 	protected:
 		/**
@@ -6482,8 +6348,7 @@ public:
 		 * Sets the value array attribute.
 		 * @param atValue The new value for the value array attribute.
 		 */
-		void setValue( const domFloat4 &atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( const domFloat4 &atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -6494,8 +6359,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 		/**
 		 * Gets the index attribute.
@@ -6506,8 +6370,7 @@ public:
 		 * Sets the index attribute.
 		 * @param atIndex The new value for the index attribute.
 		 */
-		void setIndex( domGL_MAX_TEXTURE_IMAGE_UNITS_index atIndex ) { attrIndex = atIndex;	
-	 _validAttributeArray[2] = true; }
+		void setIndex( domGL_MAX_TEXTURE_IMAGE_UNITS_index atIndex ) { attrIndex = atIndex; _validAttributeArray[2] = true; }
 
 	protected:
 		/**
@@ -6573,8 +6436,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domString atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domString atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -6585,8 +6447,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 		/**
 		 * Gets the index attribute.
@@ -6597,8 +6458,7 @@ public:
 		 * Sets the index attribute.
 		 * @param atIndex The new value for the index attribute.
 		 */
-		void setIndex( domGL_MAX_TEXTURE_IMAGE_UNITS_index atIndex ) { attrIndex = atIndex;	
-	 _validAttributeArray[2] = true; }
+		void setIndex( domGL_MAX_TEXTURE_IMAGE_UNITS_index atIndex ) { attrIndex = atIndex; _validAttributeArray[2] = true; }
 
 	protected:
 		/**
@@ -6669,8 +6529,7 @@ public:
 		 * Sets the value array attribute.
 		 * @param atValue The new value for the value array attribute.
 		 */
-		void setValue( const domFloat4 &atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( const domFloat4 &atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -6681,8 +6540,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 		/**
 		 * Gets the index attribute.
@@ -6693,8 +6551,7 @@ public:
 		 * Sets the index attribute.
 		 * @param atIndex The new value for the index attribute.
 		 */
-		void setIndex( domGL_MAX_CLIP_PLANES_index atIndex ) { attrIndex = atIndex;	
-	 _validAttributeArray[2] = true; }
+		void setIndex( domGL_MAX_CLIP_PLANES_index atIndex ) { attrIndex = atIndex; _validAttributeArray[2] = true; }
 
 	protected:
 		/**
@@ -6760,8 +6617,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domBool atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -6772,8 +6628,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 		/**
 		 * Gets the index attribute.
@@ -6784,8 +6639,7 @@ public:
 		 * Sets the index attribute.
 		 * @param atIndex The new value for the index attribute.
 		 */
-		void setIndex( domGL_MAX_CLIP_PLANES_index atIndex ) { attrIndex = atIndex;	
-	 _validAttributeArray[2] = true; }
+		void setIndex( domGL_MAX_CLIP_PLANES_index atIndex ) { attrIndex = atIndex; _validAttributeArray[2] = true; }
 
 	protected:
 		/**
@@ -6855,8 +6709,7 @@ public:
 		 * Sets the value array attribute.
 		 * @param atValue The new value for the value array attribute.
 		 */
-		void setValue( const domFloat4 &atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( const domFloat4 &atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -6867,8 +6720,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -6938,8 +6790,7 @@ public:
 		 * Sets the value array attribute.
 		 * @param atValue The new value for the value array attribute.
 		 */
-		void setValue( const domFloat4 &atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( const domFloat4 &atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -6950,8 +6801,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -7016,8 +6866,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domInt atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domInt atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -7028,8 +6877,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -7094,8 +6942,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domFloat atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domFloat atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -7106,8 +6953,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -7177,8 +7023,7 @@ public:
 		 * Sets the value array attribute.
 		 * @param atValue The new value for the value array attribute.
 		 */
-		void setValue( const domBool4 &atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( const domBool4 &atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -7189,8 +7034,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -7260,8 +7104,7 @@ public:
 		 * Sets the value array attribute.
 		 * @param atValue The new value for the value array attribute.
 		 */
-		void setValue( const domFloat2 &atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( const domFloat2 &atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -7272,8 +7115,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -7338,8 +7180,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domBool atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -7350,8 +7191,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -7421,8 +7261,7 @@ public:
 		 * Sets the value array attribute.
 		 * @param atValue The new value for the value array attribute.
 		 */
-		void setValue( const domFloat2 &atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( const domFloat2 &atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -7433,8 +7272,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -7499,8 +7337,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domFloat atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domFloat atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -7511,8 +7348,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -7577,8 +7413,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domFloat atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domFloat atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -7589,8 +7424,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -7655,8 +7489,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domFloat atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domFloat atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -7667,8 +7500,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -7738,8 +7570,7 @@ public:
 		 * Sets the value array attribute.
 		 * @param atValue The new value for the value array attribute.
 		 */
-		void setValue( const domFloat4 &atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( const domFloat4 &atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -7750,8 +7581,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -7821,8 +7651,7 @@ public:
 		 * Sets the value array attribute.
 		 * @param atValue The new value for the value array attribute.
 		 */
-		void setValue( const domFloat4 &atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( const domFloat4 &atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -7833,8 +7662,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -7899,8 +7727,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domBool atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -7911,8 +7738,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -7982,8 +7808,7 @@ public:
 		 * Sets the value array attribute.
 		 * @param atValue The new value for the value array attribute.
 		 */
-		void setValue( const domInt2 &atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( const domInt2 &atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -7994,8 +7819,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -8060,8 +7884,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domFloat atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domFloat atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -8072,8 +7895,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -8143,8 +7965,7 @@ public:
 		 * Sets the value array attribute.
 		 * @param atValue The new value for the value array attribute.
 		 */
-		void setValue( const domFloat4 &atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( const domFloat4 &atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -8155,8 +7976,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -8226,8 +8046,7 @@ public:
 		 * Sets the value array attribute.
 		 * @param atValue The new value for the value array attribute.
 		 */
-		void setValue( const domFloat4 &atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( const domFloat4 &atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -8238,8 +8057,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -8309,8 +8127,7 @@ public:
 		 * Sets the value array attribute.
 		 * @param atValue The new value for the value array attribute.
 		 */
-		void setValue( const domFloat4 &atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( const domFloat4 &atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -8321,8 +8138,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -8387,8 +8203,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domFloat atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domFloat atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -8399,8 +8214,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -8470,8 +8284,7 @@ public:
 		 * Sets the value array attribute.
 		 * @param atValue The new value for the value array attribute.
 		 */
-		void setValue( const domFloat4 &atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( const domFloat4 &atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -8482,8 +8295,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -8553,8 +8365,7 @@ public:
 		 * Sets the value array attribute.
 		 * @param atValue The new value for the value array attribute.
 		 */
-		void setValue( const domFloat4x4 &atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( const domFloat4x4 &atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -8565,8 +8376,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -8636,8 +8446,7 @@ public:
 		 * Sets the value array attribute.
 		 * @param atValue The new value for the value array attribute.
 		 */
-		void setValue( const domFloat3 &atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( const domFloat3 &atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -8648,8 +8457,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -8714,8 +8522,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domFloat atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domFloat atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -8726,8 +8533,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -8792,8 +8598,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domFloat atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domFloat atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -8804,8 +8609,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -8870,8 +8674,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domFloat atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domFloat atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -8882,8 +8685,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -8948,8 +8750,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domFloat atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domFloat atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -8960,8 +8761,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -9031,8 +8831,7 @@ public:
 		 * Sets the value array attribute.
 		 * @param atValue The new value for the value array attribute.
 		 */
-		void setValue( const domFloat2 &atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( const domFloat2 &atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -9043,8 +8842,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -9114,8 +8912,7 @@ public:
 		 * Sets the value array attribute.
 		 * @param atValue The new value for the value array attribute.
 		 */
-		void setValue( const domFloat4x4 &atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( const domFloat4x4 &atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -9126,8 +8923,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -9197,8 +8993,7 @@ public:
 		 * Sets the value array attribute.
 		 * @param atValue The new value for the value array attribute.
 		 */
-		void setValue( const domInt4 &atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( const domInt4 &atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -9209,8 +9004,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -9275,8 +9069,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domInt atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domInt atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -9287,8 +9080,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -9353,8 +9145,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domBool atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -9365,8 +9156,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -9431,8 +9221,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domBool atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -9443,8 +9232,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -9509,8 +9297,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domBool atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -9521,8 +9308,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -9587,8 +9373,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domBool atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -9599,8 +9384,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -9665,8 +9449,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domBool atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -9677,8 +9460,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -9743,8 +9525,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domBool atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -9755,8 +9536,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -9821,8 +9601,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domBool atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -9833,8 +9612,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -9899,8 +9677,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domBool atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -9911,8 +9688,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -9977,8 +9753,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domBool atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -9989,8 +9764,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -10055,8 +9829,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domBool atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -10067,8 +9840,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -10133,8 +9905,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domBool atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -10145,8 +9916,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -10211,8 +9981,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domBool atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -10223,8 +9992,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -10289,8 +10057,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domBool atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -10301,8 +10068,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -10367,8 +10133,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domBool atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -10379,8 +10144,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -10445,8 +10209,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domBool atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -10457,8 +10220,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -10523,8 +10285,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domBool atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -10535,8 +10296,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -10601,8 +10361,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domBool atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -10613,8 +10372,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -10679,8 +10437,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domBool atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -10691,8 +10448,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -10757,8 +10513,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domBool atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -10769,8 +10524,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -10835,8 +10589,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domBool atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -10847,8 +10600,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -10913,8 +10665,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domBool atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -10925,8 +10676,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -10991,8 +10741,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domBool atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -11003,8 +10752,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -11069,8 +10817,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domBool atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -11081,8 +10828,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -11147,8 +10893,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domBool atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -11159,8 +10904,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -11225,8 +10969,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domBool atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -11237,8 +10980,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -11303,8 +11045,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domBool atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -11315,8 +11056,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -11381,8 +11121,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domBool atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -11393,8 +11132,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -11459,8 +11197,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domBool atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -11471,8 +11208,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -11537,8 +11273,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domBool atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -11549,8 +11284,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**
@@ -11615,8 +11349,7 @@ public:
 		 * Sets the value attribute.
 		 * @param atValue The new value for the value attribute.
 		 */
-		void setValue( domBool atValue ) { attrValue = atValue;	
-	 _validAttributeArray[0] = true; }
+		void setValue( domBool atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the param attribute.
@@ -11627,8 +11360,7 @@ public:
 		 * Sets the param attribute.
 		 * @param atParam The new value for the param attribute.
 		 */
-		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;	
-	 _validAttributeArray[1] = true; }
+		void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 	protected:
 		/**

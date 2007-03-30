@@ -30,7 +30,7 @@ daeLIBXMLPlugin::daeLIBXMLPlugin():topMeta(NULL),database(NULL)
 {
 	 xmlInitParser();
 	 rawFile = NULL;
-	 rawFloatCount = 0;
+	 rawByteCount = 0;
 	 saveRawFile = false;
 }
 
@@ -54,7 +54,7 @@ daeInt daeLIBXMLPlugin::setOption( daeString option, daeString value )
 {
 	if ( strcmp( option, "saveRawBinary" ) == 0 )
 	{
-		if ( stricmp( value, "true" ) == 0 )
+		if ( strcmp( value, "true" ) == 0 || strcmp( value, "TRUE" ) == 0 )
 		{
 			saveRawFile = true;
 		}
@@ -188,7 +188,6 @@ daeInt daeLIBXMLPlugin::read(daeURI& uri, daeString docBuffer)
 	//an ID. 
 	//this function will fill the _integrationItems array as well
 	postProcessDom(document, domObject, intItems);
-	database->validate();
 	daeElement::resolveAll();
 
 	//create the integration objects
@@ -835,7 +834,7 @@ void daeLIBXMLPlugin::writeAttribute( daeMetaAttribute* attr, daeElement* elemen
 			
 			//is set
 			//check for default suppression
-			if ( attr->getDefault() != NULL )
+			if ( attr->getDefault() != NULL && !attr->isArrayAttribute() )
 			{
 				//has a default value
 				attr->getType()->stringToMemory( (daeChar*)attr->getDefault(), buf );
@@ -914,9 +913,6 @@ void daeLIBXMLPlugin::writeRawSource( daeElement *src )
 		}
 	}
 
-	daeULong *origOffsetPtr = (daeULong*)accessor->getAttributeValue( "offset" );
-	daeULong origOffset = origOffsetPtr != NULL ? *origOffsetPtr : 0;
-
 	daeULong *countPtr = (daeULong*)array->getAttributeValue( "count" );
 	daeULong count = countPtr != NULL ? *countPtr : 0;
 
@@ -929,27 +925,28 @@ void daeLIBXMLPlugin::writeRawSource( daeElement *src )
 		*stridePtr = children.getCount();
 	}
 
-	*origOffsetPtr = rawFloatCount;
-	accessor->setAttribute( "source", rawRelPath.getOriginalURI() );
+	daeFixedName newURI;
+	sprintf( newURI, "%s#%d", rawRelPath.getOriginalURI(), rawByteCount );
+	accessor->setAttribute( "source", newURI );
 
 	daeArray *valArray = (daeArray*)array->getValuePointer();
 
+	//TODO: pay attention to precision for the array.
 	if ( isInt )
 	{
-		for( daeULong i = origOffset; i < count-origOffset; i++ )
+		for( daeULong i = 0; i < count; i++ )
 		{
 			daeInt tmp = (daeInt)*(daeLong*)(valArray->getRawData() + i*sizeof(daeLong));
-			rawFloatCount += (unsigned long)fwrite( &tmp, sizeof(daeInt), 1, rawFile );
+			rawByteCount += (unsigned long)(fwrite( &tmp, sizeof(daeInt), 1, rawFile ) * sizeof(daeInt));
 		}
 	}
 	else
 	{
-		for( daeULong i = origOffset; i < count-origOffset; i++ )
+		for( daeULong i = 0; i < count; i++ )
 		{
 			daeFloat tmp = (daeFloat)*(daeDouble*)(valArray->getRawData() + i*sizeof(daeDouble));
-			rawFloatCount += (unsigned long)fwrite( &tmp, sizeof(daeFloat), 1, rawFile );
+			rawByteCount += (unsigned long)(fwrite( &tmp, sizeof(daeFloat), 1, rawFile ) * sizeof(daeFloat));
 		}
-		//rawFloatCount += (unsigned long)fwrite( valArray->getRawData() + origOffset*sizeof(daeDouble), sizeof(daeDouble), (size_t)(count-origOffset), rawFile );
 	}
 
 	writeElement( newSrc );

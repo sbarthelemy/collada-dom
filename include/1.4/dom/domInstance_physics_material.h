@@ -13,6 +13,7 @@
 #ifndef __domInstance_physics_material_h__
 #define __domInstance_physics_material_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -26,6 +27,44 @@ class domInstance_physics_material : public daeElement, public domInstanceWithEx
 {
 public:
 	COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::INSTANCE_PHYSICS_MATERIAL; }
+
+	/**
+	 * Gets the url attribute.
+	 * @return Returns a xsAnyURI reference of the url attribute.
+	 */
+	xsAnyURI &getUrl() { return attrUrl; }
+	/**
+	 * Gets the url attribute.
+	 * @return Returns a constant xsAnyURI reference of the url attribute.
+	 */
+	const xsAnyURI &getUrl() const { return attrUrl; }
+	/**
+	 * Sets the url attribute.
+	 * @param atUrl The new value for the url attribute.
+	 */
+	void setUrl( const xsAnyURI &atUrl ) { attrUrl = atUrl; _validAttributeArray[0] = true; }
+
+	/**
+	 * Gets the sid attribute.
+	 * @return Returns a xsNCName of the sid attribute.
+	 */
+	xsNCName getSid() const { return attrSid; }
+	/**
+	 * Sets the sid attribute.
+	 * @param atSid The new value for the sid attribute.
+	 */
+	void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid; _validAttributeArray[1] = true; }
+
+	/**
+	 * Gets the name attribute.
+	 * @return Returns a xsNCName of the name attribute.
+	 */
+	xsNCName getName() const { return attrName; }
+	/**
+	 * Sets the name attribute.
+	 * @param atName The new value for the name attribute.
+	 */
+	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName; _validAttributeArray[2] = true; }
 
 protected:
 	/**

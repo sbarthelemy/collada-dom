@@ -13,6 +13,7 @@
 #ifndef __domFx_samplerDEPTH_common_h__
 #define __domFx_samplerDEPTH_common_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 

@@ -920,7 +920,7 @@ daeURI::resolveURI()
 	}
 }
 
-daeBool daeURI::getPath(daeChar *dest, daeInt size)
+daeBool daeURI::getPath(daeChar *dest, daeInt size) const
 {
 
 	if( file == NULL ) 

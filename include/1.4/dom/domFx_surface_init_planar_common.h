@@ -13,6 +13,7 @@
 #ifndef __domFx_surface_init_planar_common_h__
 #define __domFx_surface_init_planar_common_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -54,8 +55,7 @@ public:
 		 * Sets the ref attribute.
 		 * @param atRef The new value for the ref attribute.
 		 */
-		void setRef( const xsIDREF &atRef ) { attrRef = atRef;	
-	 _validAttributeArray[0] = true; }
+		void setRef( const xsIDREF &atRef ) { attrRef = atRef; _validAttributeArray[0] = true; }
 
 	protected:
 		/**

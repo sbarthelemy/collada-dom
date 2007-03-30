@@ -13,6 +13,7 @@
 #ifndef __domGles_texture_constant_type_h__
 #define __domGles_texture_constant_type_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -50,7 +51,7 @@ public:	//Accessors and Mutators
 	 * Sets the param attribute.
 	 * @param atParam The new value for the param attribute.
 	 */
-	void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; }
+	void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;}
 
 protected:
 	/**
@@ -94,8 +95,7 @@ public:	//Accessors and Mutators
 	 * Sets the value array attribute.
 	 * @param atValue The new value for the value array attribute.
 	 */
-	void setValue( const domFloat4 &atValue ) { attrValue = atValue;
-	 _validAttributeArray[0] = true; }
+	void setValue( const domFloat4 &atValue ) { attrValue = atValue; _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the param attribute.
@@ -106,8 +106,7 @@ public:	//Accessors and Mutators
 	 * Sets the param attribute.
 	 * @param atParam The new value for the param attribute.
 	 */
-	void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam;
-	 _validAttributeArray[1] = true; }
+	void setParam( xsNCName atParam ) { *(daeStringRef*)&attrParam = atParam; _validAttributeArray[1] = true; }
 
 protected:
 	/**

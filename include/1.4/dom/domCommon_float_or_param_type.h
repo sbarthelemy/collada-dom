@@ -13,6 +13,7 @@
 #ifndef __domCommon_float_or_param_type_h__
 #define __domCommon_float_or_param_type_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -48,8 +49,7 @@ public:
 		 * Sets the sid attribute.
 		 * @param atSid The new value for the sid attribute.
 		 */
-		void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid;	
-	 _validAttributeArray[0] = true; }
+		void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the value of this element.
@@ -124,8 +124,7 @@ public:
 		 * Sets the ref attribute.
 		 * @param atRef The new value for the ref attribute.
 		 */
-		void setRef( xsNCName atRef ) { *(daeStringRef*)&attrRef = atRef;	
-	 _validAttributeArray[0] = true; }
+		void setRef( xsNCName atRef ) { *(daeStringRef*)&attrRef = atRef; _validAttributeArray[0] = true; }
 
 	protected:
 		/**

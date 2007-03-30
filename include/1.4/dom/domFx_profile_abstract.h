@@ -13,6 +13,7 @@
 #ifndef __domFx_profile_abstract_h__
 #define __domFx_profile_abstract_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 

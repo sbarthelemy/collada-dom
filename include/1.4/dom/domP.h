@@ -13,6 +13,7 @@
 #ifndef __domP_h__
 #define __domP_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 

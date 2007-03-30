@@ -13,6 +13,7 @@
 #ifndef __domPlane_h__
 #define __domPlane_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 

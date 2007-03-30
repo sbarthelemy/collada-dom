@@ -13,6 +13,7 @@
 #ifndef __domInstance_effect_h__
 #define __domInstance_effect_h__
 
+#include <dae/daeDocument.h>
 #include <dom/domTypes.h>
 #include <dom/domElements.h>
 
@@ -67,8 +68,7 @@ public:
 		 * Sets the platform attribute.
 		 * @param atPlatform The new value for the platform attribute.
 		 */
-		void setPlatform( xsNCName atPlatform ) { *(daeStringRef*)&attrPlatform = atPlatform;	
-	 _validAttributeArray[0] = true; }
+		void setPlatform( xsNCName atPlatform ) { *(daeStringRef*)&attrPlatform = atPlatform; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the profile attribute.
@@ -79,8 +79,7 @@ public:
 		 * Sets the profile attribute.
 		 * @param atProfile The new value for the profile attribute.
 		 */
-		void setProfile( xsNCName atProfile ) { *(daeStringRef*)&attrProfile = atProfile;	
-	 _validAttributeArray[1] = true; }
+		void setProfile( xsNCName atProfile ) { *(daeStringRef*)&attrProfile = atProfile; _validAttributeArray[1] = true; }
 
 		/**
 		 * Gets the ref attribute.
@@ -91,8 +90,7 @@ public:
 		 * Sets the ref attribute.
 		 * @param atRef The new value for the ref attribute.
 		 */
-		void setRef( xsNCName atRef ) { *(daeStringRef*)&attrRef = atRef;	
-	 _validAttributeArray[2] = true; }
+		void setRef( xsNCName atRef ) { *(daeStringRef*)&attrRef = atRef; _validAttributeArray[2] = true; }
 
 	protected:
 		/**
@@ -161,8 +159,7 @@ public:
 		 * Sets the ref attribute.
 		 * @param atRef The new value for the ref attribute.
 		 */
-		void setRef( xsToken atRef ) { *(daeStringRef*)&attrRef = atRef;	
-	 _validAttributeArray[0] = true; }
+		void setRef( xsToken atRef ) { *(daeStringRef*)&attrRef = atRef; _validAttributeArray[0] = true; }
 
 		/**
 		 * Gets the fx_basic_type_common element.
@@ -258,8 +255,7 @@ public:	//Accessors and Mutators
 	 * Sets the url attribute.
 	 * @param atUrl The new value for the url attribute.
 	 */
-	void setUrl( const xsAnyURI &atUrl ) { attrUrl = atUrl;
-	 _validAttributeArray[0] = true; }
+	void setUrl( const xsAnyURI &atUrl ) { attrUrl = atUrl; _validAttributeArray[0] = true; }
 
 	/**
 	 * Gets the sid attribute.
@@ -270,8 +266,7 @@ public:	//Accessors and Mutators
 	 * Sets the sid attribute.
 	 * @param atSid The new value for the sid attribute.
 	 */
-	void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid;
-	 _validAttributeArray[1] = true; }
+	void setSid( xsNCName atSid ) { *(daeStringRef*)&attrSid = atSid; _validAttributeArray[1] = true; }
 
 	/**
 	 * Gets the name attribute.
@@ -282,8 +277,7 @@ public:	//Accessors and Mutators
 	 * Sets the name attribute.
 	 * @param atName The new value for the name attribute.
 	 */
-	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName;
-	 _validAttributeArray[2] = true; }
+	void setName( xsNCName atName ) { *(daeStringRef*)&attrName = atName; _validAttributeArray[2] = true; }
 
 	/**
 	 * Gets the technique_hint element array.
