@@ -40,6 +40,8 @@ Build targets
 
 all: The default target, used for building libs/exes.
 
+clean: Removes build files. You could also 'rm -r build' to clean manually.
+
 test: Run the automated test suite. If any of the tests fail, make will fail.
 
 install: Install the DOM on the host machine. Set prefix=/my/path to specify an
@@ -67,6 +69,8 @@ Build with output messages (perhaps for debugging the makefiles):
 	make verbose=yes
 Install to the default location:
 	make install
+Clean all configs
+	make clean conf=all
 
 
 Overriding the defaults
