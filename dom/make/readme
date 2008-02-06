@@ -40,8 +40,7 @@ Build targets
 
 all: The default target, used for building libs/exes.
 
-test: Run the automated test suite. Make sure that project=all or
-project=domTest.
+test: Run the automated test suite. If any of the tests fail, make will fail.
 
 install: Install the DOM on the host machine. Set prefix=/my/path to specify an
 install prefix other than the default. On Linux, the default is /usr/local (libs
@@ -66,6 +65,8 @@ Build _only_ dae.cpp:
 	make file=dae.cpp
 Build with output messages (perhaps for debugging the makefiles): 
 	make verbose=yes
+Install to the default location:
+	make install
 
 
 Overriding the defaults
