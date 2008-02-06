@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\..\COLLADA_DOM\include;..\..\..\COLLADA_DOM\include\1.4;../../include;../../include/1.4;..\..\..\COLLADA_FX\include;&quot;$(CG_INC_PATH)&quot;;&quot;..\..\..\external-libs\bullet\src&quot;"
+				AdditionalIncludeDirectories="..\..\..\dom\include;..\..\..\dom\include\1.4;../../include;../../include/1.4;..\..\..\fx\include;&quot;$(CG_INC_PATH)&quot;;&quot;..\..\external-libs\bullet\src&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;CFX_PLATFORM_INCLUDE=\&quot;cfxWin.h\&quot;;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -106,7 +106,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="..\..\..\COLLADA_DOM\include;..\..\..\COLLADA_DOM\include\1.4;../../include;../../include/1.4;..\..\..\COLLADA_FX\include;&quot;$(CG_INC_PATH)&quot;;&quot;..\..\..\external-libs\bullet\src&quot;"
+				AdditionalIncludeDirectories="..\..\..\dom\include;..\..\..\dom\include\1.4;../../include;../../include/1.4;..\..\..\fx\include;&quot;$(CG_INC_PATH)&quot;;&quot;..\..\external-libs\bullet\src&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;CFX_PLATFORM_INCLUDE=\&quot;cfxWin.h\&quot;;_CRT_SECURE_NO_DEPRECATE"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
