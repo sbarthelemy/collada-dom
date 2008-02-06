@@ -1,0 +1,99 @@
+The makefiles are used when building the DOM for Linux, Mac, or PS3. The Windows
+build currently uses Visual Studio projects.
+
+Typical usage would simply be to call "make" from the DOM directory, which would
+build a release version of the DOM for the native architecture of your
+machine. The build output goes to a folder named 'build'.
+
+
+Build params
+------------
+
+os: Specifies the OS you're building for, which isn't necessary the same as the
+OS you're building on. Usually you would just accept the default value generated
+by make (via the uname command), but if you're building for PS3 you need to set
+os=ps3. Acceptable values are linux, mac, and ps3.
+
+arch: The processor architecture you're building for. Some OS's (Mac in
+particular) support building for multiple architectures. By default this is set
+to your machine's processor architecture, so if you're on an Intel Mac it'll be
+set to x86, and if you're on a PowerPC Mac it'll be set to ppc. To build a Mac
+universal binary supporting both Intel and PowerPC 32-bit Macs, you would set
+arch='x86 ppc'. Acceptable values are x86 and ppc. i386 is supported as a
+synonym for x86.
+
+project: Valid values are dom, domTest, and all. You can specify to build only a
+particular project by setting this value. By default, project=all, which will
+build all projects.
+
+conf: Valid values are release, debug, and all. Default is release.
+
+colladaVersion: The only valid value is currently 1.4, but other versions will
+be supported in the future.
+
+parser: Valid values are libxml, tinyxml, or all. Default is libxml on Linux and
+Mac, and tinyxml on PS3.
+
+
+Build targets
+-------------
+
+all: The default target, used for building libs/exes.
+
+test: Run the automated test suite. Make sure that project=all or
+project=domTest.
+
+install: Install the DOM on the host machine. Set prefix=/my/path to specify an
+install prefix other than the default. On Linux, the default is /usr/local (libs
+go to /usr/local/lib, headers go to /usr/local/include), and on Mac the default
+install location is /Library/Frameworks.
+
+uninstall: Self explanatory.
+
+
+Usage scenarios
+---------------
+
+Standard release build:
+	make
+Build both debug and release versions of the DOM:
+	make conf=all
+Build _only_ the DOM (don't build domTest):
+	make project=dom
+Build a Mac universal binary:
+	make arch='x86 ppc'
+Build _only_ dae.cpp:
+	make file=dae.cpp
+Build with output messages (perhaps for debugging the makefiles): 
+	make verbose=yes
+
+
+Overriding the defaults
+-----------------------
+
+The defaults can easily be overriden by setting param=value when calling
+make. If a particular param has a default that you always want to override,
+it might be easier to put the overrides in make/customSettings.mk, which gets
+included by the DOM makefile. For example, I tend to always build Mac universal
+binaries, but the default is to build for the native architecture only. Instead
+of always passing arch='x86 ppc' on the command line, I create a file
+make/customSettings.mk that has 'arch := x86 ppc'.
+
+
+Mac Notes
+---------
+
+The Mac build has been tested on Mac OS X Leopard, but should work fine with other
+versions of OS X as well.
+
+
+Linux Notes
+-----------
+
+The Linux build has been tested with Ubuntu Gutsy. You need to have libxml,
+PCRE, and boost filesystem development files installed on your machine to build
+the DOM. The Ubuntu packages are named libxml2-dev, libpcre3-dev, and
+libboost-filesystem-dev.
+
+It should be easy to get the DOM building on other versions of Linux, but you'll
+need to figure out what packages to install for libxml, PCRE, and boost filesystem.
