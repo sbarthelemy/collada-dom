@@ -23,14 +23,14 @@ endif
 
 ifneq ($(findstring tinyxml,$(xmlparsers)),)
 ccFlags += -DDOM_INCLUDE_TINYXML
-includeOpts += -I../external-libs/tinyxml/
-libOpts += ../external-libs/tinyxml/lib/$(os)/libtinyxml.a
+includeOpts += -Iexternal-libs/tinyxml/
+libOpts += external-libs/tinyxml/lib/$(os)/libtinyxml.a
 endif
 
 # On Mac and PS3 we need to be told where to find pcre
 ifneq ($(os),linux)
-includeOpts += -I../external-libs/pcre
-libOpts += -L../external-libs/pcre/lib/$(os)
+includeOpts += -Iexternal-libs/pcre
+libOpts += -Lexternal-libs/pcre/lib/$(os)
 endif
 
 libOpts += -lpcre -lpcrecpp

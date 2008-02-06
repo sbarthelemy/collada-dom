@@ -32,7 +32,7 @@ dependentLibs += $(domName)
 
 # PCRE defs
 ifeq ($(os),ps3)
-pcreLibPath := ../external-libs/pcre/lib/$(os)/
+pcreLibPath := external-libs/pcre/lib/$(os)/
 libOpts += -L$(pcreLibPath) -lpcrecpp -lpcre
 endif
 
@@ -41,14 +41,14 @@ ifneq ($(findstring tinyxml,$(xmlparsers)),)
 # Notify domTest.cpp if we're supposed to do TinyXml tests
 ccFlags += -DTINYXML
 ifeq ($(os),ps3)
-libOpts += ../external-libs/tinyxml/lib/$(os)/libtinyxml.a
+libOpts += external-libs/tinyxml/lib/$(os)/libtinyxml.a
 endif
 endif
 
 # Boost defs
 ifneq ($(os),linux)
-includeOpts += -I../external-libs/boost
-libOpts += -L../external-libs/boost/lib/$(os)
+includeOpts += -Iexternal-libs/boost
+libOpts += -Lexternal-libs/boost/lib/$(os)
 endif
 ifeq ($(os),ps3)
 # PS3 doesn't support C++ locales, so tell boost not to use them

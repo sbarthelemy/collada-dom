@@ -53,11 +53,11 @@ SRC 	+=	../../src/Crt/CrtLinux.cpp
 INCLUDE_DIR	+= $(ROOT_DIR)/include/$(COLLADA_DOM_VERSION)
 INCLUDE_DIR	+= $(ROOT_DIR)/include
 #bullet
-INCLUDE_DIR	+= $(ROOT_DIR)/../external-libs/bullet/src
+INCLUDE_DIR	+= $(ROOT_DIR)/external-libs/bullet/src
 #dom
-INCLUDE_DIR     += $(ROOT_DIR)/../COLLADA_DOM/include
-INCLUDE_DIR     += $(ROOT_DIR)/../COLLADA_DOM/include/$(COLLADA_DOM_VERSION)
+INCLUDE_DIR     += $(ROOT_DIR)/../dom/include
+INCLUDE_DIR     += $(ROOT_DIR)/../dom/include/$(COLLADA_DOM_VERSION)
 #fx
-INCLUDE_DIR     += $(ROOT_DIR)/../COLLADA_FX/include/
+INCLUDE_DIR     += $(ROOT_DIR)/../fx/include/
 
 include $(ROOT_DIR)/build/makerules.txt

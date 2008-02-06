@@ -46,8 +46,8 @@ SRC				 := \
 		src/cfxSurface.cpp \
 		src/cfxTechnique.cpp 
 
-INCLUDE_DIR		 += $(ROOT_DIR)/../COLLADA_DOM/include
-INCLUDE_DIR		 += $(ROOT_DIR)/../COLLADA_DOM/include/$(COLLADA_DOM_VERSION)
+INCLUDE_DIR		 += $(ROOT_DIR)/../dom/include
+INCLUDE_DIR		 += $(ROOT_DIR)/../dom/include/$(COLLADA_DOM_VERSION)
 #INCLUDE_DIR     += /usr/include/libxml2
 INCLUDE_DIR      += $(ROOT_DIR)/include
 
