@@ -557,6 +557,31 @@ public:
 	 */
 	daeSmartRef<daeElement> clone( daeString idSuffix = NULL, daeString nameSuffix = NULL );
 
+	// Class for reporting info about element comparisons
+	struct compareResult {
+		int compareValue; // > 0 if elt1 > elt2,
+		                  // < 0 if elt1 < elt2,
+		                  // = 0 if elt1 = elt2
+		daeElement* elt1;
+		daeElement* elt2;
+		bool nameMismatch; // true if the names didn't match
+		std::string attrMismatch; // The name of the mismatched attribute, or "" if there was no attr mismatch
+		bool charDataMismatch; // true if the char data didn't match
+		bool childCountMismatch; // true if the number of children didn't match
+
+		compareResult();
+		std::string format(); // Write to a string
+	};
+
+	// Function for doing a generic, recursive comparison of two xml elements. It
+	// also provides a full element ordering, so that you could store elements in
+	// a map or a set. Return val is > 0 if elt1 > elt2, < 0 if elt1 < elt2, and 0
+	// if elt1 == elt2.
+	static int compare(daeElement& elt1, daeElement& elt2);
+
+	// Same as the previous function, but returns a full compareResult object.
+	static compareResult compareWithFullResult(daeElement& elt1, daeElement& elt2);
+
 	/**
 	 * Sets the user data pointer attached to this element.
 	 * @param data User's custom data to store.

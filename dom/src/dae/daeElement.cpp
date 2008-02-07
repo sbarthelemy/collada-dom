@@ -11,6 +11,8 @@
  * License. 
  */
 
+#include <cstdarg>
+#include <iomanip>
 #include <dae/daeElement.h>
 #include <dae/daeArray.h>
 #include <dae/daeMetaAttribute.h>
@@ -18,9 +20,10 @@
 #include <dae/daeMetaElement.h>
 #include <dae/daeDatabase.h>
 #include <dae/daeErrorHandler.h>
-
 #include <dae/daeURI.h>
 #include <dae/domAny.h>
+
+using namespace std;
 
 daeElementRef
 daeElement::createElement(daeString className)
@@ -431,6 +434,231 @@ daeSmartRef<daeElement> daeElement::clone(daeString idSuffix, daeString nameSuff
 	}
 	return ret;
 }
+
+
+// Element comparison
+
+namespace { // Utility functions
+	vector<string> makeStringArray(const char* s, ...) {
+		va_list args;
+		va_start(args, s);
+		vector<string> result;
+		while (s) {
+			result.push_back(s);
+			s = va_arg(args, const char*);
+		}
+		va_end(args);
+		return result;
+	}
+
+#ifdef _MSC_VER
+#pragma warning(push)
+#pragma warning(disable : 4267)
+#endif
+	template<typename T>
+	string toString(const T& val) {
+		ostringstream stream;
+		stream << val;
+		return stream.str();
+	}
+#ifdef _MSC_VER
+#pragma warning(pop)
+#endif
+
+	int getNecessaryColumnWidth(const vector<string>& tokens) {
+		int result = 0;
+		for (size_t i = 0; i < tokens.size(); i++) {
+			int tokenLength = int(tokens[i].length() > 0 ? tokens[i].length()+2 : 0);
+			result = max(tokenLength, result);
+		}
+		return result;
+	}
+
+	string formatToken(const string& token) {
+		if (token.length() <= 50)
+			return token;
+		return token.substr(0, 47) + "...";
+	}
+} // namespace {
+
+daeElement::compareResult::compareResult()
+	: compareValue(0),
+	  elt1(NULL),
+	  elt2(NULL),
+	  nameMismatch(false),
+	  attrMismatch(""),
+	  charDataMismatch(false),
+	  childCountMismatch(false) {
+}
+
+string daeElement::compareResult::format() {
+	if (!elt1 || !elt2)
+		return "";
+
+	// Gather the data we'll be printing
+	string name1 = formatToken(elt1->getElementName()),
+	       name2 = formatToken(elt2->getElementName()),
+	       type1 = formatToken(elt1->getTypeName()),
+	       type2 = formatToken(elt2->getTypeName()),
+	       id1 = formatToken(elt1->getAttribute("id")),
+	       id2 = formatToken(elt2->getAttribute("id")),
+	       attrName1 = formatToken(attrMismatch),
+	       attrName2 = formatToken(attrMismatch),
+	       attrValue1 = formatToken(elt1->getAttribute(attrMismatch.c_str())),
+	       attrValue2 = formatToken(elt2->getAttribute(attrMismatch.c_str())),
+	       charData1 = formatToken(elt1->getCharData()),
+	       charData2 = formatToken(elt2->getCharData()),
+	       childCount1 = formatToken(toString(elt1->getChildren().getCount())),
+	       childCount2 = formatToken(toString(elt2->getChildren().getCount()));
+		
+	// Compute formatting information
+	vector<string> col1Tokens = makeStringArray("Name", "Type", "ID",
+		"Attr name", "Attr value", "Char data", "Child count", 0);
+	vector<string> col2Tokens = makeStringArray("Element 1", name1.c_str(),
+		type1.c_str(), id1.c_str(), attrName1.c_str(), attrValue1.c_str(),
+		charData1.c_str(), childCount1.c_str(), 0);
+		
+	int c1w = getNecessaryColumnWidth(col1Tokens),
+	    c2w = getNecessaryColumnWidth(col2Tokens);
+	ostringstream msg;
+	msg << setw(c1w) << left << ""            << setw(c2w) << left << "Element 1" << "Element 2\n"
+			<< setw(c1w) << left << ""            << setw(c2w) << left << "---------" << "---------\n"
+			<< setw(c1w) << left << "Name"        << setw(c2w) << left << name1 << name2 << endl
+			<< setw(c1w) << left << "Type"        << setw(c2w) << left << type1 << type2 << endl
+			<< setw(c1w) << left << "ID"          << setw(c2w) << left << id1 << id2 << endl
+			<< setw(c1w) << left << "Attr name"   << setw(c2w) << left << attrName1 << attrName2 << endl
+			<< setw(c1w) << left << "Attr value"  << setw(c2w) << left << attrValue1 << attrValue2 << endl
+			<< setw(c1w) << left << "Char data"   << setw(c2w) << left << charData1 << charData2 << endl
+			<< setw(c1w) << left << "Child count" << setw(c2w) << left << childCount1 << childCount2;
+
+	return msg.str();
+}
+
+namespace {
+	daeElement::compareResult compareMatch() {
+		daeElement::compareResult result;
+		result.compareValue = 0;
+		return result;
+	}
+
+	daeElement::compareResult nameMismatch(daeElement& elt1, daeElement& elt2) {
+		daeElement::compareResult result;
+		result.elt1 = &elt1;
+		result.elt2 = &elt2;
+		result.compareValue = strcmp(elt1.getElementName(), elt2.getElementName());
+		result.nameMismatch = true;
+		return result;
+	}
+
+	daeElement::compareResult attrMismatch(daeElement& elt1, daeElement& elt2, const string& attr) {
+		daeElement::compareResult result;
+		result.elt1 = &elt1;
+		result.elt2 = &elt2;
+		result.compareValue = strcmp(elt1.getAttribute(attr.c_str()).c_str(),
+		                             elt2.getAttribute(attr.c_str()).c_str());
+		result.attrMismatch = attr;
+		return result;
+	}
+
+	daeElement::compareResult charDataMismatch(daeElement& elt1, daeElement& elt2) {
+		daeElement::compareResult result;
+		result.elt1 = &elt1;
+		result.elt2 = &elt2;
+		result.compareValue = strcmp(elt1.getCharData().c_str(),
+		                             elt2.getCharData().c_str());
+		result.charDataMismatch = true;
+		return result;
+	}
+
+	daeElement::compareResult childCountMismatch(daeElement& elt1, daeElement& elt2) {
+		daeElement::compareResult result;
+		result.elt1 = &elt1;
+		result.elt2 = &elt2;
+		daeElementRefArray children1 = elt1.getChildren(),
+		                   children2 = elt2.getChildren();
+		result.compareValue = int(children1.getCount()) - int(children2.getCount());
+		result.childCountMismatch = true;
+		return result;
+	}
+
+	daeElement::compareResult compareElementsSameType(daeElement& elt1, daeElement& elt2) {
+		// Compare attributes
+		for (size_t i = 0; i < elt1.getAttributeCount(); i++)
+			if (elt1.getAttributeObject(i)->compare(&elt1, &elt2) != 0)
+				return attrMismatch(elt1, elt2, elt1.getAttributeName(i));
+
+		// Compare character data
+		if (elt1.getCharDataObject())
+			if (elt1.getCharDataObject()->compare(&elt1, &elt2) != 0)
+				return charDataMismatch(elt1, elt2);
+
+		// Compare children
+		daeElementRefArray children1 = elt1.getChildren(),
+		                   children2 = elt2.getChildren();
+		if (children1.getCount() != children2.getCount())
+			return childCountMismatch(elt1, elt2);
+		for (size_t i = 0; i < children1.getCount(); i++) {
+			daeElement::compareResult result = daeElement::compareWithFullResult(*children1[i], *children2[i]);
+			if (result.compareValue != 0)
+				return result;
+		}
+	
+		return compareMatch();
+	}
+
+	daeElement::compareResult compareElementsDifferentTypes(daeElement& elt1, daeElement& elt2) {
+		string value1, value2;
+
+		// Compare attributes. Be careful because each element could have a
+		// different number of attributes.
+		if (elt1.getAttributeCount() > elt2.getAttributeCount())
+			return attrMismatch(elt1, elt2, elt1.getAttributeName(elt2.getAttributeCount()));
+		if (elt2.getAttributeCount() > elt1.getAttributeCount())
+			return attrMismatch(elt1, elt2, elt2.getAttributeName(elt1.getAttributeCount()));
+		for (size_t i = 0; i < elt1.getAttributeCount(); i++) {
+			elt1.getAttribute(i, value1);
+			elt2.getAttribute(elt1.getAttributeName(i).c_str(), value2);
+			if (value1 != value2)
+				return attrMismatch(elt1, elt2, elt1.getAttributeName(i));
+		}
+
+		// Compare character data
+		elt1.getCharData(value1);
+		elt2.getCharData(value2);
+		if (value1 != value2)
+			return charDataMismatch(elt1, elt2);
+
+		// Compare children
+		daeElementRefArray children1 = elt1.getChildren(),
+		                   children2 = elt2.getChildren();
+		if (children1.getCount() != children2.getCount())
+			return childCountMismatch(elt1, elt2);
+		for (size_t i = 0; i < children1.getCount(); i++) {
+			daeElement::compareResult result = daeElement::compareWithFullResult(*children1[i], *children2[i]);
+			if (result.compareValue != 0)
+				return result;
+		}
+	
+		return compareMatch();
+	}
+} // namespace {
+
+int daeElement::compare(daeElement& elt1, daeElement& elt2) {
+	return compareWithFullResult(elt1, elt2).compareValue;
+}
+
+daeElement::compareResult daeElement::compareWithFullResult(daeElement& elt1, daeElement& elt2) {
+	// Check the element name
+	if (strcmp(elt1.getElementName(), elt2.getElementName()) != 0)
+		return nameMismatch(elt1, elt2);
+
+	// Dispatch to a specific function based on whether or not the types are the same
+	if ((elt1.typeID() != elt2.typeID())  ||  elt1.typeID() == domAny::ID())
+		return compareElementsDifferentTypes(elt1, elt2);
+	else
+		return compareElementsSameType(elt1, elt2);
+}
+
 
 daeURI *daeElement::getDocumentURI() const {
 	if ( _document == NULL ) {
