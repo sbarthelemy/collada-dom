@@ -558,7 +558,7 @@ public:
 	daeSmartRef<daeElement> clone( daeString idSuffix = NULL, daeString nameSuffix = NULL );
 
 	// Class for reporting info about element comparisons
-	struct compareResult {
+	struct DLLSPEC compareResult {
 		int compareValue; // > 0 if elt1 > elt2,
 		                  // < 0 if elt1 < elt2,
 		                  // = 0 if elt1 = elt2
