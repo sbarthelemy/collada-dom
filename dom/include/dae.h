@@ -24,6 +24,7 @@
 #include <dae/daeURI.h>
 
 class domCOLLADA;
+typedef daeSmartRef<domCOLLADA> domCOLLADARef;
 class daeDatabase;
 
 // The DAE class is the core interface via which you interact with the DOM.
@@ -64,21 +65,21 @@ public:
 	virtual daeIOPlugin* getIOPlugin();
 	virtual daeInt setIOPlugin(daeIOPlugin* plugin);
 
-	// Document load/save.
-	virtual daeInt load(daeString uri, daeString docBuffer = NULL);
-	virtual daeInt save(daeString uri, daeBool replace=true);
-	virtual daeInt save(daeUInt documentIndex, daeBool replace=true);
-	virtual daeInt saveAs(daeString uriToSaveTo, daeString docUri, daeBool replace=true);
-	virtual daeInt saveAs(daeString uriToSaveTo, daeUInt documentIndex=0, daeBool replace=true);
-	virtual daeInt unload(daeString uri);
+	// Document add/load/save. Returns the root element of the document used for
+	// the operation, or null if the operation failed.
+	virtual domCOLLADA*   addFile(daeString file);
+	virtual domCOLLADA*   loadFile(daeString file, daeString memBuffer = NULL);
+	virtual domCOLLADA*   saveFile(daeString file, daeBool replace = true);
+	virtual domCOLLADA*   saveAsFile(daeString fileToSaveTo, daeString file, daeBool replace = true);
+	virtual domCOLLADARef unloadFile(daeString file);
 
-	// These are exactly the same as the above load/save/unload functions, except that they
-	// work with file paths instead of URIs.
-	virtual daeInt loadFile(daeString file, daeString memBuffer = NULL);
-	virtual daeInt saveFile(daeString file, daeBool replace = true);
-	virtual daeInt saveFileAs(daeString fileToSaveTo, daeString file, daeBool replace = true);
-	virtual daeInt saveFileAs(daeString fileToSaveTo, daeUInt documentIndex = 0, daeBool replace = true);
-	virtual daeInt unloadFile(daeString file);
+	// These are exactly the same as the above add/load/save functions, except
+	// that they work with URIs instead of file paths.
+	virtual domCOLLADA*   addURI(daeString uri);
+	virtual domCOLLADA*   loadURI(daeString uri, daeString docBuffer = NULL);
+	virtual domCOLLADA*   saveURI(daeString uri, daeBool replace=true);
+	virtual domCOLLADA*   saveAsURI(daeString uriToSaveTo, daeString docUri, daeBool replace=true);
+	virtual domCOLLADARef unloadURI(daeString uri);
 
 	// Remove all loaded documents.
 	virtual daeInt clear();
@@ -92,7 +93,7 @@ public:
 	// Get the root domCOLLADA object corresponding to a particular document (identified
 	// via the URI of the document.
 	virtual domCOLLADA* getDom(daeString uri);
-	virtual daeInt setDom(daeString uri, domCOLLADA* dom);
+	virtual daeInt      setDom(daeString uri, domCOLLADA* dom);
 
 	// Same as getDom/setDom, except works with file paths instead of URIs
 	virtual domCOLLADA* getDomFile(daeString file);
@@ -121,6 +122,14 @@ public:
 	// Returns the list of ID reference resolvers. You can modify the list to add new
 	// resolvers.
 	daeIDRefResolverList& getIDRefResolvers();
+
+	// Deprecated. Use loadFile or loadURI, saveFile or saveURI, etc, instead.
+	virtual daeInt load(daeString uri, daeString docBuffer = NULL);
+	virtual daeInt save(daeString uri, daeBool replace=true);
+	virtual daeInt save(daeUInt documentIndex, daeBool replace=true);
+	virtual daeInt saveAs(daeString uriToSaveTo, daeString docUri, daeBool replace=true);
+	virtual daeInt saveAs(daeString uriToSaveTo, daeUInt documentIndex=0, daeBool replace=true);
+	virtual daeInt unload(daeString uri);
 
 private:
 	void init(daeDatabase* database, daeIOPlugin* ioPlugin);

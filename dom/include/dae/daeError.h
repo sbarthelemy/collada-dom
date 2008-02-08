@@ -22,6 +22,8 @@
 #define DAE_ERR_FATAL -1
 /** Call invalid, the combination of parameters given is invalid. */
 #define DAE_ERR_INVALID_CALL -2
+/** Generic error */
+#define DAE_ERROR -3
 /** IO error, the file hasn't been found or there is a problem with the IO plugin. */
 #define DAE_ERR_BACKEND_IO -100
 /** The IOPlugin backend wasn't able to successfully validate the data. */
@@ -38,6 +40,7 @@
 #define DAE_ERR_COLLECTION_DOES_NOT_EXIST -203
 /** Function is not implemented. */
 #define DAE_ERR_NOT_IMPLEMENTED -1000
+		
 
 /** Gets the ASCII error string.  
 * @param errorCode Error code returned by a function of the API.

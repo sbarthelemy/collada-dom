@@ -22,6 +22,7 @@ typedef struct
 static DAEERROR errorsArray[] =
 {
 	{ DAE_OK, "Success" },
+	{ DAE_ERROR, "Generic error" },
 	{ DAE_ERR_INVALID_CALL, "Invalid function call" },
 	{ DAE_ERR_FATAL, "Fatal" },
 	{ DAE_ERR_BACKEND_IO, "Backend IO" },

@@ -131,7 +131,7 @@ void convertModel(domCOLLADA& root) {
 	// so any child nodes will also be converted.
 	domNode_Array& nodes = visualScene->getNode_array();
 	for (size_t i = 0; i < nodes.getCount(); i++)
-			lookup<Node, domNode>(*nodes[i]);
+		lookup<Node, domNode>(*nodes[i]);
 }
 	
 
@@ -139,7 +139,7 @@ DefineTest(integration) {
 	// Load a document from disk
 	string file = lookupTestFile("cube.dae");
 	DAE dae;
-	CheckResult(dae.loadFile(file.c_str()) == DAE_OK);
+	CheckResult(dae.loadFile(file.c_str()));
 
 	// Do the conversion. The conversion process throws an exception on error, so
 	// we'll include a try/catch handler.

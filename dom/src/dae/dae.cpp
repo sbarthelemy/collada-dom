@@ -23,8 +23,6 @@
 #include <dom/domTypes.h>
 #include <dom/domCOLLADA.h>
 
-#ifndef NO_DEFAULT_PLUGIN
-
 #ifdef DOM_INCLUDE_LIBXML
 #include <modules/daeLIBXMLPlugin.h>
 #endif
@@ -32,14 +30,6 @@
 #ifdef DOM_INCLUDE_TINYXML
 #include <dae/daeTinyXMLPlugin.h>
 #endif
-
-//This plugin is not provided with the public release. If you don't know about it then you don't need
-//to worry about it.
-#ifdef DEFAULT_BXCEPLUGIN
-#include <modules/daebXCePlugin.h>
-#endif
-
-#endif // NO_DEFAULT_PLUGIN
 
 using namespace std;
 
@@ -121,175 +111,132 @@ daeInt DAE::setIOPlugin(daeIOPlugin* _plugin)
 {
 	if (defaultPlugin) 
 		delete plugin;
-	if (_plugin)
-	{
+	if (_plugin) {
 		defaultPlugin = false;
 		plugin = _plugin;
 	}
-	else
-	{
-#ifndef NO_DEFAULT_PLUGIN
-		
-		//create default plugin
-#ifdef DEFAULT_BXCEPLUGIN
-		plugin = new daebXCePlugin();
+	else {
+		plugin = NULL;
 		defaultPlugin = true;
-#else
+
+		//create default plugin
 #ifdef DOM_INCLUDE_LIBXML
 		plugin = new daeLIBXMLPlugin(*this);
-		defaultPlugin = true;
 #else
 #ifdef DOM_INCLUDE_TINYXML
 		plugin = new daeTinyXMLPlugin;
-		defaultPlugin = true;
-#else
-		daeErrorHandler::get()->handleWarning( "No IOPlugin Set! Neither DOM_INCLUDE_LIBXML or DOM_INCLUDE_TINYXML  is defined." );
-		plugin = NULL;
-		return DAE_ERR_BACKEND_IO;
-#endif // DOM_INCLUDE_TINYXML
-#endif // DOM_INCLUDE_LIBXML
-#endif // DEFAULT_BXCEPLUGIN
+#endif
+#endif
 
-#else // NO_DEFAULT_PLUGIN
-		daeErrorHandler::get()->handleWarning( "No IOPlugin Set! NO_DEFAULT_PLUGIN is defined." );
-		plugin = NULL;
-		return DAE_ERR_BACKEND_IO;
-#endif // NO_DEFAULT_PLUGIN
+		if (!plugin) {
+			daeErrorHandler::get()->handleWarning("No IOPlugin Set");
+			plugin = new daeIOEmpty;
+			return DAE_ERROR;
+		}
 	}
+	
 	int res = plugin->setMeta(getMeta(domCOLLADA::ID()));
-	if (res != DAE_OK)
-	{
-		if (defaultPlugin)
-		{
+	if (res != DAE_OK) {
+		if (defaultPlugin) {
 			defaultPlugin = false;
 			delete plugin;
 		}
 		plugin = NULL;
-		return res;
 	}
-	return DAE_OK;
+	return res;
 }
 
-// batch file operations
-daeInt DAE::load(daeString uri, daeString docBuffer)
-{
-	if (!database)
-		setDatabase(NULL);
+domCOLLADA* DAE::addURI(daeString uri) {
+	if (domCOLLADA* root = getDom(uri))
+		return root;
+	if (getDatabase()->insertDocument(uri) == DAE_OK)
+		return getDom(uri);
+	return NULL;
+}
 
-	if (!plugin)
-		setIOPlugin(NULL);
-	
-	if ( !plugin || !database ) {
-		//printf( "no plugin or database\n" );
-		daeErrorHandler::get()->handleError("no plugin or database\n");
-		return DAE_ERR_BACKEND_IO;
-	}
-
+domCOLLADA* DAE::loadURI(daeString uri, daeString docBuffer) {
 	plugin->setDatabase(database);
 
 	if (!uri || uri[0] == '\0')
-		return DAE_ERR_INVALID_CALL;
+		return NULL;
 
 	daeURI tempURI(*this, uri);
-	
-	return plugin->read(tempURI, docBuffer);
+	if (plugin->read(tempURI, docBuffer) != DAE_OK)
+		return NULL;
+	return getDom(tempURI.getURI());
 }
-daeInt DAE::save(daeString uri, daeBool replace)
-{
-	if (!database)
-		setDatabase(NULL);
 
-	if (!plugin)
-		setIOPlugin(NULL);
-
-	if ( !plugin || !database ) {
-		return DAE_ERR_BACKEND_IO;
-	}
-
+domCOLLADA* DAE::saveURI(daeString uri, daeBool replace) {
 	plugin->setDatabase(database);
 	
 	// Find the document we want by name
-	daeDocument* document = database->getDocument(uri);
-	if(document == NULL)
-		return DAE_ERR_COLLECTION_DOES_NOT_EXIST;
-
-	// Save it out to the URI it was loaded from
-	return plugin->write(document->getDocumentURI(), document, replace);
-
-}
-daeInt DAE::save(daeUInt documentIndex, daeBool replace)
-{
-	if (!database)
-		setDatabase(NULL);
-
-	if (!plugin)
-		setIOPlugin(NULL);
-
-	if ( !plugin || !database ) {
-		return DAE_ERR_BACKEND_IO;
+	if (daeDocument* document = database->getDocument(uri)) {
+		if (plugin->write(document->getDocumentURI(), document, replace) == DAE_OK)
+			return daeSafeCast<domCOLLADA>(document->getDomRoot());
 	}
 
-	plugin->setDatabase(database);
-	
-	if(documentIndex >= database->getDocumentCount())
-		return DAE_ERR_COLLECTION_DOES_NOT_EXIST;
-
-	daeDocument *document = database->getDocument(documentIndex);
-	
-	// Save it out to the URI it was loaded from
-	return plugin->write(document->getDocumentURI(), document, replace);
+	return NULL;
 }
-daeInt DAE::saveAs(daeString uriToSaveTo, daeString docUri, daeBool replace)
-{
-	if (!database)
-		setDatabase(NULL);
 
-	if (!plugin)
-		setIOPlugin(NULL);
-
-	if ( !plugin || !database ) {
-		return DAE_ERR_BACKEND_IO;
-	}
-
+domCOLLADA* DAE::saveAsURI(daeString uriToSaveTo, daeString docUri, daeBool replace) {
 	plugin->setDatabase(database);
 	
 	// Find the document we want by name
-	daeDocument* document = database->getDocument(docUri);
-	if(document == NULL)
-		return DAE_ERR_COLLECTION_DOES_NOT_EXIST;
-
-	// Make a URI from uriToSaveTo and save to that
-	daeURI tempURI(*this, uriToSaveTo, true);
-	return plugin->write(&tempURI, document, replace);
-	
-}
-daeInt DAE::saveAs(daeString uriToSaveTo, daeUInt documentIndex, daeBool replace)
-{
-	if (!database)
-		setDatabase(NULL);
-
-	if (!plugin)
-		setIOPlugin(NULL);
-
-	if ( !plugin || !database ) {
-		return DAE_ERR_BACKEND_IO;
+	if (daeDocument* document = database->getDocument(docUri)) {
+		// Make a URI from uriToSaveTo and save to that
+		daeURI tempURI(*this, uriToSaveTo, true);
+		if (plugin->write(&tempURI, document, replace) == DAE_OK)
+			return daeSafeCast<domCOLLADA>(document->getDomRoot());
 	}
 
-	plugin->setDatabase(database);
-	
-	if(documentIndex >= database->getDocumentCount())
-		return DAE_ERR_COLLECTION_DOES_NOT_EXIST;
+	return NULL;
+}
 
-	daeDocument *document = database->getDocument(documentIndex);
-	
+domCOLLADARef DAE::unloadURI(daeString uri) {
+	if (daeDocument* doc = database->getDocument(uri)) {
+		domCOLLADARef root = daeSafeCast<domCOLLADA>(doc->getDomRoot());
+		if (database->removeDocument(doc) == DAE_OK)
+			return root;
+	}
+
+	return NULL;
+}
+
+
+daeInt DAE::load(daeString uri, daeString docBuffer) {
+	return loadURI(uri, docBuffer) ? DAE_OK : DAE_ERROR;
+}
+
+daeInt DAE::save(daeString uri, daeBool replace) {
+	return saveURI(uri, replace) ? DAE_OK : DAE_ERROR;
+}
+
+daeInt DAE::save(daeUInt documentIndex, daeBool replace) {
+	plugin->setDatabase(database);
+	if (documentIndex >= database->getDocumentCount())
+		return DAE_ERROR;
+
+	// Save it out to the URI it was loaded from
+	daeDocument* document = database->getDocument(documentIndex);
+	return plugin->write(document->getDocumentURI(), document, replace);
+}
+
+daeInt DAE::saveAs(daeString uriToSaveTo, daeString docUri, daeBool replace) {
+	return saveAsURI(uriToSaveTo, docUri, replace) ? DAE_OK : DAE_ERROR;
+}
+
+daeInt DAE::saveAs(daeString uriToSaveTo, daeUInt documentIndex, daeBool replace) {
+	plugin->setDatabase(database);
+	if (documentIndex >= database->getDocumentCount())
+		return DAE_ERROR;
+
+	daeDocument* document = database->getDocument(documentIndex);
 	daeURI tempURI(*this, uriToSaveTo, true);
 	return plugin->write(&tempURI, document, replace);
 }
-daeInt DAE::unload(daeString uri)
-{
-	daeDocument *col = database->getDocument( uri );
-	if ( col == NULL ) return DAE_ERR_COLLECTION_DOES_NOT_EXIST;
-	return database->removeDocument( col );
+
+daeInt DAE::unload(daeString uri) {
+	return unloadURI(uri) ? DAE_OK : DAE_ERROR;
 }
 
 
@@ -309,25 +256,25 @@ namespace {
 	}
 }
 
-daeInt DAE::loadFile(daeString file, daeString memBuffer) {
-	return load(filePathToFullUri(*this, file).c_str(), memBuffer);
+domCOLLADA* DAE::addFile(daeString file) {
+	return addURI(filePathToFullUri(*this, file).c_str());
 }
 
-daeInt DAE::saveFile(daeString file, daeBool replace) {
-	return save(filePathToFullUri(*this, file).c_str(), replace);
+domCOLLADA* DAE::loadFile(daeString file, daeString memBuffer) {
+	return loadURI(filePathToFullUri(*this, file).c_str(), memBuffer);
 }
 
-daeInt DAE::saveFileAs(daeString fileToSaveTo, daeString file, daeBool replace) {
-	return saveAs(filePathToFullUri(*this, fileToSaveTo).c_str(),
-	              filePathToFullUri(*this, file).c_str(), replace);
+domCOLLADA* DAE::saveFile(daeString file, daeBool replace) {
+	return saveURI(filePathToFullUri(*this, file).c_str(), replace);
 }
 
-daeInt DAE::saveFileAs(daeString fileToSaveTo, daeUInt documentIndex, daeBool replace) {
-	return saveAs(filePathToFullUri(*this, fileToSaveTo).c_str(), documentIndex, replace);
+domCOLLADA* DAE::saveAsFile(daeString fileToSaveTo, daeString file, daeBool replace) {
+	return saveAsURI(filePathToFullUri(*this, fileToSaveTo).c_str(),
+	                 filePathToFullUri(*this, file).c_str(), replace);
 }
 
-daeInt DAE::unloadFile(daeString file) {
-	return unload(filePathToFullUri(*this, file).c_str());
+domCOLLADARef DAE::unloadFile(daeString file) {
+	return unloadURI(filePathToFullUri(*this, file).c_str());
 }
 
 

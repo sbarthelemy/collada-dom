@@ -16,6 +16,7 @@
 #include <ctype.h>
 #include <dae/daeDocument.h>
 #include <dae/daeErrorHandler.h>
+#include <dae/daeUtils.h>
 #include <pcrecpp.h>
 
 #ifdef _WIN32
@@ -1252,25 +1253,6 @@ void daeURIResolverList::resolveURI(daeURI& uri) {
 		uri.setState(daeURI::uri_failed_unsupported_protocol);
 }
 
-
-
-// String replace function. Usage: replace("abcdef", "cd", "12") --> "ab12ef"
-string cdom::replace(const string& s, const string& replace, const string& replaceWith) {
-	if (replace.empty())
-		return s;
-
-	string result;
-	size_t pos1 = 0, pos2 = s.find(replace);
-	while (pos2 != string::npos) {
-		result += s.substr(pos1, pos2-pos1);
-		result += replaceWith;
-		pos1 = pos2 + replace.length();
-		pos2 = s.find(replace, pos1);
-	}
-
-	result += s.substr(pos1, s.length()-pos1);
-	return result;
-}
 
 
 string cdom::filePathToUri(const string& filePath) {

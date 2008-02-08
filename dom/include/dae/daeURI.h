@@ -487,12 +487,6 @@ private:
 
 // Helper functions for file path <--> URI conversion
 namespace cdom {
-	// String replace function. Usage: replace("abcdef", "cd", "12") --> "ab12ef".
-	// !!!steveT This should really be in a daeUtils.h file or something like that.
-	DLLSPEC std::string replace(const std::string& s, 
-	                            const std::string& replace, 
-	                            const std::string& replaceWith);
-
 	// This function takes a file path in the OS's native format and converts it to
 	// a URI reference. If a relative path is given, a relative URI reference is
 	// returned. If an absolute path is given, a relative URI reference containing 

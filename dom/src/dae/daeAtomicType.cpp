@@ -19,6 +19,7 @@
 #include <dae/daeMetaElement.h>
 #include <dae/daeDatabase.h>
 #include <dae/daeErrorHandler.h>
+#include <dae/daeUtils.h>
 
 namespace {
 	// Skip leading whitespace

@@ -141,4 +141,20 @@ protected:
 	daeTArray<std::string> supportedProtocols;
 };
 
+
+class DLLSPEC daeIOEmpty : public daeIOPlugin {
+public:
+	virtual daeInt setMeta(daeMetaElement *topMeta) { return DAE_ERROR; }
+	virtual void setDatabase(daeDatabase* database) { }
+	virtual daeInt read(daeURI& uri, daeString docBuffer) { return DAE_ERROR; }
+	virtual daeInt write(daeURI *name, daeDocument *document, daeBool replace) { return DAE_ERROR; }
+	virtual void getProgress(daeInt* bytesParsed,
+	                         daeInt* lineNumber,
+	                         daeInt* totalBytes,
+	                         daeBool reset = false ) { }
+	virtual daeInt setOption( daeString option, daeString value ) { return DAE_ERROR; }
+	virtual daeString getOption( daeString option ) { return ""; }
+};
+
+
 #endif // __DAE_IOPLUGIN__

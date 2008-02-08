@@ -11,7 +11,6 @@
  * License. 
  */
 
-#include <cstdarg>
 #include <iomanip>
 #include <dae/daeElement.h>
 #include <dae/daeArray.h>
@@ -22,8 +21,59 @@
 #include <dae/daeErrorHandler.h>
 #include <dae/daeURI.h>
 #include <dae/domAny.h>
+#include <dae/daeUtils.h>
 
 using namespace std;
+
+daeElement* daeElement::simpleAdd(daeString name, int index) {
+	daeElementRef elt = _meta->create(name);
+	bool result = false;
+	if (elt)
+		index == -1 ? result = placeElement(elt) : result = placeElementAt(index, elt);
+	return result ? elt : NULL;
+}
+
+daeElement* daeElement::add(daeString names_, int index) {
+	list<string> names;
+	cdom::tokenize(names_, " ", names);
+	cdom::tokenIter iter = names.begin();
+	daeElement* root = simpleAdd(iter->c_str(), index);
+	if (!root)
+		return NULL;
+
+	iter++;
+	daeElement* elt = root;
+	for (; iter != names.end(); iter++) {
+		elt = elt->simpleAdd(iter->c_str());
+		if (!elt) {
+			removeChildElement(root);
+			return NULL;
+		}
+	}
+
+	return elt;
+}
+
+daeElement* daeElement::add(daeElement* elt, int index) {
+	if (!elt)
+		return NULL;
+	if (elt == this)
+		return this;
+	bool result = (index == -1 ? _meta->place(this, elt) : _meta->placeAt(index, this, elt));
+	return result ? elt : NULL;
+}
+
+daeElement* daeElement::addBefore(daeElement* elt, daeElement* index) {
+	if (!index || !elt || index->getParent() != this)
+		return NULL;
+	return _meta->placeBefore(index, this, elt) ? elt : NULL;
+}
+
+daeElement* daeElement::addAfter(daeElement* elt, daeElement* index) {
+	if (!index || !elt || index->getParent() != this)
+		return NULL;
+	return _meta->placeAfter(index, this, elt) ? elt : NULL;
+}
 
 daeElementRef
 daeElement::createElement(daeString className)
@@ -35,56 +85,28 @@ daeElement::createElement(daeString className)
 	return elem;
 }
 
-daeElement*
-daeElement::createAndPlace(daeString className)
-{
-	daeElementRef elem = _meta->create(className);
-	daeBool place = false;
-	if (elem != NULL)
-		place = placeElement(elem);
-	if (place)
-		return elem;
-	return NULL;
+daeElement* daeElement::createAndPlace(daeString className) {
+	return add(className);
 }
 
-daeElement*
-daeElement::createAndPlaceAt(daeInt index, daeString className)
-{
-	daeElementRef elem = _meta->create(className);
-	daeBool place = false;
-	if (elem != NULL)
-		place = placeElementAt(index, elem);
-	if (place)
-		return elem;
-	return NULL;
+daeElement* daeElement::createAndPlaceAt(daeInt index, daeString className) {
+	return add(className, index);
 }
 
-daeBool
-daeElement::placeElement(daeElement* e)
-{
-	if (e == NULL || e == this)
-		return false;
-	return _meta->place( this, e );
+daeBool daeElement::placeElement(daeElement* e) {
+	return add(e) != NULL;
 }
 
 daeBool daeElement::placeElementAt(daeInt index, daeElement* e) {
-	if (e == NULL || e == this)
-		return false;
-	return _meta->placeAt( index, this, e );
+	return add(e, index) != NULL;
 }
 
 daeBool daeElement::placeElementBefore( daeElement *marker, daeElement *element ) {
-	if (marker == NULL || element == NULL || marker->getXMLParentElement() != this ) {
-		return false;
-	}
-	return _meta->placeBefore( marker, this, element );
+	return addBefore(element, marker) != NULL;
 }
 
 daeBool daeElement::placeElementAfter( daeElement *marker, daeElement *element ) {
-	if (marker == NULL || element == NULL || marker->getXMLParentElement() != this ) {
-		return false;
-	}
-	return _meta->placeAfter( marker, this, element );
+	return addAfter(element, marker) != NULL;
 }
 
 daeInt daeElement::findLastIndexOf( daeString elementName ) {
@@ -439,32 +461,6 @@ daeSmartRef<daeElement> daeElement::clone(daeString idSuffix, daeString nameSuff
 // Element comparison
 
 namespace { // Utility functions
-	vector<string> makeStringArray(const char* s, ...) {
-		va_list args;
-		va_start(args, s);
-		vector<string> result;
-		while (s) {
-			result.push_back(s);
-			s = va_arg(args, const char*);
-		}
-		va_end(args);
-		return result;
-	}
-
-#ifdef _MSC_VER
-#pragma warning(push)
-#pragma warning(disable : 4267)
-#endif
-	template<typename T>
-	string toString(const T& val) {
-		ostringstream stream;
-		stream << val;
-		return stream.str();
-	}
-#ifdef _MSC_VER
-#pragma warning(pop)
-#endif
-
 	int getNecessaryColumnWidth(const vector<string>& tokens) {
 		int result = 0;
 		for (size_t i = 0; i < tokens.size(); i++) {
@@ -508,13 +504,13 @@ string daeElement::compareResult::format() {
 	       attrValue2 = formatToken(elt2->getAttribute(attrMismatch.c_str())),
 	       charData1 = formatToken(elt1->getCharData()),
 	       charData2 = formatToken(elt2->getCharData()),
-	       childCount1 = formatToken(toString(elt1->getChildren().getCount())),
-	       childCount2 = formatToken(toString(elt2->getChildren().getCount()));
+	       childCount1 = formatToken(cdom::toString(elt1->getChildren().getCount())),
+	       childCount2 = formatToken(cdom::toString(elt2->getChildren().getCount()));
 		
 	// Compute formatting information
-	vector<string> col1Tokens = makeStringArray("Name", "Type", "ID",
+	vector<string> col1Tokens = cdom::makeStringArray("Name", "Type", "ID",
 		"Attr name", "Attr value", "Char data", "Child count", 0);
-	vector<string> col2Tokens = makeStringArray("Element 1", name1.c_str(),
+	vector<string> col2Tokens = cdom::makeStringArray("Element 1", name1.c_str(),
 		type1.c_str(), id1.c_str(), attrName1.c_str(), attrValue1.c_str(),
 		charData1.c_str(), childCount1.c_str(), 0);
 		

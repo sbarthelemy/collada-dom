@@ -66,8 +66,9 @@ protected:
 
 	void init();
 
-	// This function is called internally.
+	// These functions are called internally.
 	void setDocument( daeDocument* c, bool notifyDocument );
+	daeElement* simpleAdd(daeString name, int index = -1);
 
 public:
 	/**
@@ -97,52 +98,19 @@ public:
 	 */
 	void setup(daeMetaElement* meta);
 
-	/**
-	 * Places an element as a child of @c this element. 
-	 * This function searches through the list of potential child element
-	 * fields in @c this element, checking for a matching element type where the new element can be added.
-	 * If a match of type is found, the element* is assigned or appended to
-	 * that field, based on whether it is a single child or an array of
-	 * children. This automatically adds the new element to the <tt><i> _contents </i></tt> of its parent, if the parent has one.  
-	 *
-	 * @param element Element to be placed in the @c this container.
-	 * @return Returns true if the element was successfully placed, false otherwise.
-	 */
+	// These functions are for adding child elements. They return null if adding
+	// the element failed.
+	daeElement* add(daeString name, int index = -1);
+	daeElement* add(daeElement* elt, int index = -1);
+	daeElement* addBefore(daeElement* elt, daeElement* index);
+	daeElement* addAfter(daeElement* elt, daeElement* index);
+
+	// These functions are deprecated. Use 'add' instead.
+	daeElement* createAndPlace(daeString elementName);
+	daeElement* createAndPlaceAt(daeInt index, daeString elementName);
 	daeBool placeElement(daeElement* element);
-	
-	/**
-	 * This function searches through the list of potential child elements
-	 * (fields) checking for a matching element type where this element can be added.
-	 * If a match of type is found, the element* is assigned or appended to
-	 * that field (based on whether it is a single child or an array of
-	 * children. 
-	 * If the parent element contains a _contents array, element will be placed at the specified index,
-	 * otherwise element gets placed among elements of the same type.
-	 *
-	 * @param index is the place in the _contents array to insert element.
-	 * @param element is the element to be placed in the 'this' container.
-	 * @return return whether or not the element was successfully placed.
-	 */
 	daeBool placeElementAt(daeInt index, daeElement* element);
-
-	/**
-	 * Places an element as a child of @c this element. 
-	 * This function inserts the new element before the element specified as marker.
-	 * This automatically adds the new element to the <tt><i> _contents </i></tt> of its parent, if the parent has one.  
-	 * @param marker The daeElement used to determine where the new child will be placed.
-	 * @param element Element to be placed in the @c this container.
-	 * @return Returns true if the element was successfully placed, false otherwise.
-	 */
 	daeBool placeElementBefore( daeElement* marker, daeElement *element );
-
-	/**
-	 * Places an element as a child of @c this element. 
-	 * This function inserts the new element After the element specified as marker.
-	 * This automatically adds the new element to the <tt><i> _contents </i></tt> of its parent, if the parent has one.  
-	 * @param marker The daeElement used to determine where the new child will be placed.
-	 * @param element Element to be placed in the @c this container.
-	 * @return Returns true if the element was successfully placed, false otherwise.
-	 */
 	daeBool placeElementAfter( daeElement* marker, daeElement *element );
 
 	/**
@@ -380,26 +348,6 @@ public:
 	 * @return Returns the created @c daeElement, if it was successfully created.
 	 */
 	daeSmartRef<daeElement> createElement(daeString elementName);
-
-	/**
-	 * Creates a subelement via @c createElement() and places it via @c placeElement().
-	 * Automatically adds the new element to the <tt><i> _contents </i></tt> of its parent, if the parent has one.  
-	 * This is the primary method used to construct the COLLADA dom hierarchy.
-	 * @param elementName - Class name of the subelement to create.
-	 * @return Returns the created @c daeElement, if it was successfully created.
-	 */
-	daeElement* createAndPlace(daeString elementName);
-
-	/**
-	 * Create a sub-element via #createElement and place it via #placeElementAt
-	 * This also automatically inserts the new element at the specified index in the _contents of it's 
-	 * parent, if the parent has one.  
-	 * This is useful when constructing the COLLADA dom hierarchy
-	 * @param index the position in the _contents array the newly created element is to be placed at
-	 * @param elementName - the className of the sub-element to be created
-	 * @return the created element if it was in fact successfully created.
-	 */
-	daeElement* createAndPlaceAt(daeInt index, daeString elementName);
 
 	/**
 	 * Gets the container element for @c this element.

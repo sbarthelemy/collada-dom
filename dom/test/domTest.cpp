@@ -15,6 +15,7 @@
 #include <dom/domInstance_controller.h>
 #include <dae/domAny.h>
 #include <dae/daeErrorHandler.h>
+#include <dae/daeUtils.h>
 #include <dom/domFx_surface_init_from_common.h>
 #include <modules/stdErrPlugin.h>
 #include <dom/domEllipsoid.h>
@@ -24,6 +25,7 @@
 
 namespace fs = boost::filesystem;
 using namespace std;
+using namespace cdom;
 
 float toFloat(const string& s) {
 	istringstream stream(s);
@@ -31,21 +33,6 @@ float toFloat(const string& s) {
 	stream >> f;
 	return f;
 }
-
-#ifdef _MSC_VER
-#pragma warning(push)
-#pragma warning(disable : 4267)
-#endif
-template<typename T>
-string toString(const T& val) {
-	ostringstream stream;
-	stream << val;
-	return stream.str();
-}
-#ifdef _MSC_VER
-#pragma warning(pop)
-#endif
-
 
 #define CheckResultWithMsg(val, msg) \
 	if (!(val)) { \
@@ -115,114 +102,78 @@ DefineTest(chopWS) {
 }
 
 
-string replace(const string& s, const string& replace, const string& replaceWith) {
-	if (replace.empty())
-		return s;
-	
-	string result;
-	size_t pos1 = 0, pos2 = s.find(replace);
-	while (pos2 != string::npos) {
-		result += s.substr(pos1, pos2-pos1);
-		result += replaceWith;
-		pos1 = pos2 + replace.length();
-		pos2 = s.find(replace, pos1);
-	}
-
-	result += s.substr(pos1, s.length()-pos1);
-	return result;
-}
-
-DefineTest(stringReplace) {
+DefineTest(utils) {
 	CheckResult(replace("abc", "abc", "def") == "def");
 	CheckResult(replace("abc", "a", "1") == "1bc");
 	CheckResult(replace("abc", "c", "1") == "ab1");
 	CheckResult(replace("abc123", "bc12", "b") == "ab3");
 	CheckResult(replace("abracadabra", "a", "") == "brcdbr");
+
+	CheckResult(tokenize("1|2|3|4", "|")   == makeStringList("1", "2", "3", "4", 0));
+	CheckResult(tokenize("|1|", "|")       == makeStringList("1", 0));
+	CheckResult(tokenize("1|||2||3|", "|") == makeStringList("1", "2", "3", 0));
+	CheckResult(tokenize("1|||2||3|", "|", true) ==
+	            makeStringList("1", "|", "|", "|", "2", "|", "|", "3", "|", 0));
+	CheckResult(tokenize("this/is some#text", "/#", true) ==
+	            makeStringList("this", "/", "is some", "#", "text", 0));
+	CheckResult(tokenize("this/is some#text", "/# ", false) ==
+	            makeStringList("this", "is", "some", "text", 0));
+
+	CheckResult(toString(5) == "5");
+	CheckResult(toFloat(toString(4.0f)) == 4.0f);
+
 	return testResult(true);
 }
 
 
-// Split the string into substrings according to the specified character
-vector<string> split(const string& s, const char c) {
-	vector<string> result;
-	size_t currentIndex = 0, nextTokenIndex = 0;
-	while (currentIndex < s.length() &&
-	       (nextTokenIndex = s.find_first_of(c, currentIndex)) != string::npos) {
-		if ((nextTokenIndex - currentIndex) > 0)
-			result.push_back(s.substr(currentIndex, nextTokenIndex-currentIndex));
-		currentIndex = nextTokenIndex+1;
-	}
+DefineTest(elementAddFunctions) {
+	DAE dae;
+	const char* uri = "file.dae";
 
-	if (currentIndex < s.length())
-		result.push_back(s.substr(currentIndex, s.length()-currentIndex));
+	// Test the new 'add' functions
+	daeElement* root = dae.addURI(uri);
+	CheckResult(root);
+	daeElement* geomLib = root->add("library_geometries");
+	CheckResult(geomLib);
+	daeElement* effectLib = root->add("library_effects", 0);
+	CheckResult(effectLib && root->getChildren()[0] == effectLib);
+	root->addBefore(geomLib, effectLib);
+	CheckResult(root->getChildren()[0] == geomLib);
+	CheckResult(root->removeChildElement(geomLib));
+	root->addAfter(geomLib, effectLib);
+	CheckResult(root->getChildren()[1] == geomLib);
+	CheckResult(root->removeChildElement(geomLib));
+	root->add(geomLib);
+	CheckResult(root->getDescendant("library_geometries"));
+	daeElement* instanceGeom = root->add("library_nodes node instance_geometry");
+	CheckResult(instanceGeom && instanceGeom->typeID() == domInstance_geometry::ID());
+	CheckResult(root->add("library_materials material blah") == NULL);
+	CheckResult(root->getDescendant("library_materials") == NULL);
 
-	return result;
-}
+	// Test the deprecated functions
+	CheckResult(dae.unloadURI(uri));
+	root = dae.addURI(uri);
+	CheckResult(root);
+	geomLib = root->createAndPlace("library_geometries");
+	CheckResult(geomLib);
+	effectLib = root->createAndPlaceAt(0, "library_effects");
+	CheckResult(effectLib && root->getChildren()[0] == effectLib);
+	root->placeElementBefore(effectLib, geomLib);
+	CheckResult(root->getChildren()[0] == geomLib);
+	CheckResult(root->removeChildElement(geomLib));
+	root->placeElementAfter(effectLib, geomLib);
+	CheckResult(root->getChildren()[1] == geomLib);
+	CheckResult(root->removeChildElement(geomLib));
+	root->placeElement(geomLib);
+	CheckResult(root->getDescendant("library_geometries"));
 
-vector<string> makeStringArray(const char* s, ...) {
-	va_list args;
-	va_start(args, s);
-	vector<string> result;
-	while (s) {
-		result.push_back(s);
-		s = va_arg(args, const char*);
-	}
-	va_end(args);
-	return result;
-}
-
-daeTArray<int> makeIntArray(int i, ...) {
-	va_list args;
-	va_start(args, i);
-	daeTArray<int> result;
-	while (i != INT_MAX) {
-		result.append(i);
-		i = va_arg(args, int);
-	}
-	va_end(args);
-	return result;
-}
-
-void printStringArray(const vector<string>& array) {
-	for (size_t i = 0; i < array.size(); i++)
-		cout << array[i] << endl;
-}
-
-DefineTest(stringSplit) {
-	CheckResult(split("1|2|3|4", '|')   == makeStringArray("1", "2", "3", "4", 0));
-	CheckResult(split("|1|", '|')       == makeStringArray("1", 0));
-	CheckResult(split("1|||2||3|", '|') == makeStringArray("1", "2", "3", 0));
 	return testResult(true);
-}
-
-
-daeElement* findDescendant(daeElement* root, const string& name) {
-	if (!root)
-		return NULL;
-	if (root->getElementName() == name)
-		return root;
-
-	daeElementRefArray children = root->getChildren();
-	for (size_t i = 0; i < children.getCount(); i++) {
-		if (daeElement* matchingEl = findDescendant(children[i], name))
-			return matchingEl;
-	}
-
-	return NULL;
-}
-
-// Return the name of the first descendant we couldn't find
-string checkAllDescendants(daeElement* root, const vector<string>& names) {
-	for (size_t i = 0; i < names.size(); i++)
-		if (!findDescendant(root, names[i]))
-			return names[i];
-	return "";
 }
 
 
 DefineTest(loadClipPlane) {
 	DAE dae;
-	CheckResult(dae.loadFile(lookupTestFile("clipPlane.dae").c_str()) == DAE_OK);
+	CheckResult(dae.loadFile(lookupTestFile("clipPlane.dae").c_str()));
 	return testResult(true);
 }
 
@@ -232,37 +183,32 @@ DefineTest(renderStates) {
 	string file = getTmpFile("renderStates.dae");
 	
 	DAE dae;
-	CheckResult(dae.getDatabase()->insertDocument(memoryUri.c_str()) == DAE_OK);
-
-	daeElement* element = dae.getDomFile(memoryUri.c_str());
-	element = element->createAndPlace("library_effects");
-	element = element->createAndPlace("effect");
-	element = element->createAndPlace("profile_CG");
-	element = element->createAndPlace("technique");
-	element = element->createAndPlace("pass");
-	element->createAndPlace("color_clear")->setCharData("0 0 0 0");
-	element->createAndPlace("depth_mask")->setAttribute("value", "true");
-	element->createAndPlace("cull_face_enable")->setAttribute("value", "true");
-	element->createAndPlace("blend_enable")->setAttribute("value", "true");
-	element->createAndPlace("blend_func_separate")->setAttribute("value", "true");
-	element->createAndPlace("cull_face")->setAttribute("value", "FRONT");
-	element->createAndPlace("polygon_offset_fill_enable")->setAttribute("value", "true");
-	element->createAndPlace("clear_color")->setAttribute("value", "0 0 0 0");
+	daeElement* root = dae.addFile(memoryUri.c_str());
+	CheckResult(root);
+	daeElement* pass = root->add("library_effects effect profile_CG technique pass");
+	CheckResult(pass);
+	pass->add("color_clear")->setCharData("0 0 0 0");
+	pass->add("depth_mask")->setAttribute("value", "true");
+	pass->add("cull_face_enable")->setAttribute("value", "true");
+	pass->add("blend_enable")->setAttribute("value", "true");
+	pass->add("blend_func_separate")->setAttribute("value", "true");
+	pass->add("cull_face")->setAttribute("value", "FRONT");
+	pass->add("polygon_offset_fill_enable")->setAttribute("value", "true");
+	pass->add("clear_color")->setAttribute("value", "0 0 0 0");
 	
 	// Write the document to disk
-	CheckResult(dae.saveFileAs(file.c_str(),	memoryUri.c_str()) == DAE_OK);
+	CheckResult(dae.saveAsFile(file.c_str(), memoryUri.c_str()));
 
 	// Load up the saved document and see if it's the same as our in-memory document
-	CheckResult(dae.loadFile(file.c_str()) == DAE_OK);
-	CompareDocs(dae, memoryUri, file);
-	domCOLLADA* root = dae.getDomFile(file.c_str());
+	root = dae.loadFile(file.c_str());
 	CheckResult(root);
+	CompareDocs(dae, memoryUri, file);
 
 	// Check default attribute value suppression
-	CheckResult(findDescendant(root, "depth_mask")->isAttributeSet("value") == false);
-	CheckResult(findDescendant(root, "clear_color")->isAttributeSet("value") == false);
-	CheckResult(findDescendant(root, "color_clear")->getCharData() != "");
-	CheckResult(findDescendant(root, "polygon_offset_fill_enable")->isAttributeSet("value"));
+	CheckResult(root->getDescendant("depth_mask")->isAttributeSet("value") == false);
+	CheckResult(root->getDescendant("clear_color")->isAttributeSet("value") == false);
+	CheckResult(root->getDescendant("color_clear")->getCharData() != "");
+	CheckResult(root->getDescendant("polygon_offset_fill_enable")->isAttributeSet("value"));
 		
 	return testResult(true);
 }
@@ -272,16 +218,15 @@ DefineTest(compareElements) {
 	string memoryUri = "file.dae";
 	
 	DAE dae;
-	CheckResult(dae.getDatabase()->insertDocument(memoryUri.c_str()) == DAE_OK);
-	daeElement* root = dae.getDom(memoryUri.c_str());
+	daeElement* root = dae.addURI(memoryUri.c_str());
 	CheckResult(root);
 
-	daeElement* technique = root->createAndPlace("extra")->createAndPlace("technique");
+	daeElement* technique = root->add("extra technique");
 	CheckResult(technique);
 
 	// Make sure attribute order doesn't matter
-	daeElement* elt1 = technique->createAndPlace("elt");
-	daeElement* elt2 = technique->createAndPlace("elt");
+	daeElement* elt1 = technique->add("elt");
+	daeElement* elt2 = technique->add("elt");
 	CheckResult(elt1 && elt2);
 
 	elt1->setAttribute("attr1", "val1");
@@ -304,23 +249,17 @@ DefineTest(writeCamera) {
 	string file = getTmpFile("camera.dae");
 
 	DAE dae;
-	CheckResult(dae.getDatabase()->insertDocument(memoryUri.c_str()) == DAE_OK);
+	daeElement* elt = dae.addFile(memoryUri.c_str());
+	CheckResult(elt);
+	elt = elt->add("library_cameras camera optics technique_common perspective xfov");
+	CheckResult(elt);
+	elt->setCharData("1.0");
 
-	daeElement* element = dae.getDomFile(memoryUri.c_str());
-	element = element->createAndPlace("library_cameras");
-	element = element->createAndPlace("camera");
-	element = element->createAndPlace("optics");
-	element = element->createAndPlace("technique_common");
-	element = element->createAndPlace("perspective");
-	element = element->createAndPlace("xfov");
-	element->setCharData("1.0");
-
-	CheckResult(dae.saveFileAs(file.c_str(), memoryUri.c_str()) == DAE_OK);
-	CheckResult(dae.loadFile(file.c_str()) == DAE_OK);
-	CompareDocs(dae, memoryUri, file);
-	domCOLLADA* root = dae.getDomFile(file.c_str());
+	CheckResult(dae.saveAsFile(file.c_str(), memoryUri.c_str()));
+	domCOLLADA* root = dae.loadFile(file.c_str());
 	CheckResult(root);
-	CheckResult(toFloat(findDescendant(root, "xfov")->getCharData()) == 1.0f);
+	CompareDocs(dae, memoryUri, file);
+	CheckResult(toFloat(root->getDescendant("xfov")->getCharData()) == 1.0f);
 	
 	return testResult(true);
 }
@@ -332,18 +271,18 @@ string getRoundTripFile(const string& name) {
 
 bool roundTrip(const string& file) {
 	DAE dae;
-	if (dae.loadFile(file.c_str()) != DAE_OK)
+	if (!dae.loadFile(file.c_str()))
 		return false;
-	return dae.saveFileAs(getRoundTripFile(file).c_str(), file.c_str()) == DAE_OK;
+	return dae.saveAsFile(getRoundTripFile(file).c_str(), file.c_str());
 }
 
 DefineTest(roundTripSeymour) {
 	string file1 = lookupTestFile("Seymour.dae"),
 	       file2 = getRoundTripFile(file1);
 	DAE dae;
-	CheckResult(dae.loadFile(file1.c_str()) == DAE_OK);
-	CheckResult(dae.saveFileAs(file2.c_str(), file1.c_str()) == DAE_OK);
-	CheckResult(dae.loadFile(file2.c_str()) == DAE_OK);
+	CheckResult(dae.loadFile(file1.c_str()));
+	CheckResult(dae.saveAsFile(file2.c_str(), file1.c_str()));
+	CheckResult(dae.loadFile(file2.c_str()));
 	CompareDocs(dae, file1, file2);
 	return testResult(true);
 }
@@ -354,18 +293,17 @@ DefineTest(rawSupport) {
 	       seymourRaw  = getTmpFile("Seymour_raw.dae");
 	DAE dae;
 
-	CheckResult(dae.loadFile(seymourOrig.c_str()) == DAE_OK);
+	CheckResult(dae.loadFile(seymourOrig.c_str()));
 	dae.getIOPlugin()->setOption("saveRawBinary", "true");
-	CheckResult(dae.saveFileAs(seymourRaw.c_str(), seymourOrig.c_str()) == DAE_OK);
+	CheckResult(dae.saveAsFile(seymourRaw.c_str(), seymourOrig.c_str()));
 
 	// Make sure the .raw file is there
 	CheckResult(fs::exists(fs::path(seymourRaw + ".raw")));
 
-	CheckResult(dae.loadFile(seymourRaw.c_str()) == DAE_OK);
-	daeElement* el = 0;
-	dae.getDatabase()->getElement(&el, 0,
-		"l_hip_rotateY_l_hip_rotateY_ANGLE-input", seymourRaw.c_str());
-	CheckResult(el);
+	daeElement* seymourRawRoot = dae.loadFile(seymourRaw.c_str());
+	CheckResult(seymourRawRoot);
+	CheckResult(dae.getDatabase()->idLookup("l_hip_rotateY_l_hip_rotateY_ANGLE-input",
+	                                        seymourRawRoot->getDocument()));
 
 	return testResult(true);
 }
@@ -373,12 +311,11 @@ DefineTest(rawSupport) {
 DefineTest(extraTypeTest) {
 	DAE dae;
 	string file = lookupTestFile("extraTest.dae");
-	CheckResult(dae.loadFile(file.c_str()) == DAE_OK);
-	daeElement* root = dae.getDomFile(file.c_str());
+	daeElement* root = dae.loadFile(file.c_str());
 	CheckResult(root);
 
-	daeElement *technique = findDescendant(root, "technique"),
-	           *expectedTypesElt = findDescendant(root, "expected_types");
+	daeElement *technique = root->getDescendant("technique"),
+	           *expectedTypesElt = root->getDescendant("expected_types");
 	CheckResult(technique && expectedTypesElt);
 
 	istringstream expectedTypesStream(expectedTypesElt->getCharData());
@@ -408,11 +345,11 @@ DefineTest(tinyXmlLoad) {
 	// Plan: Load Seymour with libxml, then save with TinyXml and immediately reload the
 	// saved document, and make sure the results are the same.
 	DAE dae;
-	CheckResult(dae.loadFile(seymourOrig.c_str()) == DAE_OK);
+	CheckResult(dae.loadFile(seymourOrig.c_str()));
 	auto_ptr<daeTinyXMLPlugin> tinyXmlPlugin(new daeTinyXMLPlugin);
 	dae.setIOPlugin(tinyXmlPlugin.get());
-	CheckResult(dae.saveFileAs(seymourTinyXml.c_str(), seymourOrig.c_str()) == DAE_OK);
-	CheckResult(dae.loadFile(seymourTinyXml.c_str()) == DAE_OK);
+	CheckResult(dae.saveAsFile(seymourTinyXml.c_str(), seymourOrig.c_str()));
+	CheckResult(dae.loadFile(seymourTinyXml.c_str()));
 	CompareDocs(dae, seymourOrig, seymourTinyXml);
 
 	return testResult(true);
@@ -441,9 +378,10 @@ daeSIDResolver::ResolveState resolveSidToState(const string& sid, daeElement* co
 
 DefineTest(sidResolveTest) {
 	DAE dae;
-	CheckResult(dae.loadFile(lookupTestFile("sidResolveTest.dae").c_str()) == DAE_OK);
+	daeElement* root = dae.loadFile(lookupTestFile("sidResolveTest.dae").c_str());
+	CheckResult(root);
 	daeDatabase& database = *dae.getDatabase();
-	daeDocument* doc = database.getDoc(0);
+	daeDocument* doc = root->getDocument();
 
 	daeElement *effect = database.idLookup("myEffect", doc),
 	           *effectExtra = database.idLookup("effectExtra", doc);
@@ -457,9 +395,8 @@ DefineTest(sidResolveTest) {
 		                   string("sid ref=") + sidRef + ", expectedResult=" + expectedResult + ", actualResult=" + result);
 	}
 
-	daeElement *root = database.typeLookup(domCOLLADA::ID()).at(0),
-	           *nodeSidRefExtra = database.idLookup("nodeSidRefExtra", doc);
-	CheckResult(root && nodeSidRefExtra);
+	daeElement* nodeSidRefExtra = database.idLookup("nodeSidRefExtra", doc);
+	CheckResult(nodeSidRefExtra);
 
 	stream.clear();
 	stream.str(nodeSidRefExtra->getCharData());
@@ -543,10 +480,10 @@ daeURI* getTextureUri(const string& samplerSid, daeElement& effect) {
 
 DefineTest(getTexture) {
 	DAE dae;
-	CheckResult(dae.loadFile(lookupTestFile("Seymour.dae").c_str()) == DAE_OK);
+	CheckResult(dae.loadFile(lookupTestFile("Seymour.dae").c_str()));
 
 	daeElement* effect = dae.getDatabase()->idLookup("face-fx").at(0);
-	daeElement* texture = findDescendant(effect, "texture");
+	daeElement* texture = effect->getDescendant("texture");
 	CheckResult(texture);
 
 	daeURI* uri = getTextureUri(texture->getAttribute("texture"), *effect);
@@ -559,20 +496,20 @@ DefineTest(getTexture) {
 
 DefineTest(removeElement) {
 	DAE dae;
-	CheckResult(dae.loadFile(lookupTestFile("Seymour.dae").c_str()) == DAE_OK);
+	daeElement* collada = dae.loadFile(lookupTestFile("Seymour.dae").c_str());
+	CheckResult(collada);
 
-	daeElement *collada = dae.getDatabase()->typeLookup(domCOLLADA::ID()).at(0),
-	           *animLib = dae.getDatabase()->typeLookup(domLibrary_animations::ID()).at(0),
+	daeElement *animLib = dae.getDatabase()->typeLookup(domLibrary_animations::ID()).at(0),
 	           *asset = dae.getDatabase()->typeLookup(domAsset::ID()).at(0);
 
 	collada->removeChildElement(asset);
 	daeElement::removeFromParent(animLib);
 
-	CheckResult(findDescendant(collada, "asset") == NULL);
-	CheckResult(findDescendant(collada, "library_animations") == NULL);
+	CheckResult(collada->getDescendant("asset") == NULL);
+	CheckResult(collada->getDescendant("library_animations") == NULL);
 
-	CheckResult(dae.saveFileAs(getTmpFile("Seymour_removeElements.dae").c_str(),
-	                           lookupTestFile("Seymour.dae").c_str()) == DAE_OK);
+	CheckResult(dae.saveAsFile(getTmpFile("Seymour_removeElements.dae").c_str(),
+	                           lookupTestFile("Seymour.dae").c_str()));
 	return testResult(true);
 }
 
@@ -597,11 +534,16 @@ DefineTest(nameArray) {
 	return testResult(true);
 }
 
-template<typename T>
-void printArray(const daeTArray<T>& array) {
-	for (size_t i = 0; i < array.getCount(); i++)
-		cout << array[i] << " ";
-	cout << endl;
+daeTArray<int> makeIntArray(int i, ...) {
+	va_list args;
+	va_start(args, i);
+	daeTArray<int> result;
+	while (i != INT_MAX) {
+		result.append(i);
+		i = va_arg(args, int);
+	}
+	va_end(args);
+	return result;
 }
 
 DefineTest(arrayOps) {
@@ -697,14 +639,14 @@ DefineTest(atomicTypeOps) {
 
 DefineTest(clone) {
 	DAE dae;
-	CheckResult(dae.loadFile(lookupTestFile("Seymour.dae").c_str()) == DAE_OK);
+	CheckResult(dae.loadFile(lookupTestFile("Seymour.dae").c_str()));
 
 	daeElement* el = dae.getDatabase()->idLookup("l_ulna").at(0);
 	daeElementRef clone = el->clone("-foo", "-bar");
 	el->getParentElement()->placeElement(clone);
 
-	CheckResult(dae.saveFileAs(getTmpFile("cloneTest.dae").c_str(),
-	                           lookupTestFile("Seymour.dae").c_str()) == DAE_OK);
+	CheckResult(dae.saveAsFile(getTmpFile("cloneTest.dae").c_str(),
+	                           lookupTestFile("Seymour.dae").c_str()));
 
 	return testResult(true);
 }
@@ -713,7 +655,7 @@ DefineTest(clone) {
 DefineTest(genericOps) {
 	string file = lookupTestFile("cube.dae");
 	DAE dae;
-	CheckResult(dae.loadFile(file.c_str()) == DAE_OK);
+	CheckResult(dae.loadFile(file.c_str()));
 	daeDatabase& database = *dae.getDatabase();
 
 	// Attribute getter/setter tests
@@ -768,8 +710,8 @@ DefineTest(genericOps) {
 		any->setAttribute(name.str().c_str(), value.str().c_str());
 	}
 
-	CheckResult(dae.saveFileAs(getTmpFile(fs::basename(fs::path(file)) + "_genericOps.dae").c_str(),
-	                           file.c_str()) == DAE_OK);
+	CheckResult(dae.saveAsFile(getTmpFile(fs::basename(fs::path(file)) + "_genericOps.dae").c_str(),
+	                           file.c_str()));
 
 	return testResult(true);
 }
@@ -788,7 +730,7 @@ daeArray* getSkewArray(daeElement* node, const string& sid) {
 
 DefineTest(badSkew) {
 	DAE dae;
-	CheckResult(dae.loadFile(lookupTestFile("badSkew.dae").c_str()) == DAE_OK);
+	CheckResult(dae.loadFile(lookupTestFile("badSkew.dae").c_str()));
 
 	daeElement* node = dae.getDatabase()->idLookup("my-node").at(0);
 
@@ -820,8 +762,7 @@ DefineTest(stringTable) {
 DefineTest(sidResolveSpeed) {
 	DAE dae;
 	string file = lookupTestFile("crankarm.dae");
-	CheckResult(dae.loadFile(file.c_str()) == DAE_OK);
-	domCOLLADA* root = dae.getDomFile(file.c_str());
+	domCOLLADA* root = dae.loadFile(file.c_str());
 	CheckResult(root);
 
 	vector<domSIDREF_array*> sidRefArrays = dae.getDatabase()->typeLookup<domSIDREF_array>();
@@ -840,7 +781,7 @@ DefineTest(sidResolveSpeed) {
 DefineTest(seymourSidResolve) {
 	DAE dae;
 	string file = lookupTestFile("Seymour.dae");
-	CheckResult(dae.loadFile(file.c_str()) == DAE_OK);
+	CheckResult(dae.loadFile(file.c_str()));
 
 	vector<daeElement*> nodes = dae.getDatabase()->typeLookup(domNode::ID());
 	for (size_t i = 0; i < nodes.size(); i++) {
@@ -871,7 +812,7 @@ vector<string> getChildNames(daeElement* elt) {
 
 DefineTest(placeElement) {
 	DAE dae;
-	CheckResult(dae.loadFile(lookupTestFile("cube.dae").c_str()) == DAE_OK);
+	CheckResult(dae.loadFile(lookupTestFile("cube.dae").c_str()));
 
 	daeElement* node = dae.getDatabase()->idLookup("Box").at(0);
 
@@ -933,9 +874,7 @@ DefineTest(makeRelativeTo) {
 DefineTest(xmlNavigation) {
 	DAE dae;
 	string file = lookupTestFile("cube.dae");
-	CheckResult(dae.loadFile(file.c_str()) == DAE_OK);
-
-	domCOLLADA* root = dae.getDomFile(file.c_str());
+	domCOLLADA* root = dae.loadFile(file.c_str());
 	CheckResult(root);
 
 	CheckResult(root->getChild("library_cameras"));
@@ -965,8 +904,8 @@ DefineTest(multipleDae) {
 	// crash the DOM.
 	DAE dae1;
 	DAE dae2;
-	CheckResult(dae2.loadFile(lookupTestFile("cube.dae").c_str()) == DAE_OK);
-	CheckResult(dae1.loadFile(lookupTestFile("duck.dae").c_str()) == DAE_OK);
+	CheckResult(dae2.loadFile(lookupTestFile("cube.dae").c_str()));
+	CheckResult(dae1.loadFile(lookupTestFile("duck.dae").c_str()));
 	return testResult(true);
 }
 
@@ -1001,7 +940,7 @@ DefineTest(unusedTypeCheck) {
 
 DefineTest(domCommon_transparent_type) {
 	DAE dae;
-	CheckResult(dae.loadFile(lookupTestFile("cube.dae").c_str()) == DAE_OK);
+	CheckResult(dae.loadFile(lookupTestFile("cube.dae").c_str()));
 
 	domCommon_transparent_type* transparent =
 		dae.getDatabase()->typeLookup<domCommon_transparent_type>().at(0);
@@ -1020,10 +959,10 @@ DefineTest(autoResolve) {
 	// Make sure that works properly.
 	DAE dae;
 	daeDatabase& database = *dae.getDatabase();
-	CheckResult(dae.loadFile(lookupTestFile("Seymour.dae").c_str()) == DAE_OK);
+	CheckResult(dae.loadFile(lookupTestFile("Seymour.dae").c_str()));
 
-	// Make sure the IDREF_array element had all its daeIDRef objects resolved
 	{
+		// Make sure the IDREF_array element had all its daeIDRef objects resolved
 		xsIDREFS& idRefs = database.typeLookup<domIDREF_array>().at(0)->getValue();
 		for (size_t i = 0; i < idRefs.getCount(); i++) {
 			CheckResult(idRefs[i].getElement());
@@ -1040,35 +979,31 @@ DefineTest(autoResolve) {
 	// When you're modifying a new document or creating a new one and you create some
 	// new ID or URI refs, they should resolve automatically.
 	dae.clear();
-	CheckResult(database.insertDocument("tmp.dae") == DAE_OK);
-	domCOLLADA* root = dae.getDomFile("tmp.dae");
+	domCOLLADA* root = dae.addFile("tmp.dae");
 	CheckResult(root);
 
 	// Create a <geometry> with an <IDREF_array>
-	root->createAndPlace("library_geometries")->createAndPlace("geometry")
-	     ->createAndPlace("mesh")->createAndPlace("source")->createAndPlace("IDREF_array");
+	CheckResult(root->add("library_geometries geometry mesh source IDREF_array"));
 	daeElement* geom = root->getDescendant("geometry");
 	geom->setAttribute("id", "myGeom");
 	xsIDREFS& idRefs = database.typeLookup<domIDREF_array>().at(0)->getValue();
 	idRefs.append(daeIDRef("myGeom"));
 
 	// Create a <library_nodes> with a <node> that we'll instantiate via <instance_node>
-	daeElement* node1 = root->createAndPlace("library_nodes")->createAndPlace("node");
+	daeElement* node1 = root->add("library_nodes node");
 	node1->setAttribute("id", "myNode");
 
 	// Create a <node> with an <instance_geometry> and <instance_node> to test URIs
-	daeElement* node2 = root->getDescendant("library_nodes")->createAndPlace("node");
-	domInstance_node& instanceNode = *daeSafeCast<domInstance_node>(node2->createAndPlace("instance_node"));
+	daeElement* node2 = root->getDescendant("library_nodes")->add("node");
+	domInstance_node& instanceNode = *daeSafeCast<domInstance_node>(node2->add("instance_node"));
 	domInstance_geometry& instanceGeom = *daeSafeCast<domInstance_geometry>(
-		node2->createAndPlace("instance_geometry"));
+		node2->add("instance_geometry"));
 	instanceNode.setUrl("#myNode");
 	instanceGeom.setUrl("#myGeom");
 
 	// Create a <surface> with an <init_from> to test ID refs
 	domFx_surface_init_from_common& initFrom = *daeSafeCast<domFx_surface_init_from_common>(
-		root->createAndPlace("library_effects")->createAndPlace("effect")
-		->createAndPlace("profile_COMMON")->createAndPlace("newparam")
-		->createAndPlace("surface")->createAndPlace("init_from"));
+		root->add("library_effects effect profile_COMMON newparam surface init_from"));
 	initFrom.setValue("myGeom");
 
 	// Make sure everything resolves automatically
@@ -1094,7 +1029,7 @@ DefineTest(baseURI) {
 
 DefineTest(databaseLookup) {
 	DAE dae;
-	CheckResult(dae.loadFile(lookupTestFile("cube.dae").c_str()) == DAE_OK);
+	CheckResult(dae.loadFile(lookupTestFile("cube.dae").c_str()));
 	daeDatabase& database = *dae.getDatabase();
 	daeDocument* doc = database.getDoc(0);
 	CheckResult(doc);
@@ -1126,7 +1061,7 @@ DefineTest(databaseLookup) {
 
 // DefineTest(hauntedHouse) {
 // 	DAE dae;
-// 	CheckResult(dae.loadFile("/home/sthomas/models/hauntedHouse.dae") == DAE_OK);
+// 	CheckResult(dae.loadFile("/home/sthomas/models/hauntedHouse.dae"));
 // 	return testResult(true);
 // }
 

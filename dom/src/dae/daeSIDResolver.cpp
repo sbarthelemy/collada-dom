@@ -25,6 +25,7 @@
 #include <dom/domConstants.h>
 #include <dae/daeDocument.h>
 #include <dae/daeDatabase.h>
+#include <dae/daeUtils.h>
 #include <dom/domSource.h>
 
 using namespace std;
@@ -118,20 +119,6 @@ namespace {
 		return result;
 	}
 	
-	void tokenize(const string& s, const string& separators, /* out */ list<string>& tokens) {
-		size_t currentIndex = 0, nextTokenIndex = 0;
-		while (currentIndex < s.length() &&
-					 (nextTokenIndex = s.find_first_of(separators, currentIndex)) != string::npos) {
-			if ((nextTokenIndex - currentIndex) > 0)
-				tokens.push_back(s.substr(currentIndex, nextTokenIndex-currentIndex));
-			tokens.push_back(string(1, s[nextTokenIndex]));
-			currentIndex = nextTokenIndex+1;
-		}
-
-		if (currentIndex < s.length())
-			tokens.push_back(s.substr(currentIndex, s.length()-currentIndex));
-	}
-
 	// Implements a breadth-first sid search by starting at the container element and
 	// traversing downward through the element tree.
 	daeElement* findSidTopDown(daeElement* container, const string& sid, const string& profile) {
@@ -252,7 +239,7 @@ namespace {
 
 		// It didn't resolve. Let's tokenize it by '.'s and see if we can resolve a
 		// portion of it.
-		tokenize(s, ".", remainingPart);
+		cdom::tokenize(s, ".", remainingPart, true);
 		if (remainingPart.size() == 1)
 			return NULL; // There were no '.'s, so the result won't be any different
 
@@ -295,7 +282,7 @@ void daeSIDResolver::resolveImpl(const string& sidRef)
 
 	string separators = "/()";
 	list<string> tokens;
-	tokenize(sidRef, separators, /* out */ tokens);
+	cdom::tokenize(sidRef, separators, /* out */ tokens, true);
 
 	list<string>::iterator tok = tokens.begin();
 
