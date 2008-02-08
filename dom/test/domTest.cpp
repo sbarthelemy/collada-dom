@@ -273,7 +273,7 @@ bool roundTrip(const string& file) {
 	DAE dae;
 	if (!dae.loadFile(file.c_str()))
 		return false;
-	return dae.saveAsFile(getRoundTripFile(file).c_str(), file.c_str());
+	return dae.saveAsFile(getRoundTripFile(file).c_str(), file.c_str()) != NULL;
 }
 
 DefineTest(roundTripSeymour) {

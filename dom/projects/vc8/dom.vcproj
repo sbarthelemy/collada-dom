@@ -310,6 +310,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\dae\daeUtils.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\dae\domAny.cpp"
 				>
 			</File>
@@ -469,6 +473,10 @@
 			</File>
 			<File
 				RelativePath="..\..\include\dae\daeURI.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\dae\daeUtils.h"
 				>
 			</File>
 			<File
