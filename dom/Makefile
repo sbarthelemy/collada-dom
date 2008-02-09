@@ -12,7 +12,7 @@
 
 # By default, all commands are silent. Echo statements are provided for each rule (if appropriate)
 # so the user knows what's going on. If you need to debug the makefile or need to know what's
-# going on, call make with silent=no.
+# going on, call make with verbose=yes.
 ifneq ($(verbose),yes)
 .SILENT:
 endif
@@ -49,7 +49,7 @@ parser := libxml
 file :=
 
 # If you want to change the default values of the above params, you can either modify them
-# directly by changing the text above or put the variables assignments in make/customSettings.mk
+# directly by changing the text above or put the variable assignments in make/customSettings.mk
 -include make/customSettings.mk
 
 -include make/installPrefix.mk
@@ -210,7 +210,6 @@ ifeq ($(oss),linux)
 install: uninstall
 	@echo Installing to $(prefix)
 # Write the install prefix to the file make/installPrefix.mk so we can retrieve it for uninstalling.
-# A better way to do this would be to have a configure script.
 	echo 'installPrefix := $(prefix)' > make/installPrefix.mk
 # Install headers
 	cp -R include $(prefix)/include/collada
