@@ -278,6 +278,15 @@ domCOLLADARef DAE::unloadFile(daeString file) {
 }
 
 
+bool DAE::save() {
+	for (size_t i = 0; i < database->getDocumentCount(); i++)
+		if (save(i, true) != DAE_OK)
+			return false;
+	return true;
+}
+
+
+
 daeInt DAE::clear()
 {
 	if (database)

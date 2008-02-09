@@ -31,13 +31,15 @@ boost::filesystem::path& tmpPath();
 
 struct testResult {
 	bool passed;
+	std::string file; // If the test failed, the file it failed in.
 	int line; // If the test failed, the line number it failed on, or -1 if the line
 	          // number isn't available.
 	std::string msg; // An error message for the user. Usually empty.
 
 	testResult() : passed(true), line(-1) { }
-	testResult(bool passed, int line = -1, const std::string& msg = "")
+	testResult(bool passed, const std::string& file = "", int line = -1, const std::string& msg = "")
 	  : passed(passed),
+			file(file),
 	    line(line),
 	    msg(msg) {
 	}
@@ -62,9 +64,20 @@ struct domTest {
 
 #define CheckResult(val) \
 	if (!(val)) { \
-		return testResult(false, __LINE__); \
+		return testResult(false, __FILE__, __LINE__); \
 	}
 
+#define CheckTestResult(result) \
+	{ \
+		testResult res = result; \
+		if (!res.passed) \
+			return res; \
+	}
+
+#define SafeAdd(elt, name, var) \
+	daeElement* var = elt->add(name); CheckResult(var);
+
 std::string lookupTestFile(const std::string& fileName);
+std::string getTmpFile(const std::string& fileName);
 
 #endif

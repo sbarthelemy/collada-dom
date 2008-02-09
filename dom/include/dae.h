@@ -81,6 +81,10 @@ public:
 	virtual domCOLLADA*   saveAsURI(daeString uriToSaveTo, daeString docUri, daeBool replace=true);
 	virtual domCOLLADARef unloadURI(daeString uri);
 
+	// Save all documents, returning false if any documents failed to save, true
+	// otherwise.
+	virtual bool save();
+
 	// Remove all loaded documents.
 	virtual daeInt clear();
 

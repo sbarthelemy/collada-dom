@@ -36,7 +36,7 @@ float toFloat(const string& s) {
 
 #define CheckResultWithMsg(val, msg) \
 	if (!(val)) { \
-		return testResult(false, __LINE__, msg); \
+		return testResult(false, __FILE__, __LINE__, msg); \
 	}
 
 #define CompareDocs(dae, file1, file2) \
@@ -45,7 +45,7 @@ float toFloat(const string& s) {
 		           *root2 = (dae).getDomFile((file2).c_str()); \
 		daeElement::compareResult result = daeElement::compareWithFullResult(*root1, *root2); \
 		if (result.compareValue != 0) { \
-			return testResult(false, __LINE__, result.format()); \
+			return testResult(false, __FILE__, __LINE__, result.format()); \
 		} \
 	}
 
@@ -1101,8 +1101,13 @@ bool printTestResults(const map<string, testResult>& failedTests) {
 		     iter != failedTests.end();
 		     iter++) {
 			cout << "    " << iter->first;
-			if (iter->second.line != -1)
-				cout << " (line " << iter->second.line << ")";
+			if (!iter->second.file.empty()) {
+				cout << " (file " << fs::path(iter->second.file).leaf();
+				if (iter->second.line != -1)
+					cout << ", line " << iter->second.line << ")";
+				else
+					cout << ")";
+			}
 			cout << endl;
 			if (!iter->second.msg.empty()) // Make sure to indent the message
 				cout << "        " << replace(iter->second.msg, "\n", "\n        ") << "\n";

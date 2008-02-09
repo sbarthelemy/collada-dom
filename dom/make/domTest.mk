@@ -1,6 +1,6 @@
 include make/common.mk
 
-src := test/domTest.cpp test/integrationExample.cpp
+src := $(wildcard test/*.cpp)
 targets := $(outPath)domTest$(exeSuffix)
 
 # DOM defs. This is extra complicated because of the installTest make target. The extra
