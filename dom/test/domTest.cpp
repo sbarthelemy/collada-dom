@@ -1059,6 +1059,16 @@ DefineTest(databaseLookup) {
 }
 
 
+// I don't want to enable this test until I figure out how to disable the extra
+// error messages that libxml spits out.
+//
+// DefineTest(spuriousQuotes) {
+// 	DAE dae;
+// 	CheckResult(dae.loadFile(lookupTestFile("quotesProblem.dae").c_str()));
+// 	return testResult(true);
+// }
+
+
 // DefineTest(hauntedHouse) {
 // 	DAE dae;
 // 	CheckResult(dae.loadFile("/home/sthomas/models/hauntedHouse.dae"));

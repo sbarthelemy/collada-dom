@@ -205,11 +205,15 @@ daeElementRef daeLIBXMLPlugin::readElement(_xmlTextReader* reader, daeElement* p
 	while (nodeType != -1  &&  nodeType != XML_READER_TYPE_END_ELEMENT) {
 		if (nodeType == XML_READER_TYPE_ELEMENT) {
 			element->placeElement(readElement(reader, element));
-		} else if (nodeType == XML_READER_TYPE_TEXT) {
+		}
+		else if (nodeType == XML_READER_TYPE_TEXT) {
 			readElementText(element, (daeString)xmlTextReaderConstValue(reader), getCurrentLineNumber(reader));
-			xmlTextReaderRead(reader);
-		}	else {
-			xmlTextReaderRead(reader);
+			if (xmlTextReaderRead(reader) != 1)
+				return NULL;
+		}
+		else {
+			if (xmlTextReaderRead(reader) != 1)
+				return NULL;
 		}
 
 		nodeType = xmlTextReaderNodeType(reader);
