@@ -117,7 +117,7 @@ public:
 	/**
 	 *  Constructor.
 	 */
-	daeTArray(T* prototype) : prototype(prototype) {
+	explicit daeTArray(T* prototype) : prototype(prototype) {
 		_elementSize = sizeof( T );
 	}
 	/**
@@ -130,7 +130,7 @@ public:
 	/**
 	 * Constructor that takes one element and turns into an array
 	 */
-	daeTArray( const T &el ) {
+	explicit daeTArray( const T &el ) {
 		_elementSize = sizeof(T);
 		prototype = NULL;
 		append( el );
