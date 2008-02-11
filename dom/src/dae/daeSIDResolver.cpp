@@ -74,7 +74,7 @@ daeSIDResolver::ResolveState daeSIDResolver::getState() const {
 	return state;
 }
 
-daeElementRef daeSIDResolver::getElement()
+daeElement* daeSIDResolver::getElement()
 {
 	if ( state == target_loaded ) {
 		resolve();

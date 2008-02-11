@@ -129,7 +129,7 @@ private:
 	/** Extension parsed from the filename in the URI */
 	daeString extension;
 	/** Reference to the element that the URI resolves to in memory */
-	daeElementRef element;
+	daeElement* element;
 	/** Pointer to the element that owns this URI */
 	daeElement* container;
 	/** Current resolver state of the URI */
@@ -229,13 +229,13 @@ public:
 	 * Gets the element that this URI resolves to in memory.
 	 * @return Returns a ref to the element.
 	 */
-	daeElementRef getElement();
+	daeElement* getElement();
 	
 	/** 
 	 * Sets the element that this URI resolves to in memory.
 	 * @param newref A ref to the element.
 	 */
-	inline void setElement(daeElementRef newref){element=newref;};
+	inline void setElement(daeElement* newref){element=newref;};
 
 	/**
 	 * Gets the resolve state of the URI.

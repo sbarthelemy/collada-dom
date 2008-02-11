@@ -86,7 +86,7 @@ daeIDRef::setID(daeString _IDString)
 	element = NULL;
 }
 
-daeElementRef daeIDRef::getElement() const {
+daeElement* daeIDRef::getElement() const {
 	if (!element && container) {
 		element = container->getDAE()->getIDRefResolvers().resolveElement(
 			id.c_str(), container->getDocumentURI()->getURI());
@@ -94,7 +94,7 @@ daeElementRef daeIDRef::getElement() const {
 	return element;
 }
 
-void daeIDRef::setElement(daeElementRef newref) {
+void daeIDRef::setElement(daeElement* newref) {
 	element = newref;
 	id = element->getID() ? element->getID() : "";
 }

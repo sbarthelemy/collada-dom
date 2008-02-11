@@ -64,7 +64,7 @@ private:
 	std::string id;
 
 	/** Reference to the actual element the ID refers to */
-	mutable daeElementRef element;
+	mutable daeElement* element;
 
 	/** Element that owns this ID (if any) */
 	daeElement* container;
@@ -110,13 +110,13 @@ public:
 	 * Gets the element that this URI resolves to in memory.
 	 * @return Returns a ref to the element.
 	 */
-	daeElementRef getElement() const;
+	daeElement* getElement() const;
 
 	/** 
 	 * Sets the element that this URI resolves to in memory.
 	 * @param newref A ref to the element.
 	 */
-	void setElement(daeElementRef newref);
+	void setElement(daeElement* newref);
 
 	/**
 	 * Gets the resolve state of the URI.

@@ -102,7 +102,7 @@ public:
 	 * Gets the element that this SID resolves to.
 	 * @return Returns the element that the URI resolves to.
 	 */
-	daeElementRef getElement();
+	daeElement* getElement();
 
 	/**
 	 * Gets the value array of the element that the SID resolves to.
@@ -133,7 +133,7 @@ private:
 
 	// This is the output for the user. It gets set after calling the resolve function.
 	ResolveState    state;
-	daeElementRef   resolvedElement;
+	daeElement*     resolvedElement;
 	daeDoubleArray* resolvedDoubleArray;
 	daeDouble*      resolvedDoublePtr;
 
