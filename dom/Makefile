@@ -155,12 +155,13 @@ clean:
 #   error : xmlNewTextWriterFilename : out of memory!
 # To work around this, I changed to using a single target with a shell loop to run each test program.
 # This way the tests are forced to run serially.
+domTestOpts := -all
 domTestExes := $(filter %domTest,$(allTargets))
 .PHONY: test
 test: $(domTestExes)
 	@for testExe in $(domTestExes); do \
-		echo $$testExe -all; \
-		$$testExe -all; \
+		echo $$testExe $(domTestOpts); \
+		$$testExe $(domTestOpts); \
 	done
 
 

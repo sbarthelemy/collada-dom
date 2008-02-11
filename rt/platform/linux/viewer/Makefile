@@ -46,9 +46,12 @@ EXE_LCOPT	+= -L$(ROOT_DIR)/../fx/lib/$(CONF_NAME)
 EXE_LCOPT	+= -L$(ROOT_DIR)/lib/$(CONF_NAME)
 EXE_LCOPT	+= -L$(ROOT_DIR)/external-libs/bullet/lib/$(CONF_NAME)
 
+ifneq ($(RELEASE),1)
+debugSuffix := -d
+endif
+
 colladaVersion := $(COLLADA_DOM_VERSION)
 colladaVersionNoDots := $(subst .,,$(colladaVersion))
-debugSuffix := $(if $(findstring 1,$(RELEASE)),-d)
 domLib := libcollada$(colladaVersionNoDots)dom$(debugSuffix).a
 
 LCOPT	+=   -lcollada_Cfx -lcollada_Crt -lcollada_Cfx

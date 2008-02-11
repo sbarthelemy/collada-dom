@@ -9,7 +9,12 @@ using namespace cdom;
 // Demonstrates how to use the DOM to create a simple, textured Collada model
 // and save it to disk.
 
+testResult addAsset(daeElement* root);
 testResult addGeometry(daeElement* root);
+testResult addImage(daeElement* root);
+testResult addEffect(daeElement* root);
+testResult addMaterial(daeElement* root);
+testResult addVisualScene(daeElement* root);
 
 DefineTest(export) {
 	DAE dae;
@@ -17,23 +22,27 @@ DefineTest(export) {
 	domCOLLADA* root = dae.addFile(file.c_str());
 	CheckResult(root);
 
-	// An <asset> is required.
-	daeElement* asset = root->add("asset");
+	CheckTestResult(addAsset(root));
+	CheckTestResult(addGeometry(root));
+	CheckTestResult(addImage(root));
+	CheckTestResult(addEffect(root));
+	CheckTestResult(addMaterial(root));
+	CheckTestResult(addVisualScene(root));
+	
+	dae.save();
+
+	// As a very simple check for possible errors, make sure the document loads
+	// back in successfully.
+	dae.clear();
+	CheckResult(dae.loadFile(file.c_str()));
+	
+	return testResult(true);
+}
+
+testResult addAsset(daeElement* root) {
+	SafeAdd(root, "asset", asset);
 	asset->add("created")->setCharData("2008-02-23T13:30:00Z");
 	asset->add("modified")->setCharData("2008-02-23T13:30:00Z");
-
-	// Create the various <library_whatever> elements we'll need.
-	daeElement *geomLib = root->add("library_geometries"),
-	           *imageLib = root->add("library_images"),
-	           *effectLib = root->add("library_effects"),
-	           *materialLib = root->add("library_materials"),
-	           *visualSceneLib = root->add("library_visual_scenes");
-	CheckResult(geomLib && imageLib && effectLib && materialLib && visualSceneLib);
-
-	CheckTestResult(addGeometry(geomLib));
-
-	dae.save();
-	
 	return testResult(true);
 }
 
@@ -70,7 +79,7 @@ testResult addSource(daeElement* mesh,
 
 	list<string> params = tokenize(paramNames, " ");
 	acc->setStride(params.size());
-	acc->setCount(valueCount);
+	acc->setCount(valueCount/params.size());
 	for (tokenIter iter = params.begin(); iter != params.end(); iter++) {
 		SafeAdd(acc, "param", p);
 		p->setAttribute("name", iter->c_str());
@@ -94,9 +103,10 @@ testResult addInput(daeElement* triangles,
 	return testResult(true);
 }
 
-testResult addGeometry(daeElement* geomLib) {
-	string geomID = "cubeGeom";
+testResult addGeometry(daeElement* root) {
+	SafeAdd(root, "library_geometries", geomLib);
 	SafeAdd(geomLib, "geometry", geom);
+	string geomID = "cubeGeom";
 	geom->setAttribute("id", geomID.c_str());
 	SafeAdd(geom, "mesh", mesh);
 
@@ -155,7 +165,7 @@ testResult addGeometry(daeElement* geomLib) {
 
 	domTriangles* triangles = daeSafeCast<domTriangles>(mesh->add("triangles"));
 	CheckResult(triangles);
-	triangles->setCount(count/3);
+	triangles->setCount(count/(3*3)); // 3 indices per vertex, 3 vertices per triangle
 	triangles->setMaterial("mtl");
 
 	CheckTestResult(addInput(triangles, "VERTEX",   geomID + "-vertices", 0));
@@ -165,6 +175,84 @@ testResult addGeometry(daeElement* geomLib) {
 	domP* p = daeSafeCast<domP>(triangles->add("p"));
 	CheckResult(p);
 	p->getValue() = rawArrayToDaeArray(indices, count);
+
+	return testResult(true);
+}
+
+testResult addImage(daeElement* root) {
+	SafeAdd(root, "library_images", imageLib);
+	SafeAdd(imageLib, "image", image);
+	image->setAttribute("id", "img");
+	image->add("init_from")->setCharData("../texture.bmp");
+	return testResult(true);
+}
+
+testResult addEffect(daeElement* root) {
+	SafeAdd(root, "library_effects", effectLib);
+	SafeAdd(effectLib, "effect", effect);
+	effect->setAttribute("id", "cubeEffect");
+
+	// Add a <surface>
+	SafeAdd(effect, "newparam", newparam);
+	newparam->setAttribute("sid", "surface");
+	SafeAdd(newparam, "surface", surface);
+	surface->setAttribute("type", "2D");
+	surface->add("init_from")->setCharData("img");
+
+	// Add a <sampler2D>
+	newparam = effect->add("newparam");
+	CheckResult(newparam);
+	newparam->setAttribute("sid", "sampler");
+	SafeAdd(newparam, "sampler2D", sampler);
+	sampler->add("source")->setCharData("surface");
+	sampler->add("minfilter")->setCharData("LINEAR_MIPMAP_LINEAR");
+	sampler->add("magfilter")->setCharData("LINEAR");
+
+	SafeAdd(effect, "profile_COMMON technique", technique);
+	technique->setAttribute("sid", "common");
+	SafeAdd(technique, "phong diffuse texture", texture);
+	texture->setAttribute("texture", "sampler");
+	texture->setAttribute("texcoord", "uv0");
+
+	return testResult(true);
+}
+
+testResult addMaterial(daeElement* root) {
+	SafeAdd(root, "library_materials", materialLib);
+	SafeAdd(materialLib, "material", material);
+	material->setAttribute("id", "cubeMaterial");
+	material->add("instance_effect")->setAttribute("url", makeUriRef("cubeEffect").c_str());
+
+	return testResult(true);
+}
+
+testResult addVisualScene(daeElement* root) {
+	SafeAdd(root, "library_visual_scenes", visualSceneLib);
+	SafeAdd(visualSceneLib, "visual_scene", visualScene);
+	visualScene->setAttribute("id", "cubeScene");
+
+	// Add a <node> with a simple transformation
+	SafeAdd(visualScene, "node", node);
+	node->setAttribute("id", "cubeNode");
+	node->add("rotate")->setCharData("1 0 0 45");
+	node->add("translate")->setCharData("0 10 0");
+
+	// Instantiate the <geometry>
+	SafeAdd(node, "instance_geometry", instanceGeom);
+	instanceGeom->setAttribute("url", makeUriRef("cubeGeom").c_str());
+
+	// Bind material parameters
+	SafeAdd(instanceGeom, "bind_material technique_common instance_material", instanceMaterial);
+	instanceMaterial->setAttribute("symbol", "mtl");
+	instanceMaterial->setAttribute("target", makeUriRef("cubeMaterial").c_str());
+
+	SafeAdd(instanceMaterial, "bind_vertex_input", bindVertexInput);
+	bindVertexInput->setAttribute("semantic", "uv0");
+	bindVertexInput->setAttribute("input_semantic", "TEXCOORD");
+	bindVertexInput->setAttribute("input_set", "0");
+
+	// Add a <scene>
+	root->add("scene instance_visual_scene")->setAttribute("url", makeUriRef("cubeScene").c_str());
 
 	return testResult(true);
 }

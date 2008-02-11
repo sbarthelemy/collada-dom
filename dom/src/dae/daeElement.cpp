@@ -26,11 +26,9 @@
 using namespace std;
 
 daeElement* daeElement::simpleAdd(daeString name, int index) {
-	daeElementRef elt = _meta->create(name);
-	bool result = false;
-	if (elt)
-		index == -1 ? result = placeElement(elt) : result = placeElementAt(index, elt);
-	return result ? elt : NULL;
+	if (daeElementRef elt = _meta->create(name))
+		return add(elt, index);
+	return NULL;
 }
 
 daeElement* daeElement::add(daeString names_, int index) {
