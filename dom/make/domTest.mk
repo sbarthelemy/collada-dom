@@ -9,7 +9,7 @@ ifneq ($(os),mac)
 libSuffix := $(if $(findstring ps3,$(os)),.a,.so)
 domPath := $(if $(installTest),$(installPrefix)/lib/,$(outPath))
 domName := $(domPath)libcollada$(colladaVersionNoDots)dom$(debugSuffix)$(libSuffix)
-libOpts += -L$(outPath) -lcollada$(colladaVersionNoDots)dom$(debugSuffix)
+libOpts += $(domName)
 ifeq ($(os),linux)
 sharedLibSearchPaths += $(abspath $(outPath))
 endif
@@ -36,8 +36,7 @@ dependentLibs += $(domName)
 
 # PCRE defs
 ifeq ($(os),ps3)
-pcreLibPath := external-libs/pcre/lib/$(os)/
-libOpts += -L$(pcreLibPath) -lpcrecpp -lpcre
+libOpts += $(addprefix external-libs/pcre/lib/$(os)/,libpcrecpp.a libpcre.a)
 endif
 
 # TinyXml defs
@@ -50,15 +49,16 @@ endif
 endif
 
 # Boost defs
-ifneq ($(os),linux)
+ifeq ($(os),linux)
+libOpts += -lboost_filesystem
+else
 includeOpts += -Iexternal-libs/boost
-libOpts += -Lexternal-libs/boost/lib/$(os)
+libOpts += external-libs/boost/lib/$(os)/libboost_filesystem.a
 endif
 ifeq ($(os),ps3)
 # PS3 doesn't support C++ locales, so tell boost not to use them
 ccFlags += -DBOOST_NO_STD_LOCALE
 endif
-libOpts += -lboost_filesystem
 
 ifeq ($(os),ps3)
 # On PS3 we need to make a .self from the .elf

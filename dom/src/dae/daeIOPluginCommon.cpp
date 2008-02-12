@@ -63,7 +63,7 @@ daeInt daeIOPluginCommon::read(daeURI& uri, daeString docBuffer)
 	}
 
 	daeElementRef domObject = docBuffer ?
-		readFromMemory(docBuffer, fileURI) : // Load from memory (experimental)
+		readFromMemory(docBuffer, fileURI) :
 		readFromFile(fileURI); // Load from URI
 
 	if (!domObject) {
