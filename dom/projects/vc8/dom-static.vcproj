@@ -274,6 +274,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\dae\daeUtils.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\dae\domAny.cpp"
 				>
 			</File>

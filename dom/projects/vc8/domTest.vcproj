@@ -189,6 +189,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\test\export.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\test\integrationExample.cpp"
 				>
 			</File>
