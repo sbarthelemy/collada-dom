@@ -191,16 +191,17 @@ testResult addEffect(daeElement* root) {
 	SafeAdd(root, "library_effects", effectLib);
 	SafeAdd(effectLib, "effect", effect);
 	effect->setAttribute("id", "cubeEffect");
+	SafeAdd(effect, "profile_COMMON", profile);
 
 	// Add a <surface>
-	SafeAdd(effect, "newparam", newparam);
+	SafeAdd(profile, "newparam", newparam);
 	newparam->setAttribute("sid", "surface");
 	SafeAdd(newparam, "surface", surface);
 	surface->setAttribute("type", "2D");
 	surface->add("init_from")->setCharData("img");
 
 	// Add a <sampler2D>
-	newparam = effect->add("newparam");
+	newparam = profile->add("newparam");
 	CheckResult(newparam);
 	newparam->setAttribute("sid", "sampler");
 	SafeAdd(newparam, "sampler2D", sampler);
@@ -208,7 +209,7 @@ testResult addEffect(daeElement* root) {
 	sampler->add("minfilter")->setCharData("LINEAR_MIPMAP_LINEAR");
 	sampler->add("magfilter")->setCharData("LINEAR");
 
-	SafeAdd(effect, "profile_COMMON technique", technique);
+	SafeAdd(profile, "technique", technique);
 	technique->setAttribute("sid", "common");
 	SafeAdd(technique, "phong diffuse texture", texture);
 	texture->setAttribute("texture", "sampler");
