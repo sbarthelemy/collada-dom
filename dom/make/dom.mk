@@ -28,12 +28,12 @@ libOpts += external-libs/tinyxml/lib/$(os)/libtinyxml.a
 endif
 
 # On Mac and PS3 we need to be told where to find pcre
-ifneq ($(os),linux)
-includeOpts += -Iexternal-libs/pcre
-libOpts += -Lexternal-libs/pcre/lib/$(os)
-endif
-
+ifeq ($(os),linux)
 libOpts += -lpcre -lpcrecpp
+else
+includeOpts += -Iexternal-libs/pcre
+libOpts += $(addprefix external-libs/pcre/lib/$(os)/,libpcre.a libpcrecpp.a)
+endif
 
 libName := libcollada$(colladaVersionNoDots)dom$(debugSuffix)
 libVersion := $(domVersion)
