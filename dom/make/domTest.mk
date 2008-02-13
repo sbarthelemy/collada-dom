@@ -9,7 +9,10 @@ ifneq ($(os),mac)
 libSuffix := $(if $(findstring ps3,$(os)),.a,.so)
 domPath := $(if $(installTest),$(installPrefix)/lib/,$(outPath))
 domName := $(domPath)libcollada$(colladaVersionNoDots)dom$(debugSuffix)$(libSuffix)
-libOpts += $(domName)
+ifeq ($(installTest),)
+libOpts += -L$(domPath)
+endif
+libOpts += -lcollada$(colladaVersionNoDots)dom$(debugSuffix)
 ifeq ($(os),linux)
 sharedLibSearchPaths += $(abspath $(outPath))
 endif
