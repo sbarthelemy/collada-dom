@@ -45,7 +45,7 @@ void daeIOPluginCommon::setDatabase(daeDatabase* _database)
 
 // This function needs to be re-entrant, it can be called recursively from inside of resolveAll
 // to load files that the first file depends on.
-daeInt daeIOPluginCommon::read(daeURI& uri, daeString docBuffer)
+daeInt daeIOPluginCommon::read(const daeURI& uri, daeString docBuffer)
 {
 	// Make sure topMeta has been set before proceeding
 	if (topMeta == NULL) 

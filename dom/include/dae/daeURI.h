@@ -193,37 +193,37 @@ public:
 	 * Gets the ID string parsed from the URI.
 	 * @return Returns a pointer to the string.
 	 */
-	inline daeString getID(){return(id);};
+	inline daeString getID() const {return(id);}
 
 	/**
 	 * Gets the file string parsed from the URI.
 	 * @return Returns a pointer to the string.
 	 */
-	inline daeString getFile(){return(file);};
+	inline daeString getFile() const {return(file);}
 
 	/**
 	 * Gets the path string to the file, without the path name, parsed from the URI.
 	 * @return Returns a pointer to the string.
 	 */
-	inline daeString getFilepath(){return(filepath);};
+	inline daeString getFilepath() const {return(filepath);}
 
 	/**
 	 * Gets the protocol string parsed from the URI.
 	 * @return Returns a pointer to the string.
 	 */
-	inline daeString getProtocol(){return(protocol);};
+	inline daeString getProtocol() const {return(protocol);}
 
 	/**
 	 * Gets the authority string parsed from the URI.
 	 * @return Returns a pointer to the string.
 	 */
-	inline daeString getAuthority(){return(authority);};
+	inline daeString getAuthority() const {return(authority);}
 
 	/**
 	 * Gets the extension string parsed from the URI.
 	 * @return Returns a pointer to the string.
 	 */
-	inline daeString getExtension(){return(extension);};
+	inline daeString getExtension() const {return(extension);}
 
 	/** 
 	 * Gets the element that this URI resolves to in memory.
@@ -324,7 +324,7 @@ public:
 	 * @param uri the URI to make "this" relative to.
 	 * @note this is experimental and not fully tested, please don't use in critical code yet.
 	 */
-	int makeRelativeTo(daeURI* uri);
+	int makeRelativeTo(const daeURI* uri);
 
 	/**
 	 * Comparison operator.

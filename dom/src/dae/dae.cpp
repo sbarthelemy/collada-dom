@@ -146,217 +146,142 @@ daeInt DAE::setIOPlugin(daeIOPlugin* _plugin)
 	return res;
 }
 
-domCOLLADA* DAE::addURI(daeString uri) {
-	if (domCOLLADA* root = getDom(uri))
-		return root;
-	if (getDatabase()->insertDocument(uri) == DAE_OK)
-		return getDom(uri);
-	return NULL;
+
+// Take a path (either a URI ref or a file system path) and return a full URI,
+// using the current working directory as the base URI if a relative URI
+// reference is given.
+string DAE::makeFullUri(const string& path) {
+	daeURI uri(*this, cdom::filePathToUri(path).c_str());
+	return uri.getURI();
 }
 
-domCOLLADA* DAE::loadURI(daeString uri, daeString docBuffer) {
-	plugin->setDatabase(database);
 
-	if (!uri || uri[0] == '\0')
+domCOLLADA* DAE::add(const string& path) {
+	close(path);
+	string uri = makeFullUri(path);
+	database->insertDocument(uri.c_str());
+	return getRoot(uri);
+}
+
+domCOLLADA* DAE::openCommon(const string& path, daeString buffer) {
+	close(path);
+	string uri = makeFullUri(path);
+	plugin->setDatabase(database);
+	if (plugin->read(daeURI(*this, uri.c_str()), buffer) != DAE_OK)
 		return NULL;
-
-	daeURI tempURI(*this, uri);
-	if (plugin->read(tempURI, docBuffer) != DAE_OK)
-		return NULL;
-	return getDom(tempURI.getURI());
+	return getRoot(uri);
 }
 
-domCOLLADA* DAE::saveURI(daeString uri, daeBool replace) {
+domCOLLADA* DAE::open(const string& path) {
+	return openCommon(path, NULL);
+}
+
+domCOLLADA* DAE::openFromMemory(const string& path, daeString buffer) {
+	return openCommon(path, buffer);
+}
+
+bool DAE::writeCommon(const string& docPath, const string& pathToWriteTo, bool replace) {
+	string docUri = makeFullUri(docPath),
+	       uriToWriteTo = makeFullUri(pathToWriteTo);
 	plugin->setDatabase(database);
-	
-	// Find the document we want by name
-	if (daeDocument* document = database->getDocument(uri)) {
-		if (plugin->write(document->getDocumentURI(), document, replace) == DAE_OK)
-			return daeSafeCast<domCOLLADA>(document->getDomRoot());
-	}
-
-	return NULL;
+	if (daeDocument* doc = getDoc(docUri))
+		return plugin->write(daeURI(*this, uriToWriteTo.c_str()), doc, replace) == DAE_OK;
+	return false;
 }
 
-domCOLLADA* DAE::saveAsURI(daeString uriToSaveTo, daeString docUri, daeBool replace) {
-	plugin->setDatabase(database);
-	
-	// Find the document we want by name
-	if (daeDocument* document = database->getDocument(docUri)) {
-		// Make a URI from uriToSaveTo and save to that
-		daeURI tempURI(*this, uriToSaveTo, true);
-		if (plugin->write(&tempURI, document, replace) == DAE_OK)
-			return daeSafeCast<domCOLLADA>(document->getDomRoot());
-	}
-
-	return NULL;
+bool DAE::write(const string& path) {
+	return writeCommon(path, path, true);
 }
 
-domCOLLADARef DAE::unloadURI(daeString uri) {
-	if (daeDocument* doc = database->getDocument(uri)) {
-		domCOLLADARef root = daeSafeCast<domCOLLADA>(doc->getDomRoot());
-		if (database->removeDocument(doc) == DAE_OK)
-			return root;
-	}
-
-	return NULL;
+bool DAE::writeTo(const string& docPath, const string& pathToWriteTo) {
+	return writeCommon(docPath, pathToWriteTo, true);
 }
 
-
-daeInt DAE::load(daeString uri, daeString docBuffer) {
-	return loadURI(uri, docBuffer) ? DAE_OK : DAE_ERROR;
-}
-
-daeInt DAE::save(daeString uri, daeBool replace) {
-	return saveURI(uri, replace) ? DAE_OK : DAE_ERROR;
-}
-
-daeInt DAE::save(daeUInt documentIndex, daeBool replace) {
-	plugin->setDatabase(database);
-	if (documentIndex >= database->getDocumentCount())
-		return DAE_ERROR;
-
-	// Save it out to the URI it was loaded from
-	daeDocument* document = database->getDocument(documentIndex);
-	return plugin->write(document->getDocumentURI(), document, replace);
-}
-
-daeInt DAE::saveAs(daeString uriToSaveTo, daeString docUri, daeBool replace) {
-	return saveAsURI(uriToSaveTo, docUri, replace) ? DAE_OK : DAE_ERROR;
-}
-
-daeInt DAE::saveAs(daeString uriToSaveTo, daeUInt documentIndex, daeBool replace) {
-	plugin->setDatabase(database);
-	if (documentIndex >= database->getDocumentCount())
-		return DAE_ERROR;
-
-	daeDocument* document = database->getDocument(documentIndex);
-	daeURI tempURI(*this, uriToSaveTo, true);
-	return plugin->write(&tempURI, document, replace);
-}
-
-daeInt DAE::unload(daeString uri) {
-	return unloadURI(uri) ? DAE_OK : DAE_ERROR;
-}
-
-
-namespace {
-	// Take a URI ref and return a full URI. Uses the current working directory
-	// as the base URI if a relative URI reference is given.
-	string makeFullUri(DAE& dae, const string& uriRef) {
-		daeURI uri(dae, uriRef.c_str());
-		return uri.getURI();
-	}
-
-	// Take a file path (either relative or absolute) and return a full URI
-	// representing the path. If a relative path is given, uses the current working
-	// directory as a base URI to construct the full URI.
-	string filePathToFullUri(DAE& dae, const string& path) {
-		return makeFullUri(dae, cdom::filePathToUri(path));
-	}
-}
-
-domCOLLADA* DAE::addFile(daeString file) {
-	return addURI(filePathToFullUri(*this, file).c_str());
-}
-
-domCOLLADA* DAE::loadFile(daeString file, daeString memBuffer) {
-	return loadURI(filePathToFullUri(*this, file).c_str(), memBuffer);
-}
-
-domCOLLADA* DAE::saveFile(daeString file, daeBool replace) {
-	return saveURI(filePathToFullUri(*this, file).c_str(), replace);
-}
-
-domCOLLADA* DAE::saveAsFile(daeString fileToSaveTo, daeString file, daeBool replace) {
-	return saveAsURI(filePathToFullUri(*this, fileToSaveTo).c_str(),
-	                 filePathToFullUri(*this, file).c_str(), replace);
-}
-
-domCOLLADARef DAE::unloadFile(daeString file) {
-	return unloadURI(filePathToFullUri(*this, file).c_str());
-}
-
-
-bool DAE::save() {
-	for (size_t i = 0; i < database->getDocumentCount(); i++)
+bool DAE::writeAll() {
+	for (int i = 0; i < getDocCount(); i++)
 		if (save((daeUInt)i, true) != DAE_OK)
 			return false;
 	return true;
 }
 
+void DAE::close(const string& path) {
+	database->removeDocument(getDoc(makeFullUri(path).c_str()));
+}
 
-daeInt DAE::clear()
-{
-	if (database)
-		database->clear();
+daeInt DAE::clear() {
+	database->clear();
 	return DAE_OK;
 }
 
-// Load/Save Progress	
-void DAE::getProgress(daeInt* bytesParsed,daeInt* lineNumber,daeInt* totalBytes,daeBool reset)
-{
-	if (!database || !plugin)
-	{
-		if (bytesParsed)
-			*bytesParsed=0;
-		if (lineNumber)
-			*lineNumber=0;
-		if (totalBytes)
-			*totalBytes=0;
-	}
-	else
-		plugin->getProgress(bytesParsed,lineNumber,totalBytes,reset);
+
+// Deprecated methods
+daeInt DAE::load(daeString uri, daeString docBuffer) {
+	return openCommon(uri, docBuffer) ? DAE_OK : DAE_ERROR;
 }
 
-// Simple Query
-domCOLLADA* DAE::getDom(daeString uri)
-{
-	if (!database)
-		return NULL;
-
-	// Find the document by uri
-	daeDocument *document = database->getDocument(uri);
-	if(document)
-	{
-		// Return the root domCOLLADA element
-		return (domCOLLADA*)(daeElement*)document->getDomRoot();
-	}
-	else
-	{
-		return(NULL);
-	}
+daeInt DAE::save(daeString uri, daeBool replace) {
+	return writeCommon(uri, uri, replace) ? DAE_OK : DAE_ERROR;
 }
 
-daeInt DAE::setDom(daeString uri, domCOLLADA* dom)
-{
-	if (!database)
-		setDatabase(NULL);
+daeInt DAE::save(daeUInt documentIndex, daeBool replace) {
+	if ((int)documentIndex >= getDocCount())
+		return DAE_ERROR;
+
+	// Save it out to the URI it was loaded from
+	daeString uri = getDoc((int)documentIndex)->getDocumentURI()->getURI();
+	return writeCommon(uri, uri, replace) ? DAE_OK : DAE_ERROR;
+}
+
+daeInt DAE::saveAs(daeString uriToSaveTo, daeString docUri, daeBool replace) {
+	return writeCommon(docUri, uriToSaveTo, replace) ? DAE_OK : DAE_ERROR;
+}
+
+daeInt DAE::saveAs(daeString uriToSaveTo, daeUInt documentIndex, daeBool replace) {
+	if ((int)documentIndex >= getDocCount())
+		return DAE_ERROR;
+
+	daeString docUri = getDoc((int)documentIndex)->getDocumentURI()->getURI();
+	return writeCommon(docUri, uriToSaveTo, replace);
+}
+
+daeInt DAE::unload(daeString uri) {
+	close(uri);
+	return DAE_OK;
+}
+
+
+int DAE::getDocCount() {
+	return (int)database->getDocumentCount();
+}
+
+daeDocument* DAE::getDoc(int i) {
+	return database->getDocument(i);
+}
+
+daeDocument* DAE::getDoc(const string& path) {
+	return database->getDocument(makeFullUri(path).c_str());
+}
 	
-	// Find the document by uri
-	
-	daeDocument *document = database->getDocument(uri);
+domCOLLADA* DAE::getRoot(const string& path) {
+	if (daeDocument* doc = getDoc(path))
+		return (domCOLLADA*)doc->getDomRoot();
+	return NULL;
+}
 
-	if(document)
-	{
-		//replace a DOM on an existing document by the one provided.
-		// Note that the casts are needed because we don't want to include the full definition of domCOLLADA
-		document->setDomRoot((daeElement*)dom);
-		return DAE_OK;
-	}
+bool DAE::setRoot(const string& path, domCOLLADA* root) {
+	if (daeDocument* doc = getDoc(path))
+		doc->setDomRoot(root);
 	else
-	{
-		// Document doesn't exist, make a new one
-		return database->insertDocument(uri,(daeElement*)dom);
-	}
+		database->insertDocument(makeFullUri(path).c_str(), root);
+	return getRoot(path) != NULL;
 }
 
-domCOLLADA* DAE::getDomFile(daeString file) {
-	return getDom(filePathToFullUri(*this, file).c_str());
+domCOLLADA* DAE::getDom(daeString uri) {
+	return getRoot(uri);
 }
 
-daeInt DAE::setDomFile(daeString file, domCOLLADA* dom) {
-	return setDom(filePathToFullUri(*this, file).c_str(), dom);
+daeInt DAE::setDom(daeString uri, domCOLLADA* dom) {
+	return setRoot(uri, dom);
 }
 
 daeString DAE::getDomVersion()
@@ -396,8 +321,8 @@ void DAE::setBaseURI(const daeURI& uri) {
 	baseUri = uri;
 }
 
-void DAE::setBaseURI(daeString uri) {
-	baseUri = uri;
+void DAE::setBaseURI(const string& uri) {
+	baseUri = uri.c_str();
 }
 
 daeIDRefResolverList& DAE::getIDRefResolvers() {

@@ -526,7 +526,6 @@ daeURI::validate(daeURI* baseURI)
 		}
 	}
 
-#if 1
 	// This is rewritten according to the updated rfc 3986
 	if((protocol != NULL) && (strlen(protocol)>0))  // if defined(R.scheme) then
 	{
@@ -691,164 +690,6 @@ daeURI::validate(daeURI* baseURI)
 			external = false;
 		}
 	}
-
-#else
-	// RFC 2396 part 5.2 step 3, if the scheme (protocol here) is defined we are done, otherwise inherit the base URI's protocol
-	if ((protocol == NULL)||(strlen(protocol)==0)) 
-	{
-		// Make a copy of the base's protocol, not a reference to it
-		safeDelete(protocol);
-		protocol = safeCreate(baseURI->protocol);
-		// part 5.2 step 4, if the authority is defined we skip to step 7, otherwise inherit the base URI's authority
-		if((authority == NULL) || (strlen(authority)== 0))
-		{
-			// Make a copy of the base's authority, not a reference to it
-			safeDelete(authority);
-            authority = safeCreate(baseURI->authority);
-			// part 5.2 step 5 if the path part (filepath here) begins with a slash we skip to step 7, otherwise resolve the relative path against the base
-			if((filepath == NULL) || (*filepath != '/'))
-			{
-				// part 5.2 step 2, if scheme, authority and path are all empty, this is a reference to the current doc
-				// COLLADA DOM wants this to resolve to the URI of the document + the fragment
-				// To make this happen we have the URI inherit the file part of the base (if present) and the path
-				if( ((filepath == NULL) || (strlen(filepath)==0)) &&			// filepath empty
-					((file == NULL) || (strlen(file)==0)) &&					// file empty
-					((baseURI->file != NULL) && (strlen(baseURI->file) > 0)))	// baseURI file NOT empty
-				{
-					// inherit the base's filename
-					safeDelete(file);
-					file = safeCreate(baseURI->file);
-				}
-				// part 5.2 step 6, resolving a relative path reference
-				// note that in this implementation the filepath does not contain the last segment (the filename.ext)
-				// Allocate enough memory to hold the merged path
-				daeChar* newPath = (daeChar*)daeMemorySystem::malloc(
-						"uri",
-						strlen(baseURI->filepath) + 
-						strlen(filepath) + 1);
-				*newPath = 0;
-				// part 5.2 step 6(a) copy the baseURI filepath to the buffer
-				strcat(newPath,baseURI->filepath);
-				// part 5.2 step 6(b) copy this URI's filepath to the buffer
-				if(*filepath != 0)
-				{
-					strcat(newPath,filepath);
-				}
-				// part 5.2 step 6(c-g) normalize the new path
-				normalizeURIPath(newPath);
-				// part 5.2 step 6(h) replace the old filepath with the new path
-				safeDelete(filepath);
-				filepath = newPath;
-			}
-		}
-		// part 5.2 step 7 assemble the final complete URI
-		// Allocate memory to hold the assembled version of the URI
-		daeChar* newURI = (daeChar*)
-			daeMemorySystem::malloc(
-				"uri",
-				strlen(protocol) +		// really scheme
-				1 +						// space for ":"
-				strlen(authority) +			// really authority
-				2 +						// space for "//"
-				strlen(filepath) +		// path without the filename
-				strlen(file) +			// filename part of the path
-				strlen(queryString) +   // "#"
-				strlen(id) +			// really fragment
-				1);						// terminating zero
-		*newURI = 0;
-		if(protocol != NULL && *protocol != 0)
-		{
-			strcat(newURI, protocol);
-			strcat(newURI, ":");
-		}
-		if(authority != NULL && *authority != 0)
-		{
-			strcat(newURI, authority);
-		}
-		strcat(newURI, "//");
-		if(filepath != NULL)
-			strcat(newURI, filepath);
-		if(file != NULL)
-			strcat(newURI, file);
-		if(id != NULL && *id != 0)
-		{
-			strcat(newURI,"#");
-			strcat(newURI,id);
-		}
-		// Reset the URI to the new one
-		// Just setting the uriString would probably be enough
-		internalSetURI(newURI);
-		daeMemorySystem::free("uri",newURI);
-	}
-	state = uri_pending;
-
-#endif
-#if 0
-	// If there is no protocol, assume this is a relative URI that needs to be resolved against the base
-	if ((protocol == NULL)||(strlen(protocol)==0)) 
-	{
-		// !!!GAC if the base URI contains a file and this uri does not, copy it over (why??)
-		if (((baseURI->file != NULL) &&	(strlen(baseURI->file)>0)) &&
-			((file == NULL)||(strlen(file)==0))) 
-		{
-			if (file != NULL)
-				safeDelete(file);
-			file = safeCreate(baseURI->file);
-		}
-		
-		// !!!GAC this is a quick and dirty attempt to get the relative URIs properly resolved and the internal
-		// !!!GAC paths normalized.  This code should be rewritten when there's time, I wanted to get this up quick
-		// !!!GAC so we could test the rest of the system to make sure handing it "correct" URIs doesn't break things.
-		
-		// Start by allocating memory and putting together just the path component
-		daeChar* newPath = (daeChar*)
-			daeMemorySystem::malloc(
-				"tmp",
-				strlen(baseURI->filepath) + 
-				strlen(filepathString) + 
-				strlen(filepath) + 
-				strlen(filepathString) + 
-				strlen(file)+1);
-		*newPath = 0;
-		strcat(newPath,baseURI->filepath);
-		strcat(newPath,filepathString);  // !!!GAC this may put in an extra / but if it does the normalization will fix it
-		if(*filepath != 0)
-		{
-			strcat(newPath,filepath);			// !!!GAC only do this if filepath is not empty
-			strcat(newPath,filepathString);		// !!!GAC only do this if filepath is not empty
-		}
-		strcat(newPath,file);
-		// Normalize the path according to RFC 2396 (removes extra /, .., . and so on)
-		normalizeURIPath(newPath);
-		// !!!GAC Allocate memory for the complete URI and assemble it
-		daeChar* newURI = (daeChar*)
-			daeMemorySystem::malloc(
-				"tmp",
-				strlen(baseURI->protocol) +
-				strlen(protoString) +
-				strlen(authority) +
-				strlen(hostString) +
-				strlen(newPath) +
-				strlen(queryString) + 
-				strlen(id)+1);
-		*newURI = 0;
-		strcat(newURI,baseURI->protocol);	// Should be called "scheme" from RFC 2396
-		strcat(newURI,protoString);
-		strcat(newURI,authority);				// Should be called "authority" 
-//		strcat(newURI,hostString);			// !!!GAC not necessary, path always begins with a /
-		strcat(newURI,newPath);
-		if(strlen(id) != 0)
-		{
-			// !!!GAC don't append the #id unless it's needed (bug 297)
-			strcat(newURI,queryString);
-			strcat(newURI,id);
-		}
-		internalSetURI(newURI);		
-		daeMemorySystem::free("tmp",newPath);
-		daeMemorySystem::free("tmp",newURI);
-	}
-	state = uri_pending;
-#endif
 }
 
 daeElement* daeURI::getElement() {
@@ -1112,7 +953,7 @@ void daeURI::normalizeURIPath(char *path)
 }
 // This function will take a resolved URI and create a version of it that is relative to
 // another existing URI.  The new URI is stored in the "originalURI"
-int daeURI::makeRelativeTo(daeURI* relativeToURI)
+int daeURI::makeRelativeTo(const daeURI* relativeToURI)
 {
 	if( getState() == uri_empty || relativeToURI->getState() == uri_empty ) 
 		return(DAE_ERR_INVALID_CALL);
@@ -1126,9 +967,9 @@ int daeURI::makeRelativeTo(daeURI* relativeToURI)
 	if( relativeToURI->getState() == uri_loaded )
 	{
 		if (relativeToURI->getContainer() != NULL)
-			relativeToURI->validate(relativeToURI->getContainer()->getDocumentURI());
+			const_cast<daeURI*>(relativeToURI)->validate(relativeToURI->getContainer()->getDocumentURI());
 		else
-			relativeToURI->validate();
+			const_cast<daeURI*>(relativeToURI)->validate();
 	}
 
 

@@ -27,8 +27,11 @@ class domCOLLADA;
 typedef daeSmartRef<domCOLLADA> domCOLLADARef;
 class daeDatabase;
 
-// The DAE class is the core interface via which you interact with the DOM.
-// It has methods to load/save documents, get the root element of each document, etc.
+// The DAE class is the core interface via which you interact with the DOM. It
+// has methods to load/save documents, get the root element of each document,
+// etc. Although internally the DOM works exclusively with URIs, the methods of
+// the DAE class that take document paths can take URIs or OS-specific file
+// paths.
 class DLLSPEC DAE
 {
 public:
@@ -65,44 +68,37 @@ public:
 	virtual daeIOPlugin* getIOPlugin();
 	virtual daeInt setIOPlugin(daeIOPlugin* plugin);
 
-	// Document add/load/save. Returns the root element of the document used for
-	// the operation, or null if the operation failed.
-	virtual domCOLLADA*   addFile(daeString file);
-	virtual domCOLLADA*   loadFile(daeString file, daeString memBuffer = NULL);
-	virtual domCOLLADA*   saveFile(daeString file, daeBool replace = true);
-	virtual domCOLLADA*   saveAsFile(daeString fileToSaveTo, daeString file, daeBool replace = true);
-	virtual domCOLLADARef unloadFile(daeString file);
-
-	// These are exactly the same as the above add/load/save functions, except
-	// that they work with URIs instead of file paths.
-	virtual domCOLLADA*   addURI(daeString uri);
-	virtual domCOLLADA*   loadURI(daeString uri, daeString docBuffer = NULL);
-	virtual domCOLLADA*   saveURI(daeString uri, daeBool replace=true);
-	virtual domCOLLADA*   saveAsURI(daeString uriToSaveTo, daeString docUri, daeBool replace=true);
-	virtual domCOLLADARef unloadURI(daeString uri);
-
-	// Save all documents, returning false if any documents failed to save, true
-	// otherwise.
-	virtual bool save();
-
-	// Remove all loaded documents.
+	// Creates a new document, returning null on failure.
+	virtual domCOLLADA* add(const std::string& path);
+	// Opens an existing document, returning null on failure.
+	virtual domCOLLADA* open(const std::string& path);
+	// Opens a document from memory, returning null on failure.
+	virtual domCOLLADA* openFromMemory(const std::string& path, daeString buffer);
+	// Write a document to the path specified by the document's URI, returning false on failure.
+	virtual bool write(const std::string& path);
+	// Write a document to the path specified in the second parameter, returning false on failure.
+	virtual bool writeTo(const std::string& docPath, const std::string& pathToWriteTo);
+	// Writes all documents, returning false if any document failed to write.
+	virtual bool writeAll();
+	// Close a specific document, unloading all memory used by the document. Returns false on failure.
+	virtual void close(const std::string& path);
+	// Remove all loaded documents. Always returns DAE_OK.
 	virtual daeInt clear();
 
-	// Load/Save Progress. Currently not implemented.
-	virtual void getProgress(daeInt* bytesParsed,
-	                         daeInt* lineNumber,
-	                         daeInt* totalBytes,
-	                         daeBool reset = false);
+	// Returns the total number of documents.
+	virtual int getDocCount();
+	// Returns the i'th document .
+	virtual daeDocument* getDoc(int i);
+	// Returns a document matching the path.
+	virtual daeDocument* getDoc(const std::string& path);
+	
+	// Get the root domCOLLADA object corresponding to a particular document.
+	virtual domCOLLADA* getRoot(const std::string& path);
+	// Set the root domCOLLADA object corresponding to a particular document, returning false on failure.
+	virtual bool        setRoot(const std::string& path, domCOLLADA* root);
 
-	// Get the root domCOLLADA object corresponding to a particular document (identified
-	// via the URI of the document.
-	virtual domCOLLADA* getDom(daeString uri);
-	virtual daeInt      setDom(daeString uri, domCOLLADA* dom);
-
-	// Same as getDom/setDom, except works with file paths instead of URIs
-	virtual domCOLLADA* getDomFile(daeString file);
-	virtual daeInt      setDomFile(daeString file, domCOLLADA* dom);
-
+	// Returns the Collada version, i.e. 1.4, 1.5, etc. Note that this _isn't_ the
+	// same as the DOM version (1.3, 2.0, ...).
 	virtual daeString getDomVersion();
 
 	// Returns the (modifiable) list of atomic type objects.
@@ -121,23 +117,28 @@ public:
 	// The base URI used for resolving relative URI references.
 	daeURI& getBaseURI();
 	void setBaseURI(const daeURI& uri);
-	void setBaseURI(daeString uri);
+	void setBaseURI(const std::string& uri);
 
 	// Returns the list of ID reference resolvers. You can modify the list to add new
 	// resolvers.
 	daeIDRefResolverList& getIDRefResolvers();
 
-	// Deprecated. Use loadFile or loadURI, saveFile or saveURI, etc, instead.
-	virtual daeInt load(daeString uri, daeString docBuffer = NULL);
-	virtual daeInt save(daeString uri, daeBool replace=true);
-	virtual daeInt save(daeUInt documentIndex, daeBool replace=true);
-	virtual daeInt saveAs(daeString uriToSaveTo, daeString docUri, daeBool replace=true);
-	virtual daeInt saveAs(daeString uriToSaveTo, daeUInt documentIndex=0, daeBool replace=true);
-	virtual daeInt unload(daeString uri);
+	// Deprecated. Alternative methods are given.
+	virtual daeInt load(daeString uri, daeString docBuffer = NULL); // Use open
+	virtual daeInt save(daeString uri, daeBool replace=true); // Use write
+	virtual daeInt save(daeUInt documentIndex, daeBool replace=true); // Use write
+	virtual daeInt saveAs(daeString uriToSaveTo, daeString docUri, daeBool replace=true); // Use writeTo
+	virtual daeInt saveAs(daeString uriToSaveTo, daeUInt documentIndex=0, daeBool replace=true); // Use writeTo
+	virtual daeInt unload(daeString uri); // Use close
+	virtual domCOLLADA* getDom(daeString uri); // use getRoot
+	virtual daeInt      setDom(daeString uri, domCOLLADA* dom); // use setRoot
 
 private:
 	void init(daeDatabase* database, daeIOPlugin* ioPlugin);
 	void dummyFunction1();
+	std::string makeFullUri(const std::string& path);
+	domCOLLADA* openCommon(const std::string& path, daeString buffer);
+	bool writeCommon(const std::string& docPath, const std::string& pathToWriteTo, bool replace);
 
 	daeDatabase *database;
 	daeIOPlugin *plugin;

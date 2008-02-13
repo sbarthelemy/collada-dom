@@ -44,7 +44,7 @@ public:
 	virtual void setDatabase(daeDatabase* database);
 
 	// Operations
-	virtual daeInt read(daeURI& uri, daeString docBuffer);
+	virtual daeInt read(const daeURI& uri, daeString docBuffer);
 
 protected:
 	daeDatabase* database;

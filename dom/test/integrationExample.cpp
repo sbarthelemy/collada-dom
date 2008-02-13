@@ -139,12 +139,13 @@ DefineTest(integration) {
 	// Load a document from disk
 	string file = lookupTestFile("cube.dae");
 	DAE dae;
-	CheckResult(dae.loadFile(file.c_str()));
+	domCOLLADA* root = dae.open(file);
+	CheckResult(root);
 
 	// Do the conversion. The conversion process throws an exception on error, so
 	// we'll include a try/catch handler.
 	try {
-		convertModel(*dae.getDomFile(file.c_str()));
+		convertModel(*root);
 	}
 	catch (const exception&) {
 		return testResult(false);

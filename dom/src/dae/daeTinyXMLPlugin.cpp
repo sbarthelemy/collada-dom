@@ -61,16 +61,6 @@ daeString daeTinyXMLPlugin::getOption( daeString option )
 	return NULL;
 }
 
-void daeTinyXMLPlugin::getProgress(daeInt* bytesParsed,
-						 daeInt* lineNumber,
-						 daeInt* totalBytes,
-						 daeBool reset)
-{
-	if (totalBytes)
-		*totalBytes = 0; // Not available
-}
-
-
 daeElementRef daeTinyXMLPlugin::readFromFile(const daeURI& uri) {
 	string file = cdom::uriToFilePath(uri.getURI());
 	if (file.empty())
@@ -118,7 +108,7 @@ daeElementRef daeTinyXMLPlugin::readElement(TiXmlElement* tinyXmlElement, daeEle
 	return element;
 }
 
-daeInt daeTinyXMLPlugin::write(daeURI *name, daeDocument *document, daeBool replace)
+daeInt daeTinyXMLPlugin::write(const daeURI& name, daeDocument *document, daeBool replace)
 {
 	// Make sure database and document are both set
 	if (!database)
@@ -126,7 +116,7 @@ daeInt daeTinyXMLPlugin::write(daeURI *name, daeDocument *document, daeBool repl
 	if(!document)
 		return DAE_ERR_COLLECTION_DOES_NOT_EXIST;
 
-	string fileName = cdom::uriToFilePath(name->getURI());
+	string fileName = cdom::uriToFilePath(name.getURI());
 	if (fileName.empty())
 	{
 		daeErrorHandler::get()->handleError( "can't get path in write\n" );
@@ -146,7 +136,7 @@ daeInt daeTinyXMLPlugin::write(daeURI *name, daeDocument *document, daeBool repl
 		fclose(tempfd);
 	}
 	
-  m_doc = new TiXmlDocument(name->getURI());
+  m_doc = new TiXmlDocument(name.getURI());
   if (m_doc)
   {
     m_doc->SetTabSize(4);

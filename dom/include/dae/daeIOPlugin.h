@@ -69,7 +69,7 @@ public:
 	* @return Returns DAE_OK if successfully loaded, otherwise returns a negative value defined in daeError.h.
 	* @see @c DAE::load().
 	*/
-	virtual daeInt read(daeURI& uri, daeString docBuffer) = 0;
+	virtual daeInt read(const daeURI& uri, daeString docBuffer) = 0;
 
 	/** @name Operations	 */
 	//@{
@@ -82,33 +82,9 @@ public:
 	* @return Returns DAE_OK if success, a negative value defined in daeError.h otherwise.
 	* @see @c DAE::saveAs()
 	*/
-	virtual daeInt write(daeURI *name, daeDocument *document, daeBool replace) = 0;
+	virtual daeInt write(const daeURI& name, daeDocument *document, daeBool replace) = 0;
 	//@}
 	
-	/** @name Load/Save Progress */
-	//@{
-	/**
-	* Gets the progress of @c load() operation.
-	* This function can be used from another thread to check the progress of a @c load() 
-	* operation. The user can update a progress bar <tt> bytesParsed/totalBytes </tt> gives the
-	* percentage of progress of the operation.
-	* @param bytesParsed Pointer to an integer that receives the number of bytes already 
-	* consumed from the file, can be NULL if the user don't want to retrieve this information.
-	* @param lineNumber Pointer to an integer that receives the number of lines read so far,
-	* can be NULL.
-	* @param totalBytes Pointer to an integer that receives the total number of bytes in the 
-	* file currently beeing loaded, can be NULL.
-	* @param reset Indicates whether to reset the counters. A value of false is the default behaviour
-	* that fits most usage. Set it to true to reset 
-	* the <tt><i> bytesParsed </i></tt> and <tt><i> lineNumber </i></tt> counters. The system resets the counter at the beginning of 
-	* each file.
-	*/
-	virtual void getProgress(daeInt* bytesParsed,
-	                         daeInt* lineNumber,
-	                         daeInt* totalBytes,
-	                         daeBool reset = false ) = 0;
-	//@}
-
 	/**
 	 * Returns a list of the URI protocols that this plugin supports.
 	 * @return Returns a daeArray containing the supported protocols.
@@ -146,12 +122,8 @@ class DLLSPEC daeIOEmpty : public daeIOPlugin {
 public:
 	virtual daeInt setMeta(daeMetaElement *topMeta) { return DAE_ERROR; }
 	virtual void setDatabase(daeDatabase* database) { }
-	virtual daeInt read(daeURI& uri, daeString docBuffer) { return DAE_ERROR; }
-	virtual daeInt write(daeURI *name, daeDocument *document, daeBool replace) { return DAE_ERROR; }
-	virtual void getProgress(daeInt* bytesParsed,
-	                         daeInt* lineNumber,
-	                         daeInt* totalBytes,
-	                         daeBool reset = false ) { }
+	virtual daeInt read(const daeURI& uri, daeString docBuffer) { return DAE_ERROR; }
+	virtual daeInt write(const daeURI& name, daeDocument *document, daeBool replace) { return DAE_ERROR; }
 	virtual daeInt setOption( daeString option, daeString value ) { return DAE_ERROR; }
 	virtual daeString getOption( daeString option ) { return ""; }
 };

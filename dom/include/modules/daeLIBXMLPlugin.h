@@ -45,13 +45,7 @@ public:
 	virtual ~daeLIBXMLPlugin();
 
 	// Operations
-	virtual daeInt write(daeURI *name, daeDocument *document, daeBool replace);
-
-	// Stats	
-	virtual void getProgress(daeInt* bytesParsed,
-		daeInt* lineNumber,
-		daeInt* totalBytes,
-		daeBool reset = false );
+	virtual daeInt write(const daeURI& name, daeDocument *document, daeBool replace);
 
 	/**
 	 * setOption allows you to set options for this IOPlugin. Which options a plugin supports is

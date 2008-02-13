@@ -19,7 +19,7 @@ testResult addVisualScene(daeElement* root);
 DefineTest(export) {
 	DAE dae;
 	string file = getTmpFile("export.dae");
-	domCOLLADA* root = dae.addFile(file.c_str());
+	domCOLLADA* root = dae.add(file);
 	CheckResult(root);
 
 	CheckTestResult(addAsset(root));
@@ -29,12 +29,12 @@ DefineTest(export) {
 	CheckTestResult(addMaterial(root));
 	CheckTestResult(addVisualScene(root));
 	
-	dae.save();
+	dae.writeAll();
 
 	// As a very simple check for possible errors, make sure the document loads
 	// back in successfully.
 	dae.clear();
-	CheckResult(dae.loadFile(file.c_str()));
+	CheckResult(dae.open(file));
 	
 	return testResult(true);
 }

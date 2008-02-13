@@ -106,31 +106,6 @@ daeString daeLIBXMLPlugin::getOption( daeString option )
 	return NULL;
 }
 
-void daeLIBXMLPlugin::getProgress(daeInt* bytesParsed,
-						 daeInt* lineNumber,
-						 daeInt* totalBytes,
-						 daeBool reset)
-{
-	// Need to interface this to libxml
-	if (reset)
-	{
-		//daeChunkBuffer::resetProgress();
-	}
-#if LIBXML_VERSION >= 20620
-	if (bytesParsed)
-		*bytesParsed= 0; //xmlTextReaderByteConsumed(reader); // Not sure if this is the right data
-	if (lineNumber)
-		*lineNumber = 0; //xmlTextReaderGetParserLineNumber(reader);
-#else
-	if (bytesParsed)
-		*bytesParsed= 0;
-	if (lineNumber)
-		*lineNumber = 0;
-#endif
-	if (totalBytes)
-		*totalBytes = 0; // Not available
-}
-
 // A simple structure to help alloc/free xmlTextReader objects
 struct xmlTextReaderHelper {
 	xmlTextReaderHelper(const daeURI& uri) {
@@ -225,7 +200,7 @@ daeElementRef daeLIBXMLPlugin::readElement(_xmlTextReader* reader, daeElement* p
 	return element;
 }
 
-daeInt daeLIBXMLPlugin::write(daeURI *name, daeDocument *document, daeBool replace)
+daeInt daeLIBXMLPlugin::write(const daeURI& name, daeDocument *document, daeBool replace)
 {
 	// Make sure database and document are both set
 	if (!database)
@@ -234,7 +209,7 @@ daeInt daeLIBXMLPlugin::write(daeURI *name, daeDocument *document, daeBool repla
 		return DAE_ERR_COLLECTION_DOES_NOT_EXIST;
 
 	// Convert the URI to a file path, to see if we're about to overwrite a file
-	string file = cdom::uriToFilePath(name->getURI());
+	string file = cdom::uriToFilePath(name.getURI());
 	if (file.empty()  &&  saveRawFile)
 	{
 		daeErrorHandler::get()->handleError( "can't get path in write\n" );
@@ -274,14 +249,14 @@ daeInt daeLIBXMLPlugin::write(daeURI *name, daeDocument *document, daeBool repla
 		}
 		rawRelPath.setURI(cdom::filePathToUri(rawFilePath).c_str());
 		rawRelPath.validate();
-		rawRelPath.makeRelativeTo( name );
+		rawRelPath.makeRelativeTo( &name );
 	}
 
 	// Open the file we will write to
-	writer = xmlNewTextWriterFilename(name->getURI(), 0);
+	writer = xmlNewTextWriterFilename(name.getURI(), 0);
 	if ( !writer ) {
 		char msg[512];
-		sprintf(msg,"daeLIBXMLPlugin::write(%s) failed\n",name->getURI());
+		sprintf(msg,"daeLIBXMLPlugin::write(%s) failed\n",name.getURI());
 		daeErrorHandler::get()->handleError( msg );
 		return DAE_ERR_BACKEND_IO;
 	}

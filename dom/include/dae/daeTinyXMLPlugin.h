@@ -37,13 +37,7 @@ public:
 	virtual DLLSPEC ~daeTinyXMLPlugin();
 
 	// Operations
-	virtual DLLSPEC daeInt write(daeURI *name, daeDocument *document, daeBool replace);
-
-	// Stats	
-	virtual DLLSPEC void getProgress(daeInt* bytesParsed,
-		daeInt* lineNumber,
-		daeInt* totalBytes,
-		daeBool reset = false );
+	virtual DLLSPEC daeInt write(const daeURI& name, daeDocument *document, daeBool replace);
 
 	/**
 	 * setOption allows you to set options for this IOPlugin. Which options a plugin supports is
