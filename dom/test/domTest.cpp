@@ -860,11 +860,18 @@ DefineTest(uriConversion) {
 }
 
 
-DefineTest(makeRelativeTo) {
+DefineTest(uriOps) {
+	// This is pretty poor right now. Need to flesh this out.
 	DAE dae;
 	daeURI uri1(dae, "myFolder/myFile.dae");
 	daeURI uri2(dae, "myFolder/myFile.dae");
-	uri1.makeRelativeTo(&uri2);
+	uri1.makeRelativeTo(&uri2); // Just make sure it doesn't blow up
+
+	CheckResult(dae.open(lookupTestFile("cube.dae")));
+	uri1.setElement(dae.getDatabase()->typeLookup(domGeometry::ID()).at(0));
+	uri1.resolveURI();
+	CheckResult(string(uri1.getID()) == "box-lib");
+	
 	return testResult(true);
 }
 
