@@ -229,7 +229,7 @@ public:
 	 * Gets the element that this URI resolves to in memory.
 	 * @return Returns a ref to the element.
 	 */
-	daeElement* getElement();
+	daeElementRef getElement();
 	
 	/** 
 	 * Sets the element that this URI resolves to in memory.

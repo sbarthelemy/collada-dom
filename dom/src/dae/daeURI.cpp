@@ -692,7 +692,7 @@ daeURI::validate(daeURI* baseURI)
 	}
 }
 
-daeElement* daeURI::getElement() {
+daeElementRef daeURI::getElement() {
 	if (!element)
 		internalResolveElement();
 	return element;
