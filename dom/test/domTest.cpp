@@ -488,7 +488,7 @@ DefineTest(getTexture) {
 
 	daeURI* uri = getTextureUri(texture->getAttribute("texture"), *effect);
 	CheckResult(uri);
-	CheckResult(string(uri->getFile()) == "boy_10.tga");
+	CheckResult(uri->pathFile() == "boy_10.tga");
 
 	return testResult(true);
 }
@@ -831,47 +831,276 @@ DefineTest(placeElement) {
 };
 
 
-DefineTest(uriConversion) {
+DefineTest(nativePathConversion) {
 	// Windows file path to URI
-	CheckResult(cdom::filePathToUri("C:\\myFolder\\myFile.dae") == "/C:/myFolder/myFile.dae");
-	CheckResult(cdom::filePathToUri("\\myFolder\\myFile.dae") == "file:////myFolder/myFile.dae");
-	CheckResult(cdom::filePathToUri("..\\myFolder\\myFile.dae") == "../myFolder/myFile.dae");
-	CheckResult(cdom::filePathToUri("\\\\otherComputer\\myFile.dae") == "file://///otherComputer/myFile.dae");
+	CheckResult(cdom::nativePathToUri("C:\\myFolder\\myFile.dae", cdom::Windows) == "/C:/myFolder/myFile.dae");
+	CheckResult(cdom::nativePathToUri("\\myFolder\\myFile.dae", cdom::Windows) == "/myFolder/myFile.dae");
+	CheckResult(cdom::nativePathToUri("..\\myFolder\\myFile.dae", cdom::Windows) == "../myFolder/myFile.dae");
+	CheckResult(cdom::nativePathToUri("\\\\otherComputer\\myFile.dae", cdom::Windows) == "//otherComputer/myFile.dae");
 
 	// Linux/Mac file path to URI
-	CheckResult(cdom::filePathToUri("/myFolder/myFile.dae") == "/myFolder/myFile.dae");
-	CheckResult(cdom::filePathToUri("../myFolder/myFile.dae") == "../myFolder/myFile.dae");
-	CheckResult(cdom::filePathToUri("/my folder/my file.dae") == "/my%20folder/my%20file.dae");
+	CheckResult(cdom::nativePathToUri("/myFolder/myFile.dae", cdom::Posix) == "/myFolder/myFile.dae");
+	CheckResult(cdom::nativePathToUri("../myFolder/myFile.dae", cdom::Posix) == "../myFolder/myFile.dae");
+	CheckResult(cdom::nativePathToUri("/my folder/my file.dae", cdom::Posix) == "/my%20folder/my%20file.dae");
 
-#ifdef WIN32
 	// URI to Windows file path
-	CheckResult(cdom::uriToFilePath("../folder/file.dae") == "..\\folder\\file.dae");
-	CheckResult(cdom::uriToFilePath("file:///C:/folder/file.dae") == "C:\\folder\\file.dae");
-	CheckResult(cdom::uriToFilePath("file://///otherComputer/file.dae") == "\\\\otherComputer\\file.dae");
-	CheckResult(cdom::uriToFilePath("http://www.slashdot.org") == "");
-#else
+	CheckResult(cdom::uriToNativePath("../folder/file.dae", cdom::Windows) == "..\\folder\\file.dae");
+	CheckResult(cdom::uriToNativePath("/C:/folder/file.dae", cdom::Windows) == "C:\\folder\\file.dae");
+	CheckResult(cdom::uriToNativePath("file:///C:/folder/file.dae", cdom::Windows) == "C:\\folder\\file.dae");
+	CheckResult(cdom::uriToNativePath("//otherComputer/file.dae", cdom::Windows) == "\\\\otherComputer\\file.dae");
+	CheckResult(cdom::uriToNativePath("file://///otherComputer/file.dae", cdom::Windows) == "\\\\otherComputer\\file.dae");
+	CheckResult(cdom::uriToNativePath("http://www.slashdot.org", cdom::Windows) == "");
+
 	// URI to Linux/Mac file path
-	CheckResult(cdom::uriToFilePath("../folder/file.dae") == "../folder/file.dae");
-	CheckResult(cdom::uriToFilePath("file:///folder/file.dae") == "/folder/file.dae");
-	CheckResult(cdom::uriToFilePath("http://www.slashdot.org") == "");
-#endif
+	CheckResult(cdom::uriToNativePath("../folder/file.dae", cdom::Posix) == "../folder/file.dae");
+	CheckResult(cdom::uriToNativePath("/folder/file.dae", cdom::Posix) == "/folder/file.dae");
+	CheckResult(cdom::uriToNativePath("file:///folder/file.dae", cdom::Posix) == "/folder/file.dae");
+	CheckResult(cdom::uriToNativePath("http://www.slashdot.org", cdom::Posix) == "");
 
 	return testResult(true);
 }
 
 
-DefineTest(uriOps) {
-	// This is pretty poor right now. Need to flesh this out.
-	DAE dae;
-	daeURI uri1(dae, "myFolder/myFile.dae");
-	daeURI uri2(dae, "myFolder/myFile.dae");
-	uri1.makeRelativeTo(&uri2); // Just make sure it doesn't blow up
+DefineTest(libxmlUriBugWorkaround) {
+	if (cdom::getSystemType() == cdom::Posix) {
+		// libxml doesn't like file scheme uris that don't have an authority component
+		CheckResult(cdom::fixUriForLibxml("file:/folder/file.dae") == "file:///folder/file.dae");
+	}
+	else if (cdom::getSystemType() == cdom::Windows) {
+		// libxml doesn't like file scheme uris that don't have an authority component
+		CheckResult(cdom::fixUriForLibxml("file:/c:/folder/file.dae") == "file:///c:/folder/file.dae");
+		// libxml wants UNC paths that contain an empty authority followed by three slashes
+		CheckResult(cdom::fixUriForLibxml("file://otherComputer/file.dae") == "file://///otherComputer/file.dae");
+		// libxml wants absolute paths that don't contain a drive letter to have an
+		// empty authority followed by two slashes.
+		CheckResult(cdom::fixUriForLibxml("file:/folder/file.dae") == "file:////folder/file.dae");
+	}
 
-	CheckResult(dae.open(lookupTestFile("cube.dae")));
-	uri1.setElement(dae.getDatabase()->typeLookup(domGeometry::ID()).at(0));
-	uri1.resolveURI();
-	CheckResult(string(uri1.getID()) == "box-lib");
+	return testResult(true);
+}
+
+
+// !!!steveT I want this to be a test of the DOM's ability to open files
+// using all the various ways of referencing files: relative paths, absolute
+// paths, absolute paths with no drive letter (Windows), UNC paths (Windows),
+// http scheme URIs, zipped files, etc.
+#if 0
+DefineTest(uriOpen) {
+	DAE dae;
+	CheckResult(dae.open("file:/c:/models/cube.dae"));
+	CheckResult(dae.open("/c:/models/cube.dae"));
+	CheckResult(dae.open("/models/cube.dae"));
+	CheckResult(dae.open("file:////models/cube.dae"));
+	CheckResult(dae.open("file://isis/sceard/COLLADA/forsteve/cube.dae"));
+	CheckResult(dae.open("file://///isis/sceard/COLLADA/forsteve/cube.dae"));
+	return testResult(true);
+}
+#endif
+
+
+DefineTest(uriOps) {
+	DAE dae;
+
+	// Check construction of absolute uris
+	CheckResult(daeURI(dae, "file:///home/sthomas/file.txt").str() == "file:/home/sthomas/file.txt");
+	CheckResult(daeURI(dae, "http://www.example.com/path").str() == "http://www.example.com/path");
+	CheckResult(daeURI(dae, "file:home/sthomas/file.txt").str() == "file:home/sthomas/file.txt");
+	CheckResult(daeURI(dae, "file:file.txt#fragment", true).str() == "file:file.txt");
+
+	// Check construction of relative uri references
+	{
+		daeURI base(dae, "file:/home/sthomas/file.txt?baseQuery#baseFragment");
+		CheckResult(base.str() == "file:/home/sthomas/file.txt?baseQuery#baseFragment");
+		CheckResult(daeURI(base, "file:/home/sthomas").str() == "file:/home/sthomas");
+		CheckResult(daeURI(base, "//authority").str() == "file://authority");
+		CheckResult(daeURI(base, "//authority/path").str() == "file://authority/path");
+		CheckResult(daeURI(base, "/home/johnny").str() == "file:/home/johnny");
+		CheckResult(daeURI(base, "myFile.txt").str() == "file:/home/sthomas/myFile.txt");
+		CheckResult(daeURI(base, "?query#fragment").str() == "file:/home/sthomas/file.txt?query#fragment");
+		CheckResult(daeURI(base, "?query").str() == "file:/home/sthomas/file.txt?query");
+		CheckResult(daeURI(base, "").str() == "file:/home/sthomas/file.txt?baseQuery");
+		CheckResult(daeURI(daeURI(dae, "http://www.example.com/path"), "myFolder/file.txt").str() == "http://www.example.com/myFolder/file.txt");
+		CheckResult(daeURI(daeURI(dae, "http://www.example.com/path/"), "myFolder/file.txt").str() == "http://www.example.com/path/myFolder/file.txt");
+		CheckResult(daeURI(daeURI(dae, "http://www.example.com"), "myFolder/file.txt").str() == "http://www.example.com/myFolder/file.txt");
+	}
+
+	// More reference resolution tests. These are taken from http://tools.ietf.org/html/rfc3986#section-5.4
+	{
+		daeURI base(dae, "http://a/b/c/d;p?q");
+
+		CheckResult(daeURI(base, "g:h").str() == "g:h");
+		CheckResult(daeURI(base, "g").str() == "http://a/b/c/g");
+		CheckResult(daeURI(base, "./g").str() == "http://a/b/c/g");
+		CheckResult(daeURI(base, "g/").str() == "http://a/b/c/g/");
+		CheckResult(daeURI(base, "/g").str() == "http://a/g");
+		CheckResult(daeURI(base, "//g").str() == "http://g");
+		CheckResult(daeURI(base, "?y").str() == "http://a/b/c/d;p?y");
+		CheckResult(daeURI(base, "g?y").str() == "http://a/b/c/g?y");
+		CheckResult(daeURI(base, "#s").str() == "http://a/b/c/d;p?q#s");
+		CheckResult(daeURI(base, "g#s").str() == "http://a/b/c/g#s");
+		CheckResult(daeURI(base, "g?y#s").str() == "http://a/b/c/g?y#s");
+		CheckResult(daeURI(base, ";x").str() == "http://a/b/c/;x");
+		CheckResult(daeURI(base, "g;x").str() == "http://a/b/c/g;x");
+		CheckResult(daeURI(base, "g;x?y#s").str() == "http://a/b/c/g;x?y#s");
+		CheckResult(daeURI(base, "").str() == "http://a/b/c/d;p?q");
+		CheckResult(daeURI(base, ".").str() == "http://a/b/c/");
+		CheckResult(daeURI(base, "./").str() == "http://a/b/c/");
+		CheckResult(daeURI(base, "..").str() == "http://a/b/");
+		CheckResult(daeURI(base, "../").str() == "http://a/b/");
+		CheckResult(daeURI(base, "../g").str() == "http://a/b/g");
+		CheckResult(daeURI(base, "../..").str() == "http://a/");
+		CheckResult(daeURI(base, "../../").str() == "http://a/");
+		CheckResult(daeURI(base, "../../g").str() == "http://a/g");
+
+		CheckResult(daeURI(base, "../../../g").str() == "http://a/g");
+		CheckResult(daeURI(base, "../../../../g").str() == "http://a/g");
+		CheckResult(daeURI(base, "/./g").str() == "http://a/g");
+		CheckResult(daeURI(base, "/../g").str() == "http://a/g");
+		CheckResult(daeURI(base, "g.").str() == "http://a/b/c/g.");
+		CheckResult(daeURI(base, ".g").str() == "http://a/b/c/.g");
+		CheckResult(daeURI(base, "g..").str() == "http://a/b/c/g..");
+		CheckResult(daeURI(base, "..g").str() == "http://a/b/c/..g");
+
+		CheckResult(daeURI(base, "./../g").str() == "http://a/b/g");
+		CheckResult(daeURI(base, "./g/.").str() == "http://a/b/c/g/");
+		CheckResult(daeURI(base, "g/./h").str() == "http://a/b/c/g/h");
+		CheckResult(daeURI(base, "g/../h").str() == "http://a/b/c/h");
+		CheckResult(daeURI(base, "g;x=1/./y").str() == "http://a/b/c/g;x=1/y");
+		CheckResult(daeURI(base, "g;x=1/../y").str() == "http://a/b/c/y");
+
+
+		CheckResult(daeURI(base, "g?y/./x").str() == "http://a/b/c/g?y/./x");
+		CheckResult(daeURI(base, "g?y/../x").str() == "http://a/b/c/g?y/../x");
+		CheckResult(daeURI(base, "g#s/./x").str() == "http://a/b/c/g#s/./x");
+		CheckResult(daeURI(base, "g#s/../x").str() == "http://a/b/c/g#s/../x");
+
+		CheckResult(daeURI(base, "http:g").str() == "http:g");
+	}
+
+	// Check originalStr
+	CheckResult(daeURI(dae, "relPath/file.txt").originalStr() == "relPath/file.txt");
+
+	// Check main setters
+	{
+		daeURI uri(dae);
+		uri.set("file:/path/file.txt");
+		CheckResult(uri.str() == "file:/path/file.txt");
+		uri.set("http", "www.example.com", "/path", "q", "f");
+		CheckResult(uri.str() == "http://www.example.com/path?q#f");
+	}
+
+	// Check component accessors
+	CheckResult(daeURI(dae, "file:/home/sthomas/file.txt").scheme() == "file");
+	CheckResult(daeURI(dae, "http://www.example.com").authority() == "www.example.com");
+	CheckResult(daeURI(dae, "file:/home/sthomas/file.txt").path() == "/home/sthomas/file.txt");
+	CheckResult(daeURI(dae, "file:/home/sthomas/file.txt?query").query() == "query");
+	CheckResult(daeURI(dae, "file:/home/sthomas/file.txt?query#fragment").fragment() == "fragment");
+	CheckResult(daeURI(dae, "file:/home/sthomas/file.txt?query#fragment").id() == "fragment");
+
+	// Check component setters
+	{
+		daeURI uri(dae);
+		uri.scheme("file");
+		uri.authority("myAuth");
+		uri.path("/home/sthomas/file.txt");
+		uri.query("q");
+		uri.fragment("f");
+		CheckResult(uri.str() == "file://myAuth/home/sthomas/file.txt?q#f");
+		uri.id("id");
+		CheckResult(uri.str() == "file://myAuth/home/sthomas/file.txt?q#id");
+	}
+
+	// Check path component accessors
+	{
+		daeURI uri(dae, "file:/home/sthomas/file.txt");
+		CheckResult(uri.str() == "file:/home/sthomas/file.txt");
+		string dir, base, ext;
+		uri.pathComponents(dir, base, ext);
+		CheckResult(dir == "/home/sthomas/");
+		CheckResult(base == "file");
+		CheckResult(ext == ".txt");
+		CheckResult(uri.pathDir() == "/home/sthomas/");
+		CheckResult(uri.pathFileBase() == "file");
+		CheckResult(uri.pathExt() == ".txt");
+		CheckResult(uri.pathFile() == "file.txt");
+	}
 	
+	// Check path component setters
+	{
+		daeURI uri(dae, "file:");
+		CheckResult(uri.str() == "file:");
+		uri.path("/home/sthomas/", "file", ".txt");
+		CheckResult(uri.str() == "file:/home/sthomas/file.txt");
+		uri.pathDir("/home/johnny"); // A / should automatically be added to the end for us
+		uri.pathFileBase("otherFile");
+		uri.pathExt(".dae");
+		CheckResult(uri.str() == "file:/home/johnny/otherFile.dae");
+		uri.pathFile("file.txt");
+		CheckResult(uri.str() == "file:/home/johnny/file.txt");
+	}
+	
+	// Check path normalization
+	CheckResult(daeURI(dae, "file:/d1/d2/d3/../../d4/./file.txt").str() == "file:/d1/d4/file.txt");
+
+	// Check old C string methods
+	CheckResult(strcmp(daeURI(dae, "file:/dir/file.txt").getURI(), "file:/dir/file.txt") == 0);
+	CheckResult(strcmp(daeURI(dae, "dir/file.txt").getOriginalURI(), "dir/file.txt") == 0);
+	{
+		daeURI uri(dae), base(dae);
+		base.setURI("http://www.example.com");
+		uri.setURI("dir/file.txt", &base);
+		CheckResult(uri.str() == "http://www.example.com/dir/file.txt");
+		uri.setURI("http://www.example.com/dir/file.txt?q#f");
+		CheckResult(strcmp(uri.getScheme(), "http") == 0);
+		CheckResult(strcmp(uri.getProtocol(), "http") == 0);
+		CheckResult(strcmp(uri.getAuthority(), "www.example.com") == 0);
+		CheckResult(strcmp(uri.getPath(), "/dir/file.txt") == 0);
+		CheckResult(strcmp(uri.getQuery(), "q") == 0);
+		CheckResult(strcmp(uri.getFragment(), "f") == 0);
+		CheckResult(strcmp(uri.getID(), "f") == 0);
+		char buffer1[4], buffer2[32];
+		CheckResult(!uri.getPath(buffer1, sizeof(buffer1)));
+		CheckResult(uri.getPath(buffer2, sizeof(buffer2)));
+		CheckResult(strcmp(buffer2, "/dir/file.txt") == 0);
+	}
+
+	// Check makeRelativeTo
+	{
+		daeURI base(dae, "file:/home/sthomas/");
+		daeURI uri1(base, "folder1/file.dae");
+		daeURI uri2(base, "folder2/file.dae");
+		uri2.makeRelativeTo(&uri1);
+		CheckResult(uri2.originalStr() == "../folder2/file.dae");
+		CheckResult(uri2.str() == "file:/home/sthomas/folder2/file.dae");
+	}
+
+	// Check resolveURI
+	{
+		CheckResult(dae.open(lookupTestFile("cube.dae")));
+		daeURI uri(dae);
+		uri.setElement(dae.getDatabase()->typeLookup(domGeometry::ID()).at(0));
+		uri.resolveURI();
+		CheckResult(uri.id() == "box-lib");
+	}
+
+	// Make sure we can handle paths that start with '//'. Libxml uses such paths
+	// to represent UNC paths and absolute paths without a drive letter on Windows.
+	{
+		string scheme, authority, path, query, fragment;
+		cdom::parseUriRef("file:////models/cube.dae", scheme, authority, path, query, fragment);
+		CheckResult(cdom::assembleUri(scheme, authority, path, query, fragment) == "file:////models/cube.dae");
+	}
+
+	return testResult(true);
+}
+
+
+DefineTest(uriBase) {
+	DAE dae;
+	daeURI uri(dae, cdom::nativePathToUri(lookupTestFile("uri.dae")));
+	CheckResult(dae.open(uri.str()));
+	domImage::domInit_from* initFrom = dae.getDatabase()->typeLookup<domImage::domInit_from>().at(0);
+	CheckResult(initFrom->getValue().pathDir() == uri.pathDir());
 	return testResult(true);
 }
 
@@ -1026,8 +1255,8 @@ DefineTest(baseURI) {
 	dae1.setBaseURI("http://www.example.com/");
 	daeURI uri1(dae1, "myFolder/myFile.dae");
 	daeURI uri2(dae2, "myFolder/myFile.dae");
-	CheckResult(string(uri1.getURI()) != uri2.getURI());
-	CheckResult(string(uri1.getURI()) == "http://www.example.com/myFolder/myFile.dae");
+	CheckResult(uri1.str() != uri2.str());
+	CheckResult(uri1.str() == "http://www.example.com/myFolder/myFile.dae");
 	return testResult(true);
 }
 
@@ -1060,6 +1289,18 @@ DefineTest(databaseLookup) {
 	database.getElement(&elt, 8, NULL, "rotate");
 	CheckResult(elt);
 	
+	return testResult(true);
+}
+
+
+DefineTest(fileExtension) {
+	// The DOM used to have a bug where it couldn't resolve URIs or ID refs of
+	// documents with extensions other than .dae or .xml. This test ensures that
+	// the DOM is extension-agnostic.
+	DAE dae;
+	CheckResult(dae.open(lookupTestFile("cube.cstm")));
+	CheckResult(dae.getDatabase()->typeLookup<domAccessor>().at(0)->getSource().getElement());
+	CheckResult(dae.writeTo(lookupTestFile("cube.cstm"), getTmpFile("cube_roundTrip.cstm")));
 	return testResult(true);
 }
 

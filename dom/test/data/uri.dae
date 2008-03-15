@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <library_images>
+    <image id="myImage">
+      <init_from>file.tga</init_from>
+    </image>
+  </library_images>
+</COLLADA>

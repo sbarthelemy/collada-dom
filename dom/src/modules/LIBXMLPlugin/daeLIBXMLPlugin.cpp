@@ -63,8 +63,7 @@ namespace {
 
 daeLIBXMLPlugin::daeLIBXMLPlugin(DAE& dae) : dae(dae), rawRelPath(dae)
 {
-	supportedProtocols.append("file");
-	supportedProtocols.append("http");
+	supportedProtocols.push_back("*");
 	xmlInitParser();
 	rawFile = NULL;
 	rawByteCount = 0;
@@ -109,11 +108,11 @@ daeString daeLIBXMLPlugin::getOption( daeString option )
 // A simple structure to help alloc/free xmlTextReader objects
 struct xmlTextReaderHelper {
 	xmlTextReaderHelper(const daeURI& uri) {
-		reader = xmlReaderForFile(uri.getURI(), NULL, 0);
+		reader = xmlReaderForFile(cdom::fixUriForLibxml(uri.str()).c_str(), NULL, 0);
 	}
 
 	xmlTextReaderHelper(daeString buffer, const daeURI& baseUri) {
-		reader = xmlReaderForDoc((xmlChar*)buffer, baseUri.getURI(), NULL, 0);
+		reader = xmlReaderForDoc((xmlChar*)buffer, cdom::fixUriForLibxml(baseUri.str()).c_str(), NULL, 0);
 	};
 
 	~xmlTextReaderHelper() {
@@ -127,7 +126,7 @@ struct xmlTextReaderHelper {
 daeElementRef daeLIBXMLPlugin::readFromFile(const daeURI& uri) {
 	xmlTextReaderHelper readerHelper(uri);
 	if (!readerHelper.reader) {
-		daeErrorHandler::get()->handleError((std::string("Failed to open ") + uri.getURI() +
+		daeErrorHandler::get()->handleError((std::string("Failed to open ") + uri.str() +
 		                                    " in daeLIBXMLPlugin::readFromFile\n").c_str());
 		return NULL;
 	}
@@ -209,7 +208,7 @@ daeInt daeLIBXMLPlugin::write(const daeURI& name, daeDocument *document, daeBool
 		return DAE_ERR_COLLECTION_DOES_NOT_EXIST;
 
 	// Convert the URI to a file path, to see if we're about to overwrite a file
-	string file = cdom::uriToFilePath(name.getURI());
+	string file = cdom::uriToNativePath(name.str());
 	if (file.empty()  &&  saveRawFile)
 	{
 		daeErrorHandler::get()->handleError( "can't get path in write\n" );
@@ -247,17 +246,16 @@ daeInt daeLIBXMLPlugin::write(const daeURI& name, daeDocument *document, daeBool
 		{
 			return DAE_ERR_BACKEND_IO;
 		}
-		rawRelPath.setURI(cdom::filePathToUri(rawFilePath).c_str());
-		rawRelPath.validate();
+		rawRelPath.set(cdom::nativePathToUri(rawFilePath));
 		rawRelPath.makeRelativeTo( &name );
 	}
 
 	// Open the file we will write to
-	writer = xmlNewTextWriterFilename(name.getURI(), 0);
+	writer = xmlNewTextWriterFilename(cdom::fixUriForLibxml(name.str()).c_str(), 0);
 	if ( !writer ) {
-		char msg[512];
-		sprintf(msg,"daeLIBXMLPlugin::write(%s) failed\n",name.getURI());
-		daeErrorHandler::get()->handleError( msg );
+		ostringstream msg;
+		msg << "daeLIBXMLPlugin::write(" << name.str() << ") failed\n";
+		daeErrorHandler::get()->handleError(msg.str().c_str());
 		return DAE_ERR_BACKEND_IO;
 	}
 	xmlTextWriterSetIndentString( writer, (const xmlChar*)"\t" ); // Don't change this to spaces

@@ -44,7 +44,7 @@ void daeDocument::addExternalReference( daeURI &uri ) {
 		return;	
 	}	
 	size_t idx;
-	daeURI tempURI( *dae, uri.getURI(), true );
+	daeURI tempURI( *dae, uri.str(), true );
 	daeStringRef docURI( tempURI.getURI() );
 	if ( referencedDocuments.find( docURI, idx ) == DAE_OK ) {
 		externalURIs[idx]->appendUnique( &uri );

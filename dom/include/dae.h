@@ -22,6 +22,7 @@
 #include <dae/daeMetaElement.h>
 #include <dae/daeIDRef.h>
 #include <dae/daeURI.h>
+#include <dae/daeUtils.h>
 
 class domCOLLADA;
 typedef daeSmartRef<domCOLLADA> domCOLLADARef;
@@ -38,8 +39,8 @@ public:
 	// Constructor. If no database or IO plugin are provided, a default database and
 	// IO plugin will be used.
 	DAE(daeDatabase* database = NULL, daeIOPlugin* ioPlugin = NULL)
-		: atomicTypes(*this),
-		  baseUri(*this, true)
+	  : atomicTypes(*this),
+	    baseUri(*this, cdom::getcwdAsUri().c_str())
 	{
 		// See the end of the thread linked below for an explanation of why we have the DAE
 		// constructor set up this way. Basically, I'm going to be changing the build output 

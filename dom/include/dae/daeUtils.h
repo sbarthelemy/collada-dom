@@ -11,6 +11,15 @@
 #include <dae/daePlatform.h>
 
 namespace cdom {
+	// System type info. We only need to distinguish between Posix and Winodws for now.
+	enum systemType {
+		Posix,
+		Windows
+	};
+
+	// Get the system type at runtime.
+	DLLSPEC systemType getSystemType();
+	
 	// String replace function. Usage: replace("abcdef", "cd", "12") --> "ab12ef".
 	DLLSPEC std::string replace(const std::string& s, 
 	                            const std::string& replace, 
@@ -33,6 +42,12 @@ namespace cdom {
 	DLLSPEC std::vector<std::string> makeStringArray(const char* s, ...);
 	DLLSPEC std::list<std::string> makeStringList(const char* s, ...);
 
+	DLLSPEC std::string getcwd();
+	DLLSPEC std::string getcwdAsUri();
+
+	DLLSPEC int strcasecmp(const char* str1, const char* str2);
+
+	// Disable VS warning
 #ifdef _MSC_VER
 #pragma warning(push)
 #pragma warning(disable : 4267)

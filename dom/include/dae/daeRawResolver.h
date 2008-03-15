@@ -35,10 +35,7 @@ public:
 
 public: // Abstract Interface
 	virtual DLLSPEC daeBool resolveElement(daeURI& uri);
-	virtual DLLSPEC daeBool resolveURI(daeURI& uri);
 	virtual DLLSPEC daeString getName();
-	virtual DLLSPEC daeBool isProtocolSupported(daeString protocol);
-	virtual DLLSPEC daeBool isExtensionSupported(daeString extension);
 };
 
 

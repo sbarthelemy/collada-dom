@@ -54,7 +54,7 @@ daeInt daeIOPluginCommon::read(const daeURI& uri, daeString docBuffer)
 	}
 
 	// Generate a version of the URI with the fragment removed
-	daeURI fileURI(*uri.getDAE(), uri.getURI(), true);
+	daeURI fileURI(*uri.getDAE(), uri.str(), true);
 
 	//check if document already exists
 	if ( database->isDocumentLoaded( fileURI.getURI() ) )
@@ -69,7 +69,7 @@ daeInt daeIOPluginCommon::read(const daeURI& uri, daeString docBuffer)
 	if (!domObject) {
 		string msg = docBuffer ?
 			"Failed to load XML document from memory\n" :
-			string("Failed to load ") + fileURI.getURI() + "\n";
+			string("Failed to load ") + fileURI.str() + "\n";
 		daeErrorHandler::get()->handleError(msg.c_str());
 		return DAE_ERR_BACKEND_IO;
 	}

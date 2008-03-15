@@ -152,6 +152,11 @@ public:
 	 * @return Returns the @c daeMetaElement to which this @c daeAttribute belongs.
 	 */
 	daeMetaElement* getContainer() { return _container; }
+
+	/**
+	 * Notifies an attribute when the containing document changes.
+	 */
+	virtual void setDocument(daeElement* e, daeDocument* doc);
 	  
 	/**
 	 * Converts an element's attribute value to a string.
@@ -298,6 +303,11 @@ public:
 	 * @return Returns true if this attribute is an array type.
 	 */
 	virtual daeBool isArrayAttribute() { return true; }
+
+	/**
+	 * Notifies an attribute when the containing document changes.
+	 */
+	virtual void setDocument(daeElement* e, daeDocument* doc);
 };
 
 

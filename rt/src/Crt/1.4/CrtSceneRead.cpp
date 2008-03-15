@@ -1150,16 +1150,9 @@ CrtImage *CrtScene::ReadImage( domImageRef lib )
 		CrtImage * newImage = CrtNew( CrtImage );
 		CrtAssert("No memory\n", newImage!=NULL);
 		newImage->SetName( imageElement->getId() );
-		newImage->SetDocURI( imageElement->getDocumentURI()->getURI() ); 
-		imageElement->getInit_from()->getValue().validate();
-		CrtChar * file = (char*)imageElement->getInit_from()->getValue().getFile();
-		CrtChar * filepath = (char*)imageElement->getInit_from()->getValue().getFilepath();
-		CrtChar filepathname[1024];
-#ifdef _WIN32
-		filepath++; 
-#endif
-		sprintf(filepathname, "%s%s", filepath, file);
-		newImage->SetFileName( filepathname );
+		newImage->SetDocURI( imageElement->getDocumentURI()->getURI() );
+		newImage->SetFileName(cdom::uriToNativePath(
+			imageElement->getInit_from()->getValue().str()).c_str());
 		
 		// load the actual image passing in the current file name 
 		// to first look relative to the current <file>_Textures

@@ -44,7 +44,7 @@ namespace {
 daeTinyXMLPlugin::daeTinyXMLPlugin()
 {
   m_doc = NULL;
-	supportedProtocols.append("file");
+	supportedProtocols.push_back("*");
 }
 
 daeTinyXMLPlugin::~daeTinyXMLPlugin()
@@ -62,13 +62,13 @@ daeString daeTinyXMLPlugin::getOption( daeString option )
 }
 
 daeElementRef daeTinyXMLPlugin::readFromFile(const daeURI& uri) {
-	string file = cdom::uriToFilePath(uri.getURI());
+	string file = cdom::uriToNativePath(uri.str());
 	if (file.empty())
 		return NULL;
 	TiXmlDocument doc;
 	doc.LoadFile(file.c_str());
 	if (!doc.RootElement()) {
-		daeErrorHandler::get()->handleError((std::string("Failed to open ") + uri.getURI() +
+		daeErrorHandler::get()->handleError((std::string("Failed to open ") + uri.str() +
 		                                     " in daeTinyXMLPlugin::readFromFile\n").c_str());
 		return NULL;
 	}
@@ -116,7 +116,7 @@ daeInt daeTinyXMLPlugin::write(const daeURI& name, daeDocument *document, daeBoo
 	if(!document)
 		return DAE_ERR_COLLECTION_DOES_NOT_EXIST;
 
-	string fileName = cdom::uriToFilePath(name.getURI());
+	string fileName = cdom::uriToNativePath(name.str());
 	if (fileName.empty())
 	{
 		daeErrorHandler::get()->handleError( "can't get path in write\n" );

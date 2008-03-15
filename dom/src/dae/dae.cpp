@@ -58,8 +58,11 @@ void DAE::init(daeDatabase* database_, daeIOPlugin* ioPlugin) {
 
 	initializeDomMeta(*this);
 	DAEInstanceCount++;
-	uriResolvers.addResolver(new daeStandardURIResolver(*this));
-	uriResolvers.addResolver(new daeRawResolver(*this));
+
+	// The order of the URI resolvers is significant, so be careful
+	uriResolvers.list().append(new daeRawResolver(*this));
+	uriResolvers.list().append(new daeStandardURIResolver(*this));
+
 	idRefResolvers.addResolver(new daeDefaultIDRefResolver(*this));
 
 	setDatabase(database_);
@@ -151,8 +154,8 @@ daeInt DAE::setIOPlugin(daeIOPlugin* _plugin)
 // using the current working directory as the base URI if a relative URI
 // reference is given.
 string DAE::makeFullUri(const string& path) {
-	daeURI uri(*this, cdom::filePathToUri(path).c_str());
-	return uri.getURI();
+	daeURI uri(*this, cdom::nativePathToUri(path));
+	return uri.str();
 }
 
 

@@ -284,6 +284,14 @@ public:
 		else 
 			return ret;
 	}
+
+	/**
+	 * Adds a new item to the front of the @c daeArray.
+	 * @param value Item to be added.
+	 */
+	void prepend(const T& value) {
+		insertAt(0, value);
+	}
 	
 	/**
 	 * Removes an item from the @c daeArray.
@@ -327,6 +335,17 @@ public:
 		}
 
 		return DAE_ERR_QUERY_NO_MATCH;
+	}
+	/**
+	 * Just like the previous function, but has a more reasonable interface.
+	 * @param value The value to find.
+	 * @return Returns a pointer to the value if found, null otherwise.
+	 */
+	T* find(const T& value) const {
+		size_t i;
+		if (find(value, i) == DAE_OK)
+			return get(i);
+		return NULL;
 	}
 	/**
 	 * Gets the object at a specific index in the @c daeArray.

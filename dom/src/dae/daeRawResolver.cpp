@@ -15,6 +15,7 @@
 
 #include <dae/daeURI.h>
 #include <dae/daeErrorHandler.h>
+#include <dae/daeUtils.h>
 
 using namespace std;
 
@@ -26,13 +27,6 @@ daeRawResolver::~daeRawResolver()
 {
 }
 
-daeBool
-daeRawResolver::resolveURI(daeURI& uri)
-{
-	(void)uri;
-	return false;
-}
-
 daeString
 daeRawResolver::getName()
 {
@@ -40,40 +34,12 @@ daeRawResolver::getName()
 }
 
 daeBool
-daeRawResolver::isExtensionSupported(daeString extension)
-{
-	if ((extension!=NULL) &&
-		(strlen(extension) > 0) &&
-		((strncmp(extension,"raw",3)==0) ||
-		 (strncmp(extension,"RAW",3)==0)))
-		return true;
-	return false;
-}
-		
-daeBool
-daeRawResolver::isProtocolSupported(daeString protocol)
-{
-	if ((protocol!=NULL) &&
-		(strlen(protocol) > 0) &&
-		((strncmp(protocol,"file",4) == 0)))
-		return true;
-	return false;
-}
-
-daeBool
 daeRawResolver::resolveElement(daeURI& uri)
 {
-	// Make sure the URI is validated
-	if (uri.getState() == daeURI::uri_loaded)
-	{
-		uri.validate();
-	}
-	if ( uri.getFile() == NULL )
-	{
+	if (cdom::strcasecmp(uri.pathExt().c_str(), ".raw"))
 		return false;
-	}
 
-	string fileName = cdom::uriToFilePath(uri.getURI());
+	string fileName = cdom::uriToNativePath(uri.str());
 	if (fileName.empty())
 	{
 		daeErrorHandler::get()->handleError( "can't get path from URI\n" );

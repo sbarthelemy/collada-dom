@@ -15,6 +15,7 @@
 #define __DAE_IOPLUGIN__
 
 #include <string>
+#include <vector>
 #include <dae/daeTypes.h>
 class daeDatabase;
 class daeMetaElement;
@@ -89,7 +90,7 @@ public:
 	 * Returns a list of the URI protocols that this plugin supports.
 	 * @return Returns a daeArray containing the supported protocols.
 	 */
-	virtual const daeTArray<std::string>& getSupportedProtocols() {
+	virtual const std::vector<std::string>& getSupportedProtocols() {
 		return supportedProtocols;
 	}
 
@@ -113,8 +114,8 @@ public:
 
 protected:
 	// This is an array of the URI protocols supported by this plugin, e.g. "http", "file",
-	// etc. Each plugin should set initialize this variable in the constructor.
-	daeTArray<std::string> supportedProtocols;
+	// etc. Each plugin should initialize this variable in the constructor.
+	std::vector<std::string> supportedProtocols;
 };
 
 

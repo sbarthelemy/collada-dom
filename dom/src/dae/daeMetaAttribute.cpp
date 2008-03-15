@@ -168,3 +168,11 @@ daeString daeMetaAttribute::getDefaultString() {
 daeMemoryRef daeMetaAttribute::getDefaultValue() {
 	return _defaultValue;
 }
+
+void daeMetaAttribute::setDocument(daeElement* e, daeDocument* doc) {
+	_type->setDocument(get(e), doc);
+}
+
+void daeMetaArrayAttribute::setDocument(daeElement* e, daeDocument* doc) {
+	_type->setDocument(*(daeArray*)get(e), doc);
+}

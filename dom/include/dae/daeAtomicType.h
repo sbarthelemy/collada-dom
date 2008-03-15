@@ -210,6 +210,20 @@ public:
 	 */
 	daeChar*			align(daeChar* ptr) {
 		return (daeChar*)(((intptr_t)(ptr+_alignment-1))&(~(_alignment - 1))); }
+
+	/**
+	 * Notifies an object when the containing document changes.
+	 * @param value Memory location of the atomic type value.
+	 * @param doc The new document.
+	 */
+	virtual void setDocument(daeChar* value, daeDocument* doc) { }
+
+	/**
+	 * Same as the previous method, but works on an array of objects.
+	 * @param values Array of the atomic type values.
+	 * @param doc The new document.
+	 */
+	virtual void setDocument(daeArray& array, daeDocument* doc) { }
 	
 protected:
 	DAE* _dae;
@@ -676,6 +690,10 @@ public:
 	virtual void copy(daeChar* src, daeChar* dst);
 
 	virtual daeArray* createArray();
+
+	virtual void setDocument(daeChar* value, daeDocument* doc);
+
+	virtual void setDocument(daeArray& array, daeDocument* doc);
 };
 
 /**

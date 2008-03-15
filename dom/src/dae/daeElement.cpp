@@ -132,21 +132,27 @@ daeElement::removeChildElement(daeElement* element)
 	return _meta->remove( this, element );
 }
 
-// !!!ACL Added to fix mantis issue 0000416
 void daeElement::setDocument( daeDocument *c, bool notifyDocument ) {
-	if( _document == c ) {
+	if( _document == c )
 		return;
-	}
+
+	// Notify our parent document if necessary.
 	if ( _document != NULL && notifyDocument )
-	{
 		_document->removeElement(this);
-	}
 	_document = c;
 	if ( _document != NULL && notifyDocument )
-	{
 		_document->insertElement(this);
-	}
 
+	// Notify our attributes
+	daeMetaAttributeRefArray& metaAttrs = getMeta()->getMetaAttributes();
+	for (size_t i = 0; i < metaAttrs.getCount(); i++)
+		metaAttrs[i]->setDocument(this, c);
+
+	// Notify our char data object
+	if (getCharDataObject())
+		getCharDataObject()->setDocument(this, c);
+	
+	// Notify our children
 	daeElementRefArray ea;
 	getChildren( ea );
 	for ( size_t x = 0; x < ea.getCount(); x++ ) {
