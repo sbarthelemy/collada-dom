@@ -77,12 +77,16 @@ Overriding the defaults
 -----------------------
 
 The defaults can easily be overriden by setting param=value when calling
-make. If a particular param has a default that you always want to override,
-it might be easier to put the overrides in make/customSettings.mk, which gets
+make. If a particular param has a default that you always want to override, it
+might be easier to put the overrides in make/customSettings.mk, which gets
 included by the DOM makefile. For example, I tend to always build Mac universal
 binaries, but the default is to build for the native architecture only. Instead
 of always passing arch='x86 ppc' on the command line, I create a file
-make/customSettings.mk that has 'arch := x86 ppc'.
+make/customSettings.mk that has 'arch := x86 ppc'. Also, the file
+~/.collada-dom/customSettings.mk serves the same purpose as
+make/customSettings.mk, except that it's more useful when you're working with
+multiple branches of the DOM and you want your customized settings to apply to
+all branches.
 
 
 Mac Notes
