@@ -40,7 +40,7 @@ public:
 	// IO plugin will be used.
 	DAE(daeDatabase* database = NULL, daeIOPlugin* ioPlugin = NULL)
 	  : atomicTypes(*this),
-	    baseUri(*this, cdom::getcwdAsUri().c_str())
+	    baseUri(*this, cdom::getCurrentDirAsUri().c_str())
 	{
 		// See the end of the thread linked below for an explanation of why we have the DAE
 		// constructor set up this way. Basically, I'm going to be changing the build output 
@@ -124,6 +124,39 @@ public:
 	// resolvers.
 	daeIDRefResolverList& getIDRefResolvers();
 
+	// These functions specify the client's character encoding for the DOM. The
+	// default is Utf8, but if you specify Latin1 then the DOM will use libxml's
+	// character conversion functions to convert to Utf8 when writing data and
+	// convert to Latin1 when reading data. This can help with the handling of
+	// non-ASCII characters on Windows. Only when using libxml for xml I/O does
+	// any character conversion occur.
+	//
+	// Most people can probably just ignore this completely. If you have trouble
+	// with non-ASCII characters on Windows, try setting the char encoding to
+	// Latin1 to see if that helps.
+	//
+	// Frankly this certainly isn't the best way of handling non-ASCII character
+	// support on Windows, so this interface is a likely target for significant
+	// changes in the future.
+	//
+	// See this Sourceforge thread for more info:
+	// http://sourceforge.net/tracker/index.php?func=detail&aid=1818473&group_id=157838&atid=805426
+	//
+	enum charEncoding {
+		Utf8,
+		Latin1
+	};
+
+	// Global encoding setting. Defaults to Utf8. Set this if you want to make a
+	// char encoding change and apply it to all DAE objects.
+	static charEncoding getGlobalCharEncoding();
+	static void setGlobalCharEncoding(charEncoding encoding);
+
+	// Local encoding setting. If set, overrides the global setting. Useful for setting
+	// a specific char encoding for a single DAE object but not for all DAE objects.
+	charEncoding getCharEncoding();
+	void setCharEncoding(charEncoding encoding);
+
 	// Deprecated. Alternative methods are given.
 	virtual daeInt load(daeString uri, daeString docBuffer = NULL); // Use open
 	virtual daeInt save(daeString uri, daeBool replace=true); // Use write
@@ -150,6 +183,9 @@ private:
 	daeURI baseUri;
 	daeURIResolverList uriResolvers;
 	daeIDRefResolverList idRefResolvers;
+
+	std::auto_ptr<charEncoding> localCharEncoding;
+	static charEncoding globalCharEncoding;
 };
 
 

@@ -31,14 +31,14 @@ public:
 	 * @param n Number of bytes to allocate.
 	 * @return Returns the memory allocated if successful, or NULL if not.
 	 */
-	static DLLSPEC daeRawRef malloc(daeString pool, size_t n);
+	static DLLSPEC daeRawRef alloc(daeString pool, size_t n);
 
 	/**
 	 * Provides a wrapper free with pool argument.
 	 * @param pool Pool the memory should be freed from.
 	 * @param mem Memory to be freed.
 	 */
-	static DLLSPEC void free(daeString pool, daeRawRef mem);
+	static DLLSPEC void dealloc(daeString pool, daeRawRef mem);
 };
 
 // (steveT) These new/delete overrides aren't complete. What about new[] and delete[]?
@@ -50,8 +50,8 @@ public:
 #if 0
 #define DAE_ALLOC \
 	/* Standard new/delete */ \
-	inline void* operator new(size_t size) { return daeMemorySystem::malloc("meta", size); } \
-	inline void operator delete(void* p) { daeMemorySystem::free("meta", p); } \
+	inline void* operator new(size_t size) { return daeMemorySystem::alloc("meta", size); } \
+	inline void operator delete(void* p) { daeMemorySystem::dealloc("meta", p); } \
 	/* Placement new/delete */ \
 	inline void* operator new(size_t, void* p) { return p; } \
 	inline void operator delete(void*, void*) { }

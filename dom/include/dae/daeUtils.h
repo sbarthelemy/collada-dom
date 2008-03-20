@@ -42,8 +42,8 @@ namespace cdom {
 	DLLSPEC std::vector<std::string> makeStringArray(const char* s, ...);
 	DLLSPEC std::list<std::string> makeStringList(const char* s, ...);
 
-	DLLSPEC std::string getcwd();
-	DLLSPEC std::string getcwdAsUri();
+	DLLSPEC std::string getCurrentDir();
+	DLLSPEC std::string getCurrentDirAsUri();
 
 	DLLSPEC int strcasecmp(const char* str1, const char* str2);
 

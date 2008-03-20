@@ -85,7 +85,7 @@ list<string> cdom::makeStringList(const char* s, ...) {
 	return result;
 }
 
-string cdom::getcwd() {
+string cdom::getCurrentDir() {
 #ifdef __CELLOS_LV2__
 	// The PS3 has no getcwd call.
 	// !!!steveT Should we return app_home instead?
@@ -96,13 +96,13 @@ string cdom::getcwd() {
 #ifdef _WIN32
 	_getcwd(buffer, 1024);
 #else
-	::getcwd(buffer, 1024);
+	getcwd(buffer, 1024);
 #endif
 	return buffer;
 }
 
-string cdom::getcwdAsUri() {
-	string result = string("file://") + cdom::nativePathToUri(getcwd());
+string cdom::getCurrentDirAsUri() {
+	string result = string("file://") + cdom::nativePathToUri(getCurrentDir());
 	// Make sure the last char is a /
 	if (!result.empty()  &&  result[result.length()-1] != '/')
 		result += "/";

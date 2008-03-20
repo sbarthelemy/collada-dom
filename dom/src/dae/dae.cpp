@@ -40,6 +40,7 @@ using namespace std;
 extern daeString COLLADA_VERSION;		 
 
 daeInt DAEInstanceCount = 0;
+DAE::charEncoding DAE::globalCharEncoding = DAE::Utf8;
 
 void
 DAE::cleanup()
@@ -333,3 +334,19 @@ daeIDRefResolverList& DAE::getIDRefResolvers() {
 }
 
 void DAE::dummyFunction1() { }
+
+DAE::charEncoding DAE::getGlobalCharEncoding() {
+	return globalCharEncoding;
+}
+
+void DAE::setGlobalCharEncoding(charEncoding encoding) {
+	globalCharEncoding = encoding;
+}
+
+DAE::charEncoding DAE::getCharEncoding() {
+	return localCharEncoding.get() ? *localCharEncoding : getGlobalCharEncoding();
+}
+
+void DAE::setCharEncoding(charEncoding encoding) {
+	localCharEncoding.reset(new charEncoding(encoding));
+}

@@ -15,20 +15,20 @@
 //#include <malloc.h>
 
 daeRawRef
-daeMemorySystem::malloc(daeString pool, size_t n)
+daeMemorySystem::alloc(daeString pool, size_t n)
 {
 	(void)pool;
-	void *mem = ::malloc(n);
+	void *mem = malloc(n);
 //	memset(mem,0,n);
 //	printf("alloc[%s] - %d = 0x%x\n",pool,n,mem);
 	return (daeRawRef)mem;
 }
 
 void
-daeMemorySystem::free(daeString pool, daeRawRef mem)
+daeMemorySystem::dealloc(daeString pool, daeRawRef mem)
 {
 	(void)pool;
 //	printf("free[%s] - 0x%x\n",pool,mem);
-	::free(mem);
+	free(mem);
 }
 
