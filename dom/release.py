@@ -103,59 +103,37 @@ def main():
     setupReleaseCopy(vs9Path)
 
     print "Doing VS8 build"
-    os.execvp(vs8Path + "\\dom\\projects\\vc8\\build.bat", ())
+    os.spawnl(os.P_WAIT, vs8Path + "\\dom\\projects\\vc8\\build.bat")
 
     # This could be automated but I don't have a copy of VS9. Argh!
     print "\n\nTime for the VS9 build. Make sure the project files in the VS9 path are converted,\n" \
         + "then open the solution and do both a debug and release build. Press enter when\n" \
         + "the build is finished."
-    raw_input("Waiting for user response...")
+    raw_input("\nWaiting for user response...")
 
     # Check to make sure all the binaries are there
-    print "Checking that all files are present (i.e. the build really worked)"
+    print "Checking that all files are present (i.e. the build really worked)... "
     if not checkBuildResult(vs8Path):
         print "VS8 build seems to have failed. Not all files are present."
         return 2
     if not checkBuildResult(vs9Path):
         print "VS9 build seems to have failed. Not all files are present."
         return 2
+    print "ok"
 
     packageFiles(path.join(releasePath, 'colladadom-vc8.zip'), vs8Path, 'colladadom')
     packageFiles(path.join(releasePath, 'colladadom-vc9.zip'), vs9Path, 'colladadom')
 
     # Build RT and add it to the VC8 zip file
-    os.execvp(path.join(vs8Path, 'rt', 'projects', 'VC++8', 'build.bat'), ())
+    print "Building RT"
+    os.spawnl(os.P_WAIT, path.join(vs8Path, 'rt', 'projects', 'VC++8', 'build.bat'))
     rt = path.join(vs8Path, 'rt', 'bin', 'vc8_1.4', 'COLLADA_RT_VIEWER.exe')
     if not path.exists(rt):
         print "RT build seems to have failed"
         return 2
     zip = ZipFile(path.join(releasePath, 'colladadom-vc8.zip'), 'a', zipfile.ZIP_DEFLATED)
-    zip.write(rt, path.join(archivePrefix, 'COLLADA_RT_VIEWER.exe'))
+    zip.write(rt, path.join('colladadom', 'bin', 'COLLADA_RT_VIEWER.exe'))
+
+    print "Packaging successful!"
 
 main()
-
-# for root, dirs, files in os.walk(path.join('c:\\dom\\trunk\\dom\\test\\data')):
-#     print root
-#     print dirs
-#     print files
-#     print "\n\n"
-
-# releasePath = path.abspath(sys.argv[1])
-# vs8Path = path.join(releasePath, "dom-release-vs8")
-# archivePrefix = 'colladadom'
-# packageFiles(path.join(releasePath, 'colladadom-vc8.zip'), vs8Path, archivePrefix)
-
-# # Build RT and add it to the zip file
-# os.execvp(path.join(vs8Path, 'rt', 'projects', 'VC++8', 'build.bat'), ())
-# rt = path.join(vs8Path, 'rt', 'bin', 'vc8_1.4', 'COLLADA_RT_VIEWER.exe')
-# if not path.exists(rt):
-#     print "RT build seems to have failed"
-#     sys.exit(2)
-# zip = ZipFile(path.join(releasePath, 'colladadom-vc8.zip'), 'a', zipfile.ZIP_DEFLATED)
-# zip.write(rt, path.join(archivePrefix, 'COLLADA_RT_VIEWER.exe'))
-
-#os.system("zip -h")
-#print os.execvp("zip", ("zip",) + ("-h",))
-#print checkBuildResult("C:\\dom\\dom-release-vs8")
-
-# "C:\Program Files\Microsoft Visual Studio 8\Common7\Tools\vsvars32.bat"
