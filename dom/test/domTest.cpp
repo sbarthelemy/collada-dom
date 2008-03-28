@@ -1312,6 +1312,15 @@ DefineTest(fileExtension) {
 }
 
 
+DefineTest(zipFile) {
+	// The DOM should be able to load a gzip/zlib-compressed dae via libxml.
+	DAE dae;
+	CheckResult(dae.open(lookupTestFile("cube.dae.gz")));
+	CheckResult(dae.getDatabase()->typeLookup(domAsset::ID()).size() == 1);
+	return testResult(true);
+}
+
+
 DefineTest(charEncoding) {
 	// Basically we're just looking for crashes or memory leaks here.
 	string file = getTmpFile("charEncoding.dae");
