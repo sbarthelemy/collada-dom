@@ -53,12 +53,16 @@ def checkBuildResult(codePath):
         return False
     return checkBinaries(path.join(codePath, "dom", "build", "vc8-1.4"))
 
-def packageHeaders(zip, codePath, archivePrefix):
-    for root, dirs, files in os.walk(path.join(codePath, 'dom', 'include')):
+def packageRecursive(zip, packagePath, fileExt, archivePrefix):
+    for root, dirs, files in os.walk(packagePath):
         for file in files:
-            if path.splitext(file)[1] == '.h':
+            if fileExt == None or path.splitext(file)[1] == fileExt:
                 archivePath = path.join(root, file)
-                archivePath = path.join(archivePrefix, archivePath[string.find(archivePath, 'include'):])
+                commonIndex = len(path.commonprefix([archivePath, packagePath]))
+                archivePath = archivePath[commonIndex:]
+                if archivePath[0] == os.sep:
+                    archivePath = archivePath[1:]
+                archivePath = path.join(archivePrefix, archivePath)
                 zip.write(path.join(root, file), archivePath)
         if '.svn' in dirs:
             dirs.remove('.svn')
@@ -71,8 +75,10 @@ def packageFiles(archivePath, codePath, archivePrefix):
     files += [path.join(codePath, 'dom', 'build', 'vc8-1.4', 'domTest.exe')]
     files = filter(lambda file: path.exists(file), files)
     z = ZipFile(archivePath, 'w', zipfile.ZIP_DEFLATED)
-    [z.write(file, path.join(archivePrefix, path.basename(file))) for file in files]
-    packageHeaders(z, codePath, archivePrefix)
+    [z.write(file, path.join(archivePrefix, 'bin', path.basename(file))) for file in files]
+    packageRecursive(z, path.join(codePath, 'dom', 'include'), '.h', path.join(archivePrefix, 'include'))
+    packageRecursive(z, path.join(codePath, 'dom', 'test', 'data'), None, \
+                     path.join(archivePrefix, 'bin', 'domTestData'))
     z.write(path.join(codePath, 'dom', 'readme.txt'), path.join(archivePrefix, 'readme.txt'))
     z.write(path.join(codePath, 'dom', 'releasenotes.txt'), path.join(archivePrefix, 'releasenotes.txt'))
 
@@ -128,6 +134,12 @@ def main():
     zip.write(rt, path.join(archivePrefix, 'COLLADA_RT_VIEWER.exe'))
 
 main()
+
+# for root, dirs, files in os.walk(path.join('c:\\dom\\trunk\\dom\\test\\data')):
+#     print root
+#     print dirs
+#     print files
+#     print "\n\n"
 
 # releasePath = path.abspath(sys.argv[1])
 # vs8Path = path.join(releasePath, "dom-release-vs8")
