@@ -80,7 +80,6 @@ def packageFiles(archivePath, codePath, archivePrefix):
     packageRecursive(z, path.join(codePath, 'dom', 'test', 'data'), None, \
                      path.join(archivePrefix, 'bin', 'domTestData'))
     z.write(path.join(codePath, 'dom', 'readme.txt'), path.join(archivePrefix, 'readme.txt'))
-    z.write(path.join(codePath, 'dom', 'releasenotes.txt'), path.join(archivePrefix, 'releasenotes.txt'))
 
 # basename: path.splitext(path.basename(archivePath))[0]
 
