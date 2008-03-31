@@ -67,7 +67,7 @@ def packageRecursive(zip, packagePath, fileExt, archivePrefix):
         if '.svn' in dirs:
             dirs.remove('.svn')
 
-def packageFiles(archivePath, codePath, archivePrefix):
+def packageDomFiles(archivePath, codePath, archivePrefix):
     domLibPrefix = 'libcollada' + colladaVersionNoDots + 'dom' + domVersionNoDots
     files = [domLibPrefix + '.dll', domLibPrefix + '.lib', domLibPrefix + '-s.lib', \
              domLibPrefix + '-d.dll', domLibPrefix + '-d.lib', domLibPrefix + '-sd.lib']
@@ -80,6 +80,17 @@ def packageFiles(archivePath, codePath, archivePrefix):
     packageRecursive(z, path.join(codePath, 'dom', 'test', 'data'), None, \
                      path.join(archivePrefix, 'bin', 'domTestData'))
     z.write(path.join(codePath, 'dom', 'readme.txt'), path.join(archivePrefix, 'readme.txt'))
+
+def packageRTFiles(archivePath, codePath, archivePrefix):
+    rtBinPath = path.join(codePath, 'rt', 'bin', 'vc8_1.4')
+    rt = path.join(rtBinPath, 'COLLADA_RT_VIEWER.exe')
+    devil = path.join(rtBinPath, 'DevIL.dll')
+    if not path.exists(rt):
+        print "RT build seems to have failed"
+        sys.exit(2)
+    zip = ZipFile(archivePath, 'a', zipfile.ZIP_DEFLATED)
+    zip.write(rt, path.join(archivePrefix, 'bin', 'COLLADA_RT_VIEWER.exe'))
+    zip.write(devil, path.join(archivePrefix, 'bin', 'DevIL.dll'))
 
 # basename: path.splitext(path.basename(archivePath))[0]
 
@@ -121,19 +132,19 @@ def main():
         return 2
     print "ok"
 
-    packageFiles(path.join(releasePath, 'colladadom-vc8.zip'), vs8Path, 'colladadom')
-    packageFiles(path.join(releasePath, 'colladadom-vc9.zip'), vs9Path, 'colladadom')
+    packageDomFiles(path.join(releasePath, 'colladadom-vc8.zip'), vs8Path, 'colladadom')
+    packageDomFiles(path.join(releasePath, 'colladadom-vc9.zip'), vs9Path, 'colladadom')
 
     # Build RT and add it to the VC8 zip file
     print "Building RT"
     os.spawnl(os.P_WAIT, path.join(vs8Path, 'rt', 'projects', 'VC++8', 'build.bat'))
-    rt = path.join(vs8Path, 'rt', 'bin', 'vc8_1.4', 'COLLADA_RT_VIEWER.exe')
-    if not path.exists(rt):
-        print "RT build seems to have failed"
-        return 2
-    zip = ZipFile(path.join(releasePath, 'colladadom-vc8.zip'), 'a', zipfile.ZIP_DEFLATED)
-    zip.write(rt, path.join('colladadom', 'bin', 'COLLADA_RT_VIEWER.exe'))
+    packageRTFiles(path.join(releasePath, 'colladadom-vc8.zip'), vs8Path, 'colladadom')
 
     print "Packaging successful!"
 
 main()
+
+# releasePath = path.abspath(sys.argv[1])
+# vs8Path = path.join(releasePath, "domReleaseVC8")
+# packageDomFiles(path.join(releasePath, 'colladadom-vc8.zip'), vs8Path, 'colladadom')
+# packageRTFiles(path.join(releasePath, 'colladadom-vc8.zip'), vs8Path, 'colladadom')
