@@ -184,7 +184,7 @@ ifneq ($(installPrefix),)
 ifeq ($(oss),linux)
 uninstall:
 	@echo Uninstalling from $(prefix)
-	rm -rf $(installPrefix)/include/collada
+	rm -rf $(installPrefix)/include/colladadom
 	rm -f  $(installPrefix)/lib/libcollada*dom*
 else ifeq ($(oss),mac)
 uninstall:
@@ -213,12 +213,12 @@ install: uninstall
 # Write the install prefix to the file make/installPrefix.mk so we can retrieve it for uninstalling.
 	echo 'installPrefix := $(prefix)' > make/installPrefix.mk
 # Install headers
-	cp -R include $(prefix)/include/collada
-	find $(prefix)/include/collada -name '.svn' | xargs rm -r
+	cp -R include $(prefix)/include/colladadom
+	find $(prefix)/include/colladadom -name '.svn' | xargs rm -r
 # Install linux-1.4 libs
-	if [ -d build/linux-1.4 ]; then cp build/linux-1.4/libcollada*dom* $(prefix)/lib; fi;
+	if [ -d build/linux-1.4 ]; then cp -P build/linux-1.4/libcollada*dom* $(prefix)/lib; fi;
 # Install linux-1.4-d libs
-	if [ -d build/linux-1.4-d ]; then cp build/linux-1.4-d/libcollada*dom* $(prefix)/lib; fi;
+	if [ -d build/linux-1.4-d ]; then cp -P build/linux-1.4-d/libcollada*dom* $(prefix)/lib; fi;
 else ifeq ($(oss),mac)
 install: uninstall
 	@echo Installing to $(prefix)
