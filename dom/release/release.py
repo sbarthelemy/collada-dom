@@ -107,6 +107,8 @@ def packageDomFilesLinux(zip, codePath, archivePrefix):
         sys.exit(2)
     files = [join(buildPath, file) for file in files]
     [zip.write(file, join(archivePrefix, 'bin', path.basename(file))) for file in files]
+    zip.write(join(codePath, 'dom', 'release', 'runDomTest'),
+              join(archivePrefix, 'bin', 'runDomTest'))
     packageDomFilesCommon(zip, codePath, archivePrefix)
 
 # basename: path.splitext(path.basename(archivePath))[0]
@@ -159,7 +161,7 @@ def main():
         os.mkdir(releasePath)
 
     if not path.exists(releasePath):
-        print 'Couldn't create ' + releasePath
+        print "Couldn't create " + releasePath
         return 2
 
     if windows:
