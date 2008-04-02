@@ -90,8 +90,7 @@ string cdom::getCurrentDir() {
 	// The PS3 has no getcwd call.
 	// !!!steveT Should we return app_home instead?
 	return "/";
-#endif
-	
+#else
 	char buffer[1024];
 #ifdef _WIN32
 	_getcwd(buffer, 1024);
@@ -99,6 +98,7 @@ string cdom::getCurrentDir() {
 	getcwd(buffer, 1024);
 #endif
 	return buffer;
+#endif
 }
 
 string cdom::getCurrentDirAsUri() {
