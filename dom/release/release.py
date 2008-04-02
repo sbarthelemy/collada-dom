@@ -3,7 +3,7 @@ from os import path
 from os.path import join
 from xml.dom import minidom, Node
 from zipfile import ZipFile
-pfrom tarfile import TarFile, TarFileCompat
+from tarfile import TarFile, TarFileCompat
 
 windows  =  sys.platform == 'win32'
 linux    =  sys.platform == 'linux2'
@@ -100,7 +100,6 @@ def packageDomFilesLinux(zip, codePath, archivePrefix):
     buildPath = join(codePath, 'dom', 'build', 'linux-1.4')
     domLibPrefix = 'libcollada' + colladaVersionNoDots + 'dom'
     files = [domLibPrefix + ext for ext in ['.a', '.so', '.so.2', '.so.2.0']]
-    print files
     files += ['domTest']
     if not checkFilesExist(buildPath, files):
         print 'Build seems to have failed'
