@@ -149,12 +149,12 @@ def packageWindows(opts):
         print 'Doing VC8 build'
         os.spawnl(os.P_WAIT, join(vc8Path, 'dom', 'projects', 'vc8', 'build.bat'))
         zip = createArchive(join(outdir, 'colladadom-vc8'), getArchive(opts))
-        packageDomFilesVC(vc8Zip, vc8Path)
+        packageDomFilesVC(zip, vc8Path)
 
         # Build RT and add it to the VC8 zip file
         print 'Building RT'
         os.spawnl(os.P_WAIT, join(vc8Path, 'rt', 'projects', 'VC++8', 'build.bat'))
-        packageRTFilesVC(vc8Zip, vc8Path)
+        packageRTFilesVC(zip, vc8Path)
 
     if getCompiler(opts) in ['vc9', 'all']:
         # This could be automated but I don't have a copy of VC9. Argh!
