@@ -1,4 +1,4 @@
-import sys, os, xml, zipfile, string, tarfile, getopt, shutil
+import sys, os, xml, zipfile, string, tarfile, getopt, shutil, popen2
 from os import path
 from os.path import join
 from xml.dom import minidom, Node
@@ -12,7 +12,6 @@ colladaVersion = '1.4'
 domVersion = '2.0'
 colladaVersionNoDots =  colladaVersion.replace('.', '')
 domVersionNoDots = domVersion.replace('.', '')
-numBuildThreads = 4
 sfdom = 'https://collada-dom.svn.sourceforge.net/svnroot/collada-dom'
 archivePrefix = 'colladadom'
 
@@ -82,15 +81,16 @@ def packageRecursive(zip, packagePath, fileExt, archivePrefix):
             dirs.remove('.svn')
 
 def packageDomFilesCommon(zip, codePath):
-    packageRecursive(zip, join(codePath, 'dom', 'include'), '.h', join(archivePrefix, 'include'))
+    if not mac:
+        packageRecursive(zip, join(codePath, 'dom', 'include'), '.h', join(archivePrefix, 'include'))
     packageRecursive(zip, join(codePath, 'dom', 'test', 'data'), None, \
                      join(archivePrefix, 'bin', 'domTestData'))
     zip.write(join(codePath, 'dom', 'readme.txt'), join(archivePrefix, 'readme.txt'))
 
 def packageDomFilesVC(zip, codePath):
     domLibPrefix = 'libcollada' + colladaVersionNoDots + 'dom' + domVersionNoDots
-    debugBuildPath = join(codePath, 'dom', 'build', 'vc8-1.4-d')
-    releaseBuildPath = join(codePath, 'dom', 'build', 'vc8-1.4')
+    debugBuildPath = join(codePath, 'dom', 'build', 'vc8-' + colladaVersion + '-d')
+    releaseBuildPath = join(codePath, 'dom', 'build', 'vc8-' + colladaVersion)
     debugFiles = [domLibPrefix + ext for ext in ['-d.dll', '-d.lib', '-sd.lib']]
     releaseFiles = [domLibPrefix + ext for ext in ['.dll', '.lib', '-s.lib']] + ['domTest.exe']
     if not checkFilesExist(debugBuildPath, debugFiles) \
@@ -103,7 +103,7 @@ def packageDomFilesVC(zip, codePath):
     packageDomFilesCommon(zip, codePath)
 
 def packageRTFilesVC(zip, codePath):
-    rtBinPath = join(codePath, 'rt', 'bin', 'vc8_1.4')
+    rtBinPath = join(codePath, 'rt', 'bin', 'vc8_' + colladaVersion)
     rt = join(rtBinPath, 'COLLADA_RT_VIEWER.exe')
     devil = join(rtBinPath, 'DevIL.dll')
     if not path.exists(rt):
@@ -113,7 +113,7 @@ def packageRTFilesVC(zip, codePath):
     zip.write(devil, join(archivePrefix, 'bin', 'DevIL.dll'))
 
 def packageDomFilesLinux(zip, codePath):
-    buildPath = join(codePath, 'dom', 'build', 'linux-1.4')
+    buildPath = join(codePath, 'dom', 'build', 'linux-' + colladaVersion)
     domLibPrefix = 'libcollada' + colladaVersionNoDots + 'dom'
     files = [domLibPrefix + ext for ext in ['.a', '.so', '.so.2', '.so.2.0']]
     files += ['domTest']
@@ -127,10 +127,20 @@ def packageDomFilesLinux(zip, codePath):
     packageDomFilesCommon(zip, codePath)
 
 def packageDomFilesPS3(zip, codePath):
-    buildPath = join(codePath, 'dom', 'build', 'ps3-1.4')
+    buildPath = join(codePath, 'dom', 'build', 'ps3-' + colladaVersion)
     files = [join(buildPath, file) for file in \
                  ['libcollada' + colladaVersionNoDots + 'dom.a', 'domTest.self']]
     [zip.write(file, join(archivePrefix, 'bin', path.basename(file))) for file in files]
+    packageDomFilesCommon(zip, codePath)
+
+def packageDomFilesMac(zip, codePath):
+    buildPath = join(codePath, 'dom', 'build', 'mac-' + colladaVersion)
+    frameworkName = 'Collada' + colladaVersionNoDots + 'Dom.framework'
+    packageRecursive(zip, join(buildPath, frameworkName), None, join(archivePrefix, frameworkName))
+
+    zip.write(join(buildPath, 'domTest'), join(archivePrefix, 'bin', 'domTest'))
+    zip.write(join(codePath, 'dom', 'release', 'runDomTest'),
+              join(archivePrefix, 'bin', 'runDomTest'))
     packageDomFilesCommon(zip, codePath)
 
 # basename: path.splitext(path.basename(archivePath))[0]
@@ -173,7 +183,7 @@ def packageLinux(opts):
 
     print 'Building the DOM'
     makeCmd = 'make' + ' -C ' + join(codePath, 'dom') + ' -k' + \
-              ' -j ' + str(numBuildThreads) + ' conf=release'
+              ' -j ' + getBuildJobs(opts) + ' conf=release'
     if getPlatform(opts) == 'ps3':
         makeCmd += ' os=ps3'
     os.system(makeCmd)
@@ -184,6 +194,18 @@ def packageLinux(opts):
         packageDomFilesLinux(zip, codePath)
     else:
         packageDomFilesPS3(zip, codePath)
+
+def packageMac(opts):
+    outdir = getOutdir(opts)
+    codePath = join(outdir, 'dom-bin')
+
+    print 'Building the DOM'
+    makeCmd = 'make' + ' -C ' + join(codePath, 'dom') + ' -k' + \
+              ' -j ' + getBuildJobs(opts) + ' conf=release' + " arch='x86 ppc'"
+    os.system(makeCmd)
+
+    zip = createArchive(join(outdir, 'colladadom-mac'), getArchive(opts))
+    packageDomFilesMac(zip, codePath)
 
 def buildPackage(opts):
     outdir = getOutdir(opts)
@@ -205,7 +227,7 @@ def buildPackage(opts):
         packageWindows(opts)
 
 def createOptions():
-    return ['binary', 'host', 'zip' if windows else 'tgz', path.abspath('.'), 'all']
+    return ['binary', 'host', 'zip' if windows else 'tgz', path.abspath('.'), 'all', '1']
 
 def setPackage(opts, package):
     opts[0] = package
@@ -217,6 +239,8 @@ def setOutdir(opts, outdir):
     opts[3] = outdir
 def setCompiler(opts, compiler):
     opts[4] = compiler
+def setBuildJobs(opts, jobs):
+    opts[5] = jobs
 
 def getPackage(opts):
     return opts[0]
@@ -228,6 +252,8 @@ def getOutdir(opts):
     return opts[3]
 def getCompiler(opts):
     return opts[4]
+def getBuildJobs(opts):
+    return opts[5]
 
 def printUsage():
     print "Options:"
@@ -239,6 +265,8 @@ def printUsage():
     print "  --archive=(tgz | zip). Default is tgz on Linux or Mac and zip on Windows."
     print "  --outdir. Set this to a directory to output the files to. Default is the current dir."
     print "  --compiler. Only valid on Windows. Can be set to vc8, vc9, or all (the default)."
+    print "  --build-jobs. The number of parallel build jobs make should run. Only valid on Mac"
+    print "                and Linux. Default is 1."
     print "  -h, --help. Print this help message."
 
 def main():
@@ -256,16 +284,18 @@ def main():
         if o in ('-h', '--help'):
             printUsage()
             sys.exit()
-        if o == '--package':
+        elif o == '--package':
             setPackage(options, a)
-        if o == '--platform':
+        elif o == '--platform':
             setPlatform(options, a)
-        if o == '--archive':
+        elif o == '--archive':
             setArchive(options, a)
-        if o == '--outdir':
+        elif o == '--outdir':
             setOutdir(options, a)
-        if o == '--compiler':
+        elif o == '--compiler':
             setCompiler(options, a)
+        elif o == '--build-jobs':
+            setBuildJobs(options, a)
 
     if not getPackage(options) in ('source', 'binary') or \
             not getPlatform(options) in ('host', 'ps3') or \
@@ -276,32 +306,6 @@ def main():
         sys.exit(2)
 
     buildPackage(options)
-
-    return 0
-
-    print 'Packaging successful!'
-
-    releasePath = path.abspath(sys.argv[1])
-    if not path.exists(releasePath):
-        print 'Creating directory for release build'
-        os.mkdir(releasePath)
-
-    if not path.exists(releasePath):
-        print "Couldn't create " + releasePath
-        return 2
-
-    if windows:
-        packageWindows(releasePath)
-    elif linux:
-        packageLinux(releasePath)
-    elif mac:
-        packageMac(releasePath)
-
     print 'Packaging successful!'
 
 main()
-
-# releasePath = path.abspath(sys.argv[1])
-# vc8Path = join(releasePath, 'domReleaseVC8')
-# packageDomFilesVC(join(releasePath, 'colladadom-vc8.zip'), vc8Path)
-# packageRTFilesVC(join(releasePath, 'colladadom-vc8.zip'), vc8Path)
