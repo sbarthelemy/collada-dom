@@ -3,7 +3,7 @@
 # Script to run the domTest binary from a DOM Mac or Linux release package
 dir=$(dirname $0)
 if [ $(uname) = "Darwin" ]; then
-    DYLD_FRAMEWORK_PATH=$dir:$DYLD_FRAMEWORK_PATH $dir/domTest $@
+    DYLD_FRAMEWORK_PATH=$dir/..:$DYLD_FRAMEWORK_PATH $dir/domTest $@
 elif [ $(uname) = "Linux" ]; then
     LD_LIBRARY_PATH=$dir:$LD_LIBRARY_PATH $dir/domTest $@
 else
