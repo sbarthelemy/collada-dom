@@ -67,18 +67,24 @@ def createArchive(path, archiveType):
         return TarFileCompat(path + '.tar.gz', 'w', tarfile.TAR_GZIPPED)
 
 def packageRecursive(zip, packagePath, fileExt, archivePrefix):
+    def addToArchive(zip, p, packagePath, archivePrefix):
+        archivePath = p
+        commonIndex = len(path.commonprefix([archivePath, packagePath]))
+        archivePath = archivePath[commonIndex:]
+        if archivePath[0] == os.sep:
+            archivePath = archivePath[1:]
+        archivePath = join(archivePrefix, archivePath)
+        zip.write(p, archivePath)
     for root, dirs, files in os.walk(packagePath):
-        for file in files:
-            if fileExt == None or path.splitext(file)[1] == fileExt:
-                archivePath = join(root, file)
-                commonIndex = len(path.commonprefix([archivePath, packagePath]))
-                archivePath = archivePath[commonIndex:]
-                if archivePath[0] == os.sep:
-                    archivePath = archivePath[1:]
-                archivePath = join(archivePrefix, archivePath)
-                zip.write(join(root, file), archivePath)
         if '.svn' in dirs:
             dirs.remove('.svn')
+        for file in files:
+            if fileExt == None or path.splitext(file)[1] == fileExt:
+                addToArchive(zip, join(root, file), packagePath, archivePrefix)
+        # Copy the links to directories, which show up in dirs instead of files
+        for dir in dirs:
+            if path.islink(join(root, dir)):
+                addToArchive(zip, join(root, dir), packagePath, archivePrefix)
 
 def packageDomFilesCommon(zip, codePath):
     if not mac:
@@ -135,10 +141,38 @@ def packageDomFilesPS3(zip, codePath):
 
 def packageDomFilesMac(zip, codePath):
     buildPath = join(codePath, 'dom', 'build', 'mac-' + colladaVersion)
+    # Need to change the Mac framework link name in domTest
     frameworkName = 'Collada' + colladaVersionNoDots + 'Dom.framework'
+    dylibName = 'Collada' + colladaVersionNoDots + 'Dom'
+
+    domTest = join(buildPath, 'domTest')
+    domDylib = join(buildPath, frameworkName, dylibName)
+    oldInstallName = popen2.popen2('otool -L ' + domTest + ' | grep ' + frameworkName)[0].read().split(' ')[0]
+    newInstallName = join('/Library/Frameworks', frameworkName, 'Versions', domVersion, dylibName)
+    if (os.system('install_name_tool -change ' + oldInstallName + ' ' + newInstallName + ' ' + domTest) != 0):
+        print "Updating the DOM install name in domTest failed."
+        sys.exit(2)
+    if (os.system('install_name_tool -id ' + newInstallName + ' ' + domDylib) != 0):
+        print "Updating the DOM install name in the DOM framework failed."
+        sys.exit(2)
+
     packageRecursive(zip, join(buildPath, frameworkName), None, join(archivePrefix, frameworkName))
 
-    zip.write(join(buildPath, 'domTest'), join(archivePrefix, 'bin', 'domTest'))
+#     tmpDir = join(codePath, '..', 'release-tmp')
+#     if not path.exists(tmpDir):
+#         os.mkdir(tmpDir)
+#     oldDomTest = join(buildPath, 'domTest')
+#     newDomTest = join(tmpDir, 'domTest')
+#     shutil.copyfile(oldDomTest, newDomTest)
+#     oldLinkName = popen2.popen2('otool -L ' + newDomTest + ' | grep ' + frameworkName)[0].read().split(' ')[0]
+#     newLinkName = '../' + oldLinkName[oldLinkName.index(frameworkName):]
+#     if (os.system('install_name_tool -change ' + oldLinkName + ' ' + newLinkName + ' ' + newDomTest) != 0):
+#         print "Updating the DOM link name in domTest failed."
+#         sys.exit(2)
+
+#    zip.write(newDomTest, join(archivePrefix, 'bin', 'domTest'))
+#    zip.write(join(buildPath, 'domTest'), join(archivePrefix, 'bin', 'domTest'))
+    zip.write(domTest, join(archivePrefix, 'bin', 'domTest'))
     zip.write(join(codePath, 'dom', 'release', 'runDomTest'),
               join(archivePrefix, 'bin', 'runDomTest'))
     packageDomFilesCommon(zip, codePath)
