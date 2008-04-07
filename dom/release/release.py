@@ -306,7 +306,7 @@ def printUsage():
 def main():
     try:
         validShortOpts = 'h'
-        validLongOpts = ['package=', 'platform=', 'archive=', 'outdir=', 'compiler=', 'help']
+        validLongOpts = ['package=', 'platform=', 'archive=', 'outdir=', 'compiler=', 'build-jobs=', 'help']
         opts, args = getopt.getopt(sys.argv[1:], validShortOpts, validLongOpts)
     except getopt.GetoptError, err:
         print 'Invalid usage.\n'
