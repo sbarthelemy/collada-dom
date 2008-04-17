@@ -12,7 +12,7 @@
  */
 
 #include <dae/daeRawResolver.h>
-
+#include <dae.h>
 #include <dae/daeURI.h>
 #include <dae/daeErrorHandler.h>
 #include <dae/daeUtils.h>
@@ -33,23 +33,25 @@ daeRawResolver::getName()
 	return "RawResolver";
 }
 
-daeBool
-daeRawResolver::resolveElement(daeURI& uri)
-{
-	if (cdom::strcasecmp(uri.pathExt().c_str(), ".raw"))
-		return false;
+daeElement* daeRawResolver::resolveElement(daeURI& uri) {
+	if (cdom::tolower(uri.pathExt()).find(".raw") == string::npos)
+		return NULL;
 
+	daeRawRefCache& cache = dae->getRawRefCache();
+	if (daeElement* elt = cache.lookup(uri))
+		return elt;
+	
 	string fileName = cdom::uriToNativePath(uri.str());
 	if (fileName.empty())
 	{
-		daeErrorHandler::get()->handleError( "can't get path from URI\n" );
-		return false;
+		daeErrorHandler::get()->handleError( "daeRawResolver::resolveElement() - Can't get path from URI\n" );
+		return NULL;
 	}
 	FILE *rawFile = fopen(fileName.c_str(), "rb");
 	if (rawFile == NULL )
 	{
 		uri.setState(daeURI::uri_failed_file_not_found);
-		return false;
+		return NULL;
 	}
 	long byteOffset = atoi( uri.getID() ); //get the fragment
 
@@ -66,7 +68,7 @@ daeRawResolver::resolveElement(daeURI& uri)
 	src = accessor->getParentElement()->getParentElement();
 	daeElementRefArray children;
 	accessor->getChildren( children );
-	bool hasInts = children[0]->hasAttribute( "type" ) && strcmp( *((daeString*)children[0]->getAttributeValue( "type" )), "int" ) == 0;
+	bool hasInts = children[0]->getAttribute("type") == "int";
 
 	if ( hasInts )
 	{
@@ -110,7 +112,24 @@ daeRawResolver::resolveElement(daeURI& uri)
 	}
 
 	fclose(rawFile);
-	uri.setElement( array );
-	uri.resolveURI();
-	return true;
+	cache.add(uri, array);
+	return array;
+}
+
+
+daeElement* daeRawRefCache::lookup(const daeURI& uri) {
+	map<string, daeElement*>::iterator iter = lookupTable.find(uri.str());
+	return iter == lookupTable.end() ? NULL : iter->second;
+}
+
+void daeRawRefCache::add(const daeURI& uri, daeElement* elt) {
+	lookupTable[uri.str()] = elt;
+}
+
+void daeRawRefCache::remove(const daeURI& uri) {
+	lookupTable.erase(uri.str());
+}
+
+void daeRawRefCache::clear() {
+	lookupTable.clear();
 }

@@ -19,6 +19,8 @@
 #include <dae/daeIOPlugin.h>
 #include <dae/daeErrorHandler.h>
 
+using namespace std;
+
 daeStandardURIResolver::daeStandardURIResolver(DAE& dae)
 	: daeURIResolver(dae) { }
 
@@ -30,56 +32,28 @@ daeStandardURIResolver::getName()
 	return "XMLResolver";
 }
 
-daeBool
-daeStandardURIResolver::resolveElement(daeURI& uri)
-{
-	daeDatabase* database = dae->getDatabase();
-	daeElement* resolved = NULL;
-
-	// Does the URI have a document reference?
-	if (!uri.pathFile().empty())
-	{
-		// The URI contains a document reference, see if it is loaded and try to load it if it's not
-		if (!database->isDocumentLoaded(uri.getURI())) {
-			if ( _loadExternalDocuments )
-				dae->getIOPlugin()->read(uri,NULL);
-			else {
-				uri.setState( daeURI::uri_failed_external_document );
-				return false;
-			}
-		}
-		// Try to find the id by searching this document only
-		resolved = database->idLookup(uri.getID(), database->getDocument(uri.getURI()));
-	}
-	else
-	{
-		// The URI was just a fragment, so try to find it in the document that contains it.
-		// !!!GAC not sure if all these pointers will be set when we get here, so assert if any of them aren't
-		daeElement *tempElement = uri.getContainer();
-		daeDocument *tempDocument;
-		if ( tempElement == NULL || (tempDocument = tempElement->getDocument()) == NULL ) {
-			uri.setState(daeURI::uri_failed_missing_container);
-			std::ostringstream msg;
-			msg << "daeStandardURIResolver::resolveElement() - failed to resolve " << uri.str() << "\n";
-			daeErrorHandler::get()->handleError(msg.str().c_str());
-			return false;
-		}
-		resolved = database->idLookup(uri.getID(), tempDocument);
-	}
-
-	uri.setElement(resolved);
-
-	// Error if we didn't successfully resolve the uri
-
-	if (!resolved)
-	{
-		uri.setState(daeURI::uri_failed_id_not_found);
-		std::ostringstream msg;
-		msg << "daeStandardURIResolver::resolveElement() - failed to resolve " << uri.str() << "\n";
+namespace {
+	void printErrorMsg(daeURI& uri) {
+		ostringstream msg;
+		msg << "daeStandardURIResolver::resolveElement() - Failed to resolve " << uri.str() << endl;
 		daeErrorHandler::get()->handleError(msg.str().c_str());
-		return false;
+	}
+}
+
+daeElement* daeStandardURIResolver::resolveElement(daeURI& uri) {
+	daeDocument* doc = uri.getReferencedDocument();
+	if (!doc) {
+		dae->open(uri.str());
+		doc = uri.getReferencedDocument();
+		if (!doc) {
+			printErrorMsg(uri);
+			return NULL;
+		}
 	}
 
-	uri.setState(daeURI::uri_success);
-	return true;
+	daeElement* elt = dae->getDatabase()->idLookup(uri.id(), doc);
+	if (!elt)
+		printErrorMsg(uri);
+
+	return elt;
 }

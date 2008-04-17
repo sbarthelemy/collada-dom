@@ -66,7 +66,7 @@ class DAE;
 class DLLSPEC daeURI
 {
 private:
-	void internalResolveElement();
+	daeElement* internalResolveElement();
 	
 public:
 	/**
@@ -127,8 +127,6 @@ private:
 	std::string _query;
 	/** fragment component */
 	std::string _fragment;
-	/** Reference to the element that the URI resolves to in memory */
-	daeElement* element;
 	/** Pointer to the element that owns this URI */
 	daeElement* container;
 	/** Current resolver state of the URI */
@@ -266,13 +264,11 @@ public:
 	 * @return Returns a ref to the element.
 	 */
 	daeElementRef getElement();
-	
-	/** 
-	 * Sets the element that this URI resolves to in memory.
-	 * @param newref A ref to the element.
-	 */
-	inline void setElement(daeElement* newref){element=newref;};
 
+	// Returns the document that this URI references, or null if the document
+	// hasn't been loaded yet.
+	daeDocument* getReferencedDocument();
+	
 	/**
 	 * Gets the resolve state of the URI.
 	 * @return Returns the current state.
@@ -307,13 +303,6 @@ public:
 	daeBool isExternalReference() const { return external; }
 	 
 	/**
-	 * Configures the <tt><i>uriString</i></tt> for this @c daeURI based on the element set in <tt><i>element.</i></tt> 
-	 * Uses the element's base URI and ID information to configure
-	 * the URI string.
-	 */
-	void resolveURI();
-
-	/**
 	 * Copies the URI specified in <tt><i>from</i></tt> into @c this.
 	 * Performs a simple copy without validating the URI.
 	 * @param from URI to copy from.
@@ -343,7 +332,6 @@ public:
 
 	daeURI &operator=(const daeURI& other) {
 		set(other.originalURIString);
-		element = other.element;
 		state = other.state;
 		return *this;
 	}
@@ -417,10 +405,10 @@ public:
 	/**
 	 * Provides an abstract interface for converting a @c daeURI into a @c daeElement
 	 * @param uri @c daeURI to resolve.
-	 * @return Returns true if the @c daeURIResolver successfully resolved the URI,
+	 * @return Returns the resolved element, or null if resolving failed.
 	 * returns false otherwise.
 	 */
-	virtual daeBool resolveElement(daeURI& uri) = 0;
+	virtual daeElement* resolveElement(daeURI& uri) = 0;
 
 	/**
 	 * Gets the name of this resolver.
@@ -441,7 +429,7 @@ public:
 	~daeURIResolverList();
 
 	daeTArray<daeURIResolver*>& list();
-	void resolveElement(daeURI& uri);
+	daeElement* resolveElement(daeURI& uri);
 
 private:
 	// Disabled copy constructor/assignment operator

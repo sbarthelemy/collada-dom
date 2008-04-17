@@ -168,21 +168,21 @@ daeDocument* daeSTLDatabase::getDocument(daeUInt index)
 		return NULL;
 }
 
-daeDocument* daeSTLDatabase::getDocument(daeString name)
+daeDocument* daeSTLDatabase::getDocument(daeString name_, bool skipUriNormalization)
 {
-	// Normalize the input string to an absolute URI with no fragment
-
-	daeURI tempURI(dae, name, true);
-	const string& targetURI = tempURI.str();
+	string name = name_;
+	if (!skipUriNormalization) {
+		// Normalize the input string to an absolute URI with no fragment
+		name = daeURI(dae, name, true).str();
+	}
 
 	// Try to find a document that matches
-
 	daeDocument *document;
 	int documentCount	= getDocumentCount();
 	for (int i=0;i<documentCount;i++)
 	{
 		document = getDocument(i);
-		if(document->getDocumentURI()->str() == targetURI)
+		if(document->getDocumentURI()->str() == name)
 			return(document);
 	}
 	return(NULL);

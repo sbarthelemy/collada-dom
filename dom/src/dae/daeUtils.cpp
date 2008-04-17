@@ -1,4 +1,5 @@
 #include <cstdarg>
+#include <algorithm>
 #include <dae/daeUtils.h>
 #include <dae/daeURI.h>
 
@@ -115,4 +116,10 @@ int cdom::strcasecmp(const char* str1, const char* str2) {
 #else
 	return ::strcasecmp(str1, str2);
 #endif
+}
+
+string cdom::tolower(const string& s) {
+	string result;
+	transform(s.begin(), s.end(), back_inserter(result), ::tolower);
+	return result;
 }

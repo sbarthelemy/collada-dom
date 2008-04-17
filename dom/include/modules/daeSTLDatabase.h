@@ -57,7 +57,7 @@ public:
 	virtual daeInt removeDocument(daeDocument* document);
 	virtual daeUInt getDocumentCount();
 	virtual daeDocument* getDocument(daeUInt index);
-	virtual daeDocument* getDocument(daeString name);
+	virtual daeDocument* getDocument(daeString name, bool skipUriNormalization = false);
 	virtual daeString getDocumentName(daeUInt index);
 	virtual daeBool isDocumentLoaded(daeString name);
 

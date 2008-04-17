@@ -112,10 +112,12 @@ public:
 	/**
 	* Gets a document based on the document name.
 	* @param name The name of the document as a URI.
+	* @param skipUriNormalization Use the document name as is; don't normalize it first.
+	*   This is mostly for improved performance.
 	* @return Returns a pointer to the document, or NULL if not found. 
 	* @note If the URI contains a fragment, the fragment is stripped off.
 	*/
-	virtual daeDocument* getDocument(daeString name) = 0;
+	virtual daeDocument* getDocument(daeString name, bool skipUriNormalization = false) = 0;
 	/**
 	* Gets a document name.
 	* @param index Index of the document to get.

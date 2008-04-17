@@ -303,6 +303,7 @@ DefineTest(rawSupport) {
 	CheckResult(dae.open(seymourOrig));
 	dae.getIOPlugin()->setOption("saveRawBinary", "true");
 	CheckResult(dae.writeTo(seymourOrig, seymourRaw));
+	dae.clear();
 
 	// Make sure the .raw file is there
 	CheckResult(fs::exists(fs::path(seymourRaw + ".raw")));
@@ -311,6 +312,10 @@ DefineTest(rawSupport) {
 	CheckResult(seymourRawRoot);
 	CheckResult(dae.getDatabase()->idLookup("l_hip_rotateY_l_hip_rotateY_ANGLE-input",
 	                                        seymourRawRoot->getDocument()));
+	domAccessor* accessor = dae.getDatabase()->typeLookup<domAccessor>().at(0);
+	daeURI& uri = accessor->getSource();
+	CheckResult(uri.pathExt().find(".raw") != string::npos);
+	CheckResult(uri.getElement());
 
 	return testResult(true);
 }
@@ -1081,15 +1086,6 @@ DefineTest(uriOps) {
 		CheckResult(uri2.str() == "file:/home/sthomas/folder2/file.dae");
 	}
 
-	// Check resolveURI
-	{
-		CheckResult(dae.open(lookupTestFile("cube.dae")));
-		daeURI uri(dae);
-		uri.setElement(dae.getDatabase()->typeLookup(domGeometry::ID()).at(0));
-		uri.resolveURI();
-		CheckResult(uri.id() == "box-lib");
-	}
-
 	// Make sure we can handle paths that start with '//'. Libxml uses such paths
 	// to represent UNC paths and absolute paths without a drive letter on Windows.
 	{
@@ -1332,6 +1328,30 @@ DefineTest(charEncoding) {
 	CheckResult(dae.writeAll());
 	dae.clear();
 	CheckResult(dae.open(file));
+	return testResult(true);
+}
+
+
+DefineTest(uriGetElementBug) {
+	DAE dae;
+	CheckResult(dae.open(lookupTestFile("cube.dae")));
+	domInstance_geometry* geomInst = dae.getDatabase()->typeLookup<domInstance_geometry>().at(0);
+	CheckResult(geomInst->getUrl().getElement());
+	daeElement::removeFromParent(geomInst->getUrl().getElement());
+	CheckResult(geomInst->getUrl().getElement() == 0);
+	return testResult(true);
+}
+
+
+DefineTest(externalRef) {
+	DAE dae;
+	CheckResult(dae.open(lookupTestFile("externalRef.dae")));
+	domInstance_geometry* geomInst = dae.getDatabase()->typeLookup<domInstance_geometry>().at(0);
+	daeURI& uri = geomInst->getUrl();
+	CheckResult(uri.isExternalReference() == true);
+	CheckResult(uri.getReferencedDocument() == NULL);
+	CheckResult(uri.getElement());
+	CheckResult(uri.getReferencedDocument());
 	return testResult(true);
 }
 

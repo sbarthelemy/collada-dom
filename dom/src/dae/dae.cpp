@@ -214,6 +214,7 @@ void DAE::close(const string& path) {
 
 daeInt DAE::clear() {
 	database->clear();
+	rawRefCache.clear();
 	return DAE_OK;
 }
 
@@ -263,7 +264,7 @@ daeDocument* DAE::getDoc(int i) {
 }
 
 daeDocument* DAE::getDoc(const string& path) {
-	return database->getDocument(makeFullUri(path).c_str());
+	return database->getDocument(makeFullUri(path).c_str(), true);
 }
 	
 domCOLLADA* DAE::getRoot(const string& path) {
@@ -331,6 +332,10 @@ void DAE::setBaseURI(const string& uri) {
 
 daeIDRefResolverList& DAE::getIDRefResolvers() {
 	return idRefResolvers;
+}
+
+daeRawRefCache& DAE::getRawRefCache() {
+	return rawRefCache;
 }
 
 void DAE::dummyFunction1() { }

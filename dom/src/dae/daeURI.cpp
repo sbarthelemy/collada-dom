@@ -58,7 +58,6 @@ daeURI::daeURI(const daeURI& copyFrom) : dae(copyFrom.getDAE())
 {
 	initialize();
 	set(copyFrom.originalStr());
-	element = copyFrom.element;   // !!!GAC SetURI immediately clears element so we must do this after
 	state = copyFrom.state;
 }
 
@@ -82,7 +81,6 @@ void
 daeURI::copyFrom(daeURI& copyFrom)
 {
 	set(copyFrom.originalStr());
-	element = copyFrom.element;		// !!!GAC SetURI immediately clears element so we must do this after
 	state = copyFrom.state;
 }
 
@@ -101,7 +99,6 @@ void daeURI::reset() {
 	_query             = "";
 	_fragment          = "";
 	state	             = uri_empty;
-	element	           = NULL;
 	external           = false;
 }
 
@@ -390,10 +387,17 @@ daeURI::validate(const daeURI* baseURI)
 }
 
 daeElementRef daeURI::getElement() {
-	if (!element)
-		internalResolveElement();
-	return element;
+	return internalResolveElement();
 }
+
+daeElement* daeURI::internalResolveElement() {
+	if (uriString.empty())
+		return NULL;
+	
+	return dae->getURIResolvers().resolveElement(*this);
+}
+
+void daeURI::resolveElement() { }
 
 void daeURI::setContainer(daeElement* cont) {
 	container = cont;
@@ -401,40 +405,11 @@ void daeURI::setContainer(daeElement* cont) {
 	set(originalURIString);
 }
 
-void daeURI::internalResolveElement() {
-	if (state == uri_empty)
-		return;
-	
-	dae->getURIResolvers().resolveElement(*this);
+daeDocument* daeURI::getReferencedDocument() {
+	string doc = assembleUri(_scheme, _authority, _path, "", "");
+	return dae->getDatabase()->getDocument(doc.c_str(), true);
 }
 
-void daeURI::resolveElement() { }
-
-void
-daeURI::resolveURI()
-{
-	// !!!GAC bug 486, there used to be code here that just returned if state was uri_empty or uri_resolve_local this has been removed.
-	if (element)
-	{
-		// !!!GAC bug 388 and 421, need to add a # before the fragment (was setURI(element->getID()))
-		string elementID = element->getAttribute("id");
-		if (elementID.empty())
-		{
-			// We can't resolve to an element that has no ID, so if the ID is blank, fail and return
-			state = uri_failed_invalid_reference;
-			return;
-		}
-		// !!!GAC We have to save element and container because setURI clears them for some reason
-		daeElementRef	elementSave = element;
-		set(string("#") + elementID);
-		element	= elementSave;
-		state = uri_success;  // !!!GAC The element pointer and the URI should agree now, so set success
-	}
-	else
-	{
-		state = uri_failed_invalid_reference;
-	}
-}
 
 // This code is loosely based on the RFC 2396 normalization code from
 // libXML. Specifically it does the RFC steps 6.c->6.g from section 5.2
@@ -689,10 +664,11 @@ daeTArray<daeURIResolver*>& daeURIResolverList::list() {
 	return resolvers;
 }
 
-void daeURIResolverList::resolveElement(daeURI& uri) {
+daeElement* daeURIResolverList::resolveElement(daeURI& uri) {
 	for (size_t i = 0; i < resolvers.getCount(); i++)
-		if (resolvers[i]->resolveElement(uri))
-			return;
+		if (daeElement* elt = resolvers[i]->resolveElement(uri))
+			return elt;
+	return NULL;
 }
 
 

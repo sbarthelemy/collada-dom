@@ -46,6 +46,7 @@ namespace cdom {
 	DLLSPEC std::string getCurrentDirAsUri();
 
 	DLLSPEC int strcasecmp(const char* str1, const char* str2);
+	DLLSPEC std::string tolower(const std::string& s);
 
 	// Disable VS warning
 #ifdef _MSC_VER

@@ -23,6 +23,7 @@
 #include <dae/daeIDRef.h>
 #include <dae/daeURI.h>
 #include <dae/daeUtils.h>
+#include <dae/daeRawResolver.h>
 
 class domCOLLADA;
 typedef daeSmartRef<domCOLLADA> domCOLLADARef;
@@ -124,6 +125,9 @@ public:
 	// resolvers.
 	daeIDRefResolverList& getIDRefResolvers();
 
+	// Meant for internal DOM use only.
+	daeRawRefCache& getRawRefCache();
+
 	// These functions specify the client's character encoding for the DOM. The
 	// default is Utf8, but if you specify Latin1 then the DOM will use libxml's
 	// character conversion functions to convert to Utf8 when writing data and
@@ -183,6 +187,7 @@ private:
 	daeURI baseUri;
 	daeURIResolverList uriResolvers;
 	daeIDRefResolverList idRefResolvers;
+	daeRawRefCache rawRefCache;
 
 	std::auto_ptr<charEncoding> localCharEncoding;
 	static charEncoding globalCharEncoding;
