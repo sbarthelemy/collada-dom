@@ -372,7 +372,7 @@ typedef daeTArray<daeURIResolver*> daeURIResolverPtrArray;
  * The list is ordered on a first come, first serve basis, and resolution
  * terminates after any resolver instance resolves the URI.
  */
-class daeURIResolver
+class DLLSPEC daeURIResolver
 {
 public:
 	/**
