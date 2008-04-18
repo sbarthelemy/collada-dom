@@ -91,14 +91,14 @@
 				myNode/subNode1                 element
 				myNode/subNode1/subNode2        element
 				myNode/subNode1/subNode2/trans  array
-				myNode/trans.X                  double
-				myNode/trans.Y                  double
-				myNode/trans(2)                 double
-				myNode/subNode1/rot(1)          double
-				myNode/rot.ANGLE                double
-				myNode/mtx(1)(2)                double
+				myNode/trans.X                  scalar
+				myNode/trans.Y                  scalar
+				myNode/trans(2)                 scalar
+				myNode/subNode1/rot(1)          scalar
+				myNode/rot.ANGLE                scalar
+				myNode/mtx(1)(2)                scalar
 				./rot                           array
-				myNode/.trans.late..X           double
+				myNode/.trans.late..X           scalar
 				myNode/trans(-1)                failed
 				myNode/trans.F                  failed
 				myNode/trans(20)                failed
@@ -106,10 +106,10 @@
 				test/trans                      failed
 				myNode/trans.X.Y                failed
 				myNode/trans.X(1)               failed
-				myNode/mtx(1)                   double
+				myNode/mtx(1)                   scalar
 				myNode/mtx(1).X                 failed
-				myNode/mtx(1)(5)                double
-				my.Node/trans.X                 double
+				myNode/mtx(1)(5)                scalar
+				my.Node/trans.X                 scalar
 			</nodeSidRefExtra>
 			<nodeSidRefExtra2 id="nodeSidRefExtra2">
 				<!-- Each line has the sid to resolve and the ID of the element it's expected

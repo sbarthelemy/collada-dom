@@ -30,80 +30,6 @@
 
 using namespace std;
 
-daeSIDResolver::daeSIDResolver( daeElement *container, daeString target, daeString profile )
-	: container(NULL)
-{
-	setContainer(container);
-	setTarget(target);
-	setProfile(profile);
-}
-
-daeString daeSIDResolver::getTarget() const {
-	return target.empty() ? NULL : target.c_str();
-}
-
-void daeSIDResolver::setTarget( daeString t )
-{
-	target = t ? t : "";
-	resetResolveState();
-}
-
-daeString daeSIDResolver::getProfile() const {
-	return profile.empty() ? NULL : profile.c_str();
-}
-
-void daeSIDResolver::setProfile( daeString p )
-{
-	profile = p ? p : "";
-	resetResolveState();
-}
-
-daeElement* daeSIDResolver::getContainer() const {
-	return container;
-}
-
-void daeSIDResolver::setContainer(daeElement* element)
-{
-	if ( element != container ) {
-		container = element;
-		resetResolveState();
-	}
-}
-
-daeSIDResolver::ResolveState daeSIDResolver::getState() const {
-	return state;
-}
-
-daeElement* daeSIDResolver::getElement()
-{
-	if ( state == target_loaded ) {
-		resolve();
-	}
-	return resolvedElement;
-}
-
-daeDoubleArray *daeSIDResolver::getDoubleArray()
-{
-	if ( state == target_loaded ) {
-		resolve();
-	}
-	return resolvedDoubleArray;
-}
-
-daeDouble *daeSIDResolver::getDouble()
-{
-	if ( state == target_loaded ) {
-		resolve();
-	}
-	return resolvedDoublePtr;
-}
-
-void daeSIDResolver::resetResolveState() {
-	state = target.empty() ? target_empty : target_loaded;
-	resolvedElement = NULL;
-	resolvedDoubleArray = NULL;
-	resolvedDoublePtr = NULL;
-}
 
 namespace {
 	template<typename T>
@@ -206,9 +132,7 @@ namespace {
 	}
 
 	daeElement* findID(daeElement* elt, const string& id, const string& profile) {
-		daeIDRef idRef(id.c_str());
-		idRef.setContainer(elt);
-		return idRef.getElement();
+		return elt ? elt->getDAE()->getDatabase()->idLookup(id, elt->getDocument()) : NULL;
 	}
 	
 	void buildString(const list<string>::iterator& begin,
@@ -257,225 +181,331 @@ namespace {
 		remainingPart.clear();
 		return NULL;
 	}
-}
 
+	daeSidRef::resolveData resolveImpl(const daeSidRef& sidRef) {
+		if (sidRef.sidRef.empty() || !sidRef.refElt)
+			return daeSidRef::resolveData();
 
-void daeSIDResolver::resolve() {
-	// First try to resolve as an animation-style sid ref, where the first part is an ID.
-	// If that fails, try to resolve as an effect-style sid ref by prepending "./" to
-	// the sid ref.
-	resolveImpl(target);
-	if (!resolvedElement)
-		resolveImpl(string("./") + target);
-}
+		daeSidRef::resolveData result;
+		string separators = "/()";
+		list<string> tokens;
+		cdom::tokenize(sidRef.sidRef, separators, /* out */ tokens, true);
 
-void daeSIDResolver::resolveImpl(const string& sidRef)
-{
-	resetResolveState();
-	if (sidRef.empty())
-		return;
+		list<string>::iterator tok = tokens.begin();
 
-	daeElement*     element = 0;
-	daeDoubleArray* doubleArray = 0;
-	daeDouble*      doublePtr = 0;
-	state = sid_failed_not_found; // Assume that we're going to fail
-
-	string separators = "/()";
-	list<string> tokens;
-	cdom::tokenize(sidRef, separators, /* out */ tokens, true);
-
-	list<string>::iterator tok = tokens.begin();
-
-	// The first token should be either an ID or a '.' to indicate
-	// that we should start the search from the container element.
-	if (tok == tokens.end())
-		return;
-
-	list<string> remainingPart;
-	if (*tok == ".") {
-		element = container;
-		tok++;
-	}	else {
-		// Try to resolve it as an ID
-		element = findWithDots(container, *tok, profile, findID, remainingPart);
-		if (element) {
-			if (!remainingPart.empty()) {
-				// Insert the "remaining part" from the ID resolve into our list of tokens
-				tokens.erase(tokens.begin());
-				tokens.splice(tokens.begin(), remainingPart);
-				tok = tokens.begin();
-			} else
-				tok++;
-		}
-	}
-
-	if (!element)
-		return;
-
-	// Next we have an optional list of SIDs, each one separated by "/". Once we hit one of "()",
-	// we know we're done with the SID section.
-	for (; tok != tokens.end() && *tok == "/"; tok++) {
-		tok++; // Read the '/'
+		// The first token should be either an ID or a '.' to indicate
+		// that we should start the search from the container element.
 		if (tok == tokens.end())
-			return;
+			return daeSidRef::resolveData();
 
-		// Find the element matching the SID
-		element = findWithDots(element, *tok, profile, findSidTopDown, remainingPart);
-		if (!element)
-			return;
-
-		if (!remainingPart.empty()) {
-			list<string>::iterator tmp = tok;
-			tok--;
-			tokens.splice(tmp, remainingPart);
-			tokens.erase(tmp);
-		}
-	}
-
-	// Now we want to parse the member selection tokens. It can either be
-	//   (a) '.' followed by a string representing the member to access
-	//   (b) '(x)' where x is a number, optionally followed by another '(x)'
-	// Anything else is an error.
-	string member;
-	bool haveArrayIndex1 = false, haveArrayIndex2 = false;
-	int arrayIndex1 = -1, arrayIndex2 = -1;
-	if (tok != tokens.end()) {
+		list<string> remainingPart;
 		if (*tok == ".") {
+			result.elt = sidRef.refElt;
 			tok++;
-			if (tok == tokens.end())
-				return;
-			member = *tok;
-			tok++;
+		}	else {
+			// Try to resolve it as an ID
+			result.elt = findWithDots(sidRef.refElt, *tok, sidRef.profile, findID, remainingPart);
+			if (result.elt) {
+				if (!remainingPart.empty()) {
+					// Insert the "remaining part" from the ID resolve into our list of tokens
+					tokens.erase(tokens.begin());
+					tokens.splice(tokens.begin(), remainingPart);
+					tok = tokens.begin();
+				} else
+					tok++;
+			}
 		}
-		else if (*tok == "(") {
-			tok++;
-			if (tok == tokens.end())
-				return;
 
-			istringstream stream(*tok);
-			stream >> arrayIndex1;
-			haveArrayIndex1 = true;
-			if (!stream.good() && !stream.eof())
-				return;
-			tok++;
-			if (tok == tokens.end()  ||  *tok != ")")
-				return;
-			tok++;
-			
-			if (tok != tokens.end()  &&  *tok == "(") {
+		if (!result.elt)
+			return daeSidRef::resolveData();
+
+		// Next we have an optional list of SIDs, each one separated by "/". Once we hit one of "()",
+		// we know we're done with the SID section.
+		for (; tok != tokens.end() && *tok == "/"; tok++) {
+			tok++; // Read the '/'
+			if (tok == tokens.end())
+				return daeSidRef::resolveData();
+
+			// Find the element matching the SID
+			result.elt = findWithDots(result.elt, *tok, sidRef.profile, findSidTopDown, remainingPart);
+			if (!result.elt)
+				return daeSidRef::resolveData();
+
+			if (!remainingPart.empty()) {
+				list<string>::iterator tmp = tok;
+				tok--;
+				tokens.splice(tmp, remainingPart);
+				tokens.erase(tmp);
+			}
+		}
+
+		// Now we want to parse the member selection tokens. It can either be
+		//   (a) '.' followed by a string representing the member to access
+		//   (b) '(x)' where x is a number, optionally followed by another '(x)'
+		// Anything else is an error.
+		string member;
+		bool haveArrayIndex1 = false, haveArrayIndex2 = false;
+		int arrayIndex1 = -1, arrayIndex2 = -1;
+		if (tok != tokens.end()) {
+			if (*tok == ".") {
 				tok++;
 				if (tok == tokens.end())
-					return;
+					return daeSidRef::resolveData();
+				member = *tok;
+				tok++;
+			}
+			else if (*tok == "(") {
+				tok++;
+				if (tok == tokens.end())
+					return daeSidRef::resolveData();
 
-				stream.clear();
-				stream.str(*tok);
-				stream >> arrayIndex2;
-				haveArrayIndex2 = true;
+				istringstream stream(*tok);
+				stream >> arrayIndex1;
+				haveArrayIndex1 = true;
 				if (!stream.good() && !stream.eof())
-					return;
+					return daeSidRef::resolveData();
 				tok++;
 				if (tok == tokens.end()  ||  *tok != ")")
-					return;
+					return daeSidRef::resolveData();
 				tok++;
+			
+				if (tok != tokens.end()  &&  *tok == "(") {
+					tok++;
+					if (tok == tokens.end())
+						return daeSidRef::resolveData();
+
+					stream.clear();
+					stream.str(*tok);
+					stream >> arrayIndex2;
+					haveArrayIndex2 = true;
+					if (!stream.good() && !stream.eof())
+						return daeSidRef::resolveData();
+					tok++;
+					if (tok == tokens.end()  ||  *tok != ")")
+						return daeSidRef::resolveData();
+					tok++;
+				}
 			}
 		}
-	}
 
-	// We shouldn't have any tokens left. If we do it's an error.
-	if (tok != tokens.end())
-		return;
+		// We shouldn't have any tokens left. If we do it's an error.
+		if (tok != tokens.end())
+			return daeSidRef::resolveData();
 
-	// At this point we've parsed a correctly formatted SID reference. The only thing left is to resolve
-	// the member selection portion of the SID ref. First, see if the resolved element has a float array we
-	// can use.
-	if (element->typeID() == domSource::ID()) {
-		if (domFloat_array* floatArray = ((domSource*)element)->getFloat_array())
-			doubleArray = (daeDoubleArray*)floatArray->getCharDataObject()->get(floatArray);
-	}
-	else 
-	{
-		daeMetaAttribute *ma = element->getCharDataObject();
-		if ( ma != NULL ) {
-			if ( ma->isArrayAttribute() && ma->getType()->getTypeEnum() == daeAtomicType::DoubleType ) {
-				doubleArray = (daeDoubleArray*)ma->get( element );
+		// At this point we've parsed a correctly formatted SID reference. The only thing left is to resolve
+		// the member selection portion of the SID ref. First, see if the resolved element has a float array we
+		// can use.
+		if (result.elt->typeID() == domSource::ID()) {
+			if (domFloat_array* floatArray = ((domSource*)result.elt)->getFloat_array())
+				result.array = (daeDoubleArray*)floatArray->getCharDataObject()->get(floatArray);
+		}
+		else 
+		{
+			daeMetaAttribute *ma = result.elt->getCharDataObject();
+			if ( ma != NULL ) {
+				if ( ma->isArrayAttribute() && ma->getType()->getTypeEnum() == daeAtomicType::DoubleType ) {
+					result.array = (daeDoubleArray*)ma->get( result.elt );
+				}
 			}
 		}
-	}
 
-	if( doubleArray ) {
-		// We have an array to use for indexing. Let's see if the SID ref uses member selection.
-		if (!member.empty()) {
-			// Do member lookup based on the constants defined in the COMMON profile
-			if (member == "ANGLE") {
-				doublePtr = &(doubleArray->get(3));
-			}	else if (member.length() == 1) {
-				switch(member[0]) {
+		if( result.array ) {
+			// We have an array to use for indexing. Let's see if the SID ref uses member selection.
+			if (!member.empty()) {
+				// Do member lookup based on the constants defined in the COMMON profile
+				if (member == "ANGLE") {
+					result.scalar = &(result.array->get(3));
+				}	else if (member.length() == 1) {
+					switch(member[0]) {
 					case 'X':
 					case 'R':
 					case 'U':
 					case 'S':
-						doublePtr = &(doubleArray->get(0));
+						result.scalar = &(result.array->get(0));
 						break;
 					case 'Y':
 					case 'G':
 					case 'V':
 					case 'T':
-						doublePtr = &(doubleArray->get(1));
+						result.scalar = &(result.array->get(1));
 						break;
 					case 'Z':
 					case 'B':
 					case 'P':
-						doublePtr = &(doubleArray->get(2));
+						result.scalar = &(result.array->get(2));
 						break;
 					case 'W':
 					case 'A':
 					case 'Q':
-						doublePtr = &(doubleArray->get(3));
+						result.scalar = &(result.array->get(3));
 						break;
-				};
-			}
-		} else if (haveArrayIndex1) {
-			// Use the indices to lookup a value in the array
-			if (haveArrayIndex2  &&  doubleArray->getCount() == 16) {
-				// We're doing a matrix lookup. Make sure the index is valid.
-				int i = arrayIndex1*4 + arrayIndex2;
-				if (i >= 0  &&  i < int(doubleArray->getCount()))
-					doublePtr = &(doubleArray->get(i));
-			} else {
-				// Vector lookup. Make sure the index is valid.
-				if (arrayIndex1 >= 0  &&  arrayIndex1 < int(doubleArray->getCount()))
-					doublePtr = &(doubleArray->get(arrayIndex1));
+					};
+				}
+			} else if (haveArrayIndex1) {
+				// Use the indices to lookup a value in the array
+				if (haveArrayIndex2  &&  result.array->getCount() == 16) {
+					// We're doing a matrix lookup. Make sure the index is valid.
+					int i = arrayIndex1*4 + arrayIndex2;
+					if (i >= 0  &&  i < int(result.array->getCount()))
+						result.scalar = &(result.array->get(i));
+				} else {
+					// Vector lookup. Make sure the index is valid.
+					if (arrayIndex1 >= 0  &&  arrayIndex1 < int(result.array->getCount()))
+						result.scalar = &(result.array->get(arrayIndex1));
+				}
 			}
 		}
+
+		// If we tried to do member selection but we couldn't resolve it to a doublePtr, fail.
+		if ((!member.empty() || haveArrayIndex1)  &&  result.scalar == NULL)
+			return daeSidRef::resolveData();
+
+		// SID resolution was successful.
+		return result;
 	}
+} // namespace {
 
-	// If we tried to do member selection but we couldn't resolve it to a doublePtr, fail.
-	if ((!member.empty() || haveArrayIndex1)  &&  doublePtr == NULL)
-		return;
 
-	// SID resolution was successful. Apply the results.
-	resolvedElement = element;
-	resolvedDoubleArray = doubleArray;
-	resolvedDoublePtr = doublePtr;
-	if (resolvedDoublePtr)
-		state = sid_success_double;
-	else if (resolvedDoubleArray)
-		state = sid_success_array;
-	else if (resolvedElement)
-		state = sid_success_element;
+daeSidRef::resolveData::resolveData() : elt(NULL), array(NULL), scalar(NULL) { }
+
+daeSidRef::resolveData::resolveData(daeElement* elt, daeDoubleArray* array, daeDouble* scalar)
+  : elt(elt),
+    array(array),
+    scalar(scalar) { }
+
+
+daeSidRef::daeSidRef() : refElt(NULL) { }
+
+daeSidRef::daeSidRef(const string& sidRef, daeElement* referenceElt, const string& profile)
+  : sidRef(sidRef),
+    refElt(referenceElt),
+    profile(profile) { }
+
+bool daeSidRef::operator<(const daeSidRef& other) const {
+	if (refElt != other.refElt)
+		return refElt < other.refElt;
+	if (sidRef != other.sidRef)
+		return sidRef < other.sidRef;
+	return profile < other.profile;
+}
+
+daeSidRef::resolveData daeSidRef::resolve() {
+	if (!refElt)
+		return daeSidRef::resolveData();
+	
+	// First check the cache
+	daeSidRef::resolveData result = refElt->getDAE()->getSidRefCache().lookup(*this);
+	if (result.elt)
+		return result;
+
+	// Try to resolve as an effect-style sid ref by prepending "./" to the sid ref.
+	// If that fails, try resolving as an animation-style sid ref, where the first part is an ID.
+	result = resolveImpl(daeSidRef(string("./") + sidRef, refElt, profile));
+	if (!result.elt)
+		result = resolveImpl(*this);
+
+	if (result.elt) // Add the result to the cache
+		refElt->getDAE()->getSidRefCache().add(*this, result);
+
+	return result;
 }
 
 
-daeElement* cdom::resolveSid(daeElement* container,
-                             daeString sidRef,
-                             daeString platform) {
-	daeSIDResolver resolver(container, sidRef, platform);
-	return resolver.getElement();
+daeSIDResolver::daeSIDResolver( daeElement *container, daeString target, daeString profile )
+	: container(NULL)
+{
+	setContainer(container);
+	setTarget(target);
+	setProfile(profile);
 }
 
-daeElement* cdom::resolveSid(daeElement* container,
-                             const string& sidRef,
-                             const string& platform_) {
-	daeString platform = platform_.empty() ? NULL : platform_.c_str();
-	return resolveSid(container, sidRef.c_str(), platform);
+daeString daeSIDResolver::getTarget() const {
+	return target.empty() ? NULL : target.c_str();
+}
+
+void daeSIDResolver::setTarget( daeString t )
+{
+	target = t ? t : "";
+}
+
+daeString daeSIDResolver::getProfile() const {
+	return profile.empty() ? NULL : profile.c_str();
+}
+
+void daeSIDResolver::setProfile( daeString p )
+{
+	profile = p ? p : "";
+}
+
+daeElement* daeSIDResolver::getContainer() const {
+	return container;
+}
+
+void daeSIDResolver::setContainer(daeElement* element)
+{
+	container = element;
+}
+
+daeSIDResolver::ResolveState daeSIDResolver::getState() const {
+	if (target.empty())
+		return target_empty;
+
+	daeSidRef::resolveData result = daeSidRef(target, container, profile).resolve();
+	if (!result.elt)
+		return sid_failed_not_found;
+	if (result.scalar)
+		return sid_success_double;
+	if (result.array)
+		return sid_success_array;
+
+	return sid_success_element;
+}
+
+daeElement* daeSIDResolver::getElement()
+{
+	return daeSidRef(target, container, profile).resolve().elt;
+}
+
+daeDoubleArray *daeSIDResolver::getDoubleArray()
+{
+	return daeSidRef(target, container, profile).resolve().array;
+}
+
+daeDouble *daeSIDResolver::getDouble()
+{
+	return daeSidRef(target, container, profile).resolve().scalar;
+}
+
+
+daeSidRefCache::daeSidRefCache() : hitCount(0), missCount(0) { }
+
+daeSidRef::resolveData daeSidRefCache::lookup(const daeSidRef& sidRef) {
+	map<daeSidRef, daeSidRef::resolveData>::iterator iter = lookupTable.find(sidRef);
+	if (iter != lookupTable.end()) {
+		hitCount++;
+		return iter->second;
+	}
+	missCount++;
+	return daeSidRef::resolveData();
+}
+
+void daeSidRefCache::add(const daeSidRef& sidRef, const daeSidRef::resolveData& result) {
+	lookupTable[sidRef] = result;
+}
+
+void daeSidRefCache::clear() {
+	lookupTable.clear();
+	hitCount = missCount = 0;
+}
+
+bool daeSidRefCache::empty() {
+	return lookupTable.empty();
+}
+
+int daeSidRefCache::misses() {
+	return missCount;
+}
+
+int daeSidRefCache::hits() {
+	return hitCount;
 }

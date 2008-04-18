@@ -226,6 +226,8 @@ daeInt daeSTLDatabase::insertElement(daeDocument* document,daeElement* element)
 // 	if (!sid.empty())
 // 		sidMap.insert(sidMapPair(sid, element));
 
+	dae.getSidRefCache().clear();
+
 	return DAE_OK;
 }
 
@@ -293,6 +295,8 @@ daeInt daeSTLDatabase::removeElement(daeDocument* document,daeElement* element)
 // 			}
 // 		}
 // 	}
+
+	dae.getSidRefCache().clear();
 	
 	return DAE_OK;
 }
@@ -332,6 +336,8 @@ daeInt daeSTLDatabase::changeElementID( daeElement* element, daeString newID )
 		elementsIDMap.insert( make_pair( string( newID ), element ) );
 	}
 
+	dae.getSidRefCache().clear();
+
 	return DAE_OK;
 }
 
@@ -355,6 +361,8 @@ daeInt daeSTLDatabase::changeElementSID(daeElement* element, daeString newSID) {
 // 	if ( newSID != NULL )
 // 		sidMap.insert(sidMapPair(newSID, element));
 
+	dae.getSidRefCache().clear();
+
 	return DAE_OK;
 }
 
@@ -368,6 +376,8 @@ daeInt daeSTLDatabase::clear()
 	for (i=0;i<(int)documents.size();i++)
 		delete documents[i];
 	documents.clear(); //this will free the daeElement
+	dae.getRawRefCache().clear();
+	dae.getSidRefCache().clear();
 	return DAE_OK;
 }
 

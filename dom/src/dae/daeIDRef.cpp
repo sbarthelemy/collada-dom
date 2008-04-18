@@ -17,11 +17,12 @@
 #include <dae/daeDatabase.h>
 #include <dae/daeErrorHandler.h>
 
+using namespace std;
+
 void
 daeIDRef::initialize()
 {
 	id = "";
-	element = NULL;
 	container = NULL;
 }
 
@@ -62,20 +63,12 @@ daeIDRef &daeIDRef::operator=( const daeIDRef& other) {
 	if (!container)
 		container = other.container;
 	id = other.getID();
-	element = other.element;
 	return *this;
 }
 
 daeString
 daeIDRef::getID() const
 {
-	// If we have an element, ask what its ID is. This way we're always using the up-to-date ID,
-	// even if a user changes the ID of the element on us.
-	if (element) {
-		daeString elementID = element->getID();
-		return elementID ? elementID : "";
-	}
-
 	return id.c_str();
 }
 
@@ -83,34 +76,12 @@ void
 daeIDRef::setID(daeString _IDString)
 {
 	id = _IDString ? _IDString : "";
-	element = NULL;
 }
 
 daeElement* daeIDRef::getElement() const {
-	if (!element && container) {
-		element = container->getDAE()->getIDRefResolvers().resolveElement(
-			id.c_str(), container->getDocumentURI()->getURI());
-	}
-	return element;
-}
-
-void daeIDRef::setElement(daeElement* newref) {
-	element = newref;
-	id = element->getID() ? element->getID() : "";
-}
-
-daeIDRef::ResolveState daeIDRef::getState() const {
-	if (element)
-		return id_success;
-
-	if (!container)
-		return id_failed_no_document;
-	
-	// Try to resolve the ID
-	ResolveState result;
-	element = container->getDAE()->getIDRefResolvers().resolveElement(
-		id.c_str(), container->getDocumentURI()->getURI(), &result);
-	return result;
+	if (container)
+		return container->getDAE()->getIDRefResolvers().resolveElement(id, container->getDocument());
+	return NULL;
 }
 
 daeElement* daeIDRef::getContainer() const {
@@ -119,7 +90,6 @@ daeElement* daeIDRef::getContainer() const {
 
 void daeIDRef::setContainer(daeElement* cont) {
 	container = cont;
-	element = NULL; // Force a resolve since the container changed
 }
 
 void
@@ -155,6 +125,14 @@ daeIDRef::copyFrom(const daeIDRef& copyFrom) {
 	*this = copyFrom;
 }
 
+daeIDRef::ResolveState daeIDRef::getState() const {
+	if (id.empty())
+		return id_empty;
+	if (getElement())
+		return id_success;
+	return id_failed_id_not_found;
+}
+
 
 daeIDRefResolver::daeIDRefResolver(DAE& dae) : dae(&dae) { }
 
@@ -171,28 +149,8 @@ daeDefaultIDRefResolver::getName()
 	return "DefaultIDRefResolver";
 }
 
-daeElement* daeDefaultIDRefResolver::resolveElement(daeString id, 
-                                                    daeString docURI, 
-                                                    daeIDRef::ResolveState* result /* = NULL */)
-{
-	daeElement* el = NULL;
-	daeIDRef::ResolveState state = daeIDRef::id_success;
-	
-	if (!id || strcmp(id, "") == 0)
-		state = daeIDRef::id_failed_invalid_id;
-	else {
-		if (!docURI)
-			state = daeIDRef::id_failed_no_document;
-		else {
-			el = dae->getDatabase()->idLookup(id, dae->getDatabase()->getDocument(docURI));
-			if (!el)
-				state = daeIDRef::id_failed_id_not_found;
-		}
-	}
-
-	if (result)
-		*result = state;
-	return el;
+daeElement* daeDefaultIDRefResolver::resolveElement(const string& id, daeDocument* doc) {
+	return doc ? dae->getDatabase()->idLookup(id, doc) : NULL;
 }
 
 
@@ -211,13 +169,9 @@ void daeIDRefResolverList::removeResolver(daeIDRefResolver* resolver) {
 	resolvers.remove(resolver);
 }
 
-daeElement* daeIDRefResolverList::resolveElement(
-	daeString id,
-	daeString docURI,
-	daeIDRef::ResolveState* result)
-{
+daeElement* daeIDRefResolverList::resolveElement(const string& id, daeDocument* doc) {
 	for(size_t i = 0; i < resolvers.getCount(); i++)
-		if (daeElement* el = resolvers[i]->resolveElement(id, docURI, result))
+		if (daeElement* el = resolvers[i]->resolveElement(id, doc))
 			return el;
 	return NULL;
 }

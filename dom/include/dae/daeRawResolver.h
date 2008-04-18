@@ -23,36 +23,35 @@ class DAE;
  * The @c daeRawResolver class derives from @c daeURIResolver and implements
  * the .raw backend resolver for raw binary data.
  */
-class daeRawResolver : public daeURIResolver
+class DLLSPEC daeRawResolver : public daeURIResolver
 {
 public:
 	/**
 	 * Constructor.
 	 */
-	DLLSPEC daeRawResolver(DAE& dae);
+	daeRawResolver(DAE& dae);
 	/**
 	 * Destructor.
 	 */
-	DLLSPEC ~daeRawResolver();
+	~daeRawResolver();
 
 public: // Abstract Interface
-	virtual DLLSPEC daeElement* resolveElement(daeURI& uri);
-	virtual DLLSPEC daeString getName();
+	virtual daeElement* resolveElement(daeURI& uri);
+	virtual daeString getName();
 };
 
 // A simple class to make speed up the process of resolving a .raw URI.
 // The result of the resolve is cached for future use.
 // This is meant for DOM internal use only.
-class daeRawRefCache {
+class DLLSPEC daeRawRefCache {
 public:
-	DLLSPEC daeElement* lookup(const daeURI& uri);
-	DLLSPEC void add(const daeURI& uri, daeElement* elt);
-	DLLSPEC void remove(const daeURI& uri);
-	DLLSPEC void clear();
+	daeElement* lookup(const daeURI& uri);
+	void add(const daeURI& uri, daeElement* elt);
+	void remove(const daeURI& uri);
+	void clear();
 
 private:
 	std::map<std::string, daeElement*> lookupTable;
 };
 
 #endif
-

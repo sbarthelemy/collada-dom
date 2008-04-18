@@ -369,26 +369,15 @@ DefineTest(tinyXmlLoad) {
 #endif
 
 
-string resolveResultToString(daeSIDResolver::ResolveState state) {
-	switch(state) {
-		case daeSIDResolver::target_empty: return "target empty"; break;
-		case daeSIDResolver::target_loaded: return "target loaded"; break;
-		case daeSIDResolver::sid_failed_not_found: return "failed"; break;
-		case daeSIDResolver::sid_success_element: return "element"; break;
-		case daeSIDResolver::sid_success_array: return "array"; break;
-		case daeSIDResolver::sid_success_double: return "double"; break;
-	}
-
-	return "unknown error";
+string resolveResultToString(const string& sidRef, daeElement* refElt) {
+	daeSidRef::resolveData rd = daeSidRef(sidRef, refElt).resolve();
+	if (rd.scalar) return "scalar";
+	else if (rd.array) return "array";
+	else if (rd.elt) return "element";
+	else return "failed";
 }
 
-daeSIDResolver::ResolveState resolveSidToState(const string& sid, daeElement* container) {
-	daeSIDResolver sidResolver(container, sid.c_str());
-	sidResolver.getElement();
-	return sidResolver.getState();
-}
-
-DefineTest(sidResolveTest) {
+DefineTest(sidResolve) {
 	DAE dae;
 	daeElement* root = dae.open(lookupTestFile("sidResolveTest.dae"));
 	CheckResult(root);
@@ -402,7 +391,7 @@ DefineTest(sidResolveTest) {
 	istringstream stream(effectExtra->getCharData());
 	string sidRef, expectedResult;
 	while (stream >> sidRef >> expectedResult) {
-		string result = resolveResultToString(resolveSidToState(sidRef, effect));
+		string result = resolveResultToString(sidRef, effect);
 		CheckResultWithMsg(result == expectedResult,
 		                   string("sid ref=") + sidRef + ", expectedResult=" + expectedResult + ", actualResult=" + result);
 	}
@@ -413,7 +402,7 @@ DefineTest(sidResolveTest) {
 	stream.clear();
 	stream.str(nodeSidRefExtra->getCharData());
 	while (stream >> sidRef >> expectedResult) {
-		string result = resolveResultToString(resolveSidToState(sidRef, root));
+		string result = resolveResultToString(sidRef, root);
 		CheckResultWithMsg(result == expectedResult,
 		                   string("sid ref=") + sidRef + ", expectedResult=" + expectedResult + ", actualResult=" + result);
 	}
@@ -424,7 +413,7 @@ DefineTest(sidResolveTest) {
 	stream.clear();
 	stream.str(nodeSidRefExtra->getCharData());
 	while (stream >> sidRef >> expectedResult) {
-		daeElement* elt = cdom::resolveSid(root, sidRef);
+		daeElement* elt = daeSidRef(sidRef, root).resolve().elt;
 		string result = elt ? elt->getAttribute("id") : "failed";
 		CheckResultWithMsg(result == expectedResult,
 		                   string("sid ref=") + sidRef + ", expectedResult=" + expectedResult + ", actualResult=" + result);
@@ -437,7 +426,7 @@ DefineTest(sidResolveTest) {
 	stream.str(nodeSidRefExtra->getCharData());
 	string profile;
 	while (stream >> sidRef >> profile >> expectedResult) {
-		daeElement* elt = cdom::resolveSid(root, sidRef, profile);
+		daeElement* elt = daeSidRef(sidRef, root, profile).resolve().elt;
 		string result = elt ? elt->getAttribute("id") : "failed";
 		CheckResultWithMsg(result == expectedResult,
 		                   string("sid ref=") + sidRef + ", profile=" + profile +
@@ -470,9 +459,8 @@ daeElement* resolveID(daeString id, daeDocument& document) {
 	return document.getDatabase()->idLookup(id, &document);
 }
 
-daeElement* resolveSid(const string& sid, daeElement& container) {
-	daeSIDResolver sidResolver(&container, sid.c_str());
-	return sidResolver.getElement();
+daeElement* resolveSid(const string& sid, daeElement& refElt) {
+	return daeSidRef(sid, &refElt).resolve().elt;
 }
 
 string getCharData(daeElement* el) {
@@ -779,7 +767,7 @@ DefineTest(sidResolveSpeed) {
 	for (size_t i = 0; i < sidRefArrays.size(); i++) {
 		domListOfNames& sidRefs = sidRefArrays[i]->getValue();
 		for (size_t j = 0; j < sidRefs.getCount(); j++) {
-			CheckResult(cdom::resolveSid(root, sidRefs[i]));
+			CheckResult(resolveSid(sidRefs[i], root));
 		}
 	}
 
@@ -799,7 +787,7 @@ DefineTest(seymourSidResolve) {
 		for (size_t j = 0; j < children.getCount(); j++) {
 			string sid = children[j]->getAttribute("sid");
 			if (!sid.empty()) {
-				CheckResult(cdom::resolveSid(nodes[i], sid));
+				CheckResult(daeSidRef(sid, nodes[i]).resolve().elt);
 			}
 		}
 	}
@@ -1332,13 +1320,38 @@ DefineTest(charEncoding) {
 }
 
 
-DefineTest(uriGetElementBug) {
+DefineTest(getElementBug) {
 	DAE dae;
 	CheckResult(dae.open(lookupTestFile("cube.dae")));
+
+	// Check daeURI::getElement
 	domInstance_geometry* geomInst = dae.getDatabase()->typeLookup<domInstance_geometry>().at(0);
 	CheckResult(geomInst->getUrl().getElement());
 	daeElement::removeFromParent(geomInst->getUrl().getElement());
 	CheckResult(geomInst->getUrl().getElement() == 0);
+
+	// Check daeIDRef::getElement
+	daeIDRef idRef(*geomInst);
+	idRef.setID("PerspCamera");
+	CheckResult(idRef.getElement());
+	daeElement::removeFromParent(idRef.getElement());
+	CheckResult(idRef.getElement() == 0);
+
+	// Check daeSidRef::resolve
+	daeSidRefCache& cache = dae.getSidRefCache();
+	daeElement* effect = dae.getDatabase()->typeLookup(domEffect::ID()).at(0);
+	daeSidRef sidRef("common", effect);
+
+	CheckResult(cache.empty() && cache.hits() == 0 && cache.misses() == 0);
+	daeElement* technique = sidRef.resolve().elt;
+	CheckResult(technique && cache.misses() == 1 && !cache.empty());
+	sidRef.resolve();
+	CheckResult(cache.misses() == 1 && cache.hits() == 1);
+	daeElement::removeFromParent(technique);
+	CheckResult(cache.empty() && cache.misses() == 0 && cache.hits() == 0);
+	CheckResult(sidRef.resolve().elt == NULL);
+	CheckResult(cache.empty() && cache.misses() == 1);
+	
 	return testResult(true);
 }
 

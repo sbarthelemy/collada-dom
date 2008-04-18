@@ -15,8 +15,38 @@
 #define __DAE_SIDRESOLVER_H__
 
 #include <string>
+#include <map>
 #include <dae/daeTypes.h>
 #include <dae/daeElement.h>
+
+
+// This is an alternative to the daeSIDResolver class. It's recommended you use
+// this class instead. Typical usage: get the element a sid ref points to. For
+// example, if you want to find the element with sid 'sampler' using a
+// daeElement pointer named 'effect', that would look like this:
+//   daeElement* elt = daeSidRef("sampler", effect).resolve().elt
+struct DLLSPEC daeSidRef {
+	// A helper class for returning all the data retrieved when a sid is resolved.
+	struct DLLSPEC resolveData {
+		resolveData();
+		resolveData(daeElement* elt, daeDoubleArray* array, daeDouble* scalar);
+
+		daeElement* elt;
+		daeDoubleArray* array;
+		daeDouble* scalar;
+	};
+	
+	daeSidRef();
+	daeSidRef(const std::string& sidRef, daeElement* referenceElt, const std::string& profile = "");
+	bool operator<(const daeSidRef& other) const;
+
+	resolveData resolve();
+		
+	std::string sidRef;
+	daeElement* refElt;
+	std::string profile;
+};
+
 
 /**
  * The daeSIDResolver class is designed to resolve sid references within a COLLADA document.
@@ -93,12 +123,6 @@ public:
 	void setContainer(daeElement* element);
 
 	/**
-	 * Gets the resolution state.
-	 * @return Returns the current state of SID resolution.
-	 */
-	ResolveState getState() const;
-
-	/**
 	 * Gets the element that this SID resolves to.
 	 * @return Returns the element that the URI resolves to.
 	 */
@@ -120,37 +144,36 @@ public:
 	 */
 	daeDouble *getDouble();
 
+	// This method is deprecated. Don't use it.
+	ResolveState getState() const;
+
 private:
-
-	void resetResolveState();
-	void resolve();
-	void resolveImpl(const std::string& sidRef);
-
 	// This data is provided by the user
 	std::string	target;
 	std::string	profile;	
 	daeElement* container;
-
-	// This is the output for the user. It gets set after calling the resolve function.
-	ResolveState    state;
-	daeElement*     resolvedElement;
-	daeDoubleArray* resolvedDoubleArray;
-	daeDouble*      resolvedDoublePtr;
-
 };
 
-namespace cdom {
-	// Provides a more functional interface to the sid resolver code.
-	// sidRef can be an effect-style sid reference, like "mySampler", or an animation-style
-	// sid reference with pathing and member selection, like "myElement/subElem.X".
-	// Returns null if a matching element isn't found.
-	DLLSPEC daeElement* resolveSid(daeElement* container,
-	                               daeString sidRef,
-	                               daeString platform = NULL);
-	DLLSPEC daeElement* resolveSid(daeElement* container,
-	                               const std::string& sidRef,
-	                               const std::string& platform = "");
-}
+
+// A class to make sid ref lookups faster. Meant for DOM internal use only.
+class DLLSPEC daeSidRefCache {
+public:
+	daeSidRefCache();
+	
+	daeSidRef::resolveData lookup(const daeSidRef& sidRef);
+	void add(const daeSidRef& sidRef, const daeSidRef::resolveData& data);
+	void clear();
+
+	// For debugging/testing
+	bool empty();
+	int misses();
+	int hits();
+
+private:
+	std::map<daeSidRef, daeSidRef::resolveData> lookupTable;
+	int hitCount;
+	int missCount;
+};
 
 #endif
 

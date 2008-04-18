@@ -215,6 +215,7 @@ void DAE::close(const string& path) {
 daeInt DAE::clear() {
 	database->clear();
 	rawRefCache.clear();
+	sidRefCache.clear();
 	return DAE_OK;
 }
 
@@ -336,6 +337,10 @@ daeIDRefResolverList& DAE::getIDRefResolvers() {
 
 daeRawRefCache& DAE::getRawRefCache() {
 	return rawRefCache;
+}
+
+daeSidRefCache& DAE::getSidRefCache() {
+	return sidRefCache;
 }
 
 void DAE::dummyFunction1() { }
