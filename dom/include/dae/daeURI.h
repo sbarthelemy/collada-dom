@@ -423,7 +423,7 @@ protected:
 
 
 // This is a container class for storing a modifiable list of daeURIResolver objects.
-class daeURIResolverList {
+class DLLSPEC daeURIResolverList {
 public:
 	daeURIResolverList();
 	~daeURIResolverList();
