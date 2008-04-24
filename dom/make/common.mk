@@ -22,11 +22,19 @@ ifeq ($(os),mac)
 ccFlags += $(addprefix -arch ,$(subst x86,i386,$(archs)))
 endif
 
+libOpts :=
+ifeq ($(os),windows)
+# In case we're using the Cygwin compiler/linker, instruct cygwin to use the
+# MinGW compiler to get a native Windows build. If you actually want a
+# Cygwin-ized build you should comment this out.
+ccFlags += -mno-cygwin
+libOpts += -mno-cygwin
+endif
+
 # Clear out a bunch of variables that may have previously been set
 src :=
 targets :=
 includeOpts :=
-libOpts :=
 sharedLibSearchPaths :=
 dependentLibs :=
 postCreateExeCommand :=
