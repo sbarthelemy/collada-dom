@@ -270,7 +270,7 @@ daeLongType::daeLongType(DAE& dae) : daeAtomicType(dae)
 	_maxStringLength = 32;
 	_nameBindings.append("xsLong");
 	_nameBindings.append("xsLongArray");
-#ifdef _MSC_VER
+#if defined(_MSC_VER) || defined(__MINGW32__)
 	_printFormat = "%I64d";
 	_scanFormat = "%I64d";
 #else
@@ -314,7 +314,7 @@ daeULongType::daeULongType(DAE& dae) : daeAtomicType(dae)
 	_maxStringLength = 32;
 	_nameBindings.append("ulong");
 	_nameBindings.append("xsUnsignedLong");
-#ifdef _MSC_VER
+#if defined(_MSC_VER) || defined(__MINGW32__)
 	_printFormat = "%I64u";
 	_scanFormat = "%I64u";
 #else
@@ -451,7 +451,7 @@ daeBool daeUIntType::memoryToString(daeChar* src, std::ostringstream& dst) {
 }
 
 daeBool daeULongType::memoryToString(daeChar* src, std::ostringstream& dst) {
-#ifdef WIN32
+#ifdef _MSC_VER
 	// Microsoft's stringstream implementation has weird performance issues
 	static char buffer[64];
 	_snprintf(buffer, 64, _printFormat, *((daeULong*)src));
@@ -506,7 +506,7 @@ daeBool daeDoubleType::memoryToString(daeChar* src, std::ostringstream& dst) {
 	else if ( *(daeULong*)src == 0xfff0000000000000LL ) // -INF
 		dst << "-INF";
 	else {
-#ifdef WIN32
+#ifdef _MSC_VER
 		// Microsoft's stringstream implementation has weird performance issues
 		static char buffer[64];
 		_snprintf(buffer, 64, _printFormat, *((daeDouble*)src));

@@ -10,39 +10,55 @@ src += $(wildcard src/$(colladaVersion)/dom/*.cpp)
 
 includeOpts := -Iinclude -Iinclude/$(colladaVersion)
 
-ifneq ($(os),ps3)
-# We're building a shared lib, so make sure to generate position independent code
+ifneq ($(findstring $(os),linux mac),)
 ccFlags += -fPIC
+else ifeq ($(os),windows)
+ccFlags += -DDOM_DYNAMIC -DDOM_EXPORT
 endif
 
 ifneq ($(findstring libxml,$(xmlparsers)),)
 ccFlags += -DDOM_INCLUDE_LIBXML
+ifeq ($(os),windows)
+includeOpts += -Iexternal-libs/libxml2/include
+libOpts += -Lexternal-libs/libxml2/$(buildID)/lib -lxml2 -lws2_32 -lz
+else
 includeOpts += -I/usr/include/libxml2
 libOpts += -lxml2
+endif
 endif
 
 ifneq ($(findstring tinyxml,$(xmlparsers)),)
 ccFlags += -DDOM_INCLUDE_TINYXML
 includeOpts += -Iexternal-libs/tinyxml/
-libOpts += external-libs/tinyxml/lib/$(os)/libtinyxml.a
+libOpts += external-libs/tinyxml/lib/$(buildID)/libtinyxml.a
 endif
 
-# On Mac and PS3 we need to be told where to find pcre
-ifeq ($(os),linux)
+# On Windows and PS3 we need to be told where to find pcre
+ifneq ($(findstring $(os),linux mac),)
 libOpts += -lpcre -lpcrecpp
-else
+else 
+ifeq ($(os),windows)
+ccFlags += -DPCRE_STATIC
+endif
 includeOpts += -Iexternal-libs/pcre
-libOpts += $(addprefix external-libs/pcre/lib/$(os)/,libpcre.a libpcrecpp.a)
+libOpts += $(addprefix external-libs/pcre/lib/$(buildID)/,libpcrecpp.a libpcre.a )
 endif
 
 libName := libcollada$(colladaVersionNoDots)dom$(debugSuffix)
 libVersion := $(domVersion)
+libVersionNoDots := $(subst .,,$(libVersion))
 
 targets :=
 ifeq ($(os),linux)
 # On Linux we build a static lib and a shared lib
 targets += $(addprefix $(outPath),$(libName).a)
 targets += $(addprefix $(outPath),$(libName).so)
+
+else ifeq ($(os),windows)
+# On Windows we build a static lib and a DLL
+windowsLibName := libcollada$(colladaVersionNoDots)dom
+targets += $(addprefix $(outPath),$(windowsLibName)$(debugSuffix).a)
+targets += $(addprefix $(outPath),$(windowsLibName)$(libVersionNoDots)$(debugSuffix).dll)
 
 else ifeq ($(os),mac)
 # On Mac we build a framework

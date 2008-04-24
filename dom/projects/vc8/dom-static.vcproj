@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\include;..\..\include\1.4;&quot;..\..\external-libs\libxml2\win32\include&quot;;&quot;..\..\external-libs\tinyxml&quot;;&quot;..\..\external-libs\pcre&quot;"
+				AdditionalIncludeDirectories="..\..\include;..\..\include\1.4;&quot;..\..\external-libs\libxml2\include&quot;;&quot;..\..\external-libs\tinyxml&quot;;&quot;..\..\external-libs\pcre&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CRT_SECURE_NO_DEPRECATE;DOM_INCLUDE_LIBXML;PCRE_STATIC"
 				MinimalRebuild="false"
 				BasicRuntimeChecks="3"
@@ -106,7 +106,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="..\..\include;..\..\include\1.4;&quot;..\..\external-libs\libxml2\win32\include&quot;;&quot;..\..\external-libs\tinyxml&quot;;&quot;..\..\external-libs\pcre&quot;"
+				AdditionalIncludeDirectories="..\..\include;..\..\include\1.4;&quot;..\..\external-libs\libxml2\include&quot;;&quot;..\..\external-libs\tinyxml&quot;;&quot;..\..\external-libs\pcre&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CRT_SECURE_NO_DEPRECATE;DOM_INCLUDE_LIBXML;PCRE_STATIC"
 				RuntimeLibrary="2"
 				DisableLanguageExtensions="true"

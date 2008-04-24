@@ -51,17 +51,6 @@ daeString daeStringTable::allocString(daeString string)
 	int align = sizeof(void*);
 	_stringBufferIndex = (_stringBufferIndex+(align-1)) & (~(align-1));
 
-	//assert
-#if defined(_DEBUG) && defined(WIN32)
-	if (_stringBufferIndex>_stringBufferSize)
-	{
-		//error the size of the buffer is not aligned,
-		//or there is an internal error
-		assert(0);
-		return NULL;
-	}
-#endif
-	
 	return str;
 }
 

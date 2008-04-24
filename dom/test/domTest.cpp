@@ -24,7 +24,7 @@
 #include "domTest.h"
 
 // Windows memory leak checking
-#if defined WIN32 && defined _DEBUG
+#if defined _MSC_VER && defined _DEBUG
 #define _CRTDBG_MAP_ALLOC
 #include <stdlib.h>
 #include <crtdbg.h>
@@ -1459,7 +1459,7 @@ struct tmpDir {
 
 int main(int argc, char* argv[]) {
 	// Windows memory leak checking
-#if defined WIN32 && defined _DEBUG
+#if defined _MSC_VER && defined _DEBUG
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF | _CRTDBG_CHECK_EVERY_1024_DF);
 #endif
 

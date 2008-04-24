@@ -41,6 +41,8 @@ typedef int intptr_t;
 #define DLLSPEC
 #endif
 
+// GCC doesn't understand "#pragma warning"
+#ifdef _MSC_VER
 // class 'std::auto_ptr<_Ty>' needs to have dll-interface to be used by clients of class 'daeErrorHandler'
 #pragma warning(disable: 4251)
 // warning C4100: 'profile' : unreferenced formal parameter
@@ -51,5 +53,6 @@ typedef int intptr_t;
 #pragma warning(disable: 4512)
 // warning LNK4099: Missing pdb file for PCRE
 #pragma warning(disable: 4099)
+#endif
 
 #endif

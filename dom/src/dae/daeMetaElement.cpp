@@ -22,10 +22,6 @@
 daeElementRef
 daeMetaElement::create() 
 {
-#if defined(_DEBUG) && defined(WIN32)
-	if (_createFunc == NULL)
-		return NULL;
-#endif
 	daeElementRef ret =  (*_createFunc)(dae);
 	ret->setup(this);
 		

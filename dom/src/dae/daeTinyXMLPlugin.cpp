@@ -15,11 +15,11 @@
 // require linking against it. By default TinyXML support isn't included.
 #if defined(DOM_INCLUDE_TINYXML)
 
-#if defined(DOM_DYNAMIC) && defined(WIN32)
+#if defined(DOM_DYNAMIC) && defined(_MSC_VER)
 #pragma comment(lib, "tinyxml.lib")
 #endif
 
-#if defined(WIN32)
+#if defined(_MSC_VER)
 #pragma warning(disable: 4100) // warning C4100: 'element' : unreferenced formal parameter
 #endif
 

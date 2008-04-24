@@ -6,7 +6,7 @@
 
 // We use the boost filesystem library for cross-platform file system support. You'll need
 // to have boost on your machine for this to work. For the Windows build boost is provided
-// in the external-libs folder, but for Linux/Mac it's expected that you'll install a boost
+// in the external-libs folder, but for Linux it's expected that you'll install a boost
 // obtained via your distro's package manager. For example on Debian/Ubuntu, you can run
 //   apt-get install libboost-filesystem-dev
 // to install the boost filesystem library on your machine.

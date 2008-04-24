@@ -31,7 +31,12 @@ sharedLibSearchPaths :=
 dependentLibs :=
 postCreateExeCommand :=
 
-outPath := build/$(os)-$(colladaVersion)$(if $(findstring debug,$(conf)),$(debugSuffix))/
+buildID := $(os)
+ifeq ($(os),windows)
+buildID := mingw
+endif
+
+outPath := build/$(buildID)-$(colladaVersion)$(if $(findstring debug,$(conf)),$(debugSuffix))/
 objPath := $(outPath)obj/
 colladaVersionNoDots := $(subst .,,$(colladaVersion))
 xmlparsers := $(if $(findstring ps3,$(os)),tinyxml,$(parsers))

@@ -17,11 +17,14 @@ ifneq ($(verbose),yes)
 .SILENT:
 endif
 
-# os: 'linux', 'mac', or 'ps3'. Use the 'uname' command to decide between Mac and Linux
-# as the default.
+# os: 'linux', 'mac', 'windows', or 'ps3'. Use the 'uname' command to decide the
+# default value. To detect when we're on Windows we'll check to see if we're
+# running on Cygwin or MinGW.
 os := linux
 ifneq ($(shell uname | grep -i darwin),)
 os := mac
+else ifneq ($(or $(shell uname | grep -i cygwin),$(shell uname | grep -i mingw)),)
+os := windows
 endif
 
 # nativeArch: For internal use. Don't override this, instead override 'arch'.
@@ -68,7 +71,7 @@ endif
 endef
 
 oss := $(sort $(os))
-ifneq ($(filter-out linux mac ps3,$(oss)),)
+ifneq ($(filter-out linux mac ps3 windows,$(oss)),)
 $(error Invalid setting os=$(os))
 endif
 
@@ -86,6 +89,8 @@ comma := ,
 domMajorVersion := 2
 domMinorVersion := 0
 domVersion := $(domMajorVersion).$(domMinorVersion)
+domVersionNoDots := $(subst .,,$(domVersion))
+
 
 # Have make automatically delete a target if there's an error in one of the rule commands
 .DELETE_ON_ERROR:
@@ -183,7 +188,7 @@ endif
 ifneq ($(installPrefix),)
 ifeq ($(oss),linux)
 uninstall:
-	@echo Uninstalling from $(prefix)
+	@echo Uninstalling from $(installPrefix)
 	rm -rf $(installPrefix)/include/colladadom
 	rm -f  $(installPrefix)/lib/libcollada*dom*
 else ifeq ($(oss),mac)

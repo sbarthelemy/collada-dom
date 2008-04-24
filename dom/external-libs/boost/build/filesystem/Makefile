@@ -8,14 +8,14 @@ compiler := g++
 linker := ar
 compilerFlags += -arch ppc -arch i386
 outPath := mac/
-sources := exception.cpp operations.cpp path.cpp portability.cpp utf8_codecvt_facet.cpp
+sources := operations.cpp path.cpp portability.cpp utf8_codecvt_facet.cpp
 else
 # PS3
 compiler := ppu-lv2-g++
 linker := ppu-lv2-ar
 compilerFlags += -DBOOST_NO_STD_LOCALE
 outPath := ps3/
-sources := exception.cpp operations.cpp path.cpp portability.cpp
+sources := operations.cpp path.cpp portability.cpp
 endif
 
 compilerFlags += -Wall -c -O2 -I../../../

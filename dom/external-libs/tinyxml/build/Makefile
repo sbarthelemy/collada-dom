@@ -1,8 +1,12 @@
-# Linux: 'make'
-# Mac: 'make platform=mac'
+# Linux, Mac, MinGW, Cygwin: 'make'
 # PS3: 'make platform=ps3'
 
 platform := linux
+ifneq ($(shell uname | grep -i darwin),)
+platform := mac
+else ifneq ($(or $(shell uname | grep -i cygwin),$(shell uname | grep -i mingw)),)
+platform := mingw
+endif
 
 ifneq ($(platform), ps3)
 compiler := g++

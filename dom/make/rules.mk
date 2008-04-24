@@ -23,17 +23,19 @@ outputFiles += $(foreach so,$(filter %.so,$(targets)),$(so).$(libMajorVersion) $
 # Parse the targets, which can contain any of the following:
 #  static lib (.a)
 #  shared lib (.so)
+#  Windows dynamic lib (.dll)
 #  Mac dynamic lib (.dylib)
 #  framework (.framework)
 #  exe (no extension, or .elf on PS3)
 staticLib := $(filter %.a,$(targets))
 sharedLib := $(filter %.so,$(targets))
+dll := $(filter %.dll,$(targets))
 dylib := $(filter %.dylib,$(targets))
 framework := $(filter %.framework,$(targets))
 # For each framework we need a corresponding .dylib
 dylib += $(framework:.framework=.dylib)
-# Any target other than a .a, .so, .dylib, or .framework is considered an exe
-exe := $(filter-out $(staticLib) $(sharedLib) $(dylib) $(framework),$(targets))
+# Any target other than a .a, .so, .dll, .dylib, or .framework is considered an exe
+exe := $(filter-out $(staticLib) $(sharedLib) $(dll) $(dylib) $(framework),$(targets))
 
 ifneq ($(obj),)
 # Pull in dependency info for *existing* .o files
@@ -96,6 +98,16 @@ $(sharedLibMajor): $(sharedLibMajorMinor) | $(dir $(sharedLibMajor))
 
 $(sharedLib): $(sharedLibMajor) | $(dir $(sharedLib))
 	cd $(dir $@)  &&  ln -sf $(notdir $^) $(notdir $@)
+endif
+
+# Rules for dlls
+ifneq ($(dll),)
+$(dll): cc := $(cc)
+$(dll): ccFlags := $(ccFlags)
+$(dll): libOpts := $(libOpts)
+$(dll): $(dependentLibs) $(obj) | $(dir $(dll))
+	@echo Linking $@
+	$(cc) $(ccFlags) -Wl,--out-implib,$(@:.dll=.lib) -shared -o $@ $^ $(libOpts)
 endif
 
 # Rule for Mac-style dynamic libs

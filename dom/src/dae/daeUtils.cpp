@@ -1,5 +1,6 @@
 #include <cstdarg>
 #include <algorithm>
+#include <iterator>
 #include <dae/daeUtils.h>
 #include <dae/daeURI.h>
 

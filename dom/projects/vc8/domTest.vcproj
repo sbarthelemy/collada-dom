@@ -62,7 +62,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libcollada14dom20-d.lib libboost_filesystem-d.lib"
+				AdditionalDependencies="libcollada14dom20-d.lib libboost_filesystem-d.lib libboost_system-d.lib"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="&quot;$(OutDir)&quot;;&quot;..\..\external-libs\boost\lib\vc8&quot;"
 				GenerateDebugInformation="true"
@@ -140,7 +140,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libcollada14dom20.lib libboost_filesystem.lib"
+				AdditionalDependencies="libcollada14dom20.lib libboost_filesystem.lib libboost_system.lib"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="&quot;$(OutDir)&quot;;&quot;..\..\external-libs\boost\lib\vc8&quot;"
 				GenerateDebugInformation="false"

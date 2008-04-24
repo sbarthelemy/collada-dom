@@ -6,13 +6,11 @@ targets := $(outPath)domTest$(exeSuffix)
 # DOM defs. This is extra complicated because of the installTest make target. The extra
 # complexity is justified since installTest is very useful.
 ifneq ($(os),mac)
-libSuffix := $(if $(findstring ps3,$(os)),.a,.so)
+libSuffix := $(if $(findstring windows,$(os)),.lib,$(if $(findstring ps3,$(os)),.a,.so))
 domPath := $(if $(installTest),$(installPrefix)/lib/,$(outPath))
-domName := $(domPath)libcollada$(colladaVersionNoDots)dom$(debugSuffix)$(libSuffix)
-ifeq ($(installTest),)
-libOpts += -L$(domPath)
-endif
-libOpts += -lcollada$(colladaVersionNoDots)dom$(debugSuffix)
+domVersionTag := $(if $(findstring windows,$(os)),$(domVersionNoDots),)
+domName := $(domPath)libcollada$(colladaVersionNoDots)dom$(domVersionTag)$(debugSuffix)$(libSuffix)
+libOpts += $(domName)
 ifeq ($(os),linux)
 sharedLibSearchPaths += $(abspath $(outPath))
 endif
@@ -31,7 +29,7 @@ endif
 ifeq ($(installTest),)
 includeOpts += -Iinclude -Iinclude/$(colladaVersion)
 else ifeq ($(os),linux)
-includeOpts += -I$(installPrefix)/include/collada -I$(installPrefix)/include/collada/$(colladaVersion)
+includeOpts += -I$(installPrefix)/include/colladadom -I$(installPrefix)/include/colladadom/$(colladaVersion)
 else ifeq ($(os),mac)
 includeOpts += -I$(installPrefix)/$(domFramework)/Headers
 endif
@@ -56,7 +54,8 @@ ifeq ($(os),linux)
 libOpts += -lboost_filesystem
 else
 includeOpts += -Iexternal-libs/boost
-libOpts += external-libs/boost/lib/$(os)/libboost_filesystem.a
+libOpts += external-libs/boost/lib/$(buildID)/libboost_system.a
+libOpts += external-libs/boost/lib/$(buildID)/libboost_filesystem.a
 endif
 ifeq ($(os),ps3)
 # PS3 doesn't support C++ locales, so tell boost not to use them
