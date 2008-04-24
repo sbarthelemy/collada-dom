@@ -1,6 +1,5 @@
 The makefiles are used when building the DOM for Linux, Mac, or PS3. The
-makefiles can also be used to build on Windows via the MinGW compiler. Visual
-Studio project files are provided for building with Visual Studio.
+makefiles can also be used to build on Windows via the MinGW compiler.
 
 Typical usage would simply be to call "make" from the DOM directory, which would
 build a release version of the DOM for the native architecture of your
@@ -108,3 +107,16 @@ libboost-filesystem-dev.
 
 It should be easy to get the DOM building on other versions of Linux, but you'll
 need to figure out what packages to install for libxml, PCRE, and boost filesystem.
+
+
+Windows Notes
+-------------
+
+Building on Windows via the makefiles only works when using MinGW as the
+compiler. Visual Studio project files are provided for building with Visual
+Studio.
+
+You'll need to have MinGW set up on your machine as well as a Unix environment
+with GNU make 3.81. MinGW provides MSYS which can be used as the Unix
+environment for building the DOM. You could also use the MinGW compiler with
+Cygwin instead of MSYS.
