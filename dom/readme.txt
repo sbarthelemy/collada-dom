@@ -16,9 +16,16 @@ packages include debug builds because you can't link a release DOM into a debug
 app with that compiler. The debug info has been stripped though to keep the
 download size down.
 
-Special thanks to Heinrich Fink, JT Anderson, Michel Briand, Kai Klesatschke,
-and Guy Rabiller for their contributions. Apologies if I missed anyone (please
-let me know!).
+Special thanks to the following people for their contributions:
+Heinrich Fink (Mac support)
+JT Anderson (Tinyxml support)
+Michel Briand (Linux shared library support)
+Kai Klesatschke (bug reporting, Windows character encoding fixes)
+Guy Rabiller (bug reporting)
+Rodrigo Hernandez (MinGW support)
+Alex De Pereyra (bug reporting)
+
+Apologies if I missed anyone (please let me know!).
 
 steven_thomas@playstation.sony.com
 2008 Sony Computer Entertainment, Inc
