@@ -42,7 +42,7 @@
 #include <string>
 #include <iosfwd>    // for ostream forward-declaration
 
-#if !defined(_MSC_VER) && !defined(__CELLOS_LV2__)
+#if !defined(_MSC_VER) && !defined(__CELLOS_LV2__) && !defined(__APPLE__)
 #ifdef __MINGW32__
 #define HAVE_TYPE_TRAITS
 #include <bits/type_traits.h>
