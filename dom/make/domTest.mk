@@ -10,9 +10,14 @@ libSuffix := $(if $(findstring windows,$(os)),.lib,$(if $(findstring ps3,$(os)),
 domPath := $(if $(installTest),$(installPrefix)/lib/,$(outPath))
 domVersionTag := $(if $(findstring windows,$(os)),$(domVersionNoDots),)
 domName := $(domPath)libcollada$(colladaVersionNoDots)dom$(domVersionTag)$(debugSuffix)$(libSuffix)
-libOpts += $(domName)
 ifeq ($(os),linux)
+# Note: Linking in this way on Linux is necessary for the shared lib loader to
+# find the DOM .so when you're not running from the top-level DOM path
+# (accomplished via the -Wl,-rpath linker option.
+libOpts += -L$(domPath) -lcollada$(colladaVersionNoDots)dom$(debugSuffix)
 sharedLibSearchPaths += $(abspath $(outPath))
+else
+libOpts += $(domName)
 endif
 else ifeq ($(os),mac)
 domPath := $(if $(installTest),$(installPrefix)/,$(outPath))
