@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\..\"
+				AdditionalIncludeDirectories="..\..\..\..\"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;BOOST_ALL_NO_LIB"
 				MinimalRebuild="false"
 				BasicRuntimeChecks="3"
@@ -104,7 +104,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="..\..\..\"
+				AdditionalIncludeDirectories="..\..\..\..\"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;BOOST_ALL_NO_LIB"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
@@ -151,19 +151,19 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath="..\src\operations.cpp"
+				RelativePath="..\..\src\operations.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\src\path.cpp"
+				RelativePath="..\..\src\path.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\src\portability.cpp"
+				RelativePath="..\..\src\portability.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\src\utf8_codecvt_facet.cpp"
+				RelativePath="..\..\src\utf8_codecvt_facet.cpp"
 				>
 			</File>
 		</Filter>
