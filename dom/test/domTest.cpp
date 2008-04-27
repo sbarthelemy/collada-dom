@@ -1369,6 +1369,19 @@ DefineTest(externalRef) {
 }
 
 
+DefineTest(charEncodingSetting) {
+	DAE dae;
+	DAE::charEncoding encoding = dae.getCharEncoding();
+	dae.setGlobalCharEncoding(DAE::Utf8);
+	CheckResult(dae.getCharEncoding() == DAE::Utf8);
+	dae.setCharEncoding(DAE::Latin1);
+	CheckResult(dae.getCharEncoding() == DAE::Latin1);
+	DAE dae2;
+	CheckResult(dae2.getCharEncoding() == DAE::Utf8);
+	return testResult(true);
+}
+
+
 // I don't want to enable this test until I figure out how to disable the extra
 // error messages that libxml spits out.
 //
