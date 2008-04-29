@@ -62,7 +62,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="$(OutDir)\libcollada14dom20-sd.lib"
+				OutputFile="$(OutDir)\libcollada14dom21-sd.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -126,7 +126,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="$(OutDir)\libcollada14dom20-s.lib"
+				OutputFile="$(OutDir)\libcollada14dom21-s.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"

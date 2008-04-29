@@ -59,7 +59,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="COLLADA_RT_COMMON.lib COLLADA_RT_1.4.lib libcfxLoader.lib libcollada14dom20-sd.lib opengl32.lib glu32.lib libxml2_a.lib zlib.lib wsock32.lib winmm.lib DevIL.lib libbullet.lib pcre-d.lib pcrecpp-d.lib"
+				AdditionalDependencies="COLLADA_RT_COMMON.lib COLLADA_RT_1.4.lib libcfxLoader.lib libcollada14dom21-sd.lib opengl32.lib glu32.lib libxml2_a.lib zlib.lib wsock32.lib winmm.lib DevIL.lib libbullet.lib pcre-d.lib pcrecpp-d.lib"
 				OutputFile="../../bin/vc8_1.4_debug/$(ProjectName).exe"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="../../lib/vc8_1.4_debug;&quot;..\..\..\dom\build\vc8-1.4-d&quot;;..\..\..\fx\lib\vc8_1.4_debug;&quot;..\..\external-libs\bullet\lib\vc8_1.4_debug&quot;;&quot;..\..\..\dom\external-libs\libxml2\win32\lib&quot;;&quot;..\..\external-libs\devIL\win32\lib&quot;;&quot;$(CG_LIB_PATH)&quot;;&quot;..\..\..\dom\external-libs\pcre\lib\vc8\&quot;"
@@ -137,7 +137,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="COLLADA_RT_COMMON.lib COLLADA_RT_1.4.lib libcfxLoader.lib libcollada14dom20-s.lib opengl32.lib glu32.lib libxml2_a.lib zlib.lib wsock32.lib winmm.lib DevIL.lib libbullet.lib pcre.lib pcrecpp.lib"
+				AdditionalDependencies="COLLADA_RT_COMMON.lib COLLADA_RT_1.4.lib libcfxLoader.lib libcollada14dom21-s.lib opengl32.lib glu32.lib libxml2_a.lib zlib.lib wsock32.lib winmm.lib DevIL.lib libbullet.lib pcre.lib pcrecpp.lib"
 				OutputFile="../../bin/vc8_1.4/$(ProjectName).exe"
 				AdditionalLibraryDirectories="../../lib/vc8_1.4;&quot;..\..\..\dom\build\vc8-1.4&quot;;..\..\..\fx\lib\vc8_1.4;&quot;..\..\external-libs\bullet\lib\vc8_1.4&quot;;&quot;..\..\..\dom\external-libs\libxml2\win32\lib&quot;;&quot;..\..\external-libs\devIL\win32\lib&quot;;&quot;$(CG_LIB_PATH)&quot;;&quot;..\..\..\dom\external-libs\pcre\lib\vc8&quot;"
 				GenerateDebugInformation="false"

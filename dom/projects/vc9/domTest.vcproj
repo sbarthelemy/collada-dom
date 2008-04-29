@@ -15,7 +15,7 @@
 			<Tool Name="VCManagedResourceCompilerTool"/>
 			<Tool Name="VCResourceCompilerTool"/>
 			<Tool Name="VCPreLinkEventTool"/>
-			<Tool AdditionalDependencies="libcollada14dom20-d.lib libboost_filesystem-d.lib libboost_system-d.lib" AdditionalLibraryDirectories="&quot;$(OutDir)&quot;;&quot;..\..\external-libs\boost\lib\vc9&quot;" DataExecutionPrevention="0" GenerateDebugInformation="true" LinkIncremental="2" Name="VCLinkerTool" RandomizedBaseAddress="1" SubSystem="1" TargetMachine="1"/>
+			<Tool AdditionalDependencies="libcollada14dom21-d.lib libboost_filesystem-d.lib libboost_system-d.lib" AdditionalLibraryDirectories="&quot;$(OutDir)&quot;;&quot;..\..\external-libs\boost\lib\vc9&quot;" DataExecutionPrevention="0" GenerateDebugInformation="true" LinkIncremental="2" Name="VCLinkerTool" RandomizedBaseAddress="1" SubSystem="1" TargetMachine="1"/>
 			<Tool Name="VCALinkTool"/>
 			<Tool Name="VCManifestTool"/>
 			<Tool Name="VCXDCMakeTool"/>
@@ -35,7 +35,7 @@
 			<Tool Name="VCManagedResourceCompilerTool"/>
 			<Tool Name="VCResourceCompilerTool"/>
 			<Tool Name="VCPreLinkEventTool"/>
-			<Tool AdditionalDependencies="libcollada14dom20.lib libboost_filesystem.lib libboost_system.lib" AdditionalLibraryDirectories="&quot;$(OutDir)&quot;;&quot;..\..\external-libs\boost\lib\vc9&quot;" DataExecutionPrevention="0" EnableCOMDATFolding="2" GenerateDebugInformation="false" LinkIncremental="1" LinkTimeCodeGeneration="1" Name="VCLinkerTool" OptimizeReferences="2" RandomizedBaseAddress="1" SubSystem="1" TargetMachine="1"/>
+			<Tool AdditionalDependencies="libcollada14dom21.lib libboost_filesystem.lib libboost_system.lib" AdditionalLibraryDirectories="&quot;$(OutDir)&quot;;&quot;..\..\external-libs\boost\lib\vc9&quot;" DataExecutionPrevention="0" EnableCOMDATFolding="2" GenerateDebugInformation="false" LinkIncremental="1" LinkTimeCodeGeneration="1" Name="VCLinkerTool" OptimizeReferences="2" RandomizedBaseAddress="1" SubSystem="1" TargetMachine="1"/>
 			<Tool Name="VCALinkTool"/>
 			<Tool Name="VCManifestTool"/>
 			<Tool Name="VCXDCMakeTool"/>

@@ -63,7 +63,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="libxml2_a.lib zlib.lib wsock32.lib pcre-d.lib pcrecpp-d.lib"
-				OutputFile="$(OutDir)\libcollada14dom20-d.dll"
+				OutputFile="$(OutDir)\libcollada14dom21-d.dll"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="&quot;..\..\external-libs\libxml2\win32\lib&quot;;&quot;..\..\external-libs\tinyxml\lib\vc8&quot;;&quot;..\..\external-libs\pcre\lib\vc8&quot;"
 				IgnoreDefaultLibraryNames="msvcrt"
@@ -145,7 +145,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="libxml2_a.lib zlib.lib wsock32.lib pcre.lib pcrecpp.lib"
-				OutputFile="$(OutDir)\libcollada14dom20.dll"
+				OutputFile="$(OutDir)\libcollada14dom21.dll"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="&quot;..\..\external-libs\libxml2\win32\lib&quot;;&quot;..\..\external-libs\tinyxml\lib\vc8&quot;;&quot;..\..\external-libs\pcre\lib\vc8&quot;"
 				GenerateDebugInformation="false"

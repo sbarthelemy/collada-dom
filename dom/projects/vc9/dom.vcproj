@@ -15,7 +15,7 @@
 			<Tool Name="VCManagedResourceCompilerTool"/>
 			<Tool Name="VCResourceCompilerTool"/>
 			<Tool Name="VCPreLinkEventTool"/>
-			<Tool AdditionalDependencies="libxml2_a.lib zlib.lib wsock32.lib pcre-d.lib pcrecpp-d.lib" AdditionalLibraryDirectories="&quot;..\..\external-libs\libxml2\win32\lib&quot;;&quot;..\..\external-libs\tinyxml\lib\vc9&quot;;&quot;..\..\external-libs\pcre\lib\vc9&quot;" DataExecutionPrevention="0" GenerateDebugInformation="true" IgnoreDefaultLibraryNames="msvcrt" LinkIncremental="2" LinkTimeCodeGeneration="0" Name="VCLinkerTool" OutputFile="$(OutDir)\libcollada14dom20-d.dll" ProgramDatabaseFile="$(TargetDir)$(TargetName).pdb" RandomizedBaseAddress="1" SubSystem="0" TargetMachine="1"/>
+			<Tool AdditionalDependencies="libxml2_a.lib zlib.lib wsock32.lib pcre-d.lib pcrecpp-d.lib" AdditionalLibraryDirectories="&quot;..\..\external-libs\libxml2\win32\lib&quot;;&quot;..\..\external-libs\tinyxml\lib\vc9&quot;;&quot;..\..\external-libs\pcre\lib\vc9&quot;" DataExecutionPrevention="0" GenerateDebugInformation="true" IgnoreDefaultLibraryNames="msvcrt" LinkIncremental="2" LinkTimeCodeGeneration="0" Name="VCLinkerTool" OutputFile="$(OutDir)\libcollada14dom21-d.dll" ProgramDatabaseFile="$(TargetDir)$(TargetName).pdb" RandomizedBaseAddress="1" SubSystem="0" TargetMachine="1"/>
 			<Tool Name="VCALinkTool"/>
 			<Tool Name="VCManifestTool"/>
 			<Tool Name="VCXDCMakeTool"/>
@@ -35,7 +35,7 @@
 			<Tool Name="VCManagedResourceCompilerTool"/>
 			<Tool Name="VCResourceCompilerTool"/>
 			<Tool Name="VCPreLinkEventTool"/>
-			<Tool AdditionalDependencies="libxml2_a.lib zlib.lib wsock32.lib pcre.lib pcrecpp.lib" AdditionalLibraryDirectories="&quot;..\..\external-libs\libxml2\win32\lib&quot;;&quot;..\..\external-libs\tinyxml\lib\vc9&quot;;&quot;..\..\external-libs\pcre\lib\vc9&quot;" DataExecutionPrevention="0" EnableCOMDATFolding="2" GenerateDebugInformation="false" LinkIncremental="1" LinkTimeCodeGeneration="1" Name="VCLinkerTool" OptimizeReferences="2" OutputFile="$(OutDir)\libcollada14dom20.dll" RandomizedBaseAddress="1" SubSystem="0" TargetMachine="1"/>
+			<Tool AdditionalDependencies="libxml2_a.lib zlib.lib wsock32.lib pcre.lib pcrecpp.lib" AdditionalLibraryDirectories="&quot;..\..\external-libs\libxml2\win32\lib&quot;;&quot;..\..\external-libs\tinyxml\lib\vc9&quot;;&quot;..\..\external-libs\pcre\lib\vc9&quot;" DataExecutionPrevention="0" EnableCOMDATFolding="2" GenerateDebugInformation="false" LinkIncremental="1" LinkTimeCodeGeneration="1" Name="VCLinkerTool" OptimizeReferences="2" OutputFile="$(OutDir)\libcollada14dom21.dll" RandomizedBaseAddress="1" SubSystem="0" TargetMachine="1"/>
 			<Tool Name="VCALinkTool"/>
 			<Tool Name="VCManifestTool"/>
 			<Tool Name="VCXDCMakeTool"/>
