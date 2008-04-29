@@ -481,12 +481,6 @@ namespace cdom {
 	// a fully specified path is returned. Spaces are encoded as %20. The 'type'
 	// parameter indicates the format of the nativePath.
 	//
-	// Windows-specific note: Special care must be taken to handle paths of the form 
-	// "\myFolder\myFile.dae". This specifies an absolute path on the current drive.
-	// In order for the DOM's URI resolver to resolve this type of URI correctly,
-	// the nativePathToUri function returns a full URI of the form "file:////myFolder/myFile.dae"
-	// instead of "/myFolder/myFile.dae". UNC paths are handled similarly.
-	//
 	// Examples - Windows
 	//   nativePathToUri("C:\myFolder\myFile.dae") --> "/C:/myFolder/myFile.dae"
 	//   nativePathToUri("\myFolder\myFile.dae") --> "/myFolder/myFile.dae"
