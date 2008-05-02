@@ -1371,7 +1371,6 @@ DefineTest(externalRef) {
 
 DefineTest(charEncodingSetting) {
 	DAE dae;
-	DAE::charEncoding encoding = dae.getCharEncoding();
 	dae.setGlobalCharEncoding(DAE::Utf8);
 	CheckResult(dae.getCharEncoding() == DAE::Utf8);
 	dae.setCharEncoding(DAE::Latin1);
