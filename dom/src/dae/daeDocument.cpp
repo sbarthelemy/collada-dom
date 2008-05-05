@@ -19,8 +19,6 @@
 daeDocument::daeDocument(DAE& dae) : dae(&dae), uri(dae) { }
 
 daeDocument::~daeDocument() {
-	for( unsigned int i = 0; i < externalURIs.getCount(); i++ )
-		delete externalURIs[i];
 }
 
 void daeDocument::insertElement( daeElementRef element ) {
@@ -37,62 +35,6 @@ void daeDocument::changeElementID( daeElementRef element, daeString newID ) {
 
 void daeDocument::changeElementSID( daeElementRef element, daeString newSID ) {
 	dae->getDatabase()->changeElementSID( element.cast(), newSID );
-}
-
-void daeDocument::addExternalReference( daeURI &uri ) {
-	if ( uri.getContainer() == NULL || uri.getContainer()->getDocument() != this ) {
-		return;	
-	}	
-	size_t idx;
-	daeURI tempURI( *dae, uri.str(), true );
-	daeStringRef docURI( tempURI.getURI() );
-	if ( referencedDocuments.find( docURI, idx ) == DAE_OK ) {
-		externalURIs[idx]->appendUnique( &uri );
-	}
-	else {
-		referencedDocuments.append( docURI );
-		idx = externalURIs.append( new daeTArray<daeURI*> );
-		externalURIs[idx]->append( &uri );
-	}
-}
-
-void daeDocument::removeExternalReference( daeURI &uri ) {
-	for( unsigned int i = 0; i < externalURIs.getCount(); i++ ) {
-		for ( unsigned int j = 0; j < externalURIs[i]->getCount(); j++ ) {
-			daeURI *tempURI = externalURIs[i]->get(j);
-			if ( tempURI == &uri ) {
-				//found the uri. now remove it
-				externalURIs[i]->removeIndex(j);
-				if ( externalURIs[i]->getCount() == 0 ) {
-					delete externalURIs[i];
-					externalURIs.removeIndex(i);
-					referencedDocuments.removeIndex(i);
-				}
-				return;
-			}
-		}
-	}
-}
-
-void daeDocument::resolveExternals( daeString docURI ) {
-	size_t idx(0);
-	if ( referencedDocuments.find( docURI, idx ) == DAE_OK ) {
-		for ( unsigned int j = 0; j < externalURIs[idx]->getCount(); j++ ) {
-			daeURI *tempURI = externalURIs[idx]->get(j);
-			tempURI->resolveElement();
-		}
-		return;
-	}
-}
-
-const daeTArray<daeURI*> *daeDocument::getExternalURIs(daeStringRef docURI) const
-{
-	size_t idx;
-
-	if (referencedDocuments.find(docURI, idx) != DAE_OK)
-		return NULL;
-
-	return externalURIs[idx];
 }
 
 DAE* daeDocument::getDAE() {

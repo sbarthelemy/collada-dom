@@ -33,14 +33,14 @@ daeStandardURIResolver::getName()
 }
 
 namespace {
-	void printErrorMsg(daeURI& uri) {
+	void printErrorMsg(const daeURI& uri) {
 		ostringstream msg;
 		msg << "daeStandardURIResolver::resolveElement() - Failed to resolve " << uri.str() << endl;
 		daeErrorHandler::get()->handleError(msg.str().c_str());
 	}
 }
 
-daeElement* daeStandardURIResolver::resolveElement(daeURI& uri) {
+daeElement* daeStandardURIResolver::resolveElement(const daeURI& uri) {
 	daeDocument* doc = uri.getReferencedDocument();
 	if (!doc) {
 		dae->open(uri.str());

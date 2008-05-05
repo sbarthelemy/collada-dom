@@ -33,7 +33,7 @@ daeRawResolver::getName()
 	return "RawResolver";
 }
 
-daeElement* daeRawResolver::resolveElement(daeURI& uri) {
+daeElement* daeRawResolver::resolveElement(const daeURI& uri) {
 	if (cdom::tolower(uri.pathExt()).find(".raw") == string::npos)
 		return NULL;
 
@@ -49,10 +49,7 @@ daeElement* daeRawResolver::resolveElement(daeURI& uri) {
 	}
 	FILE *rawFile = fopen(fileName.c_str(), "rb");
 	if (rawFile == NULL )
-	{
-		uri.setState(daeURI::uri_failed_file_not_found);
 		return NULL;
-	}
 	long byteOffset = atoi( uri.getID() ); //get the fragment
 
 	daeElement *src;
@@ -61,10 +58,7 @@ daeElement* daeRawResolver::resolveElement(daeURI& uri) {
 	
 	accessor = uri.getContainer();
 	if ( accessor == NULL )
-	{
-		uri.setState( daeURI::uri_failed_missing_container );
-		return false;
-	}
+		return NULL;
 	src = accessor->getParentElement()->getParentElement();
 	daeElementRefArray children;
 	accessor->getChildren( children );

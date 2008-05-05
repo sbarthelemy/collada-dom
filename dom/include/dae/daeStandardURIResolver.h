@@ -37,7 +37,7 @@ public:
 	DLLSPEC ~daeStandardURIResolver();
 
 public: // Abstract Interface
-	virtual DLLSPEC daeElement* resolveElement(daeURI& uri);
+	virtual DLLSPEC daeElement* resolveElement(const daeURI& uri);
 	virtual DLLSPEC daeString getName();
 };
 

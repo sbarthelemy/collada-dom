@@ -1381,6 +1381,18 @@ DefineTest(charEncodingSetting) {
 }
 
 
+DefineTest(uriCopy) {
+	DAE dae;
+	CheckResult(dae.open(lookupTestFile("cube.dae")));
+	domInstance_geometry* geomInst = dae.getDatabase()->typeLookup<domInstance_geometry>().at(0);
+	daeURI& uri = geomInst->getUrl();
+	CheckResult(uri.getElement());
+	daeURI uriCopy = geomInst->getUrl();
+	CheckResult(uriCopy.getElement());
+	return testResult(true);
+}
+
+
 // I don't want to enable this test until I figure out how to disable the extra
 // error messages that libxml spits out.
 //

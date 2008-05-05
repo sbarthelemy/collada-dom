@@ -91,13 +91,6 @@ daeInt daeSTLDatabase::createDocument(const char *name, daeElement* dom, daeDocu
 	if (document)
 		*document = newDocument;
 
-	//check if an already loaded document has external references to this one and resolve them.
-	for ( unsigned int i = 0; i < documents.size(); i++ ) {
-		if ( documents[i] != newDocument ) {
-			documents[i]->resolveExternals( name );
-		}
-	}
-	
 	return DAE_OK;
 }
 // !!!GAC revised version of insertDocument, creates a domCollada and fills it in for you.

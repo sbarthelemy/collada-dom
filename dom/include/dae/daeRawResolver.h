@@ -36,7 +36,7 @@ public:
 	~daeRawResolver();
 
 public: // Abstract Interface
-	virtual daeElement* resolveElement(daeURI& uri);
+	virtual daeElement* resolveElement(const daeURI& uri);
 	virtual daeString getName();
 };
 

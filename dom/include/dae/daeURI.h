@@ -66,7 +66,7 @@ class DAE;
 class DLLSPEC daeURI
 {
 private:
-	daeElement* internalResolveElement();
+	daeElement* internalResolveElement() const;
 	
 public:
 	/**
@@ -129,10 +129,6 @@ private:
 	std::string _fragment;
 	/** Pointer to the element that owns this URI */
 	daeElement* container;
-	/** Current resolver state of the URI */
-	ResolveState state;
-	/** Flag for if this URI references an external element. */
-	daeBool external;
 	
 public:
 	/**
@@ -263,27 +259,12 @@ public:
 	 * Gets the element that this URI resolves to in memory.
 	 * @return Returns a ref to the element.
 	 */
-	daeElementRef getElement();
+	daeElementRef getElement() const;
 
 	// Returns the document that this URI references, or null if the document
 	// hasn't been loaded yet.
-	daeDocument* getReferencedDocument();
+	daeDocument* getReferencedDocument() const;
 	
-	/**
-	 * Gets the resolve state of the URI.
-	 * @return Returns the current state.
-	 * @note This is pretty much entirely useless now. Just use the various accessors
-	 * to query the state of the uri.
-	 */
-	inline ResolveState getState() const {return(state);};
-
-	/** 
-	 * Sets the resolve state of the URI.
-	 * @param newState The new state.
-	 * @note This will be removed when daeURI starts managing its state internally.
-	 */
-	inline void setState(ResolveState newState){state=newState;};
-
 	/**
 	 * Gets a pointer to the @c daeElement that contains this URI.
 	 * @return Returns the pointer to the containing daeElmement.
@@ -300,14 +281,14 @@ public:
 	 * Gets if this URI resolves to an element that is not contained in the same document as the URI.
 	 * @return Returns true if the URI references an external element. False otherwise.
 	 */
-	daeBool isExternalReference() const { return external; }
+	daeBool isExternalReference() const;
 	 
 	/**
 	 * Copies the URI specified in <tt><i>from</i></tt> into @c this.
 	 * Performs a simple copy without validating the URI.
 	 * @param from URI to copy from.
 	 */
-	void copyFrom(daeURI& from);
+	void copyFrom(const daeURI& from);
 
 	/**
 	 * Outputs all components of this URI to stderr.
@@ -330,17 +311,14 @@ public:
 		return uriString == other.uriString;
 	}
 
-	daeURI &operator=(const daeURI& other) {
-		set(other.originalURIString);
-		state = other.state;
-		return *this;
-	}
-
+	daeURI& operator=(const daeURI& other);
 	daeURI& operator=(const std::string& uri);
 
 	// These methods are deprecated.
 	void resolveElement(); // Call getElement directly.
 	void validate(const daeURI* baseURI = NULL); // Shouldn't ever need to call this.
+	ResolveState getState() const; 	// Call getElement to see if resolving succeeded.
+	void setState(ResolveState newState); // Don't call this.
 
 private:
 	/**
@@ -408,7 +386,7 @@ public:
 	 * @return Returns the resolved element, or null if resolving failed.
 	 * returns false otherwise.
 	 */
-	virtual daeElement* resolveElement(daeURI& uri) = 0;
+	virtual daeElement* resolveElement(const daeURI& uri) = 0;
 
 	/**
 	 * Gets the name of this resolver.
@@ -429,7 +407,7 @@ public:
 	~daeURIResolverList();
 
 	daeTArray<daeURIResolver*>& list();
-	daeElement* resolveElement(daeURI& uri);
+	daeElement* resolveElement(const daeURI& uri);
 
 private:
 	// Disabled copy constructor/assignment operator

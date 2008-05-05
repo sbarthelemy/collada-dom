@@ -1,4 +1,4 @@
-Collada DOM 2.1
+Collada DOM 2.1.1
 
 Documentation is available online at
 http://collada.org/mediawiki/index.php/Portal:COLLADA_DOM

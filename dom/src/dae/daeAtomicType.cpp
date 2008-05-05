@@ -557,37 +557,8 @@ daeBool daeStringRefType::memoryToString(daeChar* src, std::ostringstream& dst) 
 daeBool daeResolverType::memoryToString(daeChar* src, std::ostringstream& dst) {
 	// Get the URI we are trying to write
 	daeURI *thisURI = ((daeURI *)src);
-	std::string s;
-
-	// !!!GAC We may want to re-resolve the URI before writing, if so call thisURI->resolveURI() here
-	// !!!GAC if you're willing to trust that everything is properly resolved, this isn't needed
-	
-	// Was this URI successfully resolved ?  (if element or collection is null, we can't write the URI correctly)
-	if(thisURI->getState() != daeURI::uri_success || !(thisURI->getElement()) || !(thisURI->getContainer()))
-	{
-		// This URI was never successfully resolved, so write out it's original value
-		s = thisURI->originalStr();
-	}
-	else
-	{
-		// This URI was successfully resolved, we need to determine if it is referencing this document (the one being written)
-		// or some other document so we know what URI to write out.
-		// !!!GAC this approach should be safe, if the collection pointer of our document matches the collection pointer 
-		// !!!GAC of the element our URI is pointing at, we are pointing at our own doc.
-		if(thisURI->getElement()->getDocument() == thisURI->getContainer()->getDocument())
-		{
-			// we will send back the original URI if we're pointing at ourselves
-			s = thisURI->originalStr();
-		}
-		else
-		{
-			// we will send back the full resolved URI
-			s = thisURI->str();
-		}
-	}
-
 	// Encode spaces with %20
-	dst << cdom::replace(s, " ", "%20");
+	dst << cdom::replace(thisURI->originalStr(), " ", "%20");
 	return true;
 }
 

@@ -114,34 +114,6 @@ public:
 	void changeElementSID( daeElementRef element, daeString newSID );
 
 
-	/**
-	 * Adds a URI to the list of external references in this document.
-	 * @param uri The URI that is the external reference.
-	 * @note This function gets called internally from daeURI upon trying to resolve an element.
-	 * Calling this function in your client code my result in unexpected behavior.
-	 */
-	void addExternalReference( daeURI &uri );
-	/**
-	 * Removes a URI to the list of external references in this document.
-	 * @param uri The URI that was the external reference.
-	 * @note This function gets called internally from daeURI upon trying to resolve an element.
-	 * Calling this function in your client code my result in unexpected behavior.
-	 */
-	void removeExternalReference( daeURI &uri );
-	/**
-	 * Gets a list of all the documents that are referenced from URI contained within this document.
-	 * @return Returns a list of URI strings, each being a URI which is referenced from within this document.
-	 */
-	const daeStringRefArray &getReferencedDocuments() const { return referencedDocuments; }
-	/**
-	 * Resolves the URIs that reference the document specified by docURI.
-	 * @param docURI The URI string of the document that you want to resolve against.
-	 * @note This function is called internally whenever a new document is loaded.
-	 */
-	void resolveExternals( daeString docURI);
-
-	const daeTArray<daeURI*> *getExternalURIs(daeStringRef docURI) const;
-
 private:
 	/**
 	 * The DAE that owns this document. The DAE's database is notified by the document when
@@ -160,9 +132,6 @@ private:
 	 * @remarks This member will eventually be taken private, use getDocumentURI() to access it.
 	 */
 	daeURI uri;
-
-	daeStringRefArray referencedDocuments;
-	daeTArray< daeTArray<daeURI*>* > externalURIs;
 };
 
 typedef daeDocument daeCollection;

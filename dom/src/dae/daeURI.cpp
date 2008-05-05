@@ -54,11 +54,10 @@ daeURI::daeURI(const daeURI& baseURI, const string& uriStr) : dae(baseURI.getDAE
 	set(uriStr, &baseURI);
 }
 
-daeURI::daeURI(const daeURI& copyFrom) : dae(copyFrom.getDAE())
+daeURI::daeURI(const daeURI& copyFrom_) : dae(copyFrom_.getDAE()), container(NULL)
 {
 	initialize();
-	set(copyFrom.originalStr());
-	state = copyFrom.state;
+	copyFrom(copyFrom_);
 }
 
 daeURI::daeURI(daeElement& container_, const std::string& uriStr)
@@ -78,10 +77,16 @@ daeURI::daeURI(DAE& dae, daeElement& container_, const string& uriStr)
 }
 
 void
-daeURI::copyFrom(daeURI& copyFrom)
+daeURI::copyFrom(const daeURI& copyFrom)
 {
+	if (!container)
+		container = copyFrom.container;
 	set(copyFrom.originalStr());
-	state = copyFrom.state;
+}
+
+daeURI& daeURI::operator=(const daeURI& other) {
+	copyFrom(other);
+	return *this;
 }
 
 daeURI& daeURI::operator=(const string& uriStr) {
@@ -98,8 +103,6 @@ void daeURI::reset() {
 	_path              = "";
 	_query             = "";
 	_fragment          = "";
-	state	             = uri_empty;
-	external           = false;
 }
 
 DAE* daeURI::getDAE() const {
@@ -152,7 +155,6 @@ void daeURI::set(const string& uriStr_, const daeURI* baseURI) {
 		return;
 	}
 
-	state = uri_loaded;
 	validate(baseURI);
 }
 
@@ -366,31 +368,13 @@ daeURI::validate(const daeURI* baseURI)
 
 	// Reassemble all this into a string version of the URI
 	uriString = assembleUri(_scheme, _authority, _path, _query, _fragment);
-
-	state = uri_pending;
-
-	if (container && container->getDocumentURI()) {
-		daeURI* docURI = container->getDocumentURI();
-		if (_path != docURI->_path ||
-		    _scheme != docURI->_scheme ||
-		    _authority != docURI->_authority) {
-			// external ref
-			container->getDocument()->addExternalReference(*this);
-			external = true;
-		}
-		else if (external) {
-			// Was external but now isn't
-			container->getDocument()->removeExternalReference(*this);
-			external = false;
-		}
-	}
 }
 
-daeElementRef daeURI::getElement() {
+daeElementRef daeURI::getElement() const {
 	return internalResolveElement();
 }
 
-daeElement* daeURI::internalResolveElement() {
+daeElement* daeURI::internalResolveElement() const {
 	if (uriString.empty())
 		return NULL;
 	
@@ -405,10 +389,33 @@ void daeURI::setContainer(daeElement* cont) {
 	set(originalURIString);
 }
 
-daeDocument* daeURI::getReferencedDocument() {
+daeBool daeURI::isExternalReference() const {
+	if (uriString.empty())
+		return false;
+	
+	if (container && container->getDocumentURI()) {
+		daeURI* docURI = container->getDocumentURI();
+		if (_path != docURI->_path ||
+		    _scheme != docURI->_scheme ||
+		    _authority != docURI->_authority) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
+
+daeDocument* daeURI::getReferencedDocument() const {
 	string doc = assembleUri(_scheme, _authority, _path, "", "");
 	return dae->getDatabase()->getDocument(doc.c_str(), true);
 }
+
+daeURI::ResolveState daeURI::getState() const {
+	return uriString.empty() ? uri_empty : uri_loaded;
+}
+
+void daeURI::setState(ResolveState newState) { }
 
 
 // This code is loosely based on the RFC 2396 normalization code from
@@ -664,7 +671,7 @@ daeTArray<daeURIResolver*>& daeURIResolverList::list() {
 	return resolvers;
 }
 
-daeElement* daeURIResolverList::resolveElement(daeURI& uri) {
+daeElement* daeURIResolverList::resolveElement(const daeURI& uri) {
 	for (size_t i = 0; i < resolvers.getCount(); i++)
 		if (daeElement* elt = resolvers[i]->resolveElement(uri))
 			return elt;
