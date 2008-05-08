@@ -81,7 +81,7 @@ $(error Invalid setting arch=$(arch))
 endif
 
 $(eval $(call setBuildVar,project,dom domTest))
-$(eval $(call setBuildVar,colladaVersion,1.4))
+$(eval $(call setBuildVar,colladaVersion,1.4 1.5))
 $(eval $(call setBuildVar,conf,debug release))
 $(eval $(call setBuildVar,parser,libxml tinyxml))
 
@@ -219,7 +219,8 @@ install: uninstall
 	echo 'installPrefix := $(prefix)' > make/installPrefix.mk
 # Install headers
 	cp -R include $(prefix)/include/colladadom
-	find $(prefix)/include/colladadom -name '.svn' | xargs rm -r
+# We write this as a loop to avoid an error when there are no files to remove
+	for svndir in $(find $(prefix)/include/colladadom -name '.svn'); do rm -rf $svndir; done
 # Install linux-1.4 libs
 	if [ -d build/linux-1.4 ]; then cp -P build/linux-1.4/libcollada*dom* $(prefix)/lib; fi;
 # Install linux-1.4-d libs
