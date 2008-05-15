@@ -74,6 +74,17 @@ $_globals['templates'] = array(
   'CONSTANTS_CPP' => 'tpl/tpl-constants-cpp.php'
 );
 
+
+function getTypeNameAndPrefix(&$typeName, &$prefix) {
+	global $_globals;
+	if(preg_match( "/xs\:/", $typeName)) {
+		$typeName = substr( $typeName, 3 );
+		$prefix = "xs";
+	}
+	else
+		$prefix = $_globals['prefix'];
+}
+
 function applyTemplate( $template, & $bag )
 {
   global $_globals;
@@ -193,27 +204,20 @@ function beginConstructorInitializer(& $initializerListStarted) {
 	$initializerListStarted = true;
 }
 
-function printBaseClassInitializers($elemName, $baseClasses, & $initializerListStarted) {
-	$elt = strpos($elemName, "_complexType") === false ? "this" : "elt";
-	for ($i = 0; $i < count($baseClasses); $i++) {
-		beginConstructorInitializer($initializerListStarted);
-		print $baseClasses[$i] .
-		      (strpos($baseClasses[$i], "_complexType") !== false ? "(dae, " . $elt . ")" : "(dae)");
-	}
+function printBaseClassInitializers($elemName, $baseClass, & $initializerListStarted) {
+	beginConstructorInitializer($initializerListStarted);
+	print $baseClass . "(dae)";
 }
 
-function printConstructors( $elemName, & $bag, $baseClasses, $indent ) {
+function printConstructors( $elemName, & $bag, $baseClass, $indent ) {
 	//print the protected ctor and copy stuff
 	print $indent ."protected:\n";
 	print $indent ."\t/**\n". $indent ."\t * Constructor\n". $indent ."\t */\n";
-	print $indent ."\t". $elemName ."(DAE& dae";
-	if ($bag['isAComplexType'])
-		print ", daeElement* elt";
-	print ")";
+	print $indent ."\t". $elemName ."(DAE& dae)";
 	$initializerListStarted = false;
-	$eltVar = $bag['isAComplexType'] ? "*elt" : "*this";
+	$eltVar = "*this";
 
-	printBaseClassInitializers($elemName, $baseClasses, $initializerListStarted);
+	printBaseClassInitializers($elemName, $baseClass, $initializerListStarted);
 
 	if ($bag['useXMLNS']) {
 		beginConstructorInitializer($initializerListStarted);
@@ -270,6 +274,54 @@ function printConstructors( $elemName, & $bag, $baseClasses, $indent ) {
 	print $indent ."\tvirtual ".$elemName ." &operator=( const ".$elemName ." &cpy ) { (void)cpy; return *this; }\n";
 }
 
+function printElements(&$bag, &$needsContents, &$indent) {
+	global $_globals;
+	global $meta;
+	if ( (count( $bag['elements'] ) > 0 && !$bag['isRestriction']) || $bag['has_any'] )
+	{
+		
+		print $indent ."protected:  // Element". (count( $bag['elements'] ) > 1 ? 's' : '') ."\n";
+		$needsContents = false;
+		for( $i=0; $i<count( $bag['elements'] ); $i++ )
+		{
+			$maxOccurs = $bag['element_attrs'][ $bag['elements'][$i] ]['maxOccurs'];
+			//      $minOccurs = $bag['element_attrs'][ $bag['elements'][$i] ]['minOccurs'];
+			//      print "   // minOccurs=$minOccurs, maxOccurs=$maxOccurs\n";
+			$maxOccurs = ($maxOccurs == 'unbounded' || $maxOccurs > 1);
+			if ( isset( $bag['element_documentation'][ $bag['elements'][$i] ] ) ) {
+				$bag['element_documentation'][ $bag['elements'][$i] ] .= " @see " . $_globals['prefix'] . ucfirst( $bag['elements'][$i] );
+				print applyTemplate( 'DOXYGEN', $bag['element_documentation'][ $bag['elements'][$i] ] );
+			}
+			if ( isset( $bag['element_attrs'][ $bag['elements'][$i] ]['type'] ) &&
+			isset( $meta[$bag['element_attrs'][ $bag['elements'][$i] ]['type']] ) ){
+				print $indent ."\t" . $_globals['prefix'] . ucfirst( $bag['element_attrs'][ $bag['elements'][$i] ]['type'] ) . ($maxOccurs ? "_Array" : "Ref") . " elem" . ucfirst($bag['elements'][$i]) . ($maxOccurs ? "_array" : "") . ";\n";
+			}
+			else {
+				print $indent ."\t" . $_globals['prefix'] . ucfirst( $bag['elements'][$i] ) . ($maxOccurs ? "_Array" : "Ref") . " elem" . ucfirst($bag['elements'][$i]) . ($maxOccurs ? "_array" : "") . ";\n";
+			}
+			if ( isset( $meta[$bag['elements'][$i]] ) ) {
+				if( count( $meta[$bag['elements'][$i]]['substitutableWith']) > 0 ) {			
+					$needsContents = true;
+				}
+			}
+		}
+		if ( $bag['hasChoice'] || $needsContents || $bag['has_any'] )
+		{
+			print $indent ."\t/**\n". $indent ."\t * Used to preserve order in elements that do not specify strict sequencing of sub-elements.";
+			print "\n". $indent ."\t */\n";
+			print $indent ."\tdaeElementRefArray _contents;\n";
+			print $indent ."\t/**\n". $indent ."\t * Used to preserve order in elements that have a complex content model.";
+			print "\n". $indent ."\t */\n";
+			print $indent ."\tdaeUIntArray       _contentsOrder;\n\n";
+		}
+		if ( $bag['hasChoice'] )
+		{
+			print $indent ."\t/**\n". $indent ."\t * Used to store information needed for some content model objects.\n";
+			print $indent ."\t */\n". $indent ."\tdaeTArray< daeCharArray * > _CMData;\n\n";
+		}
+	}
+}
+
 function printAttributes( & $bag, & $typemeta, & $indent, $vaa ) {
 	global $_globals;
 
@@ -303,13 +355,8 @@ function printAttributes( & $bag, & $typemeta, & $indent, $vaa ) {
 	
 	foreach( $bag['attributes'] as $attr_name => & $a_list ) {
 		$type = $a_list['type'];
-		if ( preg_match( "/xs\:/", $type ) ) { 
-			$type = substr( $type, 3 );
-			$pre = "xs";
-		}
-		else {
-			$pre = $_globals['prefix'];
-		}
+		$pre = '';
+		getTypeNameAndPrefix($type, $pre);
 		if ( $type == '' )
 		{
 			$type = "String";
@@ -468,6 +515,212 @@ function printAttributes( & $bag, & $typemeta, & $indent, $vaa ) {
 			print " }\n\n";
 		}
 		$attrCnt++;
+	}
+}
+
+function printAccessorsAndMutators(&$bag, &$needsContents, &$indent) {
+	global $_globals;
+	global $meta;
+
+	$content_type = $bag['content_type'];
+	$pre = '';
+	getTypeNameAndPrefix($content_type, $pre);
+	
+	if ( $_globals['accessorsAndMutators'] && ( $bag['useXMLNS'] || count($bag['attributes'])>0 ||
+		count($bag['elements'])>0 ||( ($bag['content_type'] != '' || $bag['mixed']) && !$bag['abstract'] ) ) ) {
+		
+		//generate accessors and mutators for everything
+		print "\n". $indent ."public:\t//Accessors and Mutators\n";
+
+		if($bag['isExtension']) {
+			printAttributes($meta[$bag['base_type']], $typemeta, $indent, !$meta[$bag['base_type']]['isAComplexType']);
+		}
+
+		printAttributes( $bag, $typemeta, $indent, !$bag['isAComplexType'] );
+		
+		for( $i=0; $i<count( $bag['elements'] ); $i++ )	{
+			$maxOccurs = $bag['element_attrs'][ $bag['elements'][$i] ]['maxOccurs'];
+			$maxOccurs = ($maxOccurs == 'unbounded' || $maxOccurs > 1);
+			$type = '';
+			if ( isset( $bag['element_attrs'][ $bag['elements'][$i] ]['type'] ) &&
+				isset( $meta[$bag['element_attrs'][ $bag['elements'][$i] ]['type']] ) ){
+				
+				$type = $_globals['prefix'] . ucfirst( $bag['element_attrs'][ $bag['elements'][$i] ]['type'] ) . ($maxOccurs ? "_Array" : "Ref");
+			}
+			else {
+				$type = $_globals['prefix'] . ucfirst( $bag['elements'][$i] ) . ($maxOccurs ? "_Array" : "Ref");
+			}
+			$name = ucfirst($bag['elements'][$i]) . ($maxOccurs ? "_array" : "");
+			if ( $maxOccurs ) {
+				//comment
+				print $indent ."\t/**\n". $indent ."\t * Gets the ". $bag['elements'][$i] ." element array.\n";
+				print $indent ."\t * @return Returns a reference to the array of ". $bag['elements'][$i] ." elements.\n";
+				print $indent ."\t */\n";
+				//code
+				print $indent ."\t". $type ." &get". $name ."() { return elem". $name ."; }\n";
+				//comment
+				print $indent ."\t/**\n". $indent ."\t * Gets the ". $bag['elements'][$i] ." element array.\n";
+				print $indent ."\t * @return Returns a constant reference to the array of ". $bag['elements'][$i] ." elements.\n";
+				print $indent ."\t */\n";
+				//code
+				print $indent ."\tconst ". $type ." &get". $name ."() const { return elem". $name ."; }\n";
+				//print $indent ."\tvoid set". $name ."( ". $type ." *e". $name ." ) { elem". $name ." = *e". $name ."; }\n\n";
+			}
+			else {
+				//comment
+				print $indent ."\t/**\n". $indent ."\t * Gets the ". $bag['elements'][$i] ." element.\n";
+				print $indent ."\t * @return a daeSmartRef to the ". $bag['elements'][$i] ." element.\n";
+				print $indent ."\t */\n";
+				//code
+				print $indent ."\tconst ". $type ." get". $name ."() const { return elem". $name ."; }\n";
+				//print $indent ."\tvoid set". $name ."( ". $type ." &e". $name ." ) { elem". $name ." = e". $name ."; }\n\n";
+			}
+			
+			if ( isset( $meta[$bag['elements'][$i]] ) ) {
+				if( count( $meta[$bag['elements'][$i]]['substitutableWith']) > 0 ) {			
+					$needsContents = true;
+				}
+			}
+		}
+	    
+		if ( $bag['hasChoice'] || $needsContents || $bag['has_any'] )
+		{
+			//comment
+			print $indent ."\t/**\n". $indent ."\t * Gets the _contents array.\n";
+			print $indent ."\t * @return Returns a reference to the _contents element array.\n";
+			print $indent ."\t */\n";
+			//code
+			print $indent ."\tdaeElementRefArray &getContents() { return _contents; }\n";
+			//comment
+			print $indent ."\t/**\n". $indent ."\t * Gets the _contents array.\n";
+			print $indent ."\t * @return Returns a constant reference to the _contents element array.\n";
+			print $indent ."\t */\n";
+			//code
+			print $indent ."\tconst daeElementRefArray &getContents() const { return _contents; }\n\n";
+		}
+		
+		if ( ($bag['content_type'] != '' || $bag['mixed']) && !$bag['abstract'] )
+		{
+			$type = $content_type;
+			if($meta[$content_type]['isAComplexType'])
+				$type = $type . "Ref";
+			$baseStringTypes = "xsDateTime xsID xsNCName xsNMTOKEN xsName xsToken xsString";	
+			$baseType = $pre . ucfirst( $type );
+			if ( isset( $typemeta[$type] ) ) {
+				$typeInfo = $typemeta[$type];
+				while ( $typeInfo['base'] != '' && isset( $typemeta[$typeInfo['base']] ) ) {
+					$typeInfo = $typemeta[$typeInfo['base']];
+					if ( preg_match( "/xs\:/", $typeInfo['type'] ) ) { 
+						$baseType = "xs" . ucfirst( substr( $typeInfo['type'], 3 ) );
+					}
+					else {
+						$baseType = $_globals['prefix'] . ucfirst( $typeInfo['type'] );
+					}
+				}
+			}
+			//if ( !strcmp( $pre . ucfirst( $type ), $full_element_name ) ) {
+			if ( $bag['parent_meta']['inline_elements'] != NULL && array_key_exists( $type, $bag['parent_meta']['inline_elements'] ) ) {
+				$pre = '::' . $pre;
+			}
+			if ( (isset( $typemeta[$content_type] ) && $typemeta[$content_type]['isArray']) || $content_type == 'IDREFS' ) {
+				//comment
+				print $indent ."\t/**\n". $indent ."\t * Gets the _value array.\n";
+				print $indent ."\t * @return Returns a ". $pre . ucfirst( $type ) ." reference of the _value array.\n";
+				print $indent ."\t */\n";
+				//code
+				print $indent ."\t".$pre . ucfirst( $type ) ." &getValue() { return _value; }\n";
+				//comment
+				print $indent ."\t/**\n". $indent ."\t * Gets the _value array.\n";
+				print $indent ."\t * @return Returns a constant ". $pre . ucfirst( $type ) ." reference of the _value array.\n";
+				print $indent ."\t */\n";
+				//code
+				print $indent ."\tconst ".$pre . ucfirst( $type ) ." &getValue() const { return _value; }\n";
+				//comment
+				print $indent ."\t/**\n". $indent ."\t * Sets the _value array.\n";
+				print $indent ."\t * @param val The new value for the _value array.\n";
+				print $indent ."\t */\n";
+				//code
+				print $indent ."\tvoid setValue( const ". $pre . ucfirst( $type ) ." &val ) { _value = val; }\n\n";
+				//print $indent ."\t _meta->getValueAttribute()->setIsValid(true); }\n\n";
+			}
+			else if ( ucfirst($type) == 'AnyURI' ) {
+				//comment
+				print $indent ."\t/**\n". $indent ."\t * Gets the value of this element.\n";
+				print $indent ."\t * @return Returns a ". $pre . ucfirst( $type ) ." of the value.\n";
+				print $indent ."\t */\n";
+				//code
+				print $indent ."\t".$pre . ucfirst( $type ) ." &getValue() { return _value; }\n";
+				//comment
+				print $indent ."\t/**\n". $indent ."\t * Gets the value of this element.\n";
+				print $indent ."\t * @return Returns a constant ". $pre . ucfirst( $type ) ." of the value.\n";
+				print $indent ."\t */\n";
+				//code
+				print $indent ."\tconst ".$pre . ucfirst( $type ) ." &getValue() const { return _value; }\n";
+				//comment
+				print $indent ."\t/**\n". $indent ."\t * Sets the _value of this element.\n";
+				print $indent ."\t * @param val The new value for this element.\n";
+				print $indent ."\t */\n";
+				//code
+				print $indent ."\tvoid setValue( const ". $pre . ucfirst( $type ) ." &val ) { _value = val; }\n";
+				// We add a setter that takes a plain string to help with backward compatibility
+				//comment
+				print $indent ."\t/**\n". $indent ."\t * Sets the _value of this element.\n";
+				print $indent ."\t * @param val The new value for this element.\n";
+				print $indent ."\t */\n";
+				//code
+				print $indent ."\tvoid setValue( xsString val ) { _value = val; }\n\n";
+			}
+			else if( ucfirst($type) == 'IDREF' ) {
+				//comment
+				print $indent ."\t/**\n". $indent ."\t * Gets the value of this element.\n";
+				print $indent ."\t * @return Returns a ". $pre . ucfirst( $type ) ." of the value.\n";
+				print $indent ."\t */\n";
+				//code
+				print $indent ."\t".$pre . ucfirst( $type ) ." &getValue() { return _value; }\n";
+				//comment
+				print $indent ."\t/**\n". $indent ."\t * Gets the value of this element.\n";
+				print $indent ."\t * @return Returns a constant ". $pre . ucfirst( $type ) ." of the value.\n";
+				print $indent ."\t */\n";
+				//code
+				print $indent ."\tconst ".$pre . ucfirst( $type ) ." &getValue() const { return _value; }\n";
+				//comment
+				print $indent ."\t/**\n". $indent ."\t * Sets the _value of this element.\n";
+				print $indent ."\t * @param val The new value for this element.\n";
+				print $indent ."\t */\n";
+				//code
+				print $indent ."\tvoid setValue( const ". $pre . ucfirst( $type ) ." &val ) { _value = val; }\n\n";
+				//print $indent ."\t _meta->getValueAttribute()->setIsValid(true); }\n\n";
+			}
+			else if ( strstr( $baseStringTypes, $baseType ) !== FALSE && count( $typemeta[$type]['enum'] ) == 0 ) {
+				//comment
+				print $indent ."\t/**\n". $indent ."\t * Gets the value of this element.\n";
+				print $indent ."\t * @return Returns a ". $pre . ucfirst( $type ) ." of the value.\n";
+				print $indent ."\t */\n";
+				//code
+				print $indent ."\t".$pre . ucfirst( $type ) ." getValue() const { return _value; }\n";
+				//comment
+				print $indent ."\t/**\n". $indent ."\t * Sets the _value of this element.\n";
+				print $indent ."\t * @param val The new value for this element.\n";
+				print $indent ."\t */\n";
+				//code
+				print $indent ."\tvoid setValue( ". $pre . ucfirst( $type ) ." val ) { *(daeStringRef*)&_value = val; }\n\n";				
+			}
+			else {
+				//comment
+				print $indent ."\t/**\n". $indent ."\t * Gets the value of this element.\n";
+				print $indent ."\t * @return a ". $pre . ucfirst( $type ) ." of the value.\n";
+				print $indent ."\t */\n";
+				//code
+				print $indent ."\t".$pre . ucfirst( $type ) ." getValue() const { return _value; }\n";
+				//comment
+				print $indent ."\t/**\n". $indent ."\t * Sets the _value of this element.\n";
+				print $indent ."\t * @param val The new value for this element.\n";
+				print $indent ."\t */\n";
+				//code
+				print $indent ."\tvoid setValue( ". $pre . ucfirst( $type ) ." val ) { _value = val; }\n\n";
+				//print $indent ."\t _meta->getValueAttribute()->setIsValid(true); }\n\n";
+			}
+		}
 	}
 }
 

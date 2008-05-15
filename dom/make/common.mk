@@ -31,6 +31,13 @@ ccFlags += -mno-cygwin
 libOpts += -mno-cygwin
 endif
 
+ifeq ($(colladaVersion),1.4)
+ccFlags += -DCOLLADA14
+endif
+ifeq ($(colladaVersion),1.5)
+ccFlags += -DCOLLADA15
+endif
+
 # Clear out a bunch of variables that may have previously been set
 src :=
 targets :=

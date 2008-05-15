@@ -42,7 +42,7 @@ project := all
 # Release/debug configuration: 'release', 'debug', or 'all'
 conf := release
 
-# Collada version: No other versions supported for now
+# Collada version: '1.4', '1.5', or 'all'
 colladaVersion := 1.4
 
 # parser: 'libxml', 'tinyxml', or 'all'.
