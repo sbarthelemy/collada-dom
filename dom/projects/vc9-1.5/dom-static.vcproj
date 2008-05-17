@@ -1,0 +1,684 @@
+<?xml version="1.0" ?><VisualStudioProject Keyword="Win32Proj" Name="dom-static" ProjectGUID="{2BAD5C91-F2B8-4E96-94DA-F6D6822DF29F}" ProjectType="Visual C++" RootNamespace="domstatic" TargetFrameworkVersion="131072" Version="9.00">
+	<Platforms>
+		<Platform Name="Win32"/>
+	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
+	<Configurations>
+		<Configuration CharacterSet="2" ConfigurationType="4" IntermediateDirectory="..\..\build\vc9-1.5-d\obj\$(ProjectName)" Name="Debug|Win32" OutputDirectory="..\..\build\vc9-1.5-d\">
+			<Tool Name="VCPreBuildEventTool"/>
+			<Tool Name="VCCustomBuildTool"/>
+			<Tool Name="VCXMLDataGeneratorTool"/>
+			<Tool Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool Name="VCMIDLTool"/>
+			<Tool AdditionalIncludeDirectories="..\..\include;..\..\include\1.5;&quot;..\..\external-libs\libxml2\include&quot;;&quot;..\..\external-libs\tinyxml&quot;;&quot;..\..\external-libs\pcre&quot;" BasicRuntimeChecks="3" DebugInformationFormat="3" Detect64BitPortabilityProblems="false" DisableLanguageExtensions="true" MinimalRebuild="false" Name="VCCLCompilerTool" Optimization="0" PreprocessorDefinitions="WIN32;_DEBUG;_CRT_SECURE_NO_DEPRECATE;DOM_INCLUDE_LIBXML;PCRE_STATIC" RuntimeLibrary="3" UsePrecompiledHeader="0" WarningLevel="3"/>
+			<Tool Name="VCManagedResourceCompilerTool"/>
+			<Tool Name="VCResourceCompilerTool"/>
+			<Tool Name="VCPreLinkEventTool"/>
+			<Tool Name="VCLibrarianTool" OutputFile="$(OutDir)\libcollada15dom21-sd.lib"/>
+			<Tool Name="VCALinkTool"/>
+			<Tool Name="VCXDCMakeTool"/>
+			<Tool Name="VCBscMakeTool"/>
+			<Tool Name="VCFxCopTool"/>
+			<Tool Name="VCPostBuildEventTool"/>
+		</Configuration>
+		<Configuration CharacterSet="2" ConfigurationType="4" IntermediateDirectory="..\..\build\vc9-1.5\obj\$(ProjectName)" Name="Release|Win32" OutputDirectory="..\..\build\vc9-1.5\" WholeProgramOptimization="1">
+			<Tool Name="VCPreBuildEventTool"/>
+			<Tool Name="VCCustomBuildTool"/>
+			<Tool Name="VCXMLDataGeneratorTool"/>
+			<Tool Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool Name="VCMIDLTool"/>
+			<Tool AdditionalIncludeDirectories="..\..\include;..\..\include\1.5;&quot;..\..\external-libs\libxml2\include&quot;;&quot;..\..\external-libs\tinyxml&quot;;&quot;..\..\external-libs\pcre&quot;" DebugInformationFormat="0" Detect64BitPortabilityProblems="false" DisableLanguageExtensions="true" Name="VCCLCompilerTool" PreprocessorDefinitions="WIN32;NDEBUG;_CRT_SECURE_NO_DEPRECATE;DOM_INCLUDE_LIBXML;PCRE_STATIC" RuntimeLibrary="2" UsePrecompiledHeader="0" WarningLevel="3" WholeProgramOptimization="false"/>
+			<Tool Name="VCManagedResourceCompilerTool"/>
+			<Tool Name="VCResourceCompilerTool"/>
+			<Tool Name="VCPreLinkEventTool"/>
+			<Tool Name="VCLibrarianTool" OutputFile="$(OutDir)\libcollada15dom21-s.lib"/>
+			<Tool Name="VCALinkTool"/>
+			<Tool Name="VCXDCMakeTool"/>
+			<Tool Name="VCBscMakeTool"/>
+			<Tool Name="VCFxCopTool"/>
+			<Tool Name="VCPostBuildEventTool"/>
+		</Configuration>
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+		<Filter Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx" Name="Source Files" UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}">
+			<File RelativePath="..\..\src\dae\dae.cpp">
+			</File>
+			<File RelativePath="..\..\src\dae\daeArray.cpp">
+			</File>
+			<File RelativePath="..\..\src\dae\daeAtomicType.cpp">
+			</File>
+			<File RelativePath="..\..\src\dae\daeDatabase.cpp">
+			</File>
+			<File RelativePath="..\..\src\dae\daeDocument.cpp">
+			</File>
+			<File RelativePath="..\..\src\dae\daeDom.cpp">
+			</File>
+			<File RelativePath="..\..\src\dae\daeElement.cpp">
+			</File>
+			<File RelativePath="..\..\src\dae\daeError.cpp">
+			</File>
+			<File RelativePath="..\..\src\dae\daeErrorHandler.cpp">
+			</File>
+			<File RelativePath="..\..\src\dae\daeIDRef.cpp">
+			</File>
+			<File RelativePath="..\..\src\dae\daeIOPluginCommon.cpp">
+			</File>
+			<File RelativePath="..\..\src\modules\LIBXMLPlugin\daeLIBXMLPlugin.cpp">
+			</File>
+			<File RelativePath="..\..\src\dae\daeMemorySystem.cpp">
+			</File>
+			<File RelativePath="..\..\src\dae\daeMetaAny.cpp">
+			</File>
+			<File RelativePath="..\..\src\dae\daeMetaAttribute.cpp">
+			</File>
+			<File RelativePath="..\..\src\dae\daeMetaChoice.cpp">
+			</File>
+			<File RelativePath="..\..\src\dae\daeMetaCMPolicy.cpp">
+			</File>
+			<File RelativePath="..\..\src\dae\daeMetaElement.cpp">
+			</File>
+			<File RelativePath="..\..\src\dae\daeMetaElementAttribute.cpp">
+			</File>
+			<File RelativePath="..\..\src\dae\daeMetaGroup.cpp">
+			</File>
+			<File RelativePath="..\..\src\dae\daeMetaSequence.cpp">
+			</File>
+			<File RelativePath="..\..\src\dae\daeRawResolver.cpp">
+			</File>
+			<File RelativePath="..\..\src\dae\daeRefCountedObj.cpp">
+			</File>
+			<File RelativePath="..\..\src\dae\daeSIDResolver.cpp">
+			</File>
+			<File RelativePath="..\..\src\dae\daeStandardURIResolver.cpp">
+			</File>
+			<File RelativePath="..\..\src\modules\STLDatabase\daeSTLDatabase.cpp">
+			</File>
+			<File RelativePath="..\..\src\dae\daeStringRef.cpp">
+			</File>
+			<File RelativePath="..\..\src\dae\daeStringTable.cpp">
+			</File>
+			<File RelativePath="..\..\src\dae\daeTinyXMLPlugin.cpp">
+			</File>
+			<File RelativePath="..\..\src\dae\daeURI.cpp">
+			</File>
+			<File RelativePath="..\..\src\dae\daeUtils.cpp">
+			</File>
+			<File RelativePath="..\..\src\dae\domAny.cpp">
+			</File>
+			<File RelativePath="..\..\src\modules\stdErrPlugin\stdErrPlugin.cpp">
+			</File>
+		</Filter>
+		<Filter Filter="h;hpp;hxx;hm;inl;inc;xsd" Name="Header Files" UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}">
+			<File RelativePath="..\..\include\dae.h">
+			</File>
+			<File RelativePath="..\..\include\dae\daeArray.h">
+			</File>
+			<File RelativePath="..\..\include\dae\daeArrayTypes.h">
+			</File>
+			<File RelativePath="..\..\include\dae\daeAtomicType.h">
+			</File>
+			<File RelativePath="..\..\include\dae\daeDatabase.h">
+			</File>
+			<File RelativePath="..\..\include\dae\daeDocument.h">
+			</File>
+			<File RelativePath="..\..\include\dae\daeDom.h">
+			</File>
+			<File RelativePath="..\..\include\dae\daeDomTypes.h">
+			</File>
+			<File RelativePath="..\..\include\dae\daeElement.h">
+			</File>
+			<File RelativePath="..\..\include\dae\daeError.h">
+			</File>
+			<File RelativePath="..\..\include\dae\daeErrorHandler.h">
+			</File>
+			<File RelativePath="..\..\include\dae\daeGCCPlatform.h">
+			</File>
+			<File RelativePath="..\..\include\dae\daeIDRef.h">
+			</File>
+			<File RelativePath="..\..\include\dae\daeIOPlugin.h">
+			</File>
+			<File RelativePath="..\..\include\dae\daeIOPluginCommon.h">
+			</File>
+			<File RelativePath="..\..\include\modules\daeLIBXMLPlugin.h">
+			</File>
+			<File RelativePath="..\..\include\dae\daeMemorySystem.h">
+			</File>
+			<File RelativePath="..\..\include\dae\daeMetaAny.h">
+			</File>
+			<File RelativePath="..\..\include\dae\daeMetaAttribute.h">
+			</File>
+			<File RelativePath="..\..\include\dae\daeMetaChoice.h">
+			</File>
+			<File RelativePath="..\..\include\dae\daeMetaCMPolicy.h">
+			</File>
+			<File RelativePath="..\..\include\dae\daeMetaElement.h">
+			</File>
+			<File RelativePath="..\..\include\dae\daeMetaElementAttribute.h">
+			</File>
+			<File RelativePath="..\..\include\dae\daeMetaGroup.h">
+			</File>
+			<File RelativePath="..\..\include\dae\daeMetaSequence.h">
+			</File>
+			<File RelativePath="..\..\include\dae\daePlatform.h">
+			</File>
+			<File RelativePath="..\..\include\dae\daeRawResolver.h">
+			</File>
+			<File RelativePath="..\..\include\dae\daeRefCountedObj.h">
+			</File>
+			<File RelativePath="..\..\include\dae\daeSIDResolver.h">
+			</File>
+			<File RelativePath="..\..\include\dae\daeSmartRef.h">
+			</File>
+			<File RelativePath="..\..\include\dae\daeStandardURIResolver.h">
+			</File>
+			<File RelativePath="..\..\include\modules\daeSTLDatabase.h">
+			</File>
+			<File RelativePath="..\..\include\dae\daeStringRef.h">
+			</File>
+			<File RelativePath="..\..\include\dae\daeStringTable.h">
+			</File>
+			<File RelativePath="..\..\include\dae\daeTinyXMLPlugin.h">
+			</File>
+			<File RelativePath="..\..\include\dae\daeTypes.h">
+			</File>
+			<File RelativePath="..\..\include\dae\daeURI.h">
+			</File>
+			<File RelativePath="..\..\include\dae\daeWin32Platform.h">
+			</File>
+			<File RelativePath="..\..\include\dom.h">
+			</File>
+			<File RelativePath="..\..\include\dae\domAny.h">
+			</File>
+			<File RelativePath="..\..\include\modules\stdErrPlugin.h">
+			</File>
+		</Filter>
+		<Filter Name="1.5">
+			<Filter Name="Header Files">
+				<File RelativePath="..\..\include\1.5\dom\domAccessor.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domAnimation.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domAnimation_clip.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domArticulated_system.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domAsset.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domAxis.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domAxis_constraint.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domBind_joint_axis.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domBind_kinematics_model.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domBind_material.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domBool_array.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domBox.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domBrep.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domCamera.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domCapsule.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domCg_array.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domCg_newparam.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domCg_param.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domCg_pass.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domCg_setparam.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domCg_user.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domChannel.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domCircle.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domCOLLADA.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domCommon_bool_or_param.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domCommon_float2_or_param.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domCommon_float_or_param.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domCommon_int_or_param.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domCommon_param.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domCommon_sidref_or_param.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domCone.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domConstants.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domController.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domConvex_mesh.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domCurve.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domCurves.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domCylinder.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domEdges.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domEffect.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domElements.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domEllipse.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domEllipsoid.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domExtra.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domFaces.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domFloat_array.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domForce_field.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domFormula.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domFormula_newparam.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domFormula_setparam.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domFormula_technique.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domFx_annotate.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domFx_clearcolor.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domFx_cleardepth.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domFx_clearstencil.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domFx_code.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domFx_colortarget.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domFx_common_color_or_texture.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domFx_common_float_or_param.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domFx_common_newparam.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domFx_common_transparent.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domFx_depthtarget.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domFx_include.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domFx_newparam.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domFx_profile.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domFx_rendertarget.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domFx_sampler.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domFx_sampler1D.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domFx_sampler2D.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domFx_sampler3D.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domFx_samplerCUBE.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domFx_samplerDEPTH.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domFx_samplerRECT.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domFx_sampler_states.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domFx_setparam.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domFx_sources.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domFx_stenciltarget.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domFx_target.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domGeometry.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domGles2_newparam.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domGles2_pass.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domGles2_pipeline_settings.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domGles2_program.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domGles2_shader.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domGles2_value.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domGles_newparam.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domGles_param.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domGles_pipeline_settings.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domGles_sampler.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domGles_sampler_states.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domGles_texcombiner_argument_alpha.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domGles_texcombiner_argument_rgb.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domGles_texcombiner_command.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domGles_texcombiner_command_alpha.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domGles_texcombiner_command_rgb.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domGles_texenv_command.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domGles_texture_constant.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domGles_texture_pipeline.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domGlsl_array.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domGlsl_newparam.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domGlsl_program.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domGlsl_shader.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domGlsl_value.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domGl_pipeline_settings.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domHyperbola.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domIdref_array.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domImage.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domImage_mips.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domImage_source.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domInput_global.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domInput_local.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domInput_local_offset.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domInstance_articulated_system.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domInstance_camera.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domInstance_controller.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domInstance_effect.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domInstance_force_field.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domInstance_formula.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domInstance_geometry.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domInstance_image.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domInstance_joint.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domInstance_kinematics_model.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domInstance_kinematics_scene.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domInstance_light.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domInstance_material.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domInstance_node.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domInstance_physics_material.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domInstance_physics_model.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domInstance_rigid_body.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domInstance_rigid_constraint.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domInstance_with_extra.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domInt_array.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domJoint.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domJoint_limits.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domKinematics.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domKinematics_axis_info.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domKinematics_bind.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domKinematics_connect_param.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domKinematics_frame.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domKinematics_index.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domKinematics_limits.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domKinematics_model.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domKinematics_model_technique.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domKinematics_newparam.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domKinematics_param.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domKinematics_scene.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domKinematics_setparam.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domKinematics_technique.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domLibrary_animations.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domLibrary_animation_clips.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domLibrary_articulated_systems.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domLibrary_cameras.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domLibrary_controllers.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domLibrary_effects.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domLibrary_force_fields.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domLibrary_formulas.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domLibrary_geometries.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domLibrary_images.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domLibrary_joints.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domLibrary_kinematics_models.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domLibrary_kinematics_scenes.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domLibrary_lights.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domLibrary_materials.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domLibrary_nodes.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domLibrary_physics_materials.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domLibrary_physics_models.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domLibrary_physics_scenes.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domLibrary_visual_scenes.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domLight.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domLimits_sub.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domLine.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domLines.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domLinestrips.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domLink.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domLookat.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domMaterial.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domMatrix.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domMesh.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domMinmax.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domMorph.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domMotion.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domMotion_axis_info.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domMotion_effector_info.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domMotion_technique.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domName_array.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domNode.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domNurbs.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domNurbs_surface.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domOrient.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domOrigin.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domP.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domParabola.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domParam.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domPcurves.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domPhysics_material.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domPhysics_model.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domPhysics_scene.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domPlane.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domPolygons.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domPolylist.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domProfile_bridge.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domProfile_cg.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domProfile_common.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domProfile_gles.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domProfile_gles2.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domProfile_glsl.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domRigid_body.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domRigid_constraint.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domRotate.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domSampler.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domScale.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domShells.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domSidref.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domSidref_array.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domSkew.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domSkin.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domSolids.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domSource.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domSphere.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domSpline.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domSurface.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domSurfaces.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domSurface_curves.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domSwept_surface.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domTapered_capsule.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domTapered_cylinder.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domTargetable_float.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domTargetable_float3.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domTargetable_float4.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domTechnique.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domToken_array.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domTorus.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domTranslate.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domTriangles.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domTrifans.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domTristrips.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domTypes.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domVertices.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domVisual_scene.h"/>
+				<File RelativePath="..\..\include\1.5\dom\domWires.h"/>
+			</Filter>
+			<Filter Name="Source Files">
+				<File RelativePath="..\..\src\1.5\dom\domAccessor.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domAnimation.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domAnimation_clip.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domArticulated_system.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domAsset.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domAxis.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domAxis_constraint.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domBind_joint_axis.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domBind_kinematics_model.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domBind_material.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domBool_array.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domBox.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domBrep.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domCamera.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domCapsule.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domCg_array.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domCg_newparam.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domCg_param.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domCg_pass.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domCg_setparam.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domCg_user.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domChannel.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domCircle.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domCOLLADA.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domCommon_bool_or_param.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domCommon_float2_or_param.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domCommon_float_or_param.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domCommon_int_or_param.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domCommon_param.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domCommon_sidref_or_param.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domCone.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domConstants.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domController.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domConvex_mesh.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domCurve.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domCurves.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domCylinder.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domEdges.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domEffect.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domEllipse.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domEllipsoid.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domExtra.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domFaces.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domFloat_array.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domForce_field.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domFormula.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domFormula_newparam.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domFormula_setparam.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domFormula_technique.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domFx_annotate.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domFx_clearcolor.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domFx_cleardepth.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domFx_clearstencil.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domFx_code.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domFx_colortarget.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domFx_common_color_or_texture.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domFx_common_float_or_param.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domFx_common_newparam.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domFx_common_transparent.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domFx_depthtarget.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domFx_include.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domFx_newparam.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domFx_profile.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domFx_rendertarget.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domFx_sampler.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domFx_sampler1D.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domFx_sampler2D.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domFx_sampler3D.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domFx_samplerCUBE.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domFx_samplerDEPTH.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domFx_samplerRECT.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domFx_sampler_states.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domfx_setparam.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domFx_sources.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domFx_stenciltarget.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domFx_target.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domGeometry.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domGles2_newparam.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domGles2_pass.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domGles2_pipeline_settings.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domGles2_program.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domGles2_shader.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domGles2_value.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domGles_newparam.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domGles_param.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domGles_pipeline_settings.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domGles_sampler.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domGles_sampler_states.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domGles_texcombiner_argument_alpha.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domGles_texcombiner_argument_rgb.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domGles_texcombiner_command.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domGles_texcombiner_command_alpha.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domGles_texcombiner_command_rgb.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domGles_texenv_command.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domGles_texture_constant.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domGles_texture_pipeline.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domGlsl_array.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domGlsl_newparam.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domGlsl_program.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domGlsl_shader.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domGlsl_value.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domGl_pipeline_settings.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domHyperbola.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domIdref_array.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domImage.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domImage_mips.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domImage_source.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domInput_global.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domInput_local.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domInput_local_offset.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domInstance_articulated_system.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domInstance_camera.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domInstance_controller.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domInstance_effect.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domInstance_force_field.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domInstance_formula.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domInstance_geometry.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domInstance_image.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domInstance_joint.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domInstance_kinematics_model.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domInstance_kinematics_scene.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domInstance_light.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domInstance_material.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domInstance_node.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domInstance_physics_material.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domInstance_physics_model.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domInstance_rigid_body.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domInstance_rigid_constraint.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domInstance_with_extra.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domInt_array.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domJoint.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domJoint_limits.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domKinematics.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domKinematics_axis_info.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domKinematics_bind.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domKinematics_connect_param.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domKinematics_frame.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domKinematics_index.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domKinematics_limits.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domKinematics_model.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domKinematics_model_technique.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domKinematics_newparam.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domKinematics_param.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domKinematics_scene.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domKinematics_setparam.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domKinematics_technique.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domLibrary_animations.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domLibrary_animation_clips.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domLibrary_articulated_systems.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domLibrary_cameras.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domLibrary_controllers.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domLibrary_effects.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domLibrary_force_fields.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domLibrary_formulas.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domLibrary_geometries.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domLibrary_images.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domLibrary_joints.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domLibrary_kinematics_models.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domLibrary_kinematics_scenes.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domLibrary_lights.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domLibrary_materials.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domLibrary_nodes.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domLibrary_physics_materials.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domLibrary_physics_models.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domLibrary_physics_scenes.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domLibrary_visual_scenes.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domLight.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domLimits_sub.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domLine.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domLines.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domLinestrips.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domLink.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domLookat.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domMaterial.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domMatrix.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domMesh.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domMinmax.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domMorph.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domMotion.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domMotion_axis_info.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domMotion_effector_info.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domMotion_technique.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domName_array.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domNode.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domNurbs.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domNurbs_surface.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domOrient.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domOrigin.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domP.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domParabola.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domParam.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domPcurves.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domPhysics_material.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domPhysics_model.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domPhysics_scene.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domPlane.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domPolygons.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domPolylist.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domProfile_bridge.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domProfile_cg.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domProfile_common.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domProfile_gles.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domProfile_gles2.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domProfile_glsl.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domRigid_body.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domRigid_constraint.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domRotate.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domSampler.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domScale.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domShells.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domSidref.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domSidref_array.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domSkew.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domSkin.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domSolids.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domSource.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domSphere.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domSpline.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domSurface.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domSurfaces.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domSurface_curves.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domSwept_surface.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domTapered_capsule.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domTapered_cylinder.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domTargetable_float.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domTargetable_float3.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domTargetable_float4.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domTechnique.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domToken_array.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domTorus.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domTranslate.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domTriangles.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domTrifans.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domTristrips.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domTypes.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domVertices.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domVisual_scene.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domWires.cpp"/>
+			</Filter>
+		</Filter>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>
