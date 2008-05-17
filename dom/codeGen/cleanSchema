@@ -6,7 +6,7 @@ if [ ! -f "$1" ]; then
     exit
 fi
 
-newFile=`basename "$1" .xsd`_cleaned.xsd
+newFile=`dirname "$1"`/`basename "$1" .xsd`_cleaned.xsd
 cp "$1" "$newFile"
 perl -pi -e 's/_type"/"/g' "$newFile"
 perl -pi -e 's/_group"/"/g' "$newFile"

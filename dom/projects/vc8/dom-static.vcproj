@@ -16,7 +16,7 @@
 	</ToolFiles>
 	<Configurations>
 		<Configuration
-			Name="Debug 1.4|Win32"
+			Name="Debug|Win32"
 			OutputDirectory="..\..\build\vc8-1.4-d\"
 			IntermediateDirectory="..\..\build\vc8-1.4-d\obj\$(ProjectName)"
 			ConfigurationType="4"
@@ -81,7 +81,7 @@
 			/>
 		</Configuration>
 		<Configuration
-			Name="Release 1.4|Win32"
+			Name="Release|Win32"
 			OutputDirectory="..\..\build\vc8-1.4\"
 			IntermediateDirectory="..\..\build\vc8-1.4\obj\$(ProjectName)"
 			ConfigurationType="4"
