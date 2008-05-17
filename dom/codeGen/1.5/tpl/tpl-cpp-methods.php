@@ -130,6 +130,28 @@
 	  $currentOrd = 0;
 	  $level = 0;
 	  $choiceNum = 0;
+
+		// !!!steveT Hack alert. In the 1.5 schema there's a single element named
+		// 'sampler_states_type' that contains a group ref that isn't contained in
+		// an xs:sequence or xs:choice the way all the other group refs are. The
+		// code generator handles this case incorrectly. It outputs code that causes
+		// the DOM to crash when you try to create a DAE object.
+		//
+		// Unfortunately I don't know what the proper solution is, so this hack just
+		// detects that specific group ref type and treats it like it's in an
+		// xs:sequence. I have no idea if that's right, but it causes the DOM not to
+		// crash anyway.
+		$containsGroup = false;
+		$containsOther = false;
+		for( $i=0; $i<count( $bag['content_model'] ) - 1; $i++ ) {
+			$cm = $bag['content_model'][$i];
+			if(is_int($cm['name']) && $cm['name'] == 2)
+				$containsGroup = true;
+			if(is_int($cm['name']) && $cm['name'] != 2)
+				$containsOther = true;
+		}
+		$hack = $containsGroup && !$containsOther;
+
 	  for( $i=0; $i<count( $bag['content_model'] ) - 1; $i++ )
 	  {
 		$cm = $bag['content_model'][$i]; 
@@ -139,7 +161,7 @@
 		}
 		if ( is_int( $cm['name'] ) )
 		{
-			if ( $cm['name'] == 0 ) //sequence
+			if ( $cm['name'] == 0 || ($i == 0 && $hack)) //sequence
 			{
 				//if ( $level > 0 ) {
 				//	$needsContents = true;
