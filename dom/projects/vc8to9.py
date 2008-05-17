@@ -10,9 +10,9 @@ def slnToVC9(vc8Sln, vc9Sln):
         return False
     for line in vc8File:
         if line.find('Microsoft Visual Studio Solution File, Format Version 9.00') != -1:
-            vc9File.write('Microsoft Visual Studio Solution File, Format Version 10.00\r\n')
+            vc9File.write('Microsoft Visual Studio Solution File, Format Version 10.00\n')
         elif line.find('# Visual Studio 2005') != -1:
-            vc9File.write('# Visual Studio 2008\r\n')
+            vc9File.write('# Visual Studio 2008\n')
         else:
             vc9File.write(line)
     return True
