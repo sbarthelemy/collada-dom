@@ -8,16 +8,18 @@ fi
 
 newFile=`dirname "$1"`/`basename "$1" .xsd`_cleaned.xsd
 cp "$1" "$newFile"
+
+# Remove type name annotations
 perl -pi -e 's/_type"/"/g' "$newFile"
 perl -pi -e 's/_group"/"/g' "$newFile"
 perl -pi -e 's/_enum"/"/g' "$newFile"
 perl -pi -e 's/_enum / /g' "$newFile"
 
+# node_type and node_enum both map down to node, which causes a
+# conflict. Put back the _enum annotation on node_enum.
+perl -pi -e 's/xs:simpleType name="node">/xs:simpleType name="node_enum">/g' "$newFile"
+perl -pi -e 's/name="type" type="node"/name="type" type="node_enum"/g' "$newFile"
+
 # The DOM doesn't handle the mathml spec. Replace it with an xs:any so people
 # can do whatever they want instead.
 perl -pi -e 's/<xs:element ref="math:math"/<xs:any namespace="##any" processContents="skip" minOccurs="0" maxOccurs="unbounded"/g' "$newFile"
-
-# node_type and node_enum both map down to node, which causes a
-# conflict. Replace the _enum annotation on the node_enum.
-perl -pi -e 's/xs:simpleType name="node">/xs:simpleType name="node_enum">/g' "$newFile"
-perl -pi -e 's/name="type" type="node"/name="type" type="node_enum"/g' "$newFile"

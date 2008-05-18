@@ -1,19 +1,23 @@
 Code generator usage
 --------------------
 
-Windows:   bin\php gen.php schema [cprt]
-Linux/Mac: php gen.php schema [cprt]
+php gen.php schema [cprt]
 
-schema    File name of the COLLADA schema document
-cprt      Generate the files with an SCEA shared source copyright notice
+schema: File name of the COLLADA schema document
+cprt:   Generate the files with an SCEA shared source copyright notice
 
-When running the code generator under Windows, be sure to use the php provided in the bin 
-directory. Don't install the latest php and try to use that. The latest php comes with a 
-php.ini file whose settings are totally incompatible with the code used in the DOM code 
-generator. If you get tons of errors when you run the code generator, it may be because 
-php is using a php.ini file that's incompatible with the code generator. Check 
-C:\Program Files\PHP and delete php.ini if it's there. Be careful though, as this will 
-affect any other PHP programs on your system as well.
+You'll need to download PHP for your platform. The latest release on Windows
+should work fine. If you get a ton of errors when you run the code generator on
+Windows, try deleting C:\Program Files\PHP\php.ini if it's present.
 
-On Linux/Mac, you should be able to use the PHP 5 that comes with your distro for running
-the code generator.
+The code generator is branched between Collada 1.4 and 1.5. Use the code
+generator branch that matches the schema version you're using.
+
+The code generator for Collada 1.5 requires some preprocessing of the
+schema. This preprocessing is implemented as some perl search/replace one-liners
+in a bash script called 'cleanSchema'. You'll need to have perl
+installed. Although only a bash script is provided, it should be trivial to
+adapt to a Windows batch file if that's what you need. Run cleanSchema like
+this: 'cleanSchema collada15Schema.xsd'. It outputs a file named
+collada15Schema_cleaned.xsd, which should then be run through the code generator
+to create the 1.5 DOM sources.
