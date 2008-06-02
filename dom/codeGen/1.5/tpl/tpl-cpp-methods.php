@@ -44,11 +44,11 @@
 		print "\tref->attrXmlns.setContainer( (". $scoped_element ."*)ref );\n";
 	}
 	foreach( $bag['attributes'] as $attr_name => & $a_list ) {
-		if ( $a_list['type'] == 'xs:anyURI' || $a_list['type'] == 'URIFragmentType' ) {
+		if ( $a_list['type'] == 'xs:anyURI' || $a_list['type'] == 'urifragment' ) {
 			print "\tref->attr". ucfirst($attr_name) .".setContainer( (". $scoped_element ."*)ref );\n";
 		}
 	}
-	if ( $bag['content_type'] == 'xs:anyURI' || $bag['content_type'] == 'URIFragmentType' ) {
+	if ( $bag['content_type'] == 'xs:anyURI' || $bag['content_type'] == 'urifragment' ) {
 		print "\tref->_value.setContainer( (". $scoped_element ."*)ref );\n";
 	}
 	if ( $scoped_element == "domCOLLADA" ) {

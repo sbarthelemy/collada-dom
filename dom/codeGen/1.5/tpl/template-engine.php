@@ -232,7 +232,7 @@ function printConstructors( $elemName, & $bag, $baseClass, $indent ) {
 			$attr_name = ucfirst($attr_name);
 			$type = $a_list['type'];
 			print "attr" . $attr_name . "(";
-			if ($type == 'xs:anyURI' || $type == 'URIFragmentType')
+			if ($type == 'xs:anyURI' || $type == 'urifragment')
 				print "dae, " . $eltVar;
 			else if ($type == 'xs:IDREF')
 				print $eltVar;
@@ -252,7 +252,7 @@ function printConstructors( $elemName, & $bag, $baseClass, $indent ) {
 
 	if ( ($bag['content_type'] != '' || $bag['mixed']) && !$bag['abstract'] ) {
 		beginConstructorInitializer($initializerListStarted);
-		if ($bag['content_type'] == 'xs:anyURI' || $bag['content_type'] == 'URIFragmentType')
+		if ($bag['content_type'] == 'xs:anyURI' || $bag['content_type'] == 'urifragment')
 			print "_value(dae, " . $eltVar . ")";
 		else if ($bag['content_type'] == 'xs:IDREF')
 			print "_value(" . $eltVar . ")";
@@ -403,7 +403,7 @@ function printAttributes( & $bag, & $typemeta, & $indent, $vaa ) {
 			}
 			print " }\n\n";
 		}
-		else if ( ucfirst($type) == 'AnyURI' || ucfirst($type) == 'URIFragmentType' ) {
+		else if ( ucfirst($type) == 'AnyURI' || ucfirst($type) == 'urifragment' ) {
 			//comment
 			print $indent ."\t/**\n". $indent ."\t * Gets the ". $attr_name ." attribute.\n";
 			print $indent ."\t * @return Returns a ". $pre . ucfirst( $type ) ." reference of the ". $attr_name ." attribute.\n";

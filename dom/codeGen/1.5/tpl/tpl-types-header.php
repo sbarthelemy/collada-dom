@@ -38,9 +38,9 @@ foreach( $bag as $type => $meta )
 		if ( isset( $meta['documentation']['en'] ) ) {
 			print applyTemplate( 'DOXYGEN', $meta['documentation']['en'] );
 		}
-		//special casing URIFragmentType to be a xsURI for automatic resolution
-		if ( $type == 'URIFragmentType' ) {
-			print "typedef xsAnyURI\t\tdomURIFragmentType;\n";
+		//special casing urifragment to be a xsURI for automatic resolution
+		if ( $type == 'urifragment' ) {
+			print "typedef xsAnyURI\t\tdomUrifragment;\n";
 		}
 		else {
 		    print "typedef " . $pre . ucfirst($base) . "\t\t" . $_globals['prefix'] . ucfirst( $type ) . ";\n";

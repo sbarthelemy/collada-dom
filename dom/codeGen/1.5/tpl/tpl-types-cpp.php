@@ -105,8 +105,8 @@ foreach( $bag as $type => $meta )
 	// TYPEDEF: <?= ucfirst( $type ) ?>
 	//check if this type has an existing base
 <?php 
-	//special casing URIFragmentType to be a xsURI for automatic resolution
-	if ( $type == 'URIFragmentType' ) {
+	//special casing urifragment to be a xsURI for automatic resolution
+	if ( $type == 'urifragment' ) {
 		print "\ttype = atomicTypes.get(\"xsAnyURI\");\n";
 	}
 	else {
