@@ -1393,14 +1393,18 @@ DefineTest(uriCopy) {
 }
 
 
-// I don't want to enable this test until I figure out how to disable the extra
-// error messages that libxml spits out.
-//
-// DefineTest(spuriousQuotes) {
-// 	DAE dae;
-// 	CheckResult(dae.open(lookupTestFile("quotesProblem.dae")));
-// 	return testResult(true);
-// }
+DefineTest(badFileLoad) {
+	DAE dae;
+	CheckResult(!dae.open(lookupTestFile("badFile.dae")));
+	return testResult(true);
+}
+
+
+DefineTest(spuriousQuotes) {
+	DAE dae;
+	CheckResult(!dae.open(lookupTestFile("quotesProblem.dae")));
+	return testResult(true);
+}
 
 
 // DefineTest(hauntedHouse) {

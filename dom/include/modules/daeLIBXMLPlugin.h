@@ -80,7 +80,9 @@ private:
 	virtual daeElementRef readFromFile(const daeURI& uri);
 	virtual daeElementRef readFromMemory(daeString buffer, const daeURI& baseUri);
 	daeElementRef read(_xmlTextReader* reader);
-	daeElementRef readElement(_xmlTextReader* reader, daeElement* parentElement);
+	daeElementRef readElement(_xmlTextReader* reader,
+	                          daeElement* parentElement,
+	                          /* out */ int& readRetVal);
 
 	void writeElement( daeElement* element ); 
 	void writeAttribute( daeMetaAttribute* attr, daeElement* element);
