@@ -206,25 +206,22 @@ void daeTinyXMLPlugin::writeValue( daeElement* element )
 
 void daeTinyXMLPlugin::writeAttribute( daeMetaAttribute* attr, daeElement* element )
 {
-	//don't write if !required and is set && is default
-	if ( !attr->getIsRequired() ) {
-		//not required
-		if ( !element->isAttributeSet( attr->getName() ) ) {
-			//early out if !value && !required && !set
+	ostringstream buffer;
+	attr->memoryToString(element, buffer);
+	string str = buffer.str();
+
+	// Don't write the attribute if
+	//  - The attribute isn't required AND
+	//     - The attribute has no default value and the current value is ""
+	//     - The attribute has a default value and the current value matches the default
+	if (!attr->getIsRequired()) {
+		if(!attr->getDefaultValue()  &&  str.empty())
 			return;
-		}
-			
-		//is set
-		//check for default suppression
-		if (attr->compareToDefault(element) == 0) {
-			// We match the default value, so exit early
+		if(attr->getDefaultValue()  &&  attr->compareToDefault(element) == 0)
 			return;
-		}
 	}
 
-	std::ostringstream buffer;
-	attr->memoryToString(element, buffer);
-	m_elements.front()->SetAttribute(attr->getName(), buffer.str().c_str());
+	m_elements.front()->SetAttribute(attr->getName(), str.c_str());
 }
 
 #endif // DOM_INCLUDE_TINYXML

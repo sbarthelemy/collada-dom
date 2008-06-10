@@ -431,27 +431,22 @@ void daeLIBXMLPlugin::writeElement( daeElement* element )
 
 void daeLIBXMLPlugin::writeAttribute( daeMetaAttribute* attr, daeElement* element)
 {
-	//don't write if !required and is set && is default
-	if ( !attr->getIsRequired() ) {
-		//not required
-		if ( !element->isAttributeSet( attr->getName() ) ) {
-			//early out if !value && !required && !set
-			return;
-		}
-			
-		//is set
-		//check for default suppression
-		if (attr->compareToDefault(element) == 0) {
-			// We match the default value, so exit early
-			return;
-		}
-	}
-
-	xmlTextWriterStartAttribute(writer, (xmlChar*)(daeString)attr->getName());
 	ostringstream buffer;
 	attr->memoryToString(element, buffer);
 	string str = buffer.str();
 
+	// Don't write the attribute if
+	//  - The attribute isn't required AND
+	//     - The attribute has no default value and the current value is ""
+	//     - The attribute has a default value and the current value matches the default
+	if (!attr->getIsRequired()) {
+		if(!attr->getDefaultValue()  &&  str.empty())
+			return;
+		if(attr->getDefaultValue()  &&  attr->compareToDefault(element) == 0)
+			return;
+	}
+
+	xmlTextWriterStartAttribute(writer, (xmlChar*)(daeString)attr->getName());
 	xmlChar* utf8 = (xmlChar*)str.c_str();
 	if (dae.getCharEncoding() == DAE::Latin1)
 		utf8 = latin1ToUtf8(str);

@@ -57,7 +57,7 @@ protected:
 	daeDocument* _document;
 	daeMetaElement* _meta;
 	daeString _elementName;
-	daeBoolArray _validAttributeArray;
+	daeBoolArray _validAttributeArray; // This is now obsolete and can be removed
 	void* _userData;
 
 protected:
