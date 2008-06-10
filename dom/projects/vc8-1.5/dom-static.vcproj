@@ -408,7 +408,6 @@
 				<File RelativePath="..\..\include\1.5\dom\domSampler.h"/>
 				<File RelativePath="..\..\include\1.5\dom\domScale.h"/>
 				<File RelativePath="..\..\include\1.5\dom\domShells.h"/>
-				<File RelativePath="..\..\include\1.5\dom\domSidref.h"/>
 				<File RelativePath="..\..\include\1.5\dom\domSidref_array.h"/>
 				<File RelativePath="..\..\include\1.5\dom\domSkew.h"/>
 				<File RelativePath="..\..\include\1.5\dom\domSkin.h"/>
@@ -420,8 +419,6 @@
 				<File RelativePath="..\..\include\1.5\dom\domSurfaces.h"/>
 				<File RelativePath="..\..\include\1.5\dom\domSurface_curves.h"/>
 				<File RelativePath="..\..\include\1.5\dom\domSwept_surface.h"/>
-				<File RelativePath="..\..\include\1.5\dom\domTapered_capsule.h"/>
-				<File RelativePath="..\..\include\1.5\dom\domTapered_cylinder.h"/>
 				<File RelativePath="..\..\include\1.5\dom\domTargetable_float.h"/>
 				<File RelativePath="..\..\include\1.5\dom\domTargetable_float3.h"/>
 				<File RelativePath="..\..\include\1.5\dom\domTargetable_float4.h"/>
@@ -510,7 +507,7 @@
 				<File RelativePath="..\..\src\1.5\dom\domFx_samplerDEPTH.cpp"/>
 				<File RelativePath="..\..\src\1.5\dom\domFx_samplerRECT.cpp"/>
 				<File RelativePath="..\..\src\1.5\dom\domFx_sampler_states.cpp"/>
-				<File RelativePath="..\..\src\1.5\dom\domfx_setparam.cpp"/>
+				<File RelativePath="..\..\src\1.5\dom\domFx_setparam.cpp"/>
 				<File RelativePath="..\..\src\1.5\dom\domFx_sources.cpp"/>
 				<File RelativePath="..\..\src\1.5\dom\domFx_stenciltarget.cpp"/>
 				<File RelativePath="..\..\src\1.5\dom\domFx_target.cpp"/>
@@ -648,7 +645,6 @@
 				<File RelativePath="..\..\src\1.5\dom\domSampler.cpp"/>
 				<File RelativePath="..\..\src\1.5\dom\domScale.cpp"/>
 				<File RelativePath="..\..\src\1.5\dom\domShells.cpp"/>
-				<File RelativePath="..\..\src\1.5\dom\domSidref.cpp"/>
 				<File RelativePath="..\..\src\1.5\dom\domSidref_array.cpp"/>
 				<File RelativePath="..\..\src\1.5\dom\domSkew.cpp"/>
 				<File RelativePath="..\..\src\1.5\dom\domSkin.cpp"/>
@@ -660,8 +656,6 @@
 				<File RelativePath="..\..\src\1.5\dom\domSurfaces.cpp"/>
 				<File RelativePath="..\..\src\1.5\dom\domSurface_curves.cpp"/>
 				<File RelativePath="..\..\src\1.5\dom\domSwept_surface.cpp"/>
-				<File RelativePath="..\..\src\1.5\dom\domTapered_capsule.cpp"/>
-				<File RelativePath="..\..\src\1.5\dom\domTapered_cylinder.cpp"/>
 				<File RelativePath="..\..\src\1.5\dom\domTargetable_float.cpp"/>
 				<File RelativePath="..\..\src\1.5\dom\domTargetable_float3.cpp"/>
 				<File RelativePath="..\..\src\1.5\dom\domTargetable_float4.cpp"/>

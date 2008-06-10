@@ -87,11 +87,6 @@ def changeColladaVersion(fromDir, toDir, fromVersion, toVersion):
         if splitext(file)[1] == '.vcproj':
             vcprojChangeColladaVersion(join(fromDir, file), join(toDir, file), fromVersion, toVersion)
 
-changeColladaVersion('c:/dom/trunk/dom/projects/vc8',
-                     'c:/dom/trunk/dom/projects/vc8-1.5',
-                     '1.4',
-                     '1.5')
-
 if len(sys.argv) < 5:
     print 'failed'
 changeColladaVersion(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4])
