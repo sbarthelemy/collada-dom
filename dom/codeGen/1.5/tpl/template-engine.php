@@ -361,7 +361,7 @@ function printAttributes( & $bag, & $typemeta, & $indent, $vaa ) {
 		{
 			$type = "String";
 		}
-		$baseStringTypes = "xsDateTime xsID xsNCName xsNMTOKEN xsName xsToken xsString";
+		$baseStringTypes = "xsDateTime xsID xsNCName xsNMTOKEN xsName xsToken xsString domSidref domSid";
 		$baseType = $pre . ucfirst( $type );
 		if ( isset( $typemeta[$type] ) ) {
 			$typeInfo = $typemeta[$type];
@@ -604,7 +604,7 @@ function printAccessorsAndMutators(&$bag, &$needsContents, &$indent) {
 			$type = $content_type;
 			if($meta[$content_type]['isAComplexType'])
 				$type = $type . "Ref";
-			$baseStringTypes = "xsDateTime xsID xsNCName xsNMTOKEN xsName xsToken xsString";	
+			$baseStringTypes = "xsDateTime xsID xsNCName xsNMTOKEN xsName xsToken xsString domSidref domSid";	
 			$baseType = $pre . ucfirst( $type );
 			if ( isset( $typemeta[$type] ) ) {
 				$typeInfo = $typemeta[$type];
