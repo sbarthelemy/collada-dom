@@ -56,7 +56,7 @@
 			<Tool
 				Name="VCLibrarianTool"
 				AdditionalOptions=""
-				OutputFile="$(OutDir)/dom-d.lib"
+				OutputFile="$(OutDir)/$(ProjectName)-d.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
