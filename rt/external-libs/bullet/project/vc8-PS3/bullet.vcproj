@@ -868,14 +868,6 @@
 				>
 			</File>
 		</Filter>
-		<File
-			RelativePath="..\..\collada\ColladaConverter.cpp"
-			>
-		</File>
-		<File
-			RelativePath="..\..\collada\ColladaConverter.h"
-			>
-		</File>
 	</Files>
 	<Globals>
 	</Globals>
