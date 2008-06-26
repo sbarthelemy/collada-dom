@@ -1,0 +1,19 @@
+Button Controls
+Up             Select files upward
+Down           Select files downward
+Cross          Load selected file
+Triangle       Manipulate Gravity vector by SixAxis (apply to physics scene)
+L1             Zoom out
+L2             Zoom in
+L3             Bring up the file browser
+R3             Toggle Wireframe
+Select         Select Next Camera
+
+
+Left Analog Stick Control
+Y-Axis         Orbit Camera upward and downward
+X-Axis         Orbit Camera Left and right
+
+Right Analog Stick Control
+Y-Axis         Move orbit pivot upward and downward
+X-Axis         Move orbit pivot Left and right
