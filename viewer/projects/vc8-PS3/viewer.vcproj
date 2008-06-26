@@ -16,8 +16,8 @@
 	<Configurations>
 		<Configuration
 			Name="PS3 Debug|Win32"
-			OutputDirectory="..\..\build\vc8-PS3-d"
-			IntermediateDirectory="..\..\build\vc8-PS3-d\obj"
+			OutputDirectory="..\..\bin"
+			IntermediateDirectory="..\..\build\vc8-PS3-d\obj\$(ProjectName)"
 			ConfigurationType="1"
 			DeleteExtensionsOnClean="*.obj;*.d;*.map;*.lst;*.pch;$(TargetPath);$(TargetDir)$(TargetName).self"
 			>
@@ -58,7 +58,7 @@
 				Name="VCLinkerTool"
 				AdditionalOptions="-fno-exceptions -fno-rtti"
 				AdditionalDependencies="&quot;$(SN_PS3_PATH)\ppu\lib\sn\libsn.a&quot; &quot;$(SCE_PS3_ROOT)\target\ppu\lib\libm.a&quot; &quot;$(SCE_PS3_ROOT)\target\ppu\lib\libio_stub.a&quot; &quot;$(SCE_PS3_ROOT)\samples\fw\libfw.a&quot; &quot;$(SCE_PS3_ROOT)\target\ppu\lib\PSGL\RSX\debug\libPSGLFX.a&quot; &quot;$(SCE_PS3_ROOT)\target\ppu\lib\PSGL\RSX\debug\libPSGL.a&quot; &quot;$(SCE_PS3_ROOT)\target\ppu\lib\PSGL\RSX\debug\libPSGLU.a&quot; &quot;$(SCE_PS3_ROOT)\target\ppu\lib\PSGL\RSX\debug\libPSGLcgc.a&quot; &quot;$(SCE_PS3_ROOT)\target\ppu\lib\libcgc.a&quot; &quot;$(SCE_PS3_ROOT)\target\ppu\lib\libgcm_cmd.a&quot; &quot;$(SCE_PS3_ROOT)\target\ppu\lib\libgcm_sys_stub.a&quot; &quot;$(SCE_PS3_ROOT)\target\ppu\lib\libsysmodule_stub.a&quot; &quot;$(SCE_PS3_ROOT)\target\ppu\lib\libresc_stub.a&quot; &quot;$(SCE_PS3_ROOT)\target\ppu\lib\libusbd_stub.a&quot; &quot;$(SCE_PS3_ROOT)\target\ppu\lib\libfs_stub.a&quot; &quot;$(SCE_PS3_ROOT)\target\ppu\lib\libsysutil_stub.a&quot; &quot;$(SCE_PS3_ROOT)\target\ppu\lib\libdbgfont.a&quot; ..\..\..\dom\build\vc8-PS3-d\dom-d.lib ..\..\..\fx\build\vc8-PS3-d\fx-d.lib ..\..\..\rt\build\vc8-PS3-d\rt-d.lib ..\..\..\rt\build\vc8-PS3-d\bullet-d.lib ..\..\..\dom\external-libs\tinyxml\lib\ps3\libtinyxml.a ..\..\..\dom\external-libs\pcre\lib\ps3\libpcrecpp.a ..\..\..\dom\external-libs\pcre\lib\ps3\libpcre.a"
-				OutputFile="$(OutDir)/$(ProjectName).ppu.elf"
+				OutputFile="$(OutDir)/$(ProjectName)-d.ppu.elf"
 				LinkIncremental="0"
 				AdditionalLibraryDirectories=""
 				GenerateManifest="false"
@@ -93,8 +93,8 @@
 		</Configuration>
 		<Configuration
 			Name="PS3 Release|Win32"
-			OutputDirectory="..\..\build\vc8-PS3"
-			IntermediateDirectory="..\..\build\vc8-PS3\obj"
+			OutputDirectory="..\..\bin"
+			IntermediateDirectory="..\..\build\vc8-PS3\obj\$(ProjectName)"
 			ConfigurationType="1"
 			DeleteExtensionsOnClean="*.obj;*.d;*.map;*.lst;*.pch;$(TargetPath);$(TargetDir)$(TargetName).self"
 			>
