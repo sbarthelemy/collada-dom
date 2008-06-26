@@ -570,7 +570,7 @@ CrtInt32 WINAPI WinMain(	HINSTANCE	hInstance,
 	_CrtRender.SetScreenHeight( 480);
 
 	// Create an OpenGL Window
-	if (!CreateGLWindow("COLLADA_RT, the COLLADA_DOM Sample Viewer for PC.", _CrtRender.GetScreenWidth(), _CrtRender.GetScreenHeight(),32,fullscreen))
+	if (!CreateGLWindow("Collada Viewer for PC", _CrtRender.GetScreenWidth(), _CrtRender.GetScreenHeight(),32,fullscreen))
 	{
 		return 0;									
 	}
