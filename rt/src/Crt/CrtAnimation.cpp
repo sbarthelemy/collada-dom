@@ -229,5 +229,5 @@ CrtAnimation::~CrtAnimation()
 	{
 		AnimKeySets[t].DeallocateKeys(); 
 	}
-	CrtDeleteData(AnimKeySets);
+//	CrtDeleteData(AnimKeySets);
 }
