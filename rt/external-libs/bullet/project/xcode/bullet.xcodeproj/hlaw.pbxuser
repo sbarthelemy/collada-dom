@@ -1,0 +1,143 @@
+// !$*UTF8*$!
+{
+	08FB7793FE84155DC02AAC07 /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeTarget = 6DB127910E1992AB004FA1FD /* bullet */;
+		addToTargets = (
+			6DB127910E1992AB004FA1FD /* bullet */,
+		);
+		codeSenseManager = 6DB124A00E199128004FA1FD /* Code sense */;
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					341,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXConfiguration.PBXTargetDataSource.PBXTargetDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					301,
+					60,
+					20,
+					48,
+					43,
+					43,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXTargetDataSource_PrimaryAttribute,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 236636942;
+			PBXWorkspaceStateSaveDate = 236636942;
+		};
+		perUserProjectItems = {
+			6DA176930E1AC8EE00D3D8C5 /* PBXTextBookmark */ = 6DA176930E1AC8EE00D3D8C5 /* PBXTextBookmark */;
+			6DA176EE0E1ACB1000D3D8C5 /* PBXTextBookmark */ = 6DA176EE0E1ACB1000D3D8C5 /* PBXTextBookmark */;
+			6DB12C620E19A844004FA1FD /* PBXTextBookmark */ = 6DB12C620E19A844004FA1FD /* PBXTextBookmark */;
+			6DB12C650E19A844004FA1FD /* PBXTextBookmark */ = 6DB12C650E19A844004FA1FD /* PBXTextBookmark */;
+		};
+		sourceControlManager = 6DB1249F0E199128004FA1FD /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	6DA176930E1AC8EE00D3D8C5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6DB12B640E19A41F004FA1FD /* btAlignedAllocator.cpp */;
+		name = "btAlignedAllocator.cpp: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 470;
+		vrLoc = 0;
+	};
+	6DA176EE0E1ACB1000D3D8C5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6DB12B640E19A41F004FA1FD /* btAlignedAllocator.cpp */;
+		name = "btAlignedAllocator.cpp: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 470;
+		vrLoc = 0;
+	};
+	6DB1249F0E199128004FA1FD /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+		};
+	};
+	6DB124A00E199128004FA1FD /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	6DB127910E1992AB004FA1FD /* bullet */ = {
+		activeExec = 0;
+	};
+	6DB12B640E19A41F004FA1FD /* btAlignedAllocator.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {600, 868}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 470}";
+		};
+	};
+	6DB12C620E19A844004FA1FD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6DB12C630E19A844004FA1FD /* btAlignedAllocator.h */;
+		name = "btAlignedAllocator.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 470;
+		vrLoc = 0;
+	};
+	6DB12C630E19A844004FA1FD /* btAlignedAllocator.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = btAlignedAllocator.h;
+		path = "/Users/hlaw/Documents/Xcode/dom/rt/external-libs/bullet/src/LinearMath/btAlignedAllocator.h";
+		sourceTree = "<absolute>";
+	};
+	6DB12C650E19A844004FA1FD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6DB12C660E19A844004FA1FD /* btAlignedAllocator.h */;
+		name = "btAlignedAllocator.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 470;
+		vrLoc = 0;
+	};
+	6DB12C660E19A844004FA1FD /* btAlignedAllocator.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = btAlignedAllocator.h;
+		path = "/Users/hlaw/Documents/Xcode/dom/rt/external-libs/bullet/src/LinearMath/btAlignedAllocator.h";
+		sourceTree = "<absolute>";
+	};
+}
