@@ -1,3 +1,10 @@
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
 // A home for commonly used utility functions. These are mostly for internal DOM
 // use, but the automated tests use some of these functions, so we'll export
 // them.

@@ -1,6 +1,10 @@
-/* --- DO NOT REMOVE THIS LINE --- SNIP_SDK_COPYRIGHT_C_BEGIN */
-/* --- DO NOT REMOVE THIS LINE --- SNIP_SDK_COPYRIGHT_C_END */
-
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
 #include "Crt/CrtCg.h"
 #include "Crt/CrtPlatform.h"
 #include "Crt/CrtRender.h"

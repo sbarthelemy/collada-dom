@@ -1,3 +1,10 @@
+/*
+* Copyright 2006 Sony Computer Entertainment Inc.
+*
+* Licensed under the MIT Open Source License, for details please see license.txt or the website
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/ 
 // The DOM used to provide an "integration library", which was a mechanism for
 // converting the DOM's representation of a Collada model to the user's representation.
 // The integration classes were very clumsy and not particularly useful, so they
