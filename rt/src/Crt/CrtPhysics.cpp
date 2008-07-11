@@ -5,6 +5,10 @@
 * http://www.opensource.org/licenses/mit-license.php
 *
 */ 
+
+#ifdef NO_BULLET
+
+#else
 #include "Crt/CrtPhysics.h"
 #include "Crt/CrtScene.h"
 
@@ -1609,3 +1613,5 @@ void	MyColladaConverter::setCameraInfo(const btVector3& camUp,int forwardAxis)
 //		m_demoApp->setCameraUp(camUp);
 //		m_demoApp->setCameraForwardAxis(forwardAxis);
 }
+
+#endif

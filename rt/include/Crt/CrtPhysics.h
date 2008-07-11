@@ -13,8 +13,10 @@ subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 #ifndef _CRT_PHYSICS_H_
-#define _CRT_PHYSICS_H_  
+#define _CRT_PHYSICS_H_ 
 
+#ifdef NO_BULLET
+#else
 #include "btBulletDynamicsCommon.h"
 #include "LinearMath/btQuickprof.h"
 #include "LinearMath/btIDebugDraw.h"
@@ -147,3 +149,4 @@ class MyColladaConverter : public ColladaConverter
 
 
 #endif //_CRT_PHYSICS_H_  
+#endif //NO_BULLET

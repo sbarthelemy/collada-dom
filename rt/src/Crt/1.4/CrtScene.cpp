@@ -393,6 +393,8 @@ CrtBool	CrtScene::Load( CrtChar * LFileName )
 
 	if (domScene)
 	{
+#ifdef NO_BULLET
+#else
 		size_t count_ips = domScene->getInstance_physics_scene_array().getCount();
 		size_t count_lvs = dom->getLibrary_visual_scenes_array().getCount();
 		size_t count_lpm = dom->getLibrary_physics_models_array().getCount();
@@ -411,6 +413,7 @@ CrtBool	CrtScene::Load( CrtChar * LFileName )
 		} else {
 			_CrtRender.SetUsePhysics(CrtFalse);
 		}
+#endif
 	}
 
 	return CrtTrue; 

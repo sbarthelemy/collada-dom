@@ -46,8 +46,10 @@ public:
 private:
 	std::string resourceName;
 	static void loadFunction();
+#ifdef NO_BULLET
+#else
 	void SixAxis(float flX, float flY, float flZ, float flG);
-
+#endif
 	//pad data 
 	FWInputDevice	*mpPad;
 
@@ -329,6 +331,8 @@ bool COLLADA_Viewer::onUpdate()
    if (-tolerrance < conditioned_X_1 && conditioned_X_1 < tolerrance) conditioned_X_1 = 0.0f;
    if (-tolerrance < conditioned_Y_1 && conditioned_Y_1 < tolerrance) conditioned_Y_1 = 0.0f;
 
+#ifdef NO_BULLET
+#else
    if (mpPad->getRawBool(FWInput::Channel_Button_Triangle))
    {
 
@@ -342,7 +346,7 @@ bool COLLADA_Viewer::onUpdate()
    } else {
 	    _CrtRender.SetGravity(CrtVec3f(0.0f, -10.0f, 0.0f));
    }
-
+#endif
 	static const int CONS_PUTS_INTERVAL = 50;
 
 	if (frames % CONS_PUTS_INTERVAL == 0){
@@ -416,6 +420,8 @@ void COLLADA_Viewer::onShutdown()
 	cellDbgFontExit();
 }
 
+#ifdef NO_BULLET
+#else
 void COLLADA_Viewer::SixAxis(float flX, float flY, float flZ, float flG)
 {
 	(void) flG;
@@ -448,3 +454,4 @@ void COLLADA_Viewer::SixAxis(float flX, float flY, float flZ, float flG)
 //	    printf("new gravity (%f, %f, %f)\n", newG.getX(), newG.getY(), newG.getZ());
 	}
 }
+#endif

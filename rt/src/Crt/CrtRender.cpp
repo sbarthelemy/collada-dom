@@ -25,10 +25,13 @@ CrtBool CrtRender::UsingPhysics()
 
 CrtBool CrtRender::SetGravity(const CrtVec3f & vec)
 {
+#ifdef NO_BULLET
+#else
 	if (Scene->m_physics)
 	{
 		Scene->m_physics->setGravity(vec);
 	}
+#endif
 	return CrtFalse;
 }
 
@@ -222,11 +225,14 @@ CrtBool CrtRender::Render()
 	{
 		extern float ticker;
 		ticker += 0.01f;
+#ifdef NO_BULLET
+#else
 		if (UsePhysics)
 		{
 			if (Scene->m_physics)
 				Scene->m_physics->Render(Delta);
 		}
+#endif
 	}
 
 	//printf(" Rendering Scene \n" ); 
