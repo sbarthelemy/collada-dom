@@ -101,7 +101,7 @@
 				Name="VCCLCompilerTool"
 				AdditionalOptions="-O2 -Wall -fno-exceptions -fno-rtti"
 				AdditionalIncludeDirectories="&quot;$(SN_PS3_PATH)\ppu\include\sn&quot;;&quot;$(SCE_PS3_ROOT)\target\ppu\include&quot;;&quot;$(SCE_PS3_ROOT)\target\common\include&quot;;..\..\include\1.4;..\..\include;..\..\..\fx\include;..\..\..\dom\include;..\..\..\dom\include\1.4;&quot;..\..\external-libs\bullet\src&quot;"
-				PreprocessorDefinitions="SN_TARGET_PS3;NDEBUG;__GCC__;CFX_PLATFORM_INCLUDE=\&quot;cfxPS3.h\&quot;;CRT_PLATFORM_INCLUDE=\&quot;CrtPS3.h\&quot;"
+				PreprocessorDefinitions="SN_TARGET_PS3;NDEBUG;__GCC__;CFX_PLATFORM_INCLUDE=\&quot;cfxPS3.h\&quot;;CRT_PLATFORM_INCLUDE=\&quot;CrtPS3.h\&quot;;NO_BULLET"
 				ProgramDataBaseFileName="$(IntDir)\"
 				DebugInformationFormat="0"
 				CompileAs="0"
