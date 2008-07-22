@@ -706,13 +706,13 @@ function printAccessorsAndMutators(&$bag, &$needsContents, &$indent) {
 				print $indent ."\t * @return a ". $pre . ucfirst( $type ) ." of the value.\n";
 				print $indent ."\t */\n";
 				//code
-				print $indent ."\t".$pre . ucfirst( $type ) ." getValue() const { return _value; }\n";
+				print $indent ."\t".$pre . ucfirst( $type ) ."& getValue() { return _value; }\n";
 				//comment
 				print $indent ."\t/**\n". $indent ."\t * Sets the _value of this element.\n";
 				print $indent ."\t * @param val The new value for this element.\n";
 				print $indent ."\t */\n";
 				//code
-				print $indent ."\tvoid setValue( ". $pre . ucfirst( $type ) ." val ) { _value = val; }\n\n";
+				print $indent ."\tvoid setValue( const ". $pre . ucfirst( $type ) ."& val ) { _value = val; }\n\n";
 				//print $indent ."\t _meta->getValueAttribute()->setIsValid(true); }\n\n";
 			}
 		}
