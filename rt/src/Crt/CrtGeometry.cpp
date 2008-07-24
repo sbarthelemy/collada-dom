@@ -459,3 +459,12 @@ void 	CrtTriFans::SetVBOs()
 		_CrtRender.CopyVBOData(GL_ELEMENT_ARRAY_BUFFER, VBOID[i], indexvector[i], countvector[i] * sizeof(CrtFloat));
 	}
 }
+
+CrtInstance::~CrtInstance() 
+{
+	while(!MaterialInstances.empty())
+	{
+		CrtDelete( MaterialInstances[0] );
+		MaterialInstances.erase(MaterialInstances.begin());
+	}
+};

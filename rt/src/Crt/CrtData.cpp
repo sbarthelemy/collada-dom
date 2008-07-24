@@ -102,11 +102,3 @@ CrtTFormType CrtTransform::GetType( CrtChar * nameType )
 		return (eCrtTFormUnknown); 
 }
 
-CrtInstance::~CrtInstance() 
-{
-	while(!MaterialInstances.empty())
-	{
-		CrtDelete( MaterialInstances[0] );
-		MaterialInstances.erase(MaterialInstances.begin());
-	}
-};
