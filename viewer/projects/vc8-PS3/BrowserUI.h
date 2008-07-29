@@ -19,9 +19,11 @@
 #define THUMBNAIL_SIZE 0.25
 #define THUMBNAIL_HALFSIZE 0.125
 //#define DEFAULT_IMAGE "default.raw"
-#define DEFAULT_IMAGE "/dev_hdd0/game/NPXX00001/USRDIR/COLLADA/default.raw"
+#define HDD_DEFAULT_IMAGE "/dev_hdd0/game/NPXX00001/USRDIR/COLLADA/default.raw"
+#define APP_HOME_DEFAULT_IMAGE "/app_home/default.raw"
 #define API_ERROR(x) {if(x!=CELL_FS_SUCCEEDED){printf("error=0x%x\n",x);}}
 
+const char * DEFAULT_IMAGE = 0;
 enum
 {
 	DEVICE_MS,

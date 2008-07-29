@@ -193,9 +193,18 @@ void BrowserUI::ParseDir(const char *path)
 void BrowserUI::Init()
 {
 	// make default texture
+	DEFAULT_IMAGE = HDD_DEFAULT_IMAGE;
 	int ret = LoadTextureRAW(DEFAULT_IMAGE, 0);
 	if (ret!=-1)
 		m_TextureMap[DEFAULT_IMAGE] = ret;
+	else
+	{
+	DEFAULT_IMAGE = APP_HOME_DEFAULT_IMAGE;
+	int ret = LoadTextureRAW(DEFAULT_IMAGE, 0);
+	if (ret!=-1)
+		m_TextureMap[DEFAULT_IMAGE] = ret;
+		
+	}
 }
 void BrowserUI::onRender()
 {
