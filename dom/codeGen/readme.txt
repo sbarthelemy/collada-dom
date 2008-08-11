@@ -6,8 +6,9 @@ php gen.php schema [cprt]
 schema: File name of the COLLADA schema document
 cprt:   Generate the files with an SCEA shared source copyright notice
 
-You'll need to download PHP for your platform. The latest release on Windows
-should work fine. If you get a ton of errors when you run the code generator on
+You'll need to download PHP for your platform. php 5.2.5 on Windows
+is known to work while version 5.2.6 is known to cause problems. If you 
+get a ton of errors when you run the code generator on
 Windows, try deleting C:\Program Files\PHP\php.ini if it's present.
 
 The code generator is branched between Collada 1.4 and 1.5. Use the code
