@@ -58,6 +58,9 @@ if($bag['substitution_group'] != '')
 	$baseClass = $_globals['prefix'] . ucfirst($bag['substitution_group']);
 if($bag['isExtension'])
 	$baseClass = $_globals['prefix'] . ucfirst($bag['base_type']);
+if($bag['isRestriction'])
+	$baseClass = $_globals['prefix'] . ucfirst($bag['base_type']);
+
 print $indent ."class ". $full_element_name . " : public " . $baseClass . "\n".$indent."{\n";
 print $indent ."public:\n";	
 print $indent ."\tvirtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::". strtoupper($bag['element_name']) ."; }\n";
