@@ -8,6 +8,7 @@
 #include <dom/domInstance_with_extra.h>
 class DAE;
 
+#include <dom/domInstance_with_extra.h>
 /**
  * The instance_light element declares the instantiation of a COLLADA light
  * resource.

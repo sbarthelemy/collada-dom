@@ -8,11 +8,12 @@
 #include <dom/domTargetable_float3.h>
 class DAE;
 
+#include <dom/domTargetable_float3.h>
 /**
  * The scale element contains a mathematical vector that represents the relative
  * proportions of the  X, Y and Z axes of a coordinated system.
  */
-class domScale : public daeElement
+class domScale : public domTargetable_float3
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::SCALE; }
@@ -21,27 +22,11 @@ public:
 
 
 public:	//Accessors and Mutators
-	/**
-	 * Gets the value of this element.
-	 * @return a domTargetable_float3Ref of the value.
-	 */
-	domTargetable_float3Ref& getValue() { return _value; }
-	/**
-	 * Sets the _value of this element.
-	 * @param val The new value for this element.
-	 */
-	void setValue( const domTargetable_float3Ref& val ) { _value = val; }
-
-protected:  // Value
-	/**
-	 * The domTargetable_float3 value of the text data of this element. 
-	 */
-	domTargetable_float3Ref _value;
 protected:
 	/**
 	 * Constructor
 	 */
-	domScale(DAE& dae) : daeElement(dae), _value() {}
+	domScale(DAE& dae) : domTargetable_float3(dae) {}
 	/**
 	 * Destructor
 	 */

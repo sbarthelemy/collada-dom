@@ -8,6 +8,7 @@
 #include <dom/domInstance_with_extra.h>
 class DAE;
 
+#include <dom/domInstance_with_extra.h>
 class domInstance_joint : public domInstance_with_extra
 {
 public:

@@ -29,11 +29,22 @@ domScale::registerElement(DAE& dae)
 
 	//	Add attribute: _value
 	{
-		daeMetaAttribute *ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( dae.getAtomicTypes().get("Targetable_float3"));
+		ma->setType( dae.getAtomicTypes().get("Float3"));
 		ma->setOffset( daeOffsetOf( domScale , _value ));
 		ma->setContainer( meta );
+		meta->appendAttribute(ma);
+	}
+
+	//	Add attribute: sid
+	{
+		daeMetaAttribute *ma = new daeMetaAttribute;
+		ma->setName( "sid" );
+		ma->setType( dae.getAtomicTypes().get("Sid"));
+		ma->setOffset( daeOffsetOf( domScale , attrSid ));
+		ma->setContainer( meta );
+	
 		meta->appendAttribute(ma);
 	}
 

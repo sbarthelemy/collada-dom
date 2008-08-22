@@ -8,6 +8,7 @@
 #include <dom/domInstance_with_extra.h>
 class DAE;
 
+#include <dom/domInstance_with_extra.h>
 /**
  * The instance_physics_material element declares the instantiation of a COLLADA
  * physics_material  resource.

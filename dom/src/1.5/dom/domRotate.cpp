@@ -29,11 +29,22 @@ domRotate::registerElement(DAE& dae)
 
 	//	Add attribute: _value
 	{
-		daeMetaAttribute *ma = new daeMetaAttribute;
+		daeMetaAttribute *ma = new daeMetaArrayAttribute;
 		ma->setName( "_value" );
-		ma->setType( dae.getAtomicTypes().get("Targetable_float4"));
+		ma->setType( dae.getAtomicTypes().get("Float4"));
 		ma->setOffset( daeOffsetOf( domRotate , _value ));
 		ma->setContainer( meta );
+		meta->appendAttribute(ma);
+	}
+
+	//	Add attribute: sid
+	{
+		daeMetaAttribute *ma = new daeMetaAttribute;
+		ma->setName( "sid" );
+		ma->setType( dae.getAtomicTypes().get("Sid"));
+		ma->setOffset( daeOffsetOf( domRotate , attrSid ));
+		ma->setContainer( meta );
+	
 		meta->appendAttribute(ma);
 	}
 

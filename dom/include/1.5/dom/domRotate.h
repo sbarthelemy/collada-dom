@@ -8,11 +8,12 @@
 #include <dom/domTargetable_float4.h>
 class DAE;
 
+#include <dom/domTargetable_float4.h>
 /**
  * The rotate element contains an angle and a mathematical vector that represents
  * the axis of rotation.
  */
-class domRotate : public daeElement
+class domRotate : public domTargetable_float4
 {
 public:
 	virtual COLLADA_TYPE::TypeEnum getElementType() const { return COLLADA_TYPE::ROTATE; }
@@ -21,27 +22,11 @@ public:
 
 
 public:	//Accessors and Mutators
-	/**
-	 * Gets the value of this element.
-	 * @return a domTargetable_float4Ref of the value.
-	 */
-	domTargetable_float4Ref& getValue() { return _value; }
-	/**
-	 * Sets the _value of this element.
-	 * @param val The new value for this element.
-	 */
-	void setValue( const domTargetable_float4Ref& val ) { _value = val; }
-
-protected:  // Value
-	/**
-	 * The domTargetable_float4 value of the text data of this element. 
-	 */
-	domTargetable_float4Ref _value;
 protected:
 	/**
 	 * Constructor
 	 */
-	domRotate(DAE& dae) : daeElement(dae), _value() {}
+	domRotate(DAE& dae) : domTargetable_float4(dae) {}
 	/**
 	 * Destructor
 	 */

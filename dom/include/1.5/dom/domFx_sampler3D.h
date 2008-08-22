@@ -8,6 +8,7 @@
 #include <dom/domFx_sampler.h>
 class DAE;
 
+#include <dom/domFx_sampler.h>
 /**
  * A three-dimensional texture sampler.
  */

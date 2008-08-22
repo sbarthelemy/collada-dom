@@ -8,6 +8,7 @@
 #include <dom/domInstance_with_extra.h>
 class DAE;
 
+#include <dom/domInstance_with_extra.h>
 /**
  * The instance_camera element declares the instantiation of a COLLADA camera
  * resource.
