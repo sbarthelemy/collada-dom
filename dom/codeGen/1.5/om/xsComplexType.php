@@ -161,6 +161,10 @@ class xsComplexType extends _elementSet
 		$type = $content->getAttribute( 'base' );
 		//print "setting extends to ". $type ."\n";
 		$generator->setContentType( $type );
+		if ($content instanceof xsRestriction) {
+			$generator->bag['baseTypeViaRestriction'] = $type;
+			$generator->bag['base_type'] = $type;
+		}
 		$temp = & $content->getElementsByType( 'xsAttribute' );
 		for( $i=0; $i<count( $temp ); $i++ ) {
 			$generator->addAttribute( $temp[$i] );
@@ -179,6 +183,8 @@ class xsComplexType extends _elementSet
 			$generator->bag['isRestriction'] = true;
 		}
 		$type = $content->getAttribute( 'base' );
+		if ($content instanceof xsRestriction)
+			$generator->bag['baseTypeViaRestriction'] = $type;
 		//print "setting extends to ". $type ."\n";
 		$generator->bag['base_type'] = $type;
 		//Generate the complex type this is derived from

@@ -245,17 +245,19 @@ function printConstructors( $elemName, & $bag, $baseClass, $indent ) {
 		print "elem" . ucfirst($bag['elements'][$i]) . ($maxOccurs ? "_array" : "") . "()";
 	}
 
-	if ( ($bag['content_type'] != '' || $bag['mixed']) && !$bag['abstract'] ) {
-		beginConstructorInitializer($initializerListStarted);
-		if ($bag['content_type'] == 'xs:anyURI' || $bag['content_type'] == 'urifragment')
-			print "_value(dae, " . $eltVar . ")";
-		else if ($bag['content_type'] == 'xs:IDREF')
-			print "_value(" . $eltVar . ")";
-		else if ($bag['content_type'] == 'xs:IDREFS')
-			print "_value(new xsIDREF(" . $eltVar . "))";
-		else
-			print "_value()";
-	}	
+	if (!isset($bag['baseTypeViaRestriction'])) {
+		if ( ($bag['content_type'] != '' || $bag['mixed']) && !$bag['abstract'] ) {
+			beginConstructorInitializer($initializerListStarted);
+			if ($bag['content_type'] == 'xs:anyURI' || $bag['content_type'] == 'urifragment')
+				print "_value(dae, " . $eltVar . ")";
+			else if ($bag['content_type'] == 'xs:IDREF')
+				print "_value(" . $eltVar . ")";
+			else if ($bag['content_type'] == 'xs:IDREFS')
+				print "_value(new xsIDREF(" . $eltVar . "))";
+			else
+				print "_value()";
+		}	
+	}
 	print " {}\n";
 	
 	print $indent ."\t/**\n". $indent ."\t * Destructor\n". $indent ."\t */\n";
@@ -617,103 +619,105 @@ function printAccessorsAndMutators(&$bag, &$needsContents, &$indent) {
 			if ( $bag['parent_meta']['inline_elements'] != NULL && array_key_exists( $type, $bag['parent_meta']['inline_elements'] ) ) {
 				$pre = '::' . $pre;
 			}
-			if ( (isset( $typemeta[$content_type] ) && $typemeta[$content_type]['isArray']) || $content_type == 'IDREFS' ) {
-				//comment
-				print $indent ."\t/**\n". $indent ."\t * Gets the _value array.\n";
-				print $indent ."\t * @return Returns a ". $pre . ucfirst( $type ) ." reference of the _value array.\n";
-				print $indent ."\t */\n";
-				//code
-				print $indent ."\t".$pre . ucfirst( $type ) ." &getValue() { return _value; }\n";
-				//comment
-				print $indent ."\t/**\n". $indent ."\t * Gets the _value array.\n";
-				print $indent ."\t * @return Returns a constant ". $pre . ucfirst( $type ) ." reference of the _value array.\n";
-				print $indent ."\t */\n";
-				//code
-				print $indent ."\tconst ".$pre . ucfirst( $type ) ." &getValue() const { return _value; }\n";
-				//comment
-				print $indent ."\t/**\n". $indent ."\t * Sets the _value array.\n";
-				print $indent ."\t * @param val The new value for the _value array.\n";
-				print $indent ."\t */\n";
-				//code
-				print $indent ."\tvoid setValue( const ". $pre . ucfirst( $type ) ." &val ) { _value = val; }\n\n";
-				//print $indent ."\t _meta->getValueAttribute()->setIsValid(true); }\n\n";
-			}
-			else if ( ucfirst($type) == 'AnyURI' ) {
-				//comment
-				print $indent ."\t/**\n". $indent ."\t * Gets the value of this element.\n";
-				print $indent ."\t * @return Returns a ". $pre . ucfirst( $type ) ." of the value.\n";
-				print $indent ."\t */\n";
-				//code
-				print $indent ."\t".$pre . ucfirst( $type ) ." &getValue() { return _value; }\n";
-				//comment
-				print $indent ."\t/**\n". $indent ."\t * Gets the value of this element.\n";
-				print $indent ."\t * @return Returns a constant ". $pre . ucfirst( $type ) ." of the value.\n";
-				print $indent ."\t */\n";
-				//code
-				print $indent ."\tconst ".$pre . ucfirst( $type ) ." &getValue() const { return _value; }\n";
-				//comment
-				print $indent ."\t/**\n". $indent ."\t * Sets the _value of this element.\n";
-				print $indent ."\t * @param val The new value for this element.\n";
-				print $indent ."\t */\n";
-				//code
-				print $indent ."\tvoid setValue( const ". $pre . ucfirst( $type ) ." &val ) { _value = val; }\n";
-				// We add a setter that takes a plain string to help with backward compatibility
-				//comment
-				print $indent ."\t/**\n". $indent ."\t * Sets the _value of this element.\n";
-				print $indent ."\t * @param val The new value for this element.\n";
-				print $indent ."\t */\n";
-				//code
-				print $indent ."\tvoid setValue( xsString val ) { _value = val; }\n\n";
-			}
-			else if( ucfirst($type) == 'IDREF' ) {
-				//comment
-				print $indent ."\t/**\n". $indent ."\t * Gets the value of this element.\n";
-				print $indent ."\t * @return Returns a ". $pre . ucfirst( $type ) ." of the value.\n";
-				print $indent ."\t */\n";
-				//code
-				print $indent ."\t".$pre . ucfirst( $type ) ." &getValue() { return _value; }\n";
-				//comment
-				print $indent ."\t/**\n". $indent ."\t * Gets the value of this element.\n";
-				print $indent ."\t * @return Returns a constant ". $pre . ucfirst( $type ) ." of the value.\n";
-				print $indent ."\t */\n";
-				//code
-				print $indent ."\tconst ".$pre . ucfirst( $type ) ." &getValue() const { return _value; }\n";
-				//comment
-				print $indent ."\t/**\n". $indent ."\t * Sets the _value of this element.\n";
-				print $indent ."\t * @param val The new value for this element.\n";
-				print $indent ."\t */\n";
-				//code
-				print $indent ."\tvoid setValue( const ". $pre . ucfirst( $type ) ." &val ) { _value = val; }\n\n";
-				//print $indent ."\t _meta->getValueAttribute()->setIsValid(true); }\n\n";
-			}
-			else if ( strstr( $baseStringTypes, $baseType ) !== FALSE && count( $typemeta[$type]['enum'] ) == 0 ) {
-				//comment
-				print $indent ."\t/**\n". $indent ."\t * Gets the value of this element.\n";
-				print $indent ."\t * @return Returns a ". $pre . ucfirst( $type ) ." of the value.\n";
-				print $indent ."\t */\n";
-				//code
-				print $indent ."\t".$pre . ucfirst( $type ) ." getValue() const { return _value; }\n";
-				//comment
-				print $indent ."\t/**\n". $indent ."\t * Sets the _value of this element.\n";
-				print $indent ."\t * @param val The new value for this element.\n";
-				print $indent ."\t */\n";
-				//code
-				print $indent ."\tvoid setValue( ". $pre . ucfirst( $type ) ." val ) { *(daeStringRef*)&_value = val; }\n\n";				
-			}
-			else {
-				//comment
-				print $indent ."\t/**\n". $indent ."\t * Gets the value of this element.\n";
-				print $indent ."\t * @return a ". $pre . ucfirst( $type ) ." of the value.\n";
-				print $indent ."\t */\n";
-				//code
-				print $indent ."\t".$pre . ucfirst( $type ) ."& getValue() { return _value; }\n";
-				//comment
-				print $indent ."\t/**\n". $indent ."\t * Sets the _value of this element.\n";
-				print $indent ."\t * @param val The new value for this element.\n";
-				print $indent ."\t */\n";
-				//code
-				print $indent ."\tvoid setValue( const ". $pre . ucfirst( $type ) ."& val ) { _value = val; }\n\n";
-				//print $indent ."\t _meta->getValueAttribute()->setIsValid(true); }\n\n";
+			if (!isset($bag['baseTypeViaRestriction'])) {
+				if ( (isset( $typemeta[$content_type] ) && $typemeta[$content_type]['isArray']) || $content_type == 'IDREFS' ) {
+					//comment
+					print $indent ."\t/**\n". $indent ."\t * Gets the _value array.\n";
+					print $indent ."\t * @return Returns a ". $pre . ucfirst( $type ) ." reference of the _value array.\n";
+					print $indent ."\t */\n";
+					//code
+					print $indent ."\t".$pre . ucfirst( $type ) ." &getValue() { return _value; }\n";
+					//comment
+					print $indent ."\t/**\n". $indent ."\t * Gets the _value array.\n";
+					print $indent ."\t * @return Returns a constant ". $pre . ucfirst( $type ) ." reference of the _value array.\n";
+					print $indent ."\t */\n";
+					//code
+					print $indent ."\tconst ".$pre . ucfirst( $type ) ." &getValue() const { return _value; }\n";
+					//comment
+					print $indent ."\t/**\n". $indent ."\t * Sets the _value array.\n";
+					print $indent ."\t * @param val The new value for the _value array.\n";
+					print $indent ."\t */\n";
+					//code
+					print $indent ."\tvoid setValue( const ". $pre . ucfirst( $type ) ." &val ) { _value = val; }\n\n";
+					//print $indent ."\t _meta->getValueAttribute()->setIsValid(true); }\n\n";
+				}
+				else if ( ucfirst($type) == 'AnyURI' ) {
+					//comment
+					print $indent ."\t/**\n". $indent ."\t * Gets the value of this element.\n";
+					print $indent ."\t * @return Returns a ". $pre . ucfirst( $type ) ." of the value.\n";
+					print $indent ."\t */\n";
+					//code
+					print $indent ."\t".$pre . ucfirst( $type ) ." &getValue() { return _value; }\n";
+					//comment
+					print $indent ."\t/**\n". $indent ."\t * Gets the value of this element.\n";
+					print $indent ."\t * @return Returns a constant ". $pre . ucfirst( $type ) ." of the value.\n";
+					print $indent ."\t */\n";
+					//code
+					print $indent ."\tconst ".$pre . ucfirst( $type ) ." &getValue() const { return _value; }\n";
+					//comment
+					print $indent ."\t/**\n". $indent ."\t * Sets the _value of this element.\n";
+					print $indent ."\t * @param val The new value for this element.\n";
+					print $indent ."\t */\n";
+					//code
+					print $indent ."\tvoid setValue( const ". $pre . ucfirst( $type ) ." &val ) { _value = val; }\n";
+					// We add a setter that takes a plain string to help with backward compatibility
+					//comment
+					print $indent ."\t/**\n". $indent ."\t * Sets the _value of this element.\n";
+					print $indent ."\t * @param val The new value for this element.\n";
+					print $indent ."\t */\n";
+					//code
+					print $indent ."\tvoid setValue( xsString val ) { _value = val; }\n\n";
+				}
+				else if( ucfirst($type) == 'IDREF' ) {
+					//comment
+					print $indent ."\t/**\n". $indent ."\t * Gets the value of this element.\n";
+					print $indent ."\t * @return Returns a ". $pre . ucfirst( $type ) ." of the value.\n";
+					print $indent ."\t */\n";
+					//code
+					print $indent ."\t".$pre . ucfirst( $type ) ." &getValue() { return _value; }\n";
+					//comment
+					print $indent ."\t/**\n". $indent ."\t * Gets the value of this element.\n";
+					print $indent ."\t * @return Returns a constant ". $pre . ucfirst( $type ) ." of the value.\n";
+					print $indent ."\t */\n";
+					//code
+					print $indent ."\tconst ".$pre . ucfirst( $type ) ." &getValue() const { return _value; }\n";
+					//comment
+					print $indent ."\t/**\n". $indent ."\t * Sets the _value of this element.\n";
+					print $indent ."\t * @param val The new value for this element.\n";
+					print $indent ."\t */\n";
+					//code
+					print $indent ."\tvoid setValue( const ". $pre . ucfirst( $type ) ." &val ) { _value = val; }\n\n";
+					//print $indent ."\t _meta->getValueAttribute()->setIsValid(true); }\n\n";
+				}
+				else if ( strstr( $baseStringTypes, $baseType ) !== FALSE && count( $typemeta[$type]['enum'] ) == 0 ) {
+					//comment
+					print $indent ."\t/**\n". $indent ."\t * Gets the value of this element.\n";
+					print $indent ."\t * @return Returns a ". $pre . ucfirst( $type ) ." of the value.\n";
+					print $indent ."\t */\n";
+					//code
+					print $indent ."\t".$pre . ucfirst( $type ) ." getValue() const { return _value; }\n";
+					//comment
+					print $indent ."\t/**\n". $indent ."\t * Sets the _value of this element.\n";
+					print $indent ."\t * @param val The new value for this element.\n";
+					print $indent ."\t */\n";
+					//code
+					print $indent ."\tvoid setValue( ". $pre . ucfirst( $type ) ." val ) { *(daeStringRef*)&_value = val; }\n\n";				
+				}
+				else {
+					//comment
+					print $indent ."\t/**\n". $indent ."\t * Gets the value of this element.\n";
+					print $indent ."\t * @return a ". $pre . ucfirst( $type ) ." of the value.\n";
+					print $indent ."\t */\n";
+					//code
+					print $indent ."\t".$pre . ucfirst( $type ) ."& getValue() { return _value; }\n";
+					//comment
+					print $indent ."\t/**\n". $indent ."\t * Sets the _value of this element.\n";
+					print $indent ."\t * @param val The new value for this element.\n";
+					print $indent ."\t */\n";
+					//code
+					print $indent ."\tvoid setValue( const ". $pre . ucfirst( $type ) ."& val ) { _value = val; }\n\n";
+					//print $indent ."\t _meta->getValueAttribute()->setIsValid(true); }\n\n";
+				}
 			}
 		}
 	}

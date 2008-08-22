@@ -167,6 +167,21 @@ class _elementSet extends _typedData
   {
     return count( $this->elements );
   }
+
+  function findTypeByName( $name )
+  {
+  	for ( $i = 0; $i < count( $GLOBALS['_globals']['complex_types'] ); $i++ ) {
+      if ( !strcmp($name, $GLOBALS['_globals']['complex_types'][$i]->getAttribute('name') ) ) {
+        return $GLOBALS['_globals']['complex_types'][$i];
+      }
+    }
+  	for ( $i = 0; $i < count( $GLOBALS['_globals']['simple_types'] ); $i++ ) {
+      if ( !strcmp($name, $GLOBALS['_globals']['simple_types'][$i]->getAttribute('name') ) ) {
+        return $GLOBALS['_globals']['simple_types'][$i];
+      }
+    }
+  }
+
 }
 
 ?>

@@ -11,6 +11,16 @@ global $meta;
 global $typemeta;
 $needsContents = false;
 
+
+// XXX all occurences of 'baseTypeViaRestriction' are ugly hacks to get 
+// a working dom for 1.5
+if(isset($bag['baseTypeViaRestriction'])) {
+	print '#include <dom/' . 
+		$_globals['prefix'] . ucfirst( $bag['baseTypeViaRestriction'] ) . 
+		'.h>'."\n";
+}
+
+
 // shorthand:
 $full_element_name = $_globals['prefix'] . ucfirst( $bag['element_name'] );
 //COLLADA TYPE list
@@ -58,8 +68,8 @@ if($bag['substitution_group'] != '')
 	$baseClass = $_globals['prefix'] . ucfirst($bag['substitution_group']);
 if($bag['isExtension'])
 	$baseClass = $_globals['prefix'] . ucfirst($bag['base_type']);
-if($bag['isRestriction'])
-	$baseClass = $_globals['prefix'] . ucfirst($bag['base_type']);
+if(isset($bag['baseTypeViaRestriction']))
+	$baseClass = $_globals['prefix'] . ucfirst($bag['baseTypeViaRestriction']);
 
 print $indent ."class ". $full_element_name . " : public " . $baseClass . "\n".$indent."{\n";
 print $indent ."public:\n";	
@@ -131,7 +141,7 @@ if ( $bag['simple_type'] != NULL ) {
 }
 	
 // ATTRIBUTES
-if ( count( $bag['attributes'] ) > 0 || $bag['useXMLNS'] )
+if ( ( count( $bag['attributes'] ) > 0 || $bag['useXMLNS'] ) /*&& !isset($bag['baseTypeViaRestriction'])*/ )
 {
 	print $indent ."protected:  // Attribute". (count( $bag['attributes'] ) > 1 ? 's' : '') ."\n";
 
@@ -163,7 +173,7 @@ printAccessorsAndMutators($bag, $needsContents, $indent);
 
 //VALUE
 // NOTE: special casing any element with 'mixed' content model to ListOfInts type _value
-if ( ($bag['content_type'] != '' || $bag['mixed']) && !$bag['abstract'] )
+if ( ( ($bag['content_type'] != '' || $bag['mixed']) && !$bag['abstract'] ) && !isset($bag['baseTypeViaRestriction']) )
 {
 	print $indent ."protected:  // Value\n";
 	  

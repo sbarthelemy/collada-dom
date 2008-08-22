@@ -39,7 +39,9 @@ class SchemaParser
     
       if ( count( $this->parse_stack ) > 0 )
       {
-        $this->parse_stack[ count( $this->parse_stack ) - 1 ]->addElement( $e );
+      	$stackSize = count( $this->parse_stack );
+        $parentElement = & $this->parse_stack[ $stackSize - 1 ];
+        $parentElement->addElement( $e );
       } else
       {
         $this->root_elements[] = & $e;

@@ -57,7 +57,7 @@
 }
 
 <?php
-	if( $bag['complex_type'] && !$bag['isRestriction'] ) {
+	if( ( $bag['complex_type'] && !$bag['isRestriction'] ) || isset($bag['baseTypeViaRestriction']) ) {
 		//print "element ". $bag['element_name'] ." is of base ". $bag['base_type'] ."\n";
 		//import content model from type
 		$bag['elements'] = array_merge( $meta[$bag['base_type']]['elements'], $bag['elements'] );
