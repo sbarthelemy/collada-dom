@@ -67,6 +67,7 @@ def vcprojChangeColladaVersionRecursive(vcprojFile, doc, node, fromVersion, toVe
         node.setAttribute('Name', toVersion)
         convertFiles(vcprojFile, doc, getChildFilter(node, 'Header Files'), '.h', fromVersion, toVersion)
         convertFiles(vcprojFile, doc, getChildFilter(node, 'Source Files'), '.cpp', fromVersion, toVersion)
+    #TODO handle domTest
     [vcprojChangeColladaVersionRecursive(vcprojFile, doc, child, fromVersion, toVersion) for child in node.childNodes]
 
 def vcprojChangeColladaVersion(vcprojFrom, vcprojTo, fromVersion, toVersion):

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8.00"
+	Version="8,00"
 	Name="domTest"
 	ProjectGUID="{32FA559B-77AB-4344-B102-BB671A299561}"
 	RootNamespace="domTest"
@@ -185,15 +185,15 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath="..\..\test\domTest.cpp"
+				RelativePath="..\..\test\1.4\domTest.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\test\export.cpp"
+				RelativePath="..\..\test\1.4\export.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\test\integrationExample.cpp"
+				RelativePath="..\..\test\1.4\integrationExample.cpp"
 				>
 			</File>
 		</Filter>
@@ -203,7 +203,7 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath="..\..\test\domTest.h"
+				RelativePath="..\..\test\1.4\domTest.h"
 				>
 			</File>
 		</Filter>

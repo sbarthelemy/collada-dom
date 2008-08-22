@@ -1534,7 +1534,7 @@ int main(int argc, char* argv[]) {
 
 	dataPath() = (fs::path(argv[0]).branch_path()/"domTestData/").normalize();
 	if (!fs::exists(dataPath()))
-		dataPath() = (fs::path(argv[0]).branch_path()/"../../test/data/").normalize();
+		dataPath() = (fs::path(argv[0]).branch_path()/"../../test/1.4/data/").normalize();
 	tmpPath() = dataPath() / "tmp";
 	tmpDir tmp(tmpPath(), !leaveTmpFiles);
 

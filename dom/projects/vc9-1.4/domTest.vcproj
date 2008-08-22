@@ -50,15 +50,15 @@
 	</References>
 	<Files>
 		<Filter Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx" Name="Source Files" UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}">
-			<File RelativePath="..\..\test\domTest.cpp">
+			<File RelativePath="..\..\test\1.4\domTest.cpp">
 			</File>
-			<File RelativePath="..\..\test\export.cpp">
+			<File RelativePath="..\..\test\1.4\export.cpp">
 			</File>
-			<File RelativePath="..\..\test\integrationExample.cpp">
+			<File RelativePath="..\..\test\1.4\integrationExample.cpp">
 			</File>
 		</Filter>
 		<Filter Filter="h;hpp;hxx;hm;inl;inc;xsd" Name="Header Files" UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}">
-			<File RelativePath="..\..\test\domTest.h">
+			<File RelativePath="..\..\test\1.4\domTest.h">
 			</File>
 		</Filter>
 	</Files>
