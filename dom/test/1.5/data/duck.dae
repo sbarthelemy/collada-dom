@@ -34,7 +34,9 @@
     </library_physics_scenes>
     <library_images>
         <image id="file2" name="file2">
-            <init_from>images/duckCM.tga</init_from>
+            <init_from>
+            	<ref>images/duckCM.tga</ref>
+            </init_from>
         </image>
     </library_images>
     <library_materials>
@@ -45,16 +47,10 @@
     <library_effects>
         <effect id="blinn3-fx">
             <profile_COMMON>
-                <newparam sid="file2-surface">
-                    <surface type="2D">
-                        <init_from>file2</init_from>
-                        <format>A8R8G8B8</format>
-                    </surface>
-                </newparam>
                 <newparam sid="file2-sampler">
                     <sampler2D>
-                        <source>file2-surface</source>
-                        <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+                        <instance_image url="file2" />
+                        <minfilter>LINEAR</minfilter>
                         <magfilter>LINEAR</magfilter>
                     </sampler2D>
                 </newparam>

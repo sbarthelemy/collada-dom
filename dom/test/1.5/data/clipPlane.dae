@@ -11,7 +11,9 @@
         <technique sid="">
           <pass>
             <!--<color_mask/>-->
+            <states>
 						<clip_plane/>
+            </states>
           </pass>
         </technique>
       </profile_CG>

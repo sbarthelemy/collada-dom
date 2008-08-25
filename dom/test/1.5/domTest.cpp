@@ -28,6 +28,7 @@
 #include <dom/domEllipsoid.h>
 #include <dom/domInput_global.h>
 #include <dom/domAsset.h>
+#include <dom/domLimits_sub.h>
 #include "domTest.h"
 
 // Windows memory leak checking
@@ -199,21 +200,20 @@ DefineTest(renderStates) {
 	DAE dae;
 	daeElement* root = dae.add(memoryUri);
 	CheckResult(root);
-    // 1.4 code; causes this test to fail
-    daeElement* pass = root->add("library_effects effect profile_CG techniqueFX pass");
-    // 1.5 code; causes this test to crash
-    //daeElement* pass = root->add("library_effects effect profile_CG technique pass");
+    daeElement* pass = root->add("library_effects effect profile_CG technique pass");
 	CheckResult(pass);
-    //TODO port this to 1.5
-	pass->add("color_clear")->setCharData("0 0 0 0");
-	pass->add("depth_mask")->setAttribute("value", "true");
-	pass->add("cull_face_enable")->setAttribute("value", "true");
-	pass->add("blend_enable")->setAttribute("value", "true");
-	pass->add("blend_func_separate")->setAttribute("value", "true");
-	pass->add("cull_face")->setAttribute("value", "FRONT");
-	pass->add("polygon_offset_fill_enable")->setAttribute("value", "true");
-	pass->add("clear_color")->setAttribute("value", "0 0 0 0");
-	
+
+    domCg_pass::domEvaluate* evaluate = daeSafeCast<domCg_pass::domEvaluate>(pass->add("evaluate"));
+	evaluate->add("color_clear")->setCharData("0 0 0 0");
+
+    domCg_pass::domStates* states = daeSafeCast<domCg_pass::domStates>(pass->add("states"));
+    states->add("depth_mask")->setAttribute("value", "true");
+	states->add("cull_face_enable")->setAttribute("value", "true");
+	states->add("blend_enable")->setAttribute("value", "true");
+	states->add("blend_func_separate")->setAttribute("value", "true");
+	states->add("cull_face")->setAttribute("value", "FRONT");
+	states->add("polygon_offset_fill_enable")->setAttribute("value", "true");
+
 	// Write the document to disk
 	CheckResult(dae.writeTo(memoryUri, file));
 
@@ -224,7 +224,6 @@ DefineTest(renderStates) {
 
 	// Check default attribute value suppression
 	CheckResult(root->getDescendant("depth_mask")->isAttributeSet("value") == false);
-	CheckResult(root->getDescendant("clear_color")->isAttributeSet("value") == false);
 	CheckResult(root->getDescendant("color_clear")->getCharData() != "");
 	CheckResult(root->getDescendant("polygon_offset_fill_enable")->isAttributeSet("value"));
 		
@@ -1147,7 +1146,6 @@ DefineTest(multipleDae) {
 
 
 DefineTest(unusedTypeCheck) {
-    //TODO check situation in 1.5
 	DAE dae;
 
 	// The following types are defined in the schema but aren't used anywhere in
@@ -1157,20 +1155,31 @@ DefineTest(unusedTypeCheck) {
 	//   InputGlobal
 	// Also, <any> doesn't use a single global meta, so it'll also show up in the
 	// set of elements that don't have metas.
+    //
+    // That was the situation for 1.4.
 	set<int> expectedUnusedTypes;
 	expectedUnusedTypes.insert(domEllipsoid::ID());
 	expectedUnusedTypes.insert(domEllipsoid::domSize::ID());
     expectedUnusedTypes.insert(domInput_global::ID());
 	expectedUnusedTypes.insert(domAny::ID());
 
-	// Collect the list of types that don't have a corresponding meta defined
+    // In 1.5 these unused elements have been introduced:
+    expectedUnusedTypes.insert(domImage_source::ID());
+    expectedUnusedTypes.insert(domFx_sampler::ID());
+    expectedUnusedTypes.insert(domFx_rendertarget::ID());
+    expectedUnusedTypes.insert(domGles2_newparam::ID());
+    expectedUnusedTypes.insert(domLimits_sub::ID());
+    expectedUnusedTypes.insert(domTargetable_float4::ID());
+    expectedUnusedTypes.insert(domCommon_int_or_param::ID());
+
+    // Collect the list of types that don't have a corresponding meta defined
 	set<int> actualUnusedTypes;
 	const daeMetaElementRefArray &metas = dae.getAllMetas();
 	for (size_t i = 0; i < metas.getCount(); i++)
 		if (!metas[i])
 			actualUnusedTypes.insert((int)i);
 
-	// Make sure the set of unused types matches what we expect
+    // Make sure the set of unused types matches what we expect
 	return testResult(expectedUnusedTypes == actualUnusedTypes);
 }
 
