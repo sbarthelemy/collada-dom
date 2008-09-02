@@ -24,6 +24,7 @@ Kai Klesatschke (bug reporting, Windows character encoding fixes)
 Guy Rabiller (bug reporting)
 Rodrigo Hernandez (MinGW support)
 Alex De Pereyra (bug reporting)
+Alberto Luaces (bug reporting)
 
 Apologies if I missed anyone (please let me know!).
 

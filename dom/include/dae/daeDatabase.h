@@ -9,6 +9,7 @@
 #ifndef __DAE_DATABASE__
 #define __DAE_DATABASE__
 
+#include <memory>
 #include <vector>
 #include <dae.h>
 #include <dae/daeTypes.h>
