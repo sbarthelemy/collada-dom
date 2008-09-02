@@ -14,6 +14,7 @@
 #include <dae/daeMetaElement.h>
 #include <dae/daeErrorHandler.h>
 #include <dae/daeMetaElementAttribute.h>
+#include <dae/daeZAEUncompressHandler.h>
 
 using namespace std;
 
@@ -57,28 +58,48 @@ daeInt daeIOPluginCommon::read(const daeURI& uri, daeString docBuffer)
 		return DAE_ERR_COLLECTION_ALREADY_EXISTS;
 	}
 
-	daeElementRef domObject = docBuffer ?
-		readFromMemory(docBuffer, fileURI) :
-		readFromFile(fileURI); // Load from URI
+     daeElementRef domObject = docBuffer ?
+            readFromMemory(docBuffer, fileURI) :
+            readFromFile(fileURI); // Load from URI
 
-	if (!domObject) {
-		string msg = docBuffer ?
-			"Failed to load XML document from memory\n" :
-			string("Failed to load ") + fileURI.str() + "\n";
-		daeErrorHandler::get()->handleError(msg.c_str());
-		return DAE_ERR_BACKEND_IO;
-	}
+    bool zaeRoot = false;
+    string extractedURI = "";
+    if (!domObject) {
+        daeZAEUncompressHandler zaeHandler(fileURI);
+        if (zaeHandler.isZipFile())
+        {
+            string rootFilePath = zaeHandler.obtainRootFilePath();
+            daeURI rootFileURI(*fileURI.getDAE(), rootFilePath);
+            domObject = readFromFile(rootFileURI);
+            if (!domObject)
+            {
+                string msg = string("Failed to load ") + fileURI.str() + "\n";
+                daeErrorHandler::get()->handleError(msg.c_str());
+                return DAE_ERR_BACKEND_IO;
+            }
+            zaeRoot = true;
+            extractedURI = rootFileURI.str();
+        }
+        else
+        {
+            string msg = docBuffer ?
+                "Failed to load XML document from memory\n" :
+            string("Failed to load ") + fileURI.str() + "\n";
+            daeErrorHandler::get()->handleError(msg.c_str());
+            return DAE_ERR_BACKEND_IO;
+        }
+    }
 
-	// Insert the document into the database, the Database will keep a ref on the main dom, so it won't get deleted
-	// until we clear the database
+    // Insert the document into the database, the Database will keep a ref on the main dom, so it won't get deleted
+    // until we clear the database
 
-	daeDocument *document = NULL;
+    daeDocument *document = NULL;
 
-	int res = database->insertDocument(fileURI.getURI(),domObject,&document);
-	if (res!= DAE_OK)
-		return res;
+    int res = database->insertDocument(fileURI.getURI(),domObject,&document, zaeRoot, extractedURI);
+    if (res!= DAE_OK)
+        return res;
 
-	return DAE_OK;
+    return DAE_OK;
 }
 
 daeElementRef daeIOPluginCommon::beginReadElement(daeElement* parentElement,

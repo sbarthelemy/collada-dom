@@ -11,7 +11,9 @@
 #include <dae/daeDatabase.h>
 
 
-daeDocument::daeDocument(DAE& dae) : dae(&dae), uri(dae) { }
+daeDocument::daeDocument(DAE& dae, bool zaeRootDocument, const std::string& extractedFileURI)
+: dae(&dae), uri(dae), mZAERootDocument(zaeRootDocument), mExtractedFileURI(dae, extractedFileURI)
+{ }
 
 daeDocument::~daeDocument() {
 }

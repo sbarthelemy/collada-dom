@@ -11,26 +11,6 @@
 #include <map>
 #include <string>
 
-// We use the boost filesystem library for cross-platform file system support. You'll need
-// to have boost on your machine for this to work. For the Windows build boost is provided
-// in the external-libs folder, but for Linux it's expected that you'll install a boost
-// obtained via your distro's package manager. For example on Debian/Ubuntu, you can run
-//   apt-get install libboost-filesystem-dev
-// to install the boost filesystem library on your machine.
-//
-// Disable the warnings we get from Boost
-// warning C4180: qualifier applied to function type has no meaning; ignored
-// warning C4245: 'argument' : conversion from 'int' to 'boost::filesystem::system_error_type', 
-//   signed/unsigned mismatch
-#ifdef _MSC_VER
-#pragma warning(push)
-#pragma warning(disable: 4180 4245)
-#endif
-#include <boost/filesystem/convenience.hpp>
-#ifdef _MSC_VER
-#pragma warning(pop)
-#endif
-
 struct domTest;
 std::map<std::string, domTest*>& registeredTests();
 boost::filesystem::path& dataPath();

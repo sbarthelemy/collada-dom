@@ -43,9 +43,9 @@ public:
 	virtual daeInt setMeta(daeMetaElement *_topMeta);
 
 	// Documents
-	virtual daeInt insertDocument(daeString name, daeElement* dom, daeDocument** document = NULL);
+	virtual daeInt insertDocument(daeString name, daeElement* dom, daeDocument** document = NULL, bool zaeRootDocument = false, const std::string& extractedFileURI = "");
 	virtual daeInt insertDocument(daeString name, daeDocument** document = NULL);
-	virtual daeInt createDocument(daeString name, daeElement* dom, daeDocument** document = NULL);
+	virtual daeInt createDocument(daeString name, daeElement* dom, daeDocument** document = NULL, bool zaeRootDocument = false, const std::string& extractedFileURI = "");
 	virtual daeInt createDocument(daeString name, daeDocument** document = NULL);
 	virtual daeInt insertDocument( daeDocument *c );
 

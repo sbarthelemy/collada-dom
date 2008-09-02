@@ -49,7 +49,7 @@
             <profile_COMMON>
                 <newparam sid="file2-sampler">
                     <sampler2D>
-                        <instance_image url="file2" />
+                        <instance_image url="#file2" />
                         <minfilter>LINEAR</minfilter>
                         <magfilter>LINEAR</magfilter>
                     </sampler2D>

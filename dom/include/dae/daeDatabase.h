@@ -44,11 +44,13 @@ public:
 	* @param name Name of the new document, must be a valid URI.
 	* @param dom Existing @c domCOLLADA root element of the document
 	* @param document Pointer to a @c daeDocument pointer that receives the document created 
+    * @param zaeRootDocument Indicates if the new document is the root document of a ZAE archive.
+    * @param extractedFileURI URI to extracted dae file.
 	* @return Returns @c DAE_OK if the document was created successfully, otherwise returns a negative value as defined in daeError.h.
 	* @note The @c daeElement passed in as <tt><i>dom</i></tt> should always be a @c domCOLLADA object, the API may enforce this in the future.
 	* @deprecated This function will be removed in future versions. Please use createDocument.
 	*/
-	virtual daeInt insertDocument(daeString name, daeElement* dom, daeDocument** document = NULL) = 0;
+	virtual daeInt insertDocument(daeString name, daeElement* dom, daeDocument** document = NULL, bool zaeRootDocument = false, const std::string& extractedFileURI = "") = 0;
 	/**
 	* Creates a new @c domCOLLADA root element and a new document; returns an error if the document name already exists.
 	* @param name Name of the new document, must be a valid URI.
@@ -62,10 +64,12 @@ public:
 	* @param name Name of the new document, must be a valid URI.
 	* @param dom Existing @c domCOLLADA root element of the document
 	* @param document Pointer to a @c daeDocument pointer that receives the document created 
+    * @param zaeRootDocument Indicates if the new document is the root document of a ZAE archive.
+    * @param extractedFileURI URI to extracted dae file.
 	* @return Returns @c DAE_OK if the document was created successfully, otherwise returns a negative value as defined in daeError.h.
 	* @note The @c daeElement passed in as <tt><i>dom</i></tt> should always be a @c domCOLLADA object, the API may enforce this in the future.
 	*/
-	virtual daeInt createDocument(daeString name, daeElement* dom, daeDocument** document = NULL) = 0;
+	virtual daeInt createDocument(daeString name, daeElement* dom, daeDocument** document = NULL, bool zaeRootDocument = false, const std::string& extractedFileURI = "") = 0;
 	/**
 	* Creates a new @c domCOLLADA root element and a new document; returns an error if the document name already exists.
 	* @param name Name of the new document, must be a valid URI.

@@ -32,6 +32,15 @@ namespace cdom {
 	                            const std::string& replace, 
 	                            const std::string& replaceWith);
 
+    // Removes whitespaces (" \t\f\v\n\r") at the beginning and the end of str.
+    // If str consists of whitespaces only it will be erased.
+    // Usage:
+    //   trimWhitespaces("   a b") --> "a b"
+    //   trimWhitespaces("a b   ") --> "a b"
+    //   trimWhitespaces("   a b   ") --> "a b"
+    //   trimWhitespaces("      ") --> ""
+    DLLSPEC void trimWhitespaces(std::string& str);
+
 	// Usage:
 	//   tokenize("this/is some#text", "/#", true) --> ("this" "/" "is some" "#" "text")
 	//   tokenize("this is some text", " ", false) --> ("this" "is" "some" "text")
@@ -52,7 +61,21 @@ namespace cdom {
 	DLLSPEC std::string getCurrentDir();
 	DLLSPEC std::string getCurrentDirAsUri();
 
-	DLLSPEC int strcasecmp(const char* str1, const char* str2);
+    // Returns platform specific file separator.
+    // \ on windows
+    // / on other platforms
+    DLLSPEC char getFileSeparator();
+
+    // Returns system wide temporary directory.
+    // Reads environment variable TMP.
+    DLLSPEC const std::string& getSystemTmpDir();
+
+    // Returns getSystemTmpDir() appended with a randomly
+    // generated directory name.
+    // This directory will be deleted when DAE gets destroyed.
+    DLLSPEC const std::string& getSafeTmpDir();
+
+    DLLSPEC int strcasecmp(const char* str1, const char* str2);
 	DLLSPEC std::string tolower(const std::string& s);
 
 	// Disable VS warning

@@ -26,8 +26,10 @@ public:
 	/**
 	 * Constructor
 	 * @param dae The dae that owns this document. 
+     * @param zaeRootDocument Indicates if the new document is the root document of a ZAE archive.
+     * @param extractedFileURI URI to extracted dae file.
 	 */
-	daeDocument(DAE& dae);
+    daeDocument(DAE& dae, bool zaeRootDocument = false, const std::string& extractedFileURI = "");
 
 	/**
 	 * Destructor
@@ -108,6 +110,21 @@ public:
 	 */
 	void changeElementSID( daeElementRef element, daeString newSID );
 
+    /**
+     * Returns true if this document is the root of a ZAE archive.
+     * In that case getExtractedFileURI() can be used to parse
+     * this document and for URI resolving.
+     * @note This function is called internally and not meant to be called by the client application.
+     */
+    bool isZAERootDocument() {return mZAERootDocument;}
+
+    /**
+     * If this document is the root of a ZAE archive, this method can be used
+     * to get the extracted file. Return value is only valid if isZAERootDocument()
+     * returns true.
+     * @note This function is called internally and not meant to be called by the client application.
+     */
+    const daeURI& getExtractedFileURI() {return mExtractedFileURI;}
 
 private:
 	/**
@@ -127,6 +144,17 @@ private:
 	 * @remarks This member will eventually be taken private, use getDocumentURI() to access it.
 	 */
 	daeURI uri;
+
+    /**
+     * Indicates if this document is the root of a ZAE archive.
+     */
+    bool mZAERootDocument;
+
+    /**
+     * URI pointing to the extracted root DAE if mZAERootDocument is true.
+     * Otherwise it is not valid.
+     */
+    daeURI mExtractedFileURI;
 };
 
 typedef daeDocument daeCollection;

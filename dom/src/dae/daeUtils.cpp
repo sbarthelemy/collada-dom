@@ -44,6 +44,24 @@ string cdom::replace(const string& s, const string& replace, const string& repla
 	return result;
 }
 
+void cdom::trimWhitespaces(string& str) {
+    string whitespaces ( " \t\f\v\n\r" );
+
+    size_t found = str.find_last_not_of( whitespaces );
+    if ( found != std::string::npos )
+    {
+        str.erase( found + 1 );
+        found = str.find_first_not_of( whitespaces );
+        if ( found != std::string::npos )
+            str.erase( 0, found );
+    }
+    else
+    {
+        // whitespaces only
+        str.clear();
+    }
+}
+
 void cdom::tokenize(const string& s,
                     const string& separators,
                     /* out */ list<string>& tokens,
@@ -116,6 +134,23 @@ string cdom::getCurrentDirAsUri() {
 	if (!result.empty()  &&  result[result.length()-1] != '/')
 		result += "/";
 	return result;
+}
+
+char cdom::getFileSeparator() {
+    if (getSystemType() == Windows) {
+        return '\\';
+    }
+    return '/';
+}
+
+const string& cdom::getSystemTmpDir() {
+    static string tmpDir = string(getenv("TMP"));
+    return tmpDir;
+}
+
+const string& cdom::getSafeTmpDir() {
+    static string tmpDir = getSystemTmpDir() + tmpnam(0) + getFileSeparator();
+    return tmpDir;
 }
 
 int cdom::strcasecmp(const char* str1, const char* str2) {

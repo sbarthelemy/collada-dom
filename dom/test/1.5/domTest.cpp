@@ -1438,6 +1438,55 @@ DefineTest(spuriousQuotes) {
 }
 
 
+DefineTest(zaeLoading) {
+    DAE dae;
+
+    // check if root document is loaded
+    std::string testFile = lookupTestFile("duck.zae");
+    domCOLLADA* root = dae.open(testFile);
+    CheckResult(root);
+
+    // load sibling doc to root doc
+    domInstance_with_extra* instanceVisualScene = daeSafeCast<domInstance_with_extra>(root->getDescendant("instance_visual_scene"));
+    CheckResult(instanceVisualScene);
+    daeURI visualSceneURI = instanceVisualScene->getUrl();
+    domVisual_scene* visualScene = daeSafeCast<domVisual_scene>(visualSceneURI.getElement());
+    CheckResult(visualScene);
+
+    // load doc from internal archive
+    domInstance_image* instanceImage = daeSafeCast<domInstance_image>(visualScene->getDocument()->getDomRoot()->getDescendant("instance_image"));
+    CheckResult(instanceImage);
+    daeURI imageURI = instanceImage->getUrl();
+    domImage* image = daeSafeCast<domImage>(imageURI.getElement());
+    CheckResult(image);
+
+    // check for file in sub dir
+    domImage_source::domRef* ref = daeSafeCast<domImage_source::domRef>(image->getDescendant("ref"));
+    xsAnyURI imageFileURI = ref->getValue();
+    bool imageFileExists = boost::filesystem::exists( cdom::uriToNativePath( imageFileURI.str() ) );
+    CheckResult(imageFileExists);
+
+    // load doc from sub dir in internal archive
+    domInstance_geometry* instanceGeometry = daeSafeCast<domInstance_geometry>(visualScene->getDocument()->getDomRoot()->getDescendant("instance_geometry"));
+    CheckResult(instanceGeometry);
+    daeURI geometryURI = instanceGeometry->getUrl();
+    domGeometry* geometry = daeSafeCast<domGeometry>(geometryURI.getElement());
+    CheckResult(geometry);
+
+    return testResult(true);
+}
+
+DefineTest(zaeIllegalArchive) {
+    DAE dae;
+
+    // check if root document is loaded
+    std::string testFile = lookupTestFile("illegal_archive.zae");
+    domCOLLADA* root = dae.open(testFile);
+    CheckResult(!root);
+
+    return testResult(true);
+}
+
 // DefineTest(hauntedHouse) {
 // 	DAE dae;
 // 	CheckResult(dae.open("/home/sthomas/models/hauntedHouse.dae"));

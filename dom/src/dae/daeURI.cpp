@@ -133,9 +133,19 @@ namespace {
 		// is considered ".emacs" and the extension is empty. I think this is more
 		// in line with what path parsers in other libraries/languages do, and it
 		// more accurately reflects the intended structure of the file name.
-		static pcrecpp::RE re("(.*/)?([^.]*)?(\\..*)?");
-		dir = baseName = extension = "";
-		re.FullMatch(path, &dir, &baseName, &extension);
+
+        // The following implementation cannot handle paths like this:
+        // /tmp/se.3/file
+        //static pcrecpp::RE re("(.*/)?([^.]*)?(\\..*)?");
+		//dir = baseName = extension = "";
+		//re.FullMatch(path, &dir, &baseName, &extension);
+
+        static pcrecpp::RE findDir("(.*/)?(.*)?");
+        static pcrecpp::RE findExt("([^.]*)?(\\..*)?");
+        string tmpFile;
+        dir = baseName = extension = tmpFile = "";
+        findDir.PartialMatch(path, &dir, &tmpFile);
+        findExt.PartialMatch(tmpFile, &baseName, &extension);
 	}
 }
 
@@ -290,8 +300,18 @@ daeURI::validate(const daeURI* baseURI)
 	// no container or the container doesn't have a doc URI, use the application
 	// base URI.
 	if (!baseURI) {
-		if (!container || !(baseURI = container->getDocumentURI()))
-			baseURI = &dae->getBaseURI();
+		if (container)
+        {
+            if (container->getDocument())
+            {
+                if (container->getDocument()->isZAERootDocument())
+                    baseURI = &container->getDocument()->getExtractedFileURI();
+                else
+                    baseURI = container->getDocumentURI();
+            }
+        }
+        if (!baseURI)
+            baseURI = &dae->getBaseURI();
 		if (this == baseURI)
 			return;
 	}

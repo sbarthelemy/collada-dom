@@ -62,11 +62,11 @@ daeString daeSTLDatabase::getTypeName(daeUInt index)
 }
 
 // Documents
-daeInt daeSTLDatabase::insertDocument(const char *name, daeElement* dom, daeDocument** document)
+daeInt daeSTLDatabase::insertDocument(const char *name, daeElement* dom, daeDocument** document, bool zaeRootDocument, const std::string& extractedFileURI)
 {
-	return createDocument( name, dom, document );
+	return createDocument( name, dom, document, zaeRootDocument, extractedFileURI );
 }
-daeInt daeSTLDatabase::createDocument(const char *name, daeElement* dom, daeDocument** document)
+daeInt daeSTLDatabase::createDocument(const char *name, daeElement* dom, daeDocument** document, bool zaeRootDocument, const std::string& extractedFileURI)
 {
 	// If a document already exists with the same name, error
 	if(isDocumentLoaded(name))
@@ -77,7 +77,7 @@ daeInt daeSTLDatabase::createDocument(const char *name, daeElement* dom, daeDocu
 	}
 	
 	// Make a new document
-	daeDocument *newDocument = new daeDocument(dae);
+	daeDocument *newDocument = new daeDocument(dae, zaeRootDocument, extractedFileURI);
 	newDocument->getDocumentURI()->setURI(name);
 	newDocument->setDomRoot(dom);
 	// Push the connection into the database

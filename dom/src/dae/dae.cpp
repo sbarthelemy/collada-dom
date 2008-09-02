@@ -43,6 +43,15 @@ DAE::cleanup()
 	//Contributed by Nus - Wed, 08 Nov 2006
 	daeStringRef::releaseStringTable();
 	//----------------------
+
+    try
+    {
+        boost::filesystem::remove_all(cdom::getSafeTmpDir());
+    }
+    catch (...)
+    {
+        daeErrorHandler::get()->handleWarning("Could not remove temporary directory in DAE::cleanup()\n");
+    }
 }
 
 void DAE::init(daeDatabase* database_, daeIOPlugin* ioPlugin) {
