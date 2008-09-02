@@ -251,7 +251,7 @@ daeInt DAE::saveAs(daeString uriToSaveTo, daeUInt documentIndex, daeBool replace
 		return DAE_ERROR;
 
 	daeString docUri = getDoc((int)documentIndex)->getDocumentURI()->getURI();
-	return writeCommon(docUri, uriToSaveTo, replace);
+	return writeCommon(docUri, uriToSaveTo, replace) ? DAE_OK : DAE_ERROR;
 }
 
 daeInt DAE::unload(daeString uri) {
