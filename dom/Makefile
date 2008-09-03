@@ -76,7 +76,7 @@ ifneq ($(filter-out x86 ppc,$(archs)),)
 $(error Invalid setting arch=$(arch))
 endif
 
-$(eval $(call setBuildVar,project,dom domTest))
+$(eval $(call setBuildVar,project,minizip dom domTest))
 $(eval $(call setBuildVar,colladaVersion,1.4 1.5))
 $(eval $(call setBuildVar,conf,debug release))
 $(eval $(call setBuildVar,parser,libxml tinyxml))

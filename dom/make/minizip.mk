@@ -1,56 +1,15 @@
 include make/common.mk
 
-src := $(wildcard src/dae/*.cpp)
+src := $(wildcard external-libs/minizip/src/*.c)
 
-src += src/modules/stdErrPlugin/stdErrPlugin.cpp \
-       src/modules/STLDatabase/daeSTLDatabase.cpp \
-       src/modules/LIBXMLPlugin/daeLIBXMLPlugin.cpp \
-
-src += $(wildcard src/$(colladaVersion)/dom/*.cpp)
-
-includeOpts := -Iinclude -Iinclude/$(colladaVersion)
-
-includeOpts += -Iexternal-libs/minizip/include
+includeOpts := -Iexternal-libs/minizip/include
 
 ifneq ($(findstring $(os),linux mac),)
 ccFlags += -fPIC
-else ifeq ($(os),windows)
-ccFlags += -DDOM_DYNAMIC -DDOM_EXPORT
 endif
 
-ifneq ($(findstring libxml,$(xmlparsers)),)
-ccFlags += -DDOM_INCLUDE_LIBXML
-ifeq ($(os),windows)
-includeOpts += -Iexternal-libs/libxml2/include
-libOpts += -Lexternal-libs/libxml2/$(buildID)/lib -lxml2 -lws2_32 -lz
-else
-includeOpts += -I/usr/include/libxml2
-libOpts += -lxml2
-endif
-endif
-
-ifneq ($(findstring tinyxml,$(xmlparsers)),)
-ccFlags += -DDOM_INCLUDE_TINYXML
-includeOpts += -Iexternal-libs/tinyxml/
-libOpts += external-libs/tinyxml/lib/$(buildID)/libtinyxml.a
-endif
-
-ifeq ($(os),linux)
-libOpts += -lpcre -lpcrecpp
-else 
-# On Mac, Windows and PS3 we need to be told where to find pcre
-ifeq ($(os),windows)
-ccFlags += -DPCRE_STATIC
-endif
-includeOpts += -Iexternal-libs/pcre
-libOpts += $(addprefix external-libs/pcre/lib/$(buildID)/,libpcrecpp.a libpcre.a )
-endif
-
-libOpts += -Lbuild/$(buildID)-$(colladaVersion)/
-libOpts += -lminizip
-
-libName := libcollada$(colladaVersionNoDots)dom$(debugSuffix)
-libVersion := $(domVersion)
+libName := libminizip$(debugSuffix)
+libVersion := 1.2.3
 libVersionNoDots := $(subst .,,$(libVersion))
 
 targets :=
@@ -85,4 +44,4 @@ else ifeq ($(os),ps3)
 targets += $(addprefix $(outPath),$(libName).a)
 endif
 
-include make/rules.mk
+include make/rulesC.mk

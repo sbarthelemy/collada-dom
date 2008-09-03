@@ -1,6 +1,6 @@
 include make/common.mk
 
-src := $(wildcard test/*.cpp)
+src := $(wildcard test/$(colladaVersion)/*.cpp)
 targets := $(outPath)domTest$(exeSuffix)
 
 # DOM defs. This is extra complicated because of the installTest make target. The extra

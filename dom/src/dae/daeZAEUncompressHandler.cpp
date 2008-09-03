@@ -268,7 +268,20 @@ bool daeZAEUncompressHandler::checkAndExtractInternalArchive( const std::string&
     boost::filesystem::path archivePath(filePath);
     std::string dir = archivePath.branch_path().string();
 
-    std::string tmpDir = dir + cdom::getFileSeparator() + std::string(tmpnam(0)) + cdom::getFileSeparator();
+    std::string randomSegment = "";
+#ifdef WIN32
+    randomSegment = tmpnam(0);
+#elif defined __APPLE_CC__
+#error usage of tmpnam() for your system unknown
+#elif defined __MINGW32__
+#error  usage of tmpnam() for your system unknown
+#elif defined __CELLOS_LV2__
+#error  usage of tmpnam() for your system unknown
+#else // LINUX
+    std::string tmp(tmpnam(0));
+    randomSegment = tmp.substr(tmp.find_last_of('/')+1);
+#endif
+    std::string tmpDir = dir + cdom::getFileSeparator() + randomSegment + cdom::getFileSeparator();
     if (boost::filesystem::create_directory(tmpDir))
     {
         if (!extractArchive(zipFile, tmpDir))
