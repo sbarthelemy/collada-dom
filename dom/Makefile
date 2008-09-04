@@ -6,10 +6,26 @@
 # http://www.opensource.org/licenses/mit-license.php
 # 
 
-# By default, all commands are silent. Echo statements are provided for each rule (if appropriate)
-# so the user knows what's going on. If you need to debug the makefile or need to know what's
-# going on, call make with verbose=yes.
-ifneq ($(verbose),yes)
+# Set oldMakeExport=yes to generate a makefile suitable for use with a pre-3.80
+# version of make.
+ifeq ($(oldMakeExport),yes)
+printCommands := yes
+printMessages := no
+endif
+
+# By default, build messages are printed. These messages let the user know
+# what's happening during the build.
+ifneq ($(printMessages),no)
+define printMessage
+$(if $(not $(findstring plainEcho,$(2))),@)echo $(1)
+endef
+else
+define printMessage
+endef
+endif
+
+# By default, the actual build commands aren't printed.
+ifneq ($(printCommands),yes)
 .SILENT:
 endif
 
@@ -134,7 +150,7 @@ $(allOutputPaths):
 #
 .PHONY: clean
 clean:
-	@echo Removing build files.
+	$(call printMessage,Removing build files.)
 # Delete all the output files
 	rm -rf $(allOutputFiles)
 # Delete each empty output folder
@@ -161,7 +177,7 @@ domTestExes := $(filter %domTest,$(allTargets))
 .PHONY: test
 test: $(domTestExes)
 	@for testExe in $(domTestExes); do \
-		echo $$testExe $(domTestOpts); \
+		$(call printMessage,$$testExe $(domTestOpts);,plainEcho) \
 		$$testExe $(domTestOpts); \
 	done
 
@@ -184,12 +200,12 @@ endif
 ifneq ($(installPrefix),)
 ifeq ($(oss),linux)
 uninstall:
-	@echo Uninstalling from $(installPrefix)
+	$(call printMessage,Uninstalling from $(installPrefix))
 	rm -rf $(installPrefix)/include/colladadom
 	rm -f  $(installPrefix)/lib/libcollada*dom*
 else ifeq ($(oss),mac)
 uninstall:
-	@echo Uninstalling from $(prefix)
+	$(call printMessage,Uninstalling from $(prefix))
 	 rm -rf $(installPrefix)/Collada*Dom*.framework
 endif
 else ifneq ($(findstring uninstall,$(MAKECMDGOALS)),)
@@ -210,7 +226,7 @@ endef
 .PHONY: install
 ifeq ($(oss),linux)
 install: uninstall
-	@echo Installing to $(prefix)
+	$(call printMessage,Installing to $(prefix))
 # Write the install prefix to the file make/installPrefix.mk so we can retrieve it for uninstalling.
 	echo 'installPrefix := $(prefix)' > make/installPrefix.mk
 # Install headers
@@ -223,7 +239,7 @@ install: uninstall
 	if [ -d build/linux-1.4-d ]; then cp -P build/linux-1.4-d/libcollada*dom* $(prefix)/lib; fi;
 else ifeq ($(oss),mac)
 install: uninstall
-	@echo Installing to $(prefix)
+	$(call printMessage,Installing to $(prefix))
 	echo 'installPrefix := $(prefix)' > make/installPrefix.mk
 	$(call installMacFrameworkCmd,build/mac-1.4,Collada14Dom.framework,$(domVersion))
 	$(call installMacFrameworkCmd,build/mac-1.4-d,Collada14Dom-d.framework,$(domVersion))
@@ -237,4 +253,4 @@ installTest:
 	$(MAKE) uninstall
 	$(MAKE) clean project=domTest
 	$(MAKE) project=domTest
-	@echo installTest done
+	$(call printMessage,installTest done)

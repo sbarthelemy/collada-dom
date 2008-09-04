@@ -56,7 +56,7 @@ objFiles := $$(addprefix $$(objPath),$$(notdir $$(filter $$(srcPath)%,$$(src:.cp
 # When using the -M option to generate dependency info, we can't have any -arch flags or
 # gcc complains.
 $$(objFiles): $$(objPath)%.o: $$(srcPath)%.cpp | $$(sort $$(dir $$(objFiles)))
-	@echo Compiling $$< to $$@
+	$$(call printMessage,Compiling $$< to $$@)
 	$$(cc) -c $$< $$(ccFlags) $$(includeOpts) -o $$@
 	@$$(cc) -MM $$< $$(ccFlagsNoArch) $$(includeOpts) > $$(@:.o=.d)
 	@mv -f $$(@:.o=.d) $$(@:.o=.d.tmp)
@@ -74,7 +74,7 @@ endif
 ifneq ($(staticLib),)
 $(staticLib): ar := $(ar)
 $(staticLib): $(obj) | $(dir $(staticLib))
-	@echo Creating $@
+	$(call printMessage,Creating $@)
 	$(ar) $@ $^
 endif
 
@@ -86,7 +86,7 @@ $(sharedLibMajorMinor): cc := $(cc)
 $(sharedLibMajorMinor): ccFlags := $(ccFlags)
 $(sharedLibMajorMinor): libOpts := $(libOpts)
 $(sharedLibMajorMinor): $(dependentLibs) $(obj) | $(dir $(sharedLibMajorMinor))
-	@echo Linking $@
+	$(call printMessage,Linking $@)
 	$(cc) $(ccFlags) -shared -o $@ $^ $(libOpts)
 
 $(sharedLibMajor): $(sharedLibMajorMinor) | $(dir $(sharedLibMajor))
@@ -102,7 +102,7 @@ $(dll): cc := $(cc)
 $(dll): ccFlags := $(ccFlags)
 $(dll): libOpts := $(libOpts)
 $(dll): $(dependentLibs) $(obj) | $(dir $(dll))
-	@echo Linking $@
+	$(call printMessage,Linking $@)
 	$(cc) $(ccFlags) -Wl,--out-implib,$(@:.dll=.lib) -shared -o $@ $^ $(libOpts)
 endif
 
@@ -113,7 +113,7 @@ $(dylib): ccFlags := $(ccFlags)
 $(dylib): libOpts := $(libOpts)
 $(dylib): libVersion := $(libVersion)
 $(dylib): $(dependentLibs) $(obj) | $(dir $(dylib))
-	@echo Linking $@
+	$(call printMessage,Linking $@)
 	$(cc) $(ccFlags) -dynamiclib -install_name $(notdir $@) -current_version $(libVersion).0 \
 		-compatibility_version $(libVersion).0 -o $@ $^ $(libOpts)
 endif
@@ -128,7 +128,7 @@ $(framework): frameworkCurVersionPath := $(framework)/Versions/$(libVersion)
 $(framework): copyFrameworkHeadersCommand := $(copyFrameworkHeadersCommand)
 $(framework): copyFrameworkResourcesCommand := $(copyFrameworkResourcesCommand)
 $(framework): $(dylib)
-	@echo Creating framework $@
+	$(call printMessage,Creating framework $@)
 # First remove the framework folder if it's already there. Otherwise we get errors about
 # files already existing and such.
 	rm -rf $(framework)
@@ -157,10 +157,14 @@ $(exe): cc := $(cc)
 $(exe): ccFlags := $(ccFlags)
 $(exe): obj := $(obj)
 $(exe): libOpts := $(libOpts)
+ifneq ($(oldMakeExport),yes)
 $(exe): sharedLibSearchPathCommand := $(addprefix -Wl$(comma)-rpath$(comma),$(sharedLibSearchPaths))
+else
+$(exe): sharedLibSearchPathCommand :=
+endif
 $(exe): postCreateExeCommand := $(postCreateExeCommand)
 $(exe): $(dependentLibs) $(obj) | $(dir $(exe))
-	@echo Linking $@
+	$(call printMessage,Linking $@)
 	$(cc) $(ccFlags) -o $@ $(obj) $(libOpts) $(sharedLibSearchPathCommand)
 	$(postCreateExeCommand)
 endif
