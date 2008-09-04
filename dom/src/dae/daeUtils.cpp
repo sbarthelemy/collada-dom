@@ -146,14 +146,16 @@ char cdom::getFileSeparator() {
 const string& cdom::getSystemTmpDir() {
 #ifdef WIN32
     static string tmpDir = string(getenv("TMP"));
+#elif defined(__linux__) || defined(__linux)
+    static string tmpDir = "/tmp/";
 #elif defined __APPLE_CC__
 #error tmp dir for your system unknown
 #elif defined __MINGW32__
 #error tmp dir for your system unknown
 #elif defined __CELLOS_LV2__
 #error tmp dir for your system unknown
-#else // LINUX
-    static string tmpDir = "/tmp/";
+#else
+#error tmp dir for your system unknown
 #endif
     return tmpDir;
 }
@@ -161,14 +163,16 @@ const string& cdom::getSystemTmpDir() {
 const string& cdom::getSafeTmpDir() {
 #ifdef WIN32
     static string tmpDir = getSystemTmpDir() + tmpnam(0) + getFileSeparator();
+#elif defined(__linux__) || defined(__linux)
+    static string tmpDir = string(tmpnam(0)) + getFileSeparator();
 #elif defined __APPLE_CC__
 #error usage of tmpnam() for your system unknown
 #elif defined __MINGW32__
 #error  usage of tmpnam() for your system unknown
 #elif defined __CELLOS_LV2__
 #error  usage of tmpnam() for your system unknown
-#else // LINUX
-    static string tmpDir = tmpnam(0) + getFileSeparator();
+#else
+#error  usage of tmpnam() for your system unknown
 #endif
     return tmpDir;
 }

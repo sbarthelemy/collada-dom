@@ -44,7 +44,7 @@ const std::string& daeZAEUncompressHandler::obtainRootFilePath()
         {
             if (retrieveRootURIFromManifest(mTmpDir))
             {
-                    return mRootFilePath;
+                return mRootFilePath;
             }
             else
             {
@@ -271,15 +271,17 @@ bool daeZAEUncompressHandler::checkAndExtractInternalArchive( const std::string&
     std::string randomSegment = "";
 #ifdef WIN32
     randomSegment = tmpnam(0);
+#elif defined(__linux__) || defined(__linux)
+    std::string tmp(tmpnam(0));
+    randomSegment = tmp.substr(tmp.find_last_of('/')+1);
 #elif defined __APPLE_CC__
 #error usage of tmpnam() for your system unknown
 #elif defined __MINGW32__
 #error  usage of tmpnam() for your system unknown
 #elif defined __CELLOS_LV2__
 #error  usage of tmpnam() for your system unknown
-#else // LINUX
-    std::string tmp(tmpnam(0));
-    randomSegment = tmp.substr(tmp.find_last_of('/')+1);
+#else
+    #error  usage of tmpnam() for your system unknown
 #endif
     std::string tmpDir = dir + cdom::getFileSeparator() + randomSegment + cdom::getFileSeparator();
     if (boost::filesystem::create_directory(tmpDir))

@@ -17,7 +17,7 @@
 #include <dae.h>
 #include <dom/domConstants.h>
 #include <dom/domCOLLADA.h>
-#include <dom/domProfile_COMMON.h>
+#include <dom/domProfile_common.h>
 #include <dae/daeSIDResolver.h>
 #include <dom/domInstance_controller.h>
 #include <dae/domAny.h>

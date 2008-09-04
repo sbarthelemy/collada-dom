@@ -46,8 +46,8 @@ includeOpts += -Iexternal-libs/pcre
 libOpts += $(addprefix external-libs/pcre/lib/$(buildID)/,libpcrecpp.a libpcre.a )
 endif
 
-libOpts += -Lbuild/$(buildID)-$(colladaVersion)/
-libOpts += -lminizip
+libOpts += -Lbuild/$(buildID)-$(colladaVersion)$(debugSuffix)/
+libOpts += -lminizip$(debugSuffix)
 
 libName := libcollada$(colladaVersionNoDots)dom$(debugSuffix)
 libVersion := $(domVersion)
