@@ -37,7 +37,7 @@ exe := $(filter-out $(staticLib) $(sharedLib) $(dll) $(dylib) $(framework),$(tar
 
 ifneq ($(obj),)
 # Pull in dependency info for *existing* .o files
--include $(dependencyFiles)
+#-include $(dependencyFiles)
 
 # Make has weird evaluation semantics, so we have to be careful to capture the state of
 # any values we use in rule commands. This is the reason for all the target-specific variables.

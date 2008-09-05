@@ -1,11 +1,6 @@
 include make/common.mk
 
-includeOpts += -I../dom/include
-includeOpts += -I../dom/include/dae
-includeOpts += -I../dom/include/$(colladaVersion)
-includeOpts += -I../fx/include/
-includeOpts += -I../rt/include
-includeOpts += -I../rt/external-libs/bullet/include
+src += projects/vc8-PS3/main.cpp projects/vc8-PS3/BrowserUI.cpp
 
 
 ifneq ($(findstring $(os),linux mac),)
@@ -75,14 +70,22 @@ copyFrameworkResourcesCommand = cp -R make/macFrameworkResources/* $(frameworkRe
 
 else ifeq ($(os),ps3)
 # On PS3 we build a static lib, since PS3 doesn't support shared libs
+
+
+includeOpts += -I../dom/include
+includeOpts += -I../dom/include/dae
+includeOpts += -I../dom/include/$(colladaVersion)
+includeOpts += -I../fx/include/
+includeOpts += -I../rt/include
+includeOpts += -I../rt/external-libs/bullet/include
+includeOpts += -I$(SCE_PS3_ROOT)/samples/fw/include -I$(SCE_PS3_ROOT)/samples/fw/include/psgl -I$(SCE_PS3_ROOT)/target/common/include  -I$(SCE_PS3_ROOT)/target/ppu/include
+
 includeOpts += -Iprojects/vc8-PS3
 
 libOpts += -L../dom/build/ps3-1.4
 libOpts += -lcollada14dom
 libOpts += -L../dom/external-libs/tinyxml/lib/$(os)
 libOpts += -ltinyxml
-#libOpts += -L../dom/external-libs/pcre/lib/$(os)/libpcrecpp.a
-#libOpts += -L../dom/external-libs/pcre/lib/$(os)/libpcre.a
 
 libOpts += -L../fx/build/ps3-1.4
 libOpts += -lcollada14fx
@@ -106,13 +109,8 @@ ccFlags += -DNO_BULLET
 ccFlags += -DTINYXML
 ccFlags += -DBOOST_NO_STD_LOCALE
 
-ccFlags += -I$(SCE_PS3_ROOT)/samples/fw/include
-ccFlags += -I$(SCE_PS3_ROOT)/samples/fw/include/psgl
-ccFlags += -I$(SCE_PS3_ROOT)/target/common/include
-ccFlags += -I$(SCE_PS3_ROOT)/target/ppu/include
-
 #libOpts += -L$(SN_PS3_PATH)/ppu/lib/sn/libsn.a
-libOpts += -L$(SCE_PS3_ROOT)/samples/fw/libfw.a
+libOpts += -L$(SCE_PS3_ROOT)/samples/fw/
 libOpts += -L$(SCE_PS3_ROOT)/target/ppu/lib/PSGL/RSX/debug/
 libOpts += -L$(SCE_PS3_ROOT)/target/ppu/lib/
 
@@ -120,7 +118,6 @@ libOpts += -L$(SCE_PS3_ROOT)/samples/fw
 libOpts += -lfw -lPSGL -lPSGLU -lPSGLFX -lPSGLcgc
 libOpts += -lm -lio_stub -lcgc -lgcm_cmd -lgcm_sys_stub -lsysmodule_stub -lresc_stub -lusbd_stub -lfs_stub -lsysutil_stub -ldbgfont 
 
-src += projects/vc8-PS3/main.cpp projects/vc8-PS3/BrowserUI.cpp
 targets := $(outPath)viewer$(exeSuffix)
 
 endif
