@@ -8,13 +8,14 @@ src/Crt/CrtCamera.cpp      src/Crt/CrtGeometry.cpp     src/Crt/CrtNode.cpp      
 src/Crt/CrtCommonCg.cpp    src/Crt/CrtPS3.cpp       src/Crt/CrtUtils.cpp \
 src/Crt/CrtCommonGL.cpp    src/Crt/CrtLight.cpp        src/Crt/CrtPhysics.cpp \
 src/Crt/CrtController.cpp  src/Crt/CrtPlatform.cpp \
-src/Crt/CrtData.cpp        src/Crt/CrtMaterial.cpp     src/Crt/CrtRender.cpp \
+src/Crt/CrtData.cpp        src/Crt/CrtMaterial.cpp     src/Crt/CrtRender.cpp
 
 includeOpts += -I../dom/include
 includeOpts += -I../dom/include/dae
 includeOpts += -I../dom/include/$(colladaVersion)
 includeOpts += -I../fx/include/
-includeOpts += -I../include
+includeOpts += -Iinclude
+includeOpts += -Iinclude/1.4
 includeOpts += -Iexternal-libs/bullet/include
 
 
@@ -87,6 +88,7 @@ else ifeq ($(os),ps3)
 # On PS3 we build a static lib, since PS3 doesn't support shared libs
 ccFlags += -DCFX_PLATFORM_INCLUDE=\"cfxPS3.h\"
 ccFlags += -DCRT_PLATFORM_INCLUDE=\"CrtPS3.h\"
+ccFlags += -DSN_TARGET_PS3
 targets += $(addprefix $(outPath),$(libName).a)
 endif
 
