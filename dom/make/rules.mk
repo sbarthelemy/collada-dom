@@ -48,8 +48,15 @@ $(obj): includeOpts := $(includeOpts)
 define createObjRule
 srcPath := $(1)
 
-# Pick off the matching obj files
-objFiles := $$(addprefix $$(objPath),$$(notdir $$(filter $$(srcPath)%,$$(src:.cpp=.o))))
+# Pick off the matching obj files. First generate a list of all the src files,
+# except with srcPath as the directory.
+srcPathSrcs := $$(addprefix $$(srcPath),$$(notdir $$(src)))
+# Filter this list of files against the src list, to get only the source files
+# that are actually in srcPath.
+srcPathSrcs := $$(filter $$(srcPathSrcs),$$(src))
+# To get the list of object files, replace the dir of srcPathSrcs with the
+# object file output dir, and replace the file extension with .o.
+objFiles := $$(addprefix $$(objPath),$$(notdir $$(srcPathSrcs:.cpp=.o)))
 
 # We're going to automatically generate make rules for our header dependencies.
 # See this for more info: http://www.cs.berkeley.edu/~smcpeak/autodepend/autodepend.html
