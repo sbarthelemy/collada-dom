@@ -17,6 +17,8 @@
 
 #include "BrowserUI.h"
 
+const char * DEFAULT_IMAGE = 0;
+
 const char * MEDIA_MOUNT_PATH[DEVICE_MAX] =
 {
 "/dev_ms",
