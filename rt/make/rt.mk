@@ -1,6 +1,6 @@
 include make/common.mk
 
-src += $(src/Crt/$(colladaVersion)/CrtSceneRead.cpp) $(src/Crt/$(colladaVersion)/CrtScene.cpp) 
+src := src/Crt/$(colladaVersion)/CrtSceneRead.cpp src/Crt/$(colladaVersion)/CrtScene.cpp 
 
 src += src/Crt/CrtDomLoad.cpp      src/Crt/CrtMatrix.cpp    src/Crt/CrtSkin.cpp \
 src/Crt/CrtAnimation.cpp   src/Crt/CrtEffect.cpp       src/Crt/CrtMorph.cpp     src/Crt/CrtTargaLoader.cpp \
