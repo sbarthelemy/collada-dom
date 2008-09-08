@@ -16,6 +16,10 @@ dependencyFiles := $(obj:.o=.d)
 outputFiles := $(obj) $(dependencyFiles) $(targets)
 outputFiles += $(foreach so,$(filter %.so,$(targets)),$(so).$(libMajorVersion) $(so).$(libVersion))
 
+define printMessage
+$(if $(not $(findstring plainEcho,$(2))),@)echo $(1)
+endef
+
 # Parse the targets, which can contain any of the following:
 #  static lib (.a)
 #  shared lib (.so)
@@ -33,11 +37,9 @@ dylib += $(framework:.framework=.dylib)
 # Any target other than a .a, .so, .dll, .dylib, or .framework is considered an exe
 exe := $(filter-out $(staticLib) $(sharedLib) $(dll) $(dylib) $(framework),$(targets))
 
-#self := $(filter %.ppu.self,$(targets))
-
 ifneq ($(obj),)
 # Pull in dependency info for *existing* .o files
-#-include $(dependencyFiles)
+# -include $(dependencyFiles)
 
 # Make has weird evaluation semantics, so we have to be careful to capture the state of
 # any values we use in rule commands. This is the reason for all the target-specific variables.
@@ -50,15 +52,22 @@ $(obj): includeOpts := $(includeOpts)
 define createObjRule
 srcPath := $(1)
 
-# Pick off the matching obj files
-objFiles := $$(addprefix $$(objPath),$$(notdir $$(filter $$(srcPath)%,$$(src:.cpp=.o))))
+# Pick off the matching obj files. First generate a list of all the src files,
+# except with srcPath as the directory.
+srcPathSrcs := $$(addprefix $$(srcPath),$$(notdir $$(src)))
+# Filter this list of files against the src list, to get only the source files
+# that are actually in srcPath.
+srcPathSrcs := $$(filter $$(srcPathSrcs),$$(src))
+# To get the list of object files, replace the dir of srcPathSrcs with the
+# object file output dir, and replace the file extension with .o.
+objFiles := $$(addprefix $$(objPath),$$(notdir $$(srcPathSrcs:.cpp=.o)))
 
 # We're going to automatically generate make rules for our header dependencies.
 # See this for more info: http://www.cs.berkeley.edu/~smcpeak/autodepend/autodepend.html
 # When using the -M option to generate dependency info, we can't have any -arch flags or
 # gcc complains.
 $$(objFiles): $$(objPath)%.o: $$(srcPath)%.cpp | $$(sort $$(dir $$(objFiles)))
-	@echo Compiling $$< to $$@
+	$$(call printMessage,Compiling $$< to $$@)
 	$$(cc) -c $$< $$(ccFlags) $$(includeOpts) -o $$@
 	@$$(cc) -MM $$< $$(ccFlagsNoArch) $$(includeOpts) > $$(@:.o=.d)
 	@mv -f $$(@:.o=.d) $$(@:.o=.d.tmp)
@@ -76,7 +85,7 @@ endif
 ifneq ($(staticLib),)
 $(staticLib): ar := $(ar)
 $(staticLib): $(obj) | $(dir $(staticLib))
-	@echo Creating $@
+	$(call printMessage,Creating $@)
 	$(ar) $@ $^
 endif
 
@@ -88,7 +97,7 @@ $(sharedLibMajorMinor): cc := $(cc)
 $(sharedLibMajorMinor): ccFlags := $(ccFlags)
 $(sharedLibMajorMinor): libOpts := $(libOpts)
 $(sharedLibMajorMinor): $(dependentLibs) $(obj) | $(dir $(sharedLibMajorMinor))
-	@echo Linking $@
+	$(call printMessage,Linking $@)
 	$(cc) $(ccFlags) -shared -o $@ $^ $(libOpts)
 
 $(sharedLibMajor): $(sharedLibMajorMinor) | $(dir $(sharedLibMajor))
@@ -104,7 +113,7 @@ $(dll): cc := $(cc)
 $(dll): ccFlags := $(ccFlags)
 $(dll): libOpts := $(libOpts)
 $(dll): $(dependentLibs) $(obj) | $(dir $(dll))
-	@echo Linking $@
+	$(call printMessage,Linking $@)
 	$(cc) $(ccFlags) -Wl,--out-implib,$(@:.dll=.lib) -shared -o $@ $^ $(libOpts)
 endif
 
@@ -115,7 +124,7 @@ $(dylib): ccFlags := $(ccFlags)
 $(dylib): libOpts := $(libOpts)
 $(dylib): libVersion := $(libVersion)
 $(dylib): $(dependentLibs) $(obj) | $(dir $(dylib))
-	@echo Linking $@
+	$(call printMessage,Linking $@)
 	$(cc) $(ccFlags) -dynamiclib -install_name $(notdir $@) -current_version $(libVersion).0 \
 		-compatibility_version $(libVersion).0 -o $@ $^ $(libOpts)
 endif
@@ -130,13 +139,13 @@ $(framework): frameworkCurVersionPath := $(framework)/Versions/$(libVersion)
 $(framework): copyFrameworkHeadersCommand := $(copyFrameworkHeadersCommand)
 $(framework): copyFrameworkResourcesCommand := $(copyFrameworkResourcesCommand)
 $(framework): $(dylib)
-	@echo Creating framework $@
+	$(call printMessage,Creating framework $@)
 # First remove the framework folder if it's already there. Otherwise we get errors about
 # files already existing and such.
 	rm -rf $(framework)
 # Set up the headers
 	mkdir -p $(frameworkCurVersionPath)/Headers
-	$(copyFrameworkHeadersCommand)
+	$(copyFrameworkHeadersCommand)	
 # Set up the resources
 	mkdir -p $(frameworkCurVersionPath)/Resources
 	$(copyFrameworkResourcesCommand)
@@ -159,10 +168,15 @@ $(exe): cc := $(cc)
 $(exe): ccFlags := $(ccFlags)
 $(exe): obj := $(obj)
 $(exe): libOpts := $(libOpts)
+ifneq ($(oldMakeExport),yes)
 $(exe): sharedLibSearchPathCommand := $(addprefix -Wl$(comma)-rpath$(comma),$(sharedLibSearchPaths))
+else
+$(exe): sharedLibSearchPathCommand :=
+endif
 $(exe): postCreateExeCommand := $(postCreateExeCommand)
 $(exe): $(dependentLibs) $(obj) | $(dir $(exe))
-	@echo Linking $@
+	$(call printMessage,Linking $@)
 	$(cc) $(ccFlags) -o $@ $(obj) $(libOpts) $(sharedLibSearchPathCommand)
+	$(call printMessage,PostBuilding $(postCreateExeCommand))	
 	$(postCreateExeCommand)
 endif
