@@ -25,6 +25,12 @@ os := windows
 endif
 endif
 
+# default host to be linux, if you are building ps3 target in windows host, host will be windows
+host := linux
+ifneq ($(or $(shell uname | grep -i cygwin),$(shell uname | grep -i mingw)),)
+host := windows
+endif
+
 # nativeArch: For internal use. Don't override this, instead override 'arch'.
 nativeArch := x86
 ifneq ($(shell uname -p | grep -i powerpc),)

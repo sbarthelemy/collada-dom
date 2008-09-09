@@ -77,13 +77,22 @@ ifeq ($(os),ps3)
 # On PS3 we build a static lib, since PS3 doesn't support shared libs
 
 
+# If we use windows as host, we use SCE_PS3_ROOT, if we use linux as host, we use CELL_SDK_ROOT
+ifeq ($(host), linux)
+PS3_SDK_ROOT := $(CELL_SDK_ROOT)
+else
+ifeq ($(host), windows)
+PS3_SDK_ROOT := $(SCE_PS3_ROOT)
+endif
+endif
+
 includeOpts += -I../dom/include
 includeOpts += -I../dom/include/dae
 includeOpts += -I../dom/include/$(colladaVersion)
 includeOpts += -I../fx/include/
 includeOpts += -I../rt/include
 includeOpts += -I../rt/external-libs/bullet/include
-includeOpts += -I$(SCE_PS3_ROOT)/samples/fw/include -I$(SCE_PS3_ROOT)/samples/fw/include/psgl -I$(SCE_PS3_ROOT)/target/common/include  -I$(SCE_PS3_ROOT)/target/ppu/include
+includeOpts += -I$(PS3_SDK_ROOT)/samples/fw/include -I$(PS3_SDK_ROOT)/samples/fw/include/psgl -I$(PS3_SDK_ROOT)/target/common/include  -I$(PS3_SDK_ROOT)/target/ppu/include
 
 includeOpts += -Iprojects/vc8-PS3
 
@@ -114,12 +123,11 @@ ccFlags += -DNO_BULLET
 ccFlags += -DTINYXML
 ccFlags += -DBOOST_NO_STD_LOCALE
 
-#libOpts += -L$(SN_PS3_PATH)/ppu/lib/sn/libsn.a
-libOpts += -L$(SCE_PS3_ROOT)/samples/fw/
-libOpts += -L$(SCE_PS3_ROOT)/target/ppu/lib/PSGL/RSX/debug/
-libOpts += -L$(SCE_PS3_ROOT)/target/ppu/lib/
+libOpts += -L$(PS3_SDK_ROOT)/samples/fw/
+libOpts += -L$(PS3_SDK_ROOT)/target/ppu/lib/PSGL/RSX/debug/
+libOpts += -L$(PS3_SDK_ROOT)/target/ppu/lib/
 
-libOpts += -L$(SCE_PS3_ROOT)/samples/fw
+libOpts += -L$(PS3_SDK_ROOT)/samples/fw
 libOpts += -lfw -lPSGL -lPSGLU -lPSGLFX -lPSGLcgc
 libOpts += -lm -lio_stub -lcgc -lgcm_cmd -lgcm_sys_stub -lsysmodule_stub -lresc_stub -lusbd_stub -lfs_stub -lsysutil_stub -ldbgfont 
 
