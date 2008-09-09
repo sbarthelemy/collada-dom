@@ -6,8 +6,10 @@ includeOpts := -Iinclude -Iinclude/$(colladaVersion)
 
 ifneq ($(findstring $(os),linux mac),)
 ccFlags += -fPIC
-else ifeq ($(os),windows)
+else 
+ifeq ($(os),windows)
 ccFlags += -DDOM_DYNAMIC -DDOM_EXPORT
+endif
 endif
 
 ifneq ($(findstring libxml,$(xmlparsers)),)
@@ -48,13 +50,15 @@ ifeq ($(os),linux)
 targets += $(addprefix $(outPath),$(libName).a)
 targets += $(addprefix $(outPath),$(libName).so)
 
-else ifeq ($(os),windows)
+else 
+ifeq ($(os),windows)
 # On Windows we build a static lib and a DLL
 windowsLibName := libcollada$(colladaVersionNoDots)dom
 targets += $(addprefix $(outPath),$(windowsLibName)$(debugSuffix).a)
 targets += $(addprefix $(outPath),$(windowsLibName)$(libVersionNoDots)$(debugSuffix).dll)
 
-else ifeq ($(os),mac)
+else 
+ifeq ($(os),mac)
 # On Mac we build a framework
 targets += $(addprefix $(outPath),Collada$(colladaVersionNoDots)Dom$(debugSuffix).framework)
 frameworkHeadersPath = $(framework)/Versions/$(libVersion)/Headers
@@ -69,7 +73,8 @@ copyFrameworkResourcesCommand = cp -R make/macFrameworkResources/* $(frameworkRe
   sed $(sedReplaceExpression) make/macFrameworkResources/Info.plist > $(frameworkResourcesPath)/Info.plist && \
   sed $(sedReplaceExpression) make/macFrameworkResources/English.lproj/InfoPlist.strings > $(frameworkResourcesPath)/English.lproj/InfoPlist.strings
 
-else ifeq ($(os),ps3)
+else 
+ifeq ($(os),ps3)
 # On PS3 we build a static lib, since PS3 doesn't support shared libs
 includeOpts += -I../dom/include
 includeOpts += -I../dom/include/dae
@@ -78,6 +83,9 @@ includeOpts += -I../include
 ccFlags += -DCFX_PLATFORM_INCLUDE=\"cfxPS3.h\"
 ccFlags += -DDEFAULT_CG_PLATFORM=\"PC-OGL\"
 targets += $(addprefix $(outPath),$(libName).a)
+endif
+endif
+endif
 endif
 
 include make/rules.mk
