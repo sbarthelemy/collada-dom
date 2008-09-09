@@ -77,9 +77,9 @@ ifeq ($(os),ps3)
 # On PS3 we build a static lib, since PS3 doesn't support shared libs
 
 
-# If we use windows as host, we use SCE_PS3_ROOT, if we use linux as host, we use CELL_SDK_ROOT
+# If we use windows as host, we use SCE_PS3_ROOT, if we use linux as host, we use CELL_SDK
 ifeq ($(host), linux)
-PS3_SDK_ROOT := $(CELL_SDK_ROOT)
+PS3_SDK_ROOT := $(CELL_SDK)
 else
 ifeq ($(host), windows)
 PS3_SDK_ROOT := $(SCE_PS3_ROOT)
