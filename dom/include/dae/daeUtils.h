@@ -70,6 +70,11 @@ namespace cdom {
     // Reads environment variable TMP.
     DLLSPEC const std::string& getSystemTmpDir();
 
+    // Returns a filename obtained via tmpnam().
+    // On systems where tmpnam()'s result is preceded
+    // with a directory, that directory is cutoff.
+    DLLSPEC std::string getRandomFileName();
+
     // Returns getSystemTmpDir() appended with a randomly
     // generated directory name.
     // This directory will be deleted when DAE gets destroyed.

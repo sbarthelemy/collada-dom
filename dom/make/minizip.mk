@@ -1,11 +1,25 @@
 include make/common.mk
 
-src := $(wildcard external-libs/minizip/src/*.c)
+src := external-libs/minizip/src/ioapi.c \
+       external-libs/minizip/src/mztools.c \
+       external-libs/minizip/src/unzip.c \
+       external-libs/minizip/src/zip.c
+
+ifeq ($(findstring $(os),linux mac),)
+src += external-libs/minizip/src/iowin32.c
+endif
+
 
 includeOpts := -Iexternal-libs/minizip/include
 
 ifneq ($(findstring $(os),linux mac),)
 ccFlags += -fPIC
+endif
+
+# mingw: link agaist zlib
+ifeq ($(findstring $(os),linux mac),)
+libOpts += -Lexternal-libs/libxml2/mingw/lib
+libOpts += -lz
 endif
 
 libName := libminizip$(debugSuffix)
@@ -20,7 +34,8 @@ targets += $(addprefix $(outPath),$(libName).so)
 
 else ifeq ($(os),windows)
 # On Windows we build a static lib and a DLL
-windowsLibName := libcollada$(colladaVersionNoDots)dom
+#windowsLibName := libcollada$(colladaVersionNoDots)dom
+windowsLibName := $(libName)
 targets += $(addprefix $(outPath),$(windowsLibName)$(debugSuffix).a)
 targets += $(addprefix $(outPath),$(windowsLibName)$(libVersionNoDots)$(debugSuffix).dll)
 

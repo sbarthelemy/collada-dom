@@ -22,7 +22,8 @@ daeZAEUncompressHandler::daeZAEUncompressHandler( const daeURI& zaeFile )
 
     mValidZipFile = mZipFile != NULL;
 
-    mTmpDir = cdom::getSafeTmpDir() + mZipFileURI.pathFile() + cdom::getFileSeparator();
+    mTmpDir = cdom::getSafeTmpDir() + cdom::getRandomFileName() + 
+        cdom::getFileSeparator() + mZipFileURI.pathFile() + cdom::getFileSeparator();
 }
 
 //-----------------------------------------------------------------
@@ -268,21 +269,7 @@ bool daeZAEUncompressHandler::checkAndExtractInternalArchive( const std::string&
     boost::filesystem::path archivePath(filePath);
     std::string dir = archivePath.branch_path().string();
 
-    std::string randomSegment = "";
-#ifdef WIN32
-    randomSegment = tmpnam(0);
-#elif defined(__linux__) || defined(__linux)
-    std::string tmp(tmpnam(0));
-    randomSegment = tmp.substr(tmp.find_last_of('/')+1);
-#elif defined __APPLE_CC__
-#error usage of tmpnam() for your system unknown
-#elif defined __MINGW32__
-#error  usage of tmpnam() for your system unknown
-#elif defined __CELLOS_LV2__
-#error  usage of tmpnam() for your system unknown
-#else
-    #error  usage of tmpnam() for your system unknown
-#endif
+    const std::string& randomSegment = cdom::getRandomFileName();
     std::string tmpDir = dir + cdom::getFileSeparator() + randomSegment + cdom::getFileSeparator();
     if (boost::filesystem::create_directory(tmpDir))
     {

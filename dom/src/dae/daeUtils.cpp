@@ -145,12 +145,10 @@ char cdom::getFileSeparator() {
 
 const string& cdom::getSystemTmpDir() {
 #ifdef WIN32
-    static string tmpDir = string(getenv("TMP"));
+    static string tmpDir = string(getenv("TMP")) + getFileSeparator();
 #elif defined(__linux__) || defined(__linux)
     static string tmpDir = "/tmp/";
 #elif defined __APPLE_CC__
-#error tmp dir for your system unknown
-#elif defined __MINGW32__
 #error tmp dir for your system unknown
 #elif defined __CELLOS_LV2__
 #error tmp dir for your system unknown
@@ -160,20 +158,26 @@ const string& cdom::getSystemTmpDir() {
     return tmpDir;
 }
 
-const string& cdom::getSafeTmpDir() {
+string cdom::getRandomFileName() {
+    std::string randomSegment;
 #ifdef WIN32
-    static string tmpDir = getSystemTmpDir() + tmpnam(0) + getFileSeparator();
+    std::string tmp(tmpnam(0));
+    randomSegment = tmp.substr(tmp.find_last_of('\\')+1);
 #elif defined(__linux__) || defined(__linux)
-    static string tmpDir = string(tmpnam(0)) + getFileSeparator();
+    std::string tmp(tmpnam(0));
+    randomSegment = tmp.substr(tmp.find_last_of('/')+1);
 #elif defined __APPLE_CC__
 #error usage of tmpnam() for your system unknown
-#elif defined __MINGW32__
-#error  usage of tmpnam() for your system unknown
 #elif defined __CELLOS_LV2__
 #error  usage of tmpnam() for your system unknown
 #else
 #error  usage of tmpnam() for your system unknown
 #endif
+    return randomSegment;
+}
+
+const string& cdom::getSafeTmpDir() {
+    static string tmpDir = getSystemTmpDir() + getRandomFileName() + getFileSeparator();
     return tmpDir;
 }
 

@@ -46,6 +46,19 @@ includeOpts += -Iexternal-libs/pcre
 libOpts += $(addprefix external-libs/pcre/lib/$(buildID)/,libpcrecpp.a libpcre.a )
 endif
 
+# For mingw: add boost
+ifeq ($(findstring $(os),linux mac),)
+includeOpts += -Iexternal-libs/boost
+libOpts += external-libs/boost/lib/$(buildID)/libboost_system.a
+libOpts += external-libs/boost/lib/$(buildID)/libboost_filesystem.a
+endif
+
+# minizip
+includeOpts += -Iexternal-libs/minizip/include
+libOpts += -Lbuild/$(buildID)-$(colladaVersion)$(debugSuffix)/
+libOpts += -lminizip$(debugSuffix)
+
+# output
 libName := libcollada$(colladaVersionNoDots)dom$(debugSuffix)
 libVersion := $(domVersion)
 libVersionNoDots := $(subst .,,$(libVersion))
