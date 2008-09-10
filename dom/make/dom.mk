@@ -51,12 +51,20 @@ ifeq ($(findstring $(os),linux mac),)
 includeOpts += -Iexternal-libs/boost
 libOpts += external-libs/boost/lib/$(buildID)/libboost_system.a
 libOpts += external-libs/boost/lib/$(buildID)/libboost_filesystem.a
+else ifeq ($(os),mac)
+includeOpts += -Iexternal-libs/boost
+libOpts += external-libs/boost/lib/$(buildID)/libboost_system.a
+libOpts += external-libs/boost/lib/$(buildID)/libboost_filesystem.a
 endif
 
 # minizip
 includeOpts += -Iexternal-libs/minizip/include
 libOpts += -Lbuild/$(buildID)-$(colladaVersion)$(debugSuffix)/
 libOpts += -lminizip$(debugSuffix)
+# as we link minizip static on osx, we need to link against zlib, too.
+ifeq ($(os),mac)
+libOpts += -lz
+endif
 
 # output
 libName := libcollada$(colladaVersionNoDots)dom$(debugSuffix)

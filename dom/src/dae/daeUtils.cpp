@@ -149,7 +149,7 @@ const string& cdom::getSystemTmpDir() {
 #elif defined(__linux__) || defined(__linux)
     static string tmpDir = "/tmp/";
 #elif defined __APPLE_CC__
-#error tmp dir for your system unknown
+static string tmpDir = string(getenv("TMPDIR"));
 #elif defined __CELLOS_LV2__
 #error tmp dir for your system unknown
 #else
@@ -167,7 +167,8 @@ string cdom::getRandomFileName() {
     std::string tmp(tmpnam(0));
     randomSegment = tmp.substr(tmp.find_last_of('/')+1);
 #elif defined __APPLE_CC__
-#error usage of tmpnam() for your system unknown
+	std::string tmp(tmpnam(0));
+	randomSegment = tmp.substr(tmp.find_last_of('/')+1);
 #elif defined __CELLOS_LV2__
 #error  usage of tmpnam() for your system unknown
 #else

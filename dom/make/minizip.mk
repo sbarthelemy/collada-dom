@@ -20,10 +20,17 @@ endif
 ifeq ($(findstring $(os),linux mac),)
 libOpts += -Lexternal-libs/libxml2/mingw/lib
 libOpts += -lz
+else ifeq ($(os),mac)
+# libOpts += -Lexternal-libs/libxml2/mingw/lib
+libOpts += -lz
 endif
 
 libName := libminizip$(debugSuffix)
+ifeq ($(os),mac)
+libVersion := 1.2
+else
 libVersion := 1.2.3
+endif
 libVersionNoDots := $(subst .,,$(libVersion))
 
 targets :=
@@ -41,18 +48,19 @@ targets += $(addprefix $(outPath),$(windowsLibName)$(libVersionNoDots)$(debugSuf
 
 else ifeq ($(os),mac)
 # On Mac we build a framework
-targets += $(addprefix $(outPath),Collada$(colladaVersionNoDots)Dom$(debugSuffix).framework)
-frameworkHeadersPath = $(framework)/Versions/$(libVersion)/Headers
-copyFrameworkHeadersCommand = cp -R include/* $(frameworkHeadersPath) && \
-  mv $(frameworkHeadersPath)/$(colladaVersion)/dom $(frameworkHeadersPath)/dom && \
-  find -E $(frameworkHeadersPath) -maxdepth 1 -type d -regex '.*[0-9]+\.[0-9]+' | xargs rm -r
-frameworkResourcesPath = $(framework)/Versions/$(libVersion)/Resources
-sedReplaceExpression := -e 's/(colladaVersionNoDots)/$(colladaVersionNoDots)/g' \
-                        -e 's/(domVersion)/$(domVersion)/g' \
-                        -e 's/(debugSuffix)/$(debugSuffix)/g'
-copyFrameworkResourcesCommand = cp -R make/macFrameworkResources/* $(frameworkResourcesPath) && \
-  sed $(sedReplaceExpression) make/macFrameworkResources/Info.plist > $(frameworkResourcesPath)/Info.plist && \
-  sed $(sedReplaceExpression) make/macFrameworkResources/English.lproj/InfoPlist.strings > $(frameworkResourcesPath)/English.lproj/InfoPlist.strings
+#targets += $(addprefix $(outPath),$(libName)$(debugSuffix).framework)
+#frameworkHeadersPath = $(framework)/Versions/$(libVersion)/Headers
+#copyFrameworkHeadersCommand = cp -R include/* $(frameworkHeadersPath) && \
+#  mv $(frameworkHeadersPath)/$(colladaVersion)/dom $(frameworkHeadersPath)/dom && \
+#  find -E $(frameworkHeadersPath) -maxdepth 1 -type d -regex '.*[0-9]+\.[0-9]+' | xargs rm -r
+#frameworkResourcesPath = $(framework)/Versions/$(libVersion)/Resources
+#sedReplaceExpression := -e 's/(colladaVersionNoDots)/$(colladaVersionNoDots)/g' \
+#                        -e 's/(domVersion)/$(domVersion)/g' \
+#                        -e 's/(debugSuffix)/$(debugSuffix)/g'
+#copyFrameworkResourcesCommand = cp -R make/macFrameworkResources/* $(frameworkResourcesPath) && \
+#  sed $(sedReplaceExpression) make/macFrameworkResources/Info.plist > $(frameworkResourcesPath)/Info.plist && \
+#  sed $(sedReplaceExpression) make/macFrameworkResources/English.lproj/InfoPlist.strings > $(frameworkResourcesPath)/English.lproj/InfoPlist.strings
+targets += $(addprefix $(outPath),$(libName).a)
 
 else ifeq ($(os),ps3)
 # On PS3 we build a static lib, since PS3 doesn't support shared libs
