@@ -109,4 +109,9 @@ endif
 endif
 endif
 
+ifeq ($(os),ps3)
+# PS3 doesn't support C++ locales, so tell boost not to use them
+ccFlags += -DBOOST_NO_STD_LOCALE
+endif
+
 include make/rules.mk
