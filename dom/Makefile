@@ -76,7 +76,7 @@ endif
 
 # Initialize the build variables
 define setBuildVar
-$(1)s := $(sort $(subst all,$(2),$($(1))))
+$(1)s := $(subst all,$(2),$($(1)))
 ifneq ($$(filter-out $(2),$$($(1)s)),)
 $$(error Invalid setting: $(1)=$($(1)))
 endif
