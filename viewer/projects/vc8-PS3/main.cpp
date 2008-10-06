@@ -163,7 +163,7 @@ bool COLLADA_Viewer::onInit(int argc, char **ppArgv)
 	InitFS();
 	Browser.Init();
 
-	psglLoadShaderLibrary("/dev_ms/shaders.bin");
+	psglLoadShaderLibrary("/app_home/shaders.bin");
 
 	// Initialize the renderer
 	_CrtRender.Init();
