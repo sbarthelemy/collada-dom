@@ -331,6 +331,18 @@ bool COLLADA_Viewer::onUpdate()
    if (-tolerrance < conditioned_X_1 && conditioned_X_1 < tolerrance) conditioned_X_1 = 0.0f;
    if (-tolerrance < conditioned_Y_1 && conditioned_Y_1 < tolerrance) conditioned_Y_1 = 0.0f;
 
+   float multiplier = 10.0f;
+   if (conditioned_X_0 != 0.0f || conditioned_Y_0 != 0.0f)
+   {
+	  _CrtRender.ActiveInstanceCamera->MoveOrbit(conditioned_X_0 * multiplier, conditioned_Y_0 * multiplier);
+	  CrtMatrixCopy(_CrtRender.ActiveInstanceCamera->transform, _CrtRender.ExtraCameraTransform);
+   }
+   if (conditioned_X_1 != 0.0f || conditioned_Y_1 != 0.0f)
+   {
+	  _CrtRender.ActiveInstanceCamera->SetPanAndTilt(conditioned_X_1 * multiplier, conditioned_Y_1 * multiplier);
+	  CrtMatrixCopy(_CrtRender.ActiveInstanceCamera->transform, _CrtRender.ExtraCameraTransform);
+   }
+
 #ifdef NO_BULLET
 #else
    if (mpPad->getRawBool(FWInput::Channel_Button_Triangle))
