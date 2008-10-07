@@ -235,7 +235,7 @@ CrtBool	CrtScene::Load( CrtChar * LFileName )
 	// load the load the geometry because there everything will be around that is
 	// needed for triangulating the geometry data.  
 	
-#if 1
+#if _WIN32
 	// Load the image for the default texture.
 	if ( !_CrtRender.GetLoadImages() )
 		return CrtFalse; 
