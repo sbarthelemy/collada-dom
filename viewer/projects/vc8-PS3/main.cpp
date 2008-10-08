@@ -52,6 +52,10 @@ private:
 #endif
 	//pad data 
 	FWInputDevice	*mpPad;
+	FWInputFilter	*mpInputX0;
+	FWInputFilter	*mpInputY0;
+	FWInputFilter	*mpInputX1;
+	FWInputFilter	*mpInputY1;
 
 	// FPS REPORTING
 	FWTimeVal		mLastTime;
@@ -210,6 +214,27 @@ bool COLLADA_Viewer::onInit(int argc, char **ppArgv)
 	  exit(0);
 	}
 
+	mpInputX0 = mpPad->bindFilter();
+	mpInputX0->setChannel(FWInput::Channel_XAxis_0);
+	mpInputX0->setGain( 1.0f );
+	mpInputX0->setDeadzone( 0.3f );
+
+	mpInputY0 = mpPad->bindFilter();
+	mpInputY0->setChannel(FWInput::Channel_YAxis_0);
+	mpInputY0->setGain( 1.0f );
+	mpInputY0->setDeadzone( 0.3f );
+
+	mpInputX1 = mpPad->bindFilter();
+	mpInputX1->setChannel(FWInput::Channel_XAxis_1);
+	mpInputX1->setGain( 1.0f );
+	mpInputX1->setDeadzone( 0.3f );
+
+	mpInputY1 = mpPad->bindFilter();
+	mpInputY1->setChannel(FWInput::Channel_YAxis_1);
+	mpInputY1->setGain( 1.0f );
+	mpInputY1->setDeadzone( 0.3f );
+
+
   	// initialize debug font library, then open console.
 	int ret;
 	CellDbgFontConfig cfg;
@@ -241,78 +266,68 @@ bool COLLADA_Viewer::onInit(int argc, char **ppArgv)
 }
 
 
-
 bool COLLADA_Viewer::onUpdate()
 {
 	float tolerrance = 0.01;
-	int delay = 20; /* delay numbers of onUpdate calls */
-	static int count = 0;
-	static bool delayon = false;
+	static float prevTime = 0;
 	bool result = FWGLApplication::onUpdate();
 
 	if (mRunning==false)
 	   return result;
 
-	if (delayon)
-	{
-	  count++;
-	  if (count>delay) {
-		count = 0;
-		delayon = false;
-	  }
-	} else if(mpPad->getRawBool(FWInput::Channel_Button_Select))
-	{
-	  _CrtRender.SetNextCamera();
-	  delayon = true;
-	  return result;
-	} else if(mpPad->getRawBool(FWInput::Channel_Button_L3))
-	{
-	   if (Browser.IsVisible())
-		   Browser.SetVisible(false);
-	   else
-		   Browser.SetVisible(true);
-	  delayon = true;
-	} else if(mpPad->getRawBool(FWInput::Channel_Button_R3))
-	{
-		if (togglewireframe) {
-			togglewireframe = false;
-		} else {
-			togglewireframe = true;
-		}
-	  delayon = true;
-	} else if(mpPad->getRawBool(FWInput::Channel_Button_Cross)) 
-	{
-		mCurrentFile = Browser.GetThumbnail(Browser.GetSelection())->GetDocument();
-		load_ok = _CrtRender.Load(mCurrentFile, NULL);
-		return result;
-	  delayon = true;
-	} else if(mpPad->getRawBool(FWInput::Channel_Button_Up))
-	{
-	   Browser.SelectPrev();
-	  delayon = true;
-	} else if(mpPad->getRawBool(FWInput::Channel_Button_Down))
-	{
-	   Browser.SelectNext();
-	  delayon = true;
-	} else if(mpPad->getRawBool(FWInput::Channel_Button_L2))
-	{  // zoom in
-	  _CrtRender.ZoomIn(-0.005f);
-	  CrtMatrixCopy(_CrtRender.ActiveInstanceCamera->transform, _CrtRender.ExtraCameraTransform);
-	//	  _CrtRender.ActiveInstanceCamera->ZoomTransform(-_CrtRender.GetAnimDelta()*PadYSpeed);
-	} else if(mpPad->getRawBool(FWInput::Channel_Button_L1))
-	{  // zoom out
-	  _CrtRender.ZoomIn(0.005f);
-	  CrtMatrixCopy(_CrtRender.ActiveInstanceCamera->transform, _CrtRender.ExtraCameraTransform);
-	//	  _CrtRender.ActiveInstanceCamera->ZoomTransform(_CrtRender.GetAnimDelta()*PadYSpeed);
+	FWTimeVal curTime = FWTime::getCurrentTime();
+	float elapse = (float)curTime - prevTime;
 
+	if (elapse > .15)	// Enough time passed?
+	{
+		prevTime = curTime;
+	
+		if(mpPad->getRawBool(FWInput::Channel_Button_Select))
+		{		
+			_CrtRender.SetNextCamera();
+			return result;
+    	} else if(mpPad->getRawBool(FWInput::Channel_Button_L3))
+		{
+			if (Browser.IsVisible())
+    		   Browser.SetVisible(false);
+			else
+			   Browser.SetVisible(true);
+		} else if(mpPad->getRawBool(FWInput::Channel_Button_R3))
+		{
+			if (togglewireframe) {
+				togglewireframe = false;
+    		} else {
+				togglewireframe = true;
+			}
+    	} else if(mpPad->getRawBool(FWInput::Channel_Button_Cross)) 
+		{
+			mCurrentFile = Browser.GetThumbnail(Browser.GetSelection())->GetDocument();
+			load_ok = _CrtRender.Load(mCurrentFile, NULL);
+			return result;
+	 	} else if(mpPad->getRawBool(FWInput::Channel_Button_Up))
+		{
+			Browser.SelectPrev();
+		} else if(mpPad->getRawBool(FWInput::Channel_Button_Down))
+		{
+			Browser.SelectNext();
+		} 
 	}
 
+	if(mpPad->getRawBool(FWInput::Channel_Button_L2))
+	{  // zoom in
+		_CrtRender.ZoomIn(-0.005f);
+		CrtMatrixCopy(_CrtRender.ActiveInstanceCamera->transform, _CrtRender.ExtraCameraTransform);
+	} else if(mpPad->getRawBool(FWInput::Channel_Button_L1))
+	{  // zoom out
+		_CrtRender.ZoomIn(0.005f);
+		CrtMatrixCopy(_CrtRender.ActiveInstanceCamera->transform, _CrtRender.ExtraCameraTransform);
+   	}
+	
 	if (togglewireframe) {
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	} else {
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	}
-
 
    // Get the values from the analog sticks
    float conditioned_X_0 = mpPad->getRawFloat(FWInput::Channel_XAxis_0);
@@ -320,16 +335,21 @@ bool COLLADA_Viewer::onUpdate()
    float conditioned_X_1 = mpPad->getRawFloat(FWInput::Channel_XAxis_1);
    float conditioned_Y_1 = mpPad->getRawFloat(FWInput::Channel_YAxis_1);
 
-   // Cube them to put a ramp on the value
-   conditioned_X_0 = conditioned_X_0 * conditioned_X_0 * conditioned_X_0;
-   conditioned_Y_0 = conditioned_Y_0 * conditioned_Y_0 * conditioned_Y_0;
-   conditioned_X_1 = conditioned_X_1 * conditioned_X_1 * conditioned_X_1;
-   conditioned_Y_1 = conditioned_Y_1 * conditioned_Y_1 * conditioned_Y_1;
-
    if (-tolerrance < conditioned_X_0 && conditioned_X_0 < tolerrance) conditioned_X_0 = 0.0f;
    if (-tolerrance < conditioned_Y_0 && conditioned_Y_0 < tolerrance) conditioned_Y_0 = 0.0f;
    if (-tolerrance < conditioned_X_1 && conditioned_X_1 < tolerrance) conditioned_X_1 = 0.0f;
    if (-tolerrance < conditioned_Y_1 && conditioned_Y_1 < tolerrance) conditioned_Y_1 = 0.0f;
+
+   float delta = 0.01;
+   conditioned_X_0 = mpInputX0 ? -mpInputX0->getFloatValue() : 0.f;
+   conditioned_Y_0 = mpInputY0 ? -mpInputY0->getFloatValue() : 0.f;
+   conditioned_X_1 = mpInputX1 ? -mpInputX1->getFloatValue() : 0.f;
+   conditioned_Y_1 = mpInputY1 ? -mpInputY1->getFloatValue() : 0.f;
+
+   conditioned_X_0 *= delta;
+   conditioned_Y_0 *= delta;
+   conditioned_X_1 *= delta;
+   conditioned_Y_1 *= delta;
 
    float multiplier = 10.0f;
    if (conditioned_X_0 != 0.0f || conditioned_Y_0 != 0.0f)
@@ -362,7 +382,6 @@ bool COLLADA_Viewer::onUpdate()
 	static const int CONS_PUTS_INTERVAL = 50;
 
 	if (frames % CONS_PUTS_INTERVAL == 0){
-//		cellDbgFontConsolePuts(mDbgFontID, mFiles[(frames / CONS_PUTS_INTERVAL) % CONS_NUM_STRINGS].c_str());
 	}
 
 	char title[1024];
@@ -410,7 +429,7 @@ void COLLADA_Viewer::onRender()
 	// report fps at appropriate interval
 	if (timeElapsed>=timeReport)
 	{
-		printf("FPS: %.2f\n",(frames-framesLastReport)*1.f/(float)(timeElapsed-timeLastReport));
+		//printf("FPS: %.2f\n",(frames-framesLastReport)*1.f/(float)(timeElapsed-timeLastReport));
 		timeReport+=REPORT_TIME;
 		timeLastReport=timeElapsed;
 		framesLastReport=frames;
