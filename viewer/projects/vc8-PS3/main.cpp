@@ -77,6 +77,7 @@ private:
 // instantiate the class
 COLLADA_Viewer app;
 bool togglewireframe = false;
+bool togglelighting = true;
 bool load_ok = false;
 // FPS REPORTING
 const float COLLADA_Viewer::REPORT_TIME = 5.0; 
@@ -268,7 +269,7 @@ bool COLLADA_Viewer::onInit(int argc, char **ppArgv)
 
 bool COLLADA_Viewer::onUpdate()
 {
-	float tolerrance = 0.01;
+	float tolerrance = 0.15;
 	static float prevTime = 0;
 	bool result = FWGLApplication::onUpdate();
 
@@ -278,55 +279,66 @@ bool COLLADA_Viewer::onUpdate()
 	FWTimeVal curTime = FWTime::getCurrentTime();
 	float elapse = (float)curTime - prevTime;
 
-	if (elapse > .15)	// Enough time passed?
+	if (elapse > tolerrance)	// Enough time passed?
 	{
 		prevTime = curTime;
-	
+
 		if(mpPad->getRawBool(FWInput::Channel_Button_Select))
-		{		
-			_CrtRender.SetNextCamera();
-			return result;
-    	} else if(mpPad->getRawBool(FWInput::Channel_Button_L3))
 		{
-			if (Browser.IsVisible())
-    		   Browser.SetVisible(false);
-			else
+		  _CrtRender.SetNextCamera();
+		  return result;
+		} else if(mpPad->getRawBool(FWInput::Channel_Button_L3))
+		{
+		   if (Browser.IsVisible())
+			   Browser.SetVisible(false);
+		   else
 			   Browser.SetVisible(true);
 		} else if(mpPad->getRawBool(FWInput::Channel_Button_R3))
 		{
 			if (togglewireframe) {
 				togglewireframe = false;
-    		} else {
+			} else {
 				togglewireframe = true;
 			}
-    	} else if(mpPad->getRawBool(FWInput::Channel_Button_Cross)) 
+		} else if(mpPad->getRawBool(FWInput::Channel_Button_Square)) 
+		{
+			if (togglelighting) {
+				togglelighting = false;
+			} else {
+				togglelighting = true;
+			}
+		} else if(mpPad->getRawBool(FWInput::Channel_Button_Cross)) 
 		{
 			mCurrentFile = Browser.GetThumbnail(Browser.GetSelection())->GetDocument();
 			load_ok = _CrtRender.Load(mCurrentFile, NULL);
 			return result;
-	 	} else if(mpPad->getRawBool(FWInput::Channel_Button_Up))
+		} else if(mpPad->getRawBool(FWInput::Channel_Button_Up))
 		{
-			Browser.SelectPrev();
+		   Browser.SelectPrev();
 		} else if(mpPad->getRawBool(FWInput::Channel_Button_Down))
 		{
-			Browser.SelectNext();
-		} 
+		   Browser.SelectNext();
+		}
 	}
-
+	
 	if(mpPad->getRawBool(FWInput::Channel_Button_L2))
 	{  // zoom in
-		_CrtRender.ZoomIn(-0.005f);
-		CrtMatrixCopy(_CrtRender.ActiveInstanceCamera->transform, _CrtRender.ExtraCameraTransform);
+	  _CrtRender.ZoomIn(-0.005f);
 	} else if(mpPad->getRawBool(FWInput::Channel_Button_L1))
 	{  // zoom out
-		_CrtRender.ZoomIn(0.005f);
-		CrtMatrixCopy(_CrtRender.ActiveInstanceCamera->transform, _CrtRender.ExtraCameraTransform);
+	  _CrtRender.ZoomIn(0.005f);
    	}
 	
 	if (togglewireframe) {
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	} else {
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	}
+
+	if (togglelighting) {
+		glEnable(GL_LIGHTING);
+	} else {
+		glDisable(GL_LIGHTING);
 	}
 
    // Get the values from the analog sticks
@@ -340,27 +352,25 @@ bool COLLADA_Viewer::onUpdate()
    if (-tolerrance < conditioned_X_1 && conditioned_X_1 < tolerrance) conditioned_X_1 = 0.0f;
    if (-tolerrance < conditioned_Y_1 && conditioned_Y_1 < tolerrance) conditioned_Y_1 = 0.0f;
 
-   float delta = 0.01;
+//   float delta = 0.01;
    conditioned_X_0 = mpInputX0 ? -mpInputX0->getFloatValue() : 0.f;
    conditioned_Y_0 = mpInputY0 ? -mpInputY0->getFloatValue() : 0.f;
    conditioned_X_1 = mpInputX1 ? -mpInputX1->getFloatValue() : 0.f;
    conditioned_Y_1 = mpInputY1 ? -mpInputY1->getFloatValue() : 0.f;
-
+/*
    conditioned_X_0 *= delta;
    conditioned_Y_0 *= delta;
    conditioned_X_1 *= delta;
    conditioned_Y_1 *= delta;
-
+*/
    float multiplier = 10.0f;
    if (conditioned_X_0 != 0.0f || conditioned_Y_0 != 0.0f)
    {
 	  _CrtRender.ActiveInstanceCamera->MoveOrbit(conditioned_X_0 * multiplier, conditioned_Y_0 * multiplier);
-	  CrtMatrixCopy(_CrtRender.ActiveInstanceCamera->transform, _CrtRender.ExtraCameraTransform);
    }
    if (conditioned_X_1 != 0.0f || conditioned_Y_1 != 0.0f)
    {
 	  _CrtRender.ActiveInstanceCamera->SetPanAndTilt(conditioned_X_1 * multiplier, conditioned_Y_1 * multiplier);
-	  CrtMatrixCopy(_CrtRender.ActiveInstanceCamera->transform, _CrtRender.ExtraCameraTransform);
    }
 
 #ifdef NO_BULLET
@@ -387,8 +397,8 @@ bool COLLADA_Viewer::onUpdate()
 	char title[1024];
 	const char * selectedfile = Browser.GetThumbnail(Browser.GetSelection())->GetDocument();
 	sprintf(title, "%s %s", "COLLADA Viewer", mCurrentFile);
-	cellDbgFontPuts(0.1f, 0.1f, 1.0f, 0xff00ffff, title);
-	cellDbgFontPuts(0.1f, 0.9f, 1.0f, 0xff00ffff, selectedfile);
+	cellDbgFontPuts(0.1f, 0.1f, 1.0f, 0xffffffff, title);
+	cellDbgFontPuts(0.1f, 0.9f, 1.0f, 0xffffffff, selectedfile);
 
 	Browser.onUpdate();
 	return result; 
