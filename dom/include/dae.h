@@ -24,7 +24,9 @@
 #pragma warning(push)
 #pragma warning(disable: 4180 4245)
 #endif
+#ifndef NO_BOOST
 #include <boost/filesystem/convenience.hpp>
+#endif
 #ifdef _MSC_VER
 #pragma warning(pop)
 #endif

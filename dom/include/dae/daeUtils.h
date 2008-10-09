@@ -66,6 +66,7 @@ namespace cdom {
     // / on other platforms
     DLLSPEC char getFileSeparator();
 
+#ifndef NO_BOOST
     // Returns system wide temporary directory.
     // Reads environment variable TMP.
     DLLSPEC const std::string& getSystemTmpDir();
@@ -79,6 +80,7 @@ namespace cdom {
     // generated directory name.
     // This directory will be deleted when DAE gets destroyed.
     DLLSPEC const std::string& getSafeTmpDir();
+#endif //NO_BOOST
 
     DLLSPEC int strcasecmp(const char* str1, const char* str2);
 	DLLSPEC std::string tolower(const std::string& s);
