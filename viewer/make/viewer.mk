@@ -137,6 +137,7 @@ libOpts += -lm -lio_stub -lcgc -lgcm_cmd -lgcm_sys_stub -lsysmodule_stub -lresc_
 
 libOpts += -lcollada14dom -lcollada14rt
 
+outPath := ./bin/
 targets := $(outPath)viewer$(exeSuffix)
 
 endif
@@ -146,6 +147,7 @@ endif
 
 ifeq ($(os),ps3)
 # On PS3 we need to make a .self from the .elf
+ccFlags += -DNO_BOOST -DNO_ZAE
 postCreateExeCommand := make_fself $(targets) $(targets:.elf=.self)
 endif
 

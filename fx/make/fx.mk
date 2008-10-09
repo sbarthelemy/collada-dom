@@ -81,7 +81,8 @@ includeOpts += -I../dom/include/dae
 includeOpts += -I../dom/include/1.4
 includeOpts += -I../include
 ccFlags += -DCFX_PLATFORM_INCLUDE=\"cfxPS3.h\"
-ccFlags += -DDEFAULT_CG_PLATFORM=\"PC-OGL\"
+ccFlags += -DDEFAULT_CG_PLATFORM=\"PC-OGL\" 
+ccFlags += -DNO_BOOST -DNO_ZAE
 targets += $(addprefix $(outPath),$(libName).a)
 endif
 endif

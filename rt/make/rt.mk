@@ -94,6 +94,7 @@ ifeq ($(os),ps3)
 ccFlags += -DCFX_PLATFORM_INCLUDE=\"cfxPS3.h\"
 ccFlags += -DCRT_PLATFORM_INCLUDE=\"CrtPS3.h\"
 ccFlags += -DSN_TARGET_PS3
+ccFlags += -DNO_BOOST -DNO_ZAE
 targets += $(addprefix $(outPath),$(libName).a)
 endif
 endif
