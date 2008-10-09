@@ -142,7 +142,7 @@ char cdom::getFileSeparator() {
     }
     return '/';
 }
-
+#ifndef NO_BOOST
 const string& cdom::getSystemTmpDir() {
 #ifdef WIN32
     static string tmpDir = string(getenv("TMP")) + getFileSeparator();
@@ -181,6 +181,7 @@ const string& cdom::getSafeTmpDir() {
     static string tmpDir = getSystemTmpDir() + getRandomFileName() + getFileSeparator();
     return tmpDir;
 }
+#endif //NO_BOOST
 
 int cdom::strcasecmp(const char* str1, const char* str2) {
 #ifdef _MSC_VER
