@@ -158,7 +158,7 @@ CrtBool	CrtScene::Load( CrtChar * LFileName )
 	// Instantiate the reference implementation
 	m_collada = new DAE;
 
-	CrtPrint("COLLADA_DOM Load Started \n" ); 
+	CrtPrint("COLLADA_DOM Load Started %s\n", LFileName); 
 	// load with full path 
 	CrtInt res = m_collada->load(LFileName);
 	if (res != DAE_OK)
@@ -342,9 +342,8 @@ CrtBool	CrtScene::Load( CrtChar * LFileName )
 		LightInstances.push_back(instanceLight);
 	}
 
-	if(CameraInstances.empty() && SceneRoot)
 	{
-		CrtPrint( "CrtScene, no cameras were loaded so I'm creating a default camera\n");
+		CrtPrint( "CrtScene, always create a default camera and it is the first camera to use\n");
 		// new CrtCamera
 		CrtCamera * default_camera = CrtNew( CrtCamera ); 
 		default_camera->SetName( "no_camera_in_scene_default_camera" );	
@@ -352,7 +351,6 @@ CrtBool	CrtScene::Load( CrtChar * LFileName )
 		default_camera->SetZNear(1.0);
 		default_camera->SetZFar(10000.0);
 		Cameras.push_back(default_camera);
-		
 
 		// new CrtNode
 		CrtPrint( "CrtScene, no instance_camera found creating a node with an instance\n");
@@ -380,10 +378,6 @@ CrtBool	CrtScene::Load( CrtChar * LFileName )
 		instanceCamera->Parent			= camNode;
 
 		CameraInstances.push_back(instanceCamera);
-		_CrtRender.SetActiveInstanceCamera(instanceCamera);
-		_CrtRender.DefaultInstanceCamera = instanceCamera;
-	} else {
-		CrtInstanceCamera *instanceCamera = CameraInstances[0];
 		_CrtRender.SetActiveInstanceCamera(instanceCamera);
 		_CrtRender.DefaultInstanceCamera = instanceCamera;
 	}

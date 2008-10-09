@@ -75,17 +75,16 @@ CrtVoid	CrtRender::SetInitialPath( const CrtChar * path )
 
 	CrtCpy(BasePath, path );
 };
+
+static CrtUInt CurrentCamNumber = 0;
+
 void CrtRender::SetNextCamera()
 {
-	static CrtUInt CurrentCamNumber = 0;
-
 	// Go to the next camera, if we run out of cameras go back to the first one
 	CurrentCamNumber++;
-	if(CurrentCamNumber >= GetScene()->GetCameraInstanceCount())
+	CrtUInt count = GetScene()->GetCameraInstanceCount();
+	if(CurrentCamNumber >= count)
 		CurrentCamNumber = 0;
-
-	// ExtraCameraTransform lets the user move the camera from it's original position in the COLLADA file
-	CrtMatrixLoadIdentity(ExtraCameraTransform);
 
 	// Get the camera instance we want and set it as the active camera
 	CrtInstanceCamera *inst = GetScene()->GetCameraInstance(CurrentCamNumber);
@@ -250,20 +249,11 @@ CrtBool CrtRender::Render()
 	update_time.QuadPart = update_time.QuadPart - temp_time.QuadPart;
 	QueryPerformanceCounter(&temp_time);
 #endif
-	// The ExtraCameraTransform matrix allows the user to move a camera away from it's default position
-	// so you can look around.  This transform is setup by the application (main.cpp) and is initialized
-	// to identity.  We apply it to LocalToWorld matrix of the camera instance's parent node.  Must do
-	// this before calling SetInstanceCamera because that's what pushes the camera matrix into GL.
 
 	CrtInstanceCamera *instanceCamera = _CrtRender.GetActiveInstanceCamera();
-
 	if (instanceCamera)
 	{
-//		if (ActiveInstanceCamera == DefaultInstanceCamera)
-//			CrtMatrixCopy((float *)instanceCamera->transform, (float *)instanceCamera->Parent->GetLocalToWorldMatrix());
-//		else
-			CrtMatrix4x4Mult( ExtraCameraTransform, (float *)instanceCamera->Parent->GetLocalToWorldMatrix());	
-
+		CrtMatrix4x4Mult((float *)instanceCamera->transform, (float *)instanceCamera->Parent->GetLocalToWorldMatrix());
 		CrtMatrixLoadIdentity( (float *)instanceCamera->Parent->GetInverseLocalToWorldMatrix() ); 
 		CrtMatrixLoadIdentity( (float *)instanceCamera->Parent->GetInverseTransposeLocalToWorldMatrix() ); 
 		CrtMatrix3x4Invert( (float *)instanceCamera->Parent->GetLocalToWorldMatrix(), (float *)instanceCamera->Parent->GetInverseLocalToWorldMatrix());
@@ -479,8 +469,6 @@ CrtVec3f * CrtRender::GetFusedGeometryPoints( CrtUInt &NumPoints )
 		LoadImages		= CrtTrue; 
 		LoadGeometry	= CrtTrue; 
 		ShowHiearchy	= CrtFalse; 
-
-		CrtMatrixLoadIdentity(ExtraCameraTransform);
 	}
 	CrtVoid CrtRender::Init()
 	{
@@ -540,7 +528,6 @@ CrtVec3f * CrtRender::GetFusedGeometryPoints( CrtUInt &NumPoints )
 		if (instance_camera)
 		{
 			instance_camera->ZoomTransform(zoom);
-			CrtMatrixCopy(instance_camera->transform, _CrtRender.ExtraCameraTransform);
 			printf("zoom=%f\n", zoom);
 		}
 	}

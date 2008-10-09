@@ -126,8 +126,6 @@ public:
 	CrtInstanceCamera	*ActiveInstanceCamera;  /**<< Pointer to the active camera instance in the scene */
 	CrtInstanceCamera	*DefaultInstanceCamera;  /**<< Pointer to the default camera instance in the scene */
 
-	CrtMatrix ExtraCameraTransform;  /**< Multiply with camera transform before rendering, lets user move camera */
-
 	CrtRender();
 
 	CrtVoid Init();
