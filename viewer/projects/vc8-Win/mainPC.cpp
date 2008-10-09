@@ -236,7 +236,7 @@ void ProcessInput( bool	keys[] )
 	// These keys that do a function as long as they are held down, so we don't clear "keys".
 	// Remember to scale these functions by time!
 
-	if ( keys[VK_UP])
+/*	if ( keys[VK_UP])
 	{
 		// UI code to rotate camera up
 		CrtMatrix4x4RotateAngleAxis(_CrtRender.ExtraCameraTransform, 1.0f, 0.0f, 0.0f, _CrtRender.GetAnimDelta()  * KeyboardRotateSpeed);			
@@ -259,15 +259,12 @@ void ProcessInput( bool	keys[] )
 		// UI code to rotate camera right
 		CrtMatrix4x4RotateAngleAxis(_CrtRender.ExtraCameraTransform, 0.0f, 1.0f, 0.0f, _CrtRender.GetAnimDelta()  * -KeyboardTranslateSpeed);			
 	}
-
-	if ( keys['R'] || keys['S'])
+*/
+	if (keys['S'])
 	{
 		// UI code to move the camera closer
 		if (_CrtRender.ActiveInstanceCamera ==_CrtRender.DefaultInstanceCamera && _CrtRender.ActiveInstanceCamera ) {
 			_CrtRender.DefaultInstanceCamera->MoveTransform(_CrtRender.GetAnimDelta() * KeyboardTranslateSpeed, 0.0f, 0.0f);
-			CrtMatrixCopy(_CrtRender.ActiveInstanceCamera->transform, _CrtRender.ExtraCameraTransform);
-		} else {
-			CrtMatrixTranslate(_CrtRender.ExtraCameraTransform, 0.0, 0.0, _CrtRender.GetAnimDelta() * KeyboardTranslateSpeed);
 		}
 	}
 
@@ -276,53 +273,38 @@ void ProcessInput( bool	keys[] )
 		// UI code to move the camera farther away
 		if (_CrtRender.ActiveInstanceCamera ==_CrtRender.DefaultInstanceCamera && _CrtRender.ActiveInstanceCamera ) {
 			_CrtRender.DefaultInstanceCamera->MoveTransform(- _CrtRender.GetAnimDelta() * KeyboardTranslateSpeed, 0.0f, 0.0f);
-			CrtMatrixCopy(_CrtRender.ActiveInstanceCamera->transform, _CrtRender.ExtraCameraTransform);
-		} else {
-			CrtMatrixTranslate(_CrtRender.ExtraCameraTransform, 0.0, 0.0, _CrtRender.GetAnimDelta() * -KeyboardTranslateSpeed);
 		}
 	}
 
-	if ( keys['T'] || keys[VK_SPACE])
+	if (keys[VK_SPACE])
 	{
 		// UI code to move the camera farther up
 		if (_CrtRender.ActiveInstanceCamera ==_CrtRender.DefaultInstanceCamera, _CrtRender.ActiveInstanceCamera ) {
 			_CrtRender.DefaultInstanceCamera->MoveTransform(0.0f, 0.0f, _CrtRender.GetAnimDelta() * KeyboardTranslateSpeed);
-			CrtMatrixCopy(_CrtRender.ActiveInstanceCamera->transform, _CrtRender.ExtraCameraTransform);
-		} else {
-			CrtMatrixTranslate(_CrtRender.ExtraCameraTransform, 0.0, _CrtRender.GetAnimDelta() * KeyboardTranslateSpeed, 0.0);
 		}
 	}
 
-	if ( keys['G'] || keys['X'])
+	if (keys['X'])
 	{
 		// UI code to move the camera farther down
 		if (_CrtRender.ActiveInstanceCamera ==_CrtRender.DefaultInstanceCamera && _CrtRender.ActiveInstanceCamera) {
 			_CrtRender.DefaultInstanceCamera->MoveTransform(0.0f, 0.0f, - _CrtRender.GetAnimDelta() * KeyboardTranslateSpeed);
-			CrtMatrixCopy(_CrtRender.ActiveInstanceCamera->transform, _CrtRender.ExtraCameraTransform);
-		} else {
-			CrtMatrixTranslate(_CrtRender.ExtraCameraTransform, 0.0, _CrtRender.GetAnimDelta() * -KeyboardTranslateSpeed, 0.0);
 		}
 	}
 
-	if ( keys['Y'] || keys['D'])
+	if (keys['D'])
 	{
 		// UI code to move the camera farther right
 		if (_CrtRender.ActiveInstanceCamera ==_CrtRender.DefaultInstanceCamera && _CrtRender.ActiveInstanceCamera) {
 			_CrtRender.DefaultInstanceCamera->MoveTransform(0.0f, - _CrtRender.GetAnimDelta() * KeyboardTranslateSpeed, 0.0f);
-			CrtMatrixCopy(_CrtRender.ActiveInstanceCamera->transform, _CrtRender.ExtraCameraTransform);
-		} else {
-			CrtMatrixTranslate(_CrtRender.ExtraCameraTransform, _CrtRender.GetAnimDelta() * KeyboardTranslateSpeed, 0.0, 0.0);
 		}
 	}
 
-	if ( keys['H'] || keys['A'])
+	if (keys['A'])
 	{
 		// UI code to move the camera farther left
 		if (_CrtRender.ActiveInstanceCamera ==_CrtRender.DefaultInstanceCamera && _CrtRender.ActiveInstanceCamera) {
 			_CrtRender.DefaultInstanceCamera->MoveTransform(0.0f, _CrtRender.GetAnimDelta() * KeyboardTranslateSpeed, 0.0f);
-			CrtMatrixCopy(_CrtRender.ActiveInstanceCamera->transform, _CrtRender.ExtraCameraTransform);
-		} else {
-			CrtMatrixTranslate(_CrtRender.ExtraCameraTransform, _CrtRender.GetAnimDelta() * -KeyboardTranslateSpeed, 0.0, 0.0);
 		}
 	}
 
@@ -348,10 +330,7 @@ void ProcessInput( bool	keys[] )
 }
 //----------------------------------------------------------------------------------------------------
 // The remainder of this code is windows specific, to see how the UI is implemented look for comments
-// marked "UI".  To manipulate the camera you just use CrtMatrixTranslate and CrtMatrix4x4RotateAngleAxis
-// to modify the transform matrix in _CrtRender.ExtraCameraTransform.  This transform is concatenated 
-// with the camera right before rendering starts.  I recommend you always reset this matrix when 
-// changing cameras to prevent users from getting lost.
+// marked "UI".
 //----------------------------------------------------------------------------------------------------
 
 LRESULT CALLBACK WndProc(	HWND	hWnd,			
@@ -421,8 +400,7 @@ LRESULT CALLBACK WndProc(	HWND	hWnd,
 			{
 				float gcWheelDelta = (short) HIWORD(wParam);
 				_CrtRender.ZoomIn((CrtFloat) (-gcWheelDelta * 0.02));
-	//			_CrtRender.ActiveInstanceCamera->ZoomTransform(-gcWheelDelta * MouseWheelSpeed);
-				CrtMatrixCopy(_CrtRender.ActiveInstanceCamera->transform, _CrtRender.ExtraCameraTransform);
+//				CrtMatrixCopy(_CrtRender.ActiveInstanceCamera->transform, _CrtRender.ExtraCameraTransform);
 				return 0;
 			}
 		}
@@ -449,17 +427,7 @@ LRESULT CALLBACK WndProc(	HWND	hWnd,
 			{
 				if(lastLeft && _CrtRender.ActiveInstanceCamera)
 				{
-/*					// Figure how much the mouse moved and rotate
-					if (_CrtRender.ActiveInstanceCamera==_CrtRender.DefaultInstanceCamera) {
-						_CrtRender.ActiveInstanceCamera->SetPanAndTilt((lastx - (float)x) * MouseRotateSpeed, (lasty - (float)y) * MouseRotateSpeed);
-						CrtMatrixCopy(_CrtRender.ActiveInstanceCamera->transform, _CrtRender.ExtraCameraTransform);
-					} else {
-						CrtMatrix4x4RotateAngleAxis(_CrtRender.ExtraCameraTransform, 0.0f, 1.0f, 0.0f, (lastx - (float)x) * MouseRotateSpeed);			
-						CrtMatrix4x4RotateAngleAxis(_CrtRender.ExtraCameraTransform, 1.0f, 0.0f, 0.0f, (lasty - (float)y) * MouseRotateSpeed);			
-					}
-*/
 					_CrtRender.ActiveInstanceCamera->SetPanAndTilt((lastx - x) * MouseRotateSpeed, (lasty - y) * MouseRotateSpeed);
-					CrtMatrixCopy(_CrtRender.ActiveInstanceCamera->transform, _CrtRender.ExtraCameraTransform);
 					lastx = x;
 					lasty = y;
 				}
@@ -481,7 +449,6 @@ LRESULT CALLBACK WndProc(	HWND	hWnd,
 				if(lastMiddle && _CrtRender.ActiveInstanceCamera)
 				{
 					_CrtRender.ActiveInstanceCamera->MoveOrbit((lastx - x) * MouseTranslateSpeed, - (lasty - y) * MouseTranslateSpeed);
-					CrtMatrixCopy(_CrtRender.ActiveInstanceCamera->transform, _CrtRender.ExtraCameraTransform);
 					lastx = x;
 					lasty = y;
 				}
@@ -500,8 +467,6 @@ LRESULT CALLBACK WndProc(	HWND	hWnd,
 				if(lastRight && _CrtRender.ActiveInstanceCamera)
 				{
 					_CrtRender.ActiveInstanceCamera->MoveOrbit((lastx - x) * MouseTranslateSpeed, - (lasty - y) * MouseTranslateSpeed);
-//					CrtMatrixTranslate(_CrtRender.ExtraCameraTransform, (lastx - (float)x) * -MouseTranslateSpeed, (lasty - (float)y) * MouseTranslateSpeed, 0.0f);
-					CrtMatrixCopy(_CrtRender.ActiveInstanceCamera->transform, _CrtRender.ExtraCameraTransform);
 					lastx = x;
 					lasty = y;
 				}
