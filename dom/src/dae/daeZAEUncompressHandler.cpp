@@ -304,4 +304,4 @@ bool daeZAEUncompressHandler::checkAndExtractInternalArchive( const std::string&
     return !error;
 }
 
-#endif
+#endif //NO_ZAE
