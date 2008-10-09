@@ -39,7 +39,6 @@ Overview of Collada Viewer package	(ColladaPackage.zip)
 |     +-viewer.mk
 |
 |
-+--license.txt
 +--Makefile                 Makefile to build Collada Viewer and the necessary libraries
 +--Readme.txt				This file
 
@@ -80,13 +79,15 @@ Building Collada Viewer with MinGW/MSYS	and Linux
 Collada Viewer button usage
 ===========================
 
-Up			Navigate the document broswer upward
-Down 		Navigate the document broswer downward
-Cross		Load the document browser selected Collada document
-Select	  	Next camera view
-L1			Zoom out, move camera away from the focus point
-L2			Zoom in, move camera closer to the focus point
-L3			Toggle Browser thumbnail display
-R3			Toggle wireframe display
+Up	        Navigate the document broswer upward
+Down        Navigate the document broswer downward
+Cross       Load the document browser selected Collada document
+Select      Next camera view
+L1          Zoom out, move camera away from the focus point
+L2          Zoom in, move camera closer to the focus point
+L3          Toggle Browser thumbnail display
+R3          Toggle wireframe display
 
+Left analog stick	Move camera and focus point to the up, down, left, right
+Right analog stick 	Rotate camera up, down, left right
 
