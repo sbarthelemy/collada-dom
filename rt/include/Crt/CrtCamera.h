@@ -27,6 +27,7 @@ public:
 	{
 		x=0; y=0; z=0;
 		pan=0; tilt=0; zoom=0;
+		CrtMatrixLoadIdentity(transform);
 	};
 	CrtNode		*Parent;			/**<< Node where this instance was instantiated */
 	CrtCamera	*AbstractCamera;	/**<< The abstract camera where the cam parameters are stored*/
@@ -58,11 +59,6 @@ public:
 	}
 	void		ZoomTransform(CrtFloat zoomz) 
 	{
-//		SetTransform();		
-//		CrtMatrixTranslate(transform, 0.0f, 0.0f, - zoom);
-//		x = transform[M30];
-//		y = transform[M31];
-//		z = transform[M32];
 		zoom+=zoomz;
 		SetTransform();
 	}
