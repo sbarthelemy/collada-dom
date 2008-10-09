@@ -1,3 +1,4 @@
+#ifndef NO_ZAE
 #include <fstream>
 #include <dae.h>
 #include <dae/daeErrorHandler.h>
@@ -302,3 +303,5 @@ bool daeZAEUncompressHandler::checkAndExtractInternalArchive( const std::string&
 
     return !error;
 }
+
+#endif
