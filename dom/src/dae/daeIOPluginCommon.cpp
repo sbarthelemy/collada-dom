@@ -14,7 +14,9 @@
 #include <dae/daeMetaElement.h>
 #include <dae/daeErrorHandler.h>
 #include <dae/daeMetaElementAttribute.h>
+#ifndef NO_ZAE
 #include <dae/daeZAEUncompressHandler.h>
+#endif 
 
 using namespace std;
 
@@ -62,6 +64,27 @@ daeInt daeIOPluginCommon::read(const daeURI& uri, daeString docBuffer)
             readFromMemory(docBuffer, fileURI) :
             readFromFile(fileURI); // Load from URI
 
+#ifdef NO_ZAE
+
+	if (!domObject) {
+		string msg = docBuffer ?
+			"Failed to load XML document from memory\n" :
+			string("Failed to load ") + fileURI.str() + "\n";
+		daeErrorHandler::get()->handleError(msg.c_str());
+		return DAE_ERR_BACKEND_IO;
+	}
+
+	// Insert the document into the database, the Database will keep a ref on the main dom, so it won't get deleted
+	// until we clear the database
+
+	daeDocument *document = NULL;
+
+	int res = database->insertDocument(fileURI.getURI(),domObject,&document);
+	if (res!= DAE_OK)
+		return res;
+
+#else
+
     bool zaeRoot = false;
     string extractedURI = "";
     if (!domObject) {
@@ -99,8 +122,19 @@ daeInt daeIOPluginCommon::read(const daeURI& uri, daeString docBuffer)
     if (res!= DAE_OK)
         return res;
 
-    return DAE_OK;
+#endif
+
+	return DAE_OK;
 }
+
+
+
+
+
+
+
+
+
 
 daeElementRef daeIOPluginCommon::beginReadElement(daeElement* parentElement,
 																									daeString elementName,
