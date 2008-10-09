@@ -111,7 +111,7 @@ endif
 
 ifeq ($(os),ps3)
 # PS3 doesn't support C++ locales, so tell boost not to use them
-ccFlags += -DBOOST_NO_STD_LOCALE
+ccFlags += -DBOOST_NO_STD_LOCALE -DNO_BOOST -DNO_ZAE
 endif
 
 include make/rules.mk
