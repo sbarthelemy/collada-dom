@@ -19,7 +19,7 @@
 
 #include <gl\gl.h>
 #include <gl\glu.h>
-#include <gl\glaux.h>
+//#include <gl\glaux.h>
 
 extern CGcontext	cgContext;
 extern CGprofile	cgVertexProfile, cgFragmentProfile;

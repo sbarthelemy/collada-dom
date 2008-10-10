@@ -12,7 +12,7 @@
 #include <gl/gl.h>
 #include <gl/glext.h>
 #include <gl/glu.h>			
-#include <gl/glaux.h>	
+//#include <gl/glaux.h>	
 //#ifndef _LIB
 #include <Cg/cg.h>
 #include <Cg/cgGL.h>
