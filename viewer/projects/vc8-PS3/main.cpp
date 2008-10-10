@@ -270,19 +270,18 @@ bool COLLADA_Viewer::onInit(int argc, char **ppArgv)
 bool COLLADA_Viewer::onUpdate()
 {
 	float tolerrance = 0.15;
-	static float prevTime = 0;
+	static float buttonTime = 0;
+	static float cameraTime = 0;
 	bool result = FWGLApplication::onUpdate();
 
 	if (mRunning==false)
 	   return result;
 
 	FWTimeVal curTime = FWTime::getCurrentTime();
-	float elapse = (float)curTime - prevTime;
 
-	if (elapse > tolerrance)	// Enough time passed?
+	if ((float)curTime - buttonTime > 0.15)	// execute these control base on time elapse, not frame rate
 	{
-		prevTime = curTime;
-
+		buttonTime = curTime;
 		if(mpPad->getRawBool(FWInput::Channel_Button_Select))
 		{
 		  _CrtRender.SetNextCamera();
@@ -320,6 +319,36 @@ bool COLLADA_Viewer::onUpdate()
 		   Browser.SelectNext();
 		}
 	}
+
+	if ((float)curTime - cameraTime > 0.05)	// execute these control base on time elapse, not frame rate
+	{
+		cameraTime = curTime;
+			   // Get the values from the analog sticks
+	   float conditioned_X_0 = mpPad->getRawFloat(FWInput::Channel_XAxis_0);
+	   float conditioned_Y_0 = mpPad->getRawFloat(FWInput::Channel_YAxis_0);
+	   float conditioned_X_1 = mpPad->getRawFloat(FWInput::Channel_XAxis_1);
+	   float conditioned_Y_1 = mpPad->getRawFloat(FWInput::Channel_YAxis_1);
+
+	   if (-tolerrance < conditioned_X_0 && conditioned_X_0 < tolerrance) conditioned_X_0 = 0.0f;
+	   if (-tolerrance < conditioned_Y_0 && conditioned_Y_0 < tolerrance) conditioned_Y_0 = 0.0f;
+	   if (-tolerrance < conditioned_X_1 && conditioned_X_1 < tolerrance) conditioned_X_1 = 0.0f;
+	   if (-tolerrance < conditioned_Y_1 && conditioned_Y_1 < tolerrance) conditioned_Y_1 = 0.0f;
+
+	   conditioned_X_0 = mpInputX0 ? -mpInputX0->getFloatValue() : 0.f;
+	   conditioned_Y_0 = mpInputY0 ? -mpInputY0->getFloatValue() : 0.f;
+	   conditioned_X_1 = mpInputX1 ? -mpInputX1->getFloatValue() : 0.f;
+	   conditioned_Y_1 = mpInputY1 ? -mpInputY1->getFloatValue() : 0.f;
+
+	   float multiplier = 10.0f;
+	   if (conditioned_X_0 != 0.0f || conditioned_Y_0 != 0.0f)
+	   {
+		  _CrtRender.ActiveInstanceCamera->MoveOrbit(conditioned_X_0 * multiplier, conditioned_Y_0 * multiplier);
+	   }
+	   if (conditioned_X_1 != 0.0f || conditioned_Y_1 != 0.0f)
+	   {
+		  _CrtRender.ActiveInstanceCamera->SetPanAndTilt(conditioned_X_1 * multiplier, conditioned_Y_1 * multiplier);
+	   }
+	}
 	
 	if(mpPad->getRawBool(FWInput::Channel_Button_L2))
 	{  // zoom in
@@ -341,37 +370,6 @@ bool COLLADA_Viewer::onUpdate()
 		glDisable(GL_LIGHTING);
 	}
 
-   // Get the values from the analog sticks
-   float conditioned_X_0 = mpPad->getRawFloat(FWInput::Channel_XAxis_0);
-   float conditioned_Y_0 = mpPad->getRawFloat(FWInput::Channel_YAxis_0);
-   float conditioned_X_1 = mpPad->getRawFloat(FWInput::Channel_XAxis_1);
-   float conditioned_Y_1 = mpPad->getRawFloat(FWInput::Channel_YAxis_1);
-
-   if (-tolerrance < conditioned_X_0 && conditioned_X_0 < tolerrance) conditioned_X_0 = 0.0f;
-   if (-tolerrance < conditioned_Y_0 && conditioned_Y_0 < tolerrance) conditioned_Y_0 = 0.0f;
-   if (-tolerrance < conditioned_X_1 && conditioned_X_1 < tolerrance) conditioned_X_1 = 0.0f;
-   if (-tolerrance < conditioned_Y_1 && conditioned_Y_1 < tolerrance) conditioned_Y_1 = 0.0f;
-
-//   float delta = 0.01;
-   conditioned_X_0 = mpInputX0 ? -mpInputX0->getFloatValue() : 0.f;
-   conditioned_Y_0 = mpInputY0 ? -mpInputY0->getFloatValue() : 0.f;
-   conditioned_X_1 = mpInputX1 ? -mpInputX1->getFloatValue() : 0.f;
-   conditioned_Y_1 = mpInputY1 ? -mpInputY1->getFloatValue() : 0.f;
-/*
-   conditioned_X_0 *= delta;
-   conditioned_Y_0 *= delta;
-   conditioned_X_1 *= delta;
-   conditioned_Y_1 *= delta;
-*/
-   float multiplier = 10.0f;
-   if (conditioned_X_0 != 0.0f || conditioned_Y_0 != 0.0f)
-   {
-	  _CrtRender.ActiveInstanceCamera->MoveOrbit(conditioned_X_0 * multiplier, conditioned_Y_0 * multiplier);
-   }
-   if (conditioned_X_1 != 0.0f || conditioned_Y_1 != 0.0f)
-   {
-	  _CrtRender.ActiveInstanceCamera->SetPanAndTilt(conditioned_X_1 * multiplier, conditioned_Y_1 * multiplier);
-   }
 
 #ifdef NO_BULLET
 #else
