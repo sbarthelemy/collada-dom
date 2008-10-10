@@ -93,7 +93,7 @@ ifeq ($(os),ps3)
 # On PS3 we build a static lib, since PS3 doesn't support shared libs
 ccFlags += -DCFX_PLATFORM_INCLUDE=\"cfxPS3.h\"
 ccFlags += -DCRT_PLATFORM_INCLUDE=\"CrtPS3.h\"
-ccFlags += -DSN_TARGET_PS3
+ccFlags += -DSN_TARGET_PS3 -DCRT_WORDS_BIGENDIAN
 ccFlags += -DNO_BOOST -DNO_ZAE
 targets += $(addprefix $(outPath),$(libName).a)
 endif
