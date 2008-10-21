@@ -96,14 +96,16 @@ includeOpts += -I$(PS3_SDK_ROOT)/samples/fw/include -I$(PS3_SDK_ROOT)/samples/fw
 
 includeOpts += -Iprojects/vc8-PS3
 
-libOpts += -L../rt/build/ps3-1.4
-libOpts += -lcollada14rt
 
-libOpts += -L../fx/build/ps3-1.4
-libOpts += -lcollada14fx
+libOpts += -L../rt/build/ps3-1.4$(debugSuffix)
+libOpts += -lcollada14rt$(debugSuffix)
 
-libOpts += -L../dom/build/ps3-1.4
-libOpts += -lcollada14dom
+libOpts += -L../fx/build/ps3-1.4$(debugSuffix)
+libOpts += -lcollada14fx$(debugSuffix)
+
+libOpts += -L../dom/build/ps3-1.4$(debugSuffix)
+libOpts += -lcollada14dom$(debugSuffix)
+
 
 includeOpts += -I../dom/external-libs/pcre
 libOpts += $(addprefix ../dom/external-libs/pcre/lib/$(buildID)/,libpcrecpp.a libpcre.a )
@@ -114,7 +116,6 @@ libOpts += -ltinyxml
 libOpts += -L../rt/external-libs/bullet/lib/$(os)
 libOpts += -lbullet
 
-#libOpts += -ldom-d -lfx-d -lrt-d -lbullet-d
 
 ccFlags += -DSN_TARGET_PS3
 ccFlags += -D_DEBUG
@@ -134,8 +135,6 @@ libOpts += -L$(PS3_SDK_ROOT)/target/ppu/lib/
 libOpts += -L$(PS3_SDK_ROOT)/samples/fw
 libOpts += -lfw -lPSGL -lPSGLU -lPSGLFX -lPSGLcgc
 libOpts += -lm -lio_stub -lcgc -lgcm_cmd -lgcm_sys_stub -lsysmodule_stub -lresc_stub -lusbd_stub -lfs_stub -lsysutil_stub -ldbgfont 
-
-libOpts += -lcollada14dom -lcollada14rt
 
 outPath := ./bin/
 targets := $(outPath)viewer$(exeSuffix)
