@@ -669,7 +669,10 @@ int triangulate(DAE * _dae)
 	{
 		// Find the next geometry element
 		domGeometry *thisGeometry;
-		error = _dae->getDatabase()->getElement((daeElement**)&thisGeometry,currentGeometry, NULL, "geometry");
+//		error = _dae->getDatabase()->getElement((daeElement**)&thisGeometry,currentGeometry, NULL, "geometry");
+		daeElement * element = 0;
+		error = _dae->getDatabase()->getElement(&element,currentGeometry, NULL, "geometry");
+		thisGeometry = (domGeometry *) element;
 
 		// Get the mesh out of the geometry
 		domMesh *thisMesh = thisGeometry->getMesh();
