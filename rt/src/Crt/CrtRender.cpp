@@ -328,7 +328,9 @@ CrtVoid	CrtRender::UpdateDelta()
 		nbrFrames = 0; 
 
 		UpdatedOnce = CrtTrue; 
+#if 0	
 		CrtPrint(" FPS %f Time %f\n", fps, time );
+#endif
 #ifdef _WIN32  // !!!GAC temporary windows only performance timing code
 		LARGE_INTEGER frequency;
 		QueryPerformanceFrequency(&frequency);
@@ -510,7 +512,9 @@ CrtVec3f * CrtRender::GetFusedGeometryPoints( CrtUInt &NumPoints )
 		CrtFloat zoom_height = max_hight * (CrtFloat) 1.376;   // 1.376 = 1/tan(36);
 		CrtFloat this_zoom = 3 * max(max_z, zoom_height);
 		zoom = max(zoom, this_zoom);
-		printf("max_hight=%f, zoom_height=%f, this_zoom=%f, zoom=%f\n", max_hight, zoom_height, this_zoom, zoom);
+#if 0
+		printf("max_height=%f, zoom_height=%f, this_zoom=%f, zoom=%f\n", max_hight, zoom_height, this_zoom, zoom);
+#endif
 	};
 
 	void RangeData::ResetZoom()
