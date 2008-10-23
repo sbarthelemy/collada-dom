@@ -178,7 +178,10 @@ cfxBool cfxLoader::loadEffects(DAE *colladaAsset, std::map<std::string, cfxEffec
 	    // Get the next effect element
 	    domEffect *effectElement;
 	    // is the cast to daeElement** needed? tsl
-	    cfxError error = colladaAsset->getDatabase()->getElement((daeElement**)&effectElement,currentEffect, NULL, COLLADA_ELEMENT_EFFECT);
+//	    cfxError error = colladaAsset->getDatabase()->getElement((daeElement**)&effectElement,currentEffect, NULL, COLLADA_ELEMENT_EFFECT);
+		daeElement * element = 0;
+		cfxError error = colladaAsset->getDatabase()->getElement( &element,currentEffect, NULL, COLLADA_ELEMENT_EFFECT);
+		effectElement = (domEffect *) element;
 	    // ERROR CHECK! !!!tsl i'm not sure this is the correct error check for this statement.
 	    if (error != DAE_OK)
 		{
@@ -245,7 +248,10 @@ cfxBool cfxLoader::loadMaterials(DAE *colladaAsset, std::map<std::string, cfxMat
 	    // Get the next material element
 	    domMaterial *materialElement;
 	    // is the cast to daeElement** needed? tsl
-	    cfxError error = colladaAsset->getDatabase()->getElement((daeElement**)&materialElement,currentMaterial, NULL, COLLADA_ELEMENT_MATERIAL);
+//	    cfxError error = colladaAsset->getDatabase()->getElement((daeElement**)&materialElement,currentMaterial, NULL, COLLADA_ELEMENT_MATERIAL);
+		daeElement * element = 0;
+	    cfxError error = colladaAsset->getDatabase()->getElement(&element,currentMaterial, NULL, COLLADA_ELEMENT_MATERIAL);
+		materialElement = (domMaterial*) element;
 	    // ERROR CHECK! !!!tsl i'm not sure this is the correct error check for this statement.
 	    if (error != DAE_OK)
 		{
@@ -333,7 +339,10 @@ cfxBool cfxLoader::loadFile(const std::string& file, std::vector<cfxEffect*>& ef
 	    // Get the next effect element
 	    domEffect *effectElement;
 	    // is the cast to daeElement** needed? tsl
-	    error = input->getDatabase()->getElement((daeElement**)&effectElement,currentEffect, NULL, COLLADA_ELEMENT_EFFECT);
+//	    error = input->getDatabase()->getElement((daeElement**)&effectElement,currentEffect, NULL, COLLADA_ELEMENT_EFFECT);
+		daeElement * element = 0;
+	    error = input->getDatabase()->getElement(&element,currentEffect, NULL, COLLADA_ELEMENT_EFFECT);
+		effectElement = (domEffect*) element;
 	    // ERROR CHECK! !!!tsl i'm not sure this is the correct error check for this statement.
 	    if (error != DAE_OK)
 		{

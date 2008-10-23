@@ -766,7 +766,7 @@ cfxShader *cfxBinaryUtil::readShader( cfxPass *pass, FILE *input, size_t &size )
 {
 	std::string name, source;
 	cfxShader::type_enum type;
-	size = readInt( (cfxInt*)&type, 1, input );
+	size = readInt( (cfxInt*) (void*) &type, 1, input );
 	size += readString( source, input );
 	size += readString( name, input );
     cfxShader *s;
@@ -833,7 +833,7 @@ cfxGlPipelineSetting *cfxBinaryUtil::readGlSetting( cfxPass *pass, FILE *input, 
 	std::string source;
 	size_t sz;
 
-	size = readInt( (cfxInt*)&type, 1, input );
+	size = readInt( (cfxInt*)(void*)&type, 1, input );
 	switch (type) {
 	case cfxGlPipelineSetting::ALPHA_FUNC:
 		size += readInt( i, 1, input );
@@ -858,11 +858,11 @@ cfxGlPipelineSetting *cfxBinaryUtil::readGlSetting( cfxPass *pass, FILE *input, 
 
 	case cfxGlPipelineSetting::BLEND_COLOR:
 		size += readFloat( f, 4, input );
-		return new cfxGlPipelineSettingBlendColor(pass, *(cfxFloat4*)f );
+		return new cfxGlPipelineSettingBlendColor(pass, *(cfxFloat4*)(void*)f );
 
 	case cfxGlPipelineSetting::CLEAR_COLOR:
 		size += readFloat( f, 4, input );
-		return new cfxGlPipelineSettingClearColor(pass, *(cfxFloat4*)f );
+		return new cfxGlPipelineSettingClearColor(pass, *(cfxFloat4*)(void*)f );
 
 	case cfxGlPipelineSetting::CLEAR_STENCIL:
 		size += readInt( i, 1, input );
@@ -875,7 +875,7 @@ cfxGlPipelineSetting *cfxBinaryUtil::readGlSetting( cfxPass *pass, FILE *input, 
 	case cfxGlPipelineSetting::CLIP_PLANE:
 		size += readInt( i, 1, input );
 		size += readFloat( f, 4, input );
-		return new cfxGlPipelineSettingClipPlane(pass, i[0], *(cfxFloat4*)f );
+		return new cfxGlPipelineSettingClipPlane(pass, i[0], *(cfxFloat4*)(void*)f );
 
 	case cfxGlPipelineSetting::COLOR_MASK:
 		size += readBool( (cfxBool*)&b, 4, input );
@@ -899,7 +899,7 @@ cfxGlPipelineSetting *cfxBinaryUtil::readGlSetting( cfxPass *pass, FILE *input, 
 
 	case cfxGlPipelineSetting::DEPTH_RANGE:
 		size += readFloat( f, 2, input );
-		return new cfxGlPipelineSettingDepthRange(pass, *(cfxFloat2*)f );
+		return new cfxGlPipelineSettingDepthRange(pass, *(cfxFloat2*)(void*)f );
 
 	case cfxGlPipelineSetting::FOG_MODE:
 		size += readInt( i, 1, input );
@@ -919,7 +919,7 @@ cfxGlPipelineSetting *cfxBinaryUtil::readGlSetting( cfxPass *pass, FILE *input, 
 
 	case cfxGlPipelineSetting::FOG_COLOR:
 		size += readFloat( f, 4, input );
-		return new cfxGlPipelineSettingFogColor(pass, *(cfxFloat4*)f );
+		return new cfxGlPipelineSettingFogColor(pass, *(cfxFloat4*)(void*)f );
 
 	case cfxGlPipelineSetting::FRONT_FACE:
 		size += readInt( i, 1, input );
@@ -927,12 +927,12 @@ cfxGlPipelineSetting *cfxBinaryUtil::readGlSetting( cfxPass *pass, FILE *input, 
 
 	case cfxGlPipelineSetting::LIGHT_MODEL_AMBEINT:
 		size += readFloat( f, 4, input );
-		return new cfxGlPipelineSettingLightModelAmbient(pass, *(cfxFloat4*)f );
+		return new cfxGlPipelineSettingLightModelAmbient(pass, *(cfxFloat4*)(void*)f );
 
 	case cfxGlPipelineSetting::LIGHT_AMBIENT:
 		size += readInt( i, 1, input );
 		size += readFloat( f, 4, input );
-		return new cfxGlPipelineSettingLightAmbient(pass, i[0], *(cfxFloat4*)f );
+		return new cfxGlPipelineSettingLightAmbient(pass, i[0], *(cfxFloat4*)(void*)f );
 
 	case cfxGlPipelineSetting::LIGHT_CONSTANT_ATTENUATION:
 		size += readInt( i, 1, input );
@@ -942,7 +942,7 @@ cfxGlPipelineSetting *cfxBinaryUtil::readGlSetting( cfxPass *pass, FILE *input, 
 	case cfxGlPipelineSetting::LIGHT_DIFFUSE:
 		size += readInt( i, 1, input );
 		size += readFloat( f, 4, input );
-		return new cfxGlPipelineSettingLightDiffuse(pass, i[0], *(cfxFloat4*)f );
+		return new cfxGlPipelineSettingLightDiffuse(pass, i[0], *(cfxFloat4*)(void*)f );
 
 	case cfxGlPipelineSetting::LIGHT_LINEAR_ATTENUATION:
 		size += readInt( i, 1, input );
@@ -952,7 +952,7 @@ cfxGlPipelineSetting *cfxBinaryUtil::readGlSetting( cfxPass *pass, FILE *input, 
 	case cfxGlPipelineSetting::LIGHT_POSITION:
 		size += readInt( i, 1, input );
 		size += readFloat( f, 4, input );
-		return new cfxGlPipelineSettingLightPosition(pass, i[0], *(cfxFloat4*)f );
+		return new cfxGlPipelineSettingLightPosition(pass, i[0], *(cfxFloat4*)(void*)f );
 
 	case cfxGlPipelineSetting::LIGHT_QUADRATIC_ATTENUATION:
 		size += readInt( i, 1, input );
@@ -962,7 +962,7 @@ cfxGlPipelineSetting *cfxBinaryUtil::readGlSetting( cfxPass *pass, FILE *input, 
 	case cfxGlPipelineSetting::LIGHT_SPECULAR:
 		size += readInt( i, 1, input );
 		size += readFloat( f, 4, input );
-		return new cfxGlPipelineSettingLightSpecular(pass, i[0], *(cfxFloat4*)f );
+		return new cfxGlPipelineSettingLightSpecular(pass, i[0], *(cfxFloat4*)(void*)f );
 
 	case cfxGlPipelineSetting::LIGHT_SPOT_CUTOFF:
 		size += readInt( i, 1, input );
@@ -972,7 +972,7 @@ cfxGlPipelineSetting *cfxBinaryUtil::readGlSetting( cfxPass *pass, FILE *input, 
 	case cfxGlPipelineSetting::LIGHT_SPOT_DIRECTION:
 		size += readInt( i, 1, input );
 		size += readFloat( f, 3, input );
-		return new cfxGlPipelineSettingLightSpotDirection(pass, i[0], *(cfxFloat3*)f );
+		return new cfxGlPipelineSettingLightSpotDirection(pass, i[0], *(cfxFloat3*)(void*)f );
 
 	case cfxGlPipelineSetting::LIGHT_SPOT_EXPONENT:
 		size += readInt( i, 1, input );
@@ -989,15 +989,15 @@ cfxGlPipelineSetting *cfxBinaryUtil::readGlSetting( cfxPass *pass, FILE *input, 
 
 	case cfxGlPipelineSetting::MATERIAL_AMBIENT:
 		size += readFloat( f, 4, input );
-		return new cfxGlPipelineSettingMaterialAmbient(pass, *(cfxFloat4*)f );
+		return new cfxGlPipelineSettingMaterialAmbient(pass, *(cfxFloat4*)(void*)f );
 
 	case cfxGlPipelineSetting::MATERIAL_DIFFUSE:
 		size += readFloat( f, 4, input );
-		return new cfxGlPipelineSettingMaterialDiffuse(pass, *(cfxFloat4*)f );
+		return new cfxGlPipelineSettingMaterialDiffuse(pass, *(cfxFloat4*)(void*)f );
 
 	case cfxGlPipelineSetting::MATERIAL_EMISSION:
 		size += readFloat( f, 4, input );
-		return new cfxGlPipelineSettingMaterialEmission(pass, *(cfxFloat4*)f );
+		return new cfxGlPipelineSettingMaterialEmission(pass, *(cfxFloat4*)(void*)f );
 
 	case cfxGlPipelineSetting::MATERIAL_SHININESS:
 		size += readFloat( f, 1, input );
@@ -1005,7 +1005,7 @@ cfxGlPipelineSetting *cfxBinaryUtil::readGlSetting( cfxPass *pass, FILE *input, 
 
 	case cfxGlPipelineSetting::MATERIAL_SPECULAR:
 		size += readFloat( f, 4, input );
-		return new cfxGlPipelineSettingMaterialSpecular( pass, *(cfxFloat4*)f );
+		return new cfxGlPipelineSettingMaterialSpecular( pass, *(cfxFloat4*)(void*)f );
 
 	case cfxGlPipelineSetting::MODEL_VIEW_MATRIX:
 		size += readFloat( (cfxFloat*)&f4x4, 16, input );
@@ -1027,7 +1027,7 @@ cfxGlPipelineSetting *cfxBinaryUtil::readGlSetting( cfxPass *pass, FILE *input, 
 
 	case cfxGlPipelineSetting::POLYGON_OFFSET:
 		size += readFloat( f, 2, input );
-		return new cfxGlPipelineSettingPolygonOffset(pass, *(cfxFloat2*)f );
+		return new cfxGlPipelineSettingPolygonOffset(pass, *(cfxFloat2*)(void*)f );
 
 	case cfxGlPipelineSetting::PROJECTION_MATRIX:
 		size += readFloat( (cfxFloat*)&f4x4, 16, input );
@@ -1035,7 +1035,7 @@ cfxGlPipelineSetting *cfxBinaryUtil::readGlSetting( cfxPass *pass, FILE *input, 
 
 	case cfxGlPipelineSetting::SCISSOR:
 		size += readInt( i, 4, input );
-		return new cfxGlPipelineSettingScissor(pass, *(cfxInt4*)i );
+		return new cfxGlPipelineSettingScissor(pass, *(cfxInt4*)(void*)i );
 
 	case cfxGlPipelineSetting::SHADE_MODEL:
 		size += readInt( i, 1, input );
@@ -1140,7 +1140,7 @@ cfxGlPipelineSetting *cfxBinaryUtil::readGlSetting( cfxPass *pass, FILE *input, 
 	case cfxGlPipelineSetting::TEXTURE_ENV_COLOR:
 		size += readInt( i, 1, input );
 		size += readFloat( f, 4, input );
-		return new cfxGlPipelineSettingTextureEnvColor(pass, i[0], *(cfxFloat4*)f );
+		return new cfxGlPipelineSettingTextureEnvColor(pass, i[0], *(cfxFloat4*)(void*)f );
 
 	case cfxGlPipelineSetting::TEXTURE_ENV_MODE:
 		size += readInt( i, 2, input );
@@ -1177,7 +1177,7 @@ cfxGlSamplerSetting *cfxBinaryUtil::readSamplerSetting( cfxEffect *effect, FILE 
 	cfxFloat4 f4;
 
 	cfxGlSamplerSetting::type_enum type;
-	size = readInt( (cfxInt*)&type, 1, input );
+	size = readInt( (cfxInt*)(void*)&type, 1, input );
 	switch ( type )
 	{
 	case cfxGlSamplerSetting::WRAP_S:
@@ -1711,7 +1711,7 @@ size_t cfxBinaryUtil::writeShader( const cfxShader *shader, FILE *out )
 {
 	size_t size = writeToken( (short)SHADER_TOKEN, out );
 	cfxShader::type_enum type = shader->getOriginalType();
-	size += writeInt( (cfxInt*)&type, 1, out );
+	size += writeInt( (cfxInt*)(void*)&type, 1, out );
 	size += writeString( shader->getSource(), out );
 	size += writeString( shader->getName(), out );
 	fpos_t offsetPos; 
@@ -1735,7 +1735,7 @@ size_t cfxBinaryUtil::writeGLSetting( const cfxGlPipelineSetting *s, FILE *out )
 {
 	cfxGlPipelineSetting::type_enum type = s->getType();
 	size_t size = writeToken( (short)GL_SETTING_TOKEN, out );
-	size += writeInt( (cfxInt*)&type, 1, out );
+	size += writeInt( (cfxInt*)(void*)&type, 1, out );
 	
 	if ( type == cfxGlPipelineSetting::ALPHA_FUNC ) 
 	{
@@ -2175,7 +2175,7 @@ size_t cfxBinaryUtil::writeGLSetting( const cfxGlPipelineSetting *s, FILE *out )
 size_t cfxBinaryUtil::writeSamplerSetting( const cfxGlSamplerSetting *s, FILE *out )
 {
 	cfxGlSamplerSetting::type_enum type = s->getType();
-	size_t size = writeInt( (cfxInt*)&type, 1, out );
+	size_t size = writeInt( (cfxInt*)(void*)&type, 1, out );
 	int i;
 	float f;
 	cfxFloat4 f4;
