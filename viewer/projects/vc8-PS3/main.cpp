@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <string>
 #include <sys/paths.h>
+#include <sys/ppu_thread.h>
 
 #include "Crt/CrtRender.h"
 #include "Crt/CrtNode.h"
@@ -29,6 +30,10 @@
 #include <cell/dbgfont.h>
 
 #include "BrowserUI.h"
+
+#ifdef _DEBUG
+SYS_PROCESS_PARAM(1001, 0X18000)		//Need larger stack area for debug build
+#endif
 
 CrtRender _CrtRender; 
 class COLLADA_Viewer : public FWGLCamControlApplication

@@ -118,7 +118,6 @@ libOpts += -lbullet
 
 
 ccFlags += -DSN_TARGET_PS3
-ccFlags += -D_DEBUG
 ccFlags += -D__GCC__
 ccFlags += -DPSGL
 ccFlags += -D__CELLOS_LV2__
