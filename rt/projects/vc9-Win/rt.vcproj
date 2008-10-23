@@ -50,7 +50,7 @@
 				RuntimeTypeInfo="false"
 				UsePrecompiledHeader="0"
 				WarningLevel="4"
-				Detect64BitPortabilityProblems="true"
+				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="4"
 			/>
 			<Tool
@@ -112,7 +112,7 @@
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
 				WarningLevel="4"
-				Detect64BitPortabilityProblems="true"
+				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -175,10 +175,6 @@
 			</File>
 			<File
 				RelativePath="..\..\src\Crt\CrtData.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\Crt\CrtDomLoad.cpp"
 				>
 			</File>
 			<File

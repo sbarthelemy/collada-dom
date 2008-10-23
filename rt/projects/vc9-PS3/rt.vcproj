@@ -169,10 +169,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\Crt\CrtDomLoad.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\Crt\CrtEffect.cpp"
 				>
 			</File>
