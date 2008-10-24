@@ -94,7 +94,7 @@ CrtFloat	KeyboardRotateSpeed = 10.0f;
 #define     WALK_SPEED				100.0f
 CrtFloat	KeyboardTranslateSpeed = RUN_SPEED;
 CrtRender   _CrtRender;   // Global to access the extra camera transform matrix in the CRT renderer
-
+char * cleaned_file_name;
 // Function to adjust all the UI speeds (keyboard and mouse) by a common multiplier
 void AdjustUISpeed(CrtFloat multiplier)
 {
@@ -222,13 +222,19 @@ void ProcessInput( bool	keys[] )
 	if (keys[VK_F1])		
 	{
 		keys[VK_F1]=FALSE;		
+		_CrtRender.Destroy();
 		DestroyGLWindow();			
 		fullscreen=!fullscreen;		
 		// Recreate Our OpenGL Window
-		if (!CreateGLWindow("COLLADA_RT ",1024,768,16,fullscreen))
+		if (!CreateGLWindow("Collada Viewer for PC", _CrtRender.GetScreenWidth(), _CrtRender.GetScreenHeight(),32,fullscreen))
 		{
 			exit(1);
 		}
+		if ( !_CrtRender.Load( cleaned_file_name ))
+		{
+			exit(0);
+		}
+
 		keys[VK_F1] = false;
 	}
 	
@@ -549,9 +555,9 @@ CrtInt32 WINAPI WinMain(	HINSTANCE	hInstance,
 	// compliant without breaking the ability to accept a properly formatted URI.  Right now this only
 	// displays the first filename
 	char
-		cleaned_filename[512],
+		file[512],
 		*in = lpCmdLine,
-		*out = cleaned_filename;
+		*out = file;
 	*out = NULL;
 	// If the first character is a ", skip it (filenames with spaces in them are quoted)
 	if(*in == '\"')
@@ -589,15 +595,16 @@ CrtInt32 WINAPI WinMain(	HINSTANCE	hInstance,
 	time_t seconds =  time (NULL);
 	clock_t clocka = clock ();
 
+	cleaned_file_name = file;
 	// Load the file name provided on the command line
-	if ( !_CrtRender.Load( cleaned_filename ))
+	if ( !_CrtRender.Load( cleaned_file_name ))
 	{
 		exit(0);
 	}
 	time_t loadtime = time (NULL) - seconds;
 	int clockload = (int) clock () - clocka;
 
-	CrtPrint("\nLOAD TIME OF %s\n", cleaned_filename);
+	CrtPrint("\nLOAD TIME OF %s\n", file);
 	CrtPrint("IS %d SECONDS\n", loadtime);
 	CrtPrint("IS %d CLOCK TICKS\n\n", clockload);
 
