@@ -968,10 +968,13 @@ CrtBool  CrtRender::DisableCgProfiles()
 CrtBool	CrtRender::DestroyCg()
 {
 	// Destroy Our Cg Context And All Programs Contained Within It
-	cgDestroyContext(cgContext);
-	cgContext = NULL;
-
-	return CrtTrue; 
+	if (cgContext != NULL)
+	{
+		cgDestroyContext(cgContext);
+		cgContext = NULL;
+		return CrtTrue; 
+	}
+	return CrtFalse;
 }
 
 #endif // USE_CG
