@@ -90,9 +90,9 @@ CrtFloat	MouseRotateSpeed = 0.75f;
 CrtFloat	MouseWheelSpeed = 0.05f;
 CrtFloat	MouseTranslateSpeed = 0.1f;
 CrtFloat	KeyboardRotateSpeed = 10.0f;
-#define     RUN_SPEED				500.0f
+#define     RUN_SPEED				500.0f	
 #define     WALK_SPEED				100.0f
-CrtFloat	KeyboardTranslateSpeed = RUN_SPEED;
+CrtFloat	KeyboardTranslateSpeed = WALK_SPEED;
 CrtRender   _CrtRender;   // Global to access the extra camera transform matrix in the CRT renderer
 char * cleaned_file_name;
 // Function to adjust all the UI speeds (keyboard and mouse) by a common multiplier
@@ -109,8 +109,10 @@ void AdjustUISpeed(CrtFloat multiplier)
 // End of non-windows specific UI code
 // The code below is somewhat windows specific but only because it uses windows keycodes in "keys"
 //----------------------------------------------------------------------------------------------------
-bool		keys[256];   // Used to track which keys are held down, the index is the windows
-						 // keycode returned by wndProc in wndParm, true means the key is down
+bool	keys[256];   // Used to track which keys are held down, the index is the windows
+					 // keycode returned by wndProc in wndParm, true means the key is down
+bool	sAnimationEnable = true;
+
 // Call ProcessInput once per frame to process input keys
 void ProcessInput( bool	keys[] )
 {
@@ -209,14 +211,17 @@ void ProcessInput( bool	keys[] )
 		}
 		keys['L'] = false;
 	}
-	if (keys['O'] )
-	{
-		_CrtRender.SetAnimationPaused( CrtFalse ); 
-		keys['O'] = false;
-	}
+
 	if (keys['P'] )
 	{
-		_CrtRender.SetAnimationPaused( CrtTrue );
+		if (sAnimationEnable) {
+			_CrtRender.SetAnimationPaused( CrtFalse );
+			sAnimationEnable = false;
+		}
+		else { 
+			_CrtRender.SetAnimationPaused( CrtTrue ); 
+						sAnimationEnable = true;
+		}
 		keys['P'] = false;
 	}
 	if (keys[VK_F1])		
@@ -240,32 +245,6 @@ void ProcessInput( bool	keys[] )
 	
 	// These keys that do a function as long as they are held down, so we don't clear "keys".
 	// Remember to scale these functions by time!
-
-/*	if ( keys[VK_UP])
-	{
-		// UI code to rotate camera up
-		CrtMatrix4x4RotateAngleAxis(_CrtRender.ExtraCameraTransform, 1.0f, 0.0f, 0.0f, _CrtRender.GetAnimDelta()  * KeyboardRotateSpeed);			
-	}
-
-	if ( keys[VK_DOWN] )
-	{
-		// UI code to rotate camera down
-		CrtMatrix4x4RotateAngleAxis(_CrtRender.ExtraCameraTransform, 1.0f, 0.0f, 0.0f, _CrtRender.GetAnimDelta()  * -KeyboardTranslateSpeed);			
-	}
-	
-	if ( keys[VK_LEFT] )
-	{
-		// UI code to rotate camera left
-		CrtMatrix4x4RotateAngleAxis(_CrtRender.ExtraCameraTransform, 0.0f, 1.0f, 0.0f, _CrtRender.GetAnimDelta()  * KeyboardTranslateSpeed);			
-	}
-
-	if ( keys[VK_RIGHT] )
-	{
-		// UI code to rotate camera right
-		CrtMatrix4x4RotateAngleAxis(_CrtRender.ExtraCameraTransform, 0.0f, 1.0f, 0.0f, _CrtRender.GetAnimDelta()  * -KeyboardTranslateSpeed);			
-	}
-*/
-
 
 	if (keys['S'])
 	{
