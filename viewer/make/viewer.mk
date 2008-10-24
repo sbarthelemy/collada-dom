@@ -126,6 +126,7 @@ ccFlags += -DCRT_PLATFORM_INCLUDE=\"CrtPS3.h\"
 ccFlags += -DNO_BULLET
 ccFlags += -DTINYXML
 ccFlags += -DBOOST_NO_STD_LOCALE
+ccFlags += -DNO_BOOST -DNO_ZAE
 
 libOpts += -L$(PS3_SDK_ROOT)/samples/fw/
 libOpts += -L$(PS3_SDK_ROOT)/target/ppu/lib/PSGL/RSX/debug/
@@ -145,7 +146,6 @@ endif
 
 ifeq ($(os),ps3)
 # On PS3 we need to make a .self from the .elf
-ccFlags += -DNO_BOOST -DNO_ZAE
 postCreateExeCommand := make_fself $(targets) $(targets:.elf=.self)
 endif
 
