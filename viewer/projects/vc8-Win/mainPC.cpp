@@ -259,52 +259,42 @@ void ProcessInput( bool	keys[] )
 		CrtMatrix4x4RotateAngleAxis(_CrtRender.ExtraCameraTransform, 0.0f, 1.0f, 0.0f, _CrtRender.GetAnimDelta()  * -KeyboardTranslateSpeed);			
 	}
 */
+
+
 	if (keys['S'])
 	{
 		// UI code to move the camera closer
-		if (_CrtRender.ActiveInstanceCamera ==_CrtRender.DefaultInstanceCamera && _CrtRender.ActiveInstanceCamera ) {
-			_CrtRender.DefaultInstanceCamera->MoveTransform(_CrtRender.GetAnimDelta() * KeyboardTranslateSpeed, 0.0f, 0.0f);
-		}
+		_CrtRender.ActiveInstanceCamera->MoveTransform(_CrtRender.GetAnimDelta() * KeyboardTranslateSpeed, 0.0f, 0.0f);
 	}
 
 	if (keys['W'])
 	{
 		// UI code to move the camera farther away
-		if (_CrtRender.ActiveInstanceCamera ==_CrtRender.DefaultInstanceCamera && _CrtRender.ActiveInstanceCamera ) {
-			_CrtRender.DefaultInstanceCamera->MoveTransform(- _CrtRender.GetAnimDelta() * KeyboardTranslateSpeed, 0.0f, 0.0f);
-		}
+		_CrtRender.ActiveInstanceCamera->MoveTransform(- _CrtRender.GetAnimDelta() * KeyboardTranslateSpeed, 0.0f, 0.0f);
 	}
 
 	if (keys[VK_SPACE])
 	{
 		// UI code to move the camera farther up
-		if (_CrtRender.ActiveInstanceCamera ==_CrtRender.DefaultInstanceCamera, _CrtRender.ActiveInstanceCamera ) {
-			_CrtRender.DefaultInstanceCamera->MoveTransform(0.0f, 0.0f, _CrtRender.GetAnimDelta() * KeyboardTranslateSpeed);
-		}
+		_CrtRender.ActiveInstanceCamera->MoveTransform(0.0f, 0.0f, _CrtRender.GetAnimDelta() * KeyboardTranslateSpeed);
 	}
 
 	if (keys['X'])
 	{
 		// UI code to move the camera farther down
-		if (_CrtRender.ActiveInstanceCamera ==_CrtRender.DefaultInstanceCamera && _CrtRender.ActiveInstanceCamera) {
-			_CrtRender.DefaultInstanceCamera->MoveTransform(0.0f, 0.0f, - _CrtRender.GetAnimDelta() * KeyboardTranslateSpeed);
-		}
+		_CrtRender.ActiveInstanceCamera->MoveTransform(0.0f, 0.0f, - _CrtRender.GetAnimDelta() * KeyboardTranslateSpeed);
 	}
 
 	if (keys['D'])
 	{
 		// UI code to move the camera farther right
-		if (_CrtRender.ActiveInstanceCamera ==_CrtRender.DefaultInstanceCamera && _CrtRender.ActiveInstanceCamera) {
-			_CrtRender.DefaultInstanceCamera->MoveTransform(0.0f, - _CrtRender.GetAnimDelta() * KeyboardTranslateSpeed, 0.0f);
-		}
+		_CrtRender.ActiveInstanceCamera->MoveTransform(0.0f, - _CrtRender.GetAnimDelta() * KeyboardTranslateSpeed, 0.0f);
 	}
 
 	if (keys['A'])
 	{
 		// UI code to move the camera farther left
-		if (_CrtRender.ActiveInstanceCamera ==_CrtRender.DefaultInstanceCamera && _CrtRender.ActiveInstanceCamera) {
-			_CrtRender.DefaultInstanceCamera->MoveTransform(0.0f, _CrtRender.GetAnimDelta() * KeyboardTranslateSpeed, 0.0f);
-		}
+		_CrtRender.ActiveInstanceCamera->MoveTransform(0.0f, _CrtRender.GetAnimDelta() * KeyboardTranslateSpeed, 0.0f);
 	}
 
 	if (keys['F'])
