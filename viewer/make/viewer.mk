@@ -113,10 +113,6 @@ libOpts += $(addprefix ../dom/external-libs/pcre/lib/$(buildID)/,libpcrecpp.a li
 libOpts += -L../dom/external-libs/tinyxml/lib/$(os)
 libOpts += -ltinyxml
 
-libOpts += -L../rt/external-libs/bullet/lib/$(os)
-libOpts += -lbullet
-
-
 ccFlags += -DSN_TARGET_PS3
 ccFlags += -D__GCC__
 ccFlags += -DPSGL
