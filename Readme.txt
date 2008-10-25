@@ -85,7 +85,7 @@ Build and run PS3 Collada Viewer
 [Linux]
 1) Execute make utility at root level of package by typing 'make'
    viewer.self will be in viewer\bin for release build (conf=release, this is the default build)
-   viewer-d.self will be in viewer\bin for debug build (conf=debug)
+   viewer.self will be in viewer\bin for debug build (conf=debug)
 2) Unzip samples.zip, extract its content to viewer\bin\
 3) Change directory to where the Collada Viewer executable is, type the following commands to load it, replace
    the IP address with your PS3 IP address.
@@ -102,9 +102,9 @@ Build and run PS3 Collada Viewer
 [Windows host/MSYS]
 1) Execute make utility at root level of package by typing 'make'
    viewer.self will be in viewer\bin for release build (conf=release, this is the default build)
-   viewer-d.self will be in viewer\bin for debug build (conf=debug)
+   viewer.self will be in viewer\bin for debug build (conf=debug)
 2) Unzip samples.zip, extract its content to viewer\bin\
-3) Use ProDG Target Manager or Debugger to load viewer.self (release) or viewer-d.self in \viewer\bin
+3) Use ProDG Target Manager or Debugger to load viewer.self 
    Optionally, specify a Collada document (cage.dae) as command line argument when loading viewer executable
 
 
