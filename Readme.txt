@@ -83,18 +83,32 @@ Build and run PS3 Collada Viewer
 ================================
 
 [Linux]
-[Windows host/MSYS]
-
 1) Execute make utility at root level of package by typing 'make'
    viewer.self will be in viewer\bin for release build (conf=release, this is the default build)
    viewer-d.self will be in viewer\bin for debug build (conf=debug)
 2) Unzip samples.zip, extract its content to viewer\bin\
-3) Follow the usual procedure documented in $CELL_SDK/1st_read to load viewer.self or viewer-d.self
-   Optionally, use ProDG Target Manager or Debugger to load a specific Collada document by specifying the document as command line argument
+3) Change directory to where the Collada Viewer executable is, type the following commands to load it, replace
+   the IP address with your PS3 IP address.
+   
+	> bedbg -prepare
+	> dtpon -d 10.98.12.34
+	> bedbg -nodebug viewer.self
+	
+	Type the following commands to terminate Collada Viewer
+	> bedbg -T
+	> dtpoff -d 10.98.12.34
+
+
+[Windows host/MSYS]
+1) Execute make utility at root level of package by typing 'make'
+   viewer.self will be in viewer\bin for release build (conf=release, this is the default build)
+   viewer-d.self will be in viewer\bin for debug build (conf=debug)
+2) Unzip samples.zip, extract its content to viewer\bin\
+3) Use ProDG Target Manager or Debugger to load viewer.self (release) or viewer-d.self in \viewer\bin
+   Optionally, specify a Collada document (cage.dae) as command line argument when loading viewer executable
 
 
 [Windows host/Visual Studio]
-
 Project files for Visual C++ 8 (VS 2005) and Visual C++ 9 (VS 2008) are both provided. If you are using Visual C++ 9,
 substitute "vc9" for "vc8" for the following instructions.
 1) Open Visual Studio Solution at \viewer\projects\vc8-PS3\viewer.sln
@@ -123,8 +137,8 @@ Collada Viewer button usage
 ===========================
 [PS3]
 
-Up	        Navigate the document broswer upward
-Down        Navigate the document broswer downward
+Up	        Navigate the document browser upward
+Down        Navigate the document browser downward
 Cross       Load the document browser selected Collada document
 Select      Next camera view
 L1          Zoom out, move camera away from the focus point
@@ -168,9 +182,24 @@ Middle Click		Next camera
 Known issues
 ============
 
-- When rendering mushroom.dae, PSGL warning generated in TTY output: "Texture 0 bound to unit 0(GL_TEXTURE_2D) is incomplete" 
+- When rendering mushroom.dae, TTY output PSGL warning: "Texture 0 bound to unit 0(GL_TEXTURE_2D) is incomplete" 
   This happens in VC8/PS3 debug build only
   
-- For PS3 debug build, linker warning "L0019: symbol '__sys_process_param' multiply defined" is generated.
-  Note:  This is necessary to override the main PPU thread stack size specified by SDK framework code, in order to avoid
-  stack overflow while unloading DAE documents with large number of nodes.
+- For PS3 debug build, when unloading Collada document with large number of nodes, such as demo.dae, a debug exception
+  is raised due to stack overflow.
+  
+  The Collada Viewer uses Cell SDK framework, which sets the main PPU thread priority and stack size in its code base.
+  Currently there is no way to override this stack size setting without generating a linker warning on Windows host or 
+  an error on Linux host.  See below:
+
+  linker warning "L0019: symbol '__sys_process_param' multiply defined" is generated.
+  
+  To get around this problem, one can modify the Cell SDK framwork code in the following way:
+  
+  In <SDKROOT>\samples\fw\src\cell\FWCellMain.cpp, modify the line from 
+	SYS_PROCESS_PARAM( 1001, 0x10000 );		// priority = 1001, stack size = 64K	
+	
+  to
+  
+	SYS_PROCESS_PARAM( 1001, 0x18000 );		// priority = 1001, increase stack size to 96K, or something to suit your need
+	
