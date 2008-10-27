@@ -145,7 +145,7 @@ L1          Zoom out, move camera away from the focus point
 L2          Zoom in, move camera closer to the focus point
 L3          Toggle Browser thumbnail display
 R3          Toggle wireframe display
-Left analog stick	Move camera and focus point to the up, down, left, right
+Left analog stick	Move camera and focus point up, down, left, right
 Right analog stick 	Rotate camera up, down, left right
 
 
@@ -173,9 +173,33 @@ Mouse:
 Wheel Up			Move camera closer to the focus point = zoom in
 Wheel Down			Move camera away from the focus point = zoom outfm	x
 Left Click Move 	Rotate camera up, down, left right
-Right Click Move	Move camera and focus point to the up, down, left, right
+Right Click Move	Move camera and focus point up, down, left, right
 Middle Click		Next camera
 
+
+========================
+Bugzilla issues resolved
+========================
+
+ID		Sev  Status  Resolution 	 Summary
+
+62806 	B-1  RESO 	FIXE 	[Viewer (VS2005s, PS3-Release)] Failed to load DAE files
+62857 	C 	 RESO 	FIXE 	The description of the Windows environment isn't adequate of COLLADA_250.1 readme.
+60042 	B-2  RESO 	FIXE 	[Viewer (VS2005s, Win32-Debug)] Linker warnings [warning LNK4099: PDB 'vc80.pdb' was not found with '..\..\..\rt\external-libs\bullet\lib\vc8\bullet-MDd.lib' or at 'c:\usr\local\viewer\bin\vc80.pdb'; linking object as if no debug info]
+62808 	C 	 RESO 	FIXE 	[Viewer (VS2005s, PS3-Release)] Sample build warning [dereferencing type-punned pointer will break strict-aliasing rules]
+62809 	C 	 RESO 	FIXE 	[Viewer (VS2005s)] Sample build warning [type qualifiers ignored on function return type]
+62851 	B-2  RESO 	FIXE 	[Viewer (VS2005s, Win32 Release)] Full screen mode is not working.
+62852 	B-2  RESO 	FIXE 	[Viewer (VS2005s, Win32 Release)] The keys "M" and "N" for slowin down and speeding up of navigation are not working. 
+
+
+============================
+Non-Bugzilla issues resolved
+============================
+
+- libBullet.a removed from PS3 target build; it is not supposed to be included in PS3 target
+- For Windows Collada Viewer, use 'p' key to toggle animation, instead of 'p' and 'o' to enable/disable animation
+- Remove 'seymour.dae', it is duplicate of 'astroBoy_walk.dae'
+- PS3 debug version of Collada Viewer is now linked against debug version of dom, rt and fx, instead of the release version of them
 
 
 ============
@@ -185,8 +209,8 @@ Known issues
 - When rendering mushroom.dae, TTY output PSGL warning: "Texture 0 bound to unit 0(GL_TEXTURE_2D) is incomplete" 
   This happens in VC8/PS3 debug build only
   
-- For PS3 debug build, when unloading Collada document with large number of nodes, such as demo.dae, a debug exception
-  is raised due to stack overflow.
+- For PS3 debug build, when unloading Collada document with large number of nodes, suc as demo.dae and dominos.dae,
+  a debug exception is raised due to stack overflow.
   
   The Collada Viewer uses Cell SDK framework, which sets the main PPU thread priority and stack size in its code base.
   Currently there is no way to override this stack size setting without generating a linker warning on Windows host or 
