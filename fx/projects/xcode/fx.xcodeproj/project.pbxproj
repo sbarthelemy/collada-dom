@@ -381,6 +381,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)/../../../dom/external-libs/boost\"",
 					"\"$(SRCROOT)/../../include\"",
 					"\"$(SRCROOT)/../../../dom/include\"/**",
 					"\"$(SRCROOT)/../../../../collada tools/External/Cg/include\"",
@@ -407,6 +408,7 @@
 					"\"$(SRCROOT)/../../include\"/**",
 					"\"$(SRCROOT)/../../../dom/include\"/**",
 					"\"$(SRCROOT)/../../../../collada tools/External/Cg/include\"/**",
+					"\"$(SRCROOT)/../../../dom/external-libs/boost\"",
 				);
 				PREBINDING = NO;
 				SDKROOT = macosx10.5;
