@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D00EBD30EB67A2700BE4C21 /* daeZAEUncompressHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D00EBD20EB67A2700BE4C21 /* daeZAEUncompressHandler.cpp */; };
 		6DD2626D0DBBD2FB007AC96B /* domAccessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DD261C10DBBD2FB007AC96B /* domAccessor.cpp */; };
 		6DD2626E0DBBD2FB007AC96B /* domAnimation_clip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DD261C20DBBD2FB007AC96B /* domAnimation_clip.cpp */; };
 		6DD2626F0DBBD2FB007AC96B /* domAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DD261C30DBBD2FB007AC96B /* domAnimation.cpp */; };
@@ -430,6 +431,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6D00EBD20EB67A2700BE4C21 /* daeZAEUncompressHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = daeZAEUncompressHandler.cpp; path = ../../src/dae/daeZAEUncompressHandler.cpp; sourceTree = SOURCE_ROOT; };
 		6DD261C10DBBD2FB007AC96B /* domAccessor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = domAccessor.cpp; path = ../../src/1.4/dom/domAccessor.cpp; sourceTree = SOURCE_ROOT; };
 		6DD261C20DBBD2FB007AC96B /* domAnimation_clip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = domAnimation_clip.cpp; path = ../../src/1.4/dom/domAnimation_clip.cpp; sourceTree = SOURCE_ROOT; };
 		6DD261C30DBBD2FB007AC96B /* domAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = domAnimation.cpp; path = ../../src/1.4/dom/domAnimation.cpp; sourceTree = SOURCE_ROOT; };
@@ -1106,6 +1108,7 @@
 				6DD263220DBBD325007AC96B /* daeErrorHandler.cpp */,
 				6DD263230DBBD325007AC96B /* daeIDRef.cpp */,
 				6DD263240DBBD325007AC96B /* daeIOPluginCommon.cpp */,
+				6D00EBD20EB67A2700BE4C21 /* daeZAEUncompressHandler.cpp */,
 				6DD263250DBBD325007AC96B /* daeMemorySystem.cpp */,
 				6DD263260DBBD325007AC96B /* daeMetaAny.cpp */,
 				6DD263270DBBD325007AC96B /* daeMetaAttribute.cpp */,
@@ -1788,6 +1791,7 @@
 				6DD263570DBBD332007AC96B /* daeLIBXMLPlugin.cpp in Sources */,
 				6DD263590DBBD33D007AC96B /* stdErrPlugin.cpp in Sources */,
 				6DD2635B0DBBD345007AC96B /* daeSTLDatabase.cpp in Sources */,
+				6D00EBD30EB67A2700BE4C21 /* daeZAEUncompressHandler.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1826,13 +1830,16 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = "DOM_INCLUDE_TINYXML=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					"../../include/**",
+					"../../external-libs/minizip/include",
+					"../../external-libs/boost",
 					"../../external-libs/pcre/**",
 					"\"$(SRCROOT)/../../external-libs/tinyxml\"/**",
+					/Developer/SDKs/MacOSX10.5.sdk/usr/include/libxml2,
 				);
 				INCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "";
 				ONLY_ACTIVE_ARCH = YES;
@@ -1847,12 +1854,15 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_PREPROCESSOR_DEFINITIONS = "DOM_INCLUDE_TINYXML=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					"../../include/**",
+					"../../external-libs/minizip/include",
+					"../../external-libs/boost",
 					"../../external-libs/pcre/**",
+					/Developer/SDKs/MacOSX10.5.sdk/usr/include/libxml2,
 					"\"$(SRCROOT)/../../external-libs/tinyxml\"/**",
 				);
 				PREBINDING = NO;
