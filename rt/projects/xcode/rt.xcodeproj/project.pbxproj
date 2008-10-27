@@ -38,7 +38,6 @@
 		6DB9C1790DC1AB97009CAD26 /* CrtCommonGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DB9C1620DC1AB97009CAD26 /* CrtCommonGL.cpp */; };
 		6DB9C17A0DC1AB97009CAD26 /* CrtController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DB9C1630DC1AB97009CAD26 /* CrtController.cpp */; };
 		6DB9C17B0DC1AB97009CAD26 /* CrtData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DB9C1640DC1AB97009CAD26 /* CrtData.cpp */; };
-		6DB9C17C0DC1AB97009CAD26 /* CrtDomLoad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DB9C1650DC1AB97009CAD26 /* CrtDomLoad.cpp */; };
 		6DB9C17D0DC1AB97009CAD26 /* CrtEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DB9C1660DC1AB97009CAD26 /* CrtEffect.cpp */; };
 		6DB9C17E0DC1AB97009CAD26 /* CrtGeometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DB9C1670DC1AB97009CAD26 /* CrtGeometry.cpp */; };
 		6DB9C17F0DC1AB97009CAD26 /* CrtLight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DB9C1680DC1AB97009CAD26 /* CrtLight.cpp */; };
@@ -88,7 +87,6 @@
 		6DB9C1620DC1AB97009CAD26 /* CrtCommonGL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CrtCommonGL.cpp; path = ../../src/Crt/CrtCommonGL.cpp; sourceTree = SOURCE_ROOT; };
 		6DB9C1630DC1AB97009CAD26 /* CrtController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CrtController.cpp; path = ../../src/Crt/CrtController.cpp; sourceTree = SOURCE_ROOT; };
 		6DB9C1640DC1AB97009CAD26 /* CrtData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CrtData.cpp; path = ../../src/Crt/CrtData.cpp; sourceTree = SOURCE_ROOT; };
-		6DB9C1650DC1AB97009CAD26 /* CrtDomLoad.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CrtDomLoad.cpp; path = ../../src/Crt/CrtDomLoad.cpp; sourceTree = SOURCE_ROOT; };
 		6DB9C1660DC1AB97009CAD26 /* CrtEffect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CrtEffect.cpp; path = ../../src/Crt/CrtEffect.cpp; sourceTree = SOURCE_ROOT; };
 		6DB9C1670DC1AB97009CAD26 /* CrtGeometry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CrtGeometry.cpp; path = ../../src/Crt/CrtGeometry.cpp; sourceTree = SOURCE_ROOT; };
 		6DB9C1680DC1AB97009CAD26 /* CrtLight.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CrtLight.cpp; path = ../../src/Crt/CrtLight.cpp; sourceTree = SOURCE_ROOT; };
@@ -146,7 +144,6 @@
 				6DB9C1620DC1AB97009CAD26 /* CrtCommonGL.cpp */,
 				6DB9C1630DC1AB97009CAD26 /* CrtController.cpp */,
 				6DB9C1640DC1AB97009CAD26 /* CrtData.cpp */,
-				6DB9C1650DC1AB97009CAD26 /* CrtDomLoad.cpp */,
 				6DB9C1660DC1AB97009CAD26 /* CrtEffect.cpp */,
 				6DB9C1670DC1AB97009CAD26 /* CrtGeometry.cpp */,
 				6DB9C1680DC1AB97009CAD26 /* CrtLight.cpp */,
@@ -293,7 +290,6 @@
 				6DB9C1790DC1AB97009CAD26 /* CrtCommonGL.cpp in Sources */,
 				6DB9C17A0DC1AB97009CAD26 /* CrtController.cpp in Sources */,
 				6DB9C17B0DC1AB97009CAD26 /* CrtData.cpp in Sources */,
-				6DB9C17C0DC1AB97009CAD26 /* CrtDomLoad.cpp in Sources */,
 				6DB9C17D0DC1AB97009CAD26 /* CrtEffect.cpp in Sources */,
 				6DB9C17E0DC1AB97009CAD26 /* CrtGeometry.cpp in Sources */,
 				6DB9C17F0DC1AB97009CAD26 /* CrtLight.cpp in Sources */,
@@ -366,7 +362,8 @@
 					"\"$(SRCROOT)/../../include\"/**",
 					"\"$(SRCROOT)/../../../dom/include\"/**",
 					"\"$(SRCROOT)/../../../fx/include\"/**",
-					"\"$(SRCROOT)/../../external-libs/bullet/src\"/**",
+					"\"$(SRCROOT)/../../../dom/external-libs/boost\"",
+					"\"$(SRCROOT)/../../external-libs/bullet/include\"/**",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
@@ -390,7 +387,8 @@
 					"\"$(SRCROOT)/../../include\"/**",
 					"\"$(SRCROOT)/../../../dom/include\"/**",
 					"\"$(SRCROOT)/../../../fx/include\"/**",
-					"\"$(SRCROOT)/../../external-libs/bullet/src\"/**",
+					"\"$(SRCROOT)/../../external-libs/bullet/include\"/**",
+					"\"$(SRCROOT)/../../../dom/external-libs/boost\"",
 				);
 				PREBINDING = NO;
 				SDKROOT = macosx10.5;
