@@ -107,7 +107,7 @@ void NextCamera()
 		CurrentCamNumber = 0;
 
 	// ExtraCameraTransform lets the user move the camera from it's original position in the COLLADA file
-	CrtMatrixLoadIdentity(_CrtRender.ExtraCameraTransform);
+//	CrtMatrixLoadIdentity(_CrtRender.ExtraCameraTransform);
 
 	// Get the camera instance we want and set it as the active camera
 	CrtInstanceCamera *inst = _CrtRender.GetScene()->GetCameraInstance(CurrentCamNumber);
@@ -423,18 +423,18 @@ void MotionCallback(int x, int y)
 	if (g_mouse_button_pressed[GLUT_LEFT_BUTTON] == GLUT_DOWN)
 	{
 		_CrtRender.ActiveInstanceCamera->SetPanAndTilt(delta_x * MouseRotateSpeed, delta_y * MouseRotateSpeed);
-		CrtMatrixCopy(_CrtRender.ActiveInstanceCamera->transform, _CrtRender.ExtraCameraTransform);
+//		CrtMatrixCopy(_CrtRender.ActiveInstanceCamera->transform, _CrtRender.ExtraCameraTransform);
 	}
 	if (g_mouse_button_pressed[GLUT_MIDDLE_BUTTON] == GLUT_DOWN)
 	{
 		_CrtRender.ActiveInstanceCamera->MoveOrbit(delta_x * MouseRotateSpeed, delta_y * MouseRotateSpeed);
-		CrtMatrixCopy(_CrtRender.ActiveInstanceCamera->transform, _CrtRender.ExtraCameraTransform);
+//		CrtMatrixCopy(_CrtRender.ActiveInstanceCamera->transform, _CrtRender.ExtraCameraTransform);
 	}
 	
 	if (g_mouse_button_pressed[GLUT_RIGHT_BUTTON] == GLUT_DOWN)
 	{
 		_CrtRender.ActiveInstanceCamera->ZoomTransform(delta_y * MouseRotateSpeed);
-		CrtMatrixCopy(_CrtRender.ActiveInstanceCamera->transform, _CrtRender.ExtraCameraTransform);
+//		CrtMatrixCopy(_CrtRender.ActiveInstanceCamera->transform, _CrtRender.ExtraCameraTransform);
 	}
 	
 	g_mouse_x = x; g_mouse_y = y;
