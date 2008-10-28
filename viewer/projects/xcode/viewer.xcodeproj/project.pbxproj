@@ -7,15 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D00EBB70EB6771C00BE4C21 /* libboost_filesystem.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D00EBB50EB6771C00BE4C21 /* libboost_filesystem.a */; };
+		6D00EBB80EB6771C00BE4C21 /* libboost_system.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D00EBB60EB6771C00BE4C21 /* libboost_system.a */; };
+		6D00EBCD0EB679CC00BE4C21 /* libbullet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D00EBCC0EB679CC00BE4C21 /* libbullet.a */; };
+		6D00ECC30EB6893C00BE4C21 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D00ECC20EB6893C00BE4C21 /* libxml2.dylib */; };
+		6D00ED0B0EB68E1900BE4C21 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D00ECC60EB6895300BE4C21 /* libz.dylib */; };
+		6D00ED0D0EB68E3700BE4C21 /* libminizip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D00ECCB0EB689AA00BE4C21 /* libminizip.a */; };
 		6DA176F10E1ACB4F00D3D8C5 /* libdom.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DA1759E0E1AB5C100D3D8C5 /* libdom.a */; };
 		6DA176F20E1ACB5500D3D8C5 /* librt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DA175B10E1AB5DB00D3D8C5 /* librt.a */; };
-		6DA176F40E1ACB6300D3D8C5 /* libbullet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DA175BA0E1AB5E700D3D8C5 /* libbullet.a */; };
 		6DA176F50E1ACB6700D3D8C5 /* libfx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DA175A70E1AB5D100D3D8C5 /* libfx.a */; };
 		6DB123C60E198AD4004FA1FD /* mainPC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DB123C50E198AD4004FA1FD /* mainPC.cpp */; };
 		6DB124650E198F37004FA1FD /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DB124640E198F37004FA1FD /* GLUT.framework */; };
 		6DB124690E198F4A004FA1FD /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DB124680E198F4A004FA1FD /* OpenGL.framework */; };
 		6DB129210E199316004FA1FD /* Cg.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DB129200E199316004FA1FD /* Cg.framework */; };
-		6DB1293C0E199E79004FA1FD /* libtinyxml.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DB1293B0E199E79004FA1FD /* libtinyxml.a */; };
 		6DB1295B0E19A25E004FA1FD /* libpcrecpp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DB129590E19A25E004FA1FD /* libpcrecpp.a */; };
 		6DB1295C0E19A25E004FA1FD /* libpcre.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DB1295A0E19A25E004FA1FD /* libpcre.a */; };
 /* End PBXBuildFile section */
@@ -42,13 +46,6 @@
 			remoteGlobalIDString = D2AAC046055464E500DB518D;
 			remoteInfo = rt;
 		};
-		6DA175B90E1AB5E700D3D8C5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6DA175B20E1AB5E700D3D8C5 /* bullet.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 6DB127920E1992AB004FA1FD;
-			remoteInfo = bullet;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -64,15 +61,19 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6D00EBB50EB6771C00BE4C21 /* libboost_filesystem.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_filesystem.a; path = "../../../dom/external-libs/boost/lib/mac/libboost_filesystem.a"; sourceTree = SOURCE_ROOT; };
+		6D00EBB60EB6771C00BE4C21 /* libboost_system.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_system.a; path = "../../../dom/external-libs/boost/lib/mac/libboost_system.a"; sourceTree = SOURCE_ROOT; };
+		6D00EBCC0EB679CC00BE4C21 /* libbullet.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libbullet.a; path = "../../../rt/external-libs/bullet/lib/xcode/Release/libbullet.a"; sourceTree = SOURCE_ROOT; };
+		6D00ECC20EB6893C00BE4C21 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		6D00ECC60EB6895300BE4C21 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		6D00ECCB0EB689AA00BE4C21 /* libminizip.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libminizip.a; path = "../../../dom/external-libs/minizip/mac/libminizip.a"; sourceTree = SOURCE_ROOT; };
 		6DA175990E1AB5C100D3D8C5 /* dom.xcodeproj */ = {isa = PBXFileReference; explicitFileType = "wrapper.pb-project"; name = dom.xcodeproj; path = ../../../dom/projects/xcode/dom.xcodeproj; sourceTree = SOURCE_ROOT; };
 		6DA1759F0E1AB5D100D3D8C5 /* fx.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = fx.xcodeproj; path = ../../../fx/projects/xcode/fx.xcodeproj; sourceTree = SOURCE_ROOT; };
 		6DA175A80E1AB5DB00D3D8C5 /* rt.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = rt.xcodeproj; path = ../../../rt/projects/xcode/rt.xcodeproj; sourceTree = SOURCE_ROOT; };
-		6DA175B20E1AB5E700D3D8C5 /* bullet.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = bullet.xcodeproj; path = "../../../rt/external-libs/bullet/project/xcode/bullet.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		6DB123C50E198AD4004FA1FD /* mainPC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mainPC.cpp; sourceTree = "<group>"; };
 		6DB124640E198F37004FA1FD /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = /System/Library/Frameworks/GLUT.framework; sourceTree = "<absolute>"; };
 		6DB124680E198F4A004FA1FD /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = /System/Library/Frameworks/OpenGL.framework; sourceTree = "<absolute>"; };
 		6DB129200E199316004FA1FD /* Cg.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cg.framework; path = /Library/Frameworks/Cg.framework; sourceTree = "<absolute>"; };
-		6DB1293B0E199E79004FA1FD /* libtinyxml.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libtinyxml.a; path = "../../../dom/external-libs/tinyxml/lib/mac/libtinyxml.a"; sourceTree = SOURCE_ROOT; };
 		6DB129590E19A25E004FA1FD /* libpcrecpp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpcrecpp.a; path = "../../../dom/external-libs/pcre/lib/mac/libpcrecpp.a"; sourceTree = SOURCE_ROOT; };
 		6DB1295A0E19A25E004FA1FD /* libpcre.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpcre.a; path = "../../../dom/external-libs/pcre/lib/mac/libpcre.a"; sourceTree = SOURCE_ROOT; };
 		8DD76F6C0486A84900D96B5E /* viewer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = viewer; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -86,13 +87,17 @@
 				6DB124650E198F37004FA1FD /* GLUT.framework in Frameworks */,
 				6DB124690E198F4A004FA1FD /* OpenGL.framework in Frameworks */,
 				6DB129210E199316004FA1FD /* Cg.framework in Frameworks */,
-				6DB1293C0E199E79004FA1FD /* libtinyxml.a in Frameworks */,
 				6DB1295B0E19A25E004FA1FD /* libpcrecpp.a in Frameworks */,
 				6DB1295C0E19A25E004FA1FD /* libpcre.a in Frameworks */,
 				6DA176F10E1ACB4F00D3D8C5 /* libdom.a in Frameworks */,
 				6DA176F20E1ACB5500D3D8C5 /* librt.a in Frameworks */,
-				6DA176F40E1ACB6300D3D8C5 /* libbullet.a in Frameworks */,
 				6DA176F50E1ACB6700D3D8C5 /* libfx.a in Frameworks */,
+				6D00EBB70EB6771C00BE4C21 /* libboost_filesystem.a in Frameworks */,
+				6D00EBB80EB6771C00BE4C21 /* libboost_system.a in Frameworks */,
+				6D00EBCD0EB679CC00BE4C21 /* libbullet.a in Frameworks */,
+				6D00ECC30EB6893C00BE4C21 /* libxml2.dylib in Frameworks */,
+				6D00ED0B0EB68E1900BE4C21 /* libz.dylib in Frameworks */,
+				6D00ED0D0EB68E3700BE4C21 /* libminizip.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,13 +107,17 @@
 		08FB7794FE84155DC02AAC07 /* viewer */ = {
 			isa = PBXGroup;
 			children = (
-				6DA175B20E1AB5E700D3D8C5 /* bullet.xcodeproj */,
+				6D00ECCB0EB689AA00BE4C21 /* libminizip.a */,
+				6D00ECC60EB6895300BE4C21 /* libz.dylib */,
+				6D00ECC20EB6893C00BE4C21 /* libxml2.dylib */,
+				6D00EBCC0EB679CC00BE4C21 /* libbullet.a */,
+				6D00EBB50EB6771C00BE4C21 /* libboost_filesystem.a */,
+				6D00EBB60EB6771C00BE4C21 /* libboost_system.a */,
 				6DA175A80E1AB5DB00D3D8C5 /* rt.xcodeproj */,
 				6DA1759F0E1AB5D100D3D8C5 /* fx.xcodeproj */,
 				6DA175990E1AB5C100D3D8C5 /* dom.xcodeproj */,
 				6DB129590E19A25E004FA1FD /* libpcrecpp.a */,
 				6DB1295A0E19A25E004FA1FD /* libpcre.a */,
-				6DB1293B0E199E79004FA1FD /* libtinyxml.a */,
 				6DB129200E199316004FA1FD /* Cg.framework */,
 				6DB124680E198F4A004FA1FD /* OpenGL.framework */,
 				6DB124640E198F37004FA1FD /* GLUT.framework */,
@@ -159,14 +168,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		6DA175B30E1AB5E700D3D8C5 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				6DA175BA0E1AB5E700D3D8C5 /* libbullet.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		C6859E8C029090F304C91782 /* Documentation */ = {
 			isa = PBXGroup;
 			children = (
@@ -210,10 +211,6 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 6DA175B30E1AB5E700D3D8C5 /* Products */;
-					ProjectRef = 6DA175B20E1AB5E700D3D8C5 /* bullet.xcodeproj */;
-				},
-				{
 					ProductGroup = 6DA1759A0E1AB5C100D3D8C5 /* Products */;
 					ProjectRef = 6DA175990E1AB5C100D3D8C5 /* dom.xcodeproj */;
 				},
@@ -255,13 +252,6 @@
 			remoteRef = 6DA175B00E1AB5DB00D3D8C5 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		6DA175BA0E1AB5E700D3D8C5 /* libbullet.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libbullet.a;
-			remoteRef = 6DA175B90E1AB5E700D3D8C5 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -298,6 +288,11 @@
 					"\"$(SRCROOT)/../../../dom/external-libs/tinyxml/lib/mac\"",
 					"\"$(SRCROOT)/../../../dom/external-libs/pcre/lib/mac\"",
 					"\"$(SRCROOT)/../../../rt/external-libs/bullet/project/osx/build/Debug\"",
+					"\"$(SRCROOT)/../../../rt/external-libs/bullet/lib/xcode/Debug\"",
+					"\"$(SRCROOT)/../../../dom/external-libs/boost/lib/mac\"",
+					"\"$(SRCROOT)/../../../rt/external-libs/bullet/lib/xcode/Release\"",
+					"\"$(SRCROOT)/../../../dom/external-libs/minizip/mac\"",
+					"\"$(SRCROOT)/../../../dom/build/mac-1.4-d\"",
 				);
 				PRODUCT_NAME = viewer;
 			};
@@ -318,6 +313,11 @@
 					"\"$(SRCROOT)/../../../dom/external-libs/tinyxml/lib/mac\"",
 					"\"$(SRCROOT)/../../../dom/external-libs/pcre/lib/mac\"",
 					"\"$(SRCROOT)/../../../rt/external-libs/bullet/project/osx/build/Debug\"",
+					"\"$(SRCROOT)/../../../rt/external-libs/bullet/lib/xcode/Debug\"",
+					"\"$(SRCROOT)/../../../dom/external-libs/boost/lib/mac\"",
+					"\"$(SRCROOT)/../../../rt/external-libs/bullet/lib/xcode/Release\"",
+					"\"$(SRCROOT)/../../../dom/external-libs/minizip/mac\"",
+					"\"$(SRCROOT)/../../../dom/build/mac-1.4-d\"",
 				);
 				PRODUCT_NAME = viewer;
 			};
@@ -330,10 +330,7 @@
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"CFX_PLATFORM_INCLUDE=\\<cfxOSX.h\\>",
-					"CRT_PLATFORM_INCLUDE=\\\"Crt/CrtOSX.h\\\"",
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
@@ -341,7 +338,7 @@
 					"\"$(SRCROOT)/../../../fx/include\"/**",
 					"\"$(SRCROOT)/../../../dom/include\"/**",
 					"\"$(SRCROOT)/../../../rt/external-libs/bullet/include\"/**",
-					"\"$(SRCROOT)/../../../rt/external-libs/bullet/src\"/**",
+					"\"$(SRCROOT)/../../../dom/external-libs/boost\"",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
@@ -363,8 +360,9 @@
 					"\"$(SRCROOT)/../../../fx/include\"/**",
 					"\"$(SRCROOT)/../../../dom/include\"/**",
 					"\"$(SRCROOT)/../../../rt/external-libs/bullet/include\"/**",
-					"\"$(SRCROOT)/../../../rt/external-libs/bullet/src\"/**",
+					"\"$(SRCROOT)/../../../dom/external-libs/boost\"",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				SDKROOT = macosx10.5;
 				SYMROOT = ../../bin;
