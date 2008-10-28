@@ -1,6 +1,6 @@
 PLAYSTATION(R)3 Collada Viewer
-                  Copyright (C) 2007 Sony Computer Entertainment Inc.
-                                                 All Rights Reserved.
+            Copyright (C) 2007 Sony Computer Entertainment Inc.
+                    All Rights Reserved.
 
 ==============================================================================
 Content of Collada Viewer 
@@ -23,7 +23,7 @@ Content of Collada Viewer
 |  +--other
 |  +--license_e.txt
 |
-+--rt						The Runtime Rendering library that uses OpenGL ES or PSGL
++--rt                       The Runtime Rendering library that uses OpenGL ES or PSGL
 |  +--build
 |  +--external-libs         Open source libraries used by rt module
 |  +--include
@@ -32,7 +32,7 @@ Content of Collada Viewer
 |
 +--viewer					
 |  +-bin                    The application binary that uses all software libraries above to make a Collada document viewer
-|     +-samples.zip			Compressed art assets and shaders used by Collada Viewer
+|     +-samples.zip         Compressed art assets and shaders used by Collada Viewer
 |
 |  +-make       
 |     +-common.mk
@@ -46,7 +46,7 @@ Content of Collada Viewer
 |     +-VC9-Win             Visual Studio 2008 project files and platform-specific source code for Windows native Collada Viewer
 |
 +--Makefile                 Makefile (for Linux and MSYS) to build Collada Viewer and the necessary libraries
-+--Readme.txt				This file
++--Readme.txt               This file
 
 
 
@@ -137,7 +137,7 @@ Collada Viewer button usage
 ===========================
 [PS3]
 
-Up	        Navigate the document browser upward
+Up          Navigate the document browser upward
 Down        Navigate the document browser downward
 Cross       Load the document browser selected Collada document
 Select      Next camera view
@@ -147,43 +147,45 @@ L3          Toggle Browser thumbnail display
 R3          Toggle wireframe display
 Left analog stick	Move camera and focus point up, down, left, right
 Right analog stick 	Rotate camera up, down, left right
-f
+
 
 [Windows native]
 
 Keybroad:		  
-Tab			Next camera
-M			Increase key press and mouse responsiveness by a factor of 25%
-N			Decrease key press and mouse responsiveness by a factor of 25%
-Q			Toggle Wireframe
-K			Show node hiearchy with lines
-L			Toggle Lighting mode
-P			Toggle animation
-F1			Toggle full screen
+Tab         Next camera
+M           Increase key press and mouse responsiveness by a factor of 25%
+N           Decrease key press and mouse responsiveness by a factor of 25%
+            Note: M & N key presses affect the responsiveness of W/S/A/D/X/Space keys, left mouse click, right mouse click and mouse wheel
+            
+Q           Toggle Wireframe
+K           Show node hiearchy with lines
+L           Toggle Lighting mode
+P           Toggle animation
+F1          Toggle full screen
 
-W			Move camera closer to the focus point = zoom in
-S			Move camera away from the focus point = zoom out
-A			Move camera and focus point to the left
-D			Move camera and focus point to the right
-Space		Move camera and focus point to the up
-X			Move camera and focus point to the down
-F			Change triangle/quad culling setting; rotate between cull-front-facing/no-culling/cull-back-facing
+W           Move camera closer to the focus point = zoom in
+S           Move camera away from the focus point = zoom out
+A           Move camera and focus point to the left
+D           Move camera and focus point to the right
+Space       Move camera and focus point to the up
+X           Move camera and focus point to the down
+F           Change triangle/quad culling setting; rotate between cull-front-facing/no-culling/cull-back-facing
 
 Mouse:
-Wheel Up			Move camera closer to the focus point = zoom in
-Wheel Down			Move camera away from the focus point = zoom out
-Left Click Move 	Rotate camera up, down, left and right
-Right Click Move	Move camera and focus point up, down, left, right
-Middle Click		Next camera
+Wheel Up            Move camera closer to the focus point = zoom in
+Wheel Down          Move camera away from the focus point = zoom out
+Left Click Move     Rotate camera up, down, left and right
+Right Click Move    Move camera and focus point up, down, left, right
+Middle Click        Next camera
 
 
 ========================
 Bugzilla issues resolved
 ========================
 
-ID		Sev  Status  Resolution 	 Summary
+ID      Sev  Status  Resolution 	 Summary
 
-62809 	C 	 RESO 	FIXE 	[Viewer (VS2005s)] Sample build warning [type qualifiers ignored on function return type]
+62809 	C    RESO 	FIXE 	[Viewer (VS2005s)] Sample build warning [type qualifiers ignored on function return type]
 62852 	B-2  RESO 	FIXE 	[Viewer (VS2005s, Win32 Release)] The keys "M" and "N" for slowin down and speeding up of navigation are not working. 
 
 
@@ -220,5 +222,5 @@ Known issues
 	
   to
   
-	SYS_PROCESS_PARAM( 1001, 0x18000 );		// priority = 1001, increase stack size to 96K, or something to suit your need
+	SYS_PROCESS_PARAM( 1001, 0x18000 );		// priority = 1001, increase stack size to 96K, or other setting to suit your need
 	
