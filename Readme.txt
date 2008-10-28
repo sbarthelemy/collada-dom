@@ -147,16 +147,16 @@ L3          Toggle Browser thumbnail display
 R3          Toggle wireframe display
 Left analog stick	Move camera and focus point up, down, left, right
 Right analog stick 	Rotate camera up, down, left right
-
+f
 
 [Windows native]
 
 Keybroad:		  
 Tab			Next camera
-M			Increase key press response by a factor of 25%
-N			Decrease key press response by a factor of 25%
+M			Increase key press and mouse responsiveness by a factor of 25%
+N			Decrease key press and mouse responsiveness by a factor of 25%
 Q			Toggle Wireframe
-K			Show nodes hiearchy with lines
+K			Show node hiearchy with lines
 L			Toggle Lighting mode
 P			Toggle animation
 F1			Toggle full screen
@@ -167,12 +167,12 @@ A			Move camera and focus point to the left
 D			Move camera and focus point to the right
 Space		Move camera and focus point to the up
 X			Move camera and focus point to the down
-F			Toggle culling face in loop with GL_Front, None, GL_Back
+F			Change triangle/quad culling setting; rotate between cull-front-facing/no-culling/cull-back-facing
 
 Mouse:
 Wheel Up			Move camera closer to the focus point = zoom in
-Wheel Down			Move camera away from the focus point = zoom outfm	x
-Left Click Move 	Rotate camera up, down, left right
+Wheel Down			Move camera away from the focus point = zoom out
+Left Click Move 	Rotate camera up, down, left and right
 Right Click Move	Move camera and focus point up, down, left, right
 Middle Click		Next camera
 
@@ -183,12 +183,7 @@ Bugzilla issues resolved
 
 ID		Sev  Status  Resolution 	 Summary
 
-62806 	B-1  RESO 	FIXE 	[Viewer (VS2005s, PS3-Release)] Failed to load DAE files
-62857 	C 	 RESO 	FIXE 	The description of the Windows environment isn't adequate of COLLADA_250.1 readme.
-60042 	B-2  RESO 	FIXE 	[Viewer (VS2005s, Win32-Debug)] Linker warnings [warning LNK4099: PDB 'vc80.pdb' was not found with '..\..\..\rt\external-libs\bullet\lib\vc8\bullet-MDd.lib' or at 'c:\usr\local\viewer\bin\vc80.pdb'; linking object as if no debug info]
-62808 	C 	 RESO 	FIXE 	[Viewer (VS2005s, PS3-Release)] Sample build warning [dereferencing type-punned pointer will break strict-aliasing rules]
 62809 	C 	 RESO 	FIXE 	[Viewer (VS2005s)] Sample build warning [type qualifiers ignored on function return type]
-62851 	B-2  RESO 	FIXE 	[Viewer (VS2005s, Win32 Release)] Full screen mode is not working.
 62852 	B-2  RESO 	FIXE 	[Viewer (VS2005s, Win32 Release)] The keys "M" and "N" for slowin down and speeding up of navigation are not working. 
 
 
@@ -198,7 +193,7 @@ Non-Bugzilla issues resolved
 
 - libBullet.a removed from PS3 target build; it is not supposed to be included in PS3 target
 - For Windows Collada Viewer, use 'p' key to toggle animation, instead of 'p' and 'o' to enable/disable animation
-- Remove 'seymour.dae', it is duplicate of 'astroBoy_walk.dae'
+- Remove 'seymour.dae', it is a duplicate of 'astroBoy_walk.dae'
 - PS3 debug version of Collada Viewer is now linked against debug version of dom, rt and fx, instead of the release version of them
 
 

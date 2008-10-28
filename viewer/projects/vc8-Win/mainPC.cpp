@@ -87,7 +87,7 @@ public:
 //----------------------------------------------------------------------------------------------------
 // Multipliers we use to scale the speed of the UI
 CrtFloat	MouseRotateSpeed = 0.75f;
-CrtFloat	MouseWheelSpeed = 0.05f;
+CrtFloat	MouseWheelSpeed = 0.02f;
 CrtFloat	MouseTranslateSpeed = 0.1f;
 CrtFloat	KeyboardRotateSpeed = 10.0f;
 #define     RUN_SPEED				500.0f	
@@ -116,11 +116,6 @@ bool	sAnimationEnable = true;
 // Call ProcessInput once per frame to process input keys
 void ProcessInput( bool	keys[] )
 {
-	//if (keys['U'] )
-	//	_CrtRender.SetAnimationOn( CrtFalse ); 
-	//if (keys['I'] )
-	//	_CrtRender.SetAnimationOn( CrtTrue ); 
-	
 	// These keys we don't want to auto-repeat, so we clear them in "keys" after handling them once
 	if (keys['E'] && amplitudeGlobalParameter)
 	{
@@ -144,24 +139,8 @@ void ProcessInput( bool	keys[] )
 		_CrtRender.SetNextCamera();
 		keys[VK_TAB] = false;
 	}
-/*	if ( keys[VK_SHIFT] )
-	{
-		KeyboardTranslateSpeed = WALK_SPEED;  
-	} else {
-		KeyboardTranslateSpeed = RUN_SPEED; 
-	}
 
-	if ( keys['U'] )
-	{
-		if (KeyboardTranslateSpeed >= 0)
-			KeyboardTranslateSpeed -= 10;  
-	}
-	if ( keys['I'] )
-	{
-		KeyboardTranslateSpeed += 10;  
-	}
-
-*/	if ( keys['M'] )
+	if ( keys['M'] )
 	{
 		// Speed up UI by 25%
 		AdjustUISpeed(1.25f);  
@@ -184,12 +163,8 @@ void ProcessInput( bool	keys[] )
 		}
 		keys['Q'] = false;
 	}
-/*	if (keys['Z'])
-	{
-		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-		keys['Z'] = false;
-	}
-*/	if (keys['K'])
+
+	if (keys['K'])
 	{
 		if (togglehiearchy) {
 			_CrtRender.SetShowHiearchy(CrtTrue);	
@@ -249,13 +224,13 @@ void ProcessInput( bool	keys[] )
 	if (keys['S'])
 	{
 		// UI code to move the camera closer
-		_CrtRender.ActiveInstanceCamera->MoveTransform(_CrtRender.GetAnimDelta() * KeyboardTranslateSpeed, 0.0f, 0.0f);
+		_CrtRender.ActiveInstanceCamera->MoveTransform(_CrtRender.GetAnimDelta() * KeyboardTranslateSpeed *0.5f, 0.0f, 0.0f);
 	}
 
 	if (keys['W'])
 	{
 		// UI code to move the camera farther away
-		_CrtRender.ActiveInstanceCamera->MoveTransform(- _CrtRender.GetAnimDelta() * KeyboardTranslateSpeed, 0.0f, 0.0f);
+		_CrtRender.ActiveInstanceCamera->MoveTransform(- _CrtRender.GetAnimDelta() * KeyboardTranslateSpeed * 0.5f, 0.0f, 0.0f);
 	}
 
 	if (keys[VK_SPACE])
@@ -373,8 +348,8 @@ LRESULT CALLBACK WndProc(	HWND	hWnd,
 			if (_CrtRender.ActiveInstanceCamera)
 			{
 				float gcWheelDelta = (short) HIWORD(wParam);
-				_CrtRender.ZoomIn((CrtFloat) (-gcWheelDelta * 0.02));
-//				CrtMatrixCopy(_CrtRender.ActiveInstanceCamera->transform, _CrtRender.ExtraCameraTransform);
+				_CrtRender.ZoomIn((CrtFloat) (-gcWheelDelta * MouseWheelSpeed));
+
 				return 0;
 			}
 		}
@@ -886,8 +861,7 @@ BOOL CreateGLWindow(CrtChar* title, CrtInt32 width, CrtInt32 height, CrtInt32 bi
 	fullscreen=fullscreenflag;			
 
 	hInstance			= GetModuleHandle(NULL);				
-	wc.style			= CS_HREDRAW | CS_VREDRAW | CS_OWNDC;	
-//	wc.lpfnWndProc		= (WNDPROC) WndProc;					
+	wc.style			= CS_HREDRAW | CS_VREDRAW | CS_OWNDC;			
 	wc.lpfnWndProc		= (WNDPROC) WndProc;
 	wc.cbClsExtra		= 0;									
 	wc.cbWndExtra		= 0;									
@@ -1037,12 +1011,6 @@ BOOL CreateGLWindow(CrtChar* title, CrtInt32 width, CrtInt32 height, CrtInt32 bi
 		MessageBox(NULL,"Initialization Failed.","ERROR",MB_OK|MB_ICONEXCLAMATION);
 		return FALSE;								
 	}
-
-//	if ( !glClientActiveTexture || !glActiveTexture )
-//	{
-//		glActiveTexture = (PFNGLACTIVETEXTUREARBPROC) wglGetProcAddress("glActiveTextureARB");
-//		glClientActiveTexture = (PFNGLCLIENTACTIVETEXTUREARBPROC) wglGetProcAddress("glClientActiveTextureARB");		
-//	}
 
 	return TRUE;									
 }
