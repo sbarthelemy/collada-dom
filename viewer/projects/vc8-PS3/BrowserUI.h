@@ -45,7 +45,7 @@ public:
 
 	const char * GetDocument() {return documentfile;};
 	const char * GetImage() {return imagefile;};
-	const GLuint GetTexture() {return texture;};
+	GLuint GetTexture() {return texture;};
 	void SetDocument(const char * document);
 	void SetImage(const char * image);
 	void SetDimension(float width, float height);
