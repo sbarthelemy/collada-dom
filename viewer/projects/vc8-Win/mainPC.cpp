@@ -190,12 +190,12 @@ void ProcessInput( bool	keys[] )
 	if (keys['P'] )
 	{
 		if (sAnimationEnable) {
-			_CrtRender.SetAnimationPaused( CrtFalse );
+			_CrtRender.SetAnimationPaused( CrtTrue );
 			sAnimationEnable = false;
 		}
 		else { 
-			_CrtRender.SetAnimationPaused( CrtTrue ); 
-						sAnimationEnable = true;
+			_CrtRender.SetAnimationPaused( CrtFalse ); 
+			sAnimationEnable = true;
 		}
 		keys['P'] = false;
 	}
