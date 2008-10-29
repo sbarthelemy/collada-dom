@@ -163,8 +163,8 @@ L           Toggle Lighting mode
 P           Toggle animation
 F1          Toggle full screen
 
-W           Move camera closer to the focus point = zoom in
-S           Move camera away from the focus point = zoom out
+W           Move camera closer to the focus point, zoom in
+S           Move camera away from the focus point, zoom out
 A           Move camera and focus point to the left
 D           Move camera and focus point to the right
 Space       Move camera and focus point to the up
@@ -172,11 +172,12 @@ X           Move camera and focus point to the down
 F           Change triangle/quad culling setting; rotate between cull-front-facing/no-culling/cull-back-facing
 
 Mouse:
-Wheel Up            Move camera closer to the focus point = zoom in
-Wheel Down          Move camera away from the focus point = zoom out
+Wheel Up            Move camera closer to the focus point, zoom in
+Wheel Down          Move camera away from the focus point, zoom out
 Left Click Move     Rotate camera up, down, left and right
 Right Click Move    Move camera and focus point up, down, left, right
 Middle Click        Next camera
+
 
 
 ========================
@@ -189,23 +190,20 @@ ID      Sev  Status  Resolution 	 Summary
 62852 	B-2  RESO 	FIXE 	[Viewer (VS2005s, Win32 Release)] The keys "M" and "N" for slowin down and speeding up of navigation are not working. 
 
 
+
 ============================
 Non-Bugzilla issues resolved
 ============================
 
-- libBullet.a removed from PS3 target build; it is not supposed to be included in PS3 target
-- For Windows Collada Viewer, use 'p' key to toggle animation, instead of 'p' and 'o' to enable/disable animation
-- Remove 'seymour.dae', it is a duplicate of 'astroBoy_walk.dae'
-- PS3 debug version of Collada Viewer is now linked against debug version of dom, rt and fx, instead of the release version of them
+- In VC8/PS3 debug build, when rendering mushroom.dae, TTY output PSGL warning: "Texture 0 bound to unit 0(GL_TEXTURE_2D) is incomplete".  
+  This is now fixed.
+
 
 
 ============
 Known issues
 ============
 
-- When rendering mushroom.dae, TTY output PSGL warning: "Texture 0 bound to unit 0(GL_TEXTURE_2D) is incomplete" 
-  This happens in VC8/PS3 debug build only
-  
 - For PS3 debug build, when unloading Collada document with large number of nodes, suc as demo.dae and dominos.dae,
   a debug exception is raised due to stack overflow.
   
