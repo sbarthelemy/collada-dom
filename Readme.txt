@@ -50,9 +50,10 @@ Content of Collada Viewer
 
 
 
-===========
-Requirement
-===========
+============
+Requirements
+============
+
 [Linux]
 GNU make version 3.81
 PS3 SDK toolchain
@@ -76,6 +77,7 @@ FW sample framework (prebuilt)
 [Windows native]
 Visual Studio 2005 or Visual Studio 2008
 Cg 2.0 Toolkit
+
 
 
 ================================
@@ -116,6 +118,7 @@ substitute "vc9" for "vc8" for the following instructions.
 3) Unzip samples.zip, extract its content to viewer\bin\
 4) Use ProDG Target Manager or Debugger to load viewer.ppu.self (release) or viewer-d.ppu.self in \viewer\bin
    Optionally, specify a Collada document (cage.dae) as command line argument when loading viewer executable
+
 
 
 ===========================================
@@ -169,7 +172,7 @@ A           Move camera and focus point to the left
 D           Move camera and focus point to the right
 Space       Move camera and focus point to the up
 X           Move camera and focus point to the down
-F           Change triangle/quad culling setting; rotate between cull-front-facing/no-culling/cull-back-facing
+F           Change triangle/quad culling setting; rotate between frontface-culling/no-culling/backface-culling
 
 Mouse:
 Wheel Up            Move camera closer to the focus point, zoom in
@@ -177,26 +180,6 @@ Wheel Down          Move camera away from the focus point, zoom out
 Left Click Move     Rotate camera up, down, left and right
 Right Click Move    Move camera and focus point up, down, left, right
 Middle Click        Next camera
-
-
-
-========================
-Bugzilla issues resolved
-========================
-
-ID      Sev  Status  Resolution 	 Summary
-
-62809 	C    RESO 	FIXE 	[Viewer (VS2005s)] Sample build warning [type qualifiers ignored on function return type]
-62852 	B-2  RESO 	FIXE 	[Viewer (VS2005s, Win32 Release)] The keys "M" and "N" for slowin down and speeding up of navigation are not working. 
-
-
-
-============================
-Non-Bugzilla issues resolved
-============================
-
-- In VC8/PS3 debug build, when rendering mushroom.dae, TTY output PSGL warning: "Texture 0 bound to unit 0(GL_TEXTURE_2D) is incomplete".  
-  This is now fixed.
 
 
 
