@@ -158,7 +158,7 @@ N           Decrease key press and mouse responsiveness by a factor of 25%
             Note: M & N key presses affect the responsiveness of W/S/A/D/X/Space keys, left mouse click, right mouse click and mouse wheel
             
 Q           Toggle Wireframe
-K           Show node hiearchy with lines
+K           Show node hierarchy with lines
 L           Toggle Lighting mode
 P           Toggle animation
 F1          Toggle full screen
@@ -204,7 +204,7 @@ Non-Bugzilla issues resolved
 Known issues
 ============
 
-- For PS3 debug build, when unloading Collada document with large number of nodes, suc as demo.dae and dominos.dae,
+- For PS3 debug build, when unloading Collada document with large number of nodes, such as demo.dae and dominos.dae,
   a debug exception is raised due to stack overflow.
   
   The Collada Viewer uses Cell SDK framework, which sets the main PPU thread priority and stack size in its code base.
