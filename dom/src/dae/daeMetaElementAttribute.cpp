@@ -138,14 +138,18 @@ daeMetaElementArrayAttribute::placeElement(daeElement* parent, daeElement* child
 {
 	if ((parent == NULL)||(child == NULL))
 		return NULL;
-	if ( child->getMeta() != _elementType || strcmp( child->getElementName(), _name ) != 0 ) {
+	if ( child->getMeta() != _elementType)
 		return NULL;
-	}
-	daeElement *p = child->getParentElement();
+
 	daeElementRefArray* era = (daeElementRefArray*)getWritableMemory(parent);
 	if ( _maxOccurs != -1 && (daeInt)era->getCount()-offset >= _maxOccurs ) {
 		return NULL;
 	}
+	
+	if (strcmp( child->getElementName(), _name ) != 0 )
+		return NULL;
+
+	daeElement *p = child->getParentElement();
 	removeElement( p, child );
 	child->setParentElement( parent );
 
