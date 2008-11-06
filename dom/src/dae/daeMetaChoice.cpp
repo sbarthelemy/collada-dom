@@ -26,14 +26,14 @@ daeElement *daeMetaChoice::placeElement( daeElement *parent, daeElement *child, 
 	}
 
 	daeElement *retVal = NULL;
-	size_t cnt = _children.getCount();
 
 	daeTArray< daeCharArray *> *CMData = (daeTArray< daeCharArray *>*)_container->getMetaCMData()->getWritableMemory(parent);
 	daeCharArray *myData = CMData->get( _choiceNum );
+	size_t count = myData->getCount();
 
 	for ( daeInt i = 0; ( i < _maxOccurs || _maxOccurs == -1 ); i++ ) 
 	{
-		if ( (daeInt)myData->getCount() > i && myData->get(i) != -1 ) //choice has already been made
+		if ( (daeInt) count > i && myData->get(i) != -1 ) //choice has already been made
 		{
 			if ( _children[ myData->get(i) ]->placeElement( parent, child, ordinal, i, before, after ) != NULL ) 
 			{
@@ -69,6 +69,7 @@ daeElement *daeMetaChoice::placeElement( daeElement *parent, daeElement *child, 
 		}
 		else //no choice has been made yet
 		{
+			size_t cnt = _children.getCount();
 			for ( size_t x = 0; x < cnt; x++ ) 
 			{
 				if ( _children[x]->placeElement( parent, child, ordinal, i, before, after ) != NULL ) 
@@ -77,6 +78,7 @@ daeElement *daeMetaChoice::placeElement( daeElement *parent, daeElement *child, 
 					ordinal = ordinal  + _ordinalOffset;
 
 					myData->append( (daeChar)x ); //you always place in the next available choice up to maxOccurs
+					count ++;
 					break;
 				}
 			}
@@ -92,6 +94,7 @@ daeElement *daeMetaChoice::placeElement( daeElement *parent, daeElement *child, 
 		{
 			daeElementRefArray childsInChoice;
 			_children[ myData->get(i) ]->getChildren( parent, childsInChoice );
+			size_t cnt = _children.getCount();
 			for ( size_t x = myData->get(i) +1; x < cnt; x++ )
 			{
 				daeElementRefArray childsInNext;
