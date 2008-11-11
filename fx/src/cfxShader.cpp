@@ -41,7 +41,7 @@ cfxShader::cfxShader(cfxPass* _pass, const std::string& _source, const std::stri
 		std::string adjustedFullPath(fullPath, 1, strlen(fullPath));
 
 		printf("program %s at %s has value:  %p\n", source.c_str(), fullPath, program);
-
+        printf(" adjustedFullPath.c_str() %s \n", adjustedFullPath.c_str());
 		// this needs cg files, not cgfx 
 		program = cgCreateProgramFromFile(pass->getTechnique()->getEffect()->getContext(), CG_FILE_TYPE, adjustedFullPath.c_str(), target /*profile*/, name.c_str(), NULL);
 
@@ -51,7 +51,7 @@ cfxShader::cfxShader(cfxPass* _pass, const std::string& _source, const std::stri
 		unsigned int indexCg = 0;
 		fullPath = pass->getTechnique()->getFullPathCg(numCg, indexCg);
 
-		printf("PROGRAM %s at %s %s %d\n", source.c_str(), fullPath, name.c_str(), (int)target);
+		printf("NORMAL_OS 0: PROGRAM %s at %s %s %d\n", source.c_str(), fullPath, name.c_str(), (int)target);
 		//printf("cgGLGetLatestProfile(CG_GL_VERTEX) vs %d cgGLGetLatestProfile(CG_GL_FRAGMENT) %d \n", 
 		//	cgGLGetLatestProfile(CG_GL_VERTEX), cgGLGetLatestProfile(CG_GL_FRAGMENT) ); 
 			

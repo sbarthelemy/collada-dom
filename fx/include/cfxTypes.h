@@ -13,7 +13,7 @@
 #endif
 
 #ifdef LINUX
-#define NORMAL_OS	1
+#undef NORMAL_OS	
 #endif
 
 #ifdef __APPLE__

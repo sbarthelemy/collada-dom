@@ -82,5 +82,4 @@ printf("%s() %s %s\n", __FUNCTION__, LTypeStr, LMessage);fflush(stdout);
 }
 
 
-
 #endif	// CRT_LINUX

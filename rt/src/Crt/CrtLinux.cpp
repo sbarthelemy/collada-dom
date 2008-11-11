@@ -73,10 +73,12 @@ CrtFloat CrtRender::GetTime(void)
 
  if(gettimeofday(&LTV, &LTZ) != -1)
  {
-  long long	LTime = LTV.tv_sec;
+    long long LTime = LTV.tv_sec;
 
-  LTime *= 1000000;LTime += LTV.tv_usec;
-  return((CrtFloat)LTime);
+    LTime *= 1000000; 
+    LTime += LTV.tv_usec;
+    ulong time = LTime & 0xFFFFFFFF;
+    return((CrtFloat)time/1000000);
  }
  return(0.0);
 }
@@ -102,15 +104,11 @@ CrtInt CrtRender::LoadCgProgram( CrtChar * fileName, const CrtInt programType )
 	if ( programType == CrtFragmentProgram )
 	{	
 		CrtCpy( ext, ".cg" ); 
-		//CrtPrint("Loading %s Fragment Program \n", fullFileName ); 
-//		cgPrograms[NumCgPrograms] =	cgCreateProgramFromFile(cgContext, CG_BINARY, fullFileName, cgFragmentProfile, NULL, NULL);
 		cgPrograms[NumCgPrograms] = cgCreateProgramFromFile(cgContext, CG_SOURCE, fullFileName, cgFragmentProfile, NULL, NULL);
 	}
 	else
 	{
 		CrtCpy( ext, ".cg" ); 
-		//CrtPrint("Loading %s Vertex Program \n", fullFileName ); 
-//		cgPrograms[NumCgPrograms] =	cgCreateProgramFromFile(cgContext, CG_BINARY, fullFileName, cgVertexProfile, NULL, NULL);
 		cgPrograms[NumCgPrograms] = cgCreateProgramFromFile(cgContext, CG_SOURCE, fullFileName, cgVertexProfile, "main", 0);
 	}
 

@@ -137,7 +137,7 @@ cfxBool cfxLoader::loadMaterialsAndEffects(DAE *colladaAsset, std::map<std::stri
 					std::map<std::string, cfxEffect*>& effects, CGcontext _context)
 {
     cfxBool resultEffects, resultMaterials;
-
+printf("cfxLoader::loadMaterialsAndEffects\n");
     resultEffects = loadEffects(colladaAsset, effects, _context);
 
     if (resultEffects)
@@ -158,7 +158,6 @@ cfxBool cfxLoader::loadEffects(DAE *colladaAsset, std::map<std::string, cfxEffec
 {
     // How many effect elements are there?
     cfxUint effectElementCount = (cfxUint) colladaAsset->getDatabase()->getElementCount(NULL, COLLADA_ELEMENT_EFFECT);
-
     cfxPrint("There are %d effect elements in this file\n", effectElementCount); 
 
     if (effectElementCount > 0)
@@ -194,8 +193,8 @@ cfxBool cfxLoader::loadEffects(DAE *colladaAsset, std::map<std::string, cfxEffec
 	    cgGLSetManageTextureParameters(_context, true);
 #endif
 	    
-	    //int profileCount = effectElement->getFx_profile_abstract_array().getCount();
-	    //cfxPrint("effect %d with id %s has %d profiles\n", currentEffect, effectElement->getId(), profileCount);
+	    int profileCount = effectElement->getFx_profile_abstract_array().getCount();
+	    cfxPrint(".............effect %d with id %s has %d profiles\n", currentEffect, effectElement->getId(), profileCount);
 	    //if (profileCount > 0)
 		if( hasCGProfile( effectElement ) )
 		{
@@ -653,17 +652,17 @@ void loadProfileArray(domFx_profile_abstract_Array& profileArrayElement, cfxEffe
 		    domProfile_CG* cgProfileElement = static_cast<domProfile_CG*>(profileElement);
 
 		    daeString platformName = cgProfileElement->getPlatform();
-		    cfxPrint("platform %s\n", platformName);
+		    cfxPrint("loadProfileArray(): platform %s\n", platformName);
 
 			// Check if this is the platform we are interested in
 			if (strcmp(platformName, cfxLoader::getPlatformString().c_str() ) == 0)
 			{
 			    // !!!tsl tweaked parameters go into materials, so a whole thing needs to be added for proper support  
 			    // also, this adds newparam's to the effect, they should probably be added to the technique instead
-			    cfxPrint("load newparams\n");
+			    cfxPrint("loadProfileArray():load newparams\n");
 			    loadNewParamArray(cgProfileElement->getNewparam_array(), effect, effect);
 
-			    cfxPrint("load technique\n");
+			    cfxPrint("loadProfileArray():load technique\n");
 
 			    // create and populate a cfxTechnique for every technique in the cg profile
 			    cfxUint techniqueCount = (cfxUint) cgProfileElement->getTechnique_array().getCount();
@@ -693,6 +692,7 @@ void loadProfileArray(domFx_profile_abstract_Array& profileArrayElement, cfxEffe
 				    // loop over the includes for the profile and push them onto the technique
 				    domFx_include_common_Array &profileIncludeArrayElem = cgProfileElement->getInclude_array();
 				    includeCount = (cfxUint) profileIncludeArrayElem.getCount();
+                    cfxPrint(".......profile..includeCount %d\n", includeCount);
 				    for (cfxUint currentInclude = 0; currentInclude < includeCount; currentInclude++)
 					{
 					    domFx_include_common* includeElement = profileIncludeArrayElem.get(currentInclude);
@@ -702,6 +702,7 @@ void loadProfileArray(domFx_profile_abstract_Array& profileArrayElement, cfxEffe
 				    // loop over the includes for the technique and push them onto the technique
 				    domFx_include_common_Array &techniqueIncludeArrayElem = techniqueElement->getInclude_array();
 				    includeCount = (cfxUint) techniqueIncludeArrayElem.getCount();
+                    cfxPrint("........technique.includeCount %d\n", includeCount);
 				    for (cfxUint currentInclude = 0; currentInclude < includeCount; currentInclude++)
 					{
 					    domFx_include_common* includeElement = techniqueIncludeArrayElem.get(currentInclude);
@@ -728,6 +729,7 @@ void loadProfileArray(domFx_profile_abstract_Array& profileArrayElement, cfxEffe
 				    // at least one pass is needed for the technique to do anything 
 				    cfxUint passCount = (cfxUint) passArrayElement.getCount();
 				    // loop over the passes
+                    cfxPrint(".........passCount %d\n", passCount);
 				    for (cfxUint currentPass = 0; currentPass < passCount; currentPass++)
 					{
 					    cfxPrint("Here is a pass!\n");

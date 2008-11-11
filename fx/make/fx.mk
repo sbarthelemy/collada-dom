@@ -5,7 +5,11 @@ src := $(wildcard src/*.cpp)
 includeOpts := -Iinclude -Iinclude/$(colladaVersion)
 
 ifneq ($(findstring $(os),linux mac),)
+includeOpts += -I../dom/include
+includeOpts += -I../dom/include/dae
+includeOpts += -I../dom/include/1.4
 ccFlags += -fPIC
+ccFlags += -DDEFAULT_CG_PLATFORM=\"PC-OGL\" 
 else 
 ifeq ($(os),windows)
 ccFlags += -DDOM_DYNAMIC -DDOM_EXPORT
@@ -31,6 +35,7 @@ endif
 
 ifeq ($(os),linux)
 libOpts += -lpcre -lpcrecpp
+ccFlags += -DCFX_PLATFORM_INCLUDE=\"cfxLinux.h\" -DLINUX
 else 
 # On Mac, Windows and PS3 we need to be told where to find pcre
 ifeq ($(os),windows)

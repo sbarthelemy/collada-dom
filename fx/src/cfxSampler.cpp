@@ -90,7 +90,11 @@ bool cfxSampler::apply(cfxParam* param)
 #ifdef NORMAL_OS
 				    // on windows the mipmaps are always generated when textures are loaded
 #else
-				    glGenerateMipmapOES(GL_TEXTURE_2D);
+    #ifdef LINUX
+                    //glGenerateMipmapEXT(GL_TEXTURE_2D);
+    #else
+                    glGenerateMipmapOES(GL_TEXTURE_2D);
+    #endif
 #endif
 				}
 

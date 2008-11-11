@@ -36,6 +36,7 @@ inline void cfxPrint(const char* str, ...)
     vsprintf(tempStr, str, valist);
     va_end(valist);
 
+    printf( tempStr );
 //    OutputDebugString( tempStr );
 }
 

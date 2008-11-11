@@ -13,6 +13,10 @@
 //#else
 //#include <cfxNoCg.h>
 //#endif
+//#if defined(_POSIX_)
+
+//include <GL/gl.h>
+//#endif
 
 #include <string>
 #include <map>

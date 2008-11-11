@@ -310,15 +310,16 @@ CrtVoid	CrtRender::UpdateDelta()
 	// this function should be called once per frame 	
 	static CrtFloat fps = 0; 
 	static CrtFloat time = 0; 
-	static CrtFloat oldTime = GetTime(); 
+	static CrtFloat oldTime = (CrtFloat)GetTime(); 
 	static CrtInt   nbrFrames = 0; 
 	static CrtBool  UpdatedOnce = CrtFalse; 
 	const CrtFloat	updateTime = 1.0f; 
+
 	time = (CrtFloat )GetTime();
 	
 	nbrFrames++;
 
-	if ( time > oldTime + updateTime )
+	if ( time > (oldTime + updateTime) )
 	{
 		fps = (CrtFloat) nbrFrames; 	
 		Delta = 1.0f/(fps) * updateTime;
@@ -329,7 +330,7 @@ CrtVoid	CrtRender::UpdateDelta()
 
 		UpdatedOnce = CrtTrue; 
 #if 0	
-		CrtPrint(" FPS %f Time %f\n", fps, time );
+		CrtPrint(" FPS %f Time %f \n", fps, time );
 #endif
 #ifdef _WIN32  // !!!GAC temporary windows only performance timing code
 		LARGE_INTEGER frequency;
