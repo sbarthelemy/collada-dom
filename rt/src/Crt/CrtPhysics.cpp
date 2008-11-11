@@ -280,7 +280,7 @@ bool ColladaConverter::convert()
 							printf("No Triangles or Polygons found int Geometry %s \n", lib->getId() ); 
 						} else
 						{
-							printf("Found mesh geometry (%s): numTriangleGroups:%i numPolygonGroups:%i\n",lib->getId(),numTriangleGroups,numPolygonGroups);
+							//printf("Found mesh geometry (%s): numTriangleGroups:%i numPolygonGroups:%i\n",lib->getId(),numTriangleGroups,numPolygonGroups);
 						}
 
 
@@ -371,7 +371,6 @@ bool ColladaConverter::convert()
 									}
 								}
 
-								printf("mass = %f, isDynamics %i\n",mass,isDynamics);
 
 								if (bodyName && model)
 								{
@@ -447,8 +446,6 @@ bool ColladaConverter::convert()
 									isDynamics = techniqueRef->getDynamic()->getValue();
 								}
 							}
-
-							printf("mass = %f, isDynamics %i\n",mass,isDynamics);
 
 							if (bodyName && model)
 							{

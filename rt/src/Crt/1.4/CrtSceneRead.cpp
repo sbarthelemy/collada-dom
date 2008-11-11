@@ -1073,8 +1073,7 @@ CrtGeometry *CrtScene::ReadGeometry( domGeometryRef lib)
 	if (geometry)	// geometry is found
 		return geometry;
 
-	CrtPrint( "Add new Geometry %s \n", lib->getId() );
-    printf( "Add new Geometry %s \n", lib->getId() );
+	//CrtPrint( "Add new Geometry %s \n", lib->getId() );
 
 	// See what kind of data is in the geometry (there can be only one)
 	domAsset		*assetElement		= lib->getAsset();
