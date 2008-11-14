@@ -29,7 +29,7 @@ CGparameter amplitudeGlobalParameter = 0;  //!!!GAC for demo of how to hookup th
 // Window Active Flag Set To true By Default
 static bool    fullscreen=false;
 static bool    sWireframe=false;
-static bool    togglehiearchy=false;
+static bool    sHierarchy=false;
 static bool    sGlLighting=true;
 static int     sCulling=0;
 static bool    sAnimation = true;
@@ -153,12 +153,12 @@ static void KeyboardCallback(const unsigned char key, const int x, const int y)
             break;
     case 'k' :
     case 'K' :
-            if (togglehiearchy) {
-                _CrtRender.SetShowHiearchy(CrtTrue);    
-                togglehiearchy = false;
-            } else {
-                _CrtRender.SetShowHiearchy(CrtFalse);
-                togglehiearchy = true;
+            sHierarchy = !sHierarchy;
+            if (!sHierarchy) {
+                _CrtRender.SetShowHiearchy( CrtFalse );
+            }
+            else { 
+                _CrtRender.SetShowHiearchy( CrtTrue ); 
             }
             break;
     case 'l' :
