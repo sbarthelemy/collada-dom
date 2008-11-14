@@ -5,6 +5,7 @@
 * http://www.opensource.org/licenses/mit-license.php
 *
 */ 
+#include <stdio.h>
 #include "Crt/CrtEffect.h"
 #include "Crt/CrtLight.h"
 #include "Crt/CrtGeometry.h"
@@ -870,7 +871,7 @@ CrtVoid 	CrtRender::PopLightViewMatrix()
 void	CrtNode::DrawLineToChildren()
 {
 
-#ifdef _WIN32 
+#ifndef SN_TARGET_PS3 
 	
 	// recursively draw lines to each child node 
 	GLboolean lightenabled = glIsEnabled(GL_LIGHTING);

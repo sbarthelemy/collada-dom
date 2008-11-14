@@ -17,7 +17,7 @@
 #endif
 
 #ifdef __APPLE__
-#define NORMAL_OS	1
+#undef NORMAL_OS
 #endif
 
 

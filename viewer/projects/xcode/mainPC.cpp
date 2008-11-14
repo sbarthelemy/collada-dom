@@ -5,7 +5,6 @@
 * http://www.opensource.org/licenses/mit-license.php
 *
 */
-// #define HEAP_DEBUG   // Define this to turn on windows heap debugging
 
 #define CFX_PLATFORM_INCLUDE <cfxOSX.h>
 
@@ -26,17 +25,19 @@
 #include <cfxMaterial.h>
 #include <cfxPlatform.h>  // !!!GAC just needed for testing
 
+
 CGparameter amplitudeGlobalParameter = 0;  //!!!GAC for demo of how to hookup the UI to a param
 
-// Window Active Flag Set To TRUE By Default
-
-static bool	fullscreen = true;	
-
-static int	MainWindow = 0;
+static bool    fullscreen=false;
+static bool    sWireframe=false;
+static bool    sHierarchy=false;
+static bool    sGlLighting=true;
+static int     sCulling=0;
+static bool    sAnimation = true;
 
 static bool	CreateGLWindow(int LArgC, char** LArgV, CrtChar* title, CrtInt32 width, CrtInt32 height, bool fullscreenflag);
 static GLvoid	DestroyGLWindow(GLvoid);							
-static void	DrawGLScene(void);
+static GLvoid	DrawGLScene(GLvoid);
 static CrtInt32	InitGL(GLvoid);									
 static GLvoid	ResizeGLScreen(GLsizei width, GLsizei height);		
 
@@ -65,28 +66,20 @@ public:
 // NOTE: the original version of this code is in COLLADA_RT_VIEWER mainPC.cpp, if you make changes
 // or fix bugs, please fix them there too.
 //----------------------------------------------------------------------------------------------------
+
 // Multipliers we use to scale the speed of the UI
-CrtFloat	MouseRotateSpeed = 5.0f;
-CrtFloat	MouseWheelSpeed = 0.005f;
-CrtFloat	MouseTranslateSpeed = 0.1f;
-CrtFloat	KeyboardRotateSpeed = 10.0f;
-CrtFloat	KeyboardTranslateSpeed = 10.0f;
+#define     WALK_SPEED              100.0f
+
+CrtFloat    MouseRotateSpeed = 0.75f;
+CrtFloat    MouseWheelSpeed = 0.02f;
+CrtFloat    MouseTranslateSpeed = 0.1f;
+CrtFloat    KeyboardRotateSpeed = 10.0f;
+CrtFloat    KeyboardTranslateSpeed = WALK_SPEED;
 CrtRender   _CrtRender;   // Global to access the extra camera transform matrix in the CRT renderer
 
-
-
-// Imitate Windows MessageBox
-//
-void MessageBox(char* LSomething, char* LMessage, char* LTypeStr, int LButtons)
-{
- (void)LSomething;
- (void)LButtons;
-printf("%s() %s %s\n", __FUNCTION__, LTypeStr, LMessage);fflush(stdout);
-}
-
-
-
-// Function to adjust all the UI speeds (keyboard and mouse) by a common multiplier
+//----------------------------------------------------------------------------------------------------
+// Function to adjust keyboard and mouse responsiveness by a common multiplier
+//----------------------------------------------------------------------------------------------------
 void AdjustUISpeed(CrtFloat multiplier)
 {
 	MouseRotateSpeed		*= multiplier;
@@ -95,6 +88,7 @@ void AdjustUISpeed(CrtFloat multiplier)
 	KeyboardRotateSpeed		*= multiplier;
 	KeyboardTranslateSpeed	*= multiplier;
 }
+
 // The camera selection mechanism is application defined so I put it here rather than in CrtRender
 void NextCamera()
 {
@@ -106,7 +100,6 @@ void NextCamera()
 		CurrentCamNumber = 0;
 
 	// ExtraCameraTransform lets the user move the camera from it's original position in the COLLADA file
-//	CrtMatrixLoadIdentity(_CrtRender.ExtraCameraTransform);
 
 	// Get the camera instance we want and set it as the active camera
 	CrtInstanceCamera *inst = _CrtRender.GetScene()->GetCameraInstance(CurrentCamNumber);
@@ -118,162 +111,6 @@ void NextCamera()
 				inst->Parent->GetName(),
 				inst->AbstractCamera->GetName());
 }
-//----------------------------------------------------------------------------------------------------
-// End of non-windows specific UI code
-// The code below is somewhat windows specific but only because it uses windows keycodes in "keys"
-//----------------------------------------------------------------------------------------------------
-bool		keys[256];   // Used to track which keys are held down, the index is the windows
-						 // keycode returned by wndProc in wndParm, true means the key is down
-// Call ProcessInput once per frame to process input keys
-void ProcessInput( bool	keys[] )
-{
-	//if (keys['U'] )
-	//	_CrtRender.SetAnimationOn( CrtFalse ); 
-	//if (keys['I'] )
-	
-	// These keys we don't want to auto-repeat, so we clear them in "keys" after handling them once
-	if (keys['A'] && amplitudeGlobalParameter)
-	{
-		float value;
-		cgGetParameterValuefc(amplitudeGlobalParameter, 1, &value);
-		value += 0.1;
-		cgSetParameter1f(amplitudeGlobalParameter, value);
-		keys['A'] = false;
-	}
-	if (keys['Z'] && amplitudeGlobalParameter)
-	{
-		float value;
-		cgGetParameterValuefc(amplitudeGlobalParameter,1, &value);
-		value -= 0.1;
-		cgSetParameter1f(amplitudeGlobalParameter, value);
-		keys['Z'] = false;
-	}
-	/*
-	if (keys['C'] )
-	{
-		// When 'C' is pressed, change cameras
-		NextCamera();
-		keys['C'] = false;
-	}
-	if ( keys[VK_INSERT] )
-	{
-		// Speed up UI by 25%
-		AdjustUISpeed(1.25f);  
-		keys[VK_INSERT] = false;
-	}
-	if ( keys[VK_DELETE] )
-	{
-		// Slow down UI by 25%
-		AdjustUISpeed(0.75f);  // Go 25% slower
-		keys[VK_DELETE] = false;
-	}
-	if (keys['W'])
-	{
-		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-		keys['W'] = false;
-	}
-	if (keys['Q'])
-	{
-		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-		keys['Q'] = false;
-	}
-	if (keys['K'])
-	{
-		_CrtRender.SetShowHiearchy(CrtTrue);
-		keys['K'] = false;
-	}
-	if (keys['L'])
-	{
-		_CrtRender.SetShowHiearchy(CrtFalse);
-		keys['L'] = false;
-	}
-	if (keys['O'] )
-	{
-		_CrtRender.SetAnimationPaused( CrtFalse ); 
-		keys['O'] = false;
-	}
-	if (keys['P'] )
-	{
-		_CrtRender.SetAnimationPaused( CrtTrue );
-		keys['P'] = false;
-	}
-	if (keys[VK_F1])		
-	{
-		keys[VK_F1]=FALSE;		
-		DestroyGLWindow();			
-		fullscreen=!fullscreen;		
-		// Recreate Our OpenGL Window
-		if (!CreateGLWindow(LArgC, LArgV, "COLLADA_RT ", 1024, 768, fullscreen))
-		{
-			exit(1);
-		}
-		keys[VK_F1] = false;
-	}
-	
-	// These keys that do a function as long as they are held down, so we don't clear "keys".
-	// Remember to scale these functions by time!
-
-	if ( keys[VK_UP])
-	{
-		// UI code to rotate camera up
-		CrtMatrix4x4RotateAngleAxis(_CrtRender.ExtraCameraTransform, 1.0f, 0.0f, 0.0f, _CrtRender.GetAnimDelta()  * KeyboardRotateSpeed);			
-	}
-
-	if ( keys[VK_DOWN] )
-	{
-		// UI code to rotate camera down
-		CrtMatrix4x4RotateAngleAxis(_CrtRender.ExtraCameraTransform, 1.0f, 0.0f, 0.0f, _CrtRender.GetAnimDelta()  * -KeyboardTranslateSpeed);			
-	}
-	
-	if ( keys[VK_LEFT] )
-	{
-		// UI code to rotate camera left
-		CrtMatrix4x4RotateAngleAxis(_CrtRender.ExtraCameraTransform, 0.0f, 1.0f, 0.0f, _CrtRender.GetAnimDelta()  * KeyboardTranslateSpeed);			
-	}
-
-	if ( keys[VK_RIGHT] )
-	{
-		// UI code to rotate camera right
-		CrtMatrix4x4RotateAngleAxis(_CrtRender.ExtraCameraTransform, 0.0f, 1.0f, 0.0f, _CrtRender.GetAnimDelta()  * -KeyboardTranslateSpeed);			
-	}
-
-	if ( keys['R'] )
-	{
-		// UI code to move the camera closer
-		CrtMatrixTranslate(_CrtRender.ExtraCameraTransform, 0.0, 0.0, _CrtRender.GetAnimDelta() * KeyboardTranslateSpeed);
-	}
-
-	if ( keys['F'] )
-	{
-		// UI code to move the camera farther away
-		CrtMatrixTranslate(_CrtRender.ExtraCameraTransform, 0.0, 0.0, _CrtRender.GetAnimDelta() * -KeyboardTranslateSpeed);
-	}
-
-	if ( keys['T'] )
-	{
-		// UI code to move the camera farther up
-		CrtMatrixTranslate(_CrtRender.ExtraCameraTransform, 0.0, _CrtRender.GetAnimDelta() * KeyboardTranslateSpeed, 0.0);
-	}
-
-	if ( keys['G'] )
-	{
-		// UI code to move the camera farther down
-		CrtMatrixTranslate(_CrtRender.ExtraCameraTransform, 0.0, _CrtRender.GetAnimDelta() * -KeyboardTranslateSpeed, 0.0);
-	}
-
-	if ( keys['Y'] )
-	{
-		// UI code to move the camera farther right
-		CrtMatrixTranslate(_CrtRender.ExtraCameraTransform, _CrtRender.GetAnimDelta() * KeyboardTranslateSpeed, 0.0, 0.0);
-	}
-
-	if ( keys['H'] )
-	{
-		// UI code to move the camera farther left
-		CrtMatrixTranslate(_CrtRender.ExtraCameraTransform, _CrtRender.GetAnimDelta() * -KeyboardTranslateSpeed, 0.0, 0.0);
-	}
-*/
-}
 
 
 //----------------------------------------------------------------------------------------------------
@@ -283,168 +120,259 @@ void ProcessInput( bool	keys[] )
 // with the camera right before rendering starts.  I recommend you always reset this matrix when 
 // changing cameras to prevent users from getting lost.
 //----------------------------------------------------------------------------------------------------
-
-static void KeyboardCallback(const unsigned char LKey, const int LX, const int LY)	
+static int Xpos, Ypos, Xsize, Ysize;
+static void specialKeyboardCallback(int key, int x, int y)
 {
- (void)LKey;
- (void)LX;
- (void)LY;
-	printf("Key press %c x=%d, y=%d\n", LKey, LX, LY);
-	keys[LKey] = true;
-	ProcessInput(keys);
+    (void)x;
+    (void)y;
 
-	switch (LKey)									
-	{
-/*		case WM_KEYDOWN:						
-		{
-			// We only want to know which keys are down, so if this was an auto-repeat, ignore it
-			if(!(HIWORD(lParam) & KF_REPEAT))
-			{
-				// Remember which keys are being held down
-				keys[wParam] = TRUE;
-			}
-			return 0;							
-		}
+    switch (key) 
+    {
+    case GLUT_KEY_F1:
+        fullscreen = !fullscreen;
+        if (fullscreen) {
+            Xpos = glutGet((GLenum)GLUT_WINDOW_X);    /* Save parameters */
+            Ypos = glutGet((GLenum)GLUT_WINDOW_Y);
+            Xsize = glutGet((GLenum)GLUT_WINDOW_WIDTH);
+            Ysize = glutGet((GLenum)GLUT_WINDOW_HEIGHT);
+            glutFullScreen();                /* Go to full screen */
+        } else {
+            glutReshapeWindow(Xsize, Ysize);        /* Restore us */
+            glutPositionWindow(Xpos,Ypos);
+            glutPostRedisplay();
 
-		case WM_KEYUP:							
-		{
-			keys[wParam] = FALSE;				
-			return 0;							
-		}
-
-		case WM_SIZE:							
-		{
-			ResizeGLScreen(LOWORD(lParam),HIWORD(lParam));
-			return 0;								
-		}
-/*		case WM_MOUSEWHEEL:
-		{
-			float gcWheelDelta = (short) HIWORD(wParam);
-			CrtMatrixTranslate(_CrtRender.ExtraCameraTransform, 0.0f, 0.0f, gcWheelDelta * MouseWheelSpeed);
-			return 0;
-		}
-		case WM_MBUTTONDOWN:
-		{
-			// Change camera
-			NextCamera();
-			return 0;
-		}
-		case WM_MOUSEMOVE:
-		{
-			// UI code to move camera in response to mouse movement.
-			static float lastx = 0, lasty = 0;
-			static int	 lastLeft = 0, lastRight = 0;
-			// Retrieve mouse screen position and button state
-			int x=(short)LOWORD(lParam);
-			int y=(short)HIWORD(lParam);
-			bool leftButtonDown=wParam & MK_LBUTTON;
-			bool rightButtonDown=wParam & MK_RBUTTON;
-			// Handle rotations if left button was pressed
-			if(leftButtonDown)
-			{
-				if(lastLeft)
-				{
-					// Figure how much the mouse moved and rotate
-					CrtMatrix4x4RotateAngleAxis(_CrtRender.ExtraCameraTransform, 0.0f, 1.0f, 0.0f, (lastx - (float)x) * MouseRotateSpeed);			
-					CrtMatrix4x4RotateAngleAxis(_CrtRender.ExtraCameraTransform, 1.0f, 0.0f, 0.0f, (lasty - (float)y) * MouseRotateSpeed);			
-					lastx = x;
-					lasty = y;
-				}
-				else
-				{
-					// Remember where the mouse was when it first went down.
-					lastLeft = true;
-					lastx = x;
-					lasty = y;
-					return 0;
-				}
-			}
-			else
-			{
-				lastLeft = false;
-			}
-			if(rightButtonDown)
-			{
-				// Was the mouse previously down?
-				if(lastRight)
-				{
-					CrtMatrixTranslate(_CrtRender.ExtraCameraTransform, (lastx - (float)x) * -MouseTranslateSpeed, (lasty - (float)y) * MouseTranslateSpeed, 0.0f);
-					lastx = x;
-					lasty = y;
-				}
-				else
-				{
-					// Remember that the button was down, and where it went down
-					lastRight = true;
-					lastx = x;
-					lasty = y;
-					return 0;
-				}
-			}
-			else
-			{
-				lastRight = false;
-			}
-			return 0;
-		}
- */
-	}
+        }
+        break;
+    case GLUT_KEY_LEFT :
+            _CrtRender.ActiveInstanceCamera->MoveTransform(0.0f, _CrtRender.GetAnimDelta() * KeyboardTranslateSpeed, 0.0f);
+            break;
+    case GLUT_KEY_RIGHT :
+            _CrtRender.ActiveInstanceCamera->MoveTransform(0.0f, - _CrtRender.GetAnimDelta() * KeyboardTranslateSpeed, 0.0f);
+            break;
+    case GLUT_KEY_UP : 
+        // UI code to move the camera farther up
+            _CrtRender.ActiveInstanceCamera->MoveTransform(0.0f, 0.0f, _CrtRender.GetAnimDelta() * KeyboardTranslateSpeed);
+            break;
+    case GLUT_KEY_DOWN :
+            _CrtRender.ActiveInstanceCamera->MoveTransform(0.0f, 0.0f, - _CrtRender.GetAnimDelta() * KeyboardTranslateSpeed);
+            break;
+    default:
+            printf("unused (special) key : %i\n",  key );
+            break;
+    }
 }
 
-float g_mouse_x, g_mouse_y;
-float g_mouse_move_multipler = 0.5;
-int g_mouse_button_pressed[3] = {GLUT_UP, GLUT_UP, GLUT_UP};
+static void KeyboardCallback(const unsigned char key, const int x, const int y)	
+{
+    (void)x;
+    (void)y;
+
+    switch (key) 
+    {
+    case 9 :    /* TAB key */
+            _CrtRender.SetNextCamera();
+            break;
+    case 'k' :
+    case 'K' :		
+			sHierarchy = !sHierarchy;
+            if (!sHierarchy) {
+                _CrtRender.SetShowHiearchy(CrtFalse);    
+            } else {
+                _CrtRender.SetShowHiearchy(CrtTrue);
+            }
+            break;
+    case 'l' :
+    case 'L' :
+            sGlLighting = !sGlLighting;
+            if (sGlLighting) {
+                glEnable(GL_LIGHTING);
+            } else {
+                glDisable(GL_LIGHTING);
+            }
+            break;
+    case 'm' :
+    case 'M' :
+            AdjustUISpeed(1.25f);
+            break;
+    case 'n' :
+    case 'N' :
+            AdjustUISpeed(0.75f);
+            break;
+    case 'p' :
+    case 'P' :
+            sAnimation = !sAnimation;
+            if (!sAnimation) {
+                _CrtRender.SetAnimationPaused( CrtTrue );
+            }
+            else { 
+                _CrtRender.SetAnimationPaused( CrtFalse ); 
+            }
+            break;
+    case 'q' :
+    case 'Q' :
+            sWireframe = !sWireframe;
+            if (sWireframe) {
+                glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+            } else {
+                glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+            }
+            break;
+    case 's' :  //zoom in
+    case 'S' :
+            _CrtRender.ActiveInstanceCamera->MoveTransform(_CrtRender.GetAnimDelta() * KeyboardTranslateSpeed *0.5f, 0.0f, 0.0f);
+            break;
+    case 'w' :  // zoom out
+    case 'W' :
+            _CrtRender.ActiveInstanceCamera->MoveTransform(- _CrtRender.GetAnimDelta() * KeyboardTranslateSpeed * 0.5f, 0.0f, 0.0f);
+            break;
+    case 32 :   // space key, UP
+				// UI code to move the camera farther up
+            _CrtRender.ActiveInstanceCamera->MoveTransform(0.0f, 0.0f, _CrtRender.GetAnimDelta() * KeyboardTranslateSpeed);
+            break;
+    case 'x' :  // down
+    case 'X' :
+            _CrtRender.ActiveInstanceCamera->MoveTransform(0.0f, 0.0f, - _CrtRender.GetAnimDelta() * KeyboardTranslateSpeed);
+            break;
+    case 'd' :  // right
+    case 'D' :
+            _CrtRender.ActiveInstanceCamera->MoveTransform(0.0f, - _CrtRender.GetAnimDelta() * KeyboardTranslateSpeed, 0.0f);
+            break;
+    case 'a' :  // left
+    case 'A' :
+            _CrtRender.ActiveInstanceCamera->MoveTransform(0.0f, _CrtRender.GetAnimDelta() * KeyboardTranslateSpeed, 0.0f);
+            break;
+    case 'f' :
+    case 'F' :
+            if(sCulling == 0)
+            { // turn it front
+                glEnable( GL_CULL_FACE );
+                glCullFace(GL_FRONT);
+                sCulling = 1;
+            } else if(sCulling == 1)
+            { // turn it both
+                glDisable( GL_CULL_FACE );
+                sCulling = 2;
+            } else 
+            { // turn it back
+                glEnable( GL_CULL_FACE );
+                glCullFace(GL_BACK);
+                sCulling = 0;
+            }
+            break;
+    default:
+        printf("unused key : %i\n",  key );
+        break;
+    }
+
+}
+static int sLeftBtnDown = false;
+static int sRightBtnDown = false;
+static int sMiddleBtnDown = false;
+
 void MouseCallback(int button, int state, int x, int y)
 {
-	switch(button)
-	{
-		case GLUT_LEFT_BUTTON:
-			g_mouse_button_pressed[GLUT_LEFT_BUTTON] = state;
-			break; 
-		case GLUT_MIDDLE_BUTTON:
-			g_mouse_button_pressed[GLUT_MIDDLE_BUTTON] = state;
-			break;
-		case GLUT_RIGHT_BUTTON:
-			g_mouse_button_pressed[GLUT_RIGHT_BUTTON] = state;
-			break;
-		default:
-			break;
-	}
-	g_mouse_x = x; g_mouse_y = y;
-	printf("button %d state %d\n", button, state);	
+    switch (button)
+    {
+    case GLUT_MIDDLE_BUTTON:
+             if (state == GLUT_UP) {
+                sLeftBtnDown = false;
+             }
+             else if (state == GLUT_DOWN) {
+                sLeftBtnDown = true;
+                _CrtRender.SetNextCamera();
+             }
+            break;
+    case GLUT_LEFT_BUTTON:
+            if (state == GLUT_UP)
+                sLeftBtnDown = false;
+            else if (state == GLUT_DOWN)
+                sLeftBtnDown = true;
+            break;
+    case GLUT_RIGHT_BUTTON:
+            if (state == GLUT_UP)
+                sRightBtnDown = false;
+            else if (state == GLUT_DOWN)
+                sRightBtnDown = true;
+            break;
+    default:
+            break;
+    }
 }
 
-void MotionCallback(int x, int y)
+//----------------------------------------------------------------------------------------------------
+static int lastx = 0;
+static int lasty = 0;
+static int lastLeft = 0;
+static int lastRight = 0;
+static int lastMiddle = 0;
+void MouseMotionCallback(int x,int y)
 {
-	float delta_x = ((float)x-g_mouse_x) * g_mouse_move_multipler;
-	float delta_y = ((float)y-g_mouse_y) * g_mouse_move_multipler;
-	
-	if (g_mouse_button_pressed[GLUT_LEFT_BUTTON] == GLUT_DOWN)
-	{
-		_CrtRender.ActiveInstanceCamera->SetPanAndTilt(delta_x * MouseRotateSpeed, delta_y * MouseRotateSpeed);
-//		CrtMatrixCopy(_CrtRender.ActiveInstanceCamera->transform, _CrtRender.ExtraCameraTransform);
-	}
-	if (g_mouse_button_pressed[GLUT_MIDDLE_BUTTON] == GLUT_DOWN)
-	{
-		_CrtRender.ActiveInstanceCamera->MoveOrbit(delta_x * MouseRotateSpeed, delta_y * MouseRotateSpeed);
-//		CrtMatrixCopy(_CrtRender.ActiveInstanceCamera->transform, _CrtRender.ExtraCameraTransform);
-	}
-	
-	if (g_mouse_button_pressed[GLUT_RIGHT_BUTTON] == GLUT_DOWN)
-	{
-		_CrtRender.ActiveInstanceCamera->ZoomTransform(delta_y * MouseRotateSpeed);
-//		CrtMatrixCopy(_CrtRender.ActiveInstanceCamera->transform, _CrtRender.ExtraCameraTransform);
-	}
-	
-	g_mouse_x = x; g_mouse_y = y;
-	printf("(%f, %f)\n", delta_x, delta_y);
+            if(sLeftBtnDown)
+            {
+                if(lastLeft && _CrtRender.ActiveInstanceCamera)
+                {
+                    _CrtRender.ActiveInstanceCamera->SetPanAndTilt((lastx - x) * MouseRotateSpeed, (lasty - y) * MouseRotateSpeed);
+                    lastx = x;
+                    lasty = y;
+                }
+                else
+                {
+                    // Remember where the mouse was when it first went down.
+                    lastLeft = true;
+                    lastx = x;
+                    lasty = y;
+                }
+            }
+            else
+            {
+                lastLeft = false;
+            }
+
+            if (sMiddleBtnDown)
+            {
+                if(lastMiddle && _CrtRender.ActiveInstanceCamera)
+                {
+                    _CrtRender.ActiveInstanceCamera->MoveOrbit((lastx - x) * MouseTranslateSpeed, - (lasty - y) * MouseTranslateSpeed);
+                    lastx = x;
+                    lasty = y;
+                }
+                else
+                {
+                    // Remember where the mouse was when it first went down.
+                    lastMiddle = true;
+                    lastx = x;
+                    lasty = y;
+                }
+            }
+
+            if(sRightBtnDown)
+            {
+                // Was the mouse previously down?
+                if(lastRight && _CrtRender.ActiveInstanceCamera)
+                {
+                    _CrtRender.ActiveInstanceCamera->MoveOrbit((lastx - x) * MouseTranslateSpeed, - (lasty - y) * MouseTranslateSpeed);
+                    lastx = x;
+                    lasty = y;
+                }
+                else
+                {
+                    // Remember that the button was down, and where it went down
+                    lastRight = true;
+                    lastx = x;
+                    lasty = y;
+                }
+            }
+            else
+            {
+                lastRight = false;
+            }
+
 }
 
-
+//----------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------
 int main(int LArgC, char** LArgV)
 {
-	glutInitDisplayMode(GLUT_DOUBLE | GLUT_DEPTH | GLUT_RGB);
-
 	// Set the default screen size
 	_CrtRender.SetScreenWidth( 640);
 	_CrtRender.SetScreenHeight( 480);
@@ -455,7 +383,6 @@ int main(int LArgC, char** LArgV)
 		return 0;									
 	}
 
-	InitGL();
 
 	// Initialize the renderer
 	// !!!GAC for compatibility with the new COLLADA_FX code, Init now forces UsingCg and UsingVBOs to
@@ -464,21 +391,17 @@ int main(int LArgC, char** LArgV)
 	// !!!GAC may cause problems.  This is work in progress and will be much cleaner when the refactor is done.
 	
 	_CrtRender.Init();
-	//_CrtRender.SetRenderDebug( CrtTrue ); 
 
 	// !!!GAC kept for reference, changing these may cause problems with the cfx include path
 	//_CrtRender.SetUsingCg( CrtFalse );
-	// Turn off VBOs (the GL skinning path doesn't work with VBOs yet)
-	//_CrtRender.SetUsingVBOs( CrtTrue ); 
-	//_CrtRender.SetUsingNormalMaps( CrtTrue ); 	
-	//_CrtRender.SetRenderDebug( CrtTrue ); 
-
-//printf("%s()\n", __FUNCTION__);fflush(stdout);return(0);
+	
+	_CrtRender.SetUsingVBOs( CrtTrue ); 
+	_CrtRender.SetUsingNormalMaps( CrtTrue ); 	
 
 	// Load the file name provided on the command line
 	if(LArgC > 1 && LArgV[1])
 	{
-printf("%s() %s\n", __FUNCTION__, LArgV[1]);fflush(stdout);
+		printf("%s() %s\n", __FUNCTION__, LArgV[1]);fflush(stdout);
 		if ( !_CrtRender.Load( LArgV[1] ))
 		{
 			exit(0);
@@ -628,9 +551,31 @@ printf("%s() %s\n", __FUNCTION__, LArgV[1]);fflush(stdout);
 	return(0);						
 }
 
+//----------------------------------------------------------------------------------------------------
+// GL Setup 
+//----------------------------------------------------------------------------------------------------
+CrtInt32 InitGL(GLvoid)
+{
+	glEnable(GL_TEXTURE_2D);						
+	glShadeModel(GL_SMOOTH);						
+	glClearColor(0.0f, 0.0f, 1.0f, 0.5f);
+	glClearDepth(1.0f);
+	glEnable(GL_DEPTH_TEST);							
+	glDepthFunc(GL_LEQUAL);								
+	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);	
+
+	glEnable(GL_LIGHT0);								
+	glEnable(GL_LIGHTING);
+
+    glEnable( GL_CULL_FACE );
+    glCullFace( GL_BACK ); 
+
+	return true;										
+}
 
 //----------------------------------------------------------------------------------------------------
 // Resize And Initialize The GL Window
+//----------------------------------------------------------------------------------------------------
 GLvoid ResizeGLScreen(GLsizei width, GLsizei height)		
 {
 	// Prevent A Divide By Zero By
@@ -656,28 +601,9 @@ GLvoid ResizeGLScreen(GLsizei width, GLsizei height)
 }
 
 //----------------------------------------------------------------------------------------------------
-// GL Setup 
-CrtInt32 InitGL(GLvoid)
-{
-	glEnable(GL_TEXTURE_2D);						
-	glShadeModel(GL_SMOOTH);						
-	glClearColor(0.0f, 0.0f, 1.0f, 0.5f);
-	glClearDepth(1.0f);
-	glEnable(GL_DEPTH_TEST);							
-	glDepthFunc(GL_LEQUAL);								
-	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);	
-
-	glEnable(GL_LIGHT0);								
-	glEnable(GL_LIGHTING);
-
-	return true;										
-}
-
-//----------------------------------------------------------------------------------------------------
 // Main Render 
-void DrawGLScene(void)									
+GLvoid DrawGLScene(GLvoid)									
 {
-
 	// Clear The Screen And The Depth Buffer
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);	
 	glLoadIdentity();									
@@ -685,23 +611,8 @@ void DrawGLScene(void)
 	glMatrixMode(GL_MODELVIEW);							
 	glLoadIdentity();									
 	
-/*	CrtMaterial mat; 
-
-	mat.Ambient = CrtColor3f( 1,1,1 );
-	mat.Diffuse = CrtColor3f( 1,1,1 ); 
-
-	glMaterialfv( GL_FRONT_AND_BACK, GL_DIFFUSE,  (GLfloat *)&mat.Diffuse );
-	glMaterialfv( GL_FRONT_AND_BACK, GL_AMBIENT, (GLfloat *)&mat.Ambient );
-	glMaterialfv( GL_FRONT_AND_BACK, GL_SPECULAR, (GLfloat *)&mat.Specular );
-	glMaterialf( GL_FRONT_AND_BACK, GL_SHININESS, (GLfloat )mat.Shininess ); 
-*/
 	if(_CrtRender.GetScene()) _CrtRender.Render(); 
 	glutSwapBuffers();
-}
-
-//----------------------------------------------------------------------------------------------------
-GLvoid DestroyGLWindow(GLvoid)							
-{
 }
 
 
@@ -714,17 +625,27 @@ static bool CreateGLWindow(int LArgC, char** LArgV, CrtChar* title, CrtInt32 wid
 
 	glutInit(&LArgC, LArgV);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_DEPTH | GLUT_RGB);
-	MainWindow = glutCreateWindow(title);
+	glutCreateWindow(title);
 
+    InitGL();
+
+    glutIdleFunc(DrawGLScene);      // Do rendering when there is no events to be processed by glut
 	glutDisplayFunc(DrawGLScene);
-	glutIdleFunc(DrawGLScene);
+
 	glutKeyboardFunc(KeyboardCallback);
+    glutSpecialFunc(specialKeyboardCallback);
+    glutMotionFunc(MouseMotionCallback);    // Handles mouse movement while one or more mouse buttons are pressed
+    glutMouseFunc(MouseCallback);           // Handles mouse clicks and its release/press state
 	glutReshapeFunc(ResizeGLScreen);
-	glutMouseFunc(MouseCallback);
-	glutMotionFunc(MotionCallback);
 
 	glutReshapeWindow(width, height);
 	ResizeGLScreen(width, height);					
 
 	return true;									
 }
+
+//----------------------------------------------------------------------------------------------------
+GLvoid DestroyGLWindow(GLvoid)							
+{
+}
+

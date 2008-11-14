@@ -86,18 +86,11 @@ bool cfxSampler::apply(cfxParam* param)
 			    cgSetSamplerState(param->getParameter());
 
 			    if (generateMipmaps)
-				{
-#ifdef NORMAL_OS
-				    // on windows the mipmaps are always generated when textures are loaded
-#else
-    #ifdef LINUX
-                    //glGenerateMipmapEXT(GL_TEXTURE_2D);
-    #else
-                    glGenerateMipmapOES(GL_TEXTURE_2D);
-    #endif
+			    {
+#ifdef SN_TARGET_PS3
+       			         glGenerateMipmapOES(GL_TEXTURE_2D);
 #endif
-				}
-
+                            }
 			}
 		    else
 			{
