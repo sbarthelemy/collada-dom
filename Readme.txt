@@ -1,25 +1,43 @@
-PLAYSTATION(R)3 Collada Viewer
-            Copyright (C) 2007 Sony Computer Entertainment Inc.
+PLAYSTATION(R)3 COLLADA Package
+            Copyright (C) 2008 Sony Computer Entertainment Inc.
                     All Rights Reserved.
 
 ==============================================================================
-Content of Collada Viewer 
+Contents of COLLADA Package 
 ==============================================================================
 
-+--dom                      The DOM library for Parsing Collada Documents
+This package includes the COLLADA DOM and the COLLADA Viewer.  Everything in 
+this package can be built to run on either PS3 or a Windows PC.  For additional 
+information on tools and plugins that support COLLADA, or to get help from the
+Internet community of COLLADA users, please visit www.collada.org  
+
+The COLLADA DOM is a set of libraries for loading and saving COLLADA documents
+that can contain 2D, 3D, physics and other types of content. It allows developers 
+to create applications that can exchange COLLADA documents with commercial content 
+creation tools such as Maya, Max or Softimage.  
+
+The COLLADA Viewer is a general purpose 3D viewer for COLLADA documents.  It is
+provided as sample code to show how to use the COLLADA DOM and to demonstrate
+the kinds of content that can be stored in a COLLADA document.  The included
+sample COLLADA documents can be loaded into the Viewer to demonstrate these
+features.  The COLLADA Viewer and its sample documents replace all the 
+hard coded COLLADA demos that were included with older PS3 releases.
+
+
++--dom                      The DOM library for Parsing COLLADA Documents
 |  +--CodeGen
 |  +--external-libs         Open source libraries used by DOM
 |  +--include
 |  +--make
 |  +--...
 |
-+--fx                       The Collada effect loader library for Cg shaders
++--fx                       The COLLADA effect loader library for Cg shaders
 |  +--build
 |  +--include
 |  +--make
 |  +--...
 |
-+--License_Folder           Licenses for open source software included in Collada Viewer
++--License_Folder           Licenses for open source software included in COLLADA Viewer
 |  +--other
 |  +--license_e.txt
 |
@@ -31,8 +49,8 @@ Content of Collada Viewer
 |  +--...
 |
 +--viewer					
-|  +-bin                    The application binary that uses all software libraries above to make a Collada document viewer
-|     +-samples.zip         Compressed art assets and shaders used by Collada Viewer
+|  +-bin                    The application binary that uses all software libraries above to make a COLLADA document viewer
+|     +-samples.zip         Compressed art assets and shaders used by COLLADA Viewer
 |
 |  +-make       
 |     +-common.mk
@@ -40,25 +58,19 @@ Content of Collada Viewer
 |     +-viewer.mk
 |
 |  +-projects
-|     +-VC8-PS3             Visual Studio 2005 project files and platform-specific source code for PS3 Collada Viewer
-|     +-VC8-Win             Visual Studio 2005 project files and platform-specific source code for Windows native Collada Viewer
-|     +-VC9-PS3             Visual Studio 2008 project files and platform-specific source code for PS3 Collada Viewer
-|     +-VC9-Win             Visual Studio 2008 project files and platform-specific source code for Windows native Collada Viewer
+|     +-VC8-PS3             Visual Studio 2005 project files and platform-specific source code for PS3 COLLADA Viewer
+|     +-VC8-Win             Visual Studio 2005 project files and platform-specific source code for Windows native COLLADA Viewer
+|     +-VC9-PS3             Visual Studio 2008 project files and platform-specific source code for PS3 COLLADA Viewer
+|     +-VC9-Win             Visual Studio 2008 project files and platform-specific source code for Windows native COLLADA Viewer
 |
-+--Makefile                 Makefile (for Linux and MSYS) to build Collada Viewer and the necessary libraries
++--Makefile                 Makefile (for Linux and MSYS) to build COLLADA Viewer and the necessary libraries
 +--Readme.txt               This file
 
 
 
-============
-Requirements
-============
-
-[Linux]
-GNU make version 3.81
-PS3 SDK toolchain
-FW sample framework (built)
-
+=============================
+Requirements to build for PS3
+=============================
 
 [Windows host/MSYS]
 MinGW (Minimalist GNU for Windows)
@@ -73,6 +85,15 @@ PS3 SDK toolchain
 ProDG Visual Studio integration
 FW sample framework (prebuilt)
 
+[Linux]
+GNU make version 3.81
+PS3 SDK toolchain
+FW sample framework (built)
+
+
+=================================
+Requirements to build for Windows
+=================================
 
 [Windows native]
 Visual Studio 2005 or Visual Studio 2008
@@ -80,25 +101,14 @@ Cg 2.0 Toolkit
 
 
 
-================================
-Build and run PS3 Collada Viewer
-================================
+==========================================================================
+Building the COLLADA package and running the COLLADA Viewer sample for PS3
+==========================================================================
 
-[Linux]
-1) Execute make utility at root level of package by typing 'make'
-   viewer.self will be in viewer\bin for release build (conf=release, this is the default build)
-   viewer.self will be in viewer\bin for debug build (conf=debug)
-2) Unzip samples.zip, extract its content to viewer\bin\
-3) Change directory to where the Collada Viewer executable is, type the following commands to load it, replace
-   the IP address with your PS3 IP address.
-   
-	> bedbg -prepare
-	> dtpon -d 10.98.12.34
-	> bedbg -nodebug viewer.self
-	
-	Type the following commands to terminate Collada Viewer
-	> bedbg -T
-	> dtpoff -d 10.98.12.34
+These instructions will build the entire contents of the COLLADA package including
+libraries and samples for the PS3.  To build for the PS3, the PS3 SDK must 
+be installed.  The build instructions include running the COLLADA Viewer
+which can be used to view any of the included sample COLLADA documents.  
 
 
 [Windows host/MSYS]
@@ -107,7 +117,7 @@ Build and run PS3 Collada Viewer
    viewer.self will be in viewer\bin for debug build (conf=debug)
 2) Unzip samples.zip, extract its content to viewer\bin\
 3) Use ProDG Target Manager or Debugger to load viewer.self 
-   Optionally, specify a Collada document (cage.dae) as command line argument when loading viewer executable
+   Optionally, specify a COLLADA document (cage.dae) as command line argument when loading viewer executable
 
 
 [Windows host/Visual Studio]
@@ -117,13 +127,35 @@ substitute "vc9" for "vc8" for the following instructions.
 2) Select "PS3 debug" or "PS3 release" configuration to build PS3 target
 3) Unzip samples.zip, extract its content to viewer\bin\
 4) Use ProDG Target Manager or Debugger to load viewer.ppu.self (release) or viewer-d.ppu.self in \viewer\bin
-   Optionally, specify a Collada document (cage.dae) as command line argument when loading viewer executable
+   Optionally, specify a COLLADA document (cage.dae) as command line argument when loading viewer executable
+
+[Linux]
+1) Execute make utility at root level of package by typing 'make'
+   viewer.self will be in viewer\bin for release build (conf=release, this is the default build)
+   viewer.self will be in viewer\bin for debug build (conf=debug)
+2) Unzip samples.zip, extract its content to viewer\bin\
+3) Change directory to where the COLLADA Viewer executable is, type the following commands to load it, replace
+   the IP address with your PS3 IP address.
+   
+	> bedbg -prepare
+	> dtpon -d 10.98.12.34
+	> bedbg -nodebug viewer.self
+	
+	Type the following commands to terminate COLLADA Viewer
+	> bedbg -T
+	> dtpoff -d 10.98.12.34
 
 
+==============================================================================
+Building the COLLADA package and running the COLLADA Viewer sample for Windows
+==============================================================================
 
-===========================================
-Build and run Windows native Collada Viewer
-===========================================
+These instructions will build the entire contents of the COLLADA package including
+libraries and samples for Windows.  All the libraries needed to build for Windows
+are included in this package or come with Visual Studio.  The instructions include 
+running the COLLADA Viewer which can be used to view any of the included sample 
+COLLADA documents.
+
 Project files for Visual C++ 8 (VS 2005) and Visual C++ 9 (VS 2008) are both provided. If you are using Visual C++ 9,
 substitute "vc9" for "vc8" for the following instructions.
 
@@ -131,18 +163,18 @@ substitute "vc9" for "vc8" for the following instructions.
 2) Select "Debug" or "Release" configuration to build Windows executable
 3) viewer.exe (release) or viewer-d.exe(debug) will be in \viewer\bin
 4) Unzip samples.zip, extract its content to \viewer\bin\
-5) Open up a DOS Shell window, change directory to \viewer\bin, type "viewer.exe duck.dae" to view Collada document "duck.dae"
+5) Open up a DOS Shell window, change directory to \viewer\bin, type "viewer.exe duck.dae" to view COLLADA document "duck.dae"
 
 
 
 ===========================
-Collada Viewer button usage
+COLLADA Viewer button usage
 ===========================
 [PS3]
 
 Up          Navigate the document browser upward
 Down        Navigate the document browser downward
-Cross       Load the document browser selected Collada document
+Cross       Load the document browser selected COLLADA document
 Select      Next camera view
 L1          Zoom out, move camera away from the focus point
 L2          Zoom in, move camera closer to the focus point
@@ -187,10 +219,10 @@ Middle Click        Next camera
 Known issues
 ============
 
-- For PS3 debug build, when unloading Collada document with large number of nodes, such as demo.dae and dominos.dae,
+- For PS3 debug build, when unloading COLLADA document with large number of nodes, such as demo.dae and dominos.dae,
   a debug exception is raised due to stack overflow.
   
-  The Collada Viewer uses Cell SDK framework, which sets the main PPU thread priority and stack size in its code base.
+  The COLLADA Viewer uses Cell SDK framework, which sets the main PPU thread priority and stack size in its code base.
   Currently there is no way to override this stack size setting without generating a linker warning on Windows host or 
   an error on Linux host.  See below:
 
