@@ -279,21 +279,16 @@
 					"_GLIBCXX_DEBUG=1",
 					"_GLIBCXX_DEBUG_PEDANTIC=1",
 				);
-				INSTALL_PATH = /usr/local/bin;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../../fx/projects/osx/build/Debug\"",
-					"\"$(SRCROOT)/../../../rt/projects/osx/build/Debug\"",
-					"\"$(SRCROOT)/../../../dom/projects/osx/build/Debug\"",
-					"\"$(SRCROOT)/../../../dom/external-libs/tinyxml/lib/mac\"",
-					"\"$(SRCROOT)/../../../dom/external-libs/pcre/lib/mac\"",
-					"\"$(SRCROOT)/../../../rt/external-libs/bullet/project/osx/build/Debug\"",
-					"\"$(SRCROOT)/../../../rt/external-libs/bullet/lib/xcode/Debug\"",
-					"\"$(SRCROOT)/../../../dom/external-libs/boost/lib/mac\"",
-					"\"$(SRCROOT)/../../../rt/external-libs/bullet/lib/xcode/Release\"",
-					"\"$(SRCROOT)/../../../dom/external-libs/minizip/mac\"",
-					"\"$(SRCROOT)/../../../dom/build/mac-1.4-d\"",
+				HEADER_SEARCH_PATHS = (
+					"\"$(SDKROOT)/usr/X11/include\"",
+					"\"$(SRCROOT)/../../../rt/include\"/**",
+					"\"$(SRCROOT)/../../../fx/include\"/**",
+					"\"$(SRCROOT)/../../../dom/include\"/**",
+					"\"$(SRCROOT)/../../../rt/external-libs/bullet/include\"/**",
+					"\"$(SRCROOT)/../../../dom/external-libs/boost\"",
 				);
+				INSTALL_PATH = /usr/local/bin;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = viewer;
 			};
 			name = Debug;
@@ -304,6 +299,14 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_MODEL_TUNING = G5;
+				HEADER_SEARCH_PATHS = (
+					"\"$(SDKROOT)/usr/X11/include\"",
+					"\"$(SRCROOT)/../../../rt/include\"/**",
+					"\"$(SRCROOT)/../../../fx/include\"/**",
+					"\"$(SRCROOT)/../../../dom/include\"/**",
+					"\"$(SRCROOT)/../../../rt/external-libs/bullet/include\"/**",
+					"\"$(SRCROOT)/../../../dom/external-libs/boost\"",
+				);
 				INSTALL_PATH = /usr/local/bin;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -330,7 +333,7 @@
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = "";
+				GCC_PREPROCESSOR_DEFINITIONS = DOM_INCLUDE_LIBXML;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
@@ -339,6 +342,15 @@
 					"\"$(SRCROOT)/../../../dom/include\"/**",
 					"\"$(SRCROOT)/../../../rt/external-libs/bullet/include\"/**",
 					"\"$(SRCROOT)/../../../dom/external-libs/boost\"",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(SRCROOT)/../../../dom/projects/xcode/build/Debug",
+					"$(SRCROOT)/../../../dom/external-libs/minizip/mac",
+					"$(SRCROOT)/../../../fx/projects/xcode/build/Debug",
+					"$(SRCROOT)/../../../rt/projects/xcode/build/Debug",
+					"$(SRCROOT)/../../../rt/external-libs/bullet/lib/xcode/Release",
+					"$(SRCROOT)/../../../dom/external-libs/boost/lib/mac",
+					"$(SRCROOT)/../../../dom/external-libs/pcre/lib/mac",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
@@ -353,6 +365,7 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CONFIGURATION_BUILD_DIR = ../../bin/;
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREPROCESSOR_DEFINITIONS = DOM_INCLUDE_LIBXML;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
@@ -361,6 +374,15 @@
 					"\"$(SRCROOT)/../../../dom/include\"/**",
 					"\"$(SRCROOT)/../../../rt/external-libs/bullet/include\"/**",
 					"\"$(SRCROOT)/../../../dom/external-libs/boost\"",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(SRCROOT)/../../../dom/projects/xcode/build/Release",
+					"$(SRCROOT)/../../../fx/projects/xcode/build/Release",
+					"(SRCROOT)/../../../dom/external-libs/minizip/mac",
+					"$(SRCROOT)/../../../rt/projects/xcode/build/Release",
+					"$(SRCROOT)/../../../rt/external-libs/bullet/lib/xcode/Release",
+					"$(SRCROOT)/../../../dom/external-libs/boost/lib/mac",
+					"$(SRCROOT)/../../../dom/external-libs/pcre/lib/mac",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;

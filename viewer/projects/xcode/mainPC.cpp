@@ -20,7 +20,6 @@
 #include "Crt/CrtRender.h"
 #include "dae.h"
 #include "dae/daeErrorHandler.h"
-#include <stdio.h>
 
 #include <cfxLoader.h>
 #include <cfxEffect.h>

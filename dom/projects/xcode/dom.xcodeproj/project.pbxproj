@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B2961110ECCC2B200593B11 /* libminizip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B2961100ECCC2B200593B11 /* libminizip.a */; };
 		6D00EBD30EB67A2700BE4C21 /* daeZAEUncompressHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D00EBD20EB67A2700BE4C21 /* daeZAEUncompressHandler.cpp */; };
 		6DD2626D0DBBD2FB007AC96B /* domAccessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DD261C10DBBD2FB007AC96B /* domAccessor.cpp */; };
 		6DD2626E0DBBD2FB007AC96B /* domAnimation_clip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DD261C20DBBD2FB007AC96B /* domAnimation_clip.cpp */; };
@@ -431,6 +432,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4B2961100ECCC2B200593B11 /* libminizip.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libminizip.a; path = "../../external-libs/minizip/mac/libminizip.a"; sourceTree = SOURCE_ROOT; };
 		6D00EBD20EB67A2700BE4C21 /* daeZAEUncompressHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = daeZAEUncompressHandler.cpp; path = ../../src/dae/daeZAEUncompressHandler.cpp; sourceTree = SOURCE_ROOT; };
 		6DD261C10DBBD2FB007AC96B /* domAccessor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = domAccessor.cpp; path = ../../src/1.4/dom/domAccessor.cpp; sourceTree = SOURCE_ROOT; };
 		6DD261C20DBBD2FB007AC96B /* domAnimation_clip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = domAnimation_clip.cpp; path = ../../src/1.4/dom/domAnimation_clip.cpp; sourceTree = SOURCE_ROOT; };
@@ -860,6 +862,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B2961110ECCC2B200593B11 /* libminizip.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -869,6 +872,7 @@
 		08FB7794FE84155DC02AAC07 /* dom */ = {
 			isa = PBXGroup;
 			children = (
+				4B2961100ECCC2B200593B11 /* libminizip.a */,
 				08FB7795FE84155DC02AAC07 /* Source */,
 				C6A0FF2B0290797F04C91782 /* Documentation */,
 				1AB674ADFE9D54B511CA2CBB /* Products */,
@@ -1807,7 +1811,24 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DOM_INCLUDE_LIBXML;
+				HEADER_SEARCH_PATHS = (
+					$SDKROOT/usr/include/libxml2,
+					"../../external-libs/minizip/include",
+					../../include,
+					"../../external-libs/boost",
+					"../../external-libs/pcre",
+					"../../external-libs/tinyxml",
+				);
 				INSTALL_PATH = /usr/local/lib;
+				LIBRARY_SEARCH_PATHS = (
+					"../../external-libs/minizip/mac",
+					"../../external-libs/boost/lib/mac",
+					"../../external-libs/tinyxml/lib/mac",
+					"../../external-libs/pcre/lib/mac",
+					"$(inherited)",
+					"\"$(SRCROOT)/../../external-libs/minizip/mac\"",
+				);
 				PRODUCT_NAME = dom;
 			};
 			name = Debug;
@@ -1818,7 +1839,24 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_MODEL_TUNING = G5;
+				GCC_PREPROCESSOR_DEFINITIONS = DOM_INCLUDE_LIBXML;
+				HEADER_SEARCH_PATHS = (
+					$SDKROOT/usr/include/libxml2,
+					"../../external-libs/minizip/include",
+					../../include,
+					"../../external-libs/boost",
+					"../../external-libs/pcre",
+					"../../external-libs/tinyxml",
+				);
 				INSTALL_PATH = /usr/local/lib;
+				LIBRARY_SEARCH_PATHS = (
+					"../../external-libs/minizip/mac",
+					"../../external-libs/boost/lib/mac",
+					"../../external-libs/tinyxml/lib/mac",
+					"../../external-libs/pcre/lib/mac",
+					"$(inherited)",
+					"\"$(SRCROOT)/../../external-libs/minizip/mac\"",
+				);
 				PRODUCT_NAME = dom;
 			};
 			name = Release;
@@ -1830,7 +1868,7 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = "";
+				GCC_PREPROCESSOR_DEFINITIONS = DOM_INCLUDE_LIBXML;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
@@ -1854,7 +1892,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_PREPROCESSOR_DEFINITIONS = "";
+				GCC_PREPROCESSOR_DEFINITIONS = DOM_INCLUDE_LIBXML;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (

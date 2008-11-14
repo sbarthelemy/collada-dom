@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4BA4A12A0ECBE71100AE001D /* Cg.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BA4A1290ECBE71100AE001D /* Cg.framework */; };
+		4BA4A12C0ECBE74A00AE001D /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BA4A12B0ECBE74A00AE001D /* OpenGL.framework */; };
 		6DB124060E198B76004FA1FD /* CrtAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 6DB123EC0E198B76004FA1FD /* CrtAnimation.h */; };
 		6DB124070E198B76004FA1FD /* CrtCamera.h in Headers */ = {isa = PBXBuildFile; fileRef = 6DB123ED0E198B76004FA1FD /* CrtCamera.h */; };
 		6DB124080E198B76004FA1FD /* CrtCg.h in Headers */ = {isa = PBXBuildFile; fileRef = 6DB123EE0E198B76004FA1FD /* CrtCg.h */; };
@@ -53,10 +55,11 @@
 		6DB9C18A0DC1AB97009CAD26 /* CrtTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DB9C1730DC1AB97009CAD26 /* CrtTexture.cpp */; };
 		6DB9C18E0DC1ABA1009CAD26 /* CrtScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DB9C18C0DC1ABA0009CAD26 /* CrtScene.cpp */; };
 		6DB9C18F0DC1ABA1009CAD26 /* CrtSceneRead.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DB9C18D0DC1ABA1009CAD26 /* CrtSceneRead.cpp */; };
-		6DB9C1A80DC1ACEB009CAD26 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DB9C1A70DC1ACEB009CAD26 /* OpenGL.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4BA4A1290ECBE71100AE001D /* Cg.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cg.framework; path = /Library/Frameworks/Cg.framework; sourceTree = "<absolute>"; };
+		4BA4A12B0ECBE74A00AE001D /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = /System/Library/Frameworks/OpenGL.framework; sourceTree = "<absolute>"; };
 		6DB123EC0E198B76004FA1FD /* CrtAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CrtAnimation.h; path = ../../include/Crt/CrtAnimation.h; sourceTree = SOURCE_ROOT; };
 		6DB123ED0E198B76004FA1FD /* CrtCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CrtCamera.h; path = ../../include/Crt/CrtCamera.h; sourceTree = SOURCE_ROOT; };
 		6DB123EE0E198B76004FA1FD /* CrtCg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CrtCg.h; path = ../../include/Crt/CrtCg.h; sourceTree = SOURCE_ROOT; };
@@ -104,7 +107,6 @@
 		6DB9C1740DC1AB97009CAD26 /* CrtImageloader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CrtImageloader.cpp; path = ../../src/Crt/CrtImageloader.cpp; sourceTree = SOURCE_ROOT; };
 		6DB9C18C0DC1ABA0009CAD26 /* CrtScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CrtScene.cpp; path = ../../src/Crt/1.4/CrtScene.cpp; sourceTree = SOURCE_ROOT; };
 		6DB9C18D0DC1ABA1009CAD26 /* CrtSceneRead.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CrtSceneRead.cpp; path = ../../src/Crt/1.4/CrtSceneRead.cpp; sourceTree = SOURCE_ROOT; };
-		6DB9C1A70DC1ACEB009CAD26 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = /SDKs/MacOSX10.5.sdk/System/Library/Frameworks/OpenGL.framework; sourceTree = "<absolute>"; };
 		D2AAC046055464E500DB518D /* librt.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = librt.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -113,7 +115,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6DB9C1A80DC1ACEB009CAD26 /* OpenGL.framework in Frameworks */,
+				4BA4A12A0ECBE71100AE001D /* Cg.framework in Frameworks */,
+				4BA4A12C0ECBE74A00AE001D /* OpenGL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,8 +126,9 @@
 		08FB7794FE84155DC02AAC07 /* rt */ = {
 			isa = PBXGroup;
 			children = (
+				4BA4A12B0ECBE74A00AE001D /* OpenGL.framework */,
+				4BA4A1290ECBE71100AE001D /* Cg.framework */,
 				6DB123E70E198B64004FA1FD /* Headers */,
-				6DB9C1A70DC1ACEB009CAD26 /* OpenGL.framework */,
 				08FB7795FE84155DC02AAC07 /* Source */,
 				C6A0FF2B0290797F04C91782 /* Documentation */,
 				1AB674ADFE9D54B511CA2CBB /* Products */,
@@ -325,6 +329,11 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"CFX_PLATFORM_INCLUDE=\\<cfxOSX.h\\>",
+					"CRT_PLATFORM_INCLUDE=\\\"Crt/CrtOSX.h\\\"",
+					CRT_WORDS_BIGENDIAN,
+				);
 				INSTALL_PATH = /usr/local/lib;
 				PRODUCT_NAME = rt;
 			};
@@ -340,6 +349,11 @@
 					/SDKs/MacOSX10.5.sdk/System/Library/Frameworks,
 				);
 				GCC_MODEL_TUNING = G5;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"CFX_PLATFORM_INCLUDE=\\<cfxOSX.h\\>",
+					"CRT_PLATFORM_INCLUDE=\\\"Crt/CrtOSX.h\\\"",
+					CRT_WORDS_BIGENDIAN,
+				);
 				INSTALL_PATH = /usr/local/lib;
 				PRODUCT_NAME = rt;
 			};

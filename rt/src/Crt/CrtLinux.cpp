@@ -77,7 +77,7 @@ CrtFloat CrtRender::GetTime(void)
 
     LTime *= 1000000; 
     LTime += LTV.tv_usec;
-    ulong time = LTime & 0xFFFFFFFF;
+    unsigned long time = LTime & 0xFFFFFFFF;
     return((CrtFloat)time/1000000);
  }
  return(0.0);
