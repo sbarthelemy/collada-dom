@@ -5,7 +5,6 @@
 * http://www.opensource.org/licenses/mit-license.php
 *
 */ 
-// #define HEAP_DEBUG   // Define this to turn on windows heap debugging
 
 #include <stdio.h>
 #include <GL/gl.h>
@@ -27,10 +26,6 @@
 
 CGparameter amplitudeGlobalParameter = 0;  //!!!GAC for demo of how to hookup the UI to a param
 
-#if HEAP_DEBUG
-#include <crtdbg.h>  // Only for heap debugging
-#endif
-
 // Window Active Flag Set To true By Default
 static bool    fullscreen=false;
 static bool    sWireframe=false;
@@ -40,13 +35,10 @@ static int     sCulling=0;
 static bool    sAnimation = true;
 
 static bool CreateGLWindow(int LArgC, char** LArgV, CrtChar* title, CrtInt32 width, CrtInt32 height, bool fullscreenflag);
-
-//static GLvoid	DestroyGLWindow(GLvoid);
 static void	DestroyGLWindow(void);	
 static void	DrawGLScene(void);
-//static CrtInt32	InitGL(GLvoid);
 static CrtInt32 InitGL(void);
-static GLvoid	ResizeGLScreen(GLsizei width, GLsizei height);		
+static GLvoid ResizeGLScreen(GLsizei width, GLsizei height);		
 
 #ifndef CRTLIB_BUILD
 
@@ -75,18 +67,21 @@ public:
 // NOTE: the original version of this code is in COLLADA_RT_VIEWER mainPC.cpp, if you make changes
 // or fix bugs, please fix them there too.
 //----------------------------------------------------------------------------------------------------
+
 // Multipliers we use to adjust UI key press responsiveness
+#define     WALK_SPEED              100.0f
+
 CrtFloat    MouseRotateSpeed = 0.75f;
 CrtFloat    MouseWheelSpeed = 0.02f;
 CrtFloat    MouseTranslateSpeed = 0.1f;
 CrtFloat    KeyboardRotateSpeed = 10.0f;
-#define     RUN_SPEED               500.0f  
-#define     WALK_SPEED              100.0f
 CrtFloat    KeyboardTranslateSpeed = WALK_SPEED;
 CrtRender   _CrtRender;   // Global to access the extra camera transform matrix in the CRT renderer
-char * cleaned_file_name;
 
-// Function to adjust all the UI speeds (keyboard and mouse) by a common multiplier
+
+//----------------------------------------------------------------------------------------------------
+// Function to adjust keyboard and mouse responsiveness by a common multiplier
+//----------------------------------------------------------------------------------------------------
 void AdjustUISpeed(CrtFloat multiplier)
 {
 	MouseRotateSpeed		*= multiplier;
@@ -96,10 +91,6 @@ void AdjustUISpeed(CrtFloat multiplier)
 	KeyboardTranslateSpeed	*= multiplier;
 }
 
-//----------------------------------------------------------------------------------------------------
-// End of non-windows specific UI code
-// The code below is somewhat windows specific but only because it uses windows keycodes in "keys"
-//----------------------------------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------------------------------
 // The remainder of this code is windows specific, to see how the UI is implemented look for comments
@@ -181,12 +172,12 @@ static void KeyboardCallback(const unsigned char key, const int x, const int y)
             break;
     case 'm' :
     case 'M' :
-                AdjustUISpeed(1.25f);
-                break;
+            AdjustUISpeed(1.25f);
+            break;
     case 'n' :
     case 'N' :
-                AdjustUISpeed(0.75f);
-                break;
+            AdjustUISpeed(0.75f);
+            break;
     case 'p' :
     case 'P' :
             sAnimation = !sAnimation;
@@ -214,8 +205,8 @@ static void KeyboardCallback(const unsigned char key, const int x, const int y)
     case 'W' :
             _CrtRender.ActiveInstanceCamera->MoveTransform(- _CrtRender.GetAnimDelta() * KeyboardTranslateSpeed * 0.5f, 0.0f, 0.0f);
             break;
-    case 32 :  // space key, UP
-            // UI code to move the camera farther up
+    case 32 :   // space key, UP
+				// UI code to move the camera farther up
             _CrtRender.ActiveInstanceCamera->MoveTransform(0.0f, 0.0f, _CrtRender.GetAnimDelta() * KeyboardTranslateSpeed);
             break;
     case 'x' :  // down
@@ -287,6 +278,7 @@ void MouseCallback(int button, int state, int x, int y)
             break;
     }
 }
+
 static int lastx = 0;
 static int lasty = 0;
 static int lastLeft = 0;
@@ -355,15 +347,11 @@ void MouseMotionCallback(int x,int y)
             }
 
 }
-//----------------------------------------------------------------------------------------------------
-//----------------------------------------------------------------------------------------------------
 
+//----------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------
 int main(int LArgC, char** LArgV)
 {
-	// Turns on heap debugging
-#if HEAP_DEBUG
-	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_CHECK_ALWAYS_DF | _CRTDBG_CHECK_CRT_DF /*| _CRTDBG_DELAY_FREE_MEM_DF*/);
-#endif
 
 	// Create an OpenGL Window
     if (!CreateGLWindow(LArgC, LArgV, (char*)"COLLADA_DOM Sample Viewer", _CrtRender.GetScreenWidth(), _CrtRender.GetScreenHeight(), fullscreen))
@@ -381,7 +369,6 @@ int main(int LArgC, char** LArgV)
 
 	_CrtRender.SetUsingVBOs( CrtTrue ); 
 	_CrtRender.SetUsingNormalMaps( CrtTrue ); 	
-	//_CrtRender.SetRenderDebug( CrtTrue ); 
 
 	// Load the file name provided on the command line
 	if(LArgC > 1 && LArgV[1])
@@ -537,7 +524,30 @@ int main(int LArgC, char** LArgV)
 
 
 //----------------------------------------------------------------------------------------------------
+// GL Setup 
+//----------------------------------------------------------------------------------------------------
+CrtInt32 InitGL(void)
+{
+	glEnable(GL_TEXTURE_2D);						
+	glShadeModel(GL_SMOOTH);						
+	glClearColor(0.0f, 0.0f, 1.0f, 0.5f);
+	glClearDepth(1.0f);
+	glEnable(GL_DEPTH_TEST);							
+	glDepthFunc(GL_LEQUAL);								
+	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);	
+
+	glEnable(GL_LIGHT0);								
+	glEnable(GL_LIGHTING);
+
+    glEnable( GL_CULL_FACE );
+    glCullFace( GL_BACK ); 
+
+	return true;										
+}
+
+//----------------------------------------------------------------------------------------------------
 // Resize And Initialize The GL Window
+//----------------------------------------------------------------------------------------------------
 void ResizeGLScreen(GLsizei width, GLsizei height)		
 {
 	// Prevent A Divide By Zero By
@@ -563,34 +573,10 @@ void ResizeGLScreen(GLsizei width, GLsizei height)
 }
 
 //----------------------------------------------------------------------------------------------------
-// GL Setup 
-CrtInt32 InitGL(void)
-{
-	glEnable(GL_TEXTURE_2D);						
-	glShadeModel(GL_SMOOTH);						
-	glClearColor(0.0f, 0.0f, 1.0f, 0.5f);
-	glClearDepth(1.0f);
-	glEnable(GL_DEPTH_TEST);							
-	glDepthFunc(GL_LEQUAL);								
-	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);	
-
-	glEnable(GL_LIGHT0);								
-	glEnable(GL_LIGHTING);
-
-    glEnable( GL_CULL_FACE );
-    glCullFace( GL_BACK ); 
-
-	return true;										
-}
-static int frame_count = 0;
+// Render routine
 //----------------------------------------------------------------------------------------------------
-// Main Render 
 void DrawGLScene(void)									
 {
-if (++frame_count > 200) {
-//printf("In DrawGLScene...........\n");
-frame_count = 0;
-}
 	// Clear The Screen And The Depth Buffer
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);	
 	glLoadIdentity();									
@@ -609,15 +595,9 @@ frame_count = 0;
 	glMaterialf( GL_FRONT_AND_BACK, GL_SHININESS, (GLfloat )mat.Shininess ); 
 
 	//if(_CrtRender.GetScene())
-     _CrtRender.Render(); 
+    _CrtRender.Render(); 
 	glutSwapBuffers();
 }
-
-//----------------------------------------------------------------------------------------------------
-void DestroyGLWindow(void)							
-{
-}
-
 
 //----------------------------------------------------------------
 // Create Window based on the Width and Height parameters 
@@ -635,7 +615,6 @@ static bool CreateGLWindow(int LArgC, char** LArgV, CrtChar* title, CrtInt32 wid
 
     InitGL();
 
-//    glutMoveAndDisplayCallback();
     glutIdleFunc(DrawGLScene);      // Do rendering when there is no events to be processed by glut
 
 	glutDisplayFunc(DrawGLScene);
@@ -643,7 +622,7 @@ static bool CreateGLWindow(int LArgC, char** LArgV, CrtChar* title, CrtInt32 wid
 	glutKeyboardFunc(KeyboardCallback);
     glutSpecialFunc(specialKeyboardCallback);
 
-    glutMotionFunc(MouseMotionCallback);     // Handles mouse movement while one or more mouse buttons are pressed
+    glutMotionFunc(MouseMotionCallback);    // Handles mouse movement while one or more mouse buttons are pressed
     glutMouseFunc(MouseCallback);           // Handles mouse clicks and its release/press state
 	glutReshapeFunc(ResizeGLScreen);
 
@@ -652,3 +631,9 @@ static bool CreateGLWindow(int LArgC, char** LArgV, CrtChar* title, CrtInt32 wid
 
 	return true;									
 }
+
+//----------------------------------------------------------------------------------------------------
+void DestroyGLWindow(void)							
+{
+}
+
