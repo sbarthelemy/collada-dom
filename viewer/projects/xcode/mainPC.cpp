@@ -407,6 +407,13 @@ int main(int LArgC, char** LArgV)
 			exit(0);
 		}
 	}
+	else
+	{   // No command line arg, load default COLLADA doc
+		if ( !_CrtRender.Load( "dominos.dae" ))
+		{
+			exit(0);
+		}
+	}
 
 	// This block of code shows how to enumerate all the effects, get their parameters and then
 	// get their UI information.
