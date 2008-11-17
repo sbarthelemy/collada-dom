@@ -379,6 +379,14 @@ int main(int LArgC, char** LArgV)
 			exit(0);
 		}
 	}
+	else
+	{
+       printf("%s(): Loading default document cage.dae... \n", __FUNCTION__);fflush(stdout);
+		if ( !_CrtRender.Load( "cage.dae" ))
+		{
+			exit(0);
+		}
+	}
 
 	// This block of code shows how to enumerate all the effects, get their parameters and then
 	// get their UI information.
