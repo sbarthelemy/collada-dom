@@ -538,7 +538,7 @@ CrtInt32 InitGL(void)
 {
 	glEnable(GL_TEXTURE_2D);						
 	glShadeModel(GL_SMOOTH);						
-	glClearColor(0.0f, 0.0f, 1.0f, 0.5f);
+	glClearColor(0.9f, 0.9f, 0.9f, 1.0f);
 	glClearDepth(1.0f);
 	glEnable(GL_DEPTH_TEST);							
 	glDepthFunc(GL_LEQUAL);								
