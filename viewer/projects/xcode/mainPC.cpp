@@ -89,30 +89,6 @@ void AdjustUISpeed(CrtFloat multiplier)
 	KeyboardTranslateSpeed	*= multiplier;
 }
 
-// The camera selection mechanism is application defined so I put it here rather than in CrtRender
-void NextCamera()
-{
-	static CrtInt CurrentCamNumber = 0;
-
-	// Go to the next camera, if we run out of cameras go back to the first one
-	CurrentCamNumber++;
-	if(CurrentCamNumber >= _CrtRender.GetScene()->GetCameraInstanceCount())
-		CurrentCamNumber = 0;
-
-	// ExtraCameraTransform lets the user move the camera from it's original position in the COLLADA file
-
-	// Get the camera instance we want and set it as the active camera
-	CrtInstanceCamera *inst = _CrtRender.GetScene()->GetCameraInstance(CurrentCamNumber);
-	assert(inst);  // Should never be null
-	_CrtRender.SetActiveInstanceCamera(inst);
-
-	CrtPrint("Active camera instance %d on node %s is based on camera %s\n", 
-				CurrentCamNumber, 
-				inst->Parent->GetName(),
-				inst->AbstractCamera->GetName());
-}
-
-
 //----------------------------------------------------------------------------------------------------
 // The remainder of this code is windows specific, to see how the UI is implemented look for comments
 // marked "UI".  To manipulate the camera you just use CrtMatrixTranslate and CrtMatrix4x4RotateAngleAxis
@@ -274,11 +250,7 @@ void MouseCallback(int button, int state, int x, int y)
     switch (button)
     {
     case GLUT_MIDDLE_BUTTON:
-             if (state == GLUT_UP) {
-                sLeftBtnDown = false;
-             }
-             else if (state == GLUT_DOWN) {
-                sLeftBtnDown = true;
+             if (state == GLUT_DOWN) {
                 _CrtRender.SetNextCamera();
              }
             break;
@@ -565,7 +537,7 @@ CrtInt32 InitGL(GLvoid)
 {
 	glEnable(GL_TEXTURE_2D);						
 	glShadeModel(GL_SMOOTH);						
-	glClearColor(0.0f, 0.0f, 1.0f, 0.5f);
+	glClearColor(0.9f, 0.9f, 0.9f, 1.0f);
 	glClearDepth(1.0f);
 	glEnable(GL_DEPTH_TEST);							
 	glDepthFunc(GL_LEQUAL);								
