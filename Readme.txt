@@ -57,8 +57,8 @@ hard coded COLLADA demos that were included with older PS3 releases.
  |
  +--viewer					
  |  +-bin                   The application binary that uses all software libraries above to make a COLLADA document viewer
- |     +-samples.zip        Compressed COLLADA documents used by COLLADA Viewer
- |     +-samples.txt        Description of COLLADA documents in samples.zip
+ |     +-samples.zip        Compressed sample COLLADA documents used by COLLADA Viewer
+ |     +-samples.doc        Description of sample COLLADA documents
  |
  |  +-make       
  |     +-common.mk
