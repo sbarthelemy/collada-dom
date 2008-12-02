@@ -300,7 +300,7 @@ CrtVoid	CrtRender::UpdateDelta()
 #ifdef _WIN32  // !!!GAC temporary windows only performance timing code
 		LARGE_INTEGER frequency;
 		QueryPerformanceFrequency(&frequency);
-		CrtPrint("update %f, render %f, frequency %ld\n", (double)update_time.QuadPart/(double)frequency.QuadPart, (double)render_time.QuadPart/(double)frequency.QuadPart, frequency.QuadPart);
+		//CrtPrint("update %f, render %f, frequency %ld\n", (double)update_time.QuadPart/(double)frequency.QuadPart, (double)render_time.QuadPart/(double)frequency.QuadPart, frequency.QuadPart);
 #endif
 	}
 	
