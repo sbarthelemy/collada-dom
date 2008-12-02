@@ -6,6 +6,7 @@
 *
 */
 #include <cfxAnnotatable.h>
+#include <cfxAnnotate.h>
 
 
 // cfxAnnotatable
@@ -15,6 +16,12 @@ cfxAnnotatable::cfxAnnotatable()
  
 cfxAnnotatable::~cfxAnnotatable() 
 {
+	for (size_t i=0; i<annotateArray.size(); i++)
+	{
+		delete  (cfxAnnotate*)(annotateArray[i])->getData();
+		delete annotateArray[i];
+	}
+	annotateArray.clear();
 }
  
 void cfxAnnotatable::pushAnnotate(cfxAnnotate* annotate)

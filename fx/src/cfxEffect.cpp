@@ -59,17 +59,28 @@ cfxEffect::~cfxEffect()
 	}
 	techniqueArray.clear();
 
+	std::map<std::string, cfxSurface*>::iterator iter=mapNameToSurfacePtr.begin();
     for (size_t i=0; i<paramArray.size(); i++)
 	{
         cfxNewParam* p = (cfxNewParam*)paramArray[i];
 		delete p->data;
-		//delete p;
+
+        // Check if param was used by cfxSurface object, if so, don't delet it yet, let ~cfxSurface() delete it
+        bool found = false;
+        for (iter=mapNameToSurfacePtr.begin(); iter != mapNameToSurfacePtr.end(); iter++)
+        {
+            	for (size_t i=0; i<iter->second->referencingParams.size(); i++)
+                    if (iter->second->referencingParams[i] == p)
+                            found = true;
+        }
+	    if (!found) 
+            delete p;
 	}
 	paramArray.clear();
   // this is temporary until cg api gets upgraded to set effect parameter names
 
 	mapNameToParameter.clear();
-	std::map<std::string, cfxSurface*>::iterator iter=mapNameToSurfacePtr.begin();
+	iter=mapNameToSurfacePtr.begin();
 	for (iter=mapNameToSurfacePtr.begin(); iter != mapNameToSurfacePtr.end(); iter++)
 	{
 		delete (iter->second);

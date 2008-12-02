@@ -40,7 +40,7 @@ public:
   static GLuint getTexIdByImageId(const std::string& imageId);
 
   const cfxSurface* getParentSurface() const;
-
+  std::vector<cfxParam*> referencingParams;
 private:
 
   void setSurface(const std::string& _init_from, const std::string& _format);
@@ -48,9 +48,7 @@ private:
   std::string init_from;
   std::string format;
 
-  std::vector<cfxParam*> referencingParams;
-
-	cfxSurface* parentSurface;
+  cfxSurface* parentSurface;
 
   static std::map<std::string, GLuint> mapImageIdToGlTextureObjectId;
 
