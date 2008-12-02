@@ -63,6 +63,7 @@ cfxEffect::~cfxEffect()
 	{
         cfxNewParam* p = (cfxNewParam*)paramArray[i];
 		delete p->data;
+		//delete p;
 	}
 	paramArray.clear();
   // this is temporary until cg api gets upgraded to set effect parameter names

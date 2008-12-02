@@ -31,7 +31,7 @@ public:
 public:
 
   cfxShader(cfxPass* _pass, const std::string& _source, const std::string& _name, CGprofile _target, type_enum type);
-
+  ~cfxShader();
   bool apply();
   bool validate() const;
 

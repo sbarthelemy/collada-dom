@@ -93,6 +93,15 @@ cfxShader::cfxShader(cfxPass* _pass, const std::string& _source, const std::stri
 	}  
 }
 
+cfxShader::~cfxShader()
+{
+    for (size_t i=0; i<paramArray.size(); i++)
+	{
+		//cfxPrint("paramArray[i] = %x\n", paramArray[i]);
+		delete paramArray[i];
+	}
+	paramArray.clear();
+}
 bool cfxShader::apply()
 {
   std::vector<cfxParam*>::iterator paramIter = paramArray.begin();

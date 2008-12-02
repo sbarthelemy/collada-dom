@@ -34,6 +34,13 @@ cfxPass::~cfxPass()
 		delete(settingArray[0]);
 		settingArray.erase(settingArray.begin());
 	}
+
+	while (!shaderArray.empty())
+	{
+		delete(shaderArray[0]);
+		shaderArray.erase(shaderArray.begin());
+	}
+
 }
 bool cfxPass::apply()
 {

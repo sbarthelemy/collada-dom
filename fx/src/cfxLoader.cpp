@@ -833,6 +833,7 @@ void loadProfileArray(domFx_profile_abstract_Array& profileArrayElement, cfxEffe
 							    if (dataTypeName == std::string(COLLADA_ELEMENT_PARAM))
 								{
 								    param = new cfxConnectParam(bindElement->getSymbol(), shader, bindElement->getParam()->getRef());
+									//cfxPrint("param = %x\n", param);
 								}
 							    else
 								{

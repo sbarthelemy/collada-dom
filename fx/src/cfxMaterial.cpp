@@ -16,6 +16,7 @@
 #include <cfxMaterial.h>
 #include <cfxEffect.h>
 #include <cfxParam.h>
+#include <cfxSetParam.h>
 #include <cfxSurface.h>
 #include <cfxPlatform.h>
 
@@ -35,6 +36,14 @@ cfxMaterial::~cfxMaterial()
 		delete surfaces[i];
 	}
 	surfaces.clear();
+
+    for ( size_t i = 0; i < paramArray.size(); ++i ) 
+    {
+        cfxSetParam* item = (cfxSetParam*)paramArray[i];
+        delete item->getData();
+        delete paramArray[i];
+    }
+    paramArray.clear();
 }
 
 const std::string& cfxMaterial::getName() const

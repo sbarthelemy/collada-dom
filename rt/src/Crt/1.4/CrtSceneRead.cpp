@@ -526,6 +526,7 @@ CrtEffect *CrtScene::ReadEffect( domEffectRef lib )
 				CrtPrint("%s is not supported\n", typeName);
 			}
 		}
+		delete newEffect;
 	}
 	return NULL; 	
 };
