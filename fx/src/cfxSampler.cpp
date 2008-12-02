@@ -30,6 +30,11 @@ cfxSampler::cfxSampler(const std::string& _source, cfxEffect* _effect)
  
 cfxSampler::~cfxSampler() 
 {
+	while (!settingArray.empty())
+	{
+		delete(settingArray[0]);
+		settingArray.erase(settingArray.begin());
+	}
 }
 
 bool cfxSampler::apply(cfxParam* param)

@@ -41,7 +41,6 @@ cfxData* cfxDataMaker::makeData(domFx_annotate_type_common* annotateInitializer,
   return NULL;
 }
 
-
 cfxData* cfxDataMaker::makeDataForParam(domFx_basic_type_common* paramInitializer, cfxEffect* effect)
 {
     //printf("make data for fx common param\n");
@@ -723,12 +722,16 @@ cfxDataMakerSampler2D::cfxDataMakerSampler2D()
   cfxDataMaker::mapTypeNameToDataMaker.insert(std::make_pair("fx_sampler2D_common", this));
   cfxDataMaker::mapTypeNameToDataMaker.insert(std::make_pair("cg_sampler2D", this));
 }
+cfxDataMakerSampler2D::~cfxDataMakerSampler2D()
+{
+	delete sampler;
+}
 
 cfxDataMakerSampler2D cfxDataMakerSampler2D::maker;
 
 cfxData* cfxDataMakerSampler2D::makeData(domFx_basic_type_common* paramInitializer, cfxEffect* effect)
 {
-  cfxSampler* sampler = new cfxSampler(paramInitializer->getSampler2D()->getSource()->getValue(), effect); 
+  sampler = new cfxSampler(paramInitializer->getSampler2D()->getSource()->getValue(), effect); 
 
   if (paramInitializer->getSampler2D()->getWrap_s())
     {
@@ -776,7 +779,7 @@ cfxData* cfxDataMakerSampler2D::makeData(domFx_basic_type_common* paramInitializ
 
 cfxData* cfxDataMakerSampler2D::makeData(domCg_param_type* paramInitializer, cfxEffect* effect)
 {
-  cfxSampler* sampler = new cfxSampler(paramInitializer->getSampler2D()->getSource()->getValue(), effect); 
+  sampler = new cfxSampler(paramInitializer->getSampler2D()->getSource()->getValue(), effect); 
 
   if (paramInitializer->getSampler2D()->getWrap_s())
     {

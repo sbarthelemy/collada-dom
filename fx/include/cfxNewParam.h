@@ -30,11 +30,10 @@ public:
   virtual cfxParam::cfxParamTypeEnum getType() const;
   const std::string &getSemantic() const;
   const cfxData *getData() const;
-
-protected:
-  
   cfxEffect* effect;
   cfxData* data;
+
+protected:
   
   std::string semantic;
 

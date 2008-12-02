@@ -16,8 +16,11 @@
 #include <cfxEffect.h>
 #include <cfxCode.h>
 #include <cfxParam.h>
+#include <cfxNewParam.h>
 #include <cfxTechnique.h>
 #include <cfxAnnotate.h>
+#include <cfxPass.h>
+#include <cfxData.h>
 
 #include <assert.h>
 
@@ -52,10 +55,25 @@ cfxEffect::~cfxEffect()
 
 	for (size_t i=0; i<techniqueArray.size(); i++)
 	{
+#if 0
+        std::vector<cfxPass*> pass = techniqueArray[i]->getPassArray();
+	    while(!pass.empty())
+	    {
+		    delete pass[0];
+		    pass.erase(pass.begin());
+	    }
+        pass.clear();
+#endif
 		delete techniqueArray[i];
 	}
 	techniqueArray.clear();
 
+    for (size_t i=0; i<paramArray.size(); i++)
+	{
+        cfxNewParam* p = (cfxNewParam*)paramArray[i];
+		delete p->data;
+	}
+	paramArray.clear();
   // this is temporary until cg api gets upgraded to set effect parameter names
 
 	mapNameToParameter.clear();

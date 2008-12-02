@@ -13,6 +13,7 @@
 #include <string>
 
 #include <cfxTypes.h>
+#include <cfxSampler.h>
 
 class cfxData;
 class domFx_basic_type_common;
@@ -37,10 +38,11 @@ class cfxDataMaker
   
  public:
 
-  virtual ~cfxDataMaker() {}
+  virtual ~cfxDataMaker(){}
   static cfxData* makeDataForParam(domFx_basic_type_common* paramInitializer, cfxEffect*);
   static cfxData* makeDataForParam(domCg_param_type* paramInitializer, cfxEffect*);
   static cfxData* makeDataForAnnotate(domFx_annotate_type_common* annotateInitializer, cfxEffect*);
+  cfxSampler* sampler; 
 };
 
 
@@ -275,6 +277,7 @@ class cfxDataMakerSampler2D : public cfxDataMaker
 {
  protected:
   cfxDataMakerSampler2D();
+  ~cfxDataMakerSampler2D();
   static cfxDataMakerSampler2D maker; 
  
   virtual cfxData* makeData(domFx_basic_type_common* paramInitializer, cfxEffect*);

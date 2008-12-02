@@ -54,7 +54,7 @@ CrtVoid	CrtAnimation::GenerateKeys()
 	
 	// allocating for generic key channels New way 
 	AnimKeySets = CrtNewData( CrtKeySet, NumAnimChannels ); 
-
+	//CrtPrint("AnimKeySets = %x,time\n", &AnimKeySets.Keys, &AnimKeySets.Time ); 
 	CrtUInt animSet = 0; 
 	for ( CrtUInt i = 0; i < Channels.size(); i++)
 	{
@@ -223,5 +223,5 @@ CrtAnimation::~CrtAnimation()
 	{
 		AnimKeySets[t].DeallocateKeys(); 
 	}
-//	CrtDeleteData(AnimKeySets);
+	CrtDeleteData(AnimKeySets);
 }

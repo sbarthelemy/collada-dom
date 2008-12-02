@@ -176,7 +176,6 @@ CrtScene * CrtRender::Load( const CrtChar * fileName, const CrtChar * basePath )
 		}
 	}
 
-//	Scene = scene;
 
 /*
 	domCOLLADA * dom = scene->m_collada->getDom(fileName);
@@ -205,10 +204,12 @@ CrtScene * CrtRender::Load( const CrtChar * fileName, const CrtChar * basePath )
 
 CrtVoid CrtRender::Destroy()
 {
-	Scene->Destroy();
-
-	if ( CgInitialized )
-		DestroyCg(); 
+	if (Scene) {
+		Scene->Destroy();
+		Scene = NULL;
+	}
+	//if ( CgInitialized )
+	//	DestroyCg(); 
 }
 
 //----------------------------------------------------------------------------------------------------

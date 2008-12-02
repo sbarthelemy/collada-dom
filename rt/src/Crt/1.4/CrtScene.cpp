@@ -55,7 +55,7 @@ CrtVoid CrtScene::Destroy()
 		CrtDelete(iter->second);
 		cfxMaterials.erase(iter);
 	}
-	cfxEffects.clear();
+	cfxMaterials.clear();
 
 	while(!cfxEffects.empty())
 	{
@@ -70,6 +70,7 @@ CrtVoid CrtScene::Destroy()
 		CrtDelete(CameraInstances[0]);
 		CameraInstances.erase(CameraInstances.begin());
 	}
+	CameraInstances.clear();
 	while(!LightInstances.empty())
 	{
 		CrtDelete(LightInstances[0]);
@@ -96,6 +97,7 @@ CrtVoid CrtScene::Destroy()
 		CrtDelete( Cameras[0] ); 
 		Cameras.erase(Cameras.begin());
 	}
+	Cameras.clear();
 	while(!Materials.empty())
 	{
 		CrtDelete( Materials[0] );
@@ -106,6 +108,7 @@ CrtVoid CrtScene::Destroy()
 		CrtDelete( Images[0] ); 
 		Images.erase(Images.begin());
 	}
+	Images.clear();
 	while(!Textures.empty())
 	{
 		CrtDelete( Textures[0] );
@@ -133,6 +136,15 @@ CrtVoid CrtScene::Destroy()
 	}
 	while(!Geometries.empty())
 	{
+        while (!Geometries[0]->Groups.empty())
+
+        {
+
+            CrtDelete(Geometries[0]->Groups[0]);
+
+            Geometries[0]->Groups.erase(Geometries[0]->Groups.begin());
+
+        }
 		CrtDelete( Geometries[0] ); 
 		Geometries.erase(Geometries.begin());
 	}
@@ -345,7 +357,7 @@ printf("dom->getLibrary_images_array().getCount() = %d\n", dom->getLibrary_image
 	{
 		CrtPrint( "CrtScene, always create a default camera and it is the first camera to use\n");
 		// new CrtCamera
-		CrtCamera * default_camera = CrtNew( CrtCamera ); 
+		default_camera = CrtNew( CrtCamera ); 
 		default_camera->SetName( "no_camera_in_scene_default_camera" );	
 		default_camera->SetDocURI( dom->getDocumentURI()->getURI() );
 		default_camera->SetZNear(1.0);

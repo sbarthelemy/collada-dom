@@ -34,8 +34,10 @@ static bool    sGlLighting=true;
 static int     sCulling=0;
 static bool    sAnimation = true;
 
-static bool CreateGLWindow(int LArgC, char** LArgV, CrtChar* title, CrtInt32 width, CrtInt32 height, bool fullscreenflag);
+static bool CreateGLWindow(int LArgC, char** LArgV, CrtChar* title, CrtInt32 width, CrtInt32 height);
+//, bool fullscreenflag);
 static void	DestroyGLWindow(void);	
+static void DestroyCrt(void);
 static void	DrawGLScene(void);
 static CrtInt32 InitGL(void);
 static GLvoid ResizeGLScreen(GLsizei width, GLsizei height);		
@@ -352,9 +354,11 @@ void MouseMotionCallback(int x,int y)
 //----------------------------------------------------------------------------------------------------
 int main(int LArgC, char** LArgV)
 {
+	atexit(DestroyCrt);		// Need this, because old GLUT never returns from glutMainLoop()
 
 	// Create an OpenGL Window
-    if (!CreateGLWindow(LArgC, LArgV, (char*)"COLLADA_DOM Sample Viewer", _CrtRender.GetScreenWidth(), _CrtRender.GetScreenHeight(), fullscreen))
+    if (!CreateGLWindow(LArgC, LArgV, (char*)"COLLADA_DOM Sample Viewer", _CrtRender.GetScreenWidth(), _CrtRender.GetScreenHeight()))
+//, fullscreen))
 	{
 		return 0;									
 	}
@@ -519,14 +523,9 @@ int main(int LArgC, char** LArgV)
 	}
 #endif
 
-	glutMainLoop();
+ 	glutMainLoop();
 
-	_CrtRender.Destroy();
-
-	// Shutdown
-	DestroyGLWindow();								
-
-	return(0);						
+	return(0);					
 }
 #endif //CRTLIB_BUILD
 
@@ -606,20 +605,21 @@ void DrawGLScene(void)
     _CrtRender.Render(); 
 	glutSwapBuffers();
 }
-
+static int win = -1;
 //----------------------------------------------------------------
 // Create Window based on the Width and Height parameters 
 //----------------------------------------------------------------
-static bool CreateGLWindow(int LArgC, char** LArgV, CrtChar* title, CrtInt32 width, CrtInt32 height, bool fullscreenflag)
+static bool CreateGLWindow(int LArgC, char** LArgV, CrtChar* title, CrtInt32 width, CrtInt32 height)
+//, bool fullscreenflag)
 {
-	fullscreen = fullscreenflag;			
+//	fullscreen = fullscreenflag;			
 
 	glutInit(&LArgC, LArgV);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_DEPTH | GLUT_RGB);
 
     glutInitWindowPosition(0, 0);
     glutInitWindowSize(width, height);
-    glutCreateWindow(title);
+    win = glutCreateWindow(title);
 
     InitGL();
 
@@ -643,5 +643,12 @@ static bool CreateGLWindow(int LArgC, char** LArgV, CrtChar* title, CrtInt32 wid
 //----------------------------------------------------------------------------------------------------
 void DestroyGLWindow(void)							
 {
+    //glutDestroyWindow(win);
 }
+static void DestroyCrt(void)
+{
 
+	_CrtRender.Destroy();
+	DestroyGLWindow();
+
+}

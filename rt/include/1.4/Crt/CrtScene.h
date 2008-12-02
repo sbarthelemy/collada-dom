@@ -168,8 +168,8 @@ public:
 	MyColladaConverter *	m_physics;
 	CrtNode	*		SceneRoot;
 
-//	CrtInt			NumNodes; 
 	CrtInt			NumAnimatedNodes; 
+	CrtCamera*		default_camera;
 private:
 	// for animation runtime only
 	CrtFloat		LastKeyTime; 

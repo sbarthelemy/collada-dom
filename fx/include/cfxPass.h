@@ -30,6 +30,7 @@ class cfxPass : public cfxAnnotatable, public cfxParamable
 public:
 
   cfxPass(cfxTechnique* _technique, const std::string& _name);
+  ~cfxPass();
 
   bool apply();
   bool validate() const;

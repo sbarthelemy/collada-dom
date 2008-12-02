@@ -1006,6 +1006,7 @@ CrtVoid CrtScene::ParseGeometry(CrtGeometry * newGeo, domGeometry * dom_geometry
 	for (CrtUInt i=0; i< numTriangleGroups; i++)
 	{
 		CrtPolyGroup *newprimitives = BuildTriangles(meshElement->getTriangles_array()[i], newGeo);
+CrtPrint("allocated newprimitives = %x\n", newprimitives);
 		newGeo->Groups.push_back(newprimitives);
 	}
 
@@ -1490,6 +1491,7 @@ CrtMorph *CrtScene::ReadMorph( domMorphRef lib )
 	new_morph->morphed_geometry = CrtNew(CrtGeometry);
 	CrtAssert("No memory\n", new_morph->morphed_geometry!=NULL);
 	ParseGeometry(new_morph->morphed_geometry, base_dom_geometry);
+	Geometries.push_back(new_morph->morphed_geometry);
 
 	new_morph->Update(-1.0f);
 

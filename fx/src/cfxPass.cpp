@@ -27,7 +27,14 @@ cfxPass::cfxPass(cfxTechnique* _technique, const std::string& _name)
 {
   pass = cgCreatePass(technique->getTechnique(), name.c_str());
 }
-
+cfxPass::~cfxPass()
+{
+	while (!settingArray.empty())
+	{
+		delete(settingArray[0]);
+		settingArray.erase(settingArray.begin());
+	}
+}
 bool cfxPass::apply()
 {
   std::vector<cfxGlPipelineSetting*>::iterator settingIter = settingArray.begin();
