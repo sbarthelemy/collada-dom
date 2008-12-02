@@ -55,15 +55,6 @@ cfxEffect::~cfxEffect()
 
 	for (size_t i=0; i<techniqueArray.size(); i++)
 	{
-#if 0
-        std::vector<cfxPass*> pass = techniqueArray[i]->getPassArray();
-	    while(!pass.empty())
-	    {
-		    delete pass[0];
-		    pass.erase(pass.begin());
-	    }
-        pass.clear();
-#endif
 		delete techniqueArray[i];
 	}
 	techniqueArray.clear();

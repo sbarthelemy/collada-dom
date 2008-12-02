@@ -47,17 +47,6 @@ CrtBool  CrtRender::InitRenderSettings()
 	return CrtTrue; 
 }
 
-// PRE: It will set after the camera
-// This function will draw the grid for reference
-/*CrtBool CrtRender::InitBackground()
-{
-	// Todo: judge the up axis and use the other 2 since it may not be y and decided by collada files
-	// draw grid geometry. Lines: along x and along z:
-	DrawFloorGrid(20, 20, 20);
-	DrawCoordinates();
-	return CrtTrue;
-}
-*/
 CrtVoid	CrtRender::SetInitialPath( const CrtChar * path )
 {
 
@@ -105,7 +94,6 @@ CrtVoid CrtRender::UnLoad()
 		Scene = 0;
 		Reset();
 		UsePhysics		= CrtTrue;
-//		InitMembers();
 	}
 }
 CrtScene * CrtRender::Load( const CrtChar * fileName, const CrtChar * basePath )
@@ -127,7 +115,6 @@ CrtScene * CrtRender::Load( const CrtChar * fileName, const CrtChar * basePath )
 
 	if ( UseVBOs && UseRender )
 		CheckForVBOs();
-	//CrtPrint("Using VBOs %d \n", _CrtRender.UsingVBOs() );
 	
 	//CrtPrint(" Loading file %s \n", fileName); 
    	
@@ -176,24 +163,6 @@ CrtScene * CrtRender::Load( const CrtChar * fileName, const CrtChar * basePath )
 		}
 	}
 
-
-/*
-	domCOLLADA * dom = scene->m_collada->getDom(fileName);
-	domCOLLADA::domSceneRef domScene = dom->getScene();
-	size_t count = domScene->getInstance_physics_scene_array().getCount();
-	if (UsePhysics)
-	{
-		physics = new MyColladaConverter();
-		bool result = physics->SetColladaDOM(scene->m_collada, fileName);
-		if (result)
-		{
-			result = physics->convert();
-		} else
-		{
-			UsePhysics = CrtFalse;
-		}
-	}	
-*/
 	CrtPrint(" Done Loading %s \n", fileName); 
 	// in case of multithreaded loading 
 	Loading = CrtFalse; 
@@ -208,17 +177,12 @@ CrtVoid CrtRender::Destroy()
 		Scene->Destroy();
 		Scene = NULL;
 	}
-	//if ( CgInitialized )
-	//	DestroyCg(); 
 }
 
 //----------------------------------------------------------------------------------------------------
 CrtBool CrtRender::Render()
 {
 	if (Scene==NULL) return CrtFalse;
-	// default backface culling 
-//	glEnable( GL_CULL_FACE );
-//	glCullFace( GL_BACK ); 
 
 	// !!!GAC a timebase used by some effects (needs to be linked to real time)
 	if ( !Scene->IsAnimationPaused() )
@@ -344,53 +308,7 @@ CrtVoid	CrtRender::UpdateDelta()
 	if ( !UpdatedOnce )
 		Delta = 0; 
 };
-/*
-CrtVec3f * CrtRender::GetFusedGeometryPoints( CrtUInt &NumPoints )
-{
-	// go through all the geometry in the scene and pull out the
-	// point info and fuse it together into one list.  
-	
-	CrtUInt totalPointCount = 0;
 
-	// first count total number for geometry points
-	for (CrtUInt i=0; i< Scene->Geometries.size(); i++)
-	{
-		CrtGeometry * geos = Scene->Geometries[i]; 
-		for (CrtUInt g = 0; g < (CrtUInt)geos->Groups.size(); g++)
-			totalPointCount+= geos->Groups[g]->count * 3; 
-	}
-	
-	// allocate for the new point list 
-	CrtVec3f * newPoints = CrtNewData( CrtVec3f, totalPointCount ); 
-	
-	// now simply fill in the point and return the new point list 
-	CrtUInt curPt = 0; 
-//	geos = Scene->GetGeometries(); 
-	for (CrtUInt i=0; i<Scene->Geometries.size(); i++)
-//	while( geos )
-	{
-		CrtGeometry * geos = Scene->Geometries[i]; 
-
-		for (CrtUInt g = 0; g < (CrtUInt)geos->Groups.size(); g++)
-		{
-			CrtVec3f * pts = geos->Groups[g]->GetPoints(); 
-			for ( CrtUInt p = 0; p < (CrtUInt)geos->Groups[g]->count * 3; p ++)
-			{
-				newPoints[curPt] = pts[p];
-				curPt++;
-			}
-		}		
-//		geos = (CrtGeometry*)geos->GetNext();
-	}
-	
-	// all done ! 
-	NumPoints = curPt;
-	return newPoints; 
-
-}; 
-*/
-//CrtVec3f *  CrtRender::GetFusedGeometryNormals( CrtUInt & NumNormals ); 
-//CrtVec2f *  CrtRender::GetFusedGeometryUVs( CrtUInt & NumUVs ); 
 	CrtCamera * CrtRender::GetCurrentCamera(int i ){ return Scene->Cameras[i]; }
 	CrtUInt	CrtRender::GetNumCameras(){return (CrtUInt) Scene->Cameras.size();}
 	CrtChar * CrtRender::GetCameraName( CrtInt camNum ){return Scene->Cameras[camNum]->GetName(); }
@@ -502,9 +420,6 @@ CrtVec3f * CrtRender::GetFusedGeometryPoints( CrtUInt &NumPoints )
 		CrtVec3f * Points = *points;
 		for(CrtUInt32 i=0; i<point_counts; i++)
 		{
-//			CrtUInt32 x_index = 3 * i;
-//			CrtUInt32 y_index = 3 * i + 1;
-//			CrtUInt32 z_index = 3 * i + 2;
 			CrtFloat x = Points[i].x;
 			CrtFloat y = Points[i].y;
 			CrtFloat z = Points[i].z;

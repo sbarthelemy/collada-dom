@@ -35,7 +35,6 @@ static int     sCulling=0;
 static bool    sAnimation = true;
 
 static bool CreateGLWindow(int LArgC, char** LArgV, CrtChar* title, CrtInt32 width, CrtInt32 height);
-//, bool fullscreenflag);
 static void	DestroyGLWindow(void);	
 static void DestroyCrt(void);
 static void	DrawGLScene(void);
@@ -358,7 +357,6 @@ int main(int LArgC, char** LArgV)
 
 	// Create an OpenGL Window
     if (!CreateGLWindow(LArgC, LArgV, (char*)"COLLADA_DOM Sample Viewer", _CrtRender.GetScreenWidth(), _CrtRender.GetScreenHeight()))
-//, fullscreen))
 	{
 		return 0;									
 	}
@@ -601,25 +599,21 @@ void DrawGLScene(void)
 	glMaterialfv( GL_FRONT_AND_BACK, GL_SPECULAR, (GLfloat *)&mat.Specular );
 	glMaterialf( GL_FRONT_AND_BACK, GL_SHININESS, (GLfloat )mat.Shininess ); 
 
-	//if(_CrtRender.GetScene())
-    _CrtRender.Render(); 
+	if(_CrtRender.GetScene())
+    	_CrtRender.Render(); 
 	glutSwapBuffers();
 }
-static int win = -1;
 //----------------------------------------------------------------
 // Create Window based on the Width and Height parameters 
 //----------------------------------------------------------------
 static bool CreateGLWindow(int LArgC, char** LArgV, CrtChar* title, CrtInt32 width, CrtInt32 height)
-//, bool fullscreenflag)
 {
-//	fullscreen = fullscreenflag;			
-
 	glutInit(&LArgC, LArgV);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_DEPTH | GLUT_RGB);
 
     glutInitWindowPosition(0, 0);
     glutInitWindowSize(width, height);
-    win = glutCreateWindow(title);
+    glutCreateWindow(title);
 
     InitGL();
 
@@ -643,7 +637,6 @@ static bool CreateGLWindow(int LArgC, char** LArgV, CrtChar* title, CrtInt32 wid
 //----------------------------------------------------------------------------------------------------
 void DestroyGLWindow(void)							
 {
-    //glutDestroyWindow(win);
 }
 static void DestroyCrt(void)
 {
