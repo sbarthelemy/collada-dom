@@ -32,7 +32,7 @@ cfxSurface::~cfxSurface()
 		delete referencingParams[i];
 	}
 	referencingParams.clear();
-	mapImageIdToGlTextureObjectId.clear();
+	//mapImageIdToGlTextureObjectId.clear();
 }
 
 bool cfxSurface::apply()
