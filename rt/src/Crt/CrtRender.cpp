@@ -177,6 +177,8 @@ CrtVoid CrtRender::Destroy()
 		Scene->Destroy();
 		Scene = NULL;
 	}
+	if (CgInitialized)
+		DestroyCg();
 }
 
 //----------------------------------------------------------------------------------------------------

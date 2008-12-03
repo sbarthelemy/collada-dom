@@ -277,7 +277,6 @@ class cfxDataMakerSampler2D : public cfxDataMaker
 {
  protected:
   cfxDataMakerSampler2D();
-  ~cfxDataMakerSampler2D();
   static cfxDataMakerSampler2D maker; 
  
   virtual cfxData* makeData(domFx_basic_type_common* paramInitializer, cfxEffect*);

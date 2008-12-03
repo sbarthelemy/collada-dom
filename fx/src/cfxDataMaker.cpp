@@ -722,10 +722,6 @@ cfxDataMakerSampler2D::cfxDataMakerSampler2D()
   cfxDataMaker::mapTypeNameToDataMaker.insert(std::make_pair("fx_sampler2D_common", this));
   cfxDataMaker::mapTypeNameToDataMaker.insert(std::make_pair("cg_sampler2D", this));
 }
-cfxDataMakerSampler2D::~cfxDataMakerSampler2D()
-{
-	delete sampler;
-}
 
 cfxDataMakerSampler2D cfxDataMakerSampler2D::maker;
 

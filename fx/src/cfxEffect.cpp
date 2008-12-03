@@ -45,7 +45,6 @@ cfxEffect::cfxEffect(const std::string& _name, CGcontext _context)
 cfxEffect::~cfxEffect()
 {
 	cgDestroyEffect(effect);
-	cgDestroyContext(context);
 
 	for (size_t i=0; i<codeArray.size(); i++)
 	{

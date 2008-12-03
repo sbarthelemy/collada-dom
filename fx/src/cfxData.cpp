@@ -604,6 +604,10 @@ cfxDataSampler2D::cfxDataSampler2D(cfxSampler* _data)
   : data(_data)
 {
 }
+cfxDataSampler2D::~cfxDataSampler2D()
+{
+	delete data;
+}
 
 CGtype cfxDataSampler2D::getType() const
 {

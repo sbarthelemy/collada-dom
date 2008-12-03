@@ -380,7 +380,7 @@ class cfxDataSampler2D : public cfxData
 {
  public:
   cfxDataSampler2D(cfxSampler* _data);
-
+  ~cfxDataSampler2D();
   virtual CGtype getType() const;
   virtual bool apply(cfxParam* param);
 
