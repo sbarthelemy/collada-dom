@@ -44,8 +44,9 @@ cfxEffect::cfxEffect(const std::string& _name, CGcontext _context)
 }
 cfxEffect::~cfxEffect()
 {
+#ifndef SN_TARGET_PS3
 	cgDestroyEffect(effect);
-
+#endif
 	for (size_t i=0; i<codeArray.size(); i++)
 	{
 		delete codeArray[i];

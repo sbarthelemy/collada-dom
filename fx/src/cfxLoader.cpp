@@ -137,7 +137,6 @@ cfxBool cfxLoader::loadMaterialsAndEffects(DAE *colladaAsset, std::map<std::stri
 					std::map<std::string, cfxEffect*>& effects, CGcontext _context)
 {
     cfxBool resultEffects, resultMaterials;
-printf("cfxLoader::loadMaterialsAndEffects\n");
     resultEffects = loadEffects(colladaAsset, effects, _context);
 
     if (resultEffects)
@@ -193,9 +192,6 @@ cfxBool cfxLoader::loadEffects(DAE *colladaAsset, std::map<std::string, cfxEffec
 	    cgGLSetManageTextureParameters(_context, true);
 #endif
 	    
-	    int profileCount = effectElement->getFx_profile_abstract_array().getCount();
-	    cfxPrint(".............effect %d with id %s has %d profiles\n", currentEffect, effectElement->getId(), profileCount);
-	    //if (profileCount > 0)
 		if( hasCGProfile( effectElement ) )
 		{
 
@@ -729,7 +725,6 @@ void loadProfileArray(domFx_profile_abstract_Array& profileArrayElement, cfxEffe
 				    // at least one pass is needed for the technique to do anything 
 				    cfxUint passCount = (cfxUint) passArrayElement.getCount();
 				    // loop over the passes
-                    cfxPrint(".........passCount %d\n", passCount);
 				    for (cfxUint currentPass = 0; currentPass < passCount; currentPass++)
 					{
 					    cfxPrint("Here is a pass!\n");

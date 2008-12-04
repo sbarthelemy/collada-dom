@@ -269,7 +269,6 @@ CrtBool	CrtScene::Load( CrtChar * LFileName )
 	// Don't really need to AddImage, but this makes sure it gets cleaned up on exit. 
 	Images.push_back(newImage);
 #endif
-printf("dom->getLibrary_images_array().getCount() = %d\n", dom->getLibrary_images_array().getCount());
 	// Load all the image libraries
 	for ( CrtUInt i = 0; i < dom->getLibrary_images_array().getCount(); i++)
 	{
