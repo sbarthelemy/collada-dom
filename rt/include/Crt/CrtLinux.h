@@ -17,16 +17,11 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <GL/glext.h>
-//#include <GL/glx.h>
 
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-#ifndef GLsizeiptr
-typedef int             GLsizeiptr;
-#endif 
 
 GLAPI void APIENTRY glGenBuffers (GLsizei, GLuint *);
 GLAPI void APIENTRY glBindBuffer (GLenum, GLuint);
