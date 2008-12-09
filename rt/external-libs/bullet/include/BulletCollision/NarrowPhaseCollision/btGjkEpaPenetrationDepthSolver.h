@@ -26,9 +26,9 @@ class btGjkEpaPenetrationDepthSolver : public btConvexPenetrationDepthSolver
 	public :
 
 		bool			calcPenDepth( btSimplexSolverInterface& simplexSolver,
-									  btConvexShape* pConvexA, btConvexShape* pConvexB,
+									  const btConvexShape* pConvexA, const btConvexShape* pConvexB,
 									  const btTransform& transformA, const btTransform& transformB,
-									  btVector3& v, btPoint3& wWitnessOnA, btPoint3& wWitnessOnB,
+									  btVector3& v, btVector3& wWitnessOnA, btVector3& wWitnessOnB,
 									  class btIDebugDraw* debugDraw,btStackAlloc* stackAlloc );
 
 	private :

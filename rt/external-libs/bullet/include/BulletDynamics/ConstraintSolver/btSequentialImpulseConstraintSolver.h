@@ -19,74 +19,65 @@ subject to the following restrictions:
 #include "btConstraintSolver.h"
 class btIDebugDraw;
 #include "btContactConstraint.h"
-	
+#include "btSolverBody.h"
+#include "btSolverConstraint.h"
 
 
-/// btSequentialImpulseConstraintSolver uses a Propagation Method and Sequentially applies impulses
-/// The approach is the 3D version of Erin Catto's GDC 2006 tutorial. See http://www.gphysics.com
-/// Although Sequential Impulse is more intuitive, it is mathematically equivalent to Projected Successive Overrelaxation (iterative LCP)
-/// Applies impulses for combined restitution and penetration recovery and to simulate friction
+
+///The btSequentialImpulseConstraintSolver uses a Propagation Method and Sequentially applies impulses
+///The approach is the 3D version of Erin Catto's GDC 2006 tutorial. See http://www.gphysics.com
+///Although Sequential Impulse is more intuitive, it is mathematically equivalent to Projected Successive Overrelaxation (iterative LCP)
+///Applies impulses for combined restitution and penetration recovery and to simulate friction
 class btSequentialImpulseConstraintSolver : public btConstraintSolver
 {
 
+	btAlignedObjectArray<btSolverBody>	m_tmpSolverBodyPool;
+	btConstraintArray			m_tmpSolverContactConstraintPool;
+	btConstraintArray			m_tmpSolverNonContactConstraintPool;
+	btConstraintArray			m_tmpSolverContactFrictionConstraintPool;
+	btAlignedObjectArray<int>	m_orderTmpConstraintPool;
+	btAlignedObjectArray<int>	m_orderFrictionConstraintPool;
+
 protected:
-	btScalar solve(btRigidBody* body0,btRigidBody* body1, btManifoldPoint& cp, const btContactSolverInfo& info,int iter,btIDebugDraw* debugDrawer);
-	btScalar solveFriction(btRigidBody* body0,btRigidBody* body1, btManifoldPoint& cp, const btContactSolverInfo& info,int iter,btIDebugDraw* debugDrawer);
-	void  prepareConstraints(btPersistentManifold* manifoldPtr, const btContactSolverInfo& info,btIDebugDraw* debugDrawer);
-
-	ContactSolverFunc m_contactDispatch[MAX_CONTACT_SOLVER_TYPES][MAX_CONTACT_SOLVER_TYPES];
-	ContactSolverFunc m_frictionDispatch[MAX_CONTACT_SOLVER_TYPES][MAX_CONTACT_SOLVER_TYPES];
-
-	//choose between several modes, different friction model etc.
-	int	m_solverMode;
+	btSolverConstraint&	addFrictionConstraint(const btVector3& normalAxis,int solverBodyIdA,int solverBodyIdB,int frictionIndex,btManifoldPoint& cp,const btVector3& rel_pos1,const btVector3& rel_pos2,btCollisionObject* colObj0,btCollisionObject* colObj1, btScalar relaxation);
+	
 	///m_btSeed2 is used for re-arranging the constraint rows. improves convergence/quality of friction
 	unsigned long	m_btSeed2;
 
+	void	initSolverBody(btSolverBody* solverBody, btCollisionObject* collisionObject);
+	btScalar restitutionCurve(btScalar rel_vel, btScalar restitution);
+
+	void	resolveSplitPenetrationImpulseCacheFriendly(
+        btSolverBody& body1,
+        btSolverBody& body2,
+        const btSolverConstraint& contactConstraint,
+        const btContactSolverInfo& solverInfo);
+
+	//internal method
+	int	getOrInitSolverBody(btCollisionObject& body);
+
+	void	resolveSingleConstraintRowGeneric(btSolverBody& body1,btSolverBody& body2,const btSolverConstraint& contactConstraint);
+
+	void	resolveSingleConstraintRowGenericSIMD(btSolverBody& body1,btSolverBody& body2,const btSolverConstraint& contactConstraint);
+	
+	void	resolveSingleConstraintRowLowerLimit(btSolverBody& body1,btSolverBody& body2,const btSolverConstraint& contactConstraint);
+	
+	void	resolveSingleConstraintRowLowerLimitSIMD(btSolverBody& body1,btSolverBody& body2,const btSolverConstraint& contactConstraint);
+		
 public:
 
-	enum	eSolverMode
-	{
-		SOLVER_RANDMIZE_ORDER = 1,
-		SOLVER_FRICTION_SEPARATE = 2,
-		SOLVER_USE_WARMSTARTING = 4,
-		SOLVER_CACHE_FRIENDLY = 8
-	};
-
+	
 	btSequentialImpulseConstraintSolver();
+	virtual ~btSequentialImpulseConstraintSolver();
 
-	///Advanced: Override the default contact solving function for contacts, for certain types of rigidbody
-	///See btRigidBody::m_contactSolverType and btRigidBody::m_frictionSolverType
-	void	setContactSolverFunc(ContactSolverFunc func,int type0,int type1)
-	{
-		m_contactDispatch[type0][type1] = func;
-	}
+	virtual btScalar solveGroup(btCollisionObject** bodies,int numBodies,btPersistentManifold** manifold,int numManifolds,btTypedConstraint** constraints,int numConstraints,const btContactSolverInfo& info, btIDebugDraw* debugDrawer, btStackAlloc* stackAlloc,btDispatcher* dispatcher);
 	
-	///Advanced: Override the default friction solving function for contacts, for certain types of rigidbody
-	///See btRigidBody::m_contactSolverType and btRigidBody::m_frictionSolverType
-	void	SetFrictionSolverFunc(ContactSolverFunc func,int type0,int type1)
-	{
-		m_frictionDispatch[type0][type1] = func;
-	}
+	btScalar solveGroupCacheFriendlySetup(btCollisionObject** bodies,int numBodies,btPersistentManifold** manifoldPtr, int numManifolds,btTypedConstraint** constraints,int numConstraints,const btContactSolverInfo& infoGlobal,btIDebugDraw* debugDrawer,btStackAlloc* stackAlloc);
+	btScalar solveGroupCacheFriendlyIterations(btCollisionObject** bodies,int numBodies,btPersistentManifold** manifoldPtr, int numManifolds,btTypedConstraint** constraints,int numConstraints,const btContactSolverInfo& infoGlobal,btIDebugDraw* debugDrawer,btStackAlloc* stackAlloc);
 
-	virtual ~btSequentialImpulseConstraintSolver() {}
+	///clear internal cached data and reset random seed
+	virtual	void	reset();
 	
-	virtual btScalar solveGroup(btCollisionObject** bodies,int numBodies,btPersistentManifold** manifold,int numManifolds,btTypedConstraint** constraints,int numConstraints,const btContactSolverInfo& info, btIDebugDraw* debugDrawer, btStackAlloc* stackAlloc);
-
-	virtual btScalar solveGroupCacheFriendly(btCollisionObject** bodies,int numBodies,btPersistentManifold** manifoldPtr, int numManifolds,btTypedConstraint** constraints,int numConstraints,const btContactSolverInfo& infoGlobal,btIDebugDraw* debugDrawer,btStackAlloc* stackAlloc);
-
-	btScalar solveCombinedContactFriction(btRigidBody* body0,btRigidBody* body1, btManifoldPoint& cp, const btContactSolverInfo& info,int iter,btIDebugDraw* debugDrawer);
-
-
-	void	setSolverMode(int mode)
-	{
-		m_solverMode = mode;
-	}
-
-	int	getSolverMode() const
-	{
-		return m_solverMode;
-	}
-
 	unsigned long btRand2();
 
 	int btRandInt2 (int n);
@@ -102,7 +93,9 @@ public:
 
 };
 
-
+#ifndef BT_PREFER_SIMD
+typedef btSequentialImpulseConstraintSolver btSequentialImpulseConstraintSolverPrefered;
+#endif
 
 
 #endif //SEQUENTIAL_IMPULSE_CONSTRAINT_SOLVER_H

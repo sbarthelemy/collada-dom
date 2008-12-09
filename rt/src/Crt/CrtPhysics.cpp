@@ -13,9 +13,6 @@
 #include "Crt/CrtScene.h"
 
 
-
-
-//#include "ColladaConverter.h"
 #include "btBulletDynamicsCommon.h"
 #include "dae.h"
 #include "dom/domCOLLADA.h"
@@ -30,9 +27,9 @@
 #include "BulletCollision/CollisionShapes/btTriangleMesh.h"
 #include "BulletCollision/CollisionShapes/btConvexTriangleMeshShape.h"
 #include "BulletCollision/CollisionShapes/btTriangleMeshShape.h"
-//#include "BulletCollision/CollisionShapes/btTriangleIndexVertexArray.h"
 #include "BulletCollision/CollisionShapes/btCompoundShape.h"
 #include "LinearMath/btDefaultMotionState.h"
+#include "LinearMath/btPoint3.h"
 
 
 bool  ColladaConverter::SetColladaDOM(DAE* dae, const char * filename)
@@ -1465,18 +1462,10 @@ btRigidBody*  MyColladaConverter::createRigidBody(const char * nodeid, bool isDy
 
 	//using motionstate is recommended, it provides interpolation capabilities, and only synchronizes 'active' objects
 
-//	#define USE_MOTIONSTATE 1
-//	#ifdef USE_MOTIONSTATE
 	btDefaultMotionState* myMotionState = new btDefaultMotionState(startTransform);
 	btRigidBody* body = new btRigidBody(mass,myMotionState,shape,localInertia);
 
-//	void* ptrInternal = body->getInternalOwner();
-	btAssert(body->getInternalOwner());
-//	#else
-//		btRigidBody* body = new btRigidBody(mass,startTransform,shape,localInertia);	
-//	#endif//
 	m_dynamicsWorld->addRigidBody(body);
-	btAssert(body->getInternalOwner());
 	
 	CrtScene * scene = _CrtRender.GetScene();
 	if (scene) {
@@ -1495,12 +1484,15 @@ MyColladaConverter::MyColladaConverter()
 	m_cameraUp = btVector3(0,0,1);
 	m_forwardAxis = 1;
 
-	m_dispatcher = new btCollisionDispatcher();
+	///collision configuration contains default setup for memory, collision setup
+	m_collisionConfiguration = new btDefaultCollisionConfiguration();
+	m_dispatcher = new btCollisionDispatcher(m_collisionConfiguration);
 	btVector3 worldMin(-1000,-1000,-1000);
 	btVector3 worldMax(1000,1000,1000);
-	m_pairCache = new btAxisSweep3(worldMin,worldMax);
+
+	m_pairCache =  new btAxisSweep3(worldMin,worldMax);
 	m_constraintSolver = new btSequentialImpulseConstraintSolver();
-	m_dynamicsWorld = new btDiscreteDynamicsWorld(m_dispatcher,m_pairCache,m_constraintSolver);
+	m_dynamicsWorld = new btDiscreteDynamicsWorld(m_dispatcher, m_pairCache, m_constraintSolver, m_collisionConfiguration);
 }
 MyColladaConverter::~MyColladaConverter()
 {
@@ -1531,10 +1523,10 @@ class btRigidBody* bodyRef,class btRigidBody* bodyOther,
 			 localAttachmentOther = localAttachmentFrameRef;
 
 		}
-
+		bool useReferenceFrameA = true;
 		btGeneric6DofConstraint* genericConstraint = new btGeneric6DofConstraint(
 					*bodyRef,*bodyOther,
-					localAttachmentFrameRef,localAttachmentOther);
+					localAttachmentFrameRef,localAttachmentOther, useReferenceFrameA);
 
 		genericConstraint->setLinearLowerLimit(linearMinLimits);
 		genericConstraint->setLinearUpperLimit(linearMaxLimits);

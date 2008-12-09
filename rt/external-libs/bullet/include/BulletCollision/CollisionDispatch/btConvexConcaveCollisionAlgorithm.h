@@ -16,13 +16,13 @@ subject to the following restrictions:
 #ifndef CONVEX_CONCAVE_COLLISION_ALGORITHM_H
 #define CONVEX_CONCAVE_COLLISION_ALGORITHM_H
 
-#include "../BroadphaseCollision/btCollisionAlgorithm.h"
-#include "../BroadphaseCollision/btDispatcher.h"
-#include "../BroadphaseCollision/btBroadphaseInterface.h"
-#include "../CollisionShapes/btTriangleCallback.h"
-#include "../NarrowPhaseCollision/btPersistentManifold.h"
+#include "btActivatingCollisionAlgorithm.h"
+#include "BulletCollision/BroadphaseCollision/btDispatcher.h"
+#include "BulletCollision/BroadphaseCollision/btBroadphaseInterface.h"
+#include "BulletCollision/CollisionShapes/btTriangleCallback.h"
+#include "BulletCollision/NarrowPhaseCollision/btPersistentManifold.h"
 class btDispatcher;
-#include "../BroadphaseCollision/btBroadphaseProxy.h"
+#include "BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
 #include "btCollisionCreateFunc.h"
 
 ///For each triangle in the concave mesh that overlaps with the AABB of a convex (m_convexProxy), processTriangle is called.
@@ -34,8 +34,8 @@ class btConvexTriangleCallback : public btTriangleCallback
 	btVector3	m_aabbMin;
 	btVector3	m_aabbMax ;
 
-	btManifoldResult* m_resultOut;
 
+	btManifoldResult* m_resultOut;
 	btDispatcher*	m_dispatcher;
 	const btDispatcherInfo* m_dispatchInfoPtr;
 	btScalar m_collisionMarginTriangle;
@@ -55,11 +55,11 @@ int	m_triangleCount;
 	
 	void clearCache();
 
-	inline const btVector3& getAabbMin() const
+	SIMD_FORCE_INLINE const btVector3& getAabbMin() const
 	{
 		return m_aabbMin;
 	}
-	inline const btVector3& getAabbMax() const
+	SIMD_FORCE_INLINE const btVector3& getAabbMax() const
 	{
 		return m_aabbMax;
 	}
@@ -70,12 +70,13 @@ int	m_triangleCount;
 
 
 /// btConvexConcaveCollisionAlgorithm  supports collision between convex shapes and (concave) trianges meshes.
-class btConvexConcaveCollisionAlgorithm  : public btCollisionAlgorithm
+class btConvexConcaveCollisionAlgorithm  : public btActivatingCollisionAlgorithm
 {
 
 	bool	m_isSwapped;
 
 	btConvexTriangleCallback m_btConvexTriangleCallback;
+
 
 
 public:
@@ -88,13 +89,16 @@ public:
 
 	btScalar	calculateTimeOfImpact(btCollisionObject* body0,btCollisionObject* body1,const btDispatcherInfo& dispatchInfo,btManifoldResult* resultOut);
 
+	virtual	void	getAllContactManifolds(btManifoldArray&	manifoldArray);
+	
 	void	clearCache();
 
 	struct CreateFunc :public 	btCollisionAlgorithmCreateFunc
 	{
 		virtual	btCollisionAlgorithm* CreateCollisionAlgorithm(btCollisionAlgorithmConstructionInfo& ci, btCollisionObject* body0,btCollisionObject* body1)
 		{
-			return new btConvexConcaveCollisionAlgorithm(ci,body0,body1,false);
+			void* mem = ci.m_dispatcher1->allocateCollisionAlgorithm(sizeof(btConvexConcaveCollisionAlgorithm));
+			return new(mem) btConvexConcaveCollisionAlgorithm(ci,body0,body1,false);
 		}
 	};
 
@@ -102,7 +106,8 @@ public:
 	{
 		virtual	btCollisionAlgorithm* CreateCollisionAlgorithm(btCollisionAlgorithmConstructionInfo& ci, btCollisionObject* body0,btCollisionObject* body1)
 		{
-			return new btConvexConcaveCollisionAlgorithm(ci,body0,body1,true);
+			void* mem = ci.m_dispatcher1->allocateCollisionAlgorithm(sizeof(btConvexConcaveCollisionAlgorithm));
+			return new(mem) btConvexConcaveCollisionAlgorithm(ci,body0,body1,true);
 		}
 	};
 

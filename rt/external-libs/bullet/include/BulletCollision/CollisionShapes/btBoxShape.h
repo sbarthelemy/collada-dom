@@ -18,11 +18,11 @@ subject to the following restrictions:
 
 #include "btPolyhedralConvexShape.h"
 #include "btCollisionMargin.h"
-#include "../BroadphaseCollision/btBroadphaseProxy.h"
-#include "../../LinearMath/btPoint3.h"
-#include "../../LinearMath/btSimdMinMax.h"
+#include "BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+#include "LinearMath/btVector3.h"
+#include "LinearMath/btMinMax.h"
 
-///btBoxShape implements both a feature based (vertex/edge/plane) and implicit (getSupportingVertex) Box
+///The btBoxShape is a box primitive around the origin, its sides axis aligned with length specified by half extents, in local shape coordinates. When used as part of a btCollisionObject or btRigidBody it will be an oriented box in world space.
 class btBoxShape: public btPolyhedralConvexShape
 {
 
@@ -31,64 +31,93 @@ class btBoxShape: public btPolyhedralConvexShape
 
 public:
 
-	btVector3 getHalfExtents() const;
-		
-	virtual int	getShapeType() const { return BOX_SHAPE_PROXYTYPE;}
+	btVector3 getHalfExtentsWithMargin() const
+	{
+		btVector3 halfExtents = getHalfExtentsWithoutMargin();
+		btVector3 margin(getMargin(),getMargin(),getMargin());
+		halfExtents += margin;
+		return halfExtents;
+	}
+	
+	const btVector3& getHalfExtentsWithoutMargin() const
+	{
+		return m_implicitShapeDimensions;//changed in Bullet 2.63: assume the scaling and margin are included
+	}
+	
 
 	virtual btVector3	localGetSupportingVertex(const btVector3& vec) const
 	{
+		btVector3 halfExtents = getHalfExtentsWithoutMargin();
+		btVector3 margin(getMargin(),getMargin(),getMargin());
+		halfExtents += margin;
 		
-		btVector3 halfExtents = getHalfExtents();
-		
-		btVector3 supVertex;
-		supVertex = btPoint3(vec.x() < btScalar(0.0) ? -halfExtents.x() : halfExtents.x(),
-                     vec.y() < btScalar(0.0) ? -halfExtents.y() : halfExtents.y(),
-                     vec.z() < btScalar(0.0) ? -halfExtents.z() : halfExtents.z()); 
-  
-		return supVertex;
+		return btVector3(btFsels(vec.x(), halfExtents.x(), -halfExtents.x()),
+			btFsels(vec.y(), halfExtents.y(), -halfExtents.y()),
+			btFsels(vec.z(), halfExtents.z(), -halfExtents.z()));
 	}
 
-	virtual inline btVector3	localGetSupportingVertexWithoutMargin(const btVector3& vec)const
+	SIMD_FORCE_INLINE  btVector3	localGetSupportingVertexWithoutMargin(const btVector3& vec)const
 	{
-		btVector3 halfExtents = getHalfExtents();
-		btVector3 margin(getMargin(),getMargin(),getMargin());
-		halfExtents -= margin;
-
-		return btVector3(vec.x() < btScalar(0.0) ? -halfExtents.x() : halfExtents.x(),
-                    vec.y() < btScalar(0.0) ? -halfExtents.y() : halfExtents.y(),
-                    vec.z() < btScalar(0.0) ? -halfExtents.z() : halfExtents.z()); 
+		const btVector3& halfExtents = getHalfExtentsWithoutMargin();
+		
+		return btVector3(btFsels(vec.x(), halfExtents.x(), -halfExtents.x()),
+			btFsels(vec.y(), halfExtents.y(), -halfExtents.y()),
+			btFsels(vec.z(), halfExtents.z(), -halfExtents.z()));
 	}
 
 	virtual void	batchedUnitVectorGetSupportingVertexWithoutMargin(const btVector3* vectors,btVector3* supportVerticesOut,int numVectors) const
 	{
-		btVector3 halfExtents = getHalfExtents();
-		btVector3 margin(getMargin(),getMargin(),getMargin());
-		halfExtents -= margin;
-
-
+		const btVector3& halfExtents = getHalfExtentsWithoutMargin();
+	
 		for (int i=0;i<numVectors;i++)
 		{
 			const btVector3& vec = vectors[i];
-			supportVerticesOut[i].setValue(vec.x() < btScalar(0.0) ? -halfExtents.x() : halfExtents.x(),
-                    vec.y() < btScalar(0.0) ? -halfExtents.y() : halfExtents.y(),
-                    vec.z() < btScalar(0.0) ? -halfExtents.z() : halfExtents.z()); 
+			supportVerticesOut[i].setValue(btFsels(vec.x(), halfExtents.x(), -halfExtents.x()),
+				btFsels(vec.y(), halfExtents.y(), -halfExtents.y()),
+				btFsels(vec.z(), halfExtents.z(), -halfExtents.z())); 
 		}
 
 	}
 
 
-	btBoxShape( const btVector3& boxHalfExtents)
+	btBoxShape( const btVector3& boxHalfExtents) 
+		: btPolyhedralConvexShape()
 	{
-		m_implicitShapeDimensions = boxHalfExtents;
+		m_shapeType = BOX_SHAPE_PROXYTYPE;
+		btVector3 margin(getMargin(),getMargin(),getMargin());
+		m_implicitShapeDimensions = (boxHalfExtents * m_localScaling) - margin;
 	};
-	
+
+	virtual void setMargin(btScalar collisionMargin)
+	{
+		//correct the m_implicitShapeDimensions for the margin
+		btVector3 oldMargin(getMargin(),getMargin(),getMargin());
+		btVector3 implicitShapeDimensionsWithMargin = m_implicitShapeDimensions+oldMargin;
+		
+		btConvexInternalShape::setMargin(collisionMargin);
+		btVector3 newMargin(getMargin(),getMargin(),getMargin());
+		m_implicitShapeDimensions = implicitShapeDimensionsWithMargin - newMargin;
+
+	}
+	virtual void	setLocalScaling(const btVector3& scaling)
+	{
+		btVector3 oldMargin(getMargin(),getMargin(),getMargin());
+		btVector3 implicitShapeDimensionsWithMargin = m_implicitShapeDimensions+oldMargin;
+		btVector3 unScaledImplicitShapeDimensionsWithMargin = implicitShapeDimensionsWithMargin / m_localScaling;
+
+		btConvexInternalShape::setLocalScaling(scaling);
+
+		m_implicitShapeDimensions = (unScaledImplicitShapeDimensionsWithMargin * m_localScaling) - oldMargin;
+
+	}
+
 	virtual void getAabb(const btTransform& t,btVector3& aabbMin,btVector3& aabbMax) const;
 
 	
 
-	virtual void	calculateLocalInertia(btScalar mass,btVector3& inertia);
+	virtual void	calculateLocalInertia(btScalar mass,btVector3& inertia) const;
 
-	virtual void getPlane(btVector3& planeNormal,btPoint3& planeSupport,int i ) const
+	virtual void getPlane(btVector3& planeNormal,btVector3& planeSupport,int i ) const
 	{
 		//this plane might not be aligned...
 		btVector4 plane ;
@@ -116,7 +145,7 @@ public:
 
 	virtual void getVertex(int i,btVector3& vtx) const
 	{
-		btVector3 halfExtents = getHalfExtents();
+		btVector3 halfExtents = getHalfExtentsWithoutMargin();
 
 		vtx = btVector3(
 				halfExtents.x() * (1-(i&1)) - halfExtents.x() * (i&1),
@@ -127,33 +156,27 @@ public:
 
 	virtual void	getPlaneEquation(btVector4& plane,int i) const
 	{
-		btVector3 halfExtents = getHalfExtents();
+		btVector3 halfExtents = getHalfExtentsWithoutMargin();
 
 		switch (i)
 		{
 		case 0:
-			plane.setValue(btScalar(1.),btScalar(0.),btScalar(0.));
-			plane[3] = -halfExtents.x();
+			plane.setValue(btScalar(1.),btScalar(0.),btScalar(0.),-halfExtents.x());
 			break;
 		case 1:
-			plane.setValue(btScalar(-1.),btScalar(0.),btScalar(0.));
-			plane[3] = -halfExtents.x();
+			plane.setValue(btScalar(-1.),btScalar(0.),btScalar(0.),-halfExtents.x());
 			break;
 		case 2:
-			plane.setValue(btScalar(0.),btScalar(1.),btScalar(0.));
-			plane[3] = -halfExtents.y();
+			plane.setValue(btScalar(0.),btScalar(1.),btScalar(0.),-halfExtents.y());
 			break;
 		case 3:
-			plane.setValue(btScalar(0.),btScalar(-1.),btScalar(0.));
-			plane[3] = -halfExtents.y();
+			plane.setValue(btScalar(0.),btScalar(-1.),btScalar(0.),-halfExtents.y());
 			break;
 		case 4:
-			plane.setValue(btScalar(0.),btScalar(0.),btScalar(1.));
-			plane[3] = -halfExtents.z();
+			plane.setValue(btScalar(0.),btScalar(0.),btScalar(1.),-halfExtents.z());
 			break;
 		case 5:
-			plane.setValue(btScalar(0.),btScalar(0.),btScalar(-1.));
-			plane[3] = -halfExtents.z();
+			plane.setValue(btScalar(0.),btScalar(0.),btScalar(-1.),-halfExtents.z());
 			break;
 		default:
 			assert(0);
@@ -161,7 +184,7 @@ public:
 	}
 
 	
-	virtual void getEdge(int i,btPoint3& pa,btPoint3& pb) const
+	virtual void getEdge(int i,btVector3& pa,btVector3& pb) const
 	//virtual void getEdge(int i,Edge& edge) const
 	{
 		int edgeVert0 = 0;
@@ -232,9 +255,9 @@ public:
 
 
 	
-	virtual	bool isInside(const btPoint3& pt,btScalar tolerance) const
+	virtual	bool isInside(const btVector3& pt,btScalar tolerance) const
 	{
-		btVector3 halfExtents = getHalfExtents();
+		btVector3 halfExtents = getHalfExtentsWithoutMargin();
 
 		//btScalar minDist = 2*tolerance;
 		
@@ -250,7 +273,7 @@ public:
 
 
 	//debugging
-	virtual char*	getName()const
+	virtual const char*	getName()const
 	{
 		return "Box";
 	}
@@ -290,4 +313,5 @@ public:
 };
 
 #endif //OBB_BOX_MINKOWSKI_H
+
 

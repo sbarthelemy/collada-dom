@@ -11,11 +11,11 @@
 #ifndef RAYCASTVEHICLE_H
 #define RAYCASTVEHICLE_H
 
-#include "../Dynamics/btRigidBody.h"
-#include "../ConstraintSolver/btTypedConstraint.h"
+#include "BulletDynamics/Dynamics/btRigidBody.h"
+#include "BulletDynamics/ConstraintSolver/btTypedConstraint.h"
 #include "btVehicleRaycaster.h"
 class btDynamicsWorld;
-#include "../../LinearMath/btAlignedObjectArray.h"
+#include "LinearMath/btAlignedObjectArray.h"
 #include "btWheelInfo.h"
 
 class btVehicleTuning;
@@ -23,6 +23,12 @@ class btVehicleTuning;
 ///rayCast vehicle, very special constraint that turn a rigidbody into a vehicle.
 class btRaycastVehicle : public btTypedConstraint
 {
+
+		btAlignedObjectArray<btVector3>	m_forwardWS;
+		btAlignedObjectArray<btVector3>	m_axle;
+		btAlignedObjectArray<btScalar>	m_forwardImpulse;
+		btAlignedObjectArray<btScalar>	m_sideImpulse;
+
 public:
 	class btVehicleTuning
 		{
@@ -114,7 +120,7 @@ public:
 	
 	void	updateSuspension(btScalar deltaTime);
 
-	void	updateFriction(btScalar	timeStep);
+	virtual void	updateFriction(btScalar	timeStep);
 
 
 
@@ -142,6 +148,26 @@ public:
 		return m_indexForwardAxis;
 	}
 
+	
+	///Worldspace forward vector
+	btVector3 getForwardVector() const
+	{
+		const btTransform& chassisTrans = getChassisWorldTransform(); 
+
+		btVector3 forwardW ( 
+			  chassisTrans.getBasis()[0][m_indexForwardAxis], 
+			  chassisTrans.getBasis()[1][m_indexForwardAxis], 
+			  chassisTrans.getBasis()[2][m_indexForwardAxis]); 
+
+		return forwardW;
+	}
+
+	///Velocity of vehicle (positive if velocity vector has same direction as foward vector)
+	btScalar	getCurrentSpeedKmHour() const
+	{
+		return m_currentVehicleSpeedKmHour;
+	}
+
 	virtual void	setCoordinateSystem(int rightIndex,int upIndex,int forwardIndex)
 	{
 		m_indexRightAxis = rightIndex;
@@ -154,7 +180,18 @@ public:
 		//not yet
 	}
 
-	virtual	void	solveConstraint(btScalar	timeStep)
+	virtual void getInfo1 (btConstraintInfo1* info)
+	{
+		info->m_numConstraintRows = 0;
+		info->nub = 0;
+	}
+
+	virtual void getInfo2 (btConstraintInfo2* info)
+	{
+		btAssert(0);
+	}
+
+	virtual	void	solveConstraintObsolete(btSolverBody& bodyA,btSolverBody& bodyB,btScalar	timeStep)
 	{
 		(void)timeStep;
 		//not yet

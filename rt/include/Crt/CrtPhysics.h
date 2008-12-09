@@ -22,12 +22,6 @@ subject to the following restrictions:
 #include "LinearMath/btIDebugDraw.h"
 #include "LinearMath/btTransform.h"
 #include "LinearMath/btVector3.h"
-//#include "GLDebugDrawer.h"
-//#include "BMF_Api.h"
-//float deltaTime = 1.f/60.f;
-//#include "ColladaDemo.h"
-//#include "GL_ShapeDrawer.h"
-//#include "GlutStuff.h"
 
 #include "CrtRender.h"
 extern CrtRender   _CrtRender;
@@ -109,9 +103,11 @@ class MyColladaConverter : public ColladaConverter
 {
 	///this is the most important class
 	btCollisionDispatcher*	m_dispatcher;
-	btOverlappingPairCache* m_pairCache;
+//	btOverlappingPairCache* m_pairCache;
+	btBroadphaseInterface*			m_pairCache;
 	btConstraintSolver*		m_constraintSolver;
 	btDynamicsWorld*		m_dynamicsWorld;
+	btDefaultCollisionConfiguration *m_collisionConfiguration;
 
 	///constraint for mouse picking
 	btTypedConstraint*		m_pickConstraint;

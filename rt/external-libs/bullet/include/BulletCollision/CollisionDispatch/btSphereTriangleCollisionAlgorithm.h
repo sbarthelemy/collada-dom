@@ -16,15 +16,16 @@ subject to the following restrictions:
 #ifndef SPHERE_TRIANGLE_COLLISION_ALGORITHM_H
 #define SPHERE_TRIANGLE_COLLISION_ALGORITHM_H
 
-#include "../BroadphaseCollision/btCollisionAlgorithm.h"
-#include "../BroadphaseCollision/btBroadphaseProxy.h"
-#include "../CollisionDispatch/btCollisionCreateFunc.h"
+#include "btActivatingCollisionAlgorithm.h"
+#include "BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+#include "BulletCollision/CollisionDispatch/btCollisionCreateFunc.h"
 class btPersistentManifold;
+#include "btCollisionDispatcher.h"
 
 /// btSphereSphereCollisionAlgorithm  provides sphere-sphere collision detection.
 /// Other features are frame-coherency (persistent data) and collision response.
 /// Also provides the most basic sample for custom/user btCollisionAlgorithm
-class btSphereTriangleCollisionAlgorithm : public btCollisionAlgorithm
+class btSphereTriangleCollisionAlgorithm : public btActivatingCollisionAlgorithm
 {
 	bool	m_ownManifold;
 	btPersistentManifold*	m_manifoldPtr;
@@ -34,12 +35,19 @@ public:
 	btSphereTriangleCollisionAlgorithm(btPersistentManifold* mf,const btCollisionAlgorithmConstructionInfo& ci,btCollisionObject* body0,btCollisionObject* body1,bool swapped);
 
 	btSphereTriangleCollisionAlgorithm(const btCollisionAlgorithmConstructionInfo& ci)
-		: btCollisionAlgorithm(ci) {}
+		: btActivatingCollisionAlgorithm(ci) {}
 
 	virtual void processCollision (btCollisionObject* body0,btCollisionObject* body1,const btDispatcherInfo& dispatchInfo,btManifoldResult* resultOut);
 
 	virtual btScalar calculateTimeOfImpact(btCollisionObject* body0,btCollisionObject* body1,const btDispatcherInfo& dispatchInfo,btManifoldResult* resultOut);
 
+	virtual	void	getAllContactManifolds(btManifoldArray&	manifoldArray)
+	{
+		if (m_manifoldPtr && m_ownManifold)
+		{
+			manifoldArray.push_back(m_manifoldPtr);
+		}
+	}
 	
 	virtual ~btSphereTriangleCollisionAlgorithm();
 
@@ -49,7 +57,9 @@ public:
 		virtual	btCollisionAlgorithm* CreateCollisionAlgorithm(btCollisionAlgorithmConstructionInfo& ci, btCollisionObject* body0,btCollisionObject* body1)
 		{
 			
-				return new btSphereTriangleCollisionAlgorithm(ci.m_manifold,ci,body0,body1,m_swapped);
+			void* mem = ci.m_dispatcher1->allocateCollisionAlgorithm(sizeof(btSphereTriangleCollisionAlgorithm));
+
+			return new(mem) btSphereTriangleCollisionAlgorithm(ci.m_manifold,ci,body0,body1,m_swapped);
 		}
 	};
 

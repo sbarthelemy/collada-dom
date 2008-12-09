@@ -25,7 +25,12 @@ subject to the following restrictions:
 
 #define PL_DECLARE_HANDLE(name) typedef struct name##__ { int unused; } *name
 
+#ifdef BT_USE_DOUBLE_PRECISION
+typedef double	plReal;
+#else
 typedef float	plReal;
+#endif
+
 typedef plReal	plVector3[3];
 typedef plReal	plQuaternion[4];
 
@@ -33,24 +38,56 @@ typedef plReal	plQuaternion[4];
 extern "C" { 
 #endif
 
-/*	Particular physics SDK */
+/**	Particular physics SDK (C-API) */
 	PL_DECLARE_HANDLE(plPhysicsSdkHandle);
-/* 	Dynamics world, belonging to some physics SDK */
+
+/** 	Dynamics world, belonging to some physics SDK (C-API)*/
 	PL_DECLARE_HANDLE(plDynamicsWorldHandle);
-/* Rigid Body that can be part of a Dynamics World */	
+
+/** Rigid Body that can be part of a Dynamics World (C-API)*/	
 	PL_DECLARE_HANDLE(plRigidBodyHandle);
-/* 	Collision Shape/Geometry, property of a Rigid Body */
+
+/** 	Collision Shape/Geometry, property of a Rigid Body (C-API)*/
 	PL_DECLARE_HANDLE(plCollisionShapeHandle);
-/* Constraint for Rigid Bodies */
+
+/** Constraint for Rigid Bodies (C-API)*/
 	PL_DECLARE_HANDLE(plConstraintHandle);
 
+/** Triangle Mesh interface (C-API)*/
+	PL_DECLARE_HANDLE(plMeshInterfaceHandle);
 
-/*
+/** Broadphase Scene/Proxy Handles (C-API)*/
+	PL_DECLARE_HANDLE(plCollisionBroadphaseHandle);
+	PL_DECLARE_HANDLE(plBroadphaseProxyHandle);
+	PL_DECLARE_HANDLE(plCollisionWorldHandle);
+
+/**
 	Create and Delete a Physics SDK	
 */
 
 	extern	plPhysicsSdkHandle	plNewBulletSdk(); //this could be also another sdk, like ODE, PhysX etc.
 	extern	void		plDeletePhysicsSdk(plPhysicsSdkHandle	physicsSdk);
+
+/** Collision World, not strictly necessary, you can also just create a Dynamics World with Rigid Bodies which internally manages the Collision World with Collision Objects */
+
+	typedef void(*btBroadphaseCallback)(void* clientData, void* object1,void* object2);
+
+	extern plCollisionBroadphaseHandle	plCreateSapBroadphase(btBroadphaseCallback beginCallback,btBroadphaseCallback endCallback);
+
+	extern void	plDestroyBroadphase(plCollisionBroadphaseHandle bp);
+
+	extern 	plBroadphaseProxyHandle plCreateProxy(plCollisionBroadphaseHandle bp, void* clientData, plReal minX,plReal minY,plReal minZ, plReal maxX,plReal maxY, plReal maxZ);
+
+	extern void plDestroyProxy(plCollisionBroadphaseHandle bp, plBroadphaseProxyHandle proxyHandle);
+
+	extern void plSetBoundingBox(plBroadphaseProxyHandle proxyHandle, plReal minX,plReal minY,plReal minZ, plReal maxX,plReal maxY, plReal maxZ);
+
+/* todo: add pair cache support with queries like add/remove/find pair */
+	
+	extern plCollisionWorldHandle plCreateCollisionWorld(plPhysicsSdkHandle physicsSdk);
+
+/* todo: add/remove objects */
+	
 
 /* Dynamics World */
 
@@ -79,7 +116,18 @@ extern "C" {
 	extern  plCollisionShapeHandle plNewCapsuleShape(plReal radius, plReal height);	
 	extern  plCollisionShapeHandle plNewConeShape(plReal radius, plReal height);
 	extern  plCollisionShapeHandle plNewCylinderShape(plReal radius, plReal height);
+	extern	plCollisionShapeHandle plNewCompoundShape();
+	extern	void	plAddChildShape(plCollisionShapeHandle compoundShape,plCollisionShapeHandle childShape, plVector3 childPos,plQuaternion childOrn);
+
 	extern  void plDeleteShape(plCollisionShapeHandle shape);
+
+	/* Convex Meshes */
+	extern  plCollisionShapeHandle plNewConvexHullShape();
+	extern  void		plAddVertex(plCollisionShapeHandle convexHull, plReal x,plReal y,plReal z);
+/* Concave static triangle meshes */
+	extern  plMeshInterfaceHandle		   plNewMeshInterface();
+	extern  void		plAddTriangle(plMeshInterfaceHandle meshHandle, plVector3 v0,plVector3 v1,plVector3 v2);
+	extern  plCollisionShapeHandle plNewStaticTriangleMeshShape(plMeshInterfaceHandle);
 
 	extern  void plSetScaling(plCollisionShapeHandle shape, plVector3 scaling);
 
@@ -87,13 +135,18 @@ extern "C" {
 /* PhysX has Triggers, User Callbacks and filtering */
 /* ODE has the typedef void dNearCallback (void *data, dGeomID o1, dGeomID o2); */
 
-	
+/*	typedef void plUpdatedPositionCallback(void* userData, plRigidBodyHandle	rbHandle, plVector3 pos); */
+/*	typedef void plUpdatedOrientationCallback(void* userData, plRigidBodyHandle	rbHandle, plQuaternion orientation); */
 
-	typedef void plUpdatedPositionCallback(void* userData, plRigidBodyHandle	rbHandle, plVector3 pos);
-	typedef void plUpdatedOrientationCallback(void* userData, plRigidBodyHandle	rbHandle, plQuaternion orientation);
+	/* get world transform */
+	extern void	plGetOpenGLMatrix(plRigidBodyHandle object, plReal* matrix);
+	extern void	plGetPosition(plRigidBodyHandle object,plVector3 position);
+	extern void plGetOrientation(plRigidBodyHandle object,plQuaternion orientation);
 
+	/* set world transform (position/orientation) */
 	extern  void plSetPosition(plRigidBodyHandle object, const plVector3 position);
 	extern  void plSetOrientation(plRigidBodyHandle object, const plQuaternion orientation);
+	extern	void plSetEuler(plReal yaw,plReal pitch,plReal roll, plQuaternion orient);
 
 	typedef struct plRayCastResult {
 		plRigidBodyHandle		m_body;  
@@ -109,10 +162,14 @@ extern "C" {
 	/* extern  plRigidBodyHandle plObjectCast(plDynamicsWorldHandle world, const plVector3 rayStart, const plVector3 rayEnd, plVector3 hitpoint, plVector3 normal); */
 
 	/* Continuous Collision Detection API */
+	
+	// needed for source/blender/blenkernel/intern/collision.c
+	double plNearestPoints(float p1[3], float p2[3], float p3[3], float q1[3], float q2[3], float q3[3], float *pa, float *pb, float normal[3]);
 
 #ifdef __cplusplus
 }
 #endif
+
 
 #endif //BULLET_C_API_H
 

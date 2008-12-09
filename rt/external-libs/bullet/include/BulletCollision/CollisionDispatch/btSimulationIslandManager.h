@@ -16,18 +16,26 @@ subject to the following restrictions:
 #ifndef SIMULATION_ISLAND_MANAGER_H
 #define SIMULATION_ISLAND_MANAGER_H
 
-#include "../CollisionDispatch/btUnionFind.h"
+#include "BulletCollision/CollisionDispatch/btUnionFind.h"
 #include "btCollisionCreateFunc.h"
+#include "LinearMath/btAlignedObjectArray.h"
+#include "btCollisionObject.h"
 
 class btCollisionObject;
 class btCollisionWorld;
 class btDispatcher;
+class btPersistentManifold;
+
 
 ///SimulationIslandManager creates and handles simulation islands, using btUnionFind
 class btSimulationIslandManager
 {
 	btUnionFind m_unionFind;
 
+	btAlignedObjectArray<btPersistentManifold*>  m_islandmanifold;
+	btAlignedObjectArray<btCollisionObject* >  m_islandBodies;
+	
+	
 public:
 	btSimulationIslandManager();
 	virtual ~btSimulationIslandManager();
@@ -42,7 +50,7 @@ public:
 	virtual	void	storeIslandActivationState(btCollisionWorld* world);
 
 
-	void	findUnions(btDispatcher* dispatcher);
+	void	findUnions(btDispatcher* dispatcher,btCollisionWorld* colWorld);
 
 	
 
@@ -53,7 +61,9 @@ public:
 		virtual	void	ProcessIsland(btCollisionObject** bodies,int numBodies,class btPersistentManifold**	manifolds,int numManifolds, int islandId) = 0;
 	};
 
-	void	buildAndProcessIslands(btDispatcher* dispatcher,btCollisionObjectArray& collisionObjects, IslandCallback* callback);
+	void	buildAndProcessIslands(btDispatcher* dispatcher,btCollisionWorld* collisionWorld, IslandCallback* callback);
+
+	void buildIslands(btDispatcher* dispatcher,btCollisionWorld* colWorld);
 
 };
 

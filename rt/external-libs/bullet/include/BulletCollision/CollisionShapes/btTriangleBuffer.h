@@ -17,7 +17,7 @@ subject to the following restrictions:
 #define BT_TRIANGLE_BUFFER_H
 
 #include "btTriangleCallback.h"
-#include "../../LinearMath/btAlignedObjectArray.h"
+#include "LinearMath/btAlignedObjectArray.h"
 
 struct	btTriangle
 {
@@ -28,7 +28,15 @@ struct	btTriangle
 	int	m_triangleIndex;
 };
 
-///btTriangleBuffer can be useful to collect and store overlapping triangles between AABB and concave objects that support 'processAllTriangles'
+///The btTriangleBuffer callback can be useful to collect and store overlapping triangles between AABB and concave objects that support 'processAllTriangles'
+///Example usage of this class:
+///			btTriangleBuffer	triBuf;
+///			concaveShape->processAllTriangles(&triBuf,aabbMin, aabbMax);
+///			for (int i=0;i<triBuf.getNumTriangles();i++)
+///			{
+///				const btTriangle& tri = triBuf.getTriangle(i);
+///				//do something useful here with the triangle
+///			}
 class btTriangleBuffer : public btTriangleCallback
 {
 

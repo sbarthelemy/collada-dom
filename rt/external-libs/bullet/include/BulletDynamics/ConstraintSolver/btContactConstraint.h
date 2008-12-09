@@ -16,11 +16,11 @@ subject to the following restrictions:
 #ifndef CONTACT_CONSTRAINT_H
 #define CONTACT_CONSTRAINT_H
 
-//todo: make into a proper class working with the iterative constraint solver
+///@todo: make into a proper class working with the iterative constraint solver
 
 class btRigidBody;
-#include "../../LinearMath/btVector3.h"
-#include "../../LinearMath/btScalar.h"
+#include "LinearMath/btVector3.h"
+#include "LinearMath/btScalar.h"
 struct btContactSolverInfo;
 class btManifoldPoint;
 

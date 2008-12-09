@@ -20,8 +20,27 @@ subject to the following restrictions:
 #include "btScalar.h" // has definitions like SIMD_FORCE_INLINE
 #include "btAlignedAllocator.h"
 
-///btAlignedObjectArray uses a subset of the stl::vector interface for its methods
-///It is developed to replace stl::vector to avoid STL alignment issues to add SIMD/SSE data
+///If the platform doesn't support placement new, you can disable BT_USE_PLACEMENT_NEW
+///then the btAlignedObjectArray doesn't support objects with virtual methods, and non-trivial constructors/destructors
+///You can enable BT_USE_MEMCPY, then swapping elements in the array will use memcpy instead of operator=
+///see discussion here: http://continuousphysics.com/Bullet/phpBB2/viewtopic.php?t=1231 and
+///http://www.continuousphysics.com/Bullet/phpBB2/viewtopic.php?t=1240
+
+#define BT_USE_PLACEMENT_NEW 1
+//#define BT_USE_MEMCPY 1 //disable, because it is cumbersome to find out for each platform where memcpy is defined. It can be in <memory.h> or <string.h> or otherwise...
+
+#ifdef BT_USE_MEMCPY
+#include <memory.h>
+#include <string.h>
+#endif //BT_USE_MEMCPY
+
+#ifdef BT_USE_PLACEMENT_NEW
+#include <new> //for placement new
+#endif //BT_USE_PLACEMENT_NEW
+
+
+///The btAlignedObjectArray template class uses a subset of the stl::vector interface for its methods
+///It is developed to replace stl::vector to avoid portability issues, including STL alignment issues to add SIMD/SSE data
 template <typename T> 
 //template <class T> 
 class btAlignedObjectArray
@@ -31,6 +50,8 @@ class btAlignedObjectArray
 	int					m_size;
 	int					m_capacity;
 	T*					m_data;
+	//PCK: added this line
+	bool				m_ownsMemory;
 
 	protected:
 		SIMD_FORCE_INLINE	int	allocSize(int size)
@@ -41,11 +62,17 @@ class btAlignedObjectArray
 		{
 			int i;
 			for (i=start;i<end;++i)
+#ifdef BT_USE_PLACEMENT_NEW
+				new (&dest[i]) T(m_data[i]);
+#else
 				dest[i] = m_data[i];
+#endif //BT_USE_PLACEMENT_NEW
 		}
 
 		SIMD_FORCE_INLINE	void	init()
 		{
+			//PCK: added this line
+			m_ownsMemory = true;
 			m_data = 0;
 			m_size = 0;
 			m_capacity = 0;
@@ -69,7 +96,11 @@ class btAlignedObjectArray
 		SIMD_FORCE_INLINE	void	deallocate()
 		{
 			if(m_data)	{
-				m_allocator.deallocate(m_data);
+				//PCK: enclosed the deallocation in this block
+				if (m_ownsMemory)
+				{
+					m_allocator.deallocate(m_data);
+				}
 				m_data = 0;
 			}
 		}
@@ -87,6 +118,19 @@ class btAlignedObjectArray
 		~btAlignedObjectArray()
 		{
 			clear();
+		}
+
+		btAlignedObjectArray(const btAlignedObjectArray& otherArray)
+		{
+			init();
+
+			int otherSize = otherArray.size();
+			resize (otherSize);
+			int i;
+			for (i=0;i<otherSize;i++)
+			{
+				m_data[i] = otherArray[i];
+			}
 		}
 
 		SIMD_FORCE_INLINE	int capacity() const
@@ -125,18 +169,36 @@ class btAlignedObjectArray
 			m_data[m_size].~T();
 		}
 
-		SIMD_FORCE_INLINE	void	resize(int newsize)
+		SIMD_FORCE_INLINE	void	resize(int newsize, const T& fillData=T())
 		{
-			if (newsize > size())
+			int curSize = size();
+
+			if (newsize < size())
 			{
-				reserve(newsize);
+				for(int i = curSize; i < newsize; i++)
+				{
+					m_data[i].~T();
+				}
+			} else
+			{
+				if (newsize > size())
+				{
+					reserve(newsize);
+				}
+#ifdef BT_USE_PLACEMENT_NEW
+				for (int i=curSize;i<newsize;i++)
+				{
+					new ( &m_data[i]) T(fillData);
+				}
+#endif //BT_USE_PLACEMENT_NEW
+
 			}
 
 			m_size = newsize;
 		}
 	
 
-		SIMD_FORCE_INLINE	T&  expand()
+		SIMD_FORCE_INLINE	T&  expand( const T& fillValue=T())
 		{	
 			int sz = size();
 			if( sz == capacity() )
@@ -144,9 +206,13 @@ class btAlignedObjectArray
 				reserve( allocSize(size()) );
 			}
 			m_size++;
+#ifdef BT_USE_PLACEMENT_NEW
+			new (&m_data[sz]) T(fillValue); //use the in-place new (not really allocating heap memory)
+#endif
 
 			return m_data[sz];		
 		}
+
 
 		SIMD_FORCE_INLINE	void push_back(const T& _Val)
 		{	
@@ -156,8 +222,12 @@ class btAlignedObjectArray
 				reserve( allocSize(size()) );
 			}
 			
-			m_data[size()] = _Val;
-			//::new ( m_data[m_size] ) T(_Val);
+#ifdef BT_USE_PLACEMENT_NEW
+			new ( &m_data[m_size] ) T(_Val);
+#else
+			m_data[size()] = _Val;			
+#endif //BT_USE_PLACEMENT_NEW
+
 			m_size++;
 		}
 
@@ -167,21 +237,21 @@ class btAlignedObjectArray
 		{	// determine new minimum length of allocated storage
 			if (capacity() < _Count)
 			{	// not enough room, reallocate
-				if (capacity() < _Count)
-				{
-					T*	s = (T*)allocate(_Count);
+				T*	s = (T*)allocate(_Count);
 
-					copy(0, size(), s);
+				copy(0, size(), s);
 
-					destroy(0,size());
+				destroy(0,size());
 
-					deallocate();
+				deallocate();
+				
+				//PCK: added this line
+				m_ownsMemory = true;
 
-					m_data = s;
-					
-					m_capacity = _Count;
+				m_data = s;
+				
+				m_capacity = _Count;
 
-				}
 			}
 		}
 
@@ -196,6 +266,46 @@ class btAlignedObjectArray
 				}
 		};
 	
+		template <typename L>
+		void quickSortInternal(L CompareFunc,int lo, int hi)
+		{
+		//  lo is the lower index, hi is the upper index
+		//  of the region of array a that is to be sorted
+			int i=lo, j=hi;
+			T x=m_data[(lo+hi)/2];
+
+			//  partition
+			do
+			{    
+				while (CompareFunc(m_data[i],x)) 
+					i++; 
+				while (CompareFunc(x,m_data[j])) 
+					j--;
+				if (i<=j)
+				{
+					swap(i,j);
+					i++; j--;
+				}
+			} while (i<=j);
+
+			//  recursion
+			if (lo<j) 
+				quickSortInternal( CompareFunc, lo, j);
+			if (i<hi) 
+				quickSortInternal( CompareFunc, i, hi);
+		}
+
+
+		template <typename L>
+		void quickSort(L CompareFunc)
+		{
+			//don't sort 0 or 1 elements
+			if (size()>1)
+			{
+				quickSortInternal(CompareFunc,0,size()-1);
+			}
+		}
+
 
 		///heap sort from http://www.csse.monash.edu.au/~lloyd/tildeAlgDS/Sort/Heap/
 		template <typename L>
@@ -231,9 +341,17 @@ class btAlignedObjectArray
 
 		void	swap(int index0,int index1)
 		{
+#ifdef BT_USE_MEMCPY
+			char	temp[sizeof(T)];
+			memcpy(temp,&m_data[index0],sizeof(T));
+			memcpy(&m_data[index0],&m_data[index1],sizeof(T));
+			memcpy(&m_data[index1],temp,sizeof(T));
+#else
 			T temp = m_data[index0];
 			m_data[index0] = m_data[index1];
 			m_data[index1] = temp;
+#endif //BT_USE_PLACEMENT_NEW
+
 		}
 
 	template <typename L>
@@ -306,8 +424,16 @@ class btAlignedObjectArray
 		}
 	}
 
+	//PCK: whole function
+	void initializeFromBuffer(void *buffer, int size, int capacity)
+	{
+		clear();
+		m_ownsMemory = false;
+		m_data = (T*)buffer;
+		m_size = size;
+		m_capacity = capacity;
+	}
+
 };
 
 #endif //BT_OBJECT_ARRAY__
-
-
