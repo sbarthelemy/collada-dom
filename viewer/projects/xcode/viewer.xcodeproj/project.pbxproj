@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B4483CB0EF048760044C03F /* libbullet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B4483CA0EF048760044C03F /* libbullet.a */; };
 		6D00EBB70EB6771C00BE4C21 /* libboost_filesystem.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D00EBB50EB6771C00BE4C21 /* libboost_filesystem.a */; };
 		6D00EBB80EB6771C00BE4C21 /* libboost_system.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D00EBB60EB6771C00BE4C21 /* libboost_system.a */; };
-		6D00EBCD0EB679CC00BE4C21 /* libbullet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D00EBCC0EB679CC00BE4C21 /* libbullet.a */; };
 		6D00ECC30EB6893C00BE4C21 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D00ECC20EB6893C00BE4C21 /* libxml2.dylib */; };
 		6D00ED0B0EB68E1900BE4C21 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D00ECC60EB6895300BE4C21 /* libz.dylib */; };
 		6D00ED0D0EB68E3700BE4C21 /* libminizip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D00ECCB0EB689AA00BE4C21 /* libminizip.a */; };
@@ -82,9 +82,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4B4483CA0EF048760044C03F /* libbullet.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libbullet.a; path = "../../../rt/external-libs/bullet/lib/xcode/libbullet.a"; sourceTree = SOURCE_ROOT; };
 		6D00EBB50EB6771C00BE4C21 /* libboost_filesystem.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_filesystem.a; path = "../../../dom/external-libs/boost/lib/mac/libboost_filesystem.a"; sourceTree = SOURCE_ROOT; };
 		6D00EBB60EB6771C00BE4C21 /* libboost_system.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_system.a; path = "../../../dom/external-libs/boost/lib/mac/libboost_system.a"; sourceTree = SOURCE_ROOT; };
-		6D00EBCC0EB679CC00BE4C21 /* libbullet.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libbullet.a; path = "../../../rt/external-libs/bullet/lib/xcode/Release/libbullet.a"; sourceTree = SOURCE_ROOT; };
 		6D00ECC20EB6893C00BE4C21 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		6D00ECC60EB6895300BE4C21 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		6D00ECCB0EB689AA00BE4C21 /* libminizip.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libminizip.a; path = "../../../dom/external-libs/minizip/mac/libminizip.a"; sourceTree = SOURCE_ROOT; };
@@ -115,10 +115,10 @@
 				6DA176F50E1ACB6700D3D8C5 /* libfx.a in Frameworks */,
 				6D00EBB70EB6771C00BE4C21 /* libboost_filesystem.a in Frameworks */,
 				6D00EBB80EB6771C00BE4C21 /* libboost_system.a in Frameworks */,
-				6D00EBCD0EB679CC00BE4C21 /* libbullet.a in Frameworks */,
 				6D00ECC30EB6893C00BE4C21 /* libxml2.dylib in Frameworks */,
 				6D00ED0B0EB68E1900BE4C21 /* libz.dylib in Frameworks */,
 				6D00ED0D0EB68E3700BE4C21 /* libminizip.a in Frameworks */,
+				4B4483CB0EF048760044C03F /* libbullet.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,10 +128,10 @@
 		08FB7794FE84155DC02AAC07 /* viewer */ = {
 			isa = PBXGroup;
 			children = (
+				4B4483CA0EF048760044C03F /* libbullet.a */,
 				6D00ECCB0EB689AA00BE4C21 /* libminizip.a */,
 				6D00ECC60EB6895300BE4C21 /* libz.dylib */,
 				6D00ECC20EB6893C00BE4C21 /* libxml2.dylib */,
-				6D00EBCC0EB679CC00BE4C21 /* libbullet.a */,
 				6D00EBB50EB6771C00BE4C21 /* libboost_filesystem.a */,
 				6D00EBB60EB6771C00BE4C21 /* libboost_system.a */,
 				6DA175A80E1AB5DB00D3D8C5 /* rt.xcodeproj */,
@@ -330,7 +330,10 @@
 					"\"$(SRCROOT)/../../../dom/external-libs/boost\"",
 				);
 				INSTALL_PATH = /usr/local/bin;
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../rt/external-libs/bullet/lib/xcode\"",
+				);
 				PRODUCT_NAME = viewer;
 			};
 			name = Debug;
@@ -363,6 +366,7 @@
 					"\"$(SRCROOT)/../../../rt/external-libs/bullet/lib/xcode/Release\"",
 					"\"$(SRCROOT)/../../../dom/external-libs/minizip/mac\"",
 					"\"$(SRCROOT)/../../../dom/build/mac-1.4-d\"",
+					"\"$(SRCROOT)/../../../rt/external-libs/bullet/lib/xcode\"",
 				);
 				PRODUCT_NAME = viewer;
 			};
