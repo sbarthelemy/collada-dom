@@ -13,6 +13,7 @@
 
 #include <math.h>
 #include <stddef.h>
+#include <string>
 #include <string.h>
 #include <vector>
 #include <stdio.h>
