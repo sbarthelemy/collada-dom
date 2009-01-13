@@ -154,6 +154,7 @@ private:
 class DLLSPEC daeSidRefCache {
 public:
 	daeSidRefCache();
+	~daeSidRefCache();
 	
 	daeSidRef::resolveData lookup(const daeSidRef& sidRef);
 	void add(const daeSidRef& sidRef, const daeSidRef::resolveData& data);
@@ -165,7 +166,7 @@ public:
 	int hits();
 
 private:
-	std::map<daeSidRef, daeSidRef::resolveData> lookupTable;
+	std::map<daeSidRef, daeSidRef::resolveData> * lookupTable;
 	int hitCount;
 	int missCount;
 };

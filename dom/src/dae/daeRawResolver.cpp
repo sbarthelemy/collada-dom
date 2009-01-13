@@ -107,18 +107,18 @@ daeElement* daeRawResolver::resolveElement(const daeURI& uri) {
 
 
 daeElement* daeRawRefCache::lookup(const daeURI& uri) {
-	map<string, daeElement*>::iterator iter = lookupTable.find(uri.str());
-	return iter == lookupTable.end() ? NULL : iter->second;
+	map<string, daeElement*>::iterator iter = lookupTable->find(uri.str());
+	return iter == lookupTable->end() ? NULL : iter->second;
 }
 
 void daeRawRefCache::add(const daeURI& uri, daeElement* elt) {
-	lookupTable[uri.str()] = elt;
+	(*lookupTable)[uri.str()] = elt;
 }
 
 void daeRawRefCache::remove(const daeURI& uri) {
-	lookupTable.erase(uri.str());
+	lookupTable->erase(uri.str());
 }
 
 void daeRawRefCache::clear() {
-	lookupTable.clear();
+	lookupTable->clear();
 }

@@ -40,13 +40,16 @@ public: // Abstract Interface
 // This is meant for DOM internal use only.
 class DLLSPEC daeRawRefCache {
 public:
+	daeRawRefCache() { lookupTable = new std::map<std::string, daeElement*>(); }
+	~daeRawRefCache() { delete lookupTable; }
+
 	daeElement* lookup(const daeURI& uri);
 	void add(const daeURI& uri, daeElement* elt);
 	void remove(const daeURI& uri);
 	void clear();
 
 private:
-	std::map<std::string, daeElement*> lookupTable;
+	std::map<std::string, daeElement*> * lookupTable;
 };
 
 #endif

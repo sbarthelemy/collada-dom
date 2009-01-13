@@ -472,11 +472,19 @@ daeDouble *daeSIDResolver::getDouble()
 }
 
 
-daeSidRefCache::daeSidRefCache() : hitCount(0), missCount(0) { }
+daeSidRefCache::daeSidRefCache() : hitCount(0), missCount(0) 
+{
+	lookupTable = new std::map<daeSidRef, daeSidRef::resolveData>();
+}
+
+daeSidRefCache::~daeSidRefCache()
+{
+	delete lookupTable;
+}
 
 daeSidRef::resolveData daeSidRefCache::lookup(const daeSidRef& sidRef) {
-	map<daeSidRef, daeSidRef::resolveData>::iterator iter = lookupTable.find(sidRef);
-	if (iter != lookupTable.end()) {
+	map<daeSidRef, daeSidRef::resolveData>::iterator iter = lookupTable->find(sidRef);
+	if (iter != lookupTable->end()) {
 		hitCount++;
 		return iter->second;
 	}
@@ -485,16 +493,16 @@ daeSidRef::resolveData daeSidRefCache::lookup(const daeSidRef& sidRef) {
 }
 
 void daeSidRefCache::add(const daeSidRef& sidRef, const daeSidRef::resolveData& result) {
-	lookupTable[sidRef] = result;
+	(*lookupTable)[sidRef] = result;
 }
 
 void daeSidRefCache::clear() {
-	lookupTable.clear();
+	lookupTable->clear();
 	hitCount = missCount = 0;
 }
 
 bool daeSidRefCache::empty() {
-	return lookupTable.empty();
+	return lookupTable->empty();
 }
 
 int daeSidRefCache::misses() {
