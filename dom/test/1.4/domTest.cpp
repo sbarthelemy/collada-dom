@@ -28,6 +28,7 @@
 #include <dom/domEllipsoid.h>
 #include <dom/domInputGlobal.h>
 #include <dom/domAsset.h>
+#include <dom/domGlsl_surface_type.h>
 #include "domTest.h"
 
 // Windows memory leak checking
@@ -1413,13 +1414,21 @@ DefineTest(spuriousQuotes) {
 	return testResult(true);
 }
 
+DefineTest(initFrom) {
+	DAE dae;
+	string file = lookupTestFile("initFrom.dae");
+	daeElement* root = dae.open(file);
+	CheckResult(root);
 
-// DefineTest(hauntedHouse) {
-// 	DAE dae;
-// 	CheckResult(dae.open("/home/sthomas/models/hauntedHouse.dae"));
-// 	return testResult(true);
-// }
+    vector<domGlsl_surface_type*> surface = dae.getDatabase()->typeLookup<domGlsl_surface_type>();
+    for (int i=0; i < (int)surface.size(); i++)
+    {
+        if (surface[i]->getChild("init_from"))
+	        return testResult(true);
+    }
 
+	return testResult(false);
+}
 
 // Returns true if all test names are valid
 bool checkTests(const set<string>& tests) {
