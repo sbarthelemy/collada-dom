@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B2F97500F218A700086889D /* libdom.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B2F97390F2185D10086889D /* libdom.a */; };
+		4B2F97510F218A740086889D /* libminizip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B2F97460F2186020086889D /* libminizip.a */; };
 		4B4483CB0EF048760044C03F /* libbullet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B4483CA0EF048760044C03F /* libbullet.a */; };
 		6D00EBB70EB6771C00BE4C21 /* libboost_filesystem.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D00EBB50EB6771C00BE4C21 /* libboost_filesystem.a */; };
 		6D00EBB80EB6771C00BE4C21 /* libboost_system.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D00EBB60EB6771C00BE4C21 /* libboost_system.a */; };
 		6D00ECC30EB6893C00BE4C21 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D00ECC20EB6893C00BE4C21 /* libxml2.dylib */; };
 		6D00ED0B0EB68E1900BE4C21 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D00ECC60EB6895300BE4C21 /* libz.dylib */; };
-		6D00ED0D0EB68E3700BE4C21 /* libminizip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D00ECCB0EB689AA00BE4C21 /* libminizip.a */; };
-		6DA176F10E1ACB4F00D3D8C5 /* libdom.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DA1759E0E1AB5C100D3D8C5 /* libdom.a */; };
 		6DA176F20E1ACB5500D3D8C5 /* librt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DA175B10E1AB5DB00D3D8C5 /* librt.a */; };
 		6DA176F50E1ACB6700D3D8C5 /* libfx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DA175A70E1AB5D100D3D8C5 /* libfx.a */; };
 		6DB123C60E198AD4004FA1FD /* mainPC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DB123C50E198AD4004FA1FD /* mainPC.cpp */; };
@@ -25,12 +25,33 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		4BBF41F00ECE4E2200F434EB /* PBXContainerItemProxy */ = {
+		4B2F97380F2185D10086889D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 6DA175990E1AB5C100D3D8C5 /* dom.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = D2AAC045055464E500DB518D;
+			containerPortal = 4B87646B0F216442001EA1B9 /* dom.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC046055464E500DB518D /* libdom.a */;
 			remoteInfo = dom;
+		};
+		4B2F97450F2186020086889D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4B2F97410F2186020086889D /* minizip.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC046055464E500DB518D /* libminizip.a */;
+			remoteInfo = minizip;
+		};
+		4B2F97480F2186C20086889D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4B87646B0F216442001EA1B9 /* dom.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC045055464E500DB518D /* dom */;
+			remoteInfo = dom;
+		};
+		4B2F974A0F2186C70086889D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4B2F97410F2186020086889D /* minizip.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC045055464E500DB518D /* minizip */;
+			remoteInfo = minizip;
 		};
 		4BBF41F20ECE4E2C00F434EB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -45,13 +66,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = D2AAC045055464E500DB518D;
 			remoteInfo = rt;
-		};
-		6DA1759D0E1AB5C100D3D8C5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6DA175990E1AB5C100D3D8C5 /* dom.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = D2AAC046055464E500DB518D;
-			remoteInfo = dom;
 		};
 		6DA175A60E1AB5D100D3D8C5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -82,13 +96,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4B2F97410F2186020086889D /* minizip.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = minizip.xcodeproj; path = "../../../dom/external-libs/minizip/mac/minizip.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		4B4483CA0EF048760044C03F /* libbullet.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libbullet.a; path = "../../../rt/external-libs/bullet/lib/xcode/libbullet.a"; sourceTree = SOURCE_ROOT; };
+		4B87646B0F216442001EA1B9 /* dom.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = dom.xcodeproj; path = "../../../dom/projects/xcode-1.4/dom.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		6D00EBB50EB6771C00BE4C21 /* libboost_filesystem.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_filesystem.a; path = "../../../dom/external-libs/boost/lib/mac/libboost_filesystem.a"; sourceTree = SOURCE_ROOT; };
 		6D00EBB60EB6771C00BE4C21 /* libboost_system.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_system.a; path = "../../../dom/external-libs/boost/lib/mac/libboost_system.a"; sourceTree = SOURCE_ROOT; };
 		6D00ECC20EB6893C00BE4C21 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		6D00ECC60EB6895300BE4C21 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		6D00ECCB0EB689AA00BE4C21 /* libminizip.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libminizip.a; path = "../../../dom/external-libs/minizip/mac/libminizip.a"; sourceTree = SOURCE_ROOT; };
-		6DA175990E1AB5C100D3D8C5 /* dom.xcodeproj */ = {isa = PBXFileReference; explicitFileType = "wrapper.pb-project"; name = dom.xcodeproj; path = ../../../dom/projects/xcode/dom.xcodeproj; sourceTree = SOURCE_ROOT; };
 		6DA1759F0E1AB5D100D3D8C5 /* fx.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = fx.xcodeproj; path = ../../../fx/projects/xcode/fx.xcodeproj; sourceTree = SOURCE_ROOT; };
 		6DA175A80E1AB5DB00D3D8C5 /* rt.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = rt.xcodeproj; path = ../../../rt/projects/xcode/rt.xcodeproj; sourceTree = SOURCE_ROOT; };
 		6DB123C50E198AD4004FA1FD /* mainPC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mainPC.cpp; sourceTree = "<group>"; };
@@ -110,15 +124,15 @@
 				6DB129210E199316004FA1FD /* Cg.framework in Frameworks */,
 				6DB1295B0E19A25E004FA1FD /* libpcrecpp.a in Frameworks */,
 				6DB1295C0E19A25E004FA1FD /* libpcre.a in Frameworks */,
-				6DA176F10E1ACB4F00D3D8C5 /* libdom.a in Frameworks */,
 				6DA176F20E1ACB5500D3D8C5 /* librt.a in Frameworks */,
 				6DA176F50E1ACB6700D3D8C5 /* libfx.a in Frameworks */,
 				6D00EBB70EB6771C00BE4C21 /* libboost_filesystem.a in Frameworks */,
 				6D00EBB80EB6771C00BE4C21 /* libboost_system.a in Frameworks */,
 				6D00ECC30EB6893C00BE4C21 /* libxml2.dylib in Frameworks */,
 				6D00ED0B0EB68E1900BE4C21 /* libz.dylib in Frameworks */,
-				6D00ED0D0EB68E3700BE4C21 /* libminizip.a in Frameworks */,
 				4B4483CB0EF048760044C03F /* libbullet.a in Frameworks */,
+				4B2F97500F218A700086889D /* libdom.a in Frameworks */,
+				4B2F97510F218A740086889D /* libminizip.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,15 +142,15 @@
 		08FB7794FE84155DC02AAC07 /* viewer */ = {
 			isa = PBXGroup;
 			children = (
+				4B2F97410F2186020086889D /* minizip.xcodeproj */,
+				4B87646B0F216442001EA1B9 /* dom.xcodeproj */,
 				4B4483CA0EF048760044C03F /* libbullet.a */,
-				6D00ECCB0EB689AA00BE4C21 /* libminizip.a */,
 				6D00ECC60EB6895300BE4C21 /* libz.dylib */,
 				6D00ECC20EB6893C00BE4C21 /* libxml2.dylib */,
 				6D00EBB50EB6771C00BE4C21 /* libboost_filesystem.a */,
 				6D00EBB60EB6771C00BE4C21 /* libboost_system.a */,
 				6DA175A80E1AB5DB00D3D8C5 /* rt.xcodeproj */,
 				6DA1759F0E1AB5D100D3D8C5 /* fx.xcodeproj */,
-				6DA175990E1AB5C100D3D8C5 /* dom.xcodeproj */,
 				6DB129590E19A25E004FA1FD /* libpcrecpp.a */,
 				6DB1295A0E19A25E004FA1FD /* libpcre.a */,
 				6DB129200E199316004FA1FD /* Cg.framework */,
@@ -165,10 +179,18 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		6DA1759A0E1AB5C100D3D8C5 /* Products */ = {
+		4B2F97420F2186020086889D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6DA1759E0E1AB5C100D3D8C5 /* libdom.a */,
+				4B2F97460F2186020086889D /* libminizip.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4B87646C0F216442001EA1B9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4B2F97390F2185D10086889D /* libdom.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -210,9 +232,10 @@
 			buildRules = (
 			);
 			dependencies = (
-				4BBF41F10ECE4E2200F434EB /* PBXTargetDependency */,
 				4BBF41F30ECE4E2C00F434EB /* PBXTargetDependency */,
 				4BBF41F50ECE4E3000F434EB /* PBXTargetDependency */,
+				4B2F97490F2186C20086889D /* PBXTargetDependency */,
+				4B2F974B0F2186C70086889D /* PBXTargetDependency */,
 			);
 			name = viewer;
 			productInstallPath = "$(HOME)/bin";
@@ -235,12 +258,16 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 6DA1759A0E1AB5C100D3D8C5 /* Products */;
-					ProjectRef = 6DA175990E1AB5C100D3D8C5 /* dom.xcodeproj */;
+					ProductGroup = 4B87646C0F216442001EA1B9 /* Products */;
+					ProjectRef = 4B87646B0F216442001EA1B9 /* dom.xcodeproj */;
 				},
 				{
 					ProductGroup = 6DA175A00E1AB5D100D3D8C5 /* Products */;
 					ProjectRef = 6DA1759F0E1AB5D100D3D8C5 /* fx.xcodeproj */;
+				},
+				{
+					ProductGroup = 4B2F97420F2186020086889D /* Products */;
+					ProjectRef = 4B2F97410F2186020086889D /* minizip.xcodeproj */;
 				},
 				{
 					ProductGroup = 6DA175A90E1AB5DB00D3D8C5 /* Products */;
@@ -255,11 +282,18 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		6DA1759E0E1AB5C100D3D8C5 /* libdom.a */ = {
+		4B2F97390F2185D10086889D /* libdom.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libdom.a;
-			remoteRef = 6DA1759D0E1AB5C100D3D8C5 /* PBXContainerItemProxy */;
+			remoteRef = 4B2F97380F2185D10086889D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4B2F97460F2186020086889D /* libminizip.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libminizip.a;
+			remoteRef = 4B2F97450F2186020086889D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		6DA175A70E1AB5D100D3D8C5 /* libfx.a */ = {
@@ -290,10 +324,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		4BBF41F10ECE4E2200F434EB /* PBXTargetDependency */ = {
+		4B2F97490F2186C20086889D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = dom;
-			targetProxy = 4BBF41F00ECE4E2200F434EB /* PBXContainerItemProxy */;
+			targetProxy = 4B2F97480F2186C20086889D /* PBXContainerItemProxy */;
+		};
+		4B2F974B0F2186C70086889D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = minizip;
+			targetProxy = 4B2F974A0F2186C70086889D /* PBXContainerItemProxy */;
 		};
 		4BBF41F30ECE4E2C00F434EB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
