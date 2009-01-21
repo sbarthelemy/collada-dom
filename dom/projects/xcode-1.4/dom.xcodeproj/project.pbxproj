@@ -435,7 +435,14 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 4B2F97180F217E9A0086889D /* minizip.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = D2AAC046055464E500DB518D /* libminizip.a */;
+			remoteGlobalIDString = D2AAC046055464E500DB518D;
+			remoteInfo = minizip;
+		};
+		4B2F97A00F26C9A90086889D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4B2F97180F217E9A0086889D /* minizip.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC045055464E500DB518D /* minizip */;
 			remoteInfo = minizip;
 		};
 /* End PBXContainerItemProxy section */
@@ -1578,6 +1585,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				4B2F97A10F26C9A90086889D /* PBXTargetDependency */,
 			);
 			name = dom;
 			productName = dom;
@@ -1832,6 +1840,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4B2F97A10F26C9A90086889D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = minizip;
+			targetProxy = 4B2F97A00F26C9A90086889D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		1DEB91EC08733DB70010E9CD /* Debug */ = {
