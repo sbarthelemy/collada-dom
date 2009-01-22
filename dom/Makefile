@@ -99,7 +99,7 @@ $(eval $(call setBuildVar,parser,libxml tinyxml))
 
 comma := ,
 domMajorVersion := 2
-domMinorVersion := 1
+domMinorVersion := 2
 domVersion := $(domMajorVersion).$(domMinorVersion)
 domVersionNoDots := $(subst .,,$(domVersion))
 
