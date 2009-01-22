@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8,00"
+	Version="8.00"
 	Name="dom-static"
 	ProjectGUID="{2BAD5C91-F2B8-4E96-94DA-F6D6822DF29F}"
 	RootNamespace="domstatic"
@@ -62,7 +62,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="$(OutDir)\libcollada15dom21-sd.lib"
+				OutputFile="$(OutDir)\libcollada15dom22-sd.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -126,7 +126,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="$(OutDir)\libcollada15dom21-s.lib"
+				OutputFile="$(OutDir)\libcollada15dom22-s.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"

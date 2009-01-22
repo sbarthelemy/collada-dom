@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8,00"
+	Version="8.00"
 	Name="dom"
 	ProjectGUID="{E554598B-B565-4B3C-8E25-F60296AFB943}"
 	RootNamespace="dom"
@@ -63,7 +63,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="libxml2_a.lib zlib.lib wsock32.lib pcre-d.lib pcrecpp-d.lib minizip.lib libboost_filesystem-d.lib libboost_system-d.lib"
-				OutputFile="$(OutDir)\libcollada15dom21-d.dll"
+				OutputFile="$(OutDir)\libcollada15dom22-d.dll"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="&quot;..\..\external-libs\libxml2\win32\lib&quot;;&quot;..\..\external-libs\tinyxml\lib\vc8&quot;;&quot;..\..\external-libs\pcre\lib\vc8&quot;;&quot;..\..\external-libs\minizip\win32\lib&quot;;&quot;..\..\external-libs\boost\lib\vc8&quot;"
 				IgnoreDefaultLibraryNames="msvcrt"
@@ -145,7 +145,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="libxml2_a.lib zlib.lib wsock32.lib pcre.lib pcrecpp.lib minizip.lib libboost_filesystem.lib libboost_system.lib"
-				OutputFile="$(OutDir)\libcollada15dom21.dll"
+				OutputFile="$(OutDir)\libcollada15dom22.dll"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="&quot;..\..\external-libs\libxml2\win32\lib&quot;;&quot;..\..\external-libs\tinyxml\lib\vc8&quot;;&quot;..\..\external-libs\pcre\lib\vc8&quot;;&quot;..\..\external-libs\minizip\win32\lib&quot;;&quot;..\..\external-libs\boost\lib\vc8&quot;"
 				GenerateDebugInformation="false"
