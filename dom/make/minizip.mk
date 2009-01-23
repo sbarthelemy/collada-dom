@@ -26,7 +26,7 @@ libOpts += -lz
 ccFlags += -arch ppc -arch i386
 endif
 
-libName := libminizip$(debugSuffix)
+libName := libminizip$
 ifeq ($(os),mac)
 libVersion := 1.2
 else
@@ -46,6 +46,7 @@ else ifeq ($(os),windows)
 windowsLibName := $(libName)
 targets += $(addprefix $(outPath),$(windowsLibName)$(debugSuffix).a)
 targets += $(addprefix $(outPath),$(windowsLibName)$(libVersionNoDots)$(debugSuffix).dll)
+
 
 else ifeq ($(os),mac)
 # On Mac we build a framework
