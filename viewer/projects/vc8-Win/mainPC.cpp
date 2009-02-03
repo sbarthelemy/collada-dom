@@ -454,8 +454,9 @@ CrtInt32 WINAPI WinMain(	HINSTANCE	hInstance,
 	(void)nCmdShow; // Avoid warnings
 	(void)hInstance; // Avoid warnings
 
+#ifndef NO_DEVIL
 	ilInit();
-
+#endif
 
 	MSG		msg;									
 	BOOL	done=FALSE;								
@@ -722,7 +723,9 @@ CrtInt32 WINAPI WinMain(	HINSTANCE	hInstance,
 	_CrtRender.Destroy();
 
 	// Shutdown
+#ifndef NO_DEVIL
 	ilShutDown();
+#endif
 	DestroyGLWindow();								
 	return (int)(msg.wParam);						
 }
