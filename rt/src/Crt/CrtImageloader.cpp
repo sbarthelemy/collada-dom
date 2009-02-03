@@ -11,6 +11,12 @@
 #include "Crt/CrtImageloader.h"
 #include "Crt/CrtTexture.h"
 
+#ifdef NO_DEVIL
+CrtBool	CrtLoadImage( CrtChar * file, CrtImage * texObj )
+{
+	return CrtFalse;
+}
+#else
 //#include <Magick++.h>
 #include <IL/il.h>
 
@@ -53,3 +59,4 @@ CrtBool	CrtLoadImage( CrtChar * file, CrtImage * texObj )
 
 	return CrtTrue; 
 }
+#endif
