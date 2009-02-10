@@ -205,7 +205,7 @@ CrtBool	CrtScene::Load( CrtChar * LFileName )
 //	ret = kmzcleanup(collada, true);
 //	if (ret) CrtPrint("kmzcleanup complete\n");
 
-#ifndef _WIN32
+#ifdef SN_TARGET_PS3
 	CrtInt ret = 0;
 	ret = triangulate(m_collada);
 #endif

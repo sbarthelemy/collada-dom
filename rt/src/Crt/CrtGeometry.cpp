@@ -309,7 +309,7 @@ CrtPolygons::~CrtPolygons()
 
 void 	CrtPolygons::Render()
 {
-#ifdef _WIN32
+#ifndef SN_TARGET_PS3
 	if (_CrtRender.UsingVBOs())
 	{
 		for (CrtUInt i=0; i< indexvector.size(); i++) {
