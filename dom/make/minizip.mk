@@ -37,8 +37,8 @@ libVersionNoDots := $(subst .,,$(libVersion))
 targets :=
 ifeq ($(os),linux)
 # On Linux we build a static lib and a shared lib
-targets += $(addprefix $(outPath),$(libName).a)
-targets += $(addprefix $(outPath),$(libName).so)
+targets += $(addprefix $(outPath),$(libName)$(debugSuffix).a)
+targets += $(addprefix $(outPath),$(libName)$(debugSuffix).so)
 
 else ifeq ($(os),windows)
 # On Windows we build a static lib and a DLL
