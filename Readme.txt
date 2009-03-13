@@ -1,5 +1,5 @@
 PLAYSTATION(R)3 COLLADA Package
-            Copyright (C) 2008 Sony Computer Entertainment Inc.
+            Copyright (C) 2009 Sony Computer Entertainment Inc.
                     All Rights Reserved.
 
 ==============================================================================
@@ -23,61 +23,63 @@ sample COLLADA documents can be loaded into the Viewer to demonstrate these
 features.  The COLLADA Viewer and its sample documents replace all the 
 hard coded COLLADA demos that were included with older PS3 releases.
 
-<COLLADA_ROOT>\
- +--dom                     The DOM library for Parsing COLLADA Documents
- |  +--CodeGen
- |  +--external-libs        Open source libraries used by DOM
- |  +--include
- |  +--make
- |  +--projects             Project files for PS3, Win32 and Macintosh platforms
- |  +--src                  DOM source code
- |  +--test                 Source code for COLLADA DOM's automated test suite
- |  +--...
- |
- +--fx                      The COLLADA effect loader library for Cg shaders
- |  +--build
- |  +--include
- |  +--make
- |  +--projects             Project files for PS3, Win32 and Macintosh platforms
- |  +--src                  COLLADA effect loader source code
- |  +--...
- |
- +--License_Folder          Licenses for open source software included in COLLADA Viewer
- |  +--other
- |  +--license_e.txt
- |
- +--rt                      The Runtime Rendering library that uses OpenGL ES or PSGL
- |  +--build
- |  +--external-libs        Open source libraries used by rt module
- |  +--include
- |  +--make
- |  +--projects             Project files for PS3, Win32 and Macintosh platforms
- |  +--src                  COLLADA runtime rendering library source code
- |  +--...
- |
- +--viewer					
- |  +-bin                   The application binary that uses all software libraries above to make a COLLADA document viewer
- |     +-samples.zip        Compressed sample COLLADA documents used by COLLADA Viewer
- |     +-samples.doc        Description of sample COLLADA documents
- |
- |  +-make       
- |     +-common.mk
- |     +-rules.mk
- |     +-viewer.mk
- |
- |  +-projects
- |     +-linux              Source code for Linux COLLADA Viewer
- |     +-vc8-PS3            Visual Studio 2005 project files and platform-specific source code for PS3 COLLADA Viewer
- |     +-vc8-Win            Visual Studio 2005 project files and platform-specific source code for Windows native COLLADA Viewer
- |     +-vc9-PS3            Visual Studio 2008 project files and platform-specific source code for PS3 COLLADA Viewer
- |     +-vc9-Win            Visual Studio 2008 project files and platform-specific source code for Windows native COLLADA Viewer
- |     +-xcode              Macintosh Xcode project files and source code for Macintosh COLLADA Viewer
- |
- |  +--...
- |
- +--Makefile                Makefile (for Linux and MSYS) to build COLLADA Viewer and the necessary libraries
- +--Makefile.linux          Makefile to build Linux COLLADA Viewer and the necessary libraries
- +--Readme.txt              This file
+
++--dom                      The DOM library for Parsing COLLADA Documents
+|  +--CodeGen
+|  +--external-libs         Open source libraries used by DOM
+|  +--include
+|  +--license
+|  +--make
+|  +--projects              Project files for PS3, Windows and Mac OS X target
+|  +--release
+|  +--src
+|  +--...
+|
++--fx                       The COLLADA effect loader library for Cg shaders
+|  +--build
+|  +--include
+|  +--license
+|  +--make
+|  +--projects              Project files for PS3, Windows and Mac OS X target
+|  +--src
+|  +--...
+|
++--License_Folder           Licenses for open source software included in COLLADA Viewer
+|  +--other
+|  +--license_e.txt
+|
++--rt                       The Runtime Rendering library that uses OpenGL ES or PSGL
+|  +--build
+|  +--external-libs         Open source libraries used by rt module
+|  +--include
+|  +--make
+|  +--projects              Project files for PS3, Windows and Mac OS X target
+|  +--src
+|  +--...
+|
++--viewer					
+|  +-bin                    The application binary that uses all software libraries above to make a COLLADA document viewer
+|     +-samples.zip         Compressed art assets and shaders used by COLLADA Viewer
+|     +-samples.doc         Description of COLLADA sample documents
+|
+|  +-make       
+|     +-common.mk
+|     +-rules.mk
+|     +-viewer.mk
+|
+|  +-projects
+|     +-VC8-PS3             Visual Studio 2005 project files and platform-specific source code for PS3 COLLADA Viewer
+|     +-VC8-Win             Visual Studio 2005 project files and platform-specific source code for Windows native COLLADA Viewer
+|     +-VC9-PS3             Visual Studio 2008 project files and platform-specific source code for PS3 COLLADA Viewer
+|     +-VC9-Win             Visual Studio 2008 project files and platform-specific source code for Windows native COLLADA Viewer
+|     +--...
+|
+|  +-license.txt
+|  +-Makefile
+|
++--Makefile                 Makefile for MSYS to build COLLADA Viewer and the necessary libraries
++--Makefile.linux           Makefile for Linux to build COLLADA Viewer and the necessary libraries
++--Readme.txt               This file
 
 
 
@@ -143,9 +145,9 @@ which can be used to view any of the included sample COLLADA documents.
 
 [Windows host/MSYS]
 1) Execute make utility at root level of package by typing 'make'
-   viewer.self will be in <COLLADA_ROOT>\viewer\bin for release build (conf=release, this is the default build)
-   viewer.self will be in <COLLADA_ROOT>\viewer\bin for debug build (conf=debug)
-2) Unzip samples.zip, extract its contents to <COLLADA_ROOT>\viewer\bin\
+   viewer.self will be in viewer\bin for release build (conf=release, this is the default build)
+   viewer.self will be in viewer\bin for debug build (conf=debug)
+2) Unzip samples.zip, extract its contents to viewer\bin\
 3) Use ProDG Target Manager or Debugger to load viewer.self 
    Optionally, specify a COLLADA document (cage.dae) as command line argument when loading viewer executable
 
@@ -153,17 +155,17 @@ which can be used to view any of the included sample COLLADA documents.
 [Windows host/Visual Studio]
 Project files for Visual C++ 8 (VS 2005) and Visual C++ 9 (VS 2008) are both provided. If you are using Visual C++ 9,
 substitute "vc9" for "vc8" for the following instructions.
-1) Open Visual Studio Solution at <COLLADA_ROOT>\viewer\projects\vc8-PS3\viewer.sln
+1) Open Visual Studio Solution at viewer\projects\vc8-PS3\viewer.sln
 2) Select "PS3 debug" or "PS3 release" configuration to build PS3 target
-3) Unzip samples.zip, extract its contents to <COLLADA_ROOT>\viewer\bin\
+3) Unzip samples.zip, extract its contents to viewer\bin\
 4) Use ProDG Target Manager or Debugger to load viewer.ppu.self (release) or viewer-d.ppu.self in \viewer\bin
    Optionally, specify a COLLADA document (cage.dae) as command line argument when loading viewer executable
 
 [Linux]
 1) Execute make utility at root level of package by typing 'make'
-   viewer.self will be in <COLLADA_ROOT>\viewer\bin for release build (conf=release, this is the default build)
-   viewer.self will be in <COLLADA_ROOT>\viewer\bin for debug build (conf=debug)
-2) Unzip samples.zip, extract its contents to <COLLADA_ROOT>\viewer\bin\
+   viewer.self will be in viewer\bin for release build (conf=release, this is the default build)
+   viewer.self will be in viewer\bin for debug build (conf=debug)
+2) Unzip samples.zip, extract its contents to viewer\bin\
 3) Change directory to where the COLLADA Viewer executable is, type the following commands to load it, replace
    the IP address with your PS3 IP address.
    
@@ -189,11 +191,11 @@ COLLADA documents.
 Project files for Visual C++ 8 (VS 2005) and Visual C++ 9 (VS 2008) are both provided. If you are using Visual C++ 9,
 substitute "vc9" for "vc8" for the following instructions.
 
-1) Open Visual Studio Solution at <COLLADA_ROOT>\viewer\projects\vc8-Win\viewer.sln
+1) Open Visual Studio Solution at viewer\projects\vc8-Win\viewer.sln
 2) Select "Debug" or "Release" configuration to build Windows executable
-3) viewer.exe (release) or viewer-d.exe(debug) will be in <COLLADA_ROOT>\viewer\bin
-4) Unzip samples.zip, extract its contents to <COLLADA_ROOT>\viewer\bin\
-5) Open up a DOS Shell window, change directory to <COLLADA_ROOT>\viewer\bin, type "viewer.exe duck.dae" to view COLLADA document "duck.dae"
+3) viewer.exe (release) or viewer-d.exe(debug) will be in viewer\bin
+4) Unzip samples.zip, extract its contents to viewer\bin\
+5) Open up a DOS Shell window, change directory to viewer\bin, type "viewer.exe duck.dae" to view COLLADA document "duck.dae"
 
 
 ============================================================================
@@ -202,10 +204,10 @@ Building the COLLADA package and running the COLLADA Viewer sample for Linux
 
 These instructions build the entire contents of the COLLADA package including libraries and samples for Linux PC. 
 
-1) Type 'make -f Makefile.linux' at root level of package - <COLLADA_ROOT>.
-   COLLADA Viewer 'viewer' will be created in <COLLADA_ROOT>/viewer/build/linux-1.4 for release build (conf=release, this is the default build)
-   'viewer' will be created in <COLLADA_ROOT>/viewer/build/linux-1.4-d for debug build 'make -f Makefile.linux conf=debug'
-2) Unzip samples.zip, extract its contents to <COLLADA_ROOT>/viewer/build/linux-1.4(-d)
+1) Type 'make -f Makefile.linux' at root level of package.
+   COLLADA Viewer 'viewer' will be created in viewer/build/linux-1.4 for release build (conf=release, this is the default build)
+   'viewer' will be created in viewer/build/linux-1.4-d for debug build 'make -f Makefile.linux conf=debug'
+2) Unzip samples.zip, extract its contents to viewer/build/linux-1.4(-d)
 3) Change directory to where 'viewer' executable is, type './viewer cage.dae' to load and render COLLADA document cage.dae
 
 
@@ -216,10 +218,10 @@ Building the COLLADA package and running the COLLADA Viewer sample for Macintosh
 
 These instructions build the entire contents of the COLLADA package including libraries and samples for Macintosh PC
 
-1) Open Xcode project file at <COLLADA_ROOT>/viewer/projects/xcode/viewer.xcodeproj
+1) Open Xcode project file at viewer/projects/xcode/viewer.xcodeproj
 2) Select "Debug" or "Release" configuration to build Macintosh executable
-3) The release or debug 'viewer' executable will be created in <COLLADA_ROOT>/viewer/bin
-4) Unzip samples.zip, extract its contents to <COLLADA_ROOT>/viewer/bin/
+3) The release or debug 'viewer' executable will be created in viewer/bin
+4) Unzip samples.zip, extract its contents to viewer/bin/
 5) Click 'Run' from Xcode menu bar to load default COLLADA document 'cage.dae'
 6) Optionally, add command line argument to Xcode Executable 'viewer' info to specify different COLLADA document to load
 
@@ -302,6 +304,48 @@ Middle Click        Next camera
 
 
 
+====================================
+How To use SPU-Optimized Bullet 2.73
+====================================
+
+By default, the PS3 COLLADA viewer does not run with physics simulation.  You could enable the SPU-optimized physics simulation on PS3 
+with the following changes:
+
+1) Download and install the Bullet package
+   a. Download open source bullet-2.73-*.zip from http://code.google.com/p/bullet/downloads/list
+   b. Unzip bullet-2.73 in ${YOUR_BULLET_PATH} - any destination directory of your choice
+   c. Download spubullet-2.73-*.zip from https://ps3.scedev
+   d. Unzip spubullet-2.73-*.zip in the same directory of step (b)
+   e. Refer to SPU_Optimized_Bullet-Quick_Start_Guide_e.pdf in the download package to build Bullet libraries and sample app
+
+
+2) In 'rt' and 'viewer' projects, add SPU_BULLET to the Preprocessor Definitions field in the Preprocessor tab for the C/C++ project configuration settings.
+
+3) In the 'rt' and 'viewer' projects, add the following line to the Additional Include Directories field in the General tab for the C/C++ project configuration settings:
+
+	${YOUR_BULLET_PATH}\src
+
+
+4) In the 'viewer' project, add the following lines to the Additional library directories field in the General tab for the Linker project configuration settings
+												   
+	${YOUR_BULLET_PATH}\src\Physics\TaskUtil\libtaskutild.a
+	${YOUR_BULLET_PATH}\out\debug8_ps3\libs\libBulletcollision_d.a
+	${YOUR_BULLET_PATH}\out\debug8_ps3\libs\libBulletdynamics_d.a
+	${YOUR_BULLET_PATH}\out\debug8_ps3\libs\libBulletmath_d.a
+	${YOUR_BULLET_PATH}\out\debug8_ps3\libs\libBulletmultithreaded_d.a
+	${YOUR_BULLET_PATH}\msvc_ps3\8\PS3_PPU_Debug\PS3_SpuDispatch.lib
+	-lspurs_stub
+
+
+5) Right click 'viewer' project, add the following Existing items to the project to link with the Bullet SPU modules:
+
+	${YOUR_BULLET_PATH}\out\debug8_ps3\libs\PS3_SPURS_BulletCD_spu.ppu.obj
+
+
+Note: COLLADA viewer can be configured to run SPU-optimized collision detection, but not the SPU version of physics effects constraint solver.
+
+
+
 ============
 Known issues
 ============
@@ -323,4 +367,6 @@ Known issues
   to
   
 	SYS_PROCESS_PARAM( 1001, 0x18000 );		// priority = 1001, increase stack size to 96K, or other setting to suit your need
+
+
 
