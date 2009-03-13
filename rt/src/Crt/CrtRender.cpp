@@ -25,8 +25,8 @@ CrtBool CrtRender::UsingPhysics()
 
 CrtBool CrtRender::SetGravity(const CrtVec3f & vec)
 {
-#ifdef NO_BULLET
-#else
+#if defined SPU_BULLET || !defined (SN_TARGET_PS3)
+
 	if (Scene->m_physics)
 	{
 		Scene->m_physics->setGravity(vec);
@@ -191,8 +191,8 @@ CrtBool CrtRender::Render()
 	{
 		extern float ticker;
 		ticker += 0.01f;
-#ifdef NO_BULLET
-#else
+#if defined SPU_BULLET || !defined (SN_TARGET_PS3)
+
 		if (UsePhysics)
 		{
 			if (Scene->m_physics)

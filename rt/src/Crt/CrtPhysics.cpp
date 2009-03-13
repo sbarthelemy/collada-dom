@@ -6,18 +6,16 @@
 *
 */ 
 
-#ifdef NO_BULLET
-
-#else
-#include "Crt/CrtPhysics.h"
-#include "Crt/CrtScene.h"
-
-
-#include "btBulletDynamicsCommon.h"
 #include "dae.h"
 #include "dom/domCOLLADA.h"
 #include "dae/domAny.h"
 
+#include "Crt/CrtPhysics.h"
+#include "Crt/CrtScene.h"
+
+#if defined SPU_BULLET || !defined (SN_TARGET_PS3)
+
+#include "btBulletDynamicsCommon.h"
 #include "BulletCollision/CollisionShapes/btBoxShape.h"
 #include "BulletCollision/CollisionShapes/btSphereShape.h"
 #include "BulletCollision/CollisionShapes/btCylinderShape.h"
@@ -29,7 +27,28 @@
 #include "BulletCollision/CollisionShapes/btTriangleMeshShape.h"
 #include "BulletCollision/CollisionShapes/btCompoundShape.h"
 #include "LinearMath/btDefaultMotionState.h"
-#include "LinearMath/btPoint3.h"
+
+#ifdef SPU_BULLET
+
+#include "SpuDispatch/btPhysicsEffectsWorld.h"//currently in Bullet/SpuDispatch
+#include "BulletCollision/BroadphaseCollision/btDbvtBroadphase.h"
+#include "SpuDispatch/BulletDebugDrawer.h"
+#include "BulletMultiThreaded/SequentialThreadSupport.h"
+#include "BulletMultiThreaded/SequentialThreadSupport.h"
+#include "BulletMultiThreaded/SpuGatheringCollisionDispatcher.h"
+
+#include "SpuDispatch/BulletCollisionSpursSupport.h"
+#include "SpuDispatch/BulletConstraintSolverSpursSupport.h"
+#include "SpuDispatch/btPhysicsEffectsWorld.h"
+#include "Physics/TaskUtil/SpursTask.h"
+#include "Physics/TaskUtil/spurs_util_spu_printf_service.h"
+
+#define SPU_THREAD_GROUP_PRIORITY	250
+#define SPURS_THREAD_PRIORITY		1000
+#define SPURS_NAME					"PhysicsEffects"
+#define NUM_MAX_SPU                 3
+
+#endif
 
 
 bool  ColladaConverter::SetColladaDOM(DAE* dae, const char * filename)
@@ -125,13 +144,9 @@ ColladaConverter::ColladaConverter()
 m_collada(0),
 m_dom(0),
 m_filename(0)
-//m_numObjects(0),
-//m_unitMeterScaling(1.f)
 {
 	m_numObjects = 0;
 	m_unitMeterScaling = 1.0f;
-	//Collada-m_dom
-//	m_collada = new DAE;
 
 	//clear 
 	{
@@ -981,11 +996,6 @@ void	ColladaConverter::ConvertRigidBodyRef( btRigidBodyInput& rbInput,btRigidBod
 					daeString elemName = elemRef->getElementName();
 					if (elemName && !strcmp(elemName,"kinematic"))
 					{
-//						daeMemoryRef memRef = elemRef->getValuePointer();
-						
-//						daeBool hasVal = elemRef->hasValue();
-
-//						COLLADA_TYPE::TypeEnum mytype = elemRef->getElementType();
 						//how can I make this cast safe?
 						const domAny* myAny = (const domAny*)elemRef.cast();
 						daeString myVal = myAny->getValue();
@@ -1001,13 +1011,6 @@ void	ColladaConverter::ConvertRigidBodyRef( btRigidBodyInput& rbInput,btRigidBod
 				}
 			}
 		}
-
-//			<extra>
-//				<technique profile="PhysX">
-//						<wakeUpCounter>0.399999976</wakeUpCounter>
-//							<kinematic>false</kinematic>
-
-
 
 		//shapes
 		for (s=0;s<techniqueRef->getShape_array().getCount();s++)
@@ -1154,15 +1157,6 @@ void	ColladaConverter::ConvertRigidBodyRef( btRigidBodyInput& rbInput,btRigidBod
 
 
 
-
-
-								//int			m_triangleIndexStride;//calculate max offset
-								//int			m_numVertices;
-								//float*		m_vertexBase;//getRawData on floatArray
-								//int			m_vertexStride;//use the accessor for this
-
-							//};
-							//tindexArray->addIndexedMesh(meshPart);
 							if (rbOutput.m_isDynamics)
 							{
 								printf("moving concave <mesh> not supported, transformed into convex\n");
@@ -1172,10 +1166,7 @@ void	ColladaConverter::ConvertRigidBodyRef( btRigidBodyInput& rbInput,btRigidBod
 								printf("static concave triangle <mesh> added\n");
 								bool useQuantizedAabbCompression = false;
 								rbOutput.m_colShape = new btBvhTriangleMeshShape(trimesh,useQuantizedAabbCompression);
-								//rbOutput.m_colShape = new btBvhTriangleMeshShape(trimesh);
-								//rbOutput.m_colShape = new btConvexTriangleMeshShape(trimesh);
-								
-								//btTriangleMeshShape
+
 							}
 
 						} 
@@ -1206,7 +1197,6 @@ void	ColladaConverter::ConvertRigidBodyRef( btRigidBodyInput& rbInput,btRigidBod
 										size_t vertIndex = 0;
 										for (vertIndex = 0;vertIndex < listFloats.getCount();vertIndex+=vertexStride)
 										{
-//											btVector3 verts[3];
 											domFloat fl0 = listFloats.get(vertIndex);
 											domFloat fl1 = listFloats.get(vertIndex+1);
 											domFloat fl2 = listFloats.get(vertIndex+2);
@@ -1484,16 +1474,61 @@ MyColladaConverter::MyColladaConverter()
 	m_cameraUp = btVector3(0,0,1);
 	m_forwardAxis = 1;
 
-	///collision configuration contains default setup for memory, collision setup
-	m_collisionConfiguration = new btDefaultCollisionConfiguration();
+  #ifdef SPU_BULLET
+	// ----------------------------------------------------------
+	// SPURS instance
+	CellSpursAttribute	attributeSpurs;
+
+	int ret = cellSpursAttributeInitialize (&attributeSpurs, NUM_MAX_SPU, SPU_THREAD_GROUP_PRIORITY, SPURS_THREAD_PRIORITY, false);
+	if(ret) {
+		printf("cellSpursAttributeInitialize failed : %x\n", ret);
+		return ;
+	}
+
+	ret = cellSpursAttributeSetNamePrefix (&attributeSpurs, SPURS_NAME, strlen(SPURS_NAME));
+	if(ret) {
+		printf("cellSpursAttributeSetNamePrefix failed : %x\n", ret);
+		return ;
+	}
+
+	ret = cellSpursInitializeWithAttribute (&mSpursInstance, &attributeSpurs);
+	if(ret) {
+		printf("cellSpursInitializeWithAttribute failed : %x\n", ret);
+		return ;
+	}
+
+	// ----------------------------------------------------------
+	// SPURS printfserver
+
+	ret = sampleSpursUtilSpuPrintfServiceInitialize(&mSpursPrintfService, &mSpursInstance, SPURS_THREAD_PRIORITY);
+	if(ret) {
+		printf("spurs_printf_service_initialize failed : %d\n", ret);
+		return ;
+	}
+
+  	int numSpuTasks = NUM_MAX_SPU;
+
+    ///collision configuration contains default setup for memory, collision setup    m_collisionConfiguration = new btDefaultCollisionConfiguration();
+
+	m_collionThreadSupport =  new BulletCollisionSpursSupport(&mSpursInstance,numSpuTasks,numSpuTasks);
+    m_dispatcher = new SpuGatheringCollisionDispatcher(m_collionThreadSupport,numSpuTasks,m_collisionConfiguration);
+
+#else
+    m_collisionConfiguration = new btDefaultCollisionConfiguration();
 	m_dispatcher = new btCollisionDispatcher(m_collisionConfiguration);
+
+#endif
+
 	btVector3 worldMin(-1000,-1000,-1000);
 	btVector3 worldMax(1000,1000,1000);
 
 	m_pairCache =  new btAxisSweep3(worldMin,worldMax);
 	m_constraintSolver = new btSequentialImpulseConstraintSolver();
 	m_dynamicsWorld = new btDiscreteDynamicsWorld(m_dispatcher, m_pairCache, m_constraintSolver, m_collisionConfiguration);
+
+	return ;
 }
+
 MyColladaConverter::~MyColladaConverter()
 {
 	delete m_dynamicsWorld;

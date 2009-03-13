@@ -32,6 +32,7 @@
 
 
 CrtRender _CrtRender; 
+
 class COLLADA_Viewer : public FWGLCamControlApplication
 {
 public:
@@ -47,8 +48,8 @@ public:
 private:
 	std::string resourceName;
 	static void loadFunction();
-#ifdef NO_BULLET
-#else
+
+#if defined SPU_BULLET || !defined (SN_TARGET_PS3)
 	void SixAxis(float flX, float flY, float flZ, float flG);
 #endif
 	//pad data 
@@ -160,7 +161,7 @@ bool COLLADA_Viewer::onInit(int argc, char **ppArgv)
 {
 	FWGLApplication::onInit(argc, ppArgv);
 
-	glClearColor(0.3f,0.3f,0.7f, 0.0f);
+    glClearColor(0.3f,0.3f,0.7f, 0.0f);
 	glClearDepthf(1.0f);
 	glEnable(GL_DEPTH_TEST);
 
@@ -372,8 +373,8 @@ bool COLLADA_Viewer::onUpdate()
 	}
 
 
-#ifdef NO_BULLET
-#else
+#if defined SPU_BULLET || !defined (SN_TARGET_PS3)
+
    if (mpPad->getRawBool(FWInput::Channel_Button_Triangle))
    {
 
@@ -460,8 +461,8 @@ void COLLADA_Viewer::onShutdown()
 	cellDbgFontExit();
 }
 
-#ifdef NO_BULLET
-#else
+#if defined SPU_BULLET || !defined (SN_TARGET_PS3)
+
 void COLLADA_Viewer::SixAxis(float flX, float flY, float flZ, float flG)
 {
 	(void) flG;

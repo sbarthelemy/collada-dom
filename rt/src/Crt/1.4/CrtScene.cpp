@@ -21,7 +21,7 @@
 #include <set>
 #include <map>
 
-//int deindexer(DAE *_dae);
+
 int triangulate(DAE * _dae);
 
 // !!!GAC These are globals for to make initial refactoring easier, they should be part of the renderer or scene
@@ -398,15 +398,15 @@ CrtBool	CrtScene::Load( CrtChar * LFileName )
 
 	if (domScene)
 	{
-#ifdef NO_BULLET
-#else
+#if defined SPU_BULLET || !defined (SN_TARGET_PS3)
+
 		size_t count_ips = domScene->getInstance_physics_scene_array().getCount();
 		size_t count_lvs = dom->getLibrary_visual_scenes_array().getCount();
 		size_t count_lpm = dom->getLibrary_physics_models_array().getCount();
 		if (count_ips + count_lvs + count_lpm > 2)
 		{
 			m_physics = new MyColladaConverter();
-	//		bool result = m_physics->load(LFileName);
+
 			bool result = m_physics->SetColladaDOM(m_collada, LFileName);
 			if (result)
 			{

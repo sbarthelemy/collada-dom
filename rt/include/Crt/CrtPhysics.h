@@ -15,20 +15,30 @@ subject to the following restrictions:
 #ifndef _CRT_PHYSICS_H_
 #define _CRT_PHYSICS_H_ 
 
-#ifdef NO_BULLET
-#else
+#if defined SPU_BULLET || !defined (SN_TARGET_PS3)
+
 #include "btBulletDynamicsCommon.h"
 #include "LinearMath/btQuickprof.h"
 #include "LinearMath/btIDebugDraw.h"
 #include "LinearMath/btTransform.h"
 #include "LinearMath/btVector3.h"
 
+#ifdef SPU_BULLET
+    #include "Physics/TaskUtil/SpursTask.h"
+    #include "BulletMultiThreaded/SequentialThreadSupport.h"
+    #include "Physics/TaskUtil/spurs_util_spu_printf_service.h"
+    #include "SpuDispatch/btPhysicsEffectsWorld.h"
+    #include "BulletDynamics/Dynamics/btDiscreteDynamicsWorld.h"
+
+#endif
 #include "CrtRender.h"
 extern CrtRender   _CrtRender;
+typedef btVector3 btPoint3;
 
 class btCollisionShape;
 class btRigidBody;
 class btTypedConstraint;
+class btDiscreteDynamicsWorld;
 
 struct ConstraintInput;
 
@@ -102,12 +112,18 @@ public:
 class MyColladaConverter : public ColladaConverter
 {
 	///this is the most important class
+
 	btCollisionDispatcher*	m_dispatcher;
-//	btOverlappingPairCache* m_pairCache;
-	btBroadphaseInterface*			m_pairCache;
+	btBroadphaseInterface*	m_pairCache;
 	btConstraintSolver*		m_constraintSolver;
-	btDynamicsWorld*		m_dynamicsWorld;
-	btDefaultCollisionConfiguration *m_collisionConfiguration;
+	btDefaultCollisionConfiguration* m_collisionConfiguration;
+    class btDiscreteDynamicsWorld* m_dynamicsWorld;
+
+#ifdef SPU_BULLET
+    CellSpurs mSpursInstance;
+    class btThreadSupportInterface* m_collionThreadSupport;
+	SampleUtilSpursPrintfService mSpursPrintfService;
+#endif
 
 	///constraint for mouse picking
 	btTypedConstraint*		m_pickConstraint;
@@ -118,7 +134,7 @@ class MyColladaConverter : public ColladaConverter
 	public:
 		MyColladaConverter();
 		virtual ~MyColladaConverter();
-		
+
 		///those 2 virtuals are called for each constraint/physics object
 	virtual btTypedConstraint*			createUniversalD6Constraint(
 		class btRigidBody* bodyRef,class btRigidBody* bodyOther,
@@ -135,7 +151,6 @@ class MyColladaConverter : public ColladaConverter
 		const btTransform& startTransform,
 		btCollisionShape* shape);
 
-
 	virtual	void	setGravity(const CrtVec3f & vec);
 
 	virtual void	setCameraInfo(const btVector3& camUp,int forwardAxis); 
@@ -145,4 +160,4 @@ class MyColladaConverter : public ColladaConverter
 
 
 #endif //_CRT_PHYSICS_H_  
-#endif //NO_BULLET
+#endif //SPU_BULLET
