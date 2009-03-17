@@ -193,10 +193,6 @@
 				>
 			</File>
 		</Filter>
-		<File
-			RelativePath="..\..\..\..\..\bullet-2.73\out\debug8_ps3\libs\PS3_SPURS_BulletCD_spu.ppu.obj"
-			>
-		</File>
 	</Files>
 	<Globals>
 	</Globals>
