@@ -326,7 +326,7 @@ with the following changes:
 	${YOUR_BULLET_PATH}\src
 
 
-4) In the 'viewer' project, add the following lines to the Additional library directories field in the General tab for the Linker project configuration settings
+4) In the 'viewer' project, add the following lines to the Additional dependencies field in the Input tab for the Linker project configuration settings
 												   
 	${YOUR_BULLET_PATH}\src\Physics\TaskUtil\libtaskutild.a
 	${YOUR_BULLET_PATH}\out\debug8_ps3\libs\libBulletcollision_d.a
