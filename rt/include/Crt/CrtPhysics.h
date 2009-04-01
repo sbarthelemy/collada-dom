@@ -14,6 +14,7 @@ subject to the following restrictions:
 */
 #ifndef _CRT_PHYSICS_H_
 #define _CRT_PHYSICS_H_ 
+#ifndef NO_BULLET
 
 #if defined SPU_BULLET || !defined (SN_TARGET_PS3)
 
@@ -159,5 +160,7 @@ class MyColladaConverter : public ColladaConverter
 };
 
 
-#endif //_CRT_PHYSICS_H_  
+
 #endif //SPU_BULLET
+#endif //NO_BULLET  
+#endif //_CRT_PHYSICS_H_  

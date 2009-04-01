@@ -398,6 +398,7 @@ CrtBool	CrtScene::Load( CrtChar * LFileName )
 
 	if (domScene)
 	{
+#ifndef NO_BULLET
 #if defined SPU_BULLET || !defined (SN_TARGET_PS3)
 
 		size_t count_ips = domScene->getInstance_physics_scene_array().getCount();
@@ -419,6 +420,7 @@ CrtBool	CrtScene::Load( CrtChar * LFileName )
 			_CrtRender.SetUsePhysics(CrtFalse);
 		}
 #endif
+#endif // NO_BULLET
 	}
 
 	return CrtTrue; 

@@ -85,6 +85,73 @@
 			/>
 		</Configuration>
 		<Configuration
+			Name="Debug|x64"
+			OutputDirectory="..\..\build\vc8-Win-dx64"
+			IntermediateDirectory="..\..\build\vc8-Win-dx64\obj\$(ProjectName)"
+			ConfigurationType="4"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				TargetEnvironment="3"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				AdditionalIncludeDirectories="..\..\..\dom\include;..\..\..\dom\include\1.4;../../include;../../include/1.4;..\..\..\fx\include;&quot;$(CG_INC_PATH)&quot;;&quot;..\..\external-libs\bullet\include&quot;;&quot;..\..\external-libs\devil\win32\include&quot;;&quot;..\..\..\dom\external-libs\boost&quot;"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;CFX_PLATFORM_INCLUDE=\&quot;cfxWin.h\&quot;;_CRT_SECURE_NO_DEPRECATE;CRT_PLATFORM_INCLUDE=\&quot;CrtWin.h\&quot;;BOOST_ALL_NO_LIB;BOOST_DISABLE_ABI_HEADERS;NO_ZAE;NO_BULLET;NO_DEVIL"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="3"
+				RuntimeTypeInfo="false"
+				UsePrecompiledHeader="0"
+				WarningLevel="4"
+				Detect64BitPortabilityProblems="true"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLibrarianTool"
+				OutputFile="$(OutDir)\$(ProjectName)-dx64.lib"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
 			Name="Release|Win32"
 			OutputDirectory="../../build/vc8-Win"
 			IntermediateDirectory="../../build/vc8-Win/obj/$(ProjectName)"
@@ -147,76 +214,9 @@
 			/>
 		</Configuration>
 		<Configuration
-			Name="Debug|x64"
-			OutputDirectory="$(PlatformName)\$(ConfigurationName)"
-			IntermediateDirectory="$(PlatformName)\$(ConfigurationName)"
-			ConfigurationType="4"
-			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
-			CharacterSet="2"
-			>
-			<Tool
-				Name="VCPreBuildEventTool"
-			/>
-			<Tool
-				Name="VCCustomBuildTool"
-			/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"
-			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
-			<Tool
-				Name="VCMIDLTool"
-				TargetEnvironment="3"
-			/>
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="0"
-				AdditionalIncludeDirectories="..\..\..\dom\include;..\..\..\dom\include\1.4;../../include;../../include/1.4;..\..\..\fx\include;&quot;$(CG_INC_PATH)&quot;;&quot;..\..\external-libs\bullet\include&quot;;&quot;..\..\external-libs\devil\win32\include&quot;;&quot;..\..\..\dom\external-libs\boost&quot;"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;CFX_PLATFORM_INCLUDE=\&quot;cfxWin.h\&quot;;_CRT_SECURE_NO_DEPRECATE;CRT_PLATFORM_INCLUDE=\&quot;CrtWin.h\&quot;;BOOST_ALL_NO_LIB;BOOST_DISABLE_ABI_HEADERS;NO_BULLET;NO_DEVIL"
-				MinimalRebuild="true"
-				BasicRuntimeChecks="3"
-				RuntimeLibrary="3"
-				RuntimeTypeInfo="false"
-				UsePrecompiledHeader="0"
-				WarningLevel="4"
-				Detect64BitPortabilityProblems="true"
-				DebugInformationFormat="3"
-			/>
-			<Tool
-				Name="VCManagedResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCResourceCompilerTool"
-			/>
-			<Tool
-				Name="VCPreLinkEventTool"
-			/>
-			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="$(OutDir)\$(ProjectName)-d.lib"
-			/>
-			<Tool
-				Name="VCALinkTool"
-			/>
-			<Tool
-				Name="VCXDCMakeTool"
-			/>
-			<Tool
-				Name="VCBscMakeTool"
-			/>
-			<Tool
-				Name="VCFxCopTool"
-			/>
-			<Tool
-				Name="VCPostBuildEventTool"
-			/>
-		</Configuration>
-		<Configuration
 			Name="Release|x64"
-			OutputDirectory="$(PlatformName)\$(ConfigurationName)"
-			IntermediateDirectory="$(PlatformName)\$(ConfigurationName)"
+			OutputDirectory="..\..\build\vc8-Winx64"
+			IntermediateDirectory="..\..\build\vc8-Winx64\obj\$(ProjectName)"
 			ConfigurationType="4"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			CharacterSet="2"
@@ -258,7 +258,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="$(OutDir)\$(ProjectName).lib"
+				OutputFile="$(OutDir)\$(ProjectName)x64.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -365,7 +365,7 @@
 					/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Release|Win32"
+					Name="Debug|x64"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
@@ -373,7 +373,7 @@
 					/>
 				</FileConfiguration>
 				<FileConfiguration
-					Name="Debug|x64"
+					Name="Release|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"

@@ -49,6 +49,7 @@
 				RuntimeLibrary="3"
 				RuntimeTypeInfo="false"
 				WarningLevel="4"
+				Detect64BitPortabilityProblems="true"
 				DebugInformationFormat="1"
 			/>
 			<Tool
@@ -101,8 +102,8 @@
 		</Configuration>
 		<Configuration
 			Name="Debug|x64"
-			OutputDirectory="$(PlatformName)\$(ConfigurationName)"
-			IntermediateDirectory="$(PlatformName)\$(ConfigurationName)"
+			OutputDirectory="..\..\bin"
+			IntermediateDirectory="..\..\build\vc8-Win-dx64\obj\$(ProjectName)"
 			ConfigurationType="1"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			>
@@ -126,7 +127,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="..\..\..\dom\include;..\..\..\dom\include\1.4;..\..\..\fx\include;..\..\..\rt\include;..\..\..\rt\include/1.4;&quot;..\..\..\rt\external-libs\devil\win32\include&quot;;&quot;..\..\..\rt\external-libs\bullet\include&quot;;&quot;$(CG_INC_PATH)&quot;;&quot;..\..\..\dom\external-libs\boost&quot;"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;CFX_PLATFORM_INCLUDE=\&quot;cfxWin.h\&quot;;_CRT_SECURE_NO_DEPRECATE;BOOST_ALL_NO_LIB"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;CFX_PLATFORM_INCLUDE=\&quot;cfxWin.h\&quot;;_CRT_SECURE_NO_DEPRECATE;BOOST_ALL_NO_LIB;NO_BULLET;NO_DEVIL"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				RuntimeTypeInfo="false"
@@ -144,10 +145,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="rt-d.lib fx-d.lib libcollada14dom22-sd.lib opengl32.lib glu32.lib libxml2_a.lib zlib.lib wsock32.lib winmm.lib pcre-d.lib pcrecpp-d.lib libboost_system-d.lib minizip.lib DevIL.lib libboost_filesystem-d.lib libbulletmultithreaded_d.lib libbulletmath_d.lib libbulletopenglsupport_d.lib libbulletsoftbody_d.lib libbulletcollision_d.lib libbulletdynamics_d.lib"
+				AdditionalDependencies="rt-dx64.lib fx-dx64.lib libcollada14dom22-sdx64.lib opengl32.lib glu32.lib libxml2_a.lib zlib.lib wsock32.lib winmm.lib pcre-d.lib pcrecpp-d.lib libboost_system-d.lib minizip.lib libboost_filesystem-d.lib"
 				OutputFile="$(OutDir)\$(ProjectName)-d.exe"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="&quot;..\..\..\rt\build\vc8-Win-d&quot;;&quot;..\..\..\dom\build\vc8-1.4-d&quot;;&quot;..\..\..\fx\build\vc8-Win-d&quot;;&quot;..\..\..\dom\external-libs\libxml2\win32\lib\x64&quot;;&quot;..\..\..\rt\external-libs\devIL\win32\lib&quot;;&quot;$(CG_LIB_PATH)\..\lib.x64&quot;;&quot;..\..\..\dom\external-libs\pcre\lib\x64\&quot;;&quot;..\..\..\rt\external-libs\bullet\lib\vc8&quot;;&quot;..\..\..\dom\external-libs\boost\lib\x64&quot;;&quot;..\..\..\dom\external-libs\minizip\win32\lib&quot;"
+				AdditionalLibraryDirectories="&quot;..\..\..\rt\build\vc8-Win-dx64&quot;;&quot;..\..\..\dom\build\vc8-1.4-dx64&quot;;&quot;..\..\..\fx\build\vc8-Win-dx64&quot;;&quot;..\..\..\dom\external-libs\libxml2\win32\lib\x64&quot;;&quot;..\..\..\rt\external-libs\devIL\win32\lib&quot;;&quot;$(CG_LIB_PATH)\..\lib.x64&quot;;&quot;..\..\..\dom\external-libs\pcre\lib\x64\&quot;;&quot;..\..\..\rt\external-libs\bullet\lib\vc8&quot;;&quot;..\..\..\dom\external-libs\boost\lib\x64&quot;;&quot;..\..\..\dom\external-libs\minizip\win32\lib&quot;"
 				GenerateManifest="true"
 				ManifestFile="$(IntDir)\$(TargetFileName).intermediate.manifest"
 				IgnoreDefaultLibraryNames="msvcrt"
@@ -225,6 +226,7 @@
 				AdditionalDependencies="rt.lib fx.lib libcollada14dom22-s.lib opengl32.lib glu32.lib libxml2_a.lib zlib.lib wsock32.lib winmm.lib pcre.lib pcrecpp.lib libboost_system.lib minizip.lib DevIL.lib libboost_filesystem.lib libbulletmath_d.lib libbulletmultithreaded_d.lib libbulletopenglsupport_d.lib libbulletsoftbody_d.lib libbulletcollision_d.lib libbulletdynamics_d.lib"
 				OutputFile="$(OutDir)\$(ProjectName).exe"
 				AdditionalLibraryDirectories="&quot;..\..\..\dom\build\vc8-1.4&quot;;&quot;..\..\..\dom\external-libs\libxml2\win32\lib&quot;;&quot;..\..\..\dom\external-libs\pcre\lib\vc8&quot;;&quot;..\..\..\fx\build\vc8-Win&quot;;&quot;..\..\..\rt\build\vc8-Win&quot;;&quot;..\..\..\rt\external-libs\devIL\win32\lib&quot;;&quot;$(CG_LIB_PATH)&quot;;&quot;..\..\..\rt\external-libs\bullet\lib\vc8&quot;;&quot;..\..\..\dom\external-libs\boost\lib\vc8&quot;;&quot;..\..\..\dom\external-libs\minizip\win32\lib&quot;"
+				IgnoreDefaultLibraryNames=""
 				GenerateDebugInformation="false"
 			/>
 			<Tool
@@ -255,8 +257,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|x64"
-			OutputDirectory="$(PlatformName)\$(ConfigurationName)"
-			IntermediateDirectory="$(PlatformName)\$(ConfigurationName)"
+			OutputDirectory="..\..\bin"
+			IntermediateDirectory="..\..\build\vc8-Winx64\obj\$(ProjectName)"
 			ConfigurationType="1"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			>
@@ -279,7 +281,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalIncludeDirectories="..\..\..\dom\include;..\..\..\dom\include\1.4;..\..\..\fx\include;..\..\..\rt\include;..\..\..\rt\include/1.4;&quot;..\..\..\rt\external-libs\devil\win32\include&quot;;&quot;..\..\..\rt\external-libs\bullet\include&quot;;&quot;$(CG_INC_PATH)&quot;;&quot;..\..\..\dom\external-libs\boost&quot;"
-				PreprocessorDefinitions="CFX_PLATFORM_INCLUDE=\&quot;cfxWin.h\&quot;;_CRT_SECURE_NO_DEPRECATE;WIN32;NDEBUG;_WINDOWS;BOOST_ALL_NO_LIB;NO_DEVIL"
+				PreprocessorDefinitions="CFX_PLATFORM_INCLUDE=\&quot;cfxWin.h\&quot;;_CRT_SECURE_NO_DEPRECATE;WIN32;NDEBUG;_WINDOWS;BOOST_ALL_NO_LIB;NO_BULLET;NO_DEVIL"
 				RuntimeLibrary="2"
 				WarningLevel="4"
 				DebugInformationFormat="0"
@@ -295,9 +297,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="rt.lib fx.lib libcollada14dom22-s.lib opengl32.lib glu32.lib libxml2_a.lib zlib.lib wsock32.lib winmm.lib pcre.lib pcrecpp.lib libboost_system.lib minizip.lib DevIL.lib libboost_filesystem.lib libbulletmath_d.lib libbulletmultithreaded_d.lib libbulletopenglsupport_d.lib libbulletsoftbody_d.lib libbulletcollision_d.lib libbulletdynamics_d.lib"
-				OutputFile="$(OutDir)\$(ProjectName).exe"
-				AdditionalLibraryDirectories="&quot;..\..\..\dom\build\vc8-1.4&quot;;&quot;..\..\..\dom\external-libs\libxml2\win32\lib\x64&quot;;&quot;..\..\..\dom\external-libs\pcre\lib\x64&quot;;&quot;..\..\..\fx\build\vc8-Win&quot;;&quot;..\..\..\rt\build\vc8-Win&quot;;&quot;..\..\..\rt\external-libs\devIL\win32\lib&quot;;&quot;$(CG_LIB_PATH)\..\lib.x64&quot;;&quot;..\..\..\rt\external-libs\bullet\lib\vc8&quot;;&quot;..\..\..\dom\external-libs\boost\lib\x64&quot;;&quot;..\..\..\dom\external-libs\minizip\win32\lib&quot;"
+				AdditionalDependencies="rtx64.lib fxx64.lib libcollada14dom22-sx64.lib opengl32.lib glu32.lib libxml2_a.lib zlib.lib wsock32.lib winmm.lib pcre.lib pcrecpp.lib libboost_system.lib minizip.lib DevIL.lib libboost_filesystem.lib libbulletmath_d.lib libbulletmultithreaded_d.lib libbulletopenglsupport_d.lib libbulletsoftbody_d.lib libbulletcollision_d.lib libbulletdynamics_d.lib"
+				OutputFile="$(OutDir)\$(ProjectName)x64.exe"
+				AdditionalLibraryDirectories="&quot;..\..\..\dom\build\vc8-1.4x64&quot;;&quot;..\..\..\dom\external-libs\libxml2\win32\lib\x64&quot;;&quot;..\..\..\dom\external-libs\pcre\lib\x64&quot;;&quot;..\..\..\fx\build\vc8-Winx64&quot;;&quot;..\..\..\rt\build\vc8-Winx64&quot;;&quot;..\..\..\rt\external-libs\devIL\win32\lib&quot;;&quot;$(CG_LIB_PATH)\..\lib.x64&quot;;&quot;..\..\..\rt\external-libs\bullet\lib\vc8&quot;;&quot;..\..\..\dom\external-libs\boost\lib\x64&quot;;&quot;..\..\..\dom\external-libs\minizip\win32\lib&quot;"
+				IgnoreDefaultLibraryNames=""
 				GenerateDebugInformation="false"
 				TargetMachine="17"
 			/>

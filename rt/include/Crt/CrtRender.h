@@ -292,8 +292,10 @@ public:
 	CrtVoid ZoomIn(CrtFloat zoom);
 	RangeData range_data;
 
+#ifndef NO_BULLET
 	CrtBool SetGravity(const CrtVec3f & vec);
 	CrtBool UsingPhysics();
+#endif
 };
 
 extern CrtRender _CrtRender; 

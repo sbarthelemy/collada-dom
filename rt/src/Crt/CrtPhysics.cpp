@@ -5,6 +5,7 @@
 * http://www.opensource.org/licenses/mit-license.php
 *
 */ 
+#ifndef NO_BULLET
 
 #include "dae.h"
 #include "dom/domCOLLADA.h"
@@ -1639,3 +1640,4 @@ void	MyColladaConverter::setCameraInfo(const btVector3& camUp,int forwardAxis)
 }
 
 #endif
+#endif //NO_BULLET

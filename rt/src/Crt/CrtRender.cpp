@@ -18,6 +18,8 @@
 LARGE_INTEGER update_time, render_time;  // !!!GAC temporary WINDOWS ONLY for performance timing
 #endif
 
+#ifndef NO_BULLET
+
 CrtBool CrtRender::UsingPhysics() 
 {
 	return (CrtBool) (Scene->m_physics != NULL);
@@ -34,6 +36,8 @@ CrtBool CrtRender::SetGravity(const CrtVec3f & vec)
 #endif
 	return CrtFalse;
 }
+
+#endif //NO_BULLET
 
 CrtBool CrtRender::InitWindow()
 {
@@ -191,6 +195,7 @@ CrtBool CrtRender::Render()
 	{
 		extern float ticker;
 		ticker += 0.01f;
+#ifndef NO_BULLET
 #if defined SPU_BULLET || !defined (SN_TARGET_PS3)
 
 		if (UsePhysics)
@@ -199,6 +204,7 @@ CrtBool CrtRender::Render()
 				Scene->m_physics->Render(Delta);
 		}
 #endif
+#endif //NO_BULLET
 	}
 
 	//printf(" Rendering Scene \n" ); 
