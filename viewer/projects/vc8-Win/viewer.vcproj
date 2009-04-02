@@ -146,7 +146,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="rt-dx64.lib fx-dx64.lib libcollada14dom22-sdx64.lib opengl32.lib glu32.lib libxml2_a.lib zlib.lib wsock32.lib winmm.lib pcre-d.lib pcrecpp-d.lib libboost_system-d.lib minizip.lib libboost_filesystem-d.lib"
-				OutputFile="$(OutDir)\$(ProjectName)-d.exe"
+				OutputFile="$(OutDir)\$(ProjectName)-dx64.exe"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="&quot;..\..\..\rt\build\vc8-Win-dx64&quot;;&quot;..\..\..\dom\build\vc8-1.4-dx64&quot;;&quot;..\..\..\fx\build\vc8-Win-dx64&quot;;&quot;..\..\..\dom\external-libs\libxml2\win32\lib\x64&quot;;&quot;..\..\..\rt\external-libs\devIL\win32\lib&quot;;&quot;$(CG_LIB_PATH)\..\lib.x64&quot;;&quot;..\..\..\dom\external-libs\pcre\lib\x64\&quot;;&quot;..\..\..\rt\external-libs\bullet\lib\vc8&quot;;&quot;..\..\..\dom\external-libs\boost\lib\x64&quot;;&quot;..\..\..\dom\external-libs\minizip\win32\lib&quot;"
 				GenerateManifest="true"
