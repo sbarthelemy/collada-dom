@@ -51,7 +51,7 @@
 				RuntimeLibrary="3"
 				RuntimeTypeInfo="false"
 				UsePrecompiledHeader="0"
-				WarningLevel="4"
+				WarningLevel="3"
 				Detect64BitPortabilityProblems="true"
 				DebugInformationFormat="4"
 			/>
@@ -180,7 +180,7 @@
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;CFX_PLATFORM_INCLUDE=\&quot;cfxWin.h\&quot;;_CRT_SECURE_NO_DEPRECATE;CRT_PLATFORM_INCLUDE=\&quot;CrtWin.h\&quot;;BOOST_ALL_NO_LIB"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
-				WarningLevel="4"
+				WarningLevel="3"
 				Detect64BitPortabilityProblems="true"
 				DebugInformationFormat="3"
 			/>

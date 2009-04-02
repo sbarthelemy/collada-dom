@@ -46,7 +46,7 @@
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				RuntimeTypeInfo="false"
-				WarningLevel="4"
+				WarningLevel="3"
 				DebugInformationFormat="1"
 			/>
 			<Tool
@@ -123,7 +123,7 @@
 				AdditionalIncludeDirectories="..\..\..\dom\include;..\..\..\dom\include\1.4;..\..\..\fx\include;..\..\..\rt\include;..\..\..\rt\include/1.4;&quot;..\..\..\rt\external-libs\devil\win32\include&quot;;&quot;..\..\..\rt\external-libs\bullet\include&quot;;&quot;$(CG_INC_PATH)&quot;;&quot;..\..\..\dom\external-libs\boost&quot;"
 				PreprocessorDefinitions="CFX_PLATFORM_INCLUDE=\&quot;cfxWin.h\&quot;;_CRT_SECURE_NO_DEPRECATE;WIN32;NDEBUG;_WINDOWS;BOOST_ALL_NO_LIB"
 				RuntimeLibrary="2"
-				WarningLevel="4"
+				WarningLevel="3"
 				DebugInformationFormat="0"
 			/>
 			<Tool
