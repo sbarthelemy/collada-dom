@@ -19,6 +19,7 @@
 #include <cfxSetParam.h>
 #include <cfxSurface.h>
 #include <cfxPlatform.h>
+#include <cfxData.h>
 
 
 // cfxMaterial
