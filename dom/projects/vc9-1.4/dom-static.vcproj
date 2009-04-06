@@ -40,6 +40,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/wd4819"
 				Optimization="0"
 				AdditionalIncludeDirectories="..\..\include;..\..\include\1.4;&quot;..\..\external-libs\libxml2\include&quot;;&quot;..\..\external-libs\tinyxml&quot;;&quot;..\..\external-libs\pcre&quot;;&quot;..\..\external-libs\minizip\include&quot;;&quot;..\..\external-libs\boost&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CRT_SECURE_NO_DEPRECATE;DOM_INCLUDE_LIBXML;PCRE_STATIC;BOOST_ALL_NO_LIB"
@@ -106,6 +107,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/wd4819"
 				WholeProgramOptimization="false"
 				AdditionalIncludeDirectories="..\..\include;..\..\include\1.4;&quot;..\..\external-libs\libxml2\include&quot;;&quot;..\..\external-libs\tinyxml&quot;;&quot;..\..\external-libs\pcre&quot;;&quot;..\..\external-libs\minizip\include&quot;;&quot;..\..\external-libs\boost&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CRT_SECURE_NO_DEPRECATE;DOM_INCLUDE_LIBXML;PCRE_STATIC;BOOST_ALL_NO_LIB"

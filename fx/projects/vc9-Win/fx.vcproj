@@ -40,6 +40,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/wd4819"
 				AdditionalIncludeDirectories="../../include;..\..\..\dom\include;..\..\..\dom\include\1.4;&quot;$(CG_INC_PATH)&quot;;&quot;..\..\..\dom\external-libs\boost&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;DEFAULT_CG_PLATFORM=\&quot;PC-OGL\&quot;;CFX_PLATFORM_INCLUDE=\&quot;cfxWin.h\&quot;;_CRT_SECURE_NO_DEPRECATE;BOOST_ALL_NO_LIB"
 				RuntimeLibrary="2"
@@ -102,7 +103,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalOptions="/wd4311 /wd4312 "
+				AdditionalOptions="/wd4311 /wd4312 /wd4819"
 				Optimization="0"
 				AdditionalIncludeDirectories="../../include;..\..\..\dom\include;..\..\..\dom\include\1.4;&quot;$(CG_INC_PATH)&quot;;&quot;..\..\..\dom\external-libs\boost&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;DEFAULT_CG_PLATFORM=\&quot;PC-OGL\&quot;;CFX_PLATFORM_INCLUDE=\&quot;cfxWin.h\&quot;;_CRT_SECURE_NO_DEPRECATE;BOOST_ALL_NO_LIB"

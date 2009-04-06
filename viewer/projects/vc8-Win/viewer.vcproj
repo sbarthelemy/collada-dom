@@ -42,6 +42,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/wd4819"
 				Optimization="0"
 				AdditionalIncludeDirectories="..\..\..\dom\include;..\..\..\dom\include\1.4;..\..\..\fx\include;..\..\..\rt\include;..\..\..\rt\include/1.4;&quot;..\..\..\rt\external-libs\devil\win32\include&quot;;&quot;..\..\..\rt\external-libs\bullet\include&quot;;&quot;$(CG_INC_PATH)&quot;;&quot;..\..\..\dom\external-libs\boost&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;CFX_PLATFORM_INCLUDE=\&quot;cfxWin.h\&quot;;_CRT_SECURE_NO_DEPRECATE;BOOST_ALL_NO_LIB"
@@ -125,6 +126,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/wd4819"
 				Optimization="0"
 				AdditionalIncludeDirectories="..\..\..\dom\include;..\..\..\dom\include\1.4;..\..\..\fx\include;..\..\..\rt\include;..\..\..\rt\include/1.4;&quot;..\..\..\rt\external-libs\devil\win32\include&quot;;&quot;..\..\..\rt\external-libs\bullet\include&quot;;&quot;$(CG_INC_PATH)&quot;;&quot;..\..\..\dom\external-libs\boost&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;CFX_PLATFORM_INCLUDE=\&quot;cfxWin.h\&quot;;_CRT_SECURE_NO_DEPRECATE;BOOST_ALL_NO_LIB;NO_BULLET;NO_DEVIL"
@@ -207,6 +209,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/wd4819 "
 				AdditionalIncludeDirectories="..\..\..\dom\include;..\..\..\dom\include\1.4;..\..\..\fx\include;..\..\..\rt\include;..\..\..\rt\include/1.4;&quot;..\..\..\rt\external-libs\devil\win32\include&quot;;&quot;..\..\..\rt\external-libs\bullet\include&quot;;&quot;$(CG_INC_PATH)&quot;;&quot;..\..\..\dom\external-libs\boost&quot;"
 				PreprocessorDefinitions="CFX_PLATFORM_INCLUDE=\&quot;cfxWin.h\&quot;;_CRT_SECURE_NO_DEPRECATE;WIN32;NDEBUG;_WINDOWS;BOOST_ALL_NO_LIB"
 				RuntimeLibrary="2"
@@ -286,6 +289,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/wd4819"
 				AdditionalIncludeDirectories="..\..\..\dom\include;..\..\..\dom\include\1.4;..\..\..\fx\include;..\..\..\rt\include;..\..\..\rt\include/1.4;&quot;..\..\..\rt\external-libs\devil\win32\include&quot;;&quot;..\..\..\rt\external-libs\bullet\include&quot;;&quot;$(CG_INC_PATH)&quot;;&quot;..\..\..\dom\external-libs\boost&quot;"
 				PreprocessorDefinitions="CFX_PLATFORM_INCLUDE=\&quot;cfxWin.h\&quot;;_CRT_SECURE_NO_DEPRECATE;WIN32;NDEBUG;_WINDOWS;BOOST_ALL_NO_LIB;NO_DEVIL"
 				RuntimeLibrary="2"
