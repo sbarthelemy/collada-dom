@@ -60,13 +60,13 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="rt-d.lib fx-d.lib libcollada14dom22-sd.lib opengl32.lib glu32.lib libxml2_a.lib zlib.lib wsock32.lib winmm.lib DevIL.lib pcre-d.lib pcrecpp-d.lib libboost_system-d.lib minizip.lib libboost_filesystem-d.lib libbulletmath_d.lib libbulletopenglsupport_d.lib libbulletsoftbody_d.lib libbulletcollision_d.lib libbulletdynamics_d.lib"
+				AdditionalDependencies="rt-d.lib fx-d.lib libcollada14dom22-sd.lib opengl32.lib glu32.lib libxml2_a.lib zlib.lib wsock32.lib winmm.lib DevIL.lib pcre-d.lib pcrecpp-d.lib libboost_system-d.lib minizip.lib libboost_filesystem-d.lib libbulletmath.lib libbulletcollision.lib libbulletdynamics.lib"
 				OutputFile="$(OutDir)\$(ProjectName)-d.exe"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="&quot;..\..\..\rt\build\vc9-Win-d&quot;;&quot;..\..\..\dom\build\vc9-1.4-d&quot;;&quot;..\..\..\fx\build\vc9-Win-d&quot;;&quot;..\..\..\dom\external-libs\libxml2\win32\lib&quot;;&quot;..\..\..\rt\external-libs\devIL\win32\lib&quot;;&quot;$(CG_LIB_PATH)&quot;;&quot;..\..\..\dom\external-libs\pcre\lib\vc9\&quot;;&quot;..\..\..\rt\external-libs\bullet\lib\vc8&quot;;&quot;..\..\..\dom\external-libs\boost\lib\vc9&quot;;&quot;..\..\..\dom\external-libs\minizip\win32\lib&quot;"
 				GenerateManifest="true"
 				ManifestFile="$(IntDir)\$(TargetFileName).intermediate.manifest"
-				IgnoreDefaultLibraryNames="msvcrt"
+				IgnoreDefaultLibraryNames="MSVCRT; LIBCMT"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
@@ -137,10 +137,13 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="rt.lib fx.lib libcollada14dom22-s.lib opengl32.lib glu32.lib libxml2_a.lib zlib.lib wsock32.lib winmm.lib DevIL.lib pcre.lib pcrecpp.lib libboost_system.lib minizip.lib libboost_filesystem.lib libbulletmath_d.lib libbulletopenglsupport_d.lib libbulletsoftbody_d.lib libbulletcollision_d.lib libbulletdynamics_d.lib"
+				AdditionalDependencies="rt.lib fx.lib libcollada14dom22-s.lib opengl32.lib glu32.lib libxml2_a.lib zlib.lib wsock32.lib winmm.lib DevIL.lib pcre.lib pcrecpp.lib libboost_system.lib minizip.lib libboost_filesystem.lib libbulletmath.lib libbulletcollision.lib libbulletdynamics.lib"
 				OutputFile="$(OutDir)\$(ProjectName).exe"
 				AdditionalLibraryDirectories="&quot;..\..\..\dom\build\vc9-1.4&quot;;&quot;..\..\..\dom\external-libs\libxml2\win32\lib&quot;;&quot;..\..\..\dom\external-libs\pcre\lib\vc9&quot;;&quot;..\..\..\fx\build\vc9-Win&quot;;&quot;..\..\..\rt\build\vc9-Win&quot;;&quot;..\..\..\rt\external-libs\devIL\win32\lib&quot;;&quot;$(CG_LIB_PATH)&quot;;&quot;..\..\..\rt\external-libs\bullet\lib\vc8&quot;;&quot;..\..\..\dom\external-libs\boost\lib\vc9&quot;;&quot;..\..\..\dom\external-libs\minizip\win32\lib&quot;"
+				IgnoreDefaultLibraryNames="LIBCMT"
 				GenerateDebugInformation="false"
+				OptimizeReferences="0"
+				EnableCOMDATFolding="0"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
 			/>
