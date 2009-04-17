@@ -147,7 +147,7 @@ which can be used to view any of the included sample COLLADA documents.
 1) Execute make utility at root level of package by typing 'make'
    viewer.self will be in viewer\bin for release build (conf=release, this is the default build)
    viewer.self will be in viewer\bin for debug build (conf=debug)
-2) Unzip samples.zip, extract its contents to viewer\bin\
+2) Unzip samples.zip, extract its content to viewer\bin\
 3) Use ProDG Target Manager or Debugger to load viewer.self 
    Optionally, specify a COLLADA document (cage.dae) as command line argument when loading viewer executable
 
@@ -155,7 +155,7 @@ which can be used to view any of the included sample COLLADA documents.
 [Windows host/Visual Studio]
 Project files for Visual C++ 8 (VS 2005) and Visual C++ 9 (VS 2008) are both provided. If you are using Visual C++ 9,
 substitute "vc9" for "vc8" for the following instructions.
-1) Open Visual Studio Solution at viewer\projects\vc8-PS3\viewer.sln
+1) Open Visual Studio Solution at \viewer\projects\vc8-PS3\viewer.sln
 2) Select "PS3 debug" or "PS3 release" configuration to build PS3 target
 3) Unzip samples.zip, extract its contents to viewer\bin\
 4) Use ProDG Target Manager or Debugger to load viewer.ppu.self (release) or viewer-d.ppu.self in \viewer\bin
@@ -163,9 +163,9 @@ substitute "vc9" for "vc8" for the following instructions.
 
 [Linux]
 1) Execute make utility at root level of package by typing 'make'
-   viewer.self will be in viewer\bin for release build (conf=release, this is the default build)
-   viewer.self will be in viewer\bin for debug build (conf=debug)
-2) Unzip samples.zip, extract its contents to viewer\bin\
+   viewer.self will be in viewer/bin for release build (conf=release, this is the default build)
+   viewer.self will be in viewer/bin for debug build (conf=debug)
+2) Unzip samples.zip, extract its contents to viewer/bin/
 3) Change directory to where the COLLADA Viewer executable is, type the following commands to load it, replace
    the IP address with your PS3 IP address.
    
@@ -191,11 +191,11 @@ COLLADA documents.
 Project files for Visual C++ 8 (VS 2005) and Visual C++ 9 (VS 2008) are both provided. If you are using Visual C++ 9,
 substitute "vc9" for "vc8" for the following instructions.
 
-1) Open Visual Studio Solution at viewer\projects\vc8-Win\viewer.sln
+1) Open Visual Studio Solution at \viewer\projects\vc8-Win\viewer.sln
 2) Select "Debug" or "Release" configuration to build Windows executable
-3) viewer.exe (release) or viewer-d.exe(debug) will be in viewer\bin
-4) Unzip samples.zip, extract its contents to viewer\bin\
-5) Open up a DOS Shell window, change directory to viewer\bin, type "viewer.exe duck.dae" to view COLLADA document "duck.dae"
+3) viewer.exe (release) or viewer-d.exe(debug) will be in \viewer\bin
+4) Unzip samples.zip, extract its contents to \viewer\bin\
+5) Open up a DOS Shell window, change directory to \viewer\bin, type "viewer.exe duck.dae" to view COLLADA document "duck.dae"
 
 
 ============================================================================
@@ -293,8 +293,8 @@ W           Move camera closer to the focus point, zoom in
 S           Move camera away from the focus point, zoom out
 A           Move camera and focus point to the left
 D           Move camera and focus point to the right
-Space       Move camera and focus point up
-X           Move camera and focus point down
+Space       Move camera and focus point to the up
+X           Move camera and focus point to the down
 F           Change triangle/quad culling setting; rotate between frontface-culling/no-culling/backface-culling
 
 Mouse:
@@ -368,5 +368,10 @@ Known issues
   
 	SYS_PROCESS_PARAM( 1001, 0x18000 );		// priority = 1001, increase stack size to 96K, or other setting to suit your need
 
+
+- To keep the COLLADA Viewer sample code simple and portable across OS's, some user generated OS/windowing events are handled in modal way 
+  that suspends running the core code of the Viewer.  When this happens, animations will stop utill the event is over, then will run very fast 
+  for a short time as they catch up to the current realtime.  This is usually only noticable when dragging the Viewer window to a new location 
+  in Microsoft Windows but may also occur briefly on other events such as windows being covered/uncovered.
 
 
