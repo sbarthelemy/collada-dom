@@ -204,6 +204,13 @@ Building the COLLADA package and running the COLLADA Viewer sample for Linux
 
 These instructions build the entire contents of the COLLADA package including libraries and samples for Linux PC. 
 
+CMake Users interested only in colladadom library:
+
+1) Type 'mkdir -p build; cd build; cmake ..; make; make install' at the root level of the package.
+   By default both 1.5 and 1.4 libraries will be installed.
+
+Default:
+
 1) Type 'make -f Makefile.linux' at root level of package.
    COLLADA Viewer 'viewer' will be created in viewer/build/linux-1.4 for release build (conf=release, this is the default build)
    'viewer' will be created in viewer/build/linux-1.4-d for debug build 'make -f Makefile.linux conf=debug'

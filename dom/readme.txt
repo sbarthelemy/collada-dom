@@ -22,6 +22,7 @@ Rodrigo Hernandez (MinGW support)
 Alex De Pereyra (bug reporting)
 Alberto Luaces (bug reporting)
 Michael Wojcik (Visual Studio 2010 Support)
+Rosen Diankov (patches for 1.5 and cmake support)
 
 Apologies if I missed anyone (please let me know!).
 

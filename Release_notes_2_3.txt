@@ -1,0 +1,18 @@
+----------------------------------------------------------------------
+COLLADA-DOM 2.3
+----------------------------------------------------------------------
+
+[New Features]
+
+- Added cmake support. cmake now produces *.pc files direclty usable in Linux's package config: collada14dom, collada15dom. Use the cmake-modules/FindCOLLADA.cmake when searching for the collada installation.
+
+- Added newer version of minizip v1.1. 
+
+[Bug Fix]
+
+- Fixed two problems in SID resolution which was prevent collada 1.5 robot files from being loaded correctly.
+
+
+[Known Bugs/Restrictions]
+
+- Currently it is not possible to use both 1.4 and 1.5 in the same executable. This issue might addressed in the future with namespaces. This means collada-dom has to offer two different pkg-config files, one for 1.4 and one for 1.5.
