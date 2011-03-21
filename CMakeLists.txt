@@ -33,7 +33,7 @@ set(CMAKE_SKIP_BUILD_RPATH  FALSE)
 set(CMAKE_BUILD_WITH_INSTALL_RPATH FALSE)
 
 # The RPATH to be used when installing
-set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
+set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib${LIB_SUFFIX}")
 
 # Add the automatically determined parts of the RPATH
 # which point to directories outside the build tree to the install RPATH
@@ -162,8 +162,13 @@ if( NOT ZLIB_FOUND )
   message(FATAL_ERROR "could not find zlib")
 endif()
 
-add_subdirectory(dom/external-libs/minizip-1.1)
-set(MINIZIP_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/dom/external-libs/minizip-1.1 ${ZLIB_INCLUDE_DIR})
+pkg_check_modules(minizip minizip)
+if(minizip_FOUND)
+  set(MINIZIP_INCLUDE_DIR ${minizip_INCLUDE_DIRS})
+else()
+  add_subdirectory(dom/external-libs/minizip-1.1)
+  set(MINIZIP_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/dom/external-libs/minizip-1.1 ${ZLIB_INCLUDE_DIR})
+endif()
 
 pkg_check_modules(libpcrecpp libpcrecpp)
 if( libpcrecpp_FOUND )
@@ -197,7 +202,7 @@ if( OPT_COLLADA15 )
     "${CMAKE_CURRENT_SOURCE_DIR}/collada15dom.pc.cmake.in"
     "${CMAKE_CURRENT_BINARY_DIR}/collada15dom.pc" @ONLY IMMEDIATE)
   if(UNIX)
-    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/collada15dom.pc DESTINATION lib/pkgconfig)
+    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/collada15dom.pc DESTINATION lib${LIB_SUFFIX}/pkgconfig)
   endif()
 endif()
 
@@ -206,7 +211,7 @@ if( OPT_COLLADA14 )
     "${CMAKE_CURRENT_SOURCE_DIR}/collada14dom.pc.cmake.in"
     "${CMAKE_CURRENT_BINARY_DIR}/collada14dom.pc" @ONLY IMMEDIATE)
   if(UNIX)
-    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/collada14dom.pc DESTINATION lib/pkgconfig)
+    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/collada14dom.pc DESTINATION lib${LIB_SUFFIX}/pkgconfig)
   endif()
 endif()
 
