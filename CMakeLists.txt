@@ -145,7 +145,7 @@ find_package(LibXml2)
 
 if( LIBXML2_FOUND )
   include_directories(${LIBXML2_INCLUDE_DIR})
-  add_definitions(${LIBXML2_DEFINITIONS})
+  add_definitions(${LIBXML2_DEFINITIONS} -DDOM_INCLUDE_LIBXML)
   message(STATUS "libxml2 found")
 else()
   if( MSVC )
