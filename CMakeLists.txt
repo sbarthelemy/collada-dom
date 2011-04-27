@@ -260,7 +260,7 @@ if(CMAKE_CPACK_COMMAND AND UNIX AND OPT_BUILD_PACKAGES)
   if( ${CPACK_DEBIAN_DISTRIBUTION_NAME} STREQUAL "ubuntu" )
     set(CPACK_DEBIAN_DISTRIBUTION_RELEASES karmic lucid maverick natty CACHE STRING "Release code-names of the distrubiton release")
   endif()
-
+  set(CPACK_COMPONENT_COLLADA-DOM_DEPENDS ${CPACK_COMPONENTS_ALL})
   set(DPUT_HOST "" CACHE STRING "PPA repository to upload the debian sources")
   include(CPack)
   include(DebSourcePPA)
