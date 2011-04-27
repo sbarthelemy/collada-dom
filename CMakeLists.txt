@@ -217,7 +217,7 @@ endif()
 
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/collada_dom-config.cmake.in" "${CMAKE_CURRENT_BINARY_DIR}/collada_dom-config.cmake" @ONLY IMMEDIATE)
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/collada_dom-config-version.cmake.in" "${CMAKE_CURRENT_BINARY_DIR}/collada_dom-config-version.cmake" @ONLY IMMEDIATE)
-install(FILES "${CMAKE_CURRENT_BINARY_DIR}/collada_dom-config.cmake" "${CMAKE_CURRENT_BINARY_DIR}/collada_dom-config-version.cmake" DESTINATION "lib${LIB_SUFFIX}/cmake/collada" COMPONENT ${COMPONENT_PREFIX}dom-dev)
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/collada_dom-config.cmake" "${CMAKE_CURRENT_BINARY_DIR}/collada_dom-config-version.cmake" DESTINATION "lib${LIB_SUFFIX}/cmake/collada_dom" COMPONENT ${COMPONENT_PREFIX}dom-dev)
 
 # add make uninstall capability
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/cmake-modules/cmake_uninstall.cmake.in" "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake" IMMEDIATE @ONLY)
