@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 2.6.2)
+cmake_minimum_required (VERSION 2.6.0)
 project (collada-dom)
 set( CMAKE_ALLOW_LOOSE_LOOP_CONSTRUCTS TRUE )
 
@@ -98,7 +98,7 @@ if( APPLE OR ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
   add_definitions("-Dfopen64=fopen -Dfseeko64=fseeko -Dfseek64=fseek -Dftell64=ftell -Dftello64=ftello")
 endif()
 
-set(COLLADA_DOM_INCLUDE_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/include/collada-dom")
+set(COLLADA_DOM_INCLUDE_INSTALL_DIR "include/collada-dom")
 
 set(COLLADA_DOM_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/dom/include)
 set(COLLADA_DOM_LINK_DIRS "")
@@ -211,7 +211,7 @@ if( OPT_COLLADA14 )
     configure_file("${CMAKE_CURRENT_SOURCE_DIR}/collada14dom.pc.in" "${CMAKE_CURRENT_BINARY_DIR}/collada14dom.pc" @ONLY IMMEDIATE)
     install(FILES ${CMAKE_CURRENT_BINARY_DIR}/collada14dom.pc DESTINATION lib${LIB_SUFFIX}/pkgconfig COMPONENT ${COMPONENT_PREFIX}14dom-dev)
   endif()
-  set(CPACK_COMPONENTS_ALL ${CPACK_COMPONENTS_ALL} ${COMPONENT_PREFIX}154om ${COMPONENT_PREFIX}14dom-dev)
+  set(CPACK_COMPONENTS_ALL ${CPACK_COMPONENTS_ALL} ${COMPONENT_PREFIX}14dom ${COMPONENT_PREFIX}14dom-dev)
   set(CPACK_COMPONENT_${COMPONENT_PREFIX_UPPER}14DOM-DEV_DEPENDS ${COMPONENT_PREFIX}dom-dev ${COMPONENT_PREFIX}14dom)
 endif()
 
