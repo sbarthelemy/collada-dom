@@ -241,14 +241,14 @@ if(CMAKE_CPACK_COMMAND AND UNIX AND OPT_BUILD_PACKAGES)
 
   set(CPACK_COMPONENT_${COMPONENT_PREFIX_UPPER}DOM-DEV_DISPLAY_NAME "common headers and installs")
   
-  set(CPACK_DEBIAN_BUILD_DEPENDS debhelper cmake libxml2-dev libboost-dev libpcre3-dev zlib1g-dev libboost-filesystem-dev libboost-system-dev libpcre3-dev)
+  set(CPACK_DEBIAN_BUILD_DEPENDS debhelper cmake libxml2-dev libboost-dev libpcre3-dev zlib1g-dev libboost-filesystem-dev libboost-system-dev libpcre3-dev pkg-config)
 
   # debian
   set(CPACK_DEBIAN_PACKAGE_PRIORITY optional)
   set(CPACK_DEBIAN_PACKAGE_SECTION libs)
   set(CPACK_DEBIAN_PACKAGE_DEPENDS ${CPACK_COMPONENTS_ALL})
   set(CPACK_DEBIAN_PACKAGE_SUGGESTS)
-  set(CPACK_DEBIAN_PACKAGE_NAME collada-dom${COLLADA_DOM_VERSION_MAJOR}.${COLLADA_DOM_VERSION_MINOR})
+  set(CPACK_DEBIAN_PACKAGE_NAME collada-dom)
   set(CPACK_DEBIAN_PACKAGE_REMOVE_SOURCE_FILES viewer fx rt Makefile.linux Makefile dom/codeGen dom/Makefile dom/external-libs/boost dom/external-libs/libxml2 dom/external-libs/minizip dom/external-libs/pcre dom/test dom/release dom/projects dom/make)
   set(CPACK_DEBIAN_PACKAGE_SOURCE_COPY svn export --force)
   set(CPACK_DEBIAN_CHANGELOG)
