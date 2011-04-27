@@ -1,0 +1,67 @@
+# - Find Collada Dom Installation
+#
+# Make sure a component is set to select the collada specification to link with. For example "1.4" or "1.5".
+#
+# Users can set the following variables before calling the module:
+#  COLLADA_DOM_DIR - The preferred installation prefix for searching for COLLADA. Set by the user.
+#
+# COLLADA_DOM_ROOT_DIR - the root directory where the installation can be found
+# COLLADA_DOM_CXX_FLAGS - extra flags for compilation
+# COLLADA_DOM_LINK_FLAGS - extra flags for linking
+# COLLADA_DOM_INCLUDE_DIRS - include directories
+# COLLADA_DOM_LIBRARY_DIRS - link directories
+# COLLADA_DOM_LIBRARIES - libraries to link plugins with
+# COLLADA_DOM_Boost_VERSION - the boost version openrave was compiled with
+get_filename_component(_PREFIX "${CMAKE_CURRENT_LIST_FILE}" PATH)
+get_filename_component(_PREFIX "${_PREFIX}" PATH)
+get_filename_component(_PREFIX "${_PREFIX}" PATH)
+get_filename_component(COLLADA_DOM_ROOT_DIR "${_PREFIX}" PATH)
+
+set( COLLADA_DOM_CXX_FLAGS "-DDOM_DYNAMIC" ) # dynamically linked library
+if( WIN32 )
+  # for visual studio linking, most of the time boost dlls will be used
+  set( COLLADA_DOM_CXX_FLAGS "${COLLADA_DOM_CXX_FLAGS} -DBOOST_ALL_DYN_LINK -DBOOST_ALL_NO_LIB")
+endif()
+set( COLLADA_DOM_LINK_FLAGS "" )
+  set( COLLADA_DOM_LIBRARY_DIRS "@CMAKE_INSTALL_PREFIX@/lib")
+if( COLLADA_DOM_FIND_COMPONENTS STREQUAL "1.4" )
+  set( COLLADA_DOM_INCLUDE_DIRS "@COLLADA_DOM_DOM_INCLUDE_INSTALL_DIR@" "@COLLADA_DOM_DOM_INCLUDE_INSTALL_DIR@/1.4")
+  set( COLLADA_DOM_LIBRARIES collada14dom)
+elseif( COLLADA_DOM_FIND_COMPONENTS STREQUAL "1.5" )
+  set( COLLADA_DOM_INCLUDE_DIRS "@COLLADA_DOM_DOM_INCLUDE_INSTALL_DIR@" "@COLLADA_DOM_DOM_INCLUDE_INSTALL_DIR@/1.5")
+  set( COLLADA_DOM_LIBRARIES collada15dom)
+else()
+  message(FATAL_ERROR "need to specify a collada specification component, for example '1.4' or '1.5'")
+endif()
+set( COLLADA_DOM_Boost_VERSION "@Boost_MAJOR_VERSION@.@Boost_MINOR_VERSION@")
+
+if( WIN32 )
+  # search for the boost version openrave was compiled with
+  set(Boost_USE_MULTITHREAD ON)
+  set(Boost_USE_STATIC_LIBS OFF)
+  set(Boost_USE_STATIC_RUNTIME OFF)
+  find_package(Boost ${COLLADA_DOM_Boost_VERSION} EXACT COMPONENTS thread date_time)
+  if(Boost_VERSION AND NOT "${Boost_VERSION}" STREQUAL "0")
+    set( COLLADA_DOM_INCLUDE_DIRS "${COLLADA_DOM_INCLUDE_DIRS}" ${Boost_INCLUDE_DIRS})
+    set( COLLADA_DOM_LIBRARY_DIRS "${COLLADA_DOM_LIBRARY_DIRS}" ${Boost_LIBRARY_DIRS})
+    set( COLLADA_DOM_CORE_LIBRARIES ${COLLADA_DOM_CORE_LIBRARIES} ${Boost_THREAD_LIBRARY} ${Boost_DATE_TIME_LIBRARY})
+  else(Boost_VERSION AND NOT "${Boost_VERSION}" STREQUAL "0")
+    message(WARNING "Failed to find Boost ${COLLADA_DOM_Boost_VERSION} necessary for COLLADA")
+  endif(Boost_VERSION AND NOT "${Boost_VERSION}" STREQUAL "0")
+endif( WIN32 )
+
+# for compatibility wiht pkg-config
+set(COLLADA_DOM_CFLAGS_OTHER "${COLLADA_DOM_CXX_FLAGS}")
+set(COLLADA_DOM_LDFLAGS_OTHER "${COLLADA_DOM_LINK_FLAGS}")
+
+MARK_AS_ADVANCED(
+  COLLADA_DOM_ROOT_DIR
+  COLLADA_DOM_CXX_FLAGS
+  COLLADA_DOM_LINK_FLAGS
+  COLLADA_DOM_INCLUDE_DIRS
+  COLLADA_DOM_LIBRARIES
+  COLLADA_DOM_CORE_LIBRARIES
+  COLLADA_DOM_Boost_VERSION
+  COLLADA_DOM_CFLAGS_OTHER
+  COLLADA_DOM_LDFLAGS_OTHER
+)

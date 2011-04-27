@@ -1,11 +1,11 @@
-cmake_minimum_required (VERSION 2.6.0)
+cmake_minimum_required (VERSION 2.6.2)
 project (collada-dom)
 set( CMAKE_ALLOW_LOOSE_LOOP_CONSTRUCTS TRUE )
 
 # Define here the needed parameters
 set (COLLADA_DOM_VERSION_MAJOR 2)
 set (COLLADA_DOM_VERSION_MINOR 3)
-set (COLLADA_DOM_VERSION_PATCH 0)
+set (COLLADA_DOM_VERSION_PATCH 1)
 set (COLLADA_DOM_VERSION ${COLLADA_DOM_VERSION_MAJOR}.${COLLADA_DOM_VERSION_MINOR}.${COLLADA_DOM_VERSION_PATCH})
 set (COLLADA_DOM_SOVERSION ${COLLADA_DOM_VERSION_MAJOR})
 message(STATUS "Compiling Collada DOM Version ${COLLADA_DOM_VERSION}")
@@ -50,6 +50,7 @@ option(OPT_COLLADA14 "Enable collada 1.4 compilation" ON)
 option(OPT_COMPILE_VIEWER "Enable collada viewer compilation" OFF)
 option(OPT_COMPILE_FX "Enable collada fx compilation" OFF)
 option(OPT_COMPILE_RT "Enable collada rt compilation" OFF)
+option(OPT_BUILD_PACKAGES "Set to ON to generate CPack configuration files and packaging targets" OFF)
 
 if( OPT_COMPILE_VIEWER )
   message(WARNING "compiling collada viewer currently not supported")
@@ -62,6 +63,9 @@ if( OPT_COMPILE_RT )
 endif()
 
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake-modules")
+set(COMPONENT_PREFIX libcollada)
+string(TOUPPER ${COMPONENT_PREFIX} COMPONENT_PREFIX_UPPER)
+set(CPACK_COMPONENTS_ALL ${COMPONENT_PREFIX}dom-dev)
 
 include(CheckIncludeFile)
 include(CheckIncludeFileCXX)
@@ -71,7 +75,7 @@ include(CheckCXXSourceCompiles)
 #include(CheckCXXSourceRuns)
 #include(CheckCXXCompilerFlag)
 include(CheckTypeSize)
-include(FindPkgConfig)
+find_package(PkgConfig)
 
 if( CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX )
   add_definitions("-fno-strict-aliasing -Wall")
@@ -107,7 +111,7 @@ endif()
 if( NOT $ENV{BOOST_LIBRARYDIR} STREQUAL "" )
   set(Boost_LIBRARY_DIRS $ENV{BOOST_LIBRARYDIR})
 endif()
-find_package(Boost COMPONENTS filesystem system)
+find_package(Boost COMPONENTS filesystem system REQUIRED)
 
 message(STATUS "found boost version: ${Boost_VERSION}")
 
@@ -119,10 +123,6 @@ elseif(Boost_VERSION AND NOT "${Boost_VERSION}" STREQUAL "0")
   set(COLLADA_DOM_LINK_DIRS ${COLLADA_DOM_LINK_DIRS} ${Boost_LIBRARY_DIRS})
 else()
   message(FATAL_ERROR "Could not find boost libraries!")
-endif()
-
-if( NOT Boost_FILESYSTEM_FOUND OR NOT Boost_SYSTEM_FOUND )
-  message(FATAL_ERROR "Need to install boost filesystem and boost system.")
 endif()
 
 set(COLLADA_DOM_BOOST_INCLUDE_DIRS)
@@ -179,7 +179,7 @@ if( libpcrecpp_FOUND )
     set(libpcrecpp_FOUND 0)
   endif()
 else()
-  message(FATAL_ERROR "need to install pcre and pcrecpp")
+  message(FATAL_ERROR "need to install pcre and pcrecpp ${libpcrecpp_FOUND}")
 endif()
 
 if( LIBXML2_DEFINITIONS )
@@ -198,28 +198,70 @@ link_directories(${COLLADA_DOM_LINK_DIRS})
 add_subdirectory(dom)
 
 if( OPT_COLLADA15 )
-  configure_file(
-    "${CMAKE_CURRENT_SOURCE_DIR}/collada15dom.pc.cmake.in"
-    "${CMAKE_CURRENT_BINARY_DIR}/collada15dom.pc" @ONLY IMMEDIATE)
   if(UNIX)
-    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/collada15dom.pc DESTINATION lib${LIB_SUFFIX}/pkgconfig)
+    configure_file("${CMAKE_CURRENT_SOURCE_DIR}/collada15dom.pc.in" "${CMAKE_CURRENT_BINARY_DIR}/collada15dom.pc" @ONLY IMMEDIATE)
+    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/collada15dom.pc DESTINATION lib${LIB_SUFFIX}/pkgconfig COMPONENT ${COMPONENT_PREFIX}15dom-dev)
   endif()
+  set(CPACK_COMPONENTS_ALL ${CPACK_COMPONENTS_ALL} ${COMPONENT_PREFIX}15dom ${COMPONENT_PREFIX}15dom-dev)
+  set(CPACK_COMPONENT_${COMPONENT_PREFIX_UPPER}15DOM-DEV_DEPENDS ${COMPONENT_PREFIX}dom-dev ${COMPONENT_PREFIX}15dom)
 endif()
 
 if( OPT_COLLADA14 )
-  configure_file(
-    "${CMAKE_CURRENT_SOURCE_DIR}/collada14dom.pc.cmake.in"
-    "${CMAKE_CURRENT_BINARY_DIR}/collada14dom.pc" @ONLY IMMEDIATE)
   if(UNIX)
-    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/collada14dom.pc DESTINATION lib${LIB_SUFFIX}/pkgconfig)
+    configure_file("${CMAKE_CURRENT_SOURCE_DIR}/collada14dom.pc.in" "${CMAKE_CURRENT_BINARY_DIR}/collada14dom.pc" @ONLY IMMEDIATE)
+    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/collada14dom.pc DESTINATION lib${LIB_SUFFIX}/pkgconfig COMPONENT ${COMPONENT_PREFIX}14dom-dev)
   endif()
+  set(CPACK_COMPONENTS_ALL ${CPACK_COMPONENTS_ALL} ${COMPONENT_PREFIX}154om ${COMPONENT_PREFIX}14dom-dev)
+  set(CPACK_COMPONENT_${COMPONENT_PREFIX_UPPER}14DOM-DEV_DEPENDS ${COMPONENT_PREFIX}dom-dev ${COMPONENT_PREFIX}14dom)
 endif()
 
-# add make uninstall capability
-configure_file(
-  "${CMAKE_CURRENT_SOURCE_DIR}/cmake-modules/cmake_uninstall.cmake.in"
-  "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
-  IMMEDIATE @ONLY)
+configure_file("${CMAKE_CURRENT_SOURCE_DIR}/collada_dom-config.cmake.in" "${CMAKE_CURRENT_BINARY_DIR}/collada_dom-config.cmake" @ONLY IMMEDIATE)
+configure_file("${CMAKE_CURRENT_SOURCE_DIR}/collada_dom-config-version.cmake.in" "${CMAKE_CURRENT_BINARY_DIR}/collada_dom-config-version.cmake" @ONLY IMMEDIATE)
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/collada_dom-config.cmake" "${CMAKE_CURRENT_BINARY_DIR}/collada_dom-config-version.cmake" DESTINATION "lib${LIB_SUFFIX}/cmake/collada" COMPONENT ${COMPONENT_PREFIX}dom-dev)
 
-add_custom_target(uninstall
-  "${CMAKE_COMMAND}" -P "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake")
+# add make uninstall capability
+configure_file("${CMAKE_CURRENT_SOURCE_DIR}/cmake-modules/cmake_uninstall.cmake.in" "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake" IMMEDIATE @ONLY)
+
+add_custom_target(uninstall "${CMAKE_COMMAND}" -P "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake")
+
+if(CMAKE_CPACK_COMMAND AND UNIX AND OPT_BUILD_PACKAGES)
+  # Packing information
+  set(CPACK_PACKAGE_NAME collada-dom${COLLADA_DOM_VERSION_MAJOR}.${COLLADA_DOM_VERSION_MINOR})
+  set(CPACK_PACKAGE_CONTACT "" CACHE STRING "Package maintainer and PGP signer.")
+  set(CPACK_PACKAGE_VENDOR "http://sourceforge.net/projects/collada-dom")
+  set(CPACK_PACKAGE_DISPLAY_NAME "collada dom ${COLLADA_DOM_VERSION}")
+  set(CPACK_PACKAGE_DESCRIPTION_SUMMARY " - Open Robotics Automation Virtual Environment")
+  set(CPACK_PACKAGE_VERSION ${COLLADA_DOM_VERSION} CACHE STRING "package version")
+  set(CPACK_PACKAGE_VERSION_MAJOR ${COLLADA_DOM_VERSION_MAJOR})
+  set(CPACK_PACKAGE_VERSION_MINOR ${COLLADA_DOM_VERSION_MINOR})
+  set(CPACK_PACKAGE_VERSION_PATCH ${COLLADA_DOM_VERSION_PATCH})
+  set(CPACK_PACKAGE_INSTALL_DIRECTORY "collada-dom${COLLADA_DOM_VERSION_MAJOR}.${COLLADA_DOM_VERSION_MINOR}")
+  set(CPACK_PACKAGE_DESCRIPTION_FILE ${CMAKE_CURRENT_SOURCE_DIR}/description)
+  set(CPACK_RESOURCE_FILE_LICENSE ${CMAKE_CURRENT_SOURCE_DIR}/dom/license.txt)
+
+  set(CPACK_COMPONENT_${COMPONENT_PREFIX_UPPER}DOM-DEV_DISPLAY_NAME "common headers and installs")
+  
+  set(CPACK_DEBIAN_BUILD_DEPENDS debhelper cmake libxml2-dev libboost-dev libpcre3-dev zlib1g-dev libboost-filesystem-dev libboost-system-dev libpcre3-dev)
+
+  # debian
+  set(CPACK_DEBIAN_PACKAGE_PRIORITY optional)
+  set(CPACK_DEBIAN_PACKAGE_SECTION libs)
+  set(CPACK_DEBIAN_PACKAGE_DEPENDS ${CPACK_COMPONENTS_ALL})
+  set(CPACK_DEBIAN_PACKAGE_SUGGESTS)
+  set(CPACK_DEBIAN_PACKAGE_NAME collada-dom${COLLADA_DOM_VERSION_MAJOR}.${COLLADA_DOM_VERSION_MINOR})
+  set(CPACK_DEBIAN_PACKAGE_REMOVE_SOURCE_FILES viewer fx rt Makefile.linux Makefile dom/codeGen dom/Makefile dom/external-libs/boost dom/external-libs/libxml2 dom/external-libs/minizip dom/external-libs/pcre dom/test dom/release dom/projects dom/make)
+  set(CPACK_DEBIAN_PACKAGE_SOURCE_COPY svn export --force)
+  set(CPACK_DEBIAN_CHANGELOG)
+  execute_process(COMMAND lsb_release -is
+    OUTPUT_VARIABLE _lsb_distribution OUTPUT_STRIP_TRAILING_WHITESPACE
+    RESULT_VARIABLE _lsb_release_failed)
+  set(CPACK_DEBIAN_DISTRIBUTION_NAME ${_lsb_distribution} CACHE STRING "Name of the distrubiton")
+  string(TOLOWER ${CPACK_DEBIAN_DISTRIBUTION_NAME} CPACK_DEBIAN_DISTRIBUTION_NAME)
+  if( ${CPACK_DEBIAN_DISTRIBUTION_NAME} STREQUAL "ubuntu" )
+    set(CPACK_DEBIAN_DISTRIBUTION_RELEASES karmic lucid maverick natty CACHE STRING "Release code-names of the distrubiton release")
+  endif()
+
+  set(DPUT_HOST "" CACHE STRING "PPA repository to upload the debian sources")
+  include(CPack)
+  include(DebSourcePPA)
+endif()
