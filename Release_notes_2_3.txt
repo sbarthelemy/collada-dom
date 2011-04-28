@@ -7,8 +7,13 @@ COLLADA-DOM 2.3
 
 [New Features]
 
-- added cmake configuration scripts for easier cmake installs
+- added cmake configuration scripts to find the collada-dom installs through cmake easier
+
 - added cpack generation and debian source package install preparation for cmake
+
+- windows compiles with cmake, forcing to use boost DLL, etc, all libraries are suffixed with VC version
+
+- added pcre-8.02 and zlib 3rdparty library sources to be used for static linking
 
 2.3.0
 =====
