@@ -17,6 +17,22 @@ get_filename_component(_PREFIX "${_PREFIX}" PATH)
 get_filename_component(_PREFIX "${_PREFIX}" PATH)
 get_filename_component(COLLADA_DOM_ROOT_DIR "${_PREFIX}" PATH)
 
+if( MSVC )
+  # in order to prevent DLL hell, each of the DLLs have to be suffixed with the major version and msvc prefix
+  if( MSVC70 OR MSVC71 )
+    set(MSVC_PREFIX "vc70")
+  elseif( MSVC80 )
+    set(MSVC_PREFIX "vc80")
+  elseif( MSVC90 )
+    set(MSVC_PREFIX "vc90")
+  else()
+    set(MSVC_PREFIX "vc100")
+  endif()
+  set(COLLADA_DOM_LIBRARY_SUFFIX "${COLLADA_DOM_VERSION_MAJOR}-${MSVC_PREFIX}-mt" CACHE STRING "the suffix for the collada-dom library" FORCE)
+else()
+  set(COLLADA_DOM_LIBRARY_SUFFIX)
+endif()
+
 set( COLLADA_DOM_CXX_FLAGS "-DDOM_DYNAMIC" ) # dynamically linked library
 if( WIN32 )
   # for visual studio linking, most of the time boost dlls will be used
@@ -26,10 +42,10 @@ set( COLLADA_DOM_LINK_FLAGS "" )
 set( COLLADA_DOM_LIBRARY_DIRS "${COLLADA_DOM_ROOT_DIR}/lib")
 if( COLLADA_DOM_FIND_COMPONENTS STREQUAL "1.4" )
   set( COLLADA_DOM_INCLUDE_DIRS "${COLLADA_DOM_ROOT_DIR}/@COLLADA_DOM_INCLUDE_INSTALL_DIR@" "${COLLADA_DOM_ROOT_DIR}/@COLLADA_DOM_INCLUDE_INSTALL_DIR@/1.4")
-  set( COLLADA_DOM_LIBRARIES collada14dom)
+  set( COLLADA_DOM_LIBRARIES collada14dom${COLLADA_DOM_LIBRARY_SUFFIX})
 elseif( COLLADA_DOM_FIND_COMPONENTS STREQUAL "1.5" )
   set( COLLADA_DOM_INCLUDE_DIRS "${COLLADA_DOM_ROOT_DIR}/@COLLADA_DOM_INCLUDE_INSTALL_DIR@" "${COLLADA_DOM_ROOT_DIR}/@COLLADA_DOM_INCLUDE_INSTALL_DIR@/1.5")
-  set( COLLADA_DOM_LIBRARIES collada15dom)
+  set( COLLADA_DOM_LIBRARIES collada15dom${COLLADA_DOM_LIBRARY_SUFFIX})
 else()
   message(FATAL_ERROR "need to specify a collada specification component, for example '1.4' or '1.5'")
 endif()
@@ -64,4 +80,5 @@ MARK_AS_ADVANCED(
   COLLADA_DOM_Boost_VERSION
   COLLADA_DOM_CFLAGS_OTHER
   COLLADA_DOM_LDFLAGS_OTHER
+  COLLADA_DOM_LIBRARY_SUFFIX
 )

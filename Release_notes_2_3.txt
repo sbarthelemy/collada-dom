@@ -15,6 +15,8 @@ COLLADA-DOM 2.3
 
 - added pcre-8.02 and zlib 3rdparty library sources to be used for static linking
 
+- added latest libxml2 library along with vc80, vc90, and vc100 DLLs.
+
 2.3.0
 =====
 
